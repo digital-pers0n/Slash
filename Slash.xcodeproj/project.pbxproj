@@ -11,6 +11,7 @@
 		CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D40FB20FE8B9E0066ACE2 /* main.m */; };
 		CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FD20FE8B9E0066ACE2 /* Assets.xcassets */; };
 		CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FF20FE8B9E0066ACE2 /* MainMenu.xib */; };
+		CE4D410920FE8E040066ACE2 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CE4D410820FE8E040066ACE2 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		CE4D40FD20FE8B9E0066ACE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE4D410020FE8B9E0066ACE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CE4D410220FE8B9E0066ACE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE4D410820FE8E040066ACE2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				CE4D40F720FE8B9E0066ACE2 /* AppDelegate.h */,
 				CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */,
+				CE4D410820FE8E040066ACE2 /* README.md */,
 				CE4D40FD20FE8B9E0066ACE2 /* Assets.xcassets */,
 				CE4D40FF20FE8B9E0066ACE2 /* MainMenu.xib */,
 				CE4D410220FE8B9E0066ACE2 /* Info.plist */,
@@ -97,6 +100,7 @@
 		CE4D40EC20FE8B9E0066ACE2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = SLH;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "digital-pers0n";
 				TargetAttributes = {
@@ -140,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4D410920FE8E040066ACE2 /* README.md in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
 			);
@@ -247,6 +252,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Slash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = home.Slash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -259,6 +265,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Slash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = home.Slash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
