@@ -16,6 +16,12 @@
 #include <errno.h>
 #include <signal.h>
 
+extern char **environ;
+
+static inline void prc_error(const char *str, const char *str2) {
+    fprintf(stderr, "%s: %s failed with error %i %s\n", str, str2, errno, strerror(errno));
+}
+
 #pragma mark - Initialization
 
 void prc_init(Process *p, char **args) {
@@ -34,3 +40,58 @@ void prc_destroy(Process *p) {
     }
     p->args = NULL;
 }
+
+#pragma mark - Process launch
+
+int prc_launch(Process *p) {
+    
+    if (p->pid > 0) { // kill previous process
+        prc_kill(p);
+    }
+    
+    int stdout_pipe[2];
+    int stderr_pipe[2];
+    posix_spawn_file_actions_t fa;
+    
+    /* create pipes */
+    if (pipe(stdout_pipe) || pipe(stderr_pipe)) {
+        prc_error(__func__, "pipe()");
+        return -1;
+    }
+    
+    /* init and configure file actions */
+    posix_spawn_file_actions_init(&fa);
+    posix_spawn_file_actions_addclose(&fa, stdout_pipe[0]);
+    posix_spawn_file_actions_addclose(&fa, stderr_pipe[0]);
+    posix_spawn_file_actions_adddup2(&fa, stdout_pipe[1], 1);
+    posix_spawn_file_actions_adddup2(&fa, stderr_pipe[1], 2);
+    posix_spawn_file_actions_addclose(&fa, stdout_pipe[1]);
+    posix_spawn_file_actions_addclose(&fa, stderr_pipe[1]);
+    
+    /* spawn a process */
+    pid_t pid;
+    if (posix_spawnp(&pid, p->args[0], &fa, NULL, p->args, environ) != 0) {
+        prc_error(__func__, "posix_spawn()");
+        posix_spawn_file_actions_destroy(&fa);
+        return -1;
+    }
+    
+    /* close child-side of pipes */
+    close(stdout_pipe[1]);
+    close(stderr_pipe[1]);
+    
+    /* associate streams with the file descriptors */
+    if ((p->std_out = fdopen(stdout_pipe[0], "r")) == NULL ||
+        (p->std_err = fdopen(stderr_pipe[0], "r")) == NULL) {
+        prc_error(__func__, "fdopen()");
+        posix_spawn_file_actions_destroy(&fa);
+        return -1;
+    }
+    
+    p->pid = pid;
+    p->fa = fa;
+    
+    return 0;
+}
+
+
