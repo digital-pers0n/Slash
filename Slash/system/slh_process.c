@@ -115,4 +115,34 @@ int prc_close(Process *p) {
     return exit_code;
 }
 
+#pragma mark - Process kill
+
+int prc_kill(Process *p) {
+    
+    if (prc_pid(p) > 0) {
+        
+        /* TODO: use kill() function instead */
+        char *pkill;
+        asprintf(&pkill, "pkill -9 -P %i", prc_pid(p));
+        system(pkill);
+        free(pkill);
+        
+        
+        /* disassociate file streams */
+        if (fclose(prc_stdout(p)) == EOF || fclose(prc_stderr(p)) == EOF) {
+            prc_error(__func__, "fclose()");
+        }
+        
+        if (posix_spawn_file_actions_destroy(&(p->fa)) != 0) {
+            prc_error(__func__, "posix_spawn_file_actions_destroy()");
+        }
+        p->pid = -1;
+        
+    } else {
+        fprintf(stderr, "%s: invalid PID\n", __func__);
+        return -1;
+    }
+    
+    return 0;
+}
 
