@@ -94,4 +94,25 @@ int prc_launch(Process *p) {
     return 0;
 }
 
+#pragma mark - Process close
+
+int prc_close(Process *p) {
+    int exit_code;
+    
+    /* disassociate file streams */
+    if (fclose(prc_stdout(p)) == EOF || fclose(prc_stderr(p)) == EOF) {
+        prc_error(__func__, "fclose()");
+    }
+    
+    waitpid(prc_pid(p), &exit_code, 0);
+    
+    if (posix_spawn_file_actions_destroy(&(p->fa)) != 0) {
+        prc_error(__func__, "posix_spawn_file_actions_destroy()");
+    }
+    
+    p->pid = -1;
+    
+    return exit_code;
+}
+
 
