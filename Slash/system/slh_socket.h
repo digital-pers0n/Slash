@@ -11,5 +11,15 @@
 
 #include <stdio.h>
 
+typedef int Socket;
+
+
+/* Connect/Disconnect */
+int soc_connect(Socket *s, char *path);
+int soc_shutdown(Socket *s);
+
+/* Send/Receive Data */
+ssize_t soc_send(Socket *s, char *msg, size_t len);
+ssize_t soc_recv(Socket *s, char *buf, size_t len);
 
 #endif /* slh_socket_h */
