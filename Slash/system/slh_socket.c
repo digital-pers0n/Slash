@@ -41,3 +41,13 @@ int soc_connect(Socket *s, char *path) {
     return 0;
 }
 
+#pragma mark - Shutdown
+
+int soc_shutdown(Socket *s) {
+    if (shutdown(*s, SHUT_RDWR) != 0) {
+        soc_error(__func__, "shutdown()");
+        return -1;
+    }
+    return 0;
+}
+
