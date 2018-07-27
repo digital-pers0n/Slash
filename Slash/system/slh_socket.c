@@ -19,7 +19,7 @@ static inline void soc_error(const char *str, const char *str2) {
 
 #pragma mark - Connect
 
-int soc_connect(Socket *s, char *path) {
+int soc_connect(Socket *s, const char *path) {
     
     /* Create an endpoint for communication */
     if ((*s = socket(AF_UNIX, SOCK_STREAM, 0) == -1)) {
