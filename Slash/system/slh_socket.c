@@ -51,3 +51,22 @@ int soc_shutdown(Socket *s) {
     return 0;
 }
 
+#pragma mark - Send/Receive Data
+
+ssize_t soc_send(Socket *s, const char *msg, size_t len) {
+    ssize_t size = send(*s, msg, len, 0);
+    if (size == -1) {
+        soc_error(__func__, "send()");
+        return -1;
+    }
+    return size;
+}
+
+ssize_t soc_recv(Socket *s, char *buf, size_t len) {
+    ssize_t size = recv(*s, buf, len, 0);
+    if (size == -1) {
+        soc_error(__func__, "recv()");
+        return -1;
+    }
+    return size;
+}
