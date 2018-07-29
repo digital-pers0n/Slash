@@ -146,3 +146,13 @@ int prc_kill(Process *p) {
     return 0;
 }
 
+#pragma mark - Process does exist
+
+int prc_does_exist(Process *p) {
+    if (prc_pid(p) < 0) {
+        return -1;
+    }
+    return kill(prc_pid(p), 0);
+}
+
+
