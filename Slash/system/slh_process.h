@@ -36,6 +36,9 @@ int prc_close(Process *p);
 /* Kill the associated process. */
 int prc_kill(Process *p);
 
+/* Check if the associated process exists */
+int prc_does_exist(Process *p);
+
 /* Accessors */
 
 static inline FILE *prc_stdout(Process *p) {
