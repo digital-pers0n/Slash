@@ -27,4 +27,47 @@ typedef struct _Player {
     PCallback *cb;
 } Player;
 
+/**
+ * Initialize a player.
+ * 
+ * @param args a NULL-terminated array of pointers to NULL-terminated strings
+ *             The array should contain valid mpv options.
+ *             args[0] must contain the file path to mpv executable.
+ * @return Upon successful initialization 0 is returned, otherwise, -1
+ */
+ 
+int plr_init(Player *p, char **args);
+
+/**
+ * Set a user-defined callback function
+ * 
+ * @param context a user-defined context
+ * @param func a custom function
+ */
+
+void plr_set_callback(Player *p, void *context, callback_f func);
+
+/**
+ * Launch the player.
+ * 
+ * @return 0 on success. -1 if an error occurs.
+ */
+
+int plr_launch(Player *p);
+
+/**
+ * Destroy and deinitialize the player.
+ */ 
+
+void plr_destroy(Player *p);
+
+/**
+ * Send a message to the player.
+ * 
+ * @param msg an array that contains a vaild mpv JSON IPC message.
+ * @return On success the number of bytes which were sent is returned. Otherwise -1.
+ */
+
+ssize_t plr_msg_send(Player *p, char *msg);
+
 #endif /* slh_mpv_h */
