@@ -1,2 +1,2 @@
 # Slash
-Simple ffmpeg-based video converter
+Simple ffmpeg-based video converter (WIP)
