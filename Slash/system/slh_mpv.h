@@ -20,7 +20,6 @@ typedef struct _PCallback {
 } PCallback;
 
 typedef struct _Player {
-    char *mpv_path;
     Socket *soc;
     char *socket_path;
     Process *proc;
