@@ -36,7 +36,7 @@ typedef struct _Player {
  * @return Upon successful initialization 0 is returned, otherwise, -1
  */
  
-int plr_init(Player *p, char **args);
+int plr_init(Player *p, char *const *args);
 
 /**
  * Set a user-defined callback function
