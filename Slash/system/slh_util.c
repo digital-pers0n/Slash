@@ -7,3 +7,11 @@
 //
 
 #include "slh_util.h"
+
+size_t args_len(char *const *in) {
+    size_t len = 0;
+    while (*(in++) != NULL) {
+        len++;
+    }
+    return len;
+}
