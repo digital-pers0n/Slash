@@ -7,6 +7,7 @@
 //
 
 #include "slh_process.h"
+#include "slh_util.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
@@ -24,8 +25,11 @@ static inline void prc_error(const char *str, const char *str2) {
 
 #pragma mark - Initialization
 
-void prc_init(Process *p, char **args) {
-    p->args = args;
+void prc_init(Process *p, char *const *args) {
+    /* Copy args */
+    p->args = malloc(args_len(args) * sizeof(char *));
+    args_cpy(p->args, args);
+    
     p->pid = -1;
     p->std_err = NULL;
     p->std_out = NULL;
@@ -38,7 +42,7 @@ void prc_destroy(Process *p) {
     if (prc_pid(p) > 0) {
         prc_close(p);
     }
-    p->args = NULL;
+    args_free(p->args);
 }
 
 #pragma mark - Process launch

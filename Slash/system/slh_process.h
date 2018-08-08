@@ -23,7 +23,7 @@ typedef struct _Process {
 } Process;
 
 /* Initialization / Destruction */
-void prc_init(Process *p, char **args);
+void prc_init(Process *p, char *const *args);
 
 void prc_destroy(Process *p);
 
