@@ -7,6 +7,7 @@
 //
 
 #include "slh_util.h"
+#include <string.h>
 
 size_t args_len(char *const *in) {
     size_t len = 0;
@@ -14,4 +15,13 @@ size_t args_len(char *const *in) {
         len++;
     }
     return len;
+}
+
+char **args_cpy(char **dst, char *const *src) {
+    size_t len = 0;
+    while (*src != NULL) {
+        dst[len++] = strdup(*(src++));
+    }
+    dst[len] = NULL;
+    return dst;
 }
