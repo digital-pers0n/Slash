@@ -41,3 +41,12 @@ char **args_add(char *** args, const char *str) {
     (*args)[len] = NULL;
     return *args;
 }
+
+void args_free(char **args) {
+    char **ptr = args;
+    while (*ptr != NULL) {
+        free(*(ptr++));
+    }
+    free(args);
+}
+
