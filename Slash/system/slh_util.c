@@ -7,7 +7,10 @@
 //
 
 #include "slh_util.h"
+#include <stdlib.h>
 #include <string.h>
+#include <errno.h>
+
 
 size_t args_len(char *const *in) {
     size_t len = 0;
@@ -24,4 +27,17 @@ char **args_cpy(char **dst, char *const *src) {
     }
     dst[len] = NULL;
     return dst;
+}
+
+char **args_add(char *** args, const char *str) {
+    size_t len = args_len(*args);
+    (*args)[len] = strdup(str);
+    len++;
+    if (!(*args = realloc(*args, (len + 1) * sizeof(char *)))) {
+        
+        fprintf(stderr, "%s : realloc() : %i %s\n", __func__, errno, strerror(errno));
+        return NULL;
+    }
+    (*args)[len] = NULL;
+    return *args;
 }
