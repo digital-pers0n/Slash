@@ -33,11 +33,13 @@ char **args_add(char *** args, const char *str) {
     size_t len = args_len(*args);
     (*args)[len] = strdup(str);
     len++;
-    if (!(*args = realloc(*args, (len + 1) * sizeof(char *)))) {
+    char **tmp;
+    if (!(tmp = realloc(*args, (len + 1) * sizeof(char *)))) {
         
         fprintf(stderr, "%s : realloc() : %i %s\n", __func__, errno, strerror(errno));
         return NULL;
     }
+    *args = tmp;
     (*args)[len] = NULL;
     return *args;
 }
