@@ -22,7 +22,7 @@ static inline void soc_error(const char *str, const char *str2) {
 int soc_connect(Socket *s, const char *path) {
     
     /* Create an endpoint for communication */
-    if ((*s = socket(AF_UNIX, SOCK_STREAM, 0) == -1)) {
+    if ((*s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
         soc_error(__func__, "socket()");
         return -1;
     }
