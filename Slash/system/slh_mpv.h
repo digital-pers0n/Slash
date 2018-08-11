@@ -24,6 +24,7 @@ typedef struct _Player {
     char *socket_path;
     Process *proc;
     PCallback *cb;
+    void *gr;               // dispatch_group_t
 } Player;
 
 /**
