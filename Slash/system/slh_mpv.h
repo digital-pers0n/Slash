@@ -55,6 +55,22 @@ void plr_set_callback(Player *p, void *context, callback_f func);
 int plr_launch(Player *p);
 
 /**
+ * Initialize an IPC connection. Can be called after plr_launch()
+ *
+ * @return 0 on succes. -1 if an error occurs.
+ */
+
+int plr_connect(Player *p);
+
+/**
+ * Close the IPC connection. 
+ *
+ * @return 0 on succes. -1 if an error occurs.
+ */
+
+int plr_disconnect(Player *p);
+
+/**
  * Destroy and deinitialize the player.
  */ 
 
