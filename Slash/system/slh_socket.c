@@ -12,6 +12,7 @@
 #include <sys/un.h>
 #include <errno.h>
 #include <string.h>
+#include <unistd.h>
 
 static inline void soc_error(const char *str, const char *str2) {
     fprintf(stderr, "%s: %s failed with error %i %s\n", str, str2, errno, strerror(errno));
@@ -46,6 +47,9 @@ int soc_connect(Socket *s, const char *path) {
 int soc_shutdown(Socket *s) {
     if (shutdown(*s, SHUT_RDWR) != 0) {
         soc_error(__func__, "shutdown()");
+    }
+    if (close(*s) != 0) {
+        soc_error(__func__, "close()");
         return -1;
     }
     return 0;
