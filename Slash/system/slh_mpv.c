@@ -60,4 +60,22 @@ int plr_init(Player *p, char *const *args) {
     return 0;
 }
 
+#pragma mark - Destroy
+
+void plr_destroy(Player *p) {
+    
+    soc_shutdown(p->soc);
+    free(p->soc);
+    remove(p->socket_path);
+    free(p->socket_path);
+    
+    if (prc_pid(p->proc) > 0) {
+        prc_kill(p->proc);
+    }
+    dispatch_group_wait(p->gr, DISPATCH_TIME_FOREVER);
+    dispatch_release(p->gr);
+    prc_destroy(p->proc);
+    free(p->proc);
+    free(p->cb);
+}
 
