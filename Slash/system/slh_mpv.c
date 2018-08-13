@@ -62,6 +62,16 @@ int plr_init(Player *p, char *const *args) {
     return 0;
 }
 
+void plr_set_callback(Player *p, void *ctx, callback_f func) {
+    if (!func) {
+        p->cb->func = (callback_f)fputs;
+        p->cb->context = stdout;
+    } else {
+        p->cb->func = func;
+        p->cb->context = ctx;
+    }
+}
+
 #pragma mark - Destroy
 
 void plr_destroy(Player *p) {
