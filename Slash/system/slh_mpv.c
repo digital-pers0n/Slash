@@ -91,3 +91,54 @@ void plr_destroy(Player *p) {
     free(p->cb);
 }
 
+#pragma mark - Launch
+
+static void plr_read_output(FILE *fp, PCallback *cb) {
+    
+    const int len = 128;
+    char *buffer = malloc(len * sizeof(char));
+    while(fgets(buffer, len, fp)) {
+        cb->func(buffer, cb->context);
+    }
+    free(buffer);
+}
+
+int plr_launch(Player *p) {
+    
+    if (prc_does_exist(p->proc) == 0) {
+        plr_error(__func__, "mpv is already running");
+        return -1;
+    }
+    if (prc_launch(p->proc) != 0) {
+        plr_error(__func__, "failed to launch");
+        return -1;
+    }
+    
+    /* Read output */
+    dispatch_queue_t gq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_async(p->gr, gq, ^{
+        
+        dispatch_retain(p->gr);
+        dispatch_group_enter(p->gr);
+        
+        dispatch_group_async(p->gr, gq, ^{
+            
+            dispatch_group_enter(p->gr);
+            
+            plr_read_output(prc_stderr(p->proc), p->cb);
+            
+            dispatch_group_leave(p->gr);
+            
+        });
+        
+        plr_read_output(prc_stdout(p->proc), p->cb);
+        prc_close(p->proc);
+        
+        dispatch_group_leave(p->gr);
+        dispatch_release(gq);
+        
+    });
+
+    return 0;
+}
+
