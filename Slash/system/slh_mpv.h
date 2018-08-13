@@ -13,7 +13,7 @@
 #include "slh_socket.h"
 #include "slh_process.h"
 
-typedef void (*callback_f)(void *player, void *context, char *data);
+typedef void (*callback_f)(char *data, void *context);
 typedef struct _PCallback {
     void *context;
     callback_f func;
