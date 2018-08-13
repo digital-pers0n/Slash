@@ -142,3 +142,25 @@ int plr_launch(Player *p) {
     return 0;
 }
 
+#pragma mark - IPC
+
+int plr_connect(Player *p) {
+    if (soc_connect(p->soc, p->socket_path) != 0) {
+        plr_error(__func__, "Connection failed");
+        return -1;
+    }
+    return 0;
+}
+
+int plr_disconnect(Player *p) {
+    if (soc_shutdown(p->soc) != 0) {
+        plr_error(__func__, "Operation failed");
+        return -1;
+    }
+    return 0;
+}
+
+ssize_t plr_msg_send(Player *p, const char *msg) {
+    return soc_send(p->soc, msg, strlen(msg));
+}
+

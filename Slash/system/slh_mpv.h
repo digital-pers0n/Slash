@@ -84,6 +84,6 @@ void plr_destroy(Player *p);
  * @return On success the number of bytes which were sent is returned. Otherwise -1.
  */
 
-ssize_t plr_msg_send(Player *p, char *msg);
+ssize_t plr_msg_send(Player *p, const char *msg);
 
 #endif /* slh_mpv_h */
