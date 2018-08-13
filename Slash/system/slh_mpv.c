@@ -52,6 +52,8 @@ int plr_init(Player *p, char *const *args) {
     prc_init(p->proc, ac);
     p->soc = malloc(sizeof(Socket));
     p->cb = calloc(1, sizeof(PCallback));
+    p->cb->func = (callback_f)fputs;
+    p->cb->context = stdout;
     p->gr = dispatch_group_create();
     
     free(cmd);
