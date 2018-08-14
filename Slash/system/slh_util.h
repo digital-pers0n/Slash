@@ -17,6 +17,15 @@
  */
 
 /**
+ * Initialize an argument array 
+ *
+ * @param len initial size of array
+ * 
+ * @return a pointer to an allocated array of size len or NULL if an error occurs
+ */
+char **args_init(size_t len);
+
+/**
  * Find number of items in an argument array.
  * 
  * @param args a NULL-terminated array of strings. This parameter cannot be NULL.

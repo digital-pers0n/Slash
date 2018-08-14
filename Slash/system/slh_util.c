@@ -11,6 +11,9 @@
 #include <string.h>
 #include <errno.h>
 
+char **args_init(size_t len) {
+    return calloc(len, sizeof(char *));
+}
 
 size_t args_len(char *const *in) {
     size_t len = 0;
