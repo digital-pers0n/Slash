@@ -24,7 +24,7 @@ static inline void plr_error(const char *s1, const char *s2) {
 int plr_init(Player *p, char *const *args) {
 
     p->proc = malloc(sizeof(Process));
-    char **ac = malloc((args_len(args) + 1) * sizeof(char *));
+    char **ac = args_init((args_len(args) + 1));
     args_cpy(ac, args);
     
     char *tmp, *cmd, *pth;

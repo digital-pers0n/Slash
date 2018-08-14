@@ -27,7 +27,7 @@ static inline void prc_error(const char *str, const char *str2) {
 
 void prc_init(Process *p, char *const *args) {
     /* Copy args */
-    p->args = malloc((args_len(args) + 1) * sizeof(char *));
+    p->args = args_init((args_len(args) + 1));
     args_cpy(p->args, args);
     
     p->pid = -1;
