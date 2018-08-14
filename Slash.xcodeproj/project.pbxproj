@@ -10,12 +10,14 @@
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
 		CE1414C7210D32CC00C02B2D /* script.lua in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C3210D31D900C02B2D /* script.lua */; };
 		CE22B5FB210BBD2500EE17A4 /* slh_mpv.c in Sources */ = {isa = PBXBuildFile; fileRef = CE22B5F9210BBD2500EE17A4 /* slh_mpv.c */; };
+		CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2CC11F21235334008C8345 /* SLHPlayer.m */; };
 		CE40B09D2107DE2900969371 /* slh_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE40B09B2107DE2900969371 /* slh_socket.c */; };
 		CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */; };
 		CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D40FB20FE8B9E0066ACE2 /* main.m */; };
 		CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FD20FE8B9E0066ACE2 /* Assets.xcassets */; };
 		CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FF20FE8B9E0066ACE2 /* MainMenu.xib */; };
 		CE4D410C20FE91130066ACE2 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D410B20FE91130066ACE2 /* SLHDragView.m */; };
+		CE5461D3211A314E00C2B774 /* slh_util.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5461D1211A314E00C2B774 /* slh_util.c */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +26,8 @@
 		CE1414C3210D31D900C02B2D /* script.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.lua; sourceTree = "<group>"; };
 		CE22B5F9210BBD2500EE17A4 /* slh_mpv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_mpv.c; path = system/slh_mpv.c; sourceTree = "<group>"; };
 		CE22B5FA210BBD2500EE17A4 /* slh_mpv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_mpv.h; path = system/slh_mpv.h; sourceTree = "<group>"; };
+		CE2CC11E21235334008C8345 /* SLHPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHPlayer.h; sourceTree = "<group>"; };
+		CE2CC11F21235334008C8345 /* SLHPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHPlayer.m; sourceTree = "<group>"; };
 		CE40B09B2107DE2900969371 /* slh_socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_socket.c; path = system/slh_socket.c; sourceTree = "<group>"; };
 		CE40B09C2107DE2900969371 /* slh_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_socket.h; path = system/slh_socket.h; sourceTree = "<group>"; };
 		CE4D40F420FE8B9E0066ACE2 /* Slash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slash.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +40,8 @@
 		CE4D410820FE8E040066ACE2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		CE4D410A20FE91130066ACE2 /* SLHDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHDragView.h; sourceTree = "<group>"; };
 		CE4D410B20FE91130066ACE2 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHDragView.m; sourceTree = "<group>"; };
+		CE5461D1211A314E00C2B774 /* slh_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_util.c; path = system/slh_util.c; sourceTree = "<group>"; };
+		CE5461D2211A314E00C2B774 /* slh_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_util.h; path = system/slh_util.h; sourceTree = "<group>"; };
 		CE65BB0C21066B0500D2CBAA /* slh_process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_process.c; path = system/slh_process.c; sourceTree = "<group>"; };
 		CE65BB0D21066B0500D2CBAA /* slh_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_process.h; path = system/slh_process.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +89,8 @@
 				CE65BB0F21066B1100D2CBAA /* system */,
 				CE4D40F720FE8B9E0066ACE2 /* AppDelegate.h */,
 				CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */,
+				CE2CC11E21235334008C8345 /* SLHPlayer.h */,
+				CE2CC11F21235334008C8345 /* SLHPlayer.m */,
 				CE4D410A20FE91130066ACE2 /* SLHDragView.h */,
 				CE4D410B20FE91130066ACE2 /* SLHDragView.m */,
 				CE4D410820FE8E040066ACE2 /* README.md */,
@@ -112,6 +120,8 @@
 				CE40B09B2107DE2900969371 /* slh_socket.c */,
 				CE22B5FA210BBD2500EE17A4 /* slh_mpv.h */,
 				CE22B5F9210BBD2500EE17A4 /* slh_mpv.c */,
+				CE5461D2211A314E00C2B774 /* slh_util.h */,
+				CE5461D1211A314E00C2B774 /* slh_util.c */,
 			);
 			name = system;
 			sourceTree = "<group>";
@@ -189,6 +199,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE22B5FB210BBD2500EE17A4 /* slh_mpv.c in Sources */,
+				CE5461D3211A314E00C2B774 /* slh_util.c in Sources */,
+				CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */,
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
 				CE4D410C20FE91130066ACE2 /* SLHDragView.m in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
