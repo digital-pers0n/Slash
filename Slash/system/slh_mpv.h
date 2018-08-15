@@ -66,7 +66,7 @@ int plr_connect(Player *p);
 /**
  * Close the IPC connection. 
  *
- * @return 0 on succes. -1 if an error occurs.
+ * @return 0 on success. -1 if an error occurs.
  */
 
 int plr_disconnect(Player *p);
@@ -85,5 +85,13 @@ void plr_destroy(Player *p);
  */
 
 ssize_t plr_msg_send(Player *p, const char *msg);
+
+/**
+ * Receive a message from the player.
+ *
+ * @return the number of bytes received or -1 if an error occured.
+ */
+
+ssize_t plr_msg_recv(Player *p, char *buffer, size_t len);
 
 #endif /* slh_mpv_h */

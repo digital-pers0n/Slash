@@ -164,3 +164,6 @@ ssize_t plr_msg_send(Player *p, const char *msg) {
     return soc_send(p->soc, msg, strlen(msg));
 }
 
+ssize_t plr_msg_recv(Player *p, char *buf, size_t len) {
+    return soc_recv(p->soc, buf, len);
+}
