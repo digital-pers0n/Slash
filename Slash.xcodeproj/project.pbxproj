@@ -20,6 +20,7 @@
 		CE4D410C20FE91130066ACE2 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D410B20FE91130066ACE2 /* SLHDragView.m */; };
 		CE5461D3211A314E00C2B774 /* slh_util.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5461D1211A314E00C2B774 /* slh_util.c */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
+		CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		CE5461D2211A314E00C2B774 /* slh_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_util.h; path = system/slh_util.h; sourceTree = "<group>"; };
 		CE65BB0C21066B0500D2CBAA /* slh_process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_process.c; path = system/slh_process.c; sourceTree = "<group>"; };
 		CE65BB0D21066B0500D2CBAA /* slh_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_process.h; path = system/slh_process.h; sourceTree = "<group>"; };
+		CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItemTrack.h; sourceTree = "<group>"; };
+		CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMediaItemTrack.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 				CE2CC11F21235334008C8345 /* SLHPlayer.m */,
 				CE2CC12121235447008C8345 /* SLHMediaItem.h */,
 				CE2CC12221235447008C8345 /* SLHMediaItem.m */,
+				CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */,
+				CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */,
 				CE4D410A20FE91130066ACE2 /* SLHDragView.h */,
 				CE4D410B20FE91130066ACE2 /* SLHDragView.m */,
 				CE4D410820FE8E040066ACE2 /* README.md */,
@@ -212,6 +217,7 @@
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
 				CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
+				CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
