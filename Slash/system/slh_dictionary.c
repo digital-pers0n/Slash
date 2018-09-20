@@ -61,3 +61,99 @@ void dict_destroy(Dictionary *t) {
     }
     free(t->table);
 }
+
+#pragma mark - Add / Replace / Remove Key-Values
+
+static int dict_rehash(Dictionary *t) {
+    size_t new_pos = (t->positions << 1) + 1;
+    KeyVal *new_table = calloc(new_pos, sizeof(KeyVal));
+    if (!new_table) {
+        return -1;
+    }
+    
+    for (size_t i = 0; i < t->positions; i++) {
+        KeyVal *old_kv = &t->table[i];
+        if (old_kv->key && old_kv->key != t->vacated) {
+            uint64_t hv = hash(old_kv->key);
+            for (size_t j = 0; j < new_pos; j++) {
+                size_t new_idx = (hv + j) % new_pos;
+                KeyVal *new_kv = &new_table[new_idx];
+                if (new_kv->key == NULL) {
+                    new_kv->key = old_kv->key;
+                    new_kv->value = old_kv->value;
+                    break;
+                }
+            }
+        }
+    }
+    free(t->table);
+    t->table = new_table;
+    t->positions = new_pos;
+    return 0;
+}
+
+/**
+ Find the key-value pair associated with the given key.
+ 
+ @return NULL if the key-vale pair doesn't exist.
+ */
+
+static KeyVal *dict_get_keyval(Dictionary *t, const char *key, uint64_t hv) {
+    for (size_t i = 0; i < t->positions; i++) {
+        size_t idx = (hv + i) % t->positions;
+        KeyVal *kv = &t->table[idx];
+        if (kv->key == NULL) {
+            return NULL;
+        } else if (kv->key == t->vacated) {
+            continue;
+        } else if (strcmp(kv->key, key) == 0) {
+            return kv;
+        }
+    }
+    
+    /* Nothing is found */
+    return NULL;
+}
+
+
+
+int dict_add_value(Dictionary *t, const char *key, const void *value) {
+    uint64_t hv = hash(key);
+    if (dict_get_keyval(t, key, hv) != NULL) {
+        return -1;
+    }
+    
+    if ((double)t->size / t->positions > 0.75) {
+        if (dict_rehash(t) !=  0) {
+            return -1;
+        }
+    }
+    
+    for (size_t i = 0; i < t->positions; i++) {
+        size_t idx = (hv + i) % t->positions;
+        KeyVal *kv = &t->table[idx];
+        if (kv->key == NULL || kv->key == t->vacated) {
+            kv->key = strdup(key);
+            kv->value = (void *)value;
+            t->size++;
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int dict_replace_value(Dictionary *t, const char *key, const void *new_value, void **old_value) {
+    uint64_t hv = hash(key);
+    KeyVal *kv = dict_get_keyval(t, key, hv);
+    if (!kv) {
+        return -1;
+    }
+    if (old_value) {
+        *old_value = kv->value;
+    }
+    kv->value = (void *)new_value;
+    return 0;
+}
+
+
