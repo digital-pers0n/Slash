@@ -156,4 +156,87 @@ int dict_replace_value(Dictionary *t, const char *key, const void *new_value, vo
     return 0;
 }
 
+int dict_remove_value(Dictionary *t, const char *key, void **value) {
+    uint64_t hv = hash(key);
+    KeyVal *kv = dict_get_keyval(t, key, hv);
+    if (!kv) {
+        return -1;
+    }
+    free(kv->key);
+    kv->key = t->vacated;
+    if (value) {
+        *value = kv->value;
+    }
+    kv->value = NULL;
+    t->size--;
+    return 0;
+}
 
+void dict_remove_all(Dictionary *t) {
+    for (size_t i = 0; i < t->positions; i++) {
+        KeyVal *kv = &t->table[i];
+        if (kv->key == t->vacated) {
+            kv->key = NULL;
+        } else if (kv->key != NULL) {
+            free(kv->key);
+            kv->key = NULL;
+            if (t->destroy) {
+                t->destroy(kv->value);
+                kv->value = NULL;
+            }
+            t->size--;
+        }
+        
+    }
+}
+
+void *dict_get_value(Dictionary *t, const char *key) {
+    uint64_t hv = hash(key);
+    KeyVal *kv = dict_get_keyval(t, key, hv);
+    if (!kv) {
+        return NULL;
+    }
+    return kv->value;
+}
+
+static void dict_get_keys(Dictionary *t, char **keys) {
+    for (size_t i = 0, j = 0; i < t->positions; i++) {
+        KeyVal *kv = &t->table[i];
+        if (kv->key && kv->key != t->vacated) {
+            keys[j++] = kv->key;
+        }
+    }
+}
+static void dict_get_values(Dictionary *t, void **values) {
+    for (size_t i = 0, j = 0; i < t->positions; i++) {
+        KeyVal *kv = &t->table[i];
+        if (kv->key && kv->key != t->vacated) {
+            values[j++] = kv->value;
+        }
+    }
+}
+
+static void dict_get_keyvals(Dictionary *t, char **keys, void **values) {
+    for (size_t i = 0, j = 0; i < t->positions; i++) {
+        KeyVal *kv = &t->table[i];
+        if (kv->key && kv->key != t->vacated) {
+            keys[j] = kv->key;
+            values[j++] = kv->value;
+        }
+    }
+}
+
+void dict_get_keys_and_values(Dictionary *t, char **keys, void **values) {
+    
+    if (keys && values) {
+        dict_get_keyvals(t, keys, values);
+    } else {
+        if (keys) {
+            dict_get_keys(t, keys);
+        }
+        if (values) {
+            dict_get_values(t, values);
+        }
+    }
+
+}
