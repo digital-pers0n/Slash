@@ -56,7 +56,7 @@ void dict_destroy(Dictionary *t);
  * 
  * @param value The value to add into the dictionary.
  *
- * @return 0 on succes, -1 if key exists in the dictionary, -2 if error occurs.
+ * @return 0 on success, -1 if key exists in the dictionary, -2 if error occurs.
  */
 
 int dict_add_value(Dictionary *t, const char *key, const void *value);
@@ -71,7 +71,7 @@ int dict_add_value(Dictionary *t, const char *key, const void *value);
  *
  * @param old_value Upon return points to the value which was replaced.
  *
- * @return 0 on succes, -1 if key doesn't exist in the dictionary
+ * @return 0 on success, -1 if key doesn't exist in the dictionary
  */
 
 int dict_replace_value(Dictionary *t, const char *key, const void *new_value, void **old_value);
@@ -85,17 +85,16 @@ int dict_replace_value(Dictionary *t, const char *key, const void *new_value, vo
  * @param value Upon return points to the value 
  *              which was removed from the dictionary.
  * 
- * @return 0 on succes, -1 if no such key exists in the dictionary
+ * @return 0 on success, -1 if no such key exists in the dictionary
  */
 
 int dict_remove_value(Dictionary *t, const char *key, void **value);
 
 /**
  * Remove all the key-values pairs from the dictionary.
- * @return 0 on succes, -1 if error occurs.
  */
 
-int dict_remove_all(Dictionary *t);
+void dict_remove_all(Dictionary *t);
 
 /**
  * Get the value associated with the provied key.
@@ -119,7 +118,7 @@ void *dict_get_value(Dictionary *t, const char *key);
  *               This parameter can be NULL.
  *
  */
-void dict_get_keyvals(Dictionary *t, char **keys, void **values);
+void dict_get_keys_and_values(Dictionary *t, char **keys, void **values);
 
 /**
  * Return the number of key-value pairs currently in the dictionary.
