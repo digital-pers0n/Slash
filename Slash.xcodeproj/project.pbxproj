@@ -22,6 +22,7 @@
 		CE5461D3211A314E00C2B774 /* slh_util.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5461D1211A314E00C2B774 /* slh_util.c */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
 		CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */; };
+		CE8806C42158267900827977 /* slh_media.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8806C22158267900827977 /* slh_media.c */; };
 		CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		CE65BB0D21066B0500D2CBAA /* slh_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_process.h; path = system/slh_process.h; sourceTree = "<group>"; };
 		CE81461021287D9B00DFFDA6 /* SLHMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMetadataItem.h; sourceTree = "<group>"; };
 		CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMetadataItem.m; sourceTree = "<group>"; };
+		CE8806C22158267900827977 /* slh_media.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_media.c; path = system/slh_media.c; sourceTree = "<group>"; };
+		CE8806C32158267900827977 /* slh_media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_media.h; path = system/slh_media.h; sourceTree = "<group>"; };
 		CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItemTrack.h; sourceTree = "<group>"; };
 		CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMediaItemTrack.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +145,8 @@
 				CE5461D1211A314E00C2B774 /* slh_util.c */,
 				CE4BF2E221503D1E002E43F4 /* slh_dictionary.h */,
 				CE4BF2E121503D1E002E43F4 /* slh_dictionary.c */,
+				CE8806C22158267900827977 /* slh_media.c */,
+				CE8806C32158267900827977 /* slh_media.h */,
 			);
 			name = system;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */,
 				CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
+				CE8806C42158267900827977 /* slh_media.c in Sources */,
 				CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */,
 				CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */,
 			);
