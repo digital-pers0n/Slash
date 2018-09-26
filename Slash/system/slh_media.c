@@ -70,3 +70,20 @@ static inline int is_format(const char *str) {
     return (str[0] == '[' && str[1] == 'F' && str[2] == 'O');
 }
 
+#pragma mark - Stream functions
+
+/**
+ Initialize a stream object.
+ */
+static int stream_init(Stream *s) {
+    s->info = malloc(sizeof(Dictionary));
+    return dict_init(s->info, free);
+}
+
+/**
+ Destroy the stream object.
+ */
+static void stream_destroy(Stream *s) {
+    dict_destroy(s->info);
+    free(s->info);
+}
