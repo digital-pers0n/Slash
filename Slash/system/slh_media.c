@@ -148,3 +148,58 @@ static int media_format_init(Media *m, const char *ffp) {
     free(buffer);
     return 0;
 }
+
+/**
+ Initialize streams array.
+ @param ffp Path to ffprobe executable
+ */
+static void media_streams_init(Media *m, const char *ffp) {
+    char *buffer = malloc(sizeof(char) * kBufSize);
+    char *cmd;
+    asprintf(&cmd, "%s -show_streams -i \"%s\" -v error", ffp, media_filename(m));
+    FILE *fp = popen(cmd, "r");
+    
+    int nb_streams = 0;
+    Stream *streams = media_streams(m);
+    
+    while (fgets(buffer, kBufSize, fp)) {
+        if (is_stream(buffer)) {
+            // Stream *st = &(streams[nb_streams++]);
+            Stream *st = streams + nb_streams++;
+            while (fgets(buffer, kBufSize, fp)) {
+                size_t idx = 0;
+                char *cp = stridx(buffer, &idx, '=');
+                if (cp) {
+                    char *key  = strndup(buffer, idx);
+                    dict_add_value(stream_info(st), key, strdup2(cp + 1));
+                    free(key);
+                } else {
+                    break;
+                }
+            }
+            
+            char *val = stream_get_value(st, kMediaStreamIndexKey);
+            if (val) {
+                st->index = atoi(val);
+            }
+            
+            val = stream_get_value(st, kMediaStreamCodecTypeKey);
+            if (val) {
+                if (strcmp("video", val) == 0) {
+                    st->codec_type = CodecTypeVideo;
+                } else if (strcmp("audio", val) == 0) {
+                    st->codec_type = CodecTypeAudio;
+                } else if (strcmp("subtitle", val) == 0) {
+                    st->codec_type = CodecTypeText;
+                } else {
+                    st->codec_type = CodecTypeUnknown;
+                }
+                
+            }
+        }
+    }
+    pclose(fp);
+    free(cmd);
+    free(buffer);
+}
+
