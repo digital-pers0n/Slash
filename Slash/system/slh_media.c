@@ -87,3 +87,64 @@ static void stream_destroy(Stream *s) {
     dict_destroy(s->info);
     free(s->info);
 }
+
+#pragma mark - Media Initialize
+
+static const size_t kBufSize = 512;    // buffer size
+
+/**
+ Initialize info dictionary.
+ 
+ @param ffp Path to ffprobe executable.
+ 
+ @return 0 on success, otherwise -1
+ */
+static int media_format_init(Media *m, const char *ffp) {
+    m->info = malloc(sizeof(Dictionary));
+    dict_init(m->info, free);
+    char *buffer = malloc(sizeof(char) * kBufSize);
+    char *cmd;
+    asprintf(&cmd, "%s -show_format -i \"%s\" -v error", ffp, media_filename(m));
+    FILE *fp = popen(cmd, "r");
+    
+    while (fgets(buffer, kBufSize, fp)) {
+        if (is_format(buffer)) {
+            while (fgets(buffer, kBufSize, fp)) {
+                size_t idx = 0;
+                char *cp = stridx(buffer, &idx, '=');
+                if (cp) {
+                    char *key = strndup(buffer, idx);
+                    dict_add_value(media_info(m), key, strdup2(cp + 1));
+                    free(key);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+    
+    {
+        m->format_name = dict_get_value(media_info(m), kMediaFormatNameKey);
+        char *val = dict_get_value(media_info(m), kMediaStreamsKey);
+        if (val) {
+            m->nb_streams = atoi(val);
+        }
+        val = dict_get_value(media_info(m), kMediaDurationKey);
+        if (val) {
+            m->duration = strtod(val, 0);
+        }
+        val = dict_get_value(media_info(m), kMediaSizeKey);
+        if (val) {
+            m->size = strtol(val, 0, 10);
+        }
+        val = dict_get_value(media_info(m), kMediaBitRateKey);
+        if (val) {
+            m->bit_rate = strtol(val, 0, 10);
+        }
+    }
+    
+    pclose(fp);
+    free(cmd);
+    free(buffer);
+    return 0;
+}
