@@ -125,7 +125,7 @@ int dict_add_value(Dictionary *t, const char *key, const void *value) {
     
     if ((double)t->size / t->positions > 0.75) {
         if (dict_rehash(t) !=  0) {
-            return -1;
+            return -2;
         }
     }
     
