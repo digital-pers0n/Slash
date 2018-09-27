@@ -203,3 +203,38 @@ static void media_streams_init(Media *m, const char *ffp) {
     free(buffer);
 }
 
+int media_init(Media *m, const char *ffp, const char *fn) {
+    if (!ffp || !fn) {
+        fprintf(stderr, "%s: invalid argument.\n", __func__);
+        return -1;
+    }
+    
+    m->filename = strdup(fn);
+    m->nb_streams = 0;
+    m->streams = NULL;
+    media_format_init(m, ffp);
+    
+    if (media_nb_streams(m) > 0) {
+        Stream *streams = malloc(sizeof(Stream) * media_nb_streams(m));
+        for (int i = 0; i < media_nb_streams(m); i++) {
+            stream_init(streams + i);
+        }
+        media_streams_init(m, ffp);
+    } else {
+        fprintf(stderr, "%s: no streams in %s\n", __func__, fn);
+        return -1;
+    }
+    
+    return 0;
+}
+
+void media_destroy(Media *m) {
+    Stream *streams = media_streams(m);
+    for (int i = 0; i < media_nb_streams(m); i++) {
+        stream_destroy(streams + i);
+    }
+    dict_destroy(media_info(m));
+    free(media_info(m));
+    free(media_streams(m));
+    free(media_filename(m));
+}
