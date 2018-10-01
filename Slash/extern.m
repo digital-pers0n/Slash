@@ -12,4 +12,4 @@
 
 NSString *const SLHPreferencesFFMpegFilePathKey     = @"ffmpegBinary";
 NSString *const SLHPreferencesFFProbeFilePathKey    = @"ffprobeBinary";
-NSString *const SLHPreferencesMPVFIlePathKey        = @"mpvBinary";
+NSString *const SLHPreferencesMPVFilePathKey        = @"mpvBinary";
