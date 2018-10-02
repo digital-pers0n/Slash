@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+extern NSString *const SLHPreferencesFFMpegFilePathKey;
+extern NSString *const SLHPreferencesFFProbeFilePathKey;
+extern NSString *const SLHPreferencesMPVFilePathKey;
+
 @interface SLHPreferences : NSWindowController
 
 @end
