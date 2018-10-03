@@ -33,6 +33,7 @@
 /* Begin PBXFileReference section */
 		CE1414C2210D31D900C02B2D /* mpv.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mpv.conf; sourceTree = "<group>"; };
 		CE1414C3210D31D900C02B2D /* script.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.lua; sourceTree = "<group>"; };
+		CE14612F21654E27006FB241 /* SLHMetadataIdentifiers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHMetadataIdentifiers.h; sourceTree = "<group>"; };
 		CE22B5F9210BBD2500EE17A4 /* slh_mpv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_mpv.c; path = system/slh_mpv.c; sourceTree = "<group>"; };
 		CE22B5FA210BBD2500EE17A4 /* slh_mpv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_mpv.h; path = system/slh_mpv.h; sourceTree = "<group>"; };
 		CE2CC11E21235334008C8345 /* SLHPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHPlayer.h; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 				CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */,
 				CE2CC11E21235334008C8345 /* SLHPlayer.h */,
 				CE2CC11F21235334008C8345 /* SLHPlayer.m */,
+				CE14612F21654E27006FB241 /* SLHMetadataIdentifiers.h */,
 				CE81461021287D9B00DFFDA6 /* SLHMetadataItem.h */,
 				CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */,
 				CE2CC12121235447008C8345 /* SLHMediaItem.h */,
