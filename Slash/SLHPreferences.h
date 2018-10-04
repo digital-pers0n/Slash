@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+/* User-defaults keys */
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
 extern NSString *const SLHPreferencesFFProbeFilePathKey;
 extern NSString *const SLHPreferencesMPVFilePathKey;

@@ -8,6 +8,53 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, SLHMediaType) {
+    SLHMediaTypeVideo,
+    SLHMediaTypeAudio,
+    SLHMediaTypeText,
+    SLHMediaTypeUnknown = INT_MAX
+};
+
 @interface SLHMediaItemTrack : NSObject
+
+/**
+ Index of this track.
+ */
+@property NSUInteger trackIndex;
+
+/**
+ Media type of this track.
+ */
+@property SLHMediaType mediaType;
+
+/**
+ Indicate codec name
+ */
+@property NSString *codecName;
+
+
+@property NSString *encodingProfile;
+
+@end
+
+@interface SLHMediaItemTrack (SLHMediaItemTrackVideo)
+
+/**
+ Indicate the video dimension.
+ */
+@property NSSize videoSize;
+
+/**
+ Indicate pixel format
+ */
+@property NSString *pixelFormat;
+
+@end
+
+@interface SLHMediaItemTrack (SLHMediaItemTrackAudio)
+
+@property NSUInteger numberOfChannels;
+@property NSString *channelLayout;
+@property NSString *sampleRate;
 
 @end
