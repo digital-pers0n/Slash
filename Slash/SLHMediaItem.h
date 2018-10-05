@@ -73,6 +73,31 @@ typedef NS_ENUM(NSInteger, SLHMediaItemStatus) {
  */
 @property (copy) NSArray<SLHMetadataItem *> *metadata;
 
+/**
+ * Media file path
+ */
+@property (readonly) NSString *filePath;
+
+/**
+ * Media format name
+ */
+@property (readonly) NSString *formatName;
+
+/**
+ * Media file size (in bytes)
+ */
+@property (readonly) NSUInteger fileSize;
+
+/**
+ * Media bitrate (in bps)
+ */
+@property (readonly) NSUInteger bitRate;
+
+/**
+ * Media duration (in seconds)
+ */
+@property (readonly) double duration;
+
 @end
 
 NS_ASSUME_NONNULL_END
