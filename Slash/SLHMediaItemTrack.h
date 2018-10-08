@@ -17,6 +17,8 @@ typedef NS_ENUM(NSUInteger, SLHMediaType) {
 
 @interface SLHMediaItemTrack : NSObject
 
+- (instancetype)initWithTrackIndex:(NSUInteger)idx mediaType:(SLHMediaType)type codecName:(NSString *)name encodingProfile:(NSString *)profile;
+
 /**
  Index of this track.
  */
