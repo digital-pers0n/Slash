@@ -32,12 +32,7 @@ typedef NS_ENUM(NSUInteger, SLHMediaType) {
  */
 @property NSString *codecName;
 
-
 @property NSString *encodingProfile;
-
-@end
-
-@interface SLHMediaItemTrack (SLHMediaItemTrackVideo)
 
 /**
  Indicate the video dimension.
@@ -49,9 +44,6 @@ typedef NS_ENUM(NSUInteger, SLHMediaType) {
  */
 @property NSString *pixelFormat;
 
-@end
-
-@interface SLHMediaItemTrack (SLHMediaItemTrackAudio)
 
 @property NSUInteger numberOfChannels;
 @property NSString *channelLayout;
