@@ -16,6 +16,8 @@
 
 @interface SLHMetadataItem : NSObject
 
+- (instancetype)initWithIdentifier:(NSString *)identifier value:(NSString *)value;
+
 /**
  Identfier of the metadata item.
  */

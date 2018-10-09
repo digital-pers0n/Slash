@@ -10,4 +10,18 @@
 
 @implementation SLHMetadataItem
 
+- (instancetype)init
+{
+    return [self initWithIdentifier:@"No identifer" value:@"No value"];
+}
+
+- (instancetype)initWithIdentifier:(NSString *)identifier value:(NSString *)value {
+    self = [super init];
+    if (self) {
+        _identifier  = identifier;
+        _value = value;
+    }
+    return self;
+}
+
 @end
