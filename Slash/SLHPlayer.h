@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
   @param item An instance of SLHMediaItem 
   @return An instance of SLHPlayer
 */
-+ (instancetype)playerWithMediaItem:(SLHMediaItem *)item;
++ (instancetype)playerWithMediaItem:(nullable SLHMediaItem *)item;
 
 /**
   Initialize an SLHPlayer and implicitly create an SLHMediaItem instance.
@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
   @param item An instance of SLHMediaItem
   @return An instance of SLHPlayer
 */
-- (instancetype)initWithMediaItem:(SLHMediaItem *)item;
+- (instancetype)initWithMediaItem:(nullable SLHMediaItem *)item;
 
 /**
   The player's delegate.
@@ -81,9 +81,7 @@ typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
 */
 @property (readonly, nullable) NSError *error;
 
-@end
-
-@interface SLHPlayer (SLHPlayerPlaybackControl)
+/* Playback control */
 
 /**
   Begin playback
@@ -95,9 +93,7 @@ typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
 */
 - (void)pause;
 
-@end
-
-@interface SLHPlayer (SLHPlayerMediaItemControl)
+/* Media Item control */
  
 /**
   Indicate the current item 
@@ -110,9 +106,7 @@ typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
 */
 - (void)replaceCurrentItemWithMediaItem:(SLHMediaItem *)item;
 
-@end
-
-@interface SLHPlayer (SLHPlayerTimeControl)
+/* Time Control */
 
 /**
   @return The playback position of the current item
