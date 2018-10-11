@@ -23,10 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
   
   @constant SLHPlayerStatusFailed 
   @abstract The player can not play media items becuase of an error. The error described by the value of the player's error property.
+ 
+  @constant SLHPlayerStatusUnknown
+  @abstract The player was initialized without an SLHMediaItem instance.
 */
 typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
     SLHPlayerStatusReadyToPlay,
-    SLHPlayerStatusFailed
+    SLHPlayerStatusFailed,
+    SLHPlayerStatusUnknown
 };
 
 /**
