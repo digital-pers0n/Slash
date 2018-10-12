@@ -20,3 +20,7 @@ NSString *const SLHMetadataIdentifierArtist         = @"artist";
 NSString *const SLHMetadataIdentifierTitle          = @"title";
 NSString *const SLHMetadataIdentifierDate           = @"data";
 NSString *const SLHMetadataIdentifierComment        = @"comment";
+
+#pragma mark - SLHPlayer
+
+NSString *const SLHPlayerMPVConfigPath              = @"~/Library/Application Support/Slash/mpv.conf";
