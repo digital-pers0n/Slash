@@ -85,3 +85,10 @@ int encoder_start(Encoder *enc, encoder_callback_f func, void *ctx) {
     
     return 0;
 }
+
+int encoder_stop(Encoder *enc) {
+    if (prc_pid(enc->proc) > 0) {
+        return prc_kill(enc->proc);
+    }
+    return -1;
+}
