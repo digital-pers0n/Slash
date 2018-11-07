@@ -18,7 +18,6 @@
 		CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D40FB20FE8B9E0066ACE2 /* main.m */; };
 		CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FD20FE8B9E0066ACE2 /* Assets.xcassets */; };
 		CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FF20FE8B9E0066ACE2 /* MainMenu.xib */; };
-		CE4D410C20FE91130066ACE2 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D410B20FE91130066ACE2 /* SLHDragView.m */; };
 		CE5461D3211A314E00C2B774 /* slh_util.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5461D1211A314E00C2B774 /* slh_util.c */; };
 		CE566A77215AAC16004E974F /* slh_extern.c in Sources */ = {isa = PBXBuildFile; fileRef = CE566A75215AAC16004E974F /* slh_extern.c */; };
 		CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CE566A7A215EB849004E974F /* SLHPreferences.m */; };
@@ -27,6 +26,7 @@
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
 		CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */; };
 		CE8806C42158267900827977 /* slh_media.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8806C22158267900827977 /* slh_media.c */; };
+		CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1C2193583D0089C084 /* SLHDragView.m */; };
 		CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */; };
 		CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBFF3E22190BDA000F54C7E /* slh_encoder.c */; };
 /* End PBXBuildFile section */
@@ -53,8 +53,6 @@
 		CE4D410020FE8B9E0066ACE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CE4D410220FE8B9E0066ACE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4D410820FE8E040066ACE2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		CE4D410A20FE91130066ACE2 /* SLHDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHDragView.h; sourceTree = "<group>"; };
-		CE4D410B20FE91130066ACE2 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHDragView.m; sourceTree = "<group>"; };
 		CE5461D1211A314E00C2B774 /* slh_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_util.c; path = system/slh_util.c; sourceTree = "<group>"; };
 		CE5461D2211A314E00C2B774 /* slh_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_util.h; path = system/slh_util.h; sourceTree = "<group>"; };
 		CE566A75215AAC16004E974F /* slh_extern.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_extern.c; path = system/slh_extern.c; sourceTree = "<group>"; };
@@ -69,6 +67,8 @@
 		CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMetadataItem.m; sourceTree = "<group>"; };
 		CE8806C22158267900827977 /* slh_media.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_media.c; path = system/slh_media.c; sourceTree = "<group>"; };
 		CE8806C32158267900827977 /* slh_media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_media.h; path = system/slh_media.h; sourceTree = "<group>"; };
+		CE9C0D1B2193583D0089C084 /* SLHDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHDragView.h; sourceTree = "<group>"; };
+		CE9C0D1C2193583D0089C084 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHDragView.m; sourceTree = "<group>"; };
 		CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItemTrack.h; sourceTree = "<group>"; };
 		CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMediaItemTrack.m; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
@@ -115,6 +115,7 @@
 		CE4D40F620FE8B9E0066ACE2 /* Slash */ = {
 			isa = PBXGroup;
 			children = (
+				CE9C0D1A2193583D0089C084 /* views */,
 				CE65BB0F21066B1100D2CBAA /* system */,
 				CE4D40F720FE8B9E0066ACE2 /* AppDelegate.h */,
 				CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */,
@@ -127,8 +128,6 @@
 				CE2CC12221235447008C8345 /* SLHMediaItem.m */,
 				CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */,
 				CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */,
-				CE4D410A20FE91130066ACE2 /* SLHDragView.h */,
-				CE4D410B20FE91130066ACE2 /* SLHDragView.m */,
 				CE566A79215EB849004E974F /* SLHPreferences.h */,
 				CE566A7A215EB849004E974F /* SLHPreferences.m */,
 				CE566A7B215EB849004E974F /* SLHPreferences.xib */,
@@ -172,6 +171,15 @@
 				CE566A75215AAC16004E974F /* slh_extern.c */,
 			);
 			name = system;
+			sourceTree = "<group>";
+		};
+		CE9C0D1A2193583D0089C084 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CE9C0D1B2193583D0089C084 /* SLHDragView.h */,
+				CE9C0D1C2193583D0089C084 /* SLHDragView.m */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +260,6 @@
 				CE5461D3211A314E00C2B774 /* slh_util.c in Sources */,
 				CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */,
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
-				CE4D410C20FE91130066ACE2 /* SLHDragView.m in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
 				CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */,
 				CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */,
@@ -262,6 +269,7 @@
 				CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */,
+				CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */,
 				CE566A77215AAC16004E974F /* slh_extern.c in Sources */,
 				CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */,
 			);
