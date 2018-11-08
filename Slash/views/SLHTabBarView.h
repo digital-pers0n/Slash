@@ -8,6 +8,22 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol SLHTabBarViewDelegate;
+
 @interface SLHTabBarView : NSView
 
+@property (nullable) id <SLHTabBarViewDelegate> delegate;
+@property (readonly) NSArray <NSString *> *labels;
+@property (readonly) NSUInteger selectedTab;
+
 @end
+
+@protocol SLHTabBarViewDelegate <NSObject>
+
+- (void)tabBarView:(SLHTabBarView *)tabBar didSelectTabAtIndex:(NSUInteger) tab;
+
+@end
+
+NS_ASSUME_NONNULL_END
