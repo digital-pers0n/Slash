@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable) id <SLHTabBarViewDelegate> delegate;
 @property (readonly) NSArray <NSString *> *labels;
-@property (readonly) NSUInteger selectedTab;
+@property (readonly) NSUInteger selectedTabIndex;
 
 @end
 
