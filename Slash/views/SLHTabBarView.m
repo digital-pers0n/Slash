@@ -84,11 +84,49 @@ static const NSUInteger kNumberOfTabs = 3;
     _labels = @[@"Video", @"Audio", @"Effects"];
 }
 
+#pragma mark - Draw
+
+static inline void _calcTextFrame(NSRect *cellFrame, CGFloat textHeight) {
+    cellFrame->origin.y = (NSHeight(*cellFrame) - textHeight) / 2;
+    cellFrame->size.height = textHeight;
+    cellFrame->origin.x += 4;
+    cellFrame->size.width -= 8;
+}
 
 - (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
+    NSRect bounds = self.bounds;
+    NSRect viewFrame = bounds;
+    CGFloat tabWidth = NSWidth(bounds) / kNumberOfTabs;
     
-    // Drawing code here.
+    if (tabWidth != NSWidth(_rects[0])) { // recalculate tab rects
+        bounds.size.width = tabWidth;
+        for (int i = 0; i < kNumberOfTabs; i++) {
+            bounds.origin.x = tabWidth * i;
+            _rects[i] = bounds;
+        }
+    }
+    
+    for (int i = 0; i < kNumberOfTabs; i++) {
+        
+        NSRect cellFrame = _rects[i];
+        NSDictionary *attrs;
+        if (i == _selectedTabIndex) { // set font attributes and tab color
+            [_foregroundColor set];
+            attrs = _activeFontAttrs;
+        } else {
+            [_backgroundColor set];
+            attrs = _inactiveFontAttrs;
+        }
+        NSRectFill(cellFrame);
+        
+        /* calculate label frame */
+        NSString *label = _labels[i];
+        CGFloat textHeight = [label sizeWithAttributes:attrs].height;
+        _calcTextFrame(&cellFrame, textHeight);
+        [label drawInRect:cellFrame withAttributes:attrs];
+    }
+    [_strokeColor set];
+    NSFrameRect(viewFrame);
 }
 
 @end
