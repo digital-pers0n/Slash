@@ -129,4 +129,58 @@ static inline void _calcTextFrame(NSRect *cellFrame, CGFloat textHeight) {
     NSFrameRect(viewFrame);
 }
 
+#pragma mark - Mouse Tracking
+
+- (void)updateTrackingAreas {
+    [super updateTrackingAreas];
+    _trackingArea = [[NSTrackingArea alloc] initWithRect:self.frame
+                                                 options:NSTrackingActiveAlways|NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingMouseMoved
+                                                   owner:self
+                                                userInfo:nil];
+    [self addTrackingArea:_trackingArea];
+}
+
+- (void)mouseMoved:(NSEvent *)event {
+    NSPoint event_location = event.locationInWindow;
+    NSPoint local_point = [self convertPoint:event_location fromView:nil];
+    
+    for (int i = 0; i < kNumberOfTabs; i++) {
+        if ([self mouse:local_point inRect:_rects[i]]) {
+            if (i == _highlightedTabIndex) {    // ignore if already highlighted
+                break;
+            }
+            _highlightedTabIndex = i;
+            [self setNeedsDisplay:YES];
+            break;
+        }
+    }
+}
+
+- (void)mouseExited:(NSEvent *)event {
+    _highlightedTabIndex = -1;
+    [self setNeedsDisplay:YES];
+}
+
+- (void)mouseDown:(NSEvent *)event {
+    NSPoint event_location = event.locationInWindow;
+    NSPoint local_point = [self convertPoint:event_location fromView:nil];
+
+    for (int i = 0; i < kNumberOfTabs; i++) {
+        if ([self mouse:local_point inRect:_rects[i]]) {
+            if (i == _selectedTabIndex) {       // ignore if already selected
+                break;
+            }
+            _selectedTabIndex = i;
+            _highlightedTabIndex = -1;
+            [self setNeedsDisplay:YES];
+            [_delegate tabBarView:self didSelectTabAtIndex:i];
+            break;
+        }
+    }
+}
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)event {
+    return YES;
+}
+
 @end
