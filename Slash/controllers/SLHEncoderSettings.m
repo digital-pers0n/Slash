@@ -7,16 +7,49 @@
 //
 
 #import "SLHEncoderSettings.h"
+#import "SLHTabBarView.h"
 
-@interface SLHEncoderSettings ()
+@interface SLHEncoderSettings () <SLHTabBarViewDelegate> {
+    IBOutlet SLHTabBarView *_tabBarView;
+    IBOutlet NSScrollView *_scrollView;
+    id <SLHEncoderSettingsDelegate> _delegate;
+}
 
 @end
 
 @implementation SLHEncoderSettings
 
+- (NSString *)nibName {
+    return self.className;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+#pragma mark - Properties
+
+- (void)setDelegate:(id<SLHEncoderSettingsDelegate>)delegate {
+    _delegate = delegate;
+}
+
+- (id<SLHEncoderSettingsDelegate>)delegate {
+    return _delegate;
+}
+
+- (NSView *)selectedView {
+    return _scrollView.documentView;
+}
+
+- (SLHEncoderSettingsTab)selectedTab {
+    return _tabBarView.selectedTabIndex;
+}
+
+#pragma mark - SLHTabBarViewDelegate
+
+- (void)tabBarView:(SLHTabBarView *)tabBar didSelectTabAtIndex:(NSUInteger)tab {
+    _scrollView.documentView = [_delegate encoderSettings:self viewForTab:tab];
 }
 
 @end
