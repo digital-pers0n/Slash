@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */; };
+		CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */; };
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
 		CE1414C7210D32CC00C02B2D /* script.lua in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C3210D31D900C02B2D /* script.lua */; };
 		CE22B5FB210BBD2500EE17A4 /* slh_mpv.c in Sources */ = {isa = PBXBuildFile; fileRef = CE22B5F9210BBD2500EE17A4 /* slh_mpv.c */; };
@@ -34,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderSettings.h; path = controllers/SLHEncoderSettings.h; sourceTree = "<group>"; };
+		CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderSettings.m; path = controllers/SLHEncoderSettings.m; sourceTree = "<group>"; };
+		CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderSettings.xib; path = controllers/SLHEncoderSettings.xib; sourceTree = "<group>"; };
 		CE1414C2210D31D900C02B2D /* mpv.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mpv.conf; sourceTree = "<group>"; };
 		CE1414C3210D31D900C02B2D /* script.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.lua; sourceTree = "<group>"; };
 		CE14612F21654E27006FB241 /* SLHMetadataIdentifiers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHMetadataIdentifiers.h; sourceTree = "<group>"; };
@@ -92,6 +97,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE12EF18219B3BED00F97637 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */,
+				CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */,
+				CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
 		CE1414C1210D31D900C02B2D /* mpv */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +136,7 @@
 		CE4D40F620FE8B9E0066ACE2 /* Slash */ = {
 			isa = PBXGroup;
 			children = (
+				CE12EF18219B3BED00F97637 /* controllers */,
 				CE9C0D1A2193583D0089C084 /* views */,
 				CE65BB0F21066B1100D2CBAA /* system */,
 				CE4D40F720FE8B9E0066ACE2 /* AppDelegate.h */,
@@ -255,6 +271,7 @@
 				CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */,
 				CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */,
 				CE566A7D215EB849004E974F /* SLHPreferences.xib in Resources */,
+				CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +285,7 @@
 				CE2CC12321235447008C8345 /* SLHMediaItem.m in Sources */,
 				CE22B5FB210BBD2500EE17A4 /* slh_mpv.c in Sources */,
 				CE5461D3211A314E00C2B774 /* slh_util.c in Sources */,
+				CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */,
 				CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */,
 				CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */,
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
