@@ -8,6 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHEncoderSettings">
             <connections>
+                <outlet property="_scrollView" destination="2p1-Gx-1oI" id="89V-8H-pPc"/>
+                <outlet property="_tabBarView" destination="UF1-sZ-idM" id="k7i-LA-tQ6"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -35,13 +37,16 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RvP-T1-jOL">
-                        <rect key="frame" x="339" y="1" width="16" height="245"/>
+                        <rect key="frame" x="340" y="1" width="15" height="245"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
                 <customView id="UF1-sZ-idM" customClass="SLHTabBarView">
                     <rect key="frame" x="0.0" y="246" width="356" height="24"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-2" id="drb-9T-vu9"/>
+                    </connections>
                 </customView>
             </subviews>
             <point key="canvasLocation" x="-84" y="203"/>
