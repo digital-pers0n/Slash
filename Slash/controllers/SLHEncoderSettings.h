@@ -8,6 +8,28 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSUInteger, SLHEncoderSettingsTab) {
+    SLHEncoderSettingsVideoTab,
+    SLHEncoderSettingsAudioTab,
+    SLHEncoderSettingsFiltersTab
+};
+
+@protocol SLHEncoderSettingsDelegate;
+
 @interface SLHEncoderSettings : NSViewController
 
+@property (nullable) id <SLHEncoderSettingsDelegate> delegate;
+@property (readonly) NSView *selectedView;
+@property (readonly) SLHEncoderSettingsTab selectedTab;
+
 @end
+
+@protocol SLHEncoderSettingsDelegate
+
+- (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab;
+
+@end
+
+NS_ASSUME_NONNULL_END
