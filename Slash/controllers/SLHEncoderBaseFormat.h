@@ -7,7 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SLHEncoderSettings.h"
 
-@interface SLHEncoderBaseFormat : NSViewController
+@class SLHEncoderItem;
+
+@interface SLHEncoderBaseFormat : NSViewController <SLHEncoderSettingsDelegate>
+
+@property SLHEncoderItem *encoderItem;
+- (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab;
 
 @end
