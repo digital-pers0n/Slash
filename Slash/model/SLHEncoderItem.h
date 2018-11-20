@@ -20,14 +20,25 @@ typedef struct time_interval {
 @interface SLHEncoderItem : NSObject
 
 - (instancetype)initWithMediaItem:(SLHMediaItem *)item;
+- (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath NS_DESIGNATED_INITIALIZER;
 
 @property (readonly) SLHMediaItem *mediaItem;
+@property NSString *outputPath;
+@property NSString *container;
 
 @property TimeInterval interval;
 
 @property NSInteger videoStreamIndex;
 @property NSInteger audioStreamIndex;
 @property NSInteger subtitleStreamIndex;
+
+@property NSMutableDictionary *videoOptions;
+@property NSMutableDictionary *videoFilters;
+
+@property NSMutableDictionary *audioOptions;
+@property NSMutableDictionary *audioFilters;
+
+@property NSMutableDictionary *metadata;
 
 @end
 
