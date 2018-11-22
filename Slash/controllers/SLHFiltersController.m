@@ -8,7 +8,13 @@
 
 #import "SLHFiltersController.h"
 
-@interface SLHFiltersController ()
+@interface SLHFiltersController () {
+    
+    IBOutlet NSTextField *_cropTextField;
+    IBOutlet NSTextField *_audioFadeInTextField;
+    IBOutlet NSTextField *_audioFadeOutTextField;
+    IBOutlet NSTextField *_audioPreampTextField;
+}
 
 @end
 
@@ -18,5 +24,21 @@
     [super viewDidLoad];
     // Do view setup here.
 }
+
+#pragma mark - IBActions
+
+- (IBAction)cropEditorButtonAction:(id)sender {
+}
+- (IBAction)cropTextFieldAction:(id)sender {
+}
+- (IBAction)deinterlaceButtonAction:(NSButton *)sender {
+}
+- (IBAction)audioFadeInTextFieldAction:(id)sender {
+}
+- (IBAction)audioFadeOutTextFieldAction:(id)sender {
+}
+- (IBAction)audioPreampTextFieldAction:(id)sender {
+}
+
 
 @end
