@@ -20,9 +20,9 @@ typedef struct time_interval {
 @interface SLHEncoderItem : NSObject
 
 - (instancetype)initWithMediaItem:(SLHMediaItem *)item;
-- (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath;
 
-@property (readonly) SLHMediaItem *mediaItem;
+@property SLHMediaItem *mediaItem;
 @property NSString *outputPath;
 @property NSString *container;
 
@@ -37,6 +37,9 @@ typedef struct time_interval {
 
 @property NSMutableDictionary *audioOptions;
 @property NSMutableDictionary *audioFilters;
+
+@property BOOL twoPassEncoding;
+@property NSMutableDictionary *firstPassOptions;
 
 @property NSMutableDictionary *metadata;
 
