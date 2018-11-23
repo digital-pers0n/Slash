@@ -8,6 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SLHEncoderItem;
+
 @interface SLHFiltersController : NSViewController
+
++ (instancetype)filtersController;
+@property SLHEncoderItem *encoderItem;
 
 @end
