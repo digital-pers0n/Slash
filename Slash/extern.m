@@ -61,7 +61,8 @@ NSString *const SLHEncoderAudioChannelsKey        = @"-ac";
 
 #pragma mark - SLHEncoderItem Filter Keys
 
-NSString *const SLHEncoderVideoFilterCrop           = @"crop";
-NSString *const SLHEncoderVideoFilterDeinterlace    = @"yadiff";
-NSString *const SLHEncoderAudioFilterFade           = @"afade";
-NSString *const SLHEncoderAudioFilterPreamp         = @"acompressor";
+NSString *const SLHEncoderVideoFilterCropKey           = @"crop";
+NSString *const SLHEncoderVideoFilterDeinterlaceKey    = @"yadiff";
+NSString *const SLHEncoderAudioFilterFadeInKey         = @"afade=t=in";
+NSString *const SLHEncoderAuidoFilterFadeOutKey        = @"afade=t=out";
+NSString *const SLHEncoderAudioFilterPreampKey         = @"acompressor";
