@@ -8,6 +8,18 @@
 
 #import "SLHFiltersController.h"
 
+extern NSString *const SLHEncoderVideoFilterCropKey;
+extern NSString *const SLHEncoderVideoFilterDeinterlaceKey;
+extern NSString *const SLHEncoderAudioFilterFadeInKey;
+extern NSString *const SLHEncoderAuidoFilterFadeOutKey;
+extern NSString *const SLHEncoderAudioFilterPreampKey;
+
+static NSString *const _videoCropFmt = @"crop=w=%lu:h=%lu:x=%lu:y=%lu";
+static NSString *const _audioFadeInFmt = @"afade=t=in:d=%.3f";
+static NSString *const _audioFadeOutFmt = @"afade=t=out:d=%.3f:st=%.3f";
+static NSString *const _audioPreampFmt = @"acompressor=makeup=%u";
+
+
 @interface SLHFiltersController () {
     
     IBOutlet NSTextField *_cropTextField;
@@ -19,6 +31,21 @@
 @end
 
 @implementation SLHFiltersController
+
+#pragma mark - Initialization
+
++ (instancetype)filtersController {
+    static dispatch_once_t onceToken;
+    static SLHFiltersController *obj = nil;
+    dispatch_once(&onceToken, ^{
+        obj = [[SLHFiltersController alloc] init];
+    });
+    return obj;
+}
+
+- (NSString *)nibName {
+    return self.className;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
