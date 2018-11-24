@@ -28,6 +28,11 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%u";
     IBOutlet NSTextField *_audioPreampTextField;
 }
 
+@property NSInteger cropVideoX;
+@property NSInteger cropVideoY;
+@property NSInteger cropVideoWidth;
+@property NSInteger cropVideoHeight;
+
 @end
 
 @implementation SLHFiltersController
