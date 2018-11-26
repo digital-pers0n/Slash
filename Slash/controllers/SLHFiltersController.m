@@ -32,6 +32,10 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%u";
 @property NSInteger cropVideoY;
 @property NSInteger cropVideoWidth;
 @property NSInteger cropVideoHeight;
+@property BOOL deinterlace;
+@property double audioFadeIn;
+@property double audioFadeOut;
+@property NSInteger audioPreamp;
 
 @end
 
