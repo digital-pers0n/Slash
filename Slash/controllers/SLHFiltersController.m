@@ -14,10 +14,10 @@ extern NSString *const SLHEncoderAudioFilterFadeInKey;
 extern NSString *const SLHEncoderAudioFilterFadeOutKey;
 extern NSString *const SLHEncoderAudioFilterPreampKey;
 
-static NSString *const _videoCropFmt = @"crop=w=%lu:h=%lu:x=%lu:y=%lu";
+static NSString *const _videoCropFmt = @"crop=w=%ld:h=%ld:x=%ld:y=%ld";
 static NSString *const _audioFadeInFmt = @"afade=t=in:d=%.3f";
 static NSString *const _audioFadeOutFmt = @"afade=t=out:d=%.3f:st=%.3f";
-static NSString *const _audioPreampFmt = @"acompressor=makeup=%u";
+static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 
 
 @interface SLHFiltersController () {
