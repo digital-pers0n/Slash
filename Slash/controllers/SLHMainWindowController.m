@@ -14,6 +14,10 @@
 
 @implementation SLHMainWindowController
 
+- (NSString *)windowNibName {
+    return self.className;
+}
+
 - (void)windowDidLoad {
     [super windowDidLoad];
     

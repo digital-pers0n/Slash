@@ -18,14 +18,14 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="519" height="486"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
-            <value key="minSize" type="size" width="480" height="270"/>
+            <value key="minSize" type="size" width="480" height="420"/>
             <view key="contentView" id="JoM-te-JIw">
                 <rect key="frame" x="0.0" y="0.0" width="519" height="486"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView id="Jat-o0-3Tp">
                         <rect key="frame" x="0.0" y="0.0" width="151" height="486"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="39" horizontalPageScroll="10" verticalLineScroll="39" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="O8N-81-eli">
                                 <rect key="frame" x="-1" y="29" width="152" height="457"/>
@@ -117,7 +117,7 @@
                             </scrollView>
                             <button id="xmj-vN-6R1">
                                 <rect key="frame" x="30" y="9" width="12" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="uhp-t5-AwK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -125,7 +125,7 @@
                             </button>
                             <button id="X8w-8q-oed">
                                 <rect key="frame" x="8" y="9" width="12" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="XJu-XI-mPd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -226,7 +226,7 @@
                     </button>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="5CM-BH-iY0">
                         <rect key="frame" x="156" y="298" width="357" height="101"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Pig-1R-p2f">
                             <rect key="frame" x="1" y="1" width="355" height="99"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,7 +264,7 @@
                     </textField>
                     <button id="Ngr-8N-TGm">
                         <rect key="frame" x="497" y="445" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="GSl-gK-pLz">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
@@ -295,7 +295,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="342.5" y="-36"/>
+            <point key="canvasLocation" x="369.5" y="-155"/>
         </window>
     </objects>
     <resources>
