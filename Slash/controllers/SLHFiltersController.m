@@ -7,6 +7,7 @@
 //
 
 #import "SLHFiltersController.h"
+#import "SLHEncoderItem.h"
 
 extern NSString *const SLHEncoderVideoFilterCropKey;
 extern NSString *const SLHEncoderVideoFilterDeinterlaceKey;
@@ -26,6 +27,8 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
     IBOutlet NSTextField *_audioFadeInTextField;
     IBOutlet NSTextField *_audioFadeOutTextField;
     IBOutlet NSTextField *_audioPreampTextField;
+    
+    SLHEncoderItem *_encoderItem;
 }
 
 @property NSInteger cropVideoX;
@@ -59,6 +62,58 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+#pragma mark - Properties
+
+- (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    _encoderItem = encoderItem;
+}
+
+- (SLHEncoderItem *)encoderItem {
+    
+    NSString *key = SLHEncoderVideoFilterCropKey;
+    if (_cropVideoWidth || _cropVideoHeight || _cropVideoX || _cropVideoY) {
+        _encoderItem.videoFilters[key] =
+        [NSString stringWithFormat:_videoCropFmt,
+         _cropVideoWidth, _cropVideoHeight, _cropVideoX, _cropVideoY];
+    } else {
+        [_encoderItem.videoFilters removeObjectForKey:key];
+    }
+    
+    key = SLHEncoderVideoFilterDeinterlaceKey;
+    if (_deinterlace) {
+        _encoderItem.videoFilters[key] = @"yadiff";
+    } else {
+        [_encoderItem.videoFilters removeObjectForKey:key];
+    }
+    
+    key = SLHEncoderAudioFilterFadeInKey;
+    if (_audioFadeIn) {
+        _encoderItem.audioFilters[key] =
+        [NSString stringWithFormat:_audioFadeInFmt, _audioFadeIn];
+    } else {
+        [_encoderItem.audioFilters removeObjectForKey:key];
+    }
+    
+    key = SLHEncoderAudioFilterFadeOutKey;
+    if (_audioFadeOut) {
+        _encoderItem.audioFilters[key] =
+        [NSString stringWithFormat:_audioFadeOutFmt,
+         _audioFadeOut, _encoderItem.interval.end - _audioFadeOut];
+    } else {
+        [_encoderItem.audioFilters removeObjectForKey:key];
+    }
+    
+    key = SLHEncoderAudioFilterPreampKey;
+    if (_audioFadeIn) {
+        _encoderItem.audioFilters[key] =
+        [NSString stringWithFormat:_audioPreampFmt, _audioPreamp];
+    } else {
+        [_encoderItem.audioFilters removeObjectForKey:key];
+    }
+    
+    return _encoderItem;
 }
 
 #pragma mark - IBActions
