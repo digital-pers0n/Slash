@@ -11,7 +11,7 @@
 extern NSString *const SLHEncoderVideoFilterCropKey;
 extern NSString *const SLHEncoderVideoFilterDeinterlaceKey;
 extern NSString *const SLHEncoderAudioFilterFadeInKey;
-extern NSString *const SLHEncoderAuidoFilterFadeOutKey;
+extern NSString *const SLHEncoderAudioFilterFadeOutKey;
 extern NSString *const SLHEncoderAudioFilterPreampKey;
 
 static NSString *const _videoCropFmt = @"crop=w=%lu:h=%lu:x=%lu:y=%lu";

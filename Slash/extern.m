@@ -64,5 +64,5 @@ NSString *const SLHEncoderAudioChannelsKey        = @"-ac";
 NSString *const SLHEncoderVideoFilterCropKey           = @"crop";
 NSString *const SLHEncoderVideoFilterDeinterlaceKey    = @"yadiff";
 NSString *const SLHEncoderAudioFilterFadeInKey         = @"afade=t=in";
-NSString *const SLHEncoderAuidoFilterFadeOutKey        = @"afade=t=out";
+NSString *const SLHEncoderAudioFilterFadeOutKey        = @"afade=t=out";
 NSString *const SLHEncoderAudioFilterPreampKey         = @"acompressor";
