@@ -7,8 +7,11 @@
 //
 
 #import "SLHMainWindowController.h"
+#import "SLHDragView.h"
 
-@interface SLHMainWindowController ()
+@interface SLHMainWindowController () <SLHDragViewDelegate> {
+    SLHDragView *_dragView;
+}
 
 @end
 
@@ -20,8 +23,27 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    _dragView = [[SLHDragView alloc] init];
+    _dragView.delegate = self;
+    _dragView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    _dragView.frame = self.window.contentView.frame;
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [self.window.contentView addSubview:_dragView];
+}
+
+#pragma mark - SLHDragView Delegate
+
+- (void)didReceiveFilename:(NSString *)filename {
+    
+}
+- (void)didBeginDraggingSession {
+    
+}
+- (void)didEndDraggingSession {
+    
+}
+- (void)didReceiveMouseEvent:(NSEvent *)event {
+    
 }
 
 @end
