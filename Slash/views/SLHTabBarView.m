@@ -61,7 +61,7 @@ static const NSUInteger kNumberOfTabs = 3;
     _backgroundColor = [NSColor colorWithDeviceWhite:0.95 alpha:1];
     _foregroundColor = [NSColor colorWithDeviceWhite:0.98 alpha:1];
     _highlightColor = [NSColor colorWithDeviceWhite:1 alpha:1];
-    _strokeColor = [NSColor darkGrayColor];
+    _strokeColor = [NSColor lightGrayColor];
     
     _rects = malloc(sizeof(NSRect) * kNumberOfTabs);
     _selectedTabIndex = 0;

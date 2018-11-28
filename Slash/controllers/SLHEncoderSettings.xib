@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="356" height="270"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="2p1-Gx-1oI">
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="2p1-Gx-1oI">
                     <rect key="frame" x="0.0" y="0.0" width="356" height="247"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" drawsBackground="NO" id="74D-qh-eaI" customClass="SLHClipView">
