@@ -17,6 +17,7 @@
     NSColor *_feedbackColor;
     NSColor *_feedbackLineColor;
     NSColor *_clearColor;
+    NSColor *_backgroundColor;
     NSRect _feedbackFrame;
     NSBezierPath *_feedbackPath;
 }
@@ -50,19 +51,24 @@
     _feedbackColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.04];
     _feedbackLineColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.48];
     _clearColor = [NSColor clearColor];
+    _backgroundColor = [NSColor windowBackgroundColor];
 }
 
 #pragma mark - Draw View
 
 - (void)drawRect:(NSRect)dirtyRect {
+    NSRect bounds = self.bounds;
+    
     if (_draggingFeedback) {
+        [_backgroundColor setFill];
+        NSRectFill(bounds);
         [_feedbackColor setFill];
         [_feedbackLineColor setStroke];
+
     } else {
         [_clearColor set];
     }
     
-    NSRect bounds = self.bounds;
     bounds.origin.x += 20;
     bounds.size.width -= 40;
     bounds.origin.y += 16;
@@ -70,7 +76,6 @@
     _feedbackPath = [NSBezierPath bezierPathWithRoundedRect:bounds xRadius:4 yRadius:4];
     [_feedbackPath fill];
     [_feedbackPath stroke];
-    
 }
 
 #pragma mark - Drag Operation
