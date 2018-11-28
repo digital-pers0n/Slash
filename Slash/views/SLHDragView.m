@@ -126,10 +126,12 @@
 #pragma mark - Mouse Events
 
 - (void)mouseDown:(NSEvent *)theEvent {
+    [super mouseDown:theEvent];
     [_delegate didReceiveMouseEvent:theEvent];
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
+    [super rightMouseDown:theEvent];
     [_delegate didReceiveMouseEvent:theEvent];
 }
 
