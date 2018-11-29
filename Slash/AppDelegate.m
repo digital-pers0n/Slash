@@ -7,15 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#import "SLHMainWindowController.h"
 
 @interface AppDelegate ()
 
-@property (weak) IBOutlet NSWindow *window;
+@property IBOutlet SLHMainWindowController *mainWindow;
+
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [_mainWindow showWindow:self];
     // Insert code here to initialize your application
 }
 
