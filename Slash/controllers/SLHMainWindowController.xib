@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHMainWindowController">
             <connections>
+                <outlet property="_customView" destination="Klk-Mo-QRe" id="KuC-zc-7tV"/>
                 <outlet property="window" destination="I5o-Ms-tuw" id="Q4k-LI-fbc"/>
             </connections>
         </customObject>
