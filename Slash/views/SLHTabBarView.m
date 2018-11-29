@@ -114,7 +114,11 @@ static inline void _calcTextFrame(NSRect *cellFrame, CGFloat textHeight) {
             [_foregroundColor set];
             attrs = _activeFontAttrs;
         } else {
-            [_backgroundColor set];
+            if (i == _highlightedTabIndex) {
+                [_highlightColor set];
+            } else {
+                [_backgroundColor set];
+            }
             attrs = _inactiveFontAttrs;
         }
         NSRectFill(cellFrame);
