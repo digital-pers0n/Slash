@@ -17,7 +17,7 @@ typedef struct time_interval {
 
 @class SLHMediaItem;
 
-@interface SLHEncoderItem : NSObject
+@interface SLHEncoderItem : NSObject <NSCopying>
 
 - (instancetype)initWithMediaItem:(SLHMediaItem *)item;
 - (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath;

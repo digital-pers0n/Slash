@@ -11,6 +11,32 @@
 
 @implementation SLHEncoderItem
 
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    SLHEncoderItem *item = [[SLHEncoderItem alloc] init];
+    item.mediaItem = _mediaItem;
+    item.outputPath = _outputPath.copy;
+    item.container = _container.copy;
+    item.interval = _interval;
+    
+    item.videoStreamIndex = _videoStreamIndex;
+    item.audioStreamIndex = _audioStreamIndex;
+    item.subtitleStreamIndex = _subtitleStreamIndex;
+    
+    item.videoOptions = _videoOptions.mutableCopy;
+    item.videoFilters = _videoFilters.mutableCopy;
+    item.audioOptions = _audioOptions.mutableCopy;
+    item.audioFilters = _audioFilters.mutableCopy;
+    
+    item.twoPassEncoding = _twoPassEncoding;
+    item.firstPassOptions = _firstPassOptions.mutableCopy;
+    
+    item.metadata = _metadata.mutableCopy;
+    
+    return item;
+}
+
 #pragma mark - Initialize
 
 - (instancetype)initWithMediaItem:(SLHMediaItem *)item outputPath:(NSString *)outputMediaPath {
