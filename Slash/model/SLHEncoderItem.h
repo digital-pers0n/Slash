@@ -43,6 +43,10 @@ typedef struct time_interval {
 
 @property NSMutableDictionary *metadata;
 
+/* Cocoa Bindings */
+@property double intervalStart;
+@property double intervalEnd;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -64,4 +64,22 @@
     return [self initWithMediaItem:item outputPath:path];
 }
 
+#pragma mark - Bindings
+
+- (double)intervalStart {
+    return _interval.start;
+}
+
+- (void)setIntervalStart:(double)val {
+    _interval.start = val;
+}
+
+- (double)intervalEnd {
+    return _interval.end;
+}
+
+- (void)setIntervalEnd:(double)val {
+    _interval.end = val;
+}
+
 @end
