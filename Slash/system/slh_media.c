@@ -219,6 +219,7 @@ int media_init(Media *m, const char *ffp, const char *fn) {
         for (int i = 0; i < media_nb_streams(m); i++) {
             stream_init(streams + i);
         }
+        m->streams = streams;
         media_streams_init(m, ffp);
     } else {
         fprintf(stderr, "%s: no streams in %s\n", __func__, fn);
