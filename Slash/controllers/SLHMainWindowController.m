@@ -14,6 +14,9 @@
     SLHDragView *_dragView;
     SLHEncoderSettings *_encoderSettings;
     IBOutlet NSView *_customView;
+    IBOutlet NSArrayController *_arrayController;
+    IBOutlet NSTableView *_tableView;
+    
 }
 
 @end

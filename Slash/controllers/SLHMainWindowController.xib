@@ -8,7 +8,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHMainWindowController">
             <connections>
+                <outlet property="_arrayController" destination="vks-Yg-j4w" id="91t-1x-PBJ"/>
                 <outlet property="_customView" destination="Klk-Mo-QRe" id="KuC-zc-7tV"/>
+                <outlet property="_tableView" destination="xuo-NL-H4q" id="w2A-aq-TkW"/>
                 <outlet property="window" destination="I5o-Ms-tuw" id="Q4k-LI-fbc"/>
             </connections>
         </customObject>
@@ -85,6 +87,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalStart" id="XD8-5D-1Cg"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Da3-df-GIU">
                                                                     <rect key="frame" x="39" y="3" width="107" height="14"/>
@@ -94,6 +99,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalEnd" id="sHj-Zv-TJG"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -103,6 +111,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="vks-Yg-j4w" name="content" keyPath="arrangedObjects" id="9Bq-Xe-LZt"/>
+                                                <binding destination="vks-Yg-j4w" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="9Bq-Xe-LZt" id="zcW-9e-hBJ"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <nil key="backgroundColor"/>
@@ -122,7 +134,13 @@
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="uhp-t5-AwK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
+                                    <connections>
+                                        <action selector="remove:" target="vks-Yg-j4w" id="aOg-GQ-oAP"/>
+                                    </connections>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="CSb-hX-D6y"/>
+                                </connections>
                             </button>
                             <button id="X8w-8q-oed">
                                 <rect key="frame" x="8" y="9" width="12" height="12"/>
@@ -131,6 +149,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="addEncoderItem:" target="-2" id="cmt-9d-Ybd"/>
+                                </connections>
                             </button>
                         </subviews>
                     </customView>
@@ -249,21 +270,21 @@
                         <rect key="frame" x="156" y="31" width="357" height="371"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="5CM-BH-iY0">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="5CM-BH-iY0">
                                 <rect key="frame" x="0.0" y="0.0" width="357" height="104"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Pig-1R-p2f">
-                                    <rect key="frame" x="1" y="1" width="355" height="102"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="357" height="104"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" findStyle="panel" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="Y6f-f1-jMc">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="102"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="357" height="104"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="355" height="102"/>
+                                            <size key="minSize" width="357" height="104"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="355" height="102"/>
+                                            <size key="minSize" width="357" height="104"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                         </textView>
                                     </subviews>
@@ -274,7 +295,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="dhe-JZ-LV6">
-                                    <rect key="frame" x="340" y="1" width="16" height="102"/>
+                                    <rect key="frame" x="341" y="0.0" width="16" height="104"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -294,8 +315,14 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="369.5" y="-155"/>
+            <point key="canvasLocation" x="423.5" y="-156"/>
         </window>
+        <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
+            <declaredKeys>
+                <string>intervalStart</string>
+                <string>intervalEnd</string>
+            </declaredKeys>
+        </arrayController>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
