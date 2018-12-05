@@ -36,6 +36,8 @@
 		CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */; };
 		CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */; };
 		CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBFF3E22190BDA000F54C7E /* slh_encoder.c */; };
+		CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */; };
+		CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */; };
 		CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */; };
 		CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */; };
 		CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */; };
@@ -95,6 +97,9 @@
 		CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMediaItemTrack.m; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
 		CEBFF3E32190BDA000F54C7E /* slh_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_encoder.h; path = Slash/system/slh_encoder.h; sourceTree = SOURCE_ROOT; };
+		CED85AB721B85D6D00D01B36 /* SLHEncoderX264Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Format.h; path = controllers/SLHEncoderX264Format.h; sourceTree = "<group>"; };
+		CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderX264Format.m; path = controllers/SLHEncoderX264Format.m; sourceTree = "<group>"; };
+		CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderX264Format.xib; path = controllers/SLHEncoderX264Format.xib; sourceTree = "<group>"; };
 		CEDDDB8421A7363B006EDDD9 /* SLHFiltersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHFiltersController.h; path = controllers/SLHFiltersController.h; sourceTree = "<group>"; };
 		CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHFiltersController.m; path = controllers/SLHFiltersController.m; sourceTree = "<group>"; };
 		CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHFiltersController.xib; path = controllers/SLHFiltersController.xib; sourceTree = "<group>"; };
@@ -116,14 +121,13 @@
 		CE12EF18219B3BED00F97637 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CED85AB621B85CFC00D01B36 /* formats */,
 				CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */,
 				CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */,
 				CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */,
 				CE239372219CA86F00C21AA7 /* SLHMainWindowController.h */,
 				CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */,
 				CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */,
-				CEEE0A01219F34B200B9BB11 /* SLHEncoderBaseFormat.h */,
-				CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */,
 				CEDDDB8421A7363B006EDDD9 /* SLHFiltersController.h */,
 				CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */,
 				CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */,
@@ -242,6 +246,18 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		CED85AB621B85CFC00D01B36 /* formats */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE0A01219F34B200B9BB11 /* SLHEncoderBaseFormat.h */,
+				CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */,
+				CED85AB721B85D6D00D01B36 /* SLHEncoderX264Format.h */,
+				CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */,
+				CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */,
+			);
+			name = formats;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -300,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */,
 				CE1414C7210D32CC00C02B2D /* script.lua in Resources */,
 				CE1414C6210D32C400C02B2D /* mpv.conf in Resources */,
 				CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */,
@@ -335,6 +352,7 @@
 				CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */,
+				CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */,
 				CE239375219CA86F00C21AA7 /* SLHMainWindowController.m in Sources */,
 				CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */,
 				CE566A77215AAC16004E974F /* slh_extern.c in Sources */,
