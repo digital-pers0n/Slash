@@ -106,7 +106,7 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
     }
     
     key = SLHEncoderAudioFilterPreampKey;
-    if (_audioFadeIn) {
+    if (_audioPreamp) {
         _encoderItem.audioFilters[key] =
         [NSString stringWithFormat:_audioPreampFmt, _audioPreamp];
     } else {
