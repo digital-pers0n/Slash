@@ -42,6 +42,16 @@ typedef NS_ENUM(NSUInteger, SLHX264ContainerType) {
     SLHX264ContainerMOV
 };
 
+typedef NS_ENUM(NSUInteger, SLHX264TuneType) {
+    SLHX264TuneFilm,
+    SLHX264TuneAnimation,
+    SLHX264TuneGrain,
+    SLHX264TuneStill,
+    SLHX264TunePsnr,
+    SLHX264TuneSsim,
+    SLHX264TuneNone = NSUIntegerMax
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHEncoderX264Format : SLHEncoderBaseFormat
@@ -53,10 +63,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSUInteger videoHeight;
 
 /**
- Comma-separated strings.
- Valid strings: film animation grain stillimage psnr ssim fastdecode zerolatency
- */
-@property NSString *tune;
+    film animation grain stillimage psnr ssim fastdecode zerolatency
+*/
+@property SLHX264TuneType tuneType;
+@property BOOL fastdecode;
+@property BOOL zerolatency;
+
+@property NSUInteger bitrate;
+@property NSUInteger maxBitrate;
+@property NSUInteger crf;
 
 
 @end
