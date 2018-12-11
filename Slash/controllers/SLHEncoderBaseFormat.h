@@ -14,6 +14,7 @@
 @interface SLHEncoderBaseFormat : NSViewController <SLHEncoderSettingsDelegate>
 
 @property SLHEncoderItem *encoderItem;
+@property (readonly) NSString *formatName;
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab;
 
 @end
