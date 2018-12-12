@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="_arrayController" destination="vks-Yg-j4w" id="91t-1x-PBJ"/>
                 <outlet property="_customView" destination="Klk-Mo-QRe" id="KuC-zc-7tV"/>
+                <outlet property="_formatsPopUp" destination="8h0-o4-5Id" id="3l0-dt-De9"/>
                 <outlet property="_tableView" destination="xuo-NL-H4q" id="w2A-aq-TkW"/>
                 <outlet property="window" destination="I5o-Ms-tuw" id="Q4k-LI-fbc"/>
             </connections>
@@ -180,7 +181,7 @@
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" id="SWd-Rv-ZUJ">
-                        <rect key="frame" x="259" y="443" width="230" height="19"/>
+                        <rect key="frame" x="255" y="443" width="234" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="evu-KB-N91">
                             <font key="font" metaFont="smallSystem"/>
@@ -189,13 +190,16 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" id="8h0-o4-5Id">
-                        <rect key="frame" x="202" y="465" width="100" height="22"/>
+                        <rect key="frame" x="198" y="465" width="100" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="8Mf-iF-bvd">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Mf-iF-bvd">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" id="UZ3-UB-5fj"/>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="formatPopUpClicked:" target="-2" id="KAv-Jo-6bd"/>
+                        </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="VBO-79-c8D">
                         <rect key="frame" x="154" y="470" width="45" height="14"/>
@@ -207,7 +211,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6ir-i9-QJM">
-                        <rect key="frame" x="369" y="470" width="42" height="14"/>
+                        <rect key="frame" x="375" y="470" width="42" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preset:" id="zFt-PG-iht">
                             <font key="font" metaFont="smallSystem"/>
@@ -224,24 +228,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button id="pr1-Xz-t0W">
-                        <rect key="frame" x="153" y="421" width="92" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Export Video" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="T5M-OT-rVC">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                    </button>
-                    <button id="ce3-BG-yhF">
-                        <rect key="frame" x="256" y="421" width="90" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Export Audio" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Jrz-WI-Qn2">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="rqC-vH-t9e">
-                        <rect key="frame" x="154" y="404" width="57" height="14"/>
+                        <rect key="frame" x="154" y="400" width="57" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Summary:" id="64c-VS-N5d">
                             <font key="font" metaFont="smallSystem"/>
@@ -260,14 +248,14 @@
                     <popUpButton verticalHuggingPriority="750" id="ls3-zh-eMY">
                         <rect key="frame" x="416" y="465" width="100" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="rbj-1l-12B">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rbj-1l-12B">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" id="ERP-yk-biW"/>
                         </popUpButtonCell>
                     </popUpButton>
                     <splitView dividerStyle="thin" id="hnM-63-wVj">
-                        <rect key="frame" x="156" y="31" width="357" height="371"/>
+                        <rect key="frame" x="156" y="29" width="357" height="371"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="5CM-BH-iY0">
@@ -309,13 +297,67 @@
                             <real value="250"/>
                         </holdingPriorities>
                     </splitView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="bHc-Dn-gpy">
+                        <rect key="frame" x="154" y="421" width="38" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Video:" id="tUb-dA-MQQ">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" id="YAl-3d-rHf">
+                        <rect key="frame" x="191" y="416" width="66" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nad-LG-9KH">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" id="z7F-FX-Bjz"/>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6ns-Z3-LHE">
+                        <rect key="frame" x="266" y="421" width="38" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Audio:" id="edf-XE-LXL">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="d6X-Cs-iWb">
+                        <rect key="frame" x="378" y="421" width="34" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Subs:" id="xvu-Y7-MCI">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" id="49K-5F-cBl">
+                        <rect key="frame" x="411" y="416" width="66" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h2s-Ye-A51">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" id="cbp-0y-9Sk"/>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <popUpButton verticalHuggingPriority="750" id="aSd-2M-Mon">
+                        <rect key="frame" x="303" y="416" width="66" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yrD-ES-3Uq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" id="b7e-mE-O8C"/>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
             </view>
             <contentBorderThickness minY="29" maxY="200"/>
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="423.5" y="-156"/>
+            <point key="canvasLocation" x="391.5" y="-237"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
             <declaredKeys>
