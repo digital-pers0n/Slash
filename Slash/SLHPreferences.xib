@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="17G65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <development version="5100" identifier="xcode"/>
@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHPreferences">
             <connections>
+                <outlet property="_outputPathPopUp" destination="KNu-EU-WGB" id="11P-J0-2DI"/>
                 <outlet property="ffmpegPathTextField" destination="bc1-Jf-tBj" id="JKd-wI-idg"/>
                 <outlet property="ffprobePathTextField" destination="sW3-3z-ISn" id="rO5-dm-SLJ"/>
                 <outlet property="mpvPathTextField" destination="XpS-hB-PMx" id="5rs-wv-HxE"/>
@@ -19,28 +20,28 @@
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="985" y="562" width="483" height="189"/>
+            <rect key="contentRect" x="985" y="562" width="472" height="205"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="483" height="189"/>
+                <rect key="frame" x="0.0" y="0.0" width="472" height="205"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button identifier="ffmpegBinary" tag="1" id="DgZ-Km-3ef">
-                        <rect key="frame" x="441" y="132" width="22" height="22"/>
+                        <rect key="frame" x="438" y="154" width="14" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="J2K-Ay-4Yd">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="J2K-Ay-4Yd">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="selectFile:" target="-2" id="i14-Ie-e4y"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="sW3-3z-ISn">
-                        <rect key="frame" x="20" y="87" width="413" height="22"/>
+                        <rect key="frame" x="20" y="109" width="413" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sXE-fj-6wD">
-                            <font key="font" metaFont="system"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sXE-fj-6wD">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -53,7 +54,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6jw-jI-jdx">
-                        <rect key="frame" x="18" y="110" width="47" height="14"/>
+                        <rect key="frame" x="18" y="129" width="47" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ffprobe:" id="6Si-57-lPy">
                             <font key="font" metaFont="smallSystem"/>
@@ -62,18 +63,18 @@
                         </textFieldCell>
                     </textField>
                     <button identifier="ffprobeBinary" tag="2" id="yBb-rb-XAV">
-                        <rect key="frame" x="441" y="87" width="22" height="22"/>
+                        <rect key="frame" x="438" y="111" width="14" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="kdc-Wz-Iue">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="kdc-Wz-Iue">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" id="XpS-hB-PMx">
-                        <rect key="frame" x="20" y="42" width="413" height="22"/>
+                        <rect key="frame" x="20" y="67" width="413" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0dW-L9-D2o">
-                            <font key="font" metaFont="system"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0dW-L9-D2o">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -86,7 +87,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="C8l-Zi-4hx">
-                        <rect key="frame" x="18" y="65" width="37" height="14"/>
+                        <rect key="frame" x="18" y="87" width="37" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="mpv:" id="tCV-7Q-ooP">
                             <font key="font" metaFont="smallSystem"/>
@@ -95,15 +96,15 @@
                         </textFieldCell>
                     </textField>
                     <button identifier="mpvBinary" tag="3" id="cmR-9g-nNH">
-                        <rect key="frame" x="441" y="42" width="22" height="22"/>
+                        <rect key="frame" x="438" y="69" width="14" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="qI4-wv-Yrv">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="qI4-wv-Yrv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wvO-eK-bA2">
-                        <rect key="frame" x="18" y="155" width="45" height="14"/>
+                        <rect key="frame" x="18" y="171" width="45" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ffmpeg:" id="h4f-Jd-0Qn">
                             <font key="font" metaFont="smallSystem"/>
@@ -112,10 +113,10 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="bc1-Jf-tBj">
-                        <rect key="frame" x="20" y="132" width="413" height="22"/>
+                        <rect key="frame" x="20" y="151" width="413" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="hQs-gx-m1D">
-                            <font key="font" metaFont="system"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="hQs-gx-m1D">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -127,12 +128,30 @@
                             </binding>
                         </connections>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Z1t-jf-YAH">
+                        <rect key="frame" x="18" y="39" width="69" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="output path:" id="1Xg-Te-joV">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" id="KNu-EU-WGB">
+                        <rect key="frame" x="17" y="17" width="206" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="a2R-mX-czf">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" id="0YJ-WI-SXu"/>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="146.5" y="63.5"/>
+            <point key="canvasLocation" x="348" y="83.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="Wrw-dJ-vzm"/>
     </objects>

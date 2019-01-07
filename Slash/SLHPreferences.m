@@ -9,6 +9,8 @@
 #import "SLHPreferences.h"
 
 @interface SLHPreferences () {
+    
+    IBOutlet NSPopUpButton *_outputPathPopUp;
 
 }
 
