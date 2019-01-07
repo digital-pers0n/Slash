@@ -12,6 +12,7 @@
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
 extern NSString *const SLHPreferencesFFProbeFilePathKey;
 extern NSString *const SLHPreferencesMPVFilePathKey;
+extern NSString *const SLHPreferencesRecentOutputPaths;
 
 @interface SLHPreferences : NSWindowController
 
