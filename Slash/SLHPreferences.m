@@ -8,6 +8,8 @@
 
 #import "SLHPreferences.h"
 
+extern NSString *const SLHPreferencesDefaultOutputPath;
+
 @interface SLHPreferences () {
     
     IBOutlet NSPopUpButton *_outputPathPopUp;

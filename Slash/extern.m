@@ -14,6 +14,8 @@ NSString *const SLHPreferencesFFMpegFilePathKey     = @"ffmpegBinary";
 NSString *const SLHPreferencesFFProbeFilePathKey    = @"ffprobeBinary";
 NSString *const SLHPreferencesMPVFilePathKey        = @"mpvBinary";
 NSString *const SLHPreferencesRecentOutputPaths     = @"recentOutputPaths";
+NSString *const SLHPreferencesOutputPathSameAsInput = @"outputPathSameAsInput";
+NSString *const SLHPreferencesDefaultOutputPath     = @"~/Movies/";
 
 #pragma mark - SLHMetadataItem
 
