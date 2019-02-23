@@ -17,4 +17,7 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 
 @interface SLHPreferences : NSWindowController
 
+@property (copy) NSString *currentOutputPath;
+@property BOOL outputPathSameAsInput;
+
 @end

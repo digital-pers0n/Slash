@@ -13,6 +13,9 @@ extern NSString *const SLHPreferencesDefaultOutputPath;
 @interface SLHPreferences () {
     
     IBOutlet NSPopUpButton *_outputPathPopUp;
+    
+    NSMutableArray <NSString *> *_recentOutputPaths;
+    NSString *_currentOutputPath;
 
 }
 
