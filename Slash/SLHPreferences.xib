@@ -138,14 +138,32 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" id="KNu-EU-WGB">
-                        <rect key="frame" x="17" y="17" width="206" height="22"/>
+                        <rect key="frame" x="17" y="17" width="181" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="a2R-mX-czf">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" id="0YJ-WI-SXu"/>
                         </popUpButtonCell>
+                        <connections>
+                            <binding destination="Wrw-dJ-vzm" name="enabled" keyPath="values.outputPathSameAsInput" id="kis-JQ-iZc">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
                     </popUpButton>
+                    <button id="Vxx-w7-nQ3">
+                        <rect key="frame" x="200" y="19" width="117" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Same as input file" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="lR4-Ii-iHr">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.outputPathSameAsInput" id="rzv-kG-5pU"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
