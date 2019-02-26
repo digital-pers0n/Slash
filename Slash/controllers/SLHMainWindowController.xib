@@ -11,6 +11,7 @@
                 <outlet property="_arrayController" destination="vks-Yg-j4w" id="91t-1x-PBJ"/>
                 <outlet property="_customView" destination="Klk-Mo-QRe" id="KuC-zc-7tV"/>
                 <outlet property="_formatsPopUp" destination="8h0-o4-5Id" id="3l0-dt-De9"/>
+                <outlet property="_outputFileNameTextField" destination="SWd-Rv-ZUJ" id="GZh-ia-YsD"/>
                 <outlet property="_tableView" destination="xuo-NL-H4q" id="w2A-aq-TkW"/>
                 <outlet property="window" destination="I5o-Ms-tuw" id="Q4k-LI-fbc"/>
             </connections>
@@ -157,7 +158,7 @@
                         </subviews>
                     </customView>
                     <button verticalHuggingPriority="750" id="aGt-Me-cvO">
-                        <rect key="frame" x="159" y="5" width="81" height="19"/>
+                        <rect key="frame" x="156" y="5" width="81" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Metadata..." bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Wy-bY-Yaq">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -181,7 +182,7 @@
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" id="SWd-Rv-ZUJ">
-                        <rect key="frame" x="255" y="443" width="234" height="19"/>
+                        <rect key="frame" x="255" y="443" width="237" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="evu-KB-N91">
                             <font key="font" metaFont="smallSystem"/>
@@ -237,14 +238,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button id="Ngr-8N-TGm">
-                        <rect key="frame" x="497" y="445" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="GSl-gK-pLz">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                    </button>
                     <popUpButton verticalHuggingPriority="750" id="ls3-zh-eMY">
                         <rect key="frame" x="416" y="465" width="100" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -351,6 +344,17 @@
                             <menu key="menu" id="b7e-mE-O8C"/>
                         </popUpButtonCell>
                     </popUpButton>
+                    <button id="Ngr-8N-TGm">
+                        <rect key="frame" x="497" y="445" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="GSl-gK-pLz">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="selectOutputFileName:" target="-2" id="acG-0Y-RVD"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <contentBorderThickness minY="29" maxY="200"/>

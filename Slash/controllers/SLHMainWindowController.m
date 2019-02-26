@@ -16,7 +16,10 @@
     IBOutlet NSView *_customView;
     IBOutlet NSArrayController *_arrayController;
     IBOutlet NSTableView *_tableView;
+    IBOutlet NSPopUpButton *_formatsPopUp;
     
+    IBOutlet NSTextField *_outputFileNameTextField;
+
 }
 
 @end
