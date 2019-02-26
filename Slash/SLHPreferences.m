@@ -27,6 +27,15 @@ extern NSString *const SLHPreferencesDefaultOutputPath;
 
 @implementation SLHPreferences
 
++ (instancetype)preferences {
+    static dispatch_once_t onceToken = 0;
+    static SLHPreferences *result = nil;
+    dispatch_once(&onceToken, ^{
+        result = [[SLHPreferences alloc] init];
+    });
+    return result;
+}
+
 - (NSString *)windowNibName {
     return self.className;
 }
