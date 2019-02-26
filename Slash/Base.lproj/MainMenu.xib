@@ -14,7 +14,6 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="ahF-xq-Cat" customClass="SLHMainWindowController" colorLabel="IBBuiltInLabel-Red"/>
-        <customObject id="DUW-m4-lKt" customClass="SLHPreferences" colorLabel="IBBuiltInLabel-Orange"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="mainWindow" destination="ahF-xq-Cat" id="VTt-ZM-Bqi"/>
@@ -36,7 +35,7 @@
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                             <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                 <connections>
-                                    <action selector="showWindow:" target="DUW-m4-lKt" id="y7g-BQ-v6s"/>
+                                    <action selector="openPreferences:" target="Voe-Tx-rLC" id="ukC-ys-c02"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
