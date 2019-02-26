@@ -18,6 +18,7 @@ static NSString *const _appInitializedKey = @"appInitialized";
 @interface AppDelegate ()
 
 @property IBOutlet SLHMainWindowController *mainWindow;
+@property SLHPreferences *preferences;
 
 @end
 
@@ -25,6 +26,7 @@ static NSString *const _appInitializedKey = @"appInitialized";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [_mainWindow showWindow:self];
+    _preferences = [SLHPreferences preferences];
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     if (![defs boolForKey:_appInitializedKey]) {
         NSFileManager *fm = [NSFileManager defaultManager];
@@ -64,5 +66,12 @@ static NSString *const _appInitializedKey = @"appInitialized";
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
+
+#pragma mark - IBActions
+
+- (IBAction)openPreferences:(id)sender {
+    [_preferences showWindow:sender];
+}
+
 
 @end
