@@ -50,7 +50,20 @@
 #pragma mark - SLHDragView Delegate
 
 - (void)didReceiveFilename:(NSString *)filename {
-    
+    SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:filename];
+    NSString *outputPath = nil;
+    SLHPreferences *prefs = [SLHPreferences preferences];
+    if (prefs.outputPathSameAsInput) {
+        outputPath = [filename stringByDeletingLastPathComponent];
+    } else {
+        outputPath = prefs.currentOutputPath;
+    }
+    NSString *outputName = filename.lastPathComponent.stringByDeletingPathExtension;
+    outputPath = [NSString stringWithFormat:@"%@/%@_%lu.%@", outputPath, outputName, time(0), filename.pathExtension];
+    SLHEncoderItem *encItem = [[SLHEncoderItem alloc] initWithMediaItem:mediaItem outputPath:outputPath];
+    _outputFileNameTextField.stringValue = outputPath.lastPathComponent;
+    encItem.interval = (TimeInterval){0, mediaItem.duration};
+    [_arrayController addObject:encItem];
 }
 - (void)didBeginDraggingSession {
     
