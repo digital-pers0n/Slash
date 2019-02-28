@@ -189,6 +189,9 @@
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <binding destination="vks-Yg-j4w" name="value" keyPath="selection.outputFileName" id="N09-h0-i5I"/>
+                        </connections>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" id="8h0-o4-5Id">
                         <rect key="frame" x="198" y="465" width="100" height="22"/>
@@ -261,12 +264,30 @@
                                         <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" findStyle="panel" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="Y6f-f1-jMc">
                                             <rect key="frame" x="0.0" y="0.0" width="357" height="104"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" white="0.23049568965517242" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="357" height="104"/>
                                             <size key="maxSize" width="463" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment content="sample text">
+                                                    <attributes>
+                                                        <color key="NSColor" white="0.23049568965517242" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="357" height="104"/>
                                             <size key="maxSize" width="463" height="10000000"/>
+                                            <connections>
+                                                <binding destination="vks-Yg-j4w" name="value" keyPath="selection.summary" id="Lgm-mS-WvD">
+                                                    <dictionary key="options">
+                                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                        <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
