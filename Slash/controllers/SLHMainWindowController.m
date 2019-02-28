@@ -75,4 +75,38 @@
     
 }
 
+#pragma mark - IBActions
+
+- (IBAction)addEncoderItem:(id)sender {
+    
+}
+
+- (IBAction)formatPopUpClicked:(id)sender {
+    SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
+    (void)fmt.view; // load view
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    fmt.encoderItem = item;
+    _encoderSettings.delegate = fmt;
+}
+
+- (IBAction)selectOutputFileName:(id)sender {
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowsMultipleSelection = NO;
+    panel.canChooseFiles = NO;
+    panel.canChooseDirectories = YES;
+    panel.canCreateDirectories = YES;
+    
+    [panel beginWithCompletionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSFileHandlingPanelOKButton) {
+            NSString *path = panel.URL.path;
+            NSInteger row = _tableView.selectedRow;
+            SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+            NSString *outname = item.outputFileName;
+            item.outputPath = [NSString stringWithFormat:@"%@/%@", path, outname];
+        }
+    }];
+
+}
+
 @end
