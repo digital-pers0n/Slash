@@ -8,6 +8,7 @@
 
 #import "SLHEncoderItem.h"
 #import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
 
 @implementation SLHEncoderItem
 
@@ -64,6 +65,31 @@
     return [self initWithMediaItem:item outputPath:path];
 }
 
+#pragma mark - Info
+
+- (NSString *)summary {
+    NSSize vSize = NSZeroSize;
+    NSString *codecName = nil;
+    for (SLHMediaItemTrack *t in _mediaItem.tracks) {
+        if (t.mediaType == SLHMediaTypeVideo) {
+            vSize = t.videoSize;
+            codecName = t.codecName;
+            break;
+        }
+    }
+    if (!codecName) { // Audio only?
+        codecName = _mediaItem.tracks[0].codecName;
+    }
+    NSString *input = [NSString stringWithFormat:@"%@: %@, %.0fx%.0f, %lukb, %lukbs, %.3fs", _mediaItem.filePath, codecName, vSize.width, vSize.height, _mediaItem.fileSize / 1024, _mediaItem.bitRate / 1024, _mediaItem.duration];
+/* TODO: Generate output file info */
+    NSString *output = @"(Not Implemented)";
+    
+    NSString *result = [NSString stringWithFormat:@"Output:\n%@\n"
+                        @"Input:\n%@", output, input];
+    
+    return result;
+}
+
 #pragma mark - Bindings
 
 - (double)intervalStart {
@@ -80,6 +106,14 @@
 
 - (void)setIntervalEnd:(double)val {
     _interval.end = val;
+}
+
+- (NSString *)outputFileName {
+    return _outputPath.lastPathComponent;
+}
+
+- (void)setOutputFileName:(NSString *)outputFileName {
+    _outputPath = [NSString stringWithFormat:@"%@/%@", _outputPath.stringByDeletingLastPathComponent, outputFileName];
 }
 
 @end

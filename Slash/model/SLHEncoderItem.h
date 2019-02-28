@@ -24,6 +24,7 @@ typedef struct time_interval {
 
 @property SLHMediaItem *mediaItem;
 @property NSString *outputPath;
+@property NSString *outputFileName;
 @property NSString *container;
 
 @property TimeInterval interval;
@@ -42,6 +43,8 @@ typedef struct time_interval {
 @property NSMutableDictionary *firstPassOptions;
 
 @property NSMutableDictionary *metadata;
+
+@property (readonly) NSString * summary;
 
 /* Cocoa Bindings */
 @property double intervalStart;
