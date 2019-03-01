@@ -12,6 +12,7 @@
                 <outlet property="_customView" destination="Klk-Mo-QRe" id="KuC-zc-7tV"/>
                 <outlet property="_formatsPopUp" destination="8h0-o4-5Id" id="3l0-dt-De9"/>
                 <outlet property="_outputFileNameTextField" destination="SWd-Rv-ZUJ" id="GZh-ia-YsD"/>
+                <outlet property="_summaryTextView" destination="Y6f-f1-jMc" id="XUV-tm-mln"/>
                 <outlet property="_tableView" destination="xuo-NL-H4q" id="w2A-aq-TkW"/>
                 <outlet property="window" destination="I5o-Ms-tuw" id="Q4k-LI-fbc"/>
             </connections>

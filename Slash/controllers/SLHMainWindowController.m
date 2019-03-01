@@ -18,6 +18,7 @@
     IBOutlet NSTableView *_tableView;
     IBOutlet NSPopUpButton *_formatsPopUp;
     
+    IBOutlet NSTextView *_summaryTextView;
     IBOutlet NSTextField *_outputFileNameTextField;
 
 }
@@ -70,10 +71,11 @@
     [_arrayController addObject:encItem];
 }
 - (void)didBeginDraggingSession {
-    
+    [self.window endEditingFor:self];
+    _summaryTextView.hidden = YES;
 }
 - (void)didEndDraggingSession {
-    
+    _summaryTextView.hidden = NO;
 }
 - (void)didReceiveMouseEvent:(NSEvent *)event {
     
