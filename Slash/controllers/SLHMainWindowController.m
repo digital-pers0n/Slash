@@ -51,6 +51,10 @@
 
 - (void)didReceiveFilename:(NSString *)filename {
     SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:filename];
+    if (mediaItem.error) {
+        NSLog(@"Error: %@", mediaItem.error.localizedDescription);
+        return;
+    }
     NSString *outputPath = nil;
     SLHPreferences *prefs = [SLHPreferences preferences];
     if (prefs.outputPathSameAsInput) {
