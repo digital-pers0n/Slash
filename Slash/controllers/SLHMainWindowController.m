@@ -18,6 +18,9 @@
     IBOutlet NSTableView *_tableView;
     IBOutlet NSPopUpButton *_formatsPopUp;
     
+    IBOutlet NSPopUpButton *_subtitlesStreamPopUp;
+    IBOutlet NSPopUpButton *_audioStreamPopUp;
+    IBOutlet NSPopUpButton *_videoStreamPopUp;
     IBOutlet NSTextView *_summaryTextView;
     IBOutlet NSTextField *_outputFileNameTextField;
 

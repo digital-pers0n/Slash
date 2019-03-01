@@ -9,11 +9,14 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SLHMainWindowController">
             <connections>
                 <outlet property="_arrayController" destination="vks-Yg-j4w" id="91t-1x-PBJ"/>
+                <outlet property="_audioStreamPopUp" destination="aSd-2M-Mon" id="tgu-mg-bD6"/>
                 <outlet property="_customView" destination="Klk-Mo-QRe" id="KuC-zc-7tV"/>
                 <outlet property="_formatsPopUp" destination="8h0-o4-5Id" id="3l0-dt-De9"/>
                 <outlet property="_outputFileNameTextField" destination="SWd-Rv-ZUJ" id="GZh-ia-YsD"/>
+                <outlet property="_subtitlesStreamPopUp" destination="49K-5F-cBl" id="77X-kh-S7E"/>
                 <outlet property="_summaryTextView" destination="Y6f-f1-jMc" id="XUV-tm-mln"/>
                 <outlet property="_tableView" destination="xuo-NL-H4q" id="w2A-aq-TkW"/>
+                <outlet property="_videoStreamPopUp" destination="YAl-3d-rHf" id="iQW-Fe-fx0"/>
                 <outlet property="window" destination="I5o-Ms-tuw" id="Q4k-LI-fbc"/>
             </connections>
         </customObject>
