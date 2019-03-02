@@ -31,7 +31,7 @@ typedef struct time_interval {
 
 @property NSInteger videoStreamIndex;
 @property NSInteger audioStreamIndex;
-@property NSInteger subtitleStreamIndex;
+@property NSInteger subtitlesStreamIndex;
 
 @property NSMutableDictionary *videoOptions;
 @property NSMutableDictionary *videoFilters;

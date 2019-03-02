@@ -23,7 +23,7 @@
     
     item.videoStreamIndex = _videoStreamIndex;
     item.audioStreamIndex = _audioStreamIndex;
-    item.subtitleStreamIndex = _subtitleStreamIndex;
+    item.subtitlesStreamIndex = _subtitlesStreamIndex;
     
     item.videoOptions = _videoOptions.mutableCopy;
     item.videoFilters = _videoFilters.mutableCopy;
@@ -45,7 +45,7 @@
     if (self) {
         _mediaItem = item;
         _outputPath = outputMediaPath;
-        _subtitleStreamIndex = -1;
+        _subtitlesStreamIndex = -1;
         _twoPassEncoding = NO;
         _videoOptions = @[].mutableCopy;
         _videoFilters = @[].mutableCopy;
