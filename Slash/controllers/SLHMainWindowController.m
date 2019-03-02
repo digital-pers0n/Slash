@@ -9,6 +9,12 @@
 #import "SLHMainWindowController.h"
 #import "SLHDragView.h"
 #import "SLHEncoderSettings.h"
+#import "SLHEncoderItem.h"
+#import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
+#import "SLHPreferences.h"
+#import "SLHEncoderBaseFormat.h"
+#import "SLHEncoderX264Format.h"
 
 @interface SLHMainWindowController () <SLHDragViewDelegate> {
     SLHDragView *_dragView;
@@ -49,7 +55,32 @@
     _encoderSettings.view.frame = _customView.frame;
     _encoderSettings.view.autoresizingMask = _customView.autoresizingMask;
     [_customView.superview replaceSubview:_customView with:_encoderSettings.view];
+    
+    /* NSTableView */
+    _tableView.delegate = self;
+    
+    /* SLHFormat */
+    SLHEncoderX264Format *x264Fmt = [[SLHEncoderX264Format alloc] init];
+
+    _formats = @[x264Fmt];
+    NSMenu *formatsMenu = _formatsPopUp.menu;
+    NSUInteger tag = 0;
+    for (SLHEncoderBaseFormat *fmt in _formats) {
+        NSMenuItem *itm = [formatsMenu addItemWithTitle:fmt.formatName action:nil keyEquivalent:@""];
+        itm.tag = tag++;
+    }
 }
+
+
+
+#pragma mark - NSTableView Delegate
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    [self.window setTitleWithRepresentedFilename:item.mediaItem.filePath];
+}
+
 
 #pragma mark - SLHDragView Delegate
 
@@ -59,6 +90,7 @@
         NSLog(@"Error: %@", mediaItem.error.localizedDescription);
         return;
     }
+    [self _populatePopUpMenus:mediaItem];
     NSString *outputPath = nil;
     SLHPreferences *prefs = [SLHPreferences preferences];
     if (prefs.outputPathSameAsInput) {
@@ -73,6 +105,7 @@
     encItem.interval = (TimeInterval){0, mediaItem.duration};
     [_arrayController addObject:encItem];
 }
+
 - (void)didBeginDraggingSession {
     [self.window endEditingFor:self];
     _summaryTextView.hidden = YES;
@@ -117,5 +150,73 @@
     }];
 
 }
+
+- (IBAction)videoStreamPopUpAction:(NSMenuItem *)sender {
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    item.videoStreamIndex = sender.tag;
+}
+
+- (IBAction)audioStreamPopUpAction:(NSMenuItem *)sender {
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    item.audioStreamIndex = sender.tag;
+}
+
+- (IBAction)subtitlesStreamPopUpAction:(NSMenuItem *)sender {
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    item.subtitlesStreamIndex = sender.tag;
+}
+
+#pragma mark - Private 
+
+- (void)_populatePopUpMenus:(SLHMediaItem *)mediaItem {
+    NSMenuItem *item;
+    [_videoStreamPopUp removeAllItems];
+    [_audioStreamPopUp removeAllItems];
+    [_subtitlesStreamPopUp removeAllItems];
+    for (SLHMediaItemTrack *t in mediaItem.tracks) {
+        NSUInteger trackIndex = t.trackIndex;
+        switch (t.mediaType) {
+            case SLHMediaTypeVideo:
+            {
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%.0fx%.0f)", trackIndex, t.videoSize.width, t.videoSize.height] action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
+                item.tag = trackIndex;
+                item.target = self;
+                [_videoStreamPopUp.menu addItem:item];
+            }
+                break;
+            case SLHMediaTypeAudio:
+            {
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@)", trackIndex, t.codecName] action:@selector(audioStreamPopUpAction:) keyEquivalent:@""];
+                item.tag = trackIndex;
+                item.target = self;
+                [_audioStreamPopUp.menu addItem:item];
+            }
+                break;
+            case SLHMediaTypeText:
+            {
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@)", trackIndex, t.codecName] action:@selector(subtitlesStreamPopUpAction:) keyEquivalent:@""];
+                item.tag = trackIndex;
+                item.target = self;
+                [_subtitlesStreamPopUp.menu addItem:item];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    item = [[NSMenuItem alloc] initWithTitle:@"none" action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
+    item.tag = -1;
+    item.target = self;
+    [_videoStreamPopUp.menu addItem:item];
+    item.action = @selector(audioStreamPopUpAction:);
+    [_audioStreamPopUp.menu addItem:item.copy];
+    item.action = @selector(subtitlesStreamPopUpAction:);
+    [_subtitlesStreamPopUp.menu addItem:item.copy];
+}
+
 
 @end
