@@ -8,6 +8,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHMetadataEditor">
             <connections>
+                <outlet property="_artistTextView" destination="4LD-tO-VEt" id="GxQ-WQ-45S"/>
+                <outlet property="_commentTextView" destination="ClU-7p-8Og" id="UQs-dY-P8h"/>
+                <outlet property="_dateTextField" destination="eBM-ak-nLZ" id="8JM-Us-lcP"/>
+                <outlet property="_titleTextView" destination="eBd-j3-de2" id="r2o-DR-ZXV"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -154,6 +158,9 @@
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="okButtonAction:" target="-2" id="7Yh-Ui-2Be"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="5cd-fi-RHX">
                         <rect key="frame" x="212" y="13" width="82" height="32"/>
@@ -165,6 +172,9 @@ DQ
 Gw
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="cancelButtonAction:" target="-2" id="k6H-Ri-Zng"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ynD-yP-Qz4">
                         <rect key="frame" x="52" y="324" width="31" height="17"/>
@@ -209,13 +219,16 @@ Gw
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="applyButtonAction:" target="-2" id="BKr-mp-XfK"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="215" y="253"/>
+            <point key="canvasLocation" x="365" y="284"/>
         </window>
     </objects>
 </document>
