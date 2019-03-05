@@ -46,6 +46,10 @@ typedef NS_ENUM(NSUInteger, SLHMediaType) {
  */
 @property NSString *pixelFormat;
 
+/**
+ Indicate language of the track
+ */
+@property NSString *language;
 
 @property NSUInteger numberOfChannels;
 @property NSString *channelLayout;
