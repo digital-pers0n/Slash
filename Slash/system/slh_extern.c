@@ -37,3 +37,4 @@ const char *kMediaMetadataTitleKey   = "TAG:title";
 const char *kMediaMetadataArtistKey  = "TAG:artist";
 const char *kMediaMetadataDateKey    = "TAG:date";
 const char *kMediaMetadataCommentKey = "TAG:comment";
+const char *kMediaMetadataLanguageKey = "TAG:language";

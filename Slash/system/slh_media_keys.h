@@ -34,6 +34,7 @@ extern const char *kMediaMetadataTitleKey;
 extern const char *kMediaMetadataArtistKey;
 extern const char *kMediaMetadataDateKey;
 extern const char *kMediaMetadataCommentKey;
+extern const char *kMediaMetadataLanguageKey;       // audio/subtitles language
 
 /* Media Keys */
 
