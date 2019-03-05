@@ -109,6 +109,8 @@ static inline NSString *_cstr2nsstr(const char *str) {
             track.channelLayout = _cstr2nsstr(stream_get_value(stream, kMediaStreamChannelLayoutKey));
             track.sampleRate = _cstr2nsstr(stream_get_value(stream, kMediaStreamSampleRateKey));
         }
+        char *lang = stream_get_value(stream, kMediaMetadataLanguageKey);
+        track.language = (lang) ? [NSString stringWithUTF8String:lang] : @"und";
         
         array[i] = track;
     }
