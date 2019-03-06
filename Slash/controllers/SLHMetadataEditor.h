@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLHMetadataEditorDelegate <NSObject>
 
-- (NSMutableDictionary *)dataForMetadataEditor:(SLHMetadataEditor *)editor;
-- (void)metadataEditor:(SLHMetadataEditor *)editor didEndEditing:(NSMutableDictionary *)data;
+- (NSDictionary *)dataForMetadataEditor:(SLHMetadataEditor *)editor;
+- (void)metadataEditor:(SLHMetadataEditor *)editor didEndEditing:(NSDictionary *)data;
 
 @end
 
