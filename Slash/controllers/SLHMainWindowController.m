@@ -87,7 +87,7 @@
 
 #pragma mark - SLHMetadataEditor Delegate
 
-- (NSMutableDictionary *)dataForMetadataEditor:(SLHMetadataEditor *)editor {
+- (NSDictionary *)dataForMetadataEditor:(SLHMetadataEditor *)editor {
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     
@@ -114,7 +114,7 @@
     return data;
 }
 
-- (void)metadataEditor:(SLHMetadataEditor *)editor didEndEditing:(NSMutableDictionary *)data {
+- (void)metadataEditor:(SLHMetadataEditor *)editor didEndEditing:(NSDictionary *)data {
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     item.metadata = data.mutableCopy;
