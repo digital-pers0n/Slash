@@ -8,6 +8,22 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol SLHMetadataEditorDelegate;
+
 @interface SLHMetadataEditor : NSWindowController
 
+@property (nullable) IBOutlet id <SLHMetadataEditorDelegate> delegate;
+- (void)reloadData;
+
 @end
+
+@protocol SLHMetadataEditorDelegate <NSObject>
+
+- (NSMutableDictionary *)dataForMetadataEditor:(SLHMetadataEditor *)editor;
+- (void)metadataEditor:(SLHMetadataEditor *)editor didEndEditing:(NSMutableDictionary *)data;
+
+@end
+
+NS_ASSUME_NONNULL_END
