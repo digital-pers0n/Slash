@@ -47,12 +47,12 @@
         _outputPath = outputMediaPath;
         _subtitlesStreamIndex = -1;
         _twoPassEncoding = NO;
-        _videoOptions = @[].mutableCopy;
-        _videoFilters = @[].mutableCopy;
-        _audioOptions = @[].mutableCopy;
-        _audioFilters = @[].mutableCopy;
-        _firstPassOptions = @[].mutableCopy;
-        _metadata = @[].mutableCopy;
+        _videoOptions = @{}.mutableCopy;
+        _videoFilters = @{}.mutableCopy;
+        _audioOptions = @{}.mutableCopy;
+        _audioFilters = @{}.mutableCopy;
+        _firstPassOptions = @{}.mutableCopy;
+        _metadata = @{}.mutableCopy;
     }
     return self;
 }
