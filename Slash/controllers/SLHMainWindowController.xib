@@ -167,6 +167,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="showMetadataEditor:" target="-2" id="MiS-B5-46y"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="djR-Ih-pr9">
                         <rect key="frame" x="344" y="5" width="81" height="19"/>
@@ -385,7 +388,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="391" y="-237"/>
+            <point key="canvasLocation" x="595" y="-277"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
             <declaredKeys>
