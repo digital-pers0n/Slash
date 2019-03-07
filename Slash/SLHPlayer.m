@@ -59,6 +59,10 @@ extern NSString *const SLHPlayerMPVConfigPath;
 - (void)_setUpPlayer {
     _player = malloc(sizeof(Player));
     NSString *mpvPath = [[NSUserDefaults standardUserDefaults] objectForKey:SLHPreferencesMPVFilePathKey];
+    if (!mpvPath) { // use default path
+        mpvPath = @"/usr/local/bin/mpv";
+    }
+    
     NSString *confPath = [SLHPlayerMPVConfigPath stringByExpandingTildeInPath];
     const char *args[] = {mpvPath.UTF8String, confPath.UTF8String};
     if (plr_init(_player, (char *const *)args) != 0) {
