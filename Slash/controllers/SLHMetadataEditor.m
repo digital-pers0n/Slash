@@ -18,8 +18,6 @@
     IBOutlet NSTextView *_artistTextView;
     IBOutlet NSTextView *_commentTextView;
     IBOutlet NSTextField *_dateTextField;
-    
-    SLHEncoderItem *_encoderItem;
 }
 
 @end
@@ -48,10 +46,6 @@ static inline NSString * _getValue(NSDictionary *dict, NSString *key) {
     _dateTextField.stringValue = _getValue(data, SLHMetadataIdentifierDate);
     _commentTextView.string = _getValue(data, SLHMetadataIdentifierComment);
     
-}
-
-- (SLHEncoderItem *)encoderItem {
-    return _encoderItem;
 }
 
 - (void)_endEditing {
