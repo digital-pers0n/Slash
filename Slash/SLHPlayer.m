@@ -71,6 +71,11 @@ extern NSString *const SLHPlayerMPVConfigPath;
         return;
     }
     plr_set_callback(_player, (__bridge void *)(self), _mpv_callback);
+    
+    plr_launch(_player);
+    sleep(1);
+    plr_connect(_player);
+        
 }
 
 static void _mpv_callback(char *str, void *ctx) {
