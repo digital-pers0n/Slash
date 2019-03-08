@@ -15,6 +15,7 @@ extern NSString *const SLHPlayerMPVConfigPath;
 
 @interface SLHPlayer () {
     Player *_player;
+    BOOL _fileLoaded;
 }
 @end
 
@@ -75,6 +76,7 @@ extern NSString *const SLHPlayerMPVConfigPath;
     plr_launch(_player);
     sleep(1);
     plr_connect(_player);
+    _fileLoaded = NO;
         
 }
 
