@@ -89,4 +89,39 @@ static void _mpv_callback(char *str, void *ctx) {
     free(_player);
 }
 
+#pragma mark - Methods
+
+static inline void _loadFile(Player *p, const char *path) {
+    char *cmd;
+    asprintf(&cmd, "{ \"command\": [\"loadfile\", \"%s\"] }\n", path);
+    plr_msg_send(p, cmd);
+    free(cmd);
+}
+
+- (void)play {
+    if (!_fileLoaded) {
+        _fileLoaded = YES;
+        _loadFile(_player, _currentItem.filePath.UTF8String);
+    }
+    char *cmd = "{ \"command\": [\"set_property\", \"pause\", \"no\"] }\n";
+    plr_msg_send(_player, cmd);
+}
+
+- (void)pause {
+    char *cmd = "{ \"command\": [\"set_property\", \"pause\", \"yes\"] }\n";
+    plr_msg_send(_player, cmd);
+}
+
+- (void)replaceCurrentItemWithMediaItem:(SLHMediaItem *) item {
+    _currentItem = item;
+    _loadFile(_player, _currentItem.filePath.UTF8String);
+}
+
+- (double)currentTime {
+    return 0;
+}
+
+- (void)seekToTime:(double)time {
+}
+
 @end
