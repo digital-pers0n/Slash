@@ -129,6 +129,7 @@ typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
 - (void)player:(SLHPlayer *)p segmentStart:(double)start;
 - (void)player:(SLHPlayer *)p segmentEnd:(double)end;
 - (void)playerDidAddNewSegment:(SLHPlayer *)p;
+- (void)playerDidClearSegment:(SLHPlayer *)p;
 
 @end
 
