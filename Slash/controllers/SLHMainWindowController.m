@@ -165,7 +165,12 @@
 }
 
 - (IBAction)addEncoderItem:(id)sender {
-    
+    if (!_currentMediaItem) {
+        NSBeep();
+        return;
+    }
+    SLHEncoderItem *encItem = [self _createSegment];
+    [_arrayController addObject:encItem];
 }
 
 - (IBAction)formatPopUpClicked:(id)sender {
