@@ -263,5 +263,22 @@
     [_subtitlesStreamPopUp.menu addItem:item.copy];
 }
 
+- (SLHEncoderItem *)_createSegment {
+    NSString *outputPath = nil;
+    NSString *sourcePath = _currentMediaItem.filePath;
+    SLHPreferences *prefs = [SLHPreferences preferences];
+    if (prefs.outputPathSameAsInput) {
+        outputPath = [sourcePath stringByDeletingLastPathComponent];
+    } else {
+        outputPath = prefs.currentOutputPath;
+    }
+    NSString *outputName = sourcePath.lastPathComponent.stringByDeletingPathExtension;
+    outputPath = [NSString stringWithFormat:@"%@/%@_%lu%lu.%@", outputPath, outputName, time(0), clock(), sourcePath.pathExtension];
+    SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithMediaItem:_currentMediaItem outputPath:outputPath];
+    _outputFileNameTextField.stringValue = outputPath.lastPathComponent;
+    encoderItem.interval = (TimeInterval){0, _currentMediaItem.duration};
+    return encoderItem;
+}
+
 
 @end
