@@ -127,25 +127,13 @@
 #pragma mark - SLHDragView Delegate
 
 - (void)didReceiveFilename:(NSString *)filename {
-    SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:filename];
-    if (mediaItem.error) {
-        NSLog(@"Error: %@", mediaItem.error.localizedDescription);
+    _currentMediaItem = [SLHMediaItem mediaItemWithPath:filename];
+    if (_currentMediaItem.error) {
+        NSLog(@"Error: %@", _currentMediaItem.error.localizedDescription);
         return;
     }
-    [self _populatePopUpMenus:mediaItem];
-    NSString *outputPath = nil;
-    SLHPreferences *prefs = [SLHPreferences preferences];
-    if (prefs.outputPathSameAsInput) {
-        outputPath = [filename stringByDeletingLastPathComponent];
-    } else {
-        outputPath = prefs.currentOutputPath;
-    }
-    NSString *outputName = filename.lastPathComponent.stringByDeletingPathExtension;
-    outputPath = [NSString stringWithFormat:@"%@/%@_%lu.%@", outputPath, outputName, time(0), filename.pathExtension];
-    SLHEncoderItem *encItem = [[SLHEncoderItem alloc] initWithMediaItem:mediaItem outputPath:outputPath];
-    _outputFileNameTextField.stringValue = outputPath.lastPathComponent;
-    encItem.interval = (TimeInterval){0, mediaItem.duration};
-    [_arrayController addObject:encItem];
+    [self _populatePopUpMenus:_currentMediaItem];
+    [_arrayController removeObjects:_arrayController.arrangedObjects];
 }
 
 - (void)didBeginDraggingSession {
