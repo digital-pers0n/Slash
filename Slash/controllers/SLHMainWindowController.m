@@ -15,15 +15,19 @@
 #import "SLHPreferences.h"
 #import "SLHMetadataEditor.h"
 #import "SLHMetadataItem.h"
+#import "SLHPlayer.h"
 #import "SLHMetadataIdentifiers.h"
 #import "SLHEncoderBaseFormat.h"
 #import "SLHEncoderX264Format.h"
 
-@interface SLHMainWindowController () <SLHDragViewDelegate, SLHMetadataEditorDelegate, NSTableViewDelegate> {
+@interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, SLHMetadataEditorDelegate, NSTableViewDelegate> {
     SLHDragView *_dragView;
     SLHEncoderSettings *_encoderSettings;
     SLHMetadataEditor *_metadataEditor;
+    SLHPlayer *_player;
     NSArray <SLHEncoderBaseFormat *> *_formats;
+    SLHEncoderItem *_tempEncoderItem;
+    SLHMediaItem *_currentMediaItem;
     
     IBOutlet NSView *_customView;
     IBOutlet NSArrayController *_arrayController;
