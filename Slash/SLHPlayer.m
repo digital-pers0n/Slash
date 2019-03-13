@@ -80,8 +80,43 @@ extern NSString *const SLHPlayerMPVConfigPath;
         
 }
 
+static inline bool _isScript(const char *str) {
+    return (str[0] == '[' && str[1] == 's' && str[2] == 'c') ? YES : NO;
+}
+
 static void _mpv_callback(char *str, void *ctx) {
-    
+    if (_isScript(str)) {
+        SLHPlayer *p = (__bridge SLHPlayer *)(ctx);
+        switch (str[9]) {
+            case 'A': // [script] A:
+            {
+                //puts(str + 11);
+                double val = strtod(str + 11, 0);
+                [p.delegate player:p segmentStart:val];
+            }
+                
+                break;
+            case 'B': // [script] B:
+            {
+                //puts(str + 11);
+                double val = strtod(str + 11, 0);
+                [p.delegate player:p segmentEnd:val];
+            }
+                break;
+            case '+': // [script] +
+                //puts(str + 9);
+                [p.delegate playerDidAddNewSegment:p];
+                break;
+                
+            case '-': // [script] -
+                //puts(str + 9);
+                [p.delegate playerDidClearSegment:p];
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 -(void)dealloc {
