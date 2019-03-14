@@ -134,6 +134,7 @@
     }
     [self _populatePopUpMenus:_currentMediaItem];
     [_arrayController removeObjects:_arrayController.arrangedObjects];
+    _tempEncoderItem = nil;
 }
 
 - (void)didBeginDraggingSession {
@@ -148,6 +149,27 @@
 }
 
 #pragma mark - IBActions
+
+- (IBAction)previewSourceFile:(id)sender {
+    
+    if (!_currentMediaItem) { // empty table
+        NSBeep();
+        return;
+    }
+
+    if (!_player) {
+        _player = [SLHPlayer playerWithMediaItem:_currentMediaItem];
+        _player.delegate = self;
+    } else {
+        [_player replaceCurrentItemWithMediaItem:_currentMediaItem];
+    }
+    if (_player.error) {
+        NSLog(@"Playback error: %@", _player.error.localizedDescription);
+        return;
+    }
+    [_player play];
+}
+
 
 - (IBAction)showMetadataEditor:(id)sender {
     
