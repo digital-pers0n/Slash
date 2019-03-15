@@ -124,6 +124,36 @@
     item.metadata = data.mutableCopy;
 }
 
+#pragma mark - SLHPlayer Delegate
+
+- (void)player:(SLHPlayer *)p segmentStart:(double)start {
+    if (!_tempEncoderItem || ![_arrayController.arrangedObjects containsObject:_tempEncoderItem]) {
+        _tempEncoderItem = [self _createSegment];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [_arrayController addObject:_tempEncoderItem];
+        });
+    }
+    _tempEncoderItem.intervalStart = start;
+    
+}
+
+- (void)player:(SLHPlayer *)p segmentEnd:(double)end {
+    _tempEncoderItem.intervalEnd = end;
+}
+
+- (void)playerDidEndEditingSegment:(SLHPlayer *)p {
+    _tempEncoderItem = nil;
+}
+
+- (void)playerDidClearSegment:(SLHPlayer *)p {
+    if (_tempEncoderItem) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [_arrayController removeObject:_tempEncoderItem];
+        });
+    }
+        _tempEncoderItem = nil;
+}
+
 #pragma mark - SLHDragView Delegate
 
 - (void)didReceiveFilename:(NSString *)filename {
