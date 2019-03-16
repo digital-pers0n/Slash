@@ -76,6 +76,7 @@ extern NSString *const SLHPlayerMPVConfigPath;
         return;
     }
     plr_set_callback(_player, (__bridge void *)(self), _mpv_callback);
+    plr_set_exit_cb(_player, _mpv_exit_cb);
     
     plr_launch(_player);
     sleep(1);
@@ -121,6 +122,11 @@ static void _mpv_callback(char *str, void *ctx) {
                 break;
         }
     }
+}
+
+static void _mpv_exit_cb(void *p, void *ctx) {
+    SLHPlayer *player = (__bridge SLHPlayer *)(ctx);
+    player.hasWindow = NO;
 }
 
 -(void)dealloc {
