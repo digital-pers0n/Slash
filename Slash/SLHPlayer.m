@@ -17,6 +17,10 @@ extern NSString *const SLHPlayerMPVConfigPath;
     Player *_player;
     BOOL _fileLoaded;
 }
+
+@property BOOL fileLoaded;
+@property BOOL hasWindow;
+
 @end
 
 @implementation SLHPlayer
@@ -105,7 +109,7 @@ static void _mpv_callback(char *str, void *ctx) {
                 break;
             case '+': // [script] +
                 //puts(str + 9);
-                [p.delegate playerDidAddNewSegment:p];
+                [p.delegate playerDidEndEditingSegment:p];
                 break;
                 
             case '-': // [script] -
