@@ -14,9 +14,11 @@
 #include "slh_process.h"
 
 typedef void (*callback_f)(char *data, void *context);
+typedef void (*exit_f)(void *player, void *context);
 typedef struct _PCallback {
     void *context;
     callback_f func;
+    exit_f exit;
 } PCallback;
 
 typedef struct _Player {
@@ -39,13 +41,21 @@ typedef struct _Player {
 int plr_init(Player *p, char *const *args);
 
 /**
- * Set a user-defined callback function
+ * Set a user-defined callback function. The function is called during media playback
  * 
  * @param context a user-defined context
  * @param func a custom function
  */
 
 void plr_set_callback(Player *p, void *context, callback_f func);
+
+/**
+ * Set a user-defined function. The function is called when the player exited.
+ *
+ * @param func a custom function
+ */
+
+void plr_set_exit_cb(Player *p, exit_f func);
 
 /**
  * Launch the player.
