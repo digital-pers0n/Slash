@@ -82,6 +82,7 @@ extern NSString *const SLHPlayerMPVConfigPath;
     sleep(1);
     plr_connect(_player);
     _fileLoaded = NO;
+    _hasWindow = YES;
         
 }
 
@@ -143,7 +144,18 @@ static inline void _loadFile(Player *p, const char *path) {
     free(cmd);
 }
 
+static inline void _launchPlayer(Player *p) {
+    plr_launch(p);
+    sleep(1);
+    plr_connect(p);
+}
+
 - (void)play {
+    if (!_hasWindow) {
+        _launchPlayer(_player);
+        _fileLoaded = NO;
+        _hasWindow = YES;
+    }
     if (!_fileLoaded) {
         _fileLoaded = YES;
         _loadFile(_player, _currentItem.filePath.UTF8String);
@@ -158,6 +170,10 @@ static inline void _loadFile(Player *p, const char *path) {
 }
 
 - (void)replaceCurrentItemWithMediaItem:(SLHMediaItem *) item {
+    if (!_hasWindow) {
+        _launchPlayer(_player);
+        _hasWindow = YES;
+    }
     _currentItem = item;
     _loadFile(_player, _currentItem.filePath.UTF8String);
 }
