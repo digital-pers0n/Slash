@@ -15,6 +15,8 @@
 #include "slh_mpv.h"
 #include "slh_util.h"
 
+static void _dummy_exit_cb(void *p, void *ctx) { return; }
+
 static inline void plr_error(const char *s1, const char *s2) {
     fprintf(stderr, "%s : %s\n", s1, s2);
 }
@@ -54,6 +56,7 @@ int plr_init(Player *p, char *const *args) {
     p->cb = calloc(1, sizeof(PCallback));
     p->cb->func = (callback_f)fputs;
     p->cb->context = stdout;
+    p->cb->exit = _dummy_exit_cb;
     p->gr = dispatch_group_create();
     
     free(cmd);
@@ -70,6 +73,10 @@ void plr_set_callback(Player *p, void *ctx, callback_f func) {
         p->cb->func = func;
         p->cb->context = ctx;
     }
+}
+
+void plr_set_exit_cb(Player *p, exit_f func) {
+    p->cb->exit = (func) ? func : _dummy_exit_cb;
 }
 
 #pragma mark - Destroy
@@ -136,6 +143,7 @@ int plr_launch(Player *p) {
         
         dispatch_group_leave(p->gr);
         dispatch_release(gq);
+        p->cb->exit(p, p->cb->context);
         
     });
 
