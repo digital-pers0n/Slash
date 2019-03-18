@@ -79,6 +79,8 @@
         NSMenuItem *itm = [formatsMenu addItemWithTitle:fmt.formatName action:nil keyEquivalent:@""];
         itm.tag = tag++;
     }
+    (void)x264Fmt.view;
+    _encoderSettings.delegate = x264Fmt;
 }
 
 #pragma mark - NSTableView Delegate
