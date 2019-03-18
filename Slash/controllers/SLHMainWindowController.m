@@ -230,10 +230,13 @@
 - (IBAction)formatPopUpClicked:(id)sender {
     SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
     (void)fmt.view; // load view
+    _encoderSettings.delegate = fmt;
+    if (!_tableView.numberOfRows) { // empty table
+        return;
+    }
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     fmt.encoderItem = item;
-    _encoderSettings.delegate = fmt;
 }
 
 - (IBAction)selectOutputFileName:(id)sender {
