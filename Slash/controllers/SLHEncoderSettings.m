@@ -32,6 +32,7 @@
 
 - (void)setDelegate:(id<SLHEncoderSettingsDelegate>)delegate {
     _delegate = delegate;
+    _scrollView.documentView = [_delegate encoderSettings:self viewForTab:_tabBarView.selectedTabIndex];
 }
 
 - (id<SLHEncoderSettingsDelegate>)delegate {
