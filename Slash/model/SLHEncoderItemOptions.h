@@ -10,6 +10,14 @@
 
 @interface SLHEncoderItemOptions : NSObject
 @property NSString *codecName;
+
+@property NSUInteger videoWidth;
+@property NSUInteger videoHeight;
+
 @property NSUInteger bitRate;
+@property NSUInteger maxBitrate;
+@property NSUInteger crf;
+
 @property NSUInteger sampleRate;
+@property NSUInteger channels;
 @end
