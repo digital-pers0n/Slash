@@ -25,9 +25,9 @@
     item.audioStreamIndex = _audioStreamIndex;
     item.subtitlesStreamIndex = _subtitlesStreamIndex;
     
-    item.videoOptions = _videoOptions.mutableCopy;
+    item.videoOptions = _videoOptions.copy;
     item.videoFilters = _videoFilters.mutableCopy;
-    item.audioOptions = _audioOptions.mutableCopy;
+    item.audioOptions = _audioOptions.copy;
     item.audioFilters = _audioFilters.mutableCopy;
     
     item.twoPassEncoding = _twoPassEncoding;
@@ -47,9 +47,9 @@
         _outputPath = outputMediaPath;
         _subtitlesStreamIndex = -1;
         _twoPassEncoding = NO;
-        _videoOptions = @{}.mutableCopy;
+        _videoOptions = [SLHEncoderItemOptions new];
         _videoFilters = @{}.mutableCopy;
-        _audioOptions = @{}.mutableCopy;
+        _audioOptions = [SLHEncoderItemOptions new];
         _audioFilters = @{}.mutableCopy;
         _firstPassOptions = @{}.mutableCopy;
         _metadata = @{}.mutableCopy;

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SLHEncoderItemOptions.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,10 +34,10 @@ typedef struct time_interval {
 @property NSInteger audioStreamIndex;
 @property NSInteger subtitlesStreamIndex;
 
-@property NSMutableDictionary *videoOptions;
+@property SLHEncoderItemOptions *videoOptions;
 @property NSMutableDictionary *videoFilters;
 
-@property NSMutableDictionary *audioOptions;
+@property SLHEncoderItemOptions *audioOptions;
 @property NSMutableDictionary *audioFilters;
 
 @property BOOL twoPassEncoding;
