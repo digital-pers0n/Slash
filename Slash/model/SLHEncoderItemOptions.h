@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SLHEncoderItemOptions : NSObject
+@interface SLHEncoderItemOptions : NSObject <NSCopying>
 @property NSString *codecName;
 
 @property NSUInteger videoWidth;

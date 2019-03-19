@@ -10,4 +10,15 @@
 
 @implementation SLHEncoderX264Options
 
+- (id)copyWithZone:(NSZone *)zone {
+    SLHEncoderX264Options *obj = [super copyWithZone:zone];
+    obj->_encodingType = _encodingType;
+    obj->_presetType = _presetType;
+    obj->_profileType = _profileType;
+    obj->_tuneType = _tuneType;
+    obj->_fastdecode = _fastdecode;
+    obj->_zerolatency = _zerolatency;
+    return obj;
+}
+
 @end

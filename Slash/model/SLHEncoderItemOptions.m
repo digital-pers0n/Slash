@@ -10,4 +10,17 @@
 
 @implementation SLHEncoderItemOptions
 
+- (id)copyWithZone:(NSZone *)zone {
+    SLHEncoderItemOptions *item = [[self.class allocWithZone:zone] init];
+    item->_codecName = _codecName.copy;
+    item->_videoWidth = _videoWidth;
+    item->_videoHeight = _videoHeight;
+    item->_bitRate = _bitRate;
+    item->_maxBitrate = _maxBitrate;
+    item->_crf = _crf;
+    item->_sampleRate = _sampleRate;
+    item->_channels = _channels;
+    return item;
+}
+
 @end
