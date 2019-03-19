@@ -34,6 +34,7 @@
     item.firstPassOptions = _firstPassOptions.mutableCopy;
     
     item.metadata = _metadata.mutableCopy;
+    item.tag = _tag;
     
     return item;
 }

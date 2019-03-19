@@ -47,6 +47,8 @@ typedef struct time_interval {
 
 @property (readonly) NSString * summary;
 
+@property NSInteger tag;
+
 /* Cocoa Bindings */
 @property double intervalStart;
 @property double intervalEnd;
