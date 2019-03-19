@@ -86,7 +86,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.videoWidth" id="ejc-6j-EaV"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="fG7-lK-eLj"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="BW5-ez-MKC">
@@ -101,7 +101,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.videoHeight" id="xee-EJ-Eal"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="ij9-qf-F1F"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="JE5-xa-c4x">
@@ -122,7 +122,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="50000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="7Xx-KB-bcM"/>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.bitrate" id="M9e-J7-O8n"/>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="g8r-Ym-kk1"/>
                             </connections>
                         </slider>
                         <textField verticalHuggingPriority="750" id="P2O-1Q-9Z0">
@@ -137,7 +137,7 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.bitrate" id="B5d-mj-oAc"/>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="xVK-m3-dnP"/>
                             </connections>
                         </textField>
                         <textField verticalHuggingPriority="750" id="LBP-MW-CKx">
@@ -152,7 +152,7 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.maxBitrate" id="lJb-Vb-ZKf"/>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="4x3-HR-RNg"/>
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="n8w-9H-SeR">
@@ -178,7 +178,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="50" maxValue="50000" id="D9a-Rw-Tfz"/>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.maxBitrate" id="Fhj-C7-f9W"/>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="UCf-Nt-sYQ"/>
                             </connections>
                         </stepper>
                         <slider verticalHuggingPriority="750" id="eSX-ab-bjY">
@@ -186,7 +186,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="50000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="MMM-n5-IJT"/>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.maxBitrate" id="SUF-et-6UR"/>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="qB6-YK-8av"/>
                             </connections>
                         </slider>
                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="bDU-aJ-jvF">
@@ -194,7 +194,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="50" maxValue="50000" id="aJ0-cY-Bgb"/>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.bitrate" id="AI1-sO-mHJ"/>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="252-WY-Fkk"/>
                             </connections>
                         </stepper>
                     </subviews>
@@ -267,7 +267,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="7Rk-sn-Rb1"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.videoHeight" id="D9j-Ln-b4G"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="umc-81-bPB"/>
                     </connections>
                 </stepper>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="CjF-QV-svR">
@@ -275,7 +275,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="Zh6-It-iwW"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.videoWidth" id="8EG-7b-0xK"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="gPE-88-SHK"/>
                     </connections>
                 </stepper>
                 <popUpButton verticalHuggingPriority="750" id="2DS-gJ-kb4">
@@ -295,7 +295,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.fastdecode" id="7Oi-CN-QjT"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.fastdecode" id="Paa-52-UHV"/>
                     </connections>
                 </button>
                 <button id="0nw-vE-myJ">
@@ -306,7 +306,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.zerolatency" id="O16-1d-g7D"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.zerolatency" id="N9Q-ko-nO5"/>
                     </connections>
                 </button>
             </subviews>
@@ -400,7 +400,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="50000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="YzW-np-d3l"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.crf" id="V6H-tP-Yd5"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="HN7-bj-zY8"/>
                     </connections>
                 </slider>
                 <textField verticalHuggingPriority="750" id="EBs-bu-bNH">
@@ -415,7 +415,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.crf" id="HKx-Xz-tej"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Fpg-ha-bw5"/>
                     </connections>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="SSW-iq-dDw">
@@ -423,7 +423,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="50" maxValue="50000" id="qTH-bK-Gd1"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.crf" id="Qn3-yq-pS8"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="ndL-td-l0b"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0oq-Bd-nyg">
