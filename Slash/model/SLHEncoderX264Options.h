@@ -36,6 +36,25 @@ typedef NS_ENUM(NSUInteger, SLHX264ProfileType) {
     SLHX264ProfileNone = NSUIntegerMax
 };
 
+typedef NS_ENUM(NSUInteger, SLHX264LevelType) {
+    SLHX264Level10,
+    SLHX264Level11,
+    SLHX264Level12,
+    SLHX264Level13,
+    SLHX264Level20,
+    SLHX264Level21,
+    SLHX264Level22,
+    SLHX264Level30,
+    SLHX264Level31,
+    SLHX264Level32,
+    SLHX264Level40,
+    SLHX264Level41,
+    SLHX264Level42,
+    SLHX264Level50,
+    SLHX264Level51,
+    SLHX264LevelNone = NSUIntegerMax
+};
+
 typedef NS_ENUM(NSUInteger, SLHX264ContainerType) {
     SLHX264ContainerMP4,
     SLHX264ContainerM4V,
@@ -60,6 +79,7 @@ typedef NS_ENUM(NSUInteger, SLHX264TuneType) {
 @property SLHX264EncodingType encodingType;
 @property SLHX264PresetType presetType;
 @property SLHX264ProfileType profileType;
+@property SLHX264LevelType levelType;
 
 /**
  film animation grain stillimage psnr ssim fastdecode zerolatency
