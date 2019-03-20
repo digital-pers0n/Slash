@@ -68,6 +68,27 @@
     }
 }
 
+#pragma mark - IBActions
+
+- (IBAction)presetDidChange:(id)sender {
+}
+
+- (IBAction)encodingTypeDidChange:(id)sender {
+}
+
+- (IBAction)tuneDidChange:(id)sender {
+}
+
+- (IBAction)containerDidChange:(id)sender {
+}
+
+- (IBAction)profileDidChange:(id)sender {
+}
+
+- (IBAction)levelDidChange:(id)sender {
+}
+
+
 #pragma mark - SLHEncoderSettingsDelegate
 
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {

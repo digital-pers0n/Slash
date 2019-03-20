@@ -37,6 +37,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="SGm-T5-ZmQ"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="profileDidChange:" target="-2" id="kBd-lY-CfJ"/>
+                    </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="HKY-k3-T0s">
                     <rect key="frame" x="42" y="181" width="43" height="14"/>
@@ -216,6 +219,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="3nF-UK-jBd"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="levelDidChange:" target="-2" id="zIq-ql-VXZ"/>
+                    </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" id="3Ah-Yt-c54">
                     <rect key="frame" x="84" y="150" width="92" height="22"/>
@@ -225,6 +231,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="xKt-8d-Nd5"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="encodingTypeDidChange:" target="-2" id="ZXi-uP-bcF"/>
+                    </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="IrV-BT-BgJ">
                     <rect key="frame" x="205" y="157" width="35" height="14"/>
@@ -243,6 +252,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="2rj-gH-YtD"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="containerDidChange:" target="-2" id="Xw9-oU-VQ9"/>
+                    </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" id="2Ag-ue-zC2">
                     <rect key="frame" x="84" y="44" width="92" height="22"/>
@@ -252,6 +264,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="caU-Gh-LOB"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="tuneDidChange:" target="-2" id="RWm-RM-knr"/>
+                    </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="CuA-YV-tY1">
                     <rect key="frame" x="26" y="22" width="59" height="14"/>
@@ -286,6 +301,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="9zA-81-1MJ"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="presetDidChange:" target="-2" id="U51-va-Vuq"/>
+                    </connections>
                 </popUpButton>
                 <button id="sgW-m1-o06">
                     <rect key="frame" x="197" y="46" width="81" height="20"/>
