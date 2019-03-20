@@ -28,6 +28,8 @@
     IBOutlet NSView *_crfView;
     IBOutlet NSPopUpButton *_tunePopUp;
     IBOutlet NSPopUpButton *_containerPopUp;
+    IBOutlet NSPopUpButton *_profilePopUp;
+    IBOutlet NSPopUpButton *_levelPopUp;
     
     // Audio
     
