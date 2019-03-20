@@ -7,11 +7,15 @@
 //
 
 #import "SLHEncoderX264Format.h"
+#import "SLHEncoderX264Options.h"
+#import "SLHEncoderItem.h"
 #import "SLHFiltersController.h"
+
 
 @interface SLHEncoderX264Format () {
     
     SLHFiltersController *_filters;
+    SLHEncoderItem *_encoderItem;
     
     IBOutlet NSView *_videoView;
     IBOutlet NSView *_audioView;
@@ -51,6 +55,17 @@
 
 - (NSString *)formatName {
     return @"H264";
+}
+
+- (SLHEncoderItem *)encoderItem {
+    return _encoderItem;
+}
+
+- (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    _encoderItem = encoderItem;
+    if (![_encoderItem.videoOptions isKindOfClass:[SLHEncoderX264Options class]]) {
+        _encoderItem.videoOptions = [[SLHEncoderX264Options alloc] initWithOptions:_encoderItem.videoOptions];
+    }
 }
 
 #pragma mark - SLHEncoderSettingsDelegate
