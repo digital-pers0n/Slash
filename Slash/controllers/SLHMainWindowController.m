@@ -89,6 +89,11 @@
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     [self.window setTitleWithRepresentedFilename:item.mediaItem.filePath];
+    NSInteger tag = item.tag;
+    [_formatsPopUp selectItemWithTag:tag];
+    SLHEncoderBaseFormat *fmt = _formats[tag];
+    fmt.encoderItem = item;
+    _encoderSettings.delegate = fmt;
 }
 
 #pragma mark - SLHMetadataEditor Delegate
@@ -228,7 +233,8 @@
 }
 
 - (IBAction)formatPopUpClicked:(id)sender {
-    SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
+    NSInteger tag = _formatsPopUp.selectedTag;
+    SLHEncoderBaseFormat *fmt = _formats[tag];
     (void)fmt.view; // load view
     _encoderSettings.delegate = fmt;
     if (!_tableView.numberOfRows) { // empty table
@@ -236,6 +242,7 @@
     }
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    item.tag = tag;
     fmt.encoderItem = item;
 }
 
@@ -339,6 +346,7 @@
     SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithMediaItem:_currentMediaItem outputPath:outputPath];
     _outputFileNameTextField.stringValue = outputPath.lastPathComponent;
     encoderItem.interval = (TimeInterval){0, _currentMediaItem.duration};
+    encoderItem.tag = _formatsPopUp.selectedTag;
     return encoderItem;
 }
 
