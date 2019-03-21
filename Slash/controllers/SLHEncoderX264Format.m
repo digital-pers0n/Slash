@@ -51,6 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _filters = [SLHFiltersController filtersController];
+    [self _initializePopUps];
     
     // Do view setup here.
 }
@@ -88,6 +89,217 @@
 }
 
 - (IBAction)levelDidChange:(id)sender {
+}
+
+#pragma mark - Private
+
+- (void)_initializePopUps {
+    NSMenuItem *menuItem;
+    NSMenu *menu;
+    
+    {   // encodingTypePopUp
+        menu = _encodingTypePopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Single Pass" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264EncodingSinglePass;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Two Pass" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264EncodingTwoPass;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"CRF" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264EncodingCRFSinglePass;
+        [menu addItem:menuItem];
+    }
+    
+    {   // presetPopUp
+        menu = _presetPopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Ultra Fast" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetUltrafast;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Super Fast" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetSuperfast;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Very Fast" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetVeryfast;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Faster" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetFaster;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Fast" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetFast;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Medium" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetMedium;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Slow" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetSlow;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Slower" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetSlower;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Very Slow" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetVeryslow;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Placebo" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetPlacebo;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"None" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264PresetNone;
+        [menu addItem:menuItem];
+    }
+    
+    {   // tunePopUp
+        menu = _tunePopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Film" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264TuneFilm;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Animation" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264TuneAnimation;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Preserve Grain" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264TuneGrain;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Still Image" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264TuneStill;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"PSNR" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264TunePsnr;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"SSIM" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264TuneSsim;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"None" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264TuneNone;
+        [menu addItem:menuItem];
+    }
+    
+    {   // containerPopUp
+        menu = _containerPopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"MP4" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ContainerMP4;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"M4V" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ContainerM4V;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"MKV" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ContainerMKV;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"MOV" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ContainerMOV;
+        [menu addItem:menuItem];
+    }
+    
+    {   // profilePopUp
+        menu = _profilePopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Baseline" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ProfileBaseline;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Main" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ProfileMain;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"High" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ProfileHigh;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Auto" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264ProfileNone;
+        [menu addItem:menuItem];
+    }
+    
+    {   // levelPopUp
+        menu = _levelPopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"1.0" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level10;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"1.1" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level11;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"1.2" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level12;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"1.3" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level13;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"2.0" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level20;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"2.1" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level21;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"2.2" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level22;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"3.0" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level30;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"3.1" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level31;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"3.2" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level32;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"4.0" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level40;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"4.1" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level41;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"4.2" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level42;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"5.0" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level50;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"5.1" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264Level51;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Auto" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264LevelNone;
+        [menu addItem:menuItem];
+    }
 }
 
 
