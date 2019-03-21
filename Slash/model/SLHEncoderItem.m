@@ -35,6 +35,7 @@
     
     item.metadata = _metadata.mutableCopy;
     item.tag = _tag;
+    [SLHEncoderItem matchSource:item];
     
     return item;
 }
@@ -54,6 +55,7 @@
         _audioFilters = @{}.mutableCopy;
         _firstPassOptions = @{}.mutableCopy;
         _metadata = @{}.mutableCopy;
+        [SLHEncoderItem matchSource:self];
     }
     return self;
 }
@@ -64,6 +66,43 @@
     path = [path stringByDeletingPathExtension];
     path = [NSString stringWithFormat:@"%@_%lu.%@", path, time(0), ext];
     return [self initWithMediaItem:item outputPath:path];
+}
+
++ (void)matchSource:(SLHEncoderItem *)item {
+    BOOL audio = NO, video = NO;
+    
+    for (SLHMediaItemTrack *t in item->_mediaItem.tracks) {
+        switch (t.mediaType) {
+            case SLHMediaTypeVideo:
+            {
+                SLHEncoderItemOptions *vOptions = item.videoOptions;
+                NSSize vSize = t.videoSize;
+                vOptions.videoHeight = vSize.height;
+                vOptions.videoWidth = vSize.width;
+                NSUInteger vBitrate = t.bitRate;
+                vOptions.bitRate = (vBitrate) ? vBitrate / 1000 : (item->_mediaItem.bitRate / 1000) - 128;
+                video = YES;
+            }
+                break;
+                
+            case SLHMediaTypeAudio:
+            {
+                SLHEncoderItemOptions *aOptions = item.audioOptions;
+                NSUInteger aBitrate = t.bitRate;
+                aOptions.bitRate = (aBitrate) ? aBitrate / 1000  : 128;
+                aOptions.numberOfChannels = t.numberOfChannels;
+                aOptions.sampleRate = t.sampleRate.integerValue;
+                audio = YES;
+            }
+                break;
+                
+            default:
+                break;
+        }
+        if (audio && video) {
+            break;
+        }
+    }
 }
 
 #pragma mark - Info
