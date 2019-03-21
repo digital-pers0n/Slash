@@ -111,6 +111,7 @@ static inline NSString *_cstr2nsstr(const char *str) {
         }
         char *lang = stream_get_value(stream, kMediaMetadataLanguageKey);
         track.language = (lang) ? [NSString stringWithUTF8String:lang] : @"und";
+        track.bitRate = atoi(stream_get_value(stream, kMediaStreamBitRateKey));
         
         array[i] = track;
     }
