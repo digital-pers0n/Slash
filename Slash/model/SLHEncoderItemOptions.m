@@ -19,7 +19,7 @@
     item->_maxBitrate = _maxBitrate;
     item->_crf = _crf;
     item->_sampleRate = _sampleRate;
-    item->_channels = _channels;
+    item->_numberOfChannels = _numberOfChannels;
     return item;
 }
 

@@ -20,7 +20,7 @@
         self.maxBitrate = options.maxBitrate;
         self.crf = options.crf;
         self.sampleRate = options.sampleRate;
-        self.channels = options.channels;
+        self.numberOfChannels = options.numberOfChannels;
     }
     return self;
 }

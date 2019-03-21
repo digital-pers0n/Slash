@@ -19,5 +19,5 @@
 @property NSUInteger crf;
 
 @property NSUInteger sampleRate;
-@property NSUInteger channels;
+@property NSUInteger numberOfChannels;
 @end
