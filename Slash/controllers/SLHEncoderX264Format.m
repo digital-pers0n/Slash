@@ -9,6 +9,7 @@
 #import "SLHEncoderX264Format.h"
 #import "SLHEncoderX264Options.h"
 #import "SLHEncoderItem.h"
+#import "SLHMediaItem.h"
 #import "SLHFiltersController.h"
 
 
@@ -66,8 +67,26 @@
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
     _encoderItem = encoderItem;
+    SLHEncoderX264Options *options = (SLHEncoderX264Options *)_encoderItem.videoOptions;
+    
     if (![_encoderItem.videoOptions isKindOfClass:[SLHEncoderX264Options class]]) {
-        _encoderItem.videoOptions = [[SLHEncoderX264Options alloc] initWithOptions:_encoderItem.videoOptions];
+        options = [[SLHEncoderX264Options alloc] initWithOptions:options];
+        options.encodingType = SLHX264EncodingSinglePass;
+        options.presetType = SLHX264PresetNone;
+        options.profileType = SLHX264ProfileNone;
+        options.levelType = SLHX264LevelNone;
+        options.tuneType = SLHX264TuneNone;
+        options.containerType = SLHX264ContainerMP4;
+        _encoderItem.videoOptions = options;
+    }
+    
+    if (self.view) {
+        [_presetPopUp selectItemWithTag:options.presetType];
+        [_encodingTypePopUp selectItemWithTag:options.encodingType];
+        [_tunePopUp selectItemWithTag:options.tuneType];
+        [_containerPopUp selectItemWithTag:options.containerType];
+        [_profilePopUp selectItemWithTag:options.profileType];
+        [_levelPopUp selectItemWithTag:options.levelType];
     }
 }
 
