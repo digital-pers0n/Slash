@@ -92,22 +92,28 @@
 
 #pragma mark - IBActions
 
-- (IBAction)presetDidChange:(id)sender {
+- (IBAction)presetDidChange:(NSPopUpButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).presetType = sender.selectedTag;
 }
 
-- (IBAction)encodingTypeDidChange:(id)sender {
+- (IBAction)encodingTypeDidChange:(NSPopUpButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).encodingType = sender.selectedTag;
 }
 
-- (IBAction)tuneDidChange:(id)sender {
+- (IBAction)tuneDidChange:(NSPopUpButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).tuneType = sender.selectedTag;
 }
 
-- (IBAction)containerDidChange:(id)sender {
+- (IBAction)containerDidChange:(NSPopUpButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).containerType = sender.selectedTag;
 }
 
-- (IBAction)profileDidChange:(id)sender {
+- (IBAction)profileDidChange:(NSPopUpButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).profileType = sender.selectedTag;
 }
 
-- (IBAction)levelDidChange:(id)sender {
+- (IBAction)levelDidChange:(NSPopUpButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).levelType = sender.selectedTag;
 }
 
 #pragma mark - Private
