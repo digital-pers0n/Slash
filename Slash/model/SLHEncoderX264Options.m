@@ -30,6 +30,7 @@
     obj->_encodingType = _encodingType;
     obj->_presetType = _presetType;
     obj->_profileType = _profileType;
+    obj->_containerType = _containerType;
     obj->_tuneType = _tuneType;
     obj->_fastdecode = _fastdecode;
     obj->_zerolatency = _zerolatency;

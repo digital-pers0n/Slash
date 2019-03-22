@@ -81,7 +81,7 @@ typedef NS_ENUM(NSUInteger, SLHX264TuneType) {
 @property SLHX264PresetType presetType;
 @property SLHX264ProfileType profileType;
 @property SLHX264LevelType levelType;
-
+@property SLHX264ContainerType containerType;
 /**
  film animation grain stillimage psnr ssim fastdecode zerolatency
  */
