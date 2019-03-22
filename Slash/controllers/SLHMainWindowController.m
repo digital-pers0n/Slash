@@ -88,7 +88,6 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
-    [self.window setTitleWithRepresentedFilename:item.mediaItem.filePath];
     NSInteger tag = item.tag;
     [_formatsPopUp selectItemWithTag:tag];
     SLHEncoderBaseFormat *fmt = _formats[tag];
@@ -172,6 +171,7 @@
     [self _populatePopUpMenus:_currentMediaItem];
     [_arrayController removeObjects:_arrayController.arrangedObjects];
     _tempEncoderItem = nil;
+    [self.window setTitleWithRepresentedFilename:_currentMediaItem.filePath];
 }
 
 - (void)didBeginDraggingSession {
