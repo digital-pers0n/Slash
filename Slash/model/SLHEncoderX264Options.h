@@ -59,7 +59,8 @@ typedef NS_ENUM(NSUInteger, SLHX264ContainerType) {
     SLHX264ContainerMP4,
     SLHX264ContainerM4V,
     SLHX264ContainerMKV,
-    SLHX264ContainerMOV
+    SLHX264ContainerMOV,
+    SLHX264ContainerNone = NSUIntegerMax
 };
 
 typedef NS_ENUM(NSUInteger, SLHX264TuneType) {
