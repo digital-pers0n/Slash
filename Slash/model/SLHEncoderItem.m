@@ -108,6 +108,8 @@
 #pragma mark - Info
 
 - (NSString *)summary {
+    
+    // Source file
     NSSize vSize = NSZeroSize;
     NSString *codecName = nil;
     for (SLHMediaItemTrack *t in _mediaItem.tracks) {
@@ -120,12 +122,16 @@
     if (!codecName) { // Audio only?
         codecName = _mediaItem.tracks[0].codecName;
     }
-    NSString *input = [NSString stringWithFormat:@"%@: %@, %.0fx%.0f, %lukb, %lukbs, %.3fs", _mediaItem.filePath, codecName, vSize.width, vSize.height, _mediaItem.fileSize / 1024, _mediaItem.bitRate / 1024, _mediaItem.duration];
-/* TODO: Generate output file info */
-    NSString *output = @"(Not Implemented)";
+    NSString *source = [NSString stringWithFormat:@"%@: %@, %.0fx%.0f, %lukb, %lukbs, %.3fs", _mediaItem.filePath, codecName, vSize.width, vSize.height, _mediaItem.fileSize / 1024, _mediaItem.bitRate / 1024, _mediaItem.duration];
+    
+    // Output file
+    double duration = _interval.end - _interval.start;
+    NSUInteger bitRate = _videoOptions.bitRate + _audioOptions.bitRate;
+    NSUInteger estimatedSize = (bitRate * duration / 8192) * 1024; // since bitrate in kbps multiply by 1024
+    NSString *output = [NSString stringWithFormat:@"%@: %@, %lux%lu, %lukb, %lukbs, %.3fs", _outputPath, _videoOptions.codecName,  _videoOptions.videoWidth, _videoOptions.videoHeight, estimatedSize, bitRate, duration];
     
     NSString *result = [NSString stringWithFormat:@"Output:\n%@\n"
-                        @"Input:\n%@", output, input];
+                        @"Source:\n%@", output, source];
     
     return result;
 }
