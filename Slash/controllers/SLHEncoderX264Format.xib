@@ -418,7 +418,7 @@
                 <slider verticalHuggingPriority="750" id="MFP-yv-OTp">
                     <rect key="frame" x="66" y="24" width="147" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="50000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="YzW-np-d3l"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="51" tickMarkPosition="above" sliderType="linear" id="YzW-np-d3l"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="HN7-bj-zY8"/>
                     </connections>
@@ -441,7 +441,7 @@
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="SSW-iq-dDw">
                     <rect key="frame" x="294" y="22" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="50" maxValue="50000" id="qTH-bK-Gd1"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="51" id="qTH-bK-Gd1"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="ndL-td-l0b"/>
                     </connections>
