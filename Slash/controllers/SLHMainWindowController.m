@@ -247,6 +247,11 @@
 }
 
 - (IBAction)selectOutputFileName:(id)sender {
+    if (!_tableView.numberOfRows) {
+        NSBeep();
+        return;
+    }
+    
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowsMultipleSelection = NO;
     panel.canChooseFiles = NO;
