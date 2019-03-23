@@ -32,6 +32,9 @@
     IBOutlet NSPopUpButton *_profilePopUp;
     IBOutlet NSPopUpButton *_levelPopUp;
     
+    IBOutlet NSSlider *_maxBitrateSlider;
+    
+    
     // Audio
     
     IBOutlet NSPopUpButton *_audioCodecPopUp;

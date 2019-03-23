@@ -18,6 +18,7 @@
                 <outlet property="_crfView" destination="Koh-k0-6Xt" id="3b0-Vi-lQu"/>
                 <outlet property="_encodingTypePopUp" destination="3Ah-Yt-c54" id="AhH-Or-9gx"/>
                 <outlet property="_levelPopUp" destination="gGr-SN-MIn" id="jJZ-Z8-IuI"/>
+                <outlet property="_maxBitrateSlider" destination="eSX-ab-bjY" id="ICb-Z6-7cs"/>
                 <outlet property="_presetPopUp" destination="2DS-gJ-kb4" id="qPN-3y-KtL"/>
                 <outlet property="_profilePopUp" destination="qEO-Og-Vqz" id="oug-aX-O8h"/>
                 <outlet property="_tunePopUp" destination="2Ag-ue-zC2" id="vXo-RU-sqf"/>
