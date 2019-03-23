@@ -57,7 +57,13 @@
     _filters = [SLHFiltersController filtersController];
     [self _initializePopUps];
     
-    // Do view setup here.
+    // Set up _crfView
+
+    _crfView.hidden = YES;
+    _crfView.frame = _bitrateView.frame;
+    _crfView.autoresizingMask = _bitrateView.autoresizingMask;
+    [_videoView addSubview:_crfView];
+
 }
 
 - (NSString *)formatName {
@@ -90,6 +96,7 @@
         [_containerPopUp selectItemWithTag:options.containerType];
         [_profilePopUp selectItemWithTag:options.profileType];
         [_levelPopUp selectItemWithTag:options.levelType];
+        [self _changeEncodingType];
     }
 }
 
@@ -101,6 +108,7 @@
 
 - (IBAction)encodingTypeDidChange:(NSPopUpButton *)sender {
     ((SLHEncoderX264Options *)_encoderItem.videoOptions).encodingType = sender.selectedTag;
+    [self _changeEncodingType];
 }
 
 - (IBAction)tuneDidChange:(NSPopUpButton *)sender {
@@ -120,6 +128,32 @@
 }
 
 #pragma mark - Private
+
+- (void)_changeEncodingType {
+    SLHEncoderX264Options *options = (SLHEncoderX264Options *)_encoderItem.videoOptions;
+    switch (options.encodingType) {
+        case SLHX264EncodingSinglePass:
+            _crfView.hidden = YES;
+            _bitrateView.hidden = NO;
+            _maxBitrateSlider.hidden = YES;
+            
+            break;
+            
+        case SLHX264EncodingTwoPass:
+            _crfView.hidden = YES;
+            _bitrateView.hidden = NO;
+            _maxBitrateSlider.hidden = NO;
+
+            break;
+            
+        case SLHX264EncodingCRFSinglePass:
+            _crfView.hidden = NO;
+            _bitrateView.hidden = YES;
+            
+        default:
+            break;
+    }
+}
 
 - (void)_initializePopUps {
     NSMenuItem *menuItem;
