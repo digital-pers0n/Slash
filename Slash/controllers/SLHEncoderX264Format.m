@@ -86,6 +86,7 @@
         options.levelType = SLHX264LevelNone;
         options.tuneType = SLHX264TuneNone;
         options.containerType = SLHX264ContainerMP4;
+        options.codecName = @"libx264";
         _encoderItem.videoOptions = options;
     }
     
