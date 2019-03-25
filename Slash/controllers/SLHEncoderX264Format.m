@@ -13,9 +13,9 @@
 #import "SLHFiltersController.h"
 
 typedef NS_ENUM(NSUInteger, SLHX264AudioSampleRateType) {
-    SLHX264AudioSampleRate32000,
-    SLHX264AudioSampleRate44100,
-    SLHX264AudioSampleRate48000,
+    SLHX264AudioSampleRate32000 = 32000,
+    SLHX264AudioSampleRate44100 = 44100,
+    SLHX264AudioSampleRate48000 = 48000,
 };
 
 typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
