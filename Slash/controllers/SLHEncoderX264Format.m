@@ -147,6 +147,14 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     ((SLHEncoderX264Options *)_encoderItem.videoOptions).levelType = sender.selectedTag;
 }
 
+- (IBAction)sampleRateDidChange:(NSPopUpButton *)sender {
+    _encoderItem.audioOptions.sampleRate = sender.selectedTag;
+}
+
+- (IBAction)channelsDidChange:(NSPopUpButton *)sender {
+    _encoderItem.audioOptions.numberOfChannels = sender.selectedTag;
+}
+
 #pragma mark - Private
 
 - (void)_changeEncodingType {

@@ -353,6 +353,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="k4c-dT-lRP"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="channelsDidChange:" target="-2" id="GBT-jY-5o7"/>
+                    </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="W5e-6P-yud">
                     <rect key="frame" x="36" y="53" width="56" height="14"/>
@@ -371,6 +374,9 @@
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" id="vhJ-hH-aXP"/>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="sampleRateDidChange:" target="-2" id="ekD-aF-PNB"/>
+                    </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="K4X-N7-d1Q">
                     <rect key="frame" x="18" y="84" width="74" height="14"/>
