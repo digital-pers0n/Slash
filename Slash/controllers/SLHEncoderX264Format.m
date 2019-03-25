@@ -87,28 +87,37 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
     _encoderItem = encoderItem;
-    SLHEncoderX264Options *options = (SLHEncoderX264Options *)_encoderItem.videoOptions;
+    SLHEncoderX264Options *videoOptions = (SLHEncoderX264Options *)_encoderItem.videoOptions;
+    SLHEncoderItemOptions *audioOptions = _encoderItem.audioOptions;
     
     if (![_encoderItem.videoOptions isKindOfClass:[SLHEncoderX264Options class]]) {
-        options = [[SLHEncoderX264Options alloc] initWithOptions:options];
-        options.encodingType = SLHX264EncodingSinglePass;
-        options.presetType = SLHX264PresetNone;
-        options.profileType = SLHX264ProfileNone;
-        options.levelType = SLHX264LevelNone;
-        options.tuneType = SLHX264TuneNone;
-        options.containerType = SLHX264ContainerMP4;
-        options.codecName = @"libx264";
-        _encoderItem.videoOptions = options;
+        videoOptions = [[SLHEncoderX264Options alloc] initWithOptions:videoOptions];
+        videoOptions.encodingType = SLHX264EncodingSinglePass;
+        videoOptions.presetType = SLHX264PresetNone;
+        videoOptions.profileType = SLHX264ProfileNone;
+        videoOptions.levelType = SLHX264LevelNone;
+        videoOptions.tuneType = SLHX264TuneNone;
+        videoOptions.containerType = SLHX264ContainerMP4;
+        videoOptions.codecName = @"libx264";
+        _encoderItem.videoOptions = videoOptions;
+        
+        audioOptions.codecName = @"aac";
+        audioOptions.bitRate = 128;
+        audioOptions.sampleRate = SLHX264AudioSampleRate44100;
+        audioOptions.numberOfChannels = SLHX264AudioChannels2;
     }
     
     if (self.view) {
-        [_presetPopUp selectItemWithTag:options.presetType];
-        [_encodingTypePopUp selectItemWithTag:options.encodingType];
-        [_tunePopUp selectItemWithTag:options.tuneType];
-        [_containerPopUp selectItemWithTag:options.containerType];
-        [_profilePopUp selectItemWithTag:options.profileType];
-        [_levelPopUp selectItemWithTag:options.levelType];
+        [_presetPopUp selectItemWithTag:videoOptions.presetType];
+        [_encodingTypePopUp selectItemWithTag:videoOptions.encodingType];
+        [_tunePopUp selectItemWithTag:videoOptions.tuneType];
+        [_containerPopUp selectItemWithTag:videoOptions.containerType];
+        [_profilePopUp selectItemWithTag:videoOptions.profileType];
+        [_levelPopUp selectItemWithTag:videoOptions.levelType];
         [self _changeEncodingType];
+        
+        [_audioSampleRatePopUp selectItemWithTag:audioOptions.sampleRate];
+        [_audioChannelsPopUp selectItemWithTag:audioOptions.numberOfChannels];
     }
 }
 
