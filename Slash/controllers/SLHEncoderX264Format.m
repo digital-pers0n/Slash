@@ -51,7 +51,6 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     IBOutlet NSPopUpButton *_audioCodecPopUp;
     IBOutlet NSPopUpButton *_audioSampleRatePopUp;
     IBOutlet NSPopUpButton *_audioChannelsPopUp;
-    IBOutlet NSPopUpButton *_audioBitratePopUp;
     
 }
 
