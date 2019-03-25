@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHEncoderX264Format">
             <connections>
-                <outlet property="_audioBitratePopUp" destination="ega-tg-xi1" id="XC2-KI-kJ3"/>
                 <outlet property="_audioChannelsPopUp" destination="cZU-7o-kuM" id="4bn-b1-Caw"/>
                 <outlet property="_audioCodecPopUp" destination="1Kn-tt-ubo" id="ZHk-tQ-owE"/>
                 <outlet property="_audioSampleRatePopUp" destination="yk9-Xv-FW2" id="DzT-er-syq"/>
@@ -364,15 +363,6 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <popUpButton verticalHuggingPriority="750" id="ega-tg-xi1">
-                    <rect key="frame" x="95" y="17" width="100" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="J8a-zR-IMu">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" id="bgH-ji-RWf"/>
-                    </popUpButtonCell>
-                </popUpButton>
                 <popUpButton verticalHuggingPriority="750" id="yk9-Xv-FW2">
                     <rect key="frame" x="95" y="79" width="100" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -408,6 +398,35 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                </textField>
+                <slider verticalHuggingPriority="750" id="spH-FD-dNE">
+                    <rect key="frame" x="98" y="21" width="92" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" controlSize="small" state="on" alignment="left" minValue="16" maxValue="320" doubleValue="128" tickMarkPosition="above" sliderType="linear" id="4LS-YU-G8U"/>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="0Y7-mj-dcI"/>
+                    </connections>
+                </slider>
+                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="VK8-IZ-NvS">
+                    <rect key="frame" x="263" y="18" width="15" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="16" maxValue="320" doubleValue="16" id="CIT-W6-n6T"/>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="KjK-vY-4hC"/>
+                    </connections>
+                </stepper>
+                <textField verticalHuggingPriority="750" id="dih-uJ-2Xd">
+                    <rect key="frame" x="198" y="20" width="67" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="yrn-0v-kaG">
+                        <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="bRb-U4-rzL"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="3L7-Ch-2yN"/>
+                    </connections>
                 </textField>
             </subviews>
             <point key="canvasLocation" x="217" y="428"/>
