@@ -12,6 +12,17 @@
 #import "SLHMediaItem.h"
 #import "SLHFiltersController.h"
 
+typedef NS_ENUM(NSUInteger, SLHX264AudioSampleRateType) {
+    SLHX264AudioSampleRate32000,
+    SLHX264AudioSampleRate44100,
+    SLHX264AudioSampleRate48000,
+};
+
+typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
+    SLHX264AudioChannels1 = 1,
+    SLHX264AudioChannels2,
+    SLHX264AudioChannels51 = 6,
+};
 
 @interface SLHEncoderX264Format () {
     
