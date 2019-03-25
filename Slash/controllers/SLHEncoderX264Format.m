@@ -171,6 +171,8 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     NSMenuItem *menuItem;
     NSMenu *menu;
     
+    // Video
+    
     {   // encodingTypePopUp
         menu = _encodingTypePopUp.menu;
         
@@ -373,6 +375,50 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         menuItem = [[NSMenuItem alloc] initWithTitle:@"Auto" action:nil keyEquivalent:@""];
         menuItem.tag = SLHX264LevelNone;
         [menu addItem:menuItem];
+    }
+    
+    // Audio
+    
+    {   // audioCodecPopUp
+        // there is only one codec
+        menu = _audioCodecPopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"AAC" action:nil keyEquivalent:@""];
+        [menu addItem:menuItem];
+    }
+    
+    {   // audioSampleRatePopUp
+        menu = _audioSampleRatePopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"32000 Hz" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264AudioSampleRate32000;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"441000 Hz" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264AudioSampleRate44100;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"48000 Hz" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264AudioSampleRate48000;
+        [menu addItem:menuItem];
+
+    }
+    
+    {   // audioChannelsPopUp
+        menu = _audioChannelsPopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Mono" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264AudioChannels1;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Stereo" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264AudioChannels2;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"5.1" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHX264AudioChannels51;
+        [menu addItem:menuItem];
+        
     }
 }
 
