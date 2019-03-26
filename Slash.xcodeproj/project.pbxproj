@@ -10,6 +10,7 @@
 		CE0B4E14224A40AD00D61D72 /* SLHFilterOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */; };
 		CE0B4E18224A563E00D61D72 /* SLHCropEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */; };
 		CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */; };
+		CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */; };
 		CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */; };
 		CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */; };
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
@@ -56,6 +57,7 @@
 		CE0B4E15224A563E00D61D72 /* SLHCropEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHCropEditor.h; path = controllers/SLHCropEditor.h; sourceTree = "<group>"; };
 		CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHCropEditor.m; path = controllers/SLHCropEditor.m; sourceTree = "<group>"; };
 		CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHCropEditor.xib; path = controllers/SLHCropEditor.xib; sourceTree = "<group>"; };
+		CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderSettings.h; path = controllers/SLHEncoderSettings.h; sourceTree = "<group>"; };
 		CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderSettings.m; path = controllers/SLHEncoderSettings.m; sourceTree = "<group>"; };
 		CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderSettings.xib; path = controllers/SLHEncoderSettings.xib; sourceTree = "<group>"; };
@@ -131,12 +133,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE0B4E1C224A5BE400D61D72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE12EF18219B3BED00F97637 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4D40F620FE8B9E0066ACE2 /* Slash */,
+				CE0B4E1C224A5BE400D61D72 /* Frameworks */,
 				CE4D40F520FE8B9E0066ACE2 /* Products */,
 			);
 			sourceTree = "<group>";
