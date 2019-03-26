@@ -67,7 +67,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="audioFadeInTextFieldAction:" target="-2" id="sGb-lp-ua9"/>
-                        <binding destination="-2" name="value" keyPath="self.audioFadeIn" id="gMV-ps-JIj"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeIn" id="ucC-IQ-DxT"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="egp-BD-eO0">
@@ -90,7 +90,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="audioPreampTextFieldAction:" target="-2" id="KHM-hJ-DOi"/>
-                        <binding destination="-2" name="value" keyPath="self.audioPreamp" id="1nR-MF-buE"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioPreamp" id="UVi-T4-Hwp"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="mZM-4I-whp">
@@ -104,7 +104,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="audioFadeOutTextFieldAction:" target="-2" id="7O9-Lr-HYu"/>
-                        <binding destination="-2" name="value" keyPath="self.audioFadeOut" id="uHi-bz-6Mo"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeOut" id="1eh-II-QKu"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nYs-0m-Ifc">
@@ -125,7 +125,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="deinterlaceButtonAction:" target="-2" id="eKY-Mc-PJW"/>
-                        <binding destination="-2" name="value" keyPath="self.deinterlace" id="mea-Bq-I0h"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoDeinterlace" id="QiJ-YW-9xH"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" id="i3Q-lv-UyP">
@@ -139,7 +139,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="audioPreampTextFieldAction:" target="-2" id="3M4-v5-ZjP"/>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoX" id="NB0-mD-o1p"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropX" id="YOR-M7-u6W"/>
                     </connections>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="nzy-Fj-Dtw">
@@ -147,7 +147,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="PMe-jc-SOV"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoX" id="wmA-rm-3Sm"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropX" id="1a3-Jq-6zi"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="a8Y-mO-hcv">
@@ -170,7 +170,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="audioPreampTextFieldAction:" target="-2" id="QwG-YQ-2en"/>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoY" id="7wz-a0-M5B"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropY" id="kDQ-Ld-YTi"/>
                     </connections>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="SuY-QE-UrB">
@@ -178,7 +178,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="Ktc-jr-C4E"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoY" id="jiC-ds-QIN"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropY" id="ZZd-jm-uTi"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="egn-no-UNz">
@@ -201,7 +201,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="audioPreampTextFieldAction:" target="-2" id="rau-Gt-xNp"/>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoWidth" id="DnI-rF-Np4"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropWidth" id="E2Y-LD-mMO"/>
                     </connections>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="OIa-Az-hvQ">
@@ -209,7 +209,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="EB4-IC-hQp"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoWidth" id="XnF-FH-WRq"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropWidth" id="IBk-kx-F33"/>
                     </connections>
                 </stepper>
                 <textField verticalHuggingPriority="750" id="yXr-Oe-ydA">
@@ -223,7 +223,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="audioPreampTextFieldAction:" target="-2" id="jWQ-kr-NtH"/>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoHeight" id="Trb-qu-rGt"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropHeight" id="Fmf-Oi-3OD"/>
                     </connections>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Lfu-5q-NNJ">
@@ -231,7 +231,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-99999" maxValue="99999" id="el8-Lh-hA6"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.cropVideoHeight" id="7no-eo-7UH"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropHeight" id="kHr-Vg-onU"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="J9B-Bp-pMu">
@@ -268,7 +268,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="100" id="Peg-uQ-Vjg"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.audioFadeIn" id="KZ1-rb-TDE"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeIn" id="mA5-mt-3pJ"/>
                     </connections>
                 </stepper>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="DGx-cW-PrR">
@@ -276,7 +276,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-100" maxValue="100" id="db0-Fy-ofW"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.audioPreamp" id="Bf5-fR-jNm"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioPreamp" id="rOC-Aw-gqa"/>
                     </connections>
                 </stepper>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Nr3-AM-a6J">
@@ -284,11 +284,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="100" id="Sxz-qk-Qhc"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.audioFadeOut" id="vhA-QH-e8Z"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeOut" id="6pW-9x-bv3"/>
                     </connections>
                 </stepper>
             </subviews>
-            <point key="canvasLocation" x="371.5" y="203"/>
+            <point key="canvasLocation" x="260.5" y="186"/>
         </customView>
     </objects>
     <resources>
