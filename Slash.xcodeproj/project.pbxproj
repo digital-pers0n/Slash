@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE0B4E14224A40AD00D61D72 /* SLHFilterOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */; };
+		CE0B4E18224A563E00D61D72 /* SLHCropEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */; };
+		CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */; };
 		CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */; };
 		CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */; };
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
@@ -51,6 +53,9 @@
 /* Begin PBXFileReference section */
 		CE0B4E12224A40AD00D61D72 /* SLHFilterOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHFilterOptions.h; path = model/SLHFilterOptions.h; sourceTree = "<group>"; };
 		CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHFilterOptions.m; path = model/SLHFilterOptions.m; sourceTree = "<group>"; };
+		CE0B4E15224A563E00D61D72 /* SLHCropEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHCropEditor.h; path = controllers/SLHCropEditor.h; sourceTree = "<group>"; };
+		CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHCropEditor.m; path = controllers/SLHCropEditor.m; sourceTree = "<group>"; };
+		CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHCropEditor.xib; path = controllers/SLHCropEditor.xib; sourceTree = "<group>"; };
 		CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderSettings.h; path = controllers/SLHEncoderSettings.h; sourceTree = "<group>"; };
 		CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderSettings.m; path = controllers/SLHEncoderSettings.m; sourceTree = "<group>"; };
 		CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderSettings.xib; path = controllers/SLHEncoderSettings.xib; sourceTree = "<group>"; };
@@ -145,6 +150,9 @@
 				CEDDDB8421A7363B006EDDD9 /* SLHFiltersController.h */,
 				CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */,
 				CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */,
+				CE0B4E15224A563E00D61D72 /* SLHCropEditor.h */,
+				CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */,
+				CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */,
 				CE256B96222D8AC8007B520E /* SLHMetadataEditor.h */,
 				CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */,
 				CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */,
@@ -349,6 +357,7 @@
 				CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */,
 				CE566A7D215EB849004E974F /* SLHPreferences.xib in Resources */,
 				CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */,
+				CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0B4E18224A563E00D61D72 /* SLHCropEditor.m in Sources */,
 				CE2CC12321235447008C8345 /* SLHMediaItem.m in Sources */,
 				CE22B5FB210BBD2500EE17A4 /* slh_mpv.c in Sources */,
 				CE5461D3211A314E00C2B774 /* slh_util.c in Sources */,
