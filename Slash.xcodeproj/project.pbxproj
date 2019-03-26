@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0B4E14224A40AD00D61D72 /* SLHFilterOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */; };
 		CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */; };
 		CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */; };
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
@@ -48,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE0B4E12224A40AD00D61D72 /* SLHFilterOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHFilterOptions.h; path = model/SLHFilterOptions.h; sourceTree = "<group>"; };
+		CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHFilterOptions.m; path = model/SLHFilterOptions.m; sourceTree = "<group>"; };
 		CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderSettings.h; path = controllers/SLHEncoderSettings.h; sourceTree = "<group>"; };
 		CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderSettings.m; path = controllers/SLHEncoderSettings.m; sourceTree = "<group>"; };
 		CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderSettings.xib; path = controllers/SLHEncoderSettings.xib; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */,
 				CE1D484A223FFB5B0026E8C2 /* SLHEncoderX264Options.h */,
 				CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */,
+				CE0B4E12224A40AD00D61D72 /* SLHFilterOptions.h */,
+				CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 				CE2CC12321235447008C8345 /* SLHMediaItem.m in Sources */,
 				CE22B5FB210BBD2500EE17A4 /* slh_mpv.c in Sources */,
 				CE5461D3211A314E00C2B774 /* slh_util.c in Sources */,
+				CE0B4E14224A40AD00D61D72 /* SLHFilterOptions.m in Sources */,
 				CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */,
 				CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */,
 				CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */,
