@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SLHEncoderItem;
+
 @interface SLHCropEditor : NSWindowController
+
+@property SLHEncoderItem *encoderItem;
 
 @end
