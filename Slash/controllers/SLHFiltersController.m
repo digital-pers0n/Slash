@@ -120,16 +120,6 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 
 - (IBAction)cropEditorButtonAction:(id)sender {
 }
-- (IBAction)cropTextFieldAction:(id)sender {
-}
-- (IBAction)deinterlaceButtonAction:(NSButton *)sender {
-}
-- (IBAction)audioFadeInTextFieldAction:(id)sender {
-}
-- (IBAction)audioFadeOutTextFieldAction:(id)sender {
-}
-- (IBAction)audioPreampTextFieldAction:(id)sender {
-}
 
 
 @end

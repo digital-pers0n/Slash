@@ -66,7 +66,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="audioFadeInTextFieldAction:" target="-2" id="sGb-lp-ua9"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeIn" id="ucC-IQ-DxT"/>
                     </connections>
                 </textField>
@@ -89,7 +88,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="audioPreampTextFieldAction:" target="-2" id="KHM-hJ-DOi"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioPreamp" id="UVi-T4-Hwp"/>
                     </connections>
                 </textField>
@@ -103,7 +101,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="audioFadeOutTextFieldAction:" target="-2" id="7O9-Lr-HYu"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeOut" id="1eh-II-QKu"/>
                     </connections>
                 </textField>
@@ -124,7 +121,6 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <action selector="deinterlaceButtonAction:" target="-2" id="eKY-Mc-PJW"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoDeinterlace" id="QiJ-YW-9xH"/>
                     </connections>
                 </button>
@@ -138,7 +134,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="audioPreampTextFieldAction:" target="-2" id="3M4-v5-ZjP"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropX" id="YOR-M7-u6W"/>
                     </connections>
                 </textField>
@@ -169,7 +164,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="audioPreampTextFieldAction:" target="-2" id="QwG-YQ-2en"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropY" id="kDQ-Ld-YTi"/>
                     </connections>
                 </textField>
@@ -200,7 +194,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="audioPreampTextFieldAction:" target="-2" id="rau-Gt-xNp"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropWidth" id="E2Y-LD-mMO"/>
                     </connections>
                 </textField>
@@ -222,7 +215,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="audioPreampTextFieldAction:" target="-2" id="jWQ-kr-NtH"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropHeight" id="Fmf-Oi-3OD"/>
                     </connections>
                 </textField>
