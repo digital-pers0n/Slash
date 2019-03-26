@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLHEncoderItemOptions.h"
+
+@class SLHEncoderItemOptions, SLHFilterOptions;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,6 +40,8 @@ typedef struct time_interval {
 
 @property SLHEncoderItemOptions *audioOptions;
 @property NSMutableDictionary *audioFilters;
+
+@property SLHFilterOptions *filters;
 
 @property BOOL twoPassEncoding;
 @property NSMutableDictionary *firstPassOptions;
