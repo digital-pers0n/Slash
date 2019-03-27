@@ -11,7 +11,11 @@
 #import "SLHEncoderItem.h"
 #import "SLHFilterOptions.h"
 
-@interface SLHCropEditor () <SLHImageViewDelegate>
+@interface SLHCropEditor () <SLHImageViewDelegate> {
+    
+    IBOutlet SLHImageView *_imageView;
+    
+}
 
 @end
 
@@ -25,6 +29,29 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+#pragma mark - IBActions
+
+- (IBAction)xDidChange:(id)sender {
+}
+
+- (IBAction)yDidChange:(id)sender {
+}
+
+- (IBAction)widthDidChange:(id)sender {
+}
+
+- (IBAction)heightDidChange:(id)sender {
+}
+
+- (IBAction)detectCropArea:(id)sender {
+}
+
+- (IBAction)zoom:(id)sender {
+}
+
+- (IBAction)preview:(id)sender {
 }
 
 #pragma mark - SLHImageViewDelegate

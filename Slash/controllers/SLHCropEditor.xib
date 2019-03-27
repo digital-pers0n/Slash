@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHCropEditor">
             <connections>
+                <outlet property="_imageView" destination="xsi-Lz-siz" id="9sm-sK-HmS"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -27,13 +28,14 @@
                     <textField verticalHuggingPriority="750" id="LJf-S8-2P2">
                         <rect key="frame" x="24" y="371" width="60" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="wOo-CN-gcq">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="wOo-CN-gcq">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="1cP-OI-qkg"/>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <action selector="xDidChange:" target="-2" id="Q2B-bu-XOr"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropX" id="3w8-Ad-BiD"/>
                         </connections>
                     </textField>
@@ -49,13 +51,14 @@
                     <textField verticalHuggingPriority="750" id="NVV-Kp-D8G">
                         <rect key="frame" x="117" y="371" width="60" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="YbO-9v-zl6">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="YbO-9v-zl6">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="uWZ-hP-Zr1"/>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <action selector="yDidChange:" target="-2" id="e6T-PA-a6h"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropY" id="U9V-wZ-dxC"/>
                         </connections>
                     </textField>
@@ -71,13 +74,14 @@
                     <textField verticalHuggingPriority="750" id="odH-B6-Avp">
                         <rect key="frame" x="213" y="371" width="60" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ALd-iL-Ulb">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ALd-iL-Ulb">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="a0L-Pk-Ria"/>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <action selector="widthDidChange:" target="-2" id="VGU-YE-RKu"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropWidth" id="s0w-QC-ErM"/>
                         </connections>
                     </textField>
@@ -90,16 +94,20 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <ikImageView wantsLayer="YES" doubleClickOpensImageEditPanel="NO" id="xsi-Lz-siz" customClass="SLHImageView">
+                    <ikImageView wantsLayer="YES" zoomFactor="0.0" doubleClickOpensImageEditPanel="NO" id="xsi-Lz-siz" customClass="SLHImageView">
                         <rect key="frame" x="10" y="10" width="620" height="355"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.92500000000000004" green="0.92500000000000004" blue="0.92500000000000004" alpha="1" colorSpace="deviceRGB"/>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="zkF-8i-sU6"/>
+                        </connections>
                     </ikImageView>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="2o9-7A-GOl">
                         <rect key="frame" x="82" y="369" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" id="aoV-CB-XvD"/>
                         <connections>
+                            <action selector="xDidChange:" target="-2" id="z2m-Oi-sKs"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropX" id="FtS-cY-P09"/>
                         </connections>
                     </stepper>
@@ -108,6 +116,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" id="HCY-PZ-KHQ"/>
                         <connections>
+                            <action selector="yDidChange:" target="-2" id="a3E-bg-iqc"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropY" id="zbA-eI-Ydo"/>
                         </connections>
                     </stepper>
@@ -116,19 +125,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" id="aCl-tD-VX4"/>
                         <connections>
+                            <action selector="widthDidChange:" target="-2" id="QDN-8v-MVe"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropWidth" id="OfQ-cs-GTH"/>
                         </connections>
                     </stepper>
                     <textField verticalHuggingPriority="750" id="Yf7-eZ-zqz">
                         <rect key="frame" x="307" y="371" width="60" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2gn-0w-zCG">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2gn-0w-zCG">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="UYe-nd-g8N"/>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <action selector="heightDidChange:" target="-2" id="oyz-el-soD"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropHeight" id="Uo5-Js-ht2"/>
                         </connections>
                     </textField>
@@ -148,6 +159,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="detectCropArea:" target="-2" id="p36-Wg-3kd"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="Irp-fs-31y">
                         <rect key="frame" x="432" y="370" width="32" height="19"/>
@@ -156,6 +170,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="zoom:" target="-2" id="F8i-8Y-ZXp"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="ubp-JQ-qfc">
                         <rect key="frame" x="470" y="370" width="32" height="19"/>
@@ -164,21 +181,26 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="preview:" target="-2" id="93X-wo-LFZ"/>
+                        </connections>
                     </button>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="e05-fX-4C2">
                         <rect key="frame" x="365" y="369" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" id="9hv-fM-cK4"/>
                         <connections>
+                            <action selector="heightDidChange:" target="-2" id="eYd-3q-cH9"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropHeight" id="jBt-5G-Sas"/>
                         </connections>
                     </stepper>
                 </subviews>
             </view>
+            <contentBorderThickness minY="0.0" maxY="32"/>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="192" y="282"/>
+            <point key="canvasLocation" x="230" y="284"/>
         </window>
     </objects>
     <resources>
