@@ -7,8 +7,11 @@
 //
 
 #import "SLHCropEditor.h"
+#import "SLHImageView.h"
+#import "SLHEncoderItem.h"
+#import "SLHFilterOptions.h"
 
-@interface SLHCropEditor ()
+@interface SLHCropEditor () <SLHImageViewDelegate>
 
 @end
 
@@ -22,6 +25,16 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+#pragma mark - SLHImageViewDelegate
+
+- (void)imageView:(SLHImageView *)view didUpdateSelection:(NSRect)rect {
+    SLHFilterOptions *options = _encoderItem.filters;
+    options.videoCropX = rect.origin.x;
+    options.videoCropY = rect.origin.y;
+    options.videoCropWidth = rect.size.width;
+    options.videoCropHeight = rect.size.height;
 }
 
 @end
