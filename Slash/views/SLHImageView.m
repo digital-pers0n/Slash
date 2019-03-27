@@ -12,4 +12,11 @@
 
 @synthesize delegate = _delegate;
 
+#pragma mark - NSEvent
+
+- (void)mouseDragged:(NSEvent *)theEvent {
+    [super mouseDragged:theEvent];
+    [_delegate imageView:self didUpdateSelection:self.selectionRect];
+}
+
 @end
