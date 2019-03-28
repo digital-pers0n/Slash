@@ -17,6 +17,8 @@
     
 }
 
+@property double startTime;
+
 @end
 
 @implementation SLHCropEditor
@@ -52,6 +54,9 @@
 }
 
 - (IBAction)preview:(id)sender {
+}
+
+- (IBAction)reloadFrame:(id)sender {
 }
 
 #pragma mark - SLHImageViewDelegate
