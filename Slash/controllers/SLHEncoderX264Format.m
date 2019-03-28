@@ -117,6 +117,8 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         
         [_audioSampleRatePopUp selectItemWithTag:audioOptions.sampleRate];
         [_audioChannelsPopUp selectItemWithTag:audioOptions.numberOfChannels];
+        
+        _filters.encoderItem = _encoderItem;
     }
 }
 
@@ -452,7 +454,6 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
             break;
         case SLHEncoderSettingsFiltersTab:
             view = _filters.view;
-            _filters.encoderItem = self.encoderItem;
             break;
             
         default:
