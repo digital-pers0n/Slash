@@ -105,7 +105,7 @@
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="2o9-7A-GOl">
                         <rect key="frame" x="82" y="368" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="aoV-CB-XvD"/>
+                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-10000" maxValue="10000" id="aoV-CB-XvD"/>
                         <connections>
                             <action selector="xDidChange:" target="-2" id="z2m-Oi-sKs"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropX" id="FtS-cY-P09"/>
@@ -114,7 +114,7 @@
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="zkN-94-2PP">
                         <rect key="frame" x="175" y="368" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="HCY-PZ-KHQ"/>
+                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-10000" maxValue="10000" id="HCY-PZ-KHQ"/>
                         <connections>
                             <action selector="yDidChange:" target="-2" id="a3E-bg-iqc"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropY" id="zbA-eI-Ydo"/>
@@ -123,7 +123,7 @@
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Imd-Mq-2cc">
                         <rect key="frame" x="271" y="368" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="aCl-tD-VX4"/>
+                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-10000" maxValue="10000" id="aCl-tD-VX4"/>
                         <connections>
                             <action selector="widthDidChange:" target="-2" id="QDN-8v-MVe"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropWidth" id="OfQ-cs-GTH"/>
@@ -177,7 +177,7 @@
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="e05-fX-4C2">
                         <rect key="frame" x="365" y="368" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="9hv-fM-cK4"/>
+                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-10000" maxValue="10000" id="9hv-fM-cK4"/>
                         <connections>
                             <action selector="heightDidChange:" target="-2" id="eYd-3q-cH9"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropHeight" id="jBt-5G-Sas"/>
