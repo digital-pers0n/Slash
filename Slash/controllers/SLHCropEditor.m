@@ -63,6 +63,16 @@
 - (IBAction)reloadFrame:(id)sender {
 }
 
+#pragma mark - NSWindowDelegate
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    _hasWindow = YES;
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    _hasWindow = NO;
+}
+
 #pragma mark - SLHImageViewDelegate
 
 - (void)imageView:(SLHImageView *)view didUpdateSelection:(NSRect)rect {
