@@ -9,12 +9,16 @@
 #import "SLHCropEditor.h"
 #import "SLHImageView.h"
 #import "SLHEncoderItem.h"
+#import "SLHMediaItem.h"
 #import "SLHFilterOptions.h"
 
 @interface SLHCropEditor () <SLHImageViewDelegate> {
     
     IBOutlet SLHImageView *_imageView;
-    
+    SLHEncoderItem *_encoderItem;
+    NSString *_ffmpegPath;
+    dispatch_queue_t _bg_queue;
+    dispatch_queue_t _main_queue;
 }
 
 @property double startTime;
