@@ -8,6 +8,7 @@
 
 #import "SLHFiltersController.h"
 #import "SLHEncoderItem.h"
+#import "SLHCropEditor.h"
 
 extern NSString *const SLHEncoderVideoFilterCropKey;
 extern NSString *const SLHEncoderVideoFilterDeinterlaceKey;
@@ -29,6 +30,8 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
     IBOutlet NSTextField *_audioPreampTextField;
     
     SLHEncoderItem *_encoderItem;
+    
+    IBOutlet SLHCropEditor *_cropEditor;
 }
 
 @end
@@ -56,6 +59,17 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 }
 
 #pragma mark - Properties
+
+- (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    _encoderItem = encoderItem;
+    if (_cropEditor.hasWindow) {
+        _cropEditor.encoderItem = encoderItem;
+    }
+}
+
+- (SLHEncoderItem *)encoderItem {
+    return _encoderItem;
+}
 
 #pragma mark - IBActions
 
