@@ -12,7 +12,9 @@
 #import "SLHMediaItem.h"
 #import "SLHFilterOptions.h"
 
-@interface SLHCropEditor () <SLHImageViewDelegate> {
+extern NSString *const SLHPreferencesFFMpegFilePathKey;
+
+@interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate> {
     
     IBOutlet SLHImageView *_imageView;
     SLHEncoderItem *_encoderItem;
@@ -33,8 +35,13 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    NSString *ffmpegPath = [[NSUserDefaults standardUserDefaults] objectForKey:SLHPreferencesFFMpegFilePathKey];
+    if (!ffmpegPath) {
+        ffmpegPath = @"/usr/local/bin/ffmpeg";
+    }
+    _ffmpegPath = ffmpegPath;
+    _bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    _main_queue = dispatch_get_main_queue();
 }
 
 #pragma mark - IBActions
