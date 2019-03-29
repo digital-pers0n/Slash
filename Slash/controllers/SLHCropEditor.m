@@ -71,6 +71,18 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
     [self _extractFrame];
 }
 
+#pragma mark - Properties
+
+- (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    _encoderItem = encoderItem;
+    self.startTime = _encoderItem.interval.start;
+    [self _extractFrame];
+}
+
+- (SLHEncoderItem *)encoderItem {
+    return _encoderItem;
+}
+
 #pragma mark - NSWindowDelegate
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
