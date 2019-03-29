@@ -74,6 +74,8 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 #pragma mark - IBActions
 
 - (IBAction)cropEditorButtonAction:(id)sender {
+    [_cropEditor showWindow:sender];
+    _cropEditor.encoderItem = _encoderItem;
 }
 
 
