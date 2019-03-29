@@ -13,5 +13,6 @@
 @interface SLHCropEditor : NSWindowController
 
 @property SLHEncoderItem *encoderItem;
+@property BOOL hasWindow;
 
 @end
