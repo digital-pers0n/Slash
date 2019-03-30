@@ -12,6 +12,10 @@
 
 @synthesize delegate = _delegate;
 
+- (BOOL)mouseDownCanMoveWindow  {
+    return NO;
+}
+
 #pragma mark - NSEvent
 
 - (void)mouseDragged:(NSEvent *)theEvent {
