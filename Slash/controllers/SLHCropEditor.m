@@ -42,6 +42,7 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
     _ffmpegPath = ffmpegPath;
     _bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     _main_queue = dispatch_get_main_queue();
+    _imageView.currentToolMode = IKToolModeSelect;
 }
 
 #pragma mark - IBActions
