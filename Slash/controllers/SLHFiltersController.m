@@ -62,7 +62,7 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
     _encoderItem = encoderItem;
-    if (_cropEditor.hasWindow) {
+    if (_cropEditor.hasWindow && _encoderItem) {
         _cropEditor.encoderItem = encoderItem;
     }
 }
@@ -74,6 +74,10 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 #pragma mark - IBActions
 
 - (IBAction)cropEditorButtonAction:(id)sender {
+    if (!_encoderItem) {
+        NSBeep();
+        return;
+    }
     [_cropEditor showWindow:sender];
     _cropEditor.encoderItem = _encoderItem;
 }
