@@ -37,13 +37,12 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     IBOutlet NSPopUpButton *_presetPopUp;
     IBOutlet NSPopUpButton *_encodingTypePopUp;
     IBOutlet NSView *_bitrateView;
+    IBOutlet NSView *_maxBitrateView;
     IBOutlet NSView *_crfView;
     IBOutlet NSPopUpButton *_tunePopUp;
     IBOutlet NSPopUpButton *_containerPopUp;
     IBOutlet NSPopUpButton *_profilePopUp;
     IBOutlet NSPopUpButton *_levelPopUp;
-    
-    IBOutlet NSSlider *_maxBitrateSlider;
     
     
     // Audio
@@ -165,14 +164,14 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         case SLHX264EncodingSinglePass:
             _crfView.hidden = YES;
             _bitrateView.hidden = NO;
-            _maxBitrateSlider.hidden = YES;
+            _maxBitrateView.hidden = YES;
             
             break;
             
         case SLHX264EncodingTwoPass:
             _crfView.hidden = YES;
             _bitrateView.hidden = NO;
-            _maxBitrateSlider.hidden = NO;
+            _maxBitrateView.hidden = NO;
 
             break;
             

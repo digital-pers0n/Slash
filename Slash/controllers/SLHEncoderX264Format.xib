@@ -17,7 +17,7 @@
                 <outlet property="_crfView" destination="Koh-k0-6Xt" id="3b0-Vi-lQu"/>
                 <outlet property="_encodingTypePopUp" destination="3Ah-Yt-c54" id="AhH-Or-9gx"/>
                 <outlet property="_levelPopUp" destination="gGr-SN-MIn" id="jJZ-Z8-IuI"/>
-                <outlet property="_maxBitrateSlider" destination="eSX-ab-bjY" id="ICb-Z6-7cs"/>
+                <outlet property="_maxBitrateView" destination="8TJ-Ot-cTw" id="mky-cg-Jee"/>
                 <outlet property="_presetPopUp" destination="2DS-gJ-kb4" id="qPN-3y-KtL"/>
                 <outlet property="_profilePopUp" destination="qEO-Og-Vqz" id="oug-aX-O8h"/>
                 <outlet property="_tunePopUp" destination="2Ag-ue-zC2" id="vXo-RU-sqf"/>
@@ -145,21 +145,6 @@
                                 <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="xVK-m3-dnP"/>
                             </connections>
                         </textField>
-                        <textField verticalHuggingPriority="750" id="LBP-MW-CKx">
-                            <rect key="frame" x="222" y="0.0" width="75" height="19"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="tGf-nN-2tu">
-                                <numberFormatter key="formatter" formatterBehavior="custom10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="p5E-QK-GOe">
-                                    <real key="minimum" value="0.0"/>
-                                </numberFormatter>
-                                <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                            <connections>
-                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="4x3-HR-RNg"/>
-                            </connections>
-                        </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="n8w-9H-SeR">
                             <rect key="frame" x="22" y="27" width="43" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -169,31 +154,52 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="YLj-1x-4Q5">
-                            <rect key="frame" x="-2" y="3" width="67" height="14"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Max Bitrate:" id="y4L-SO-bhU">
-                                <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Z4J-n7-hqz">
-                            <rect key="frame" x="295" y="-2" width="15" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="50" maxValue="50000" id="D9a-Rw-Tfz"/>
-                            <connections>
-                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="UCf-Nt-sYQ"/>
-                            </connections>
-                        </stepper>
-                        <slider verticalHuggingPriority="750" id="eSX-ab-bjY">
-                            <rect key="frame" x="67" y="1" width="147" height="17"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="50000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="MMM-n5-IJT"/>
-                            <connections>
-                                <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="qB6-YK-8av"/>
-                            </connections>
-                        </slider>
+                        <customView id="8TJ-Ot-cTw">
+                            <rect key="frame" x="0.0" y="0.0" width="308" height="19"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="YLj-1x-4Q5">
+                                    <rect key="frame" x="-2" y="3" width="67" height="14"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Max Bitrate:" id="y4L-SO-bhU">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider verticalHuggingPriority="750" id="eSX-ab-bjY">
+                                    <rect key="frame" x="67" y="1" width="147" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="50000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="MMM-n5-IJT"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="qB6-YK-8av"/>
+                                    </connections>
+                                </slider>
+                                <textField verticalHuggingPriority="750" id="LBP-MW-CKx">
+                                    <rect key="frame" x="222" y="0.0" width="75" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="tGf-nN-2tu">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="p5E-QK-GOe">
+                                            <real key="minimum" value="0.0"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="4x3-HR-RNg"/>
+                                    </connections>
+                                </textField>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Z4J-n7-hqz">
+                                    <rect key="frame" x="295" y="-2" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="50" maxValue="50000" id="D9a-Rw-Tfz"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxBitrate" id="UCf-Nt-sYQ"/>
+                                    </connections>
+                                </stepper>
+                            </subviews>
+                        </customView>
                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="bDU-aJ-jvF">
                             <rect key="frame" x="295" y="22" width="15" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
