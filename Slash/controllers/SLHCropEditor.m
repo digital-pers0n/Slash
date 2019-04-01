@@ -82,8 +82,26 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 - (IBAction)preview:(id)sender {
 }
 
+// Problems (Tested under macOS 10.11)
+// When the IKImageView.currentToolMode property is set to IKToolModeSelect and a new image is loaded :
+// 1. The coordinates of the selection layer are all messed up.
+//    The layer doesn't auto scale with the view. The selection rect doesn't appear under the mouse pointer.
+//
+// 2. The IKImageView setImage:imageProperties: method crashes the application.
+//
+// Solution
+// Assign the IKImageView.currentToolMode property to IKToolModeNone before loading a new image
+
 - (IBAction)reloadFrame:(id)sender {
+    _zoomed = NO;
+    NSRect rect = _imageView.selectionRect;
+    _imageView.currentToolMode = IKToolModeNone;
     [self _extractFrame];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), _main_queue, ^{
+        _imageView.selectionRect = rect;
+
+    });
+    
 }
 
 #pragma mark - Properties
@@ -91,7 +109,16 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
     _encoderItem = encoderItem;
     self.startTime = _encoderItem.interval.start;
+    SLHFilterOptions *options = encoderItem.filters;
+    _zoomed = NO;
+   _imageView.currentToolMode = IKToolModeNone;
     [self _extractFrame];
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), _main_queue, ^{
+        NSRect rect = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);
+        _imageView.selectionRect = rect;
+
+    });
+
 }
 
 - (SLHEncoderItem *)encoderItem {
