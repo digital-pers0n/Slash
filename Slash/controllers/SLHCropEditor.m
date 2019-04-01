@@ -21,6 +21,8 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
     NSString *_ffmpegPath;
     dispatch_queue_t _bg_queue;
     dispatch_queue_t _main_queue;
+    
+    BOOL _zoomed;
 }
 
 @property double startTime;
@@ -62,7 +64,19 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 - (IBAction)detectCropArea:(id)sender {
 }
 
-- (IBAction)zoom:(id)sender {
+- (IBAction)zoom:(NSButton *)sender {
+    NSRect rect = _imageView.selectionRect;
+    if (_zoomed) {
+        [_imageView zoomImageToFit:nil];
+        _zoomed = NO;
+        _imageView.autoresizes = YES;
+        sender.image = [NSImage imageNamed:NSImageNameEnterFullScreenTemplate];
+    } else {
+        [_imageView zoomImageToActualSize:nil];
+        _zoomed = YES;
+        sender.image = [NSImage imageNamed:NSImageNameExitFullScreenTemplate];
+    }
+    _imageView.selectionRect = rect;
 }
 
 - (IBAction)preview:(id)sender {
