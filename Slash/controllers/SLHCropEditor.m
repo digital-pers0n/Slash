@@ -176,15 +176,23 @@ static inline void _safeCFRelease(CFTypeRef ref) {
         CGImageSourceRef cfimage_source_ref = CGImageSourceCreateWithData(cfdata_ref, NULL);
         CGImageRef cfimage_ref = CGImageSourceCreateImageAtIndex(cfimage_source_ref, 0, NULL);
         if (cfimage_ref) {
+           
             dispatch_sync(_main_queue, ^{
+                // Hide the view to disable its annoying flip animtion
+                 _imageView.hidden = YES;
                 [_imageView setImage:cfimage_ref imageProperties:0];
-                
                 // Rotate and flip the frame because ffmpeg and Cocoa are using different coordinates
+                
                 _imageView.rotationAngle = M_PI;
                 [_imageView flipImageHorizontal:nil];
                 [_imageView zoomImageToFit:nil];
+                
                 _imageView.autoresizes = YES;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), _main_queue, ^{
+                    _imageView.hidden = NO;
+                });
             });
+
         } else {
             NSLog(@"%s Error: invalid data", __PRETTY_FUNCTION__);
         }
