@@ -144,8 +144,8 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
     char *cmd;
     asprintf(&cmd,
              "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
-             "--start=%.3f -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] \"%s\" &",
-             _mpvPath.UTF8String, _startTime, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.mediaItem.filePath.UTF8String);
+             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=+%.3f \"%s\" &",
+             _mpvPath.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
     system(cmd);
     free(cmd);
 }
