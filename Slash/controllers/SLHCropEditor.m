@@ -13,12 +13,14 @@
 #import "SLHFilterOptions.h"
 
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
+extern NSString *const SLHPreferencesMPVFilePathKey;
 
 @interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate> {
     
     IBOutlet SLHImageView *_imageView;
     SLHEncoderItem *_encoderItem;
     NSString *_ffmpegPath;
+    NSString *_mpvPath;
     dispatch_queue_t _bg_queue;
     dispatch_queue_t _main_queue;
     
@@ -37,11 +39,18 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    NSString *ffmpegPath = [[NSUserDefaults standardUserDefaults] objectForKey:SLHPreferencesFFMpegFilePathKey];
-    if (!ffmpegPath) {
-        ffmpegPath = @"/usr/local/bin/ffmpeg";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *path = [defaults objectForKey:SLHPreferencesFFMpegFilePathKey];
+    if (!path) {
+        path = @"/usr/local/bin/ffmpeg";
     }
-    _ffmpegPath = ffmpegPath;
+    _ffmpegPath = path;
+    path = [defaults objectForKey:SLHPreferencesMPVFilePathKey];
+    if (!path) {
+        path = @"/usr/local/bin/mpv";
+    }
+    _mpvPath = path;
+    
     _bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     _main_queue = dispatch_get_main_queue();
     _imageView.currentToolMode = IKToolModeSelect;
@@ -127,6 +136,18 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 }
 
 - (IBAction)preview:(id)sender {
+    NSRect r = _imageView.selectionRect;
+    if ((r.size.height <= 0) || (r.size.width <= 0)) {
+        NSBeep();
+        return;
+    }
+    char *cmd;
+    asprintf(&cmd,
+             "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
+             "--start=%.3f -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] \"%s\" &",
+             _mpvPath.UTF8String, _startTime, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.mediaItem.filePath.UTF8String);
+    system(cmd);
+    free(cmd);
 }
 
 // Problems (Tested under macOS 10.11)
