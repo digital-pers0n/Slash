@@ -73,7 +73,42 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
     _imageView.selectionRect = r;
 }
 
-- (IBAction)detectCropArea:(id)sender {
+- (NSRect)cropArea {
+    NSRect r = NSZeroRect;
+    char *cmd;
+    asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
+             " | awk '/crop/ { print $NF }' | tail -1",
+             _ffmpegPath.UTF8String, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
+    FILE *pipe = popen(cmd, "r");
+    const int len = 64;
+    char str[len];
+    if (fgets(str, len, pipe)) {
+        char *start = strchr(str, '=');
+        char *end = strchr(str, ':');
+        long result[4] = {0, 0, 0, 0};
+        _get_coordinates(++start, end, 0, result);
+        r = NSMakeRect(result[2], result[3], result[0], result[1]);
+    }
+    free(cmd);
+    pclose(pipe);
+    
+    return r;
+}
+
+- (IBAction)detectCropArea:(NSButton *)sender {
+    sender.enabled = NO;
+    dispatch_async(_bg_queue, ^{
+        NSRect rect = [self cropArea];
+        SLHFilterOptions *options = _encoderItem.filters;
+        options.videoCropX = rect.origin.x;
+        options.videoCropY = rect.origin.y;
+        options.videoCropWidth = rect.size.width;
+        options.videoCropHeight = rect.size.height;
+        dispatch_sync(_main_queue, ^{
+            sender.enabled = YES;
+            _imageView.selectionRect = rect;
+        });
+    });
 }
 
 - (IBAction)zoom:(NSButton *)sender {
@@ -158,6 +193,32 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 }
 
 #pragma mark - Private
+
+/**
+ Extract coordinates from a char array and store them in the result array.
+ 
+ @param result - [0] - width, [1] - height, [2] - x, [3] - y
+ */
+static void _get_coordinates(char *start, char *end, int n, long *result) {
+    char value[6];
+    int i = 0;
+    while (start < end) {
+        value[i] = *start;
+        start++;
+        i++;
+    }
+    long r = atol(value);
+    result[n] = r;
+    n++;
+    start++;
+    end = strchr(start, ':');
+    if (!end) {
+        r = atol(start);
+        result[n] = r;
+        return;
+    }
+    _get_coordinates(start, end, n, result);
+}
 
 static inline void _safeCFRelease(CFTypeRef ref) {
     if (ref) {
