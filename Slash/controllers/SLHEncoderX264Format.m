@@ -97,6 +97,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         videoOptions.tuneType = SLHX264TuneNone;
         videoOptions.containerType = SLHX264ContainerMP4;
         videoOptions.codecName = @"libx264";
+        videoOptions.crf = 23;
         _encoderItem.videoOptions = videoOptions;
         
         audioOptions.codecName = @"aac";
