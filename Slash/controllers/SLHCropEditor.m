@@ -50,15 +50,27 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 #pragma mark - IBActions
 
 - (IBAction)xDidChange:(id)sender {
+    NSRect r = _imageView.selectionRect;
+    r.origin.x = _encoderItem.filters.videoCropX;
+    _imageView.selectionRect = r;
 }
 
 - (IBAction)yDidChange:(id)sender {
+    NSRect r = _imageView.selectionRect;
+    r.origin.y = _encoderItem.filters.videoCropY;
+    _imageView.selectionRect = r;
 }
 
 - (IBAction)widthDidChange:(id)sender {
+    NSRect r = _imageView.selectionRect;
+    r.size.width = _encoderItem.filters.videoCropWidth;
+    _imageView.selectionRect = r;
 }
 
 - (IBAction)heightDidChange:(id)sender {
+    NSRect r = _imageView.selectionRect;
+    r.size.height = _encoderItem.filters.videoCropHeight;
+    _imageView.selectionRect = r;
 }
 
 - (IBAction)detectCropArea:(id)sender {
@@ -107,11 +119,11 @@ extern NSString *const SLHPreferencesFFMpegFilePathKey;
 #pragma mark - Properties
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    _imageView.currentToolMode = IKToolModeNone;
     _encoderItem = encoderItem;
     self.startTime = _encoderItem.interval.start;
     SLHFilterOptions *options = encoderItem.filters;
     _zoomed = NO;
-   _imageView.currentToolMode = IKToolModeNone;
     [self _extractFrame];
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), _main_queue, ^{
         NSRect rect = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);
