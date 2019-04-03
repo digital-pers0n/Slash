@@ -8,6 +8,7 @@
 
 #import "SLHFiltersController.h"
 #import "SLHEncoderItem.h"
+#import "SLHFilterOptions.h"
 #import "SLHCropEditor.h"
 
 extern NSString *const SLHEncoderVideoFilterCropKey;
@@ -77,6 +78,16 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 }
 
 - (IBAction)detectCropArea:(id)sender {
+    if (!_encoderItem) {
+        NSBeep();
+        return;
+    }
+    NSRect rect = [SLHCropEditor cropRectForItem:_encoderItem];
+    SLHFilterOptions *options = _encoderItem.filters;
+    options.videoCropX = rect.origin.x;
+    options.videoCropY = rect.origin.y;
+    options.videoCropWidth = rect.size.width;
+    options.videoCropHeight = rect.size.height;
 }
 
 - (IBAction)cropEditorButtonAction:(id)sender {
