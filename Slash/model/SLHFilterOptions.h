@@ -11,6 +11,7 @@
 @interface SLHFilterOptions : NSObject <NSCopying>
 
 // Video
+@property BOOL enableVideoFilters;
 @property NSInteger videoCropX;
 @property NSInteger videoCropY;
 @property NSInteger videoCropWidth;
@@ -18,6 +19,7 @@
 @property BOOL videoDeinterlace;
 
 // Audio
+@property BOOL enableAudioFilters;
 @property double audioFadeIn;
 @property double audioFadeOut;
 @property NSInteger audioPreamp;
