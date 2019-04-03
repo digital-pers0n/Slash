@@ -73,6 +73,12 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 
 #pragma mark - IBActions
 
+- (IBAction)previewCropArea:(id)sender {
+}
+
+- (IBAction)detectCropArea:(id)sender {
+}
+
 - (IBAction)cropEditorButtonAction:(id)sender {
     if (!_encoderItem) {
         NSBeep();
