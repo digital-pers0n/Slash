@@ -12,6 +12,8 @@
 
 @interface SLHCropEditor : NSWindowController
 
++ (NSRect)cropRectForItem:(SLHEncoderItem *)item;
+
 @property SLHEncoderItem *encoderItem;
 @property BOOL hasWindow;
 

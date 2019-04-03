@@ -33,6 +33,34 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
 
 @implementation SLHCropEditor
 
++ (NSRect)cropRectForItem:(SLHEncoderItem *)item {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *path = [defaults objectForKey:SLHPreferencesFFMpegFilePathKey];
+    if (!path) {
+        path = @"/usr/local/bin/ffmpeg";
+    }
+    NSRect r = NSZeroRect;
+    char *cmd;
+    asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
+             " | awk '/crop/ { print $NF }' | tail -1",
+             path.UTF8String, item.interval.start, item.mediaItem.filePath.UTF8String);
+    FILE *pipe = popen(cmd, "r");
+    const int len = 64;
+    char str[len];
+    if (fgets(str, len, pipe)) {
+        char *start = strchr(str, '=');
+        char *end = strchr(str, ':');
+        long result[4] = {0, 0, 0, 0};
+        _get_coordinates(++start, end, 0, result);
+        r = NSMakeRect(result[2], result[3], result[0], result[1]);
+    }
+    free(cmd);
+    pclose(pipe);
+    
+    return r;
+
+}
+
 - (NSString *)windowNibName {
     return self.className;
 }
