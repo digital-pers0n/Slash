@@ -76,8 +76,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="n0N-Yh-EzO"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioPreamp" id="UVi-T4-Hwp"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="n0N-Yh-EzO"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="mZM-4I-whp">
@@ -90,8 +90,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="9Zw-zf-Kbf"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeOut" id="1eh-II-QKu"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="9Zw-zf-Kbf"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nYs-0m-Ifc">
@@ -237,7 +237,7 @@
                 <button toolTip="Open Editor" id="Dd4-Hu-S3w">
                     <rect key="frame" x="236" y="158" width="18" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="Hp2-n8-wNh">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="Hp2-n8-wNh">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -260,8 +260,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="100" id="Peg-uQ-Vjg"/>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="qt5-9K-VZi"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeIn" id="mA5-mt-3pJ"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="qt5-9K-VZi"/>
                     </connections>
                 </stepper>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="DGx-cW-PrR">
@@ -269,27 +269,23 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-100" maxValue="100" id="db0-Fy-ofW"/>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="BvE-ig-tCr"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioPreamp" id="rOC-Aw-gqa"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="BvE-ig-tCr"/>
                     </connections>
                 </stepper>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Nr3-AM-a6J">
                     <rect key="frame" x="291" y="40" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="100" id="Sxz-qk-Qhc">
-                        <connections>
-                            <binding destination="ywM-Pe-hkM" name="enabled" keyPath="values" id="oBe-Vt-Q4d"/>
-                        </connections>
-                    </stepperCell>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="100" id="Sxz-qk-Qhc"/>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="Uf3-LQ-PjT"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeOut" id="6pW-9x-bv3"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="Uf3-LQ-PjT"/>
                     </connections>
                 </stepper>
                 <button toolTip="Preview" id="0I8-Df-iRd">
                     <rect key="frame" x="280" y="158" width="18" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSPathTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="Yea-Ya-2D0">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="Yea-Ya-2D0">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -301,7 +297,7 @@
                 <button toolTip="Detect Crop Area" id="9kg-ae-uXI">
                     <rect key="frame" x="258" y="158" width="18" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFlowViewTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="9ta-eI-Rm2">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameCropDetectTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="9ta-eI-Rm2">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -342,8 +338,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="ROc-cc-LPc"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.audioFadeIn" id="ucC-IQ-DxT"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="ROc-cc-LPc"/>
                     </connections>
                 </textField>
             </subviews>
@@ -353,8 +349,8 @@
         <userDefaultsController representsSharedInstance="YES" id="ywM-Pe-hkM"/>
     </objects>
     <resources>
-        <image name="NSFlowViewTemplate" width="18" height="10"/>
-        <image name="NSPathTemplate" width="16" height="10"/>
         <image name="NSQuickLookTemplate" width="19" height="12"/>
+        <image name="SLHImageNameCropDetectTemplate" width="32" height="32"/>
+        <image name="SLHImageNameEditTemplate" width="32" height="32"/>
     </resources>
 </document>
