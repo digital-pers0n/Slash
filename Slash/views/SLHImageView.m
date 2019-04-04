@@ -18,6 +18,11 @@
 
 #pragma mark - NSEvent
 
+- (void)mouseUp:(NSEvent *)theEvent {
+    [super mouseDown:theEvent];
+    [_delegate imageView:self didUpdateSelection:self.selectionRect];
+}
+
 - (void)mouseDragged:(NSEvent *)theEvent {
     [super mouseDragged:theEvent];
     [_delegate imageView:self didUpdateSelection:self.selectionRect];
