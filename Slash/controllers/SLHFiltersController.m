@@ -10,6 +10,9 @@
 #import "SLHEncoderItem.h"
 #import "SLHFilterOptions.h"
 #import "SLHCropEditor.h"
+#import "SLHMediaItem.h"
+
+extern NSString *const SLHPreferencesMPVFilePathKey;
 
 extern NSString *const SLHEncoderVideoFilterCropKey;
 extern NSString *const SLHEncoderVideoFilterDeinterlaceKey;
@@ -75,6 +78,24 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 #pragma mark - IBActions
 
 - (IBAction)previewCropArea:(id)sender {
+    SLHFilterOptions *options = _encoderItem.filters;
+    NSRect r = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);
+;
+    if ((r.size.height <= 0) || (r.size.width <= 0)) {
+        NSBeep();
+        return;
+    }
+    NSString *path = [[NSUserDefaults standardUserDefaults] objectForKey:SLHPreferencesMPVFilePathKey];
+    if (!path) {
+        path = @"/usr/local/bin/mpv";
+    }
+    char *cmd;
+    asprintf(&cmd,
+             "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
+             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=+%.3f \"%s\" &",
+             path.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.interval.start, _encoderItem.mediaItem.filePath.UTF8String);
+    system(cmd);
+    free(cmd);
 }
 
 - (IBAction)detectCropArea:(id)sender {
