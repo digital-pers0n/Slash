@@ -11,6 +11,7 @@
 @interface SLHEncoderItemOptions : NSObject <NSCopying>
 @property NSString *codecName;
 
+@property BOOL scale;
 @property NSUInteger videoWidth;
 @property NSUInteger videoHeight;
 
