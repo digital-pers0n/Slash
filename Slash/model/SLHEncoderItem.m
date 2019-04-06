@@ -126,15 +126,15 @@
     if (!codecName) { // Audio only?
         codecName = _mediaItem.tracks[0].codecName;
     }
-    NSString *source = [NSString stringWithFormat:@"%@: %@, %.0fx%.0f, %lukb, %lukbs, %.3fs", _mediaItem.filePath, codecName, vSize.width, vSize.height, _mediaItem.fileSize / 1024, _mediaItem.bitRate / 1024, _mediaItem.duration];
+    NSString *source = [NSString stringWithFormat:@"%@\n:: %@, %.0fx%.0f, %lukb, %lukbs, %.3fs", _mediaItem.filePath, codecName, vSize.width, vSize.height, _mediaItem.fileSize / 1024, _mediaItem.bitRate / 1024, _mediaItem.duration];
     
     // Output file
     double duration = _interval.end - _interval.start;
     NSUInteger bitRate = _videoOptions.bitRate + _audioOptions.bitRate;
     NSUInteger estimatedSize = (bitRate * duration / 8192) * 1024; // since bitrate in kbps multiply by 1024
-    NSString *output = [NSString stringWithFormat:@"%@: %@, %lux%lu, %lukb, %lukbs, %.3fs", _outputPath, _videoOptions.codecName,  _videoOptions.videoWidth, _videoOptions.videoHeight, estimatedSize, bitRate, duration];
+    NSString *output = [NSString stringWithFormat:@"%@\n:: %@, %lux%lu, %lukb, %lukbs, %.3fs", _outputPath, _videoOptions.codecName,  _videoOptions.videoWidth, _videoOptions.videoHeight, estimatedSize, bitRate, duration];
     
-    NSString *result = [NSString stringWithFormat:@"Output:\n%@\n"
+    NSString *result = [NSString stringWithFormat:@"Output:\n%@\n\n"
                         @"Source:\n%@", output, source];
     
     return result;
