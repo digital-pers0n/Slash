@@ -52,6 +52,8 @@ typedef struct time_interval {
 
 @property NSInteger tag;
 
+@property NSArray <NSArray *> *encoderArguments;
+
 /* Cocoa Bindings */
 @property double intervalStart;
 @property double intervalEnd;
