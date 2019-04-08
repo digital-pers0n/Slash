@@ -124,13 +124,7 @@ int prc_close(Process *p) {
 int prc_kill(Process *p) {
     
     if (prc_pid(p) > 0) {
-        
-        /* TODO: use kill() function instead */
-        char *pkill;
-        asprintf(&pkill, "pkill -9 -P %i", prc_pid(p));
-        system(pkill);
-        free(pkill);
-        
+        kill(prc_pid(p), SIGKILL);
         
         /* disassociate file streams */
         if (fclose(prc_stdout(p)) == EOF || fclose(prc_stderr(p)) == EOF) {
