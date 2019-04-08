@@ -9,6 +9,7 @@
 #include "slh_encoder.h"
 #include "slh_util.h"
 #include <stdlib.h>
+#include <signal.h>
 #include <dispatch/dispatch.h>
 
 #pragma mark - Init
@@ -89,6 +90,15 @@ int encoder_start(Encoder *enc, encoder_callback_f func, void *ctx) {
 int encoder_stop(Encoder *enc) {
     if (prc_pid(enc->proc) > 0) {
         return prc_kill(enc->proc);
+    }
+    return -1;
+}
+
+int encoder_pause(Encoder *enc, bool value) {
+    pid_t pid = prc_pid(enc->proc);
+    if (pid > 0) {
+        int signal = (value) ? SIGSTOP : SIGCONT;
+        return kill(pid, signal);
     }
     return -1;
 }

@@ -53,4 +53,13 @@ int encoder_start(Encoder *enc, encoder_callback_f func, void *ctx);
  */
 int encoder_stop(Encoder *enc);
 
+/**
+ * Pause or resume the encoder.
+ *
+ * @param value YES pause the encoding process, NO resume it. 
+ *
+ * @return 0 on success, -1 if error occurs.
+ */
+int encoder_pause(Encoder *enc, bool value);
+
 #endif /* slh_encoder_h */
