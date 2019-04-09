@@ -47,7 +47,51 @@ static void encoder_read_output(FILE *fp, encoder_callback_f func, void *ctx) {
     free(buffer);
 }
 
-int encoder_start(Encoder *enc, encoder_callback_f func, void *ctx) {
+int encoder_start(Encoder *enc, encoder_callback_f out_f, encoder_exit_f exit_f, void *ctx) {
+    if (prc_does_exist(enc->proc) == 0) {
+        fprintf(stderr, "%s: encoding in progress\n", __func__);
+        return -1;
+    }
+    
+    if (prc_launch(enc->proc) != 0) {
+        fprintf(stderr, "%s: failed to start encoding\n", __func__);
+        return -1;
+    }
+    
+    dispatch_queue_t gq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_group_async(enc->gr, gq, ^{
+        
+        dispatch_group_enter(enc->gr);
+        
+        dispatch_group_async(enc->gr, gq, ^ {
+            
+            dispatch_group_enter(enc->gr);
+            encoder_read_output(prc_stdout(enc->proc), out_f, ctx);
+            dispatch_group_leave(enc->gr);
+            
+        });
+            
+        encoder_read_output(prc_stderr(enc->proc), out_f, ctx);
+        
+        int exit_code = -1;
+        if (prc_pid(enc->proc) > 0) { // otherwise the process was previously killed by the encoder_stop() function
+            
+            exit_code = prc_close(enc->proc);
+        }
+        if (exit_f) {
+            exit_f(ctx, exit_code);
+        }
+        
+        dispatch_group_leave(enc->gr);
+        
+    });
+    
+    dispatch_release(gq);
+    return 0;
+}
+
+int encoder_start_old(Encoder *enc, encoder_callback_f func, void *ctx) {
     if (prc_does_exist(enc->proc) == 0) {
         fprintf(stderr, "%s: encoding in progress\n", __func__);
         return -1;

@@ -13,6 +13,7 @@
 #include "slh_process.h"
 
 typedef void (*encoder_callback_f)(char *data, void *context);
+typedef void (*encoder_exit_f)(void *context, int exit_code);
 
 typedef struct _Encoder {
     Process *proc;
@@ -38,13 +39,17 @@ void encoder_destroy(Encoder *enc);
 /**
  * Start encoding.
  *
- * @param func Optional user-defined funciton.
+ * @param output Pointer to a function that can be used to read message log of the encoder. 
+ *               This parameter can be NULL. 
+ *
+ * @param exit Pointer to a function that will be called when the encoding process is finished. 
+ *             It's an optional argument.
  *
  * @param ctx Optional pointier to a user-defined context.
  *
  * @return 0 on success, -1 otherwise.
  */
-int encoder_start(Encoder *enc, encoder_callback_f func, void *ctx);
+int encoder_start(Encoder *enc, encoder_callback_f output, encoder_exit_f exit, void *ctx);
 
 /**
  * Stop encoding.
