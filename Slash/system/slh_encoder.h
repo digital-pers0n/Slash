@@ -37,10 +37,20 @@ int encoder_init(Encoder *enc, char *const *args);
 void encoder_destroy(Encoder *enc);
 
 /**
+ * Set encoding arguments.
+ *
+ * @param args a NULL-terminated array of pointers to NULL-terminated strings
+ *             args[0] must contain file path to ffmpeg executable.
+ *             This parameter cannot be NULL.
+ */
+
+void encoder_set_args(Encoder *enc, char *const *args);
+
+/**
  * Start encoding.
  *
  * @param output Pointer to a function that can be used to read message log of the encoder. 
- *               This parameter can be NULL. 
+ *               This parameter cannot be NULL. 
  *
  * @param exit Pointer to a function that will be called when the encoding process is finished. 
  *             It's an optional argument.

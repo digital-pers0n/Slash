@@ -23,6 +23,10 @@ int encoder_init(Encoder *enc, char *const *args) {
     return 0;
 }
 
+void encoder_set_args(Encoder *enc, char *const *args) {
+    prc_set_args(enc->proc, args);
+}
+
 #pragma mark - Destroy
 
 void encoder_destroy(Encoder *enc) {
