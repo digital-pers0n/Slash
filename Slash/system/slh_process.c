@@ -153,4 +153,12 @@ int prc_does_exist(Process *p) {
     return kill(prc_pid(p), 0);
 }
 
+#pragma mark - Set arguments
+
+void prc_set_args(Process *p, char *const *args) {
+    args_free(prc_args(p));
+    p->args = args_init((args_len(args) + 1));
+    args_cpy(p->args, args);
+}
+
 

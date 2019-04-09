@@ -53,6 +53,8 @@ static inline pid_t prc_pid(Process *p) {
     return p->pid;
 }
 
+void prc_set_args(Process *p, char *const *args);
+
 static inline char **prc_args(Process *p) {
     return p->args;
 }
