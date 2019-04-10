@@ -16,6 +16,5 @@
 @property SLHEncoderItem *encoderItem;
 @property (readonly) NSString *formatName;
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab;
-- (NSString *)stringRepresentation; // represent all settings as a string suitable for encoding
 
 @end
