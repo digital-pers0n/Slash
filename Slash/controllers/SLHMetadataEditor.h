@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable) IBOutlet id <SLHMetadataEditorDelegate> delegate;
 - (void)reloadData;
+@property (readonly) BOOL hasWindow;
 
 @end
 

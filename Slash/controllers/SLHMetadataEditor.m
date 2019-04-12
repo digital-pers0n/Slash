@@ -71,4 +71,14 @@ static inline NSString * _getValue(NSDictionary *dict, NSString *key) {
     [self _endEditing];
 }
 
+#pragma mark - NSWindowDelegate
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    _hasWindow = YES;
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    _hasWindow = NO;
+}
+
 @end

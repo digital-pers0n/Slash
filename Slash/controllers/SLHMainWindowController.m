@@ -93,6 +93,9 @@
     SLHEncoderBaseFormat *fmt = _formats[tag];
     fmt.encoderItem = item;
     _encoderSettings.delegate = fmt;
+    if (_metadataEditor.hasWindow) {
+        [_metadataEditor reloadData];
+    }
 }
 
 #pragma mark - SLHMetadataEditor Delegate
