@@ -21,7 +21,7 @@ NSString *const SLHPreferencesDefaultOutputPath     = @"~/Movies/";
 
 NSString *const SLHMetadataIdentifierArtist         = @"artist";
 NSString *const SLHMetadataIdentifierTitle          = @"title";
-NSString *const SLHMetadataIdentifierDate           = @"data";
+NSString *const SLHMetadataIdentifierDate           = @"date";
 NSString *const SLHMetadataIdentifierComment        = @"comment";
 
 #pragma mark - SLHPlayer
@@ -56,7 +56,7 @@ NSString *const SLHEncoderVideoVP9RowMTKey        = @"-row-mt";
 NSString *const SLHEncoderVideoVP9TileColumnsKey  = @"-tile-columns";
 NSString *const SLHEncoderVideoVP9FrameParallelKey    = @"-frame-parallel";
 
-NSString *const SLHEncoderAudioCodecKey           = @"-a:c";
+NSString *const SLHEncoderAudioCodecKey           = @"-c:a";
 NSString *const SLHEncoderAudioBitrateKey         = @"-b:a";
 NSString *const SLHEncoderAudioQualityKey         = @"-aq";
 NSString *const SLHEncoderAudioFilterKey          = @"-af";
@@ -66,7 +66,7 @@ NSString *const SLHEncoderAudioChannelsKey        = @"-ac";
 #pragma mark - SLHEncoderItem Filter Keys
 
 NSString *const SLHEncoderVideoFilterCropKey           = @"crop";
-NSString *const SLHEncoderVideoFilterDeinterlaceKey    = @"yadiff";
+NSString *const SLHEncoderVideoFilterDeinterlaceKey    = @"yadif";
 NSString *const SLHEncoderAudioFilterFadeInKey         = @"afade=t=in";
 NSString *const SLHEncoderAudioFilterFadeOutKey        = @"afade=t=out";
 NSString *const SLHEncoderAudioFilterPreampKey         = @"acompressor";
