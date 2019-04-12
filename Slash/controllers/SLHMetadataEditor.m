@@ -49,10 +49,10 @@ static inline NSString * _getValue(NSDictionary *dict, NSString *key) {
 }
 
 - (void)_endEditing {
-    NSDictionary *data = @{ SLHMetadataIdentifierArtist: _artistTextView.string,
-                            SLHMetadataIdentifierTitle: _titleTextView.string,
-                            SLHMetadataIdentifierDate: _dateTextField.stringValue,
-                            SLHMetadataIdentifierComment: _commentTextView.string};
+    NSDictionary *data = @{ SLHMetadataIdentifierArtist: _artistTextView.string.copy,
+                            SLHMetadataIdentifierTitle: _titleTextView.string.copy,
+                            SLHMetadataIdentifierDate: _dateTextField.stringValue.copy,
+                            SLHMetadataIdentifierComment: _commentTextView.string.copy};
     [_delegate metadataEditor:self didEndEditing:data];
 }
 
