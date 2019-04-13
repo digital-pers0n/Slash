@@ -17,4 +17,6 @@
 @property (readonly) NSString *formatName;
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab;
 
+@property (readonly) NSArray <NSArray *> *arguments;
+
 @end
