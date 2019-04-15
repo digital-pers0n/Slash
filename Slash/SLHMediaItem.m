@@ -104,6 +104,21 @@ static inline NSString *_cstr2nsstr(const char *str) {
                                          strtod(stream_get_value(stream, kMediaStreamHeightKey), 0));
             track.pixelFormat = _cstr2nsstr(stream_get_value(stream, kMediaStreamPixFormatKey));
             
+            // Get frame rate
+            char *fps = stream_get_value(stream, kMediaStreamFramerateKey);
+            if (fps) {
+                //puts(fps);
+                char *div;
+                long fps_numerator = strtol(fps, &div, 10);
+                long fps_denominator = 1;
+                if (*div == '/') {
+                    fps_denominator = strtol(div + 1, 0, 10);
+                }
+                track.frameRate = fps_numerator / (double)fps_denominator;
+                //printf("fps: %.1f\n", track.frameRate);
+                
+            }
+            
         } else if (stream_codec_type(stream) == CodecTypeAudio) {
             track.numberOfChannels = atoi(stream_get_value(stream, kMediaStreamChannelsKey));
             track.channelLayout = _cstr2nsstr(stream_get_value(stream, kMediaStreamChannelLayoutKey));
