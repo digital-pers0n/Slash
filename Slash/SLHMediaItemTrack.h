@@ -56,6 +56,11 @@ typedef NS_ENUM(NSUInteger, SLHMediaType) {
  */
 @property NSUInteger bitRate;
 
+/**
+ Frame rate of the track.
+ */
+@property double frameRate;
+
 @property NSUInteger numberOfChannels;
 @property NSString *channelLayout;
 @property NSString *sampleRate;
