@@ -27,6 +27,7 @@ extern const char *kMediaStreamMaxBitrateKey;           // stream max bit rate
 extern const char *kMediaStreamSampleRateKey;           // audio: sample rate
 extern const char *kMediaStreamChannelsKey;             // audio: number of channels
 extern const char *kMediaStreamChannelLayoutKey;        // audio: channel layout
+extern const char *kMediaStreamFramerateKey;
 
 /* Metadata Keys */
 

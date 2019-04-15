@@ -27,6 +27,7 @@ const char *kMediaStreamProfileKey       = "profile";
 const char *kMediaStreamDurationKey      = "duration";
 const char *kMediaStreamBitRateKey       = "bit_rate";
 const char *kMediaStreamMaxBitrateKey    = "max_bit_rate";
+const char *kMediaStreamFramerateKey     = "r_frame_rate";
 
 const char *kMediaStreamSampleRateKey    = "sample_rate";
 const char *kMediaStreamChannelsKey      = "channels";
