@@ -61,6 +61,17 @@ typedef void (^respond_block)(SLHEncoderState);
 
 #pragma mark - Private
 
+static inline char **_nsarray2carray(NSArray <NSString *> *array) {
+    size_t count = array.count;
+    char **result = malloc(sizeof(char *) * (count + 1));
+    size_t i = 0;
+    for (NSString *str in array) {
+        result[i++] = strdup(str.UTF8String);
+    }
+    result[i] = NULL;
+    return result;
+}
+
 static void _encoder_cb(char *data, void *ctx) {
     
 }
