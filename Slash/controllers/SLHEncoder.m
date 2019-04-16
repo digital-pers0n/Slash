@@ -13,6 +13,7 @@ typedef void (^respond_block)(SLHEncoderState);
 @interface SLHEncoder () {
     respond_block _block;
     NSError *_error;
+    IBOutlet NSTextField *_statusLineTextField;
 }
 
 @end
@@ -36,6 +37,14 @@ typedef void (^respond_block)(SLHEncoderState);
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+#pragma mark - IBActions
+
+- (IBAction)startEncoding:(id)sender {
+}
+
+- (IBAction)stopEncoding:(id)sender {
 }
 
 @end
