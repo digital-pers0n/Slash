@@ -8,11 +8,29 @@
 
 #import "SLHEncoder.h"
 
-@interface SLHEncoder ()
+typedef void (^respond_block)(SLHEncoderState);
+
+@interface SLHEncoder () {
+    respond_block _block;
+    NSError *_error;
+}
 
 @end
 
 @implementation SLHEncoder
+
+- (void)encodeItem:(SLHEncoderItem *)item usingBlock:(void (^)(SLHEncoderState))block {
+    _block = block;
+    
+}
+
+- (NSString *)encodingLog {
+    return @"";
+}
+
+- (NSError *)error {
+    return _error;
+}
 
 - (void)windowDidLoad {
     [super windowDidLoad];

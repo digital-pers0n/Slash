@@ -8,6 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SLHEncoderItem;
+typedef NS_ENUM(NSUInteger, SLHEncoderState) {
+    SLHEncoderStateSuccess,
+    SLHEncoderStateFailed,
+    SLHEncoderStateCanceled,
+};
 @interface SLHEncoder : NSWindowController
+
+- (void)encodeItem:(SLHEncoderItem *)item usingBlock:(void (^)(SLHEncoderState state))block;
+
+/**
+ Output of the ffmpeg command
+ */
+- (NSString *)encodingLog;
+
+- (NSError *)error;
 
 @end
