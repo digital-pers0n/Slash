@@ -7,6 +7,8 @@
 //
 
 #import "SLHEncoder.h"
+#import "SLHEncoderItem.h"
+#import "slh_encoder.h"
 
 typedef void (^respond_block)(SLHEncoderState);
 
@@ -14,6 +16,8 @@ typedef void (^respond_block)(SLHEncoderState);
     respond_block _block;
     NSError *_error;
     IBOutlet NSTextField *_statusLineTextField;
+    
+    Encoder *_enc;
 }
 
 @end
@@ -35,8 +39,16 @@ typedef void (^respond_block)(SLHEncoderState);
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    _enc = malloc(sizeof(Encoder));
+    encoder_init(_enc, (char *[]) {"", NULL});
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+- (void)dealloc {
+    if (_enc) {
+        encoder_destroy(_enc);
+        free(_enc);
+    }
 }
 
 #pragma mark - IBActions
@@ -45,6 +57,16 @@ typedef void (^respond_block)(SLHEncoderState);
 }
 
 - (IBAction)stopEncoding:(id)sender {
+}
+
+#pragma mark - Private
+
+static void _encoder_cb(char *data, void *ctx) {
+    
+}
+
+static void _encoder_exit_cb(void *ctx, int exit_code) {
+    
 }
 
 @end
