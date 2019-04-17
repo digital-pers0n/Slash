@@ -30,7 +30,7 @@ static inline ListNode *list_node_next(ListNode *n) { return n->next; }
 
 typedef struct _List {
     size_t size;
-    void (*destroy)(void *data);    // data destructor
+    void (*destroy_f)(void *data);    // data destructor
     
     ListNode *head;
     ListNode *tail;
