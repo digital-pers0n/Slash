@@ -72,3 +72,37 @@ int list_insert_next(List *l, ListNode *node, const void *data) {
     l->size++;
     return 0;
 }
+
+
+#pragma mark - remove
+
+int list_remove_next(List *l, ListNode *node, void **data) {
+    if (list_size(l) == 0) { // the list must not be empty
+        return -1;
+    }
+    
+    ListNode *old_node;
+    if (!node) { // remove from the head of the list
+        *data = l->head->data;
+        old_node = l->head;
+        l->head = l->head->next;
+        if (list_size(l) == 1) { // remove the last node
+            l->tail = NULL;
+        }
+    } else {
+        if (!node->next) { // cannot remove from the tail of the list
+            return -1;
+        }
+        *data = node->next->data;
+        old_node = node->next;
+        node->next = node->next->next;
+        
+        if (!node->next) { // assign a new tail
+            l->tail = node;
+        }
+    }
+    
+    free(old_node);
+    l->size--;
+    return 0;
+}
