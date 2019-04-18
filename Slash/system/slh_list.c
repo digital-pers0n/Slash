@@ -44,3 +44,31 @@ void list_destroy(List *l) {
         _list_free_data(l);
     }
 }
+
+#pragma mark - insert
+
+int list_insert_next(List *l, ListNode *node, const void *data) {
+    ListNode *new_node = malloc(sizeof(ListNode));
+    if (!new_node) {
+        return -1;
+    }
+    
+    new_node->data = (void *)data;
+    
+    if (!node) { // insert at the head of the list
+        if (list_size(l) == 0) {
+            l->tail = new_node;
+        }
+        new_node->next = l->head;
+        l->head = new_node;
+    } else {
+        if (!node->next) {
+            l->tail = new_node;
+        }
+        new_node->next = node->next;
+        node->next = new_node;
+    }
+    
+    l->size++;
+    return 0;
+}
