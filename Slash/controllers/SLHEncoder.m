@@ -15,11 +15,18 @@ typedef void (^respond_block)(SLHEncoderState);
 @interface SLHEncoder () {
     respond_block _block;
     NSError *_error;
+    SLHEncoderItem *_encoderItem;
+    BOOL _inProgress;
+    BOOL _paused;
+    
     IBOutlet NSTextField *_statusLineTextField;
     
     Encoder *_enc;
     Queue *_queue;
 }
+
+@property BOOL inProgress;
+@property double progressBarMaxValue;
 
 @end
 
