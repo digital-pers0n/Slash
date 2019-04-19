@@ -20,6 +20,7 @@ typedef void (^respond_block)(SLHEncoderState);
     BOOL _paused;
     
     IBOutlet NSTextField *_statusLineTextField;
+    IBOutlet NSProgressIndicator *_progressBar;
     
     Encoder *_enc;
     Queue *_queue;
