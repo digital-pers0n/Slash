@@ -18,11 +18,25 @@ typedef void (^respond_block)(SLHEncoderState);
     IBOutlet NSTextField *_statusLineTextField;
     
     Encoder *_enc;
+    Queue *_queue;
 }
 
 @end
 
 @implementation SLHEncoder
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _enc = malloc(sizeof(Encoder));
+        encoder_init(_enc, (char *[]) {"", NULL});
+        
+        _queue = malloc(sizeof(Queue));
+        queue_init(_queue, (void *)args_free);
+    }
+    return self;
+}
 
 - (void)encodeItem:(SLHEncoderItem *)item usingBlock:(void (^)(SLHEncoderState))block {
     _block = block;
@@ -39,8 +53,6 @@ typedef void (^respond_block)(SLHEncoderState);
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    _enc = malloc(sizeof(Encoder));
-    encoder_init(_enc, (char *[]) {"", NULL});
     
 }
 
@@ -48,6 +60,11 @@ typedef void (^respond_block)(SLHEncoderState);
     if (_enc) {
         encoder_destroy(_enc);
         free(_enc);
+    }
+    
+    if (_queue) {
+        queue_destroy(_queue);
+        free(_queue);
     }
 }
 
