@@ -37,6 +37,9 @@
                     <progressIndicator wantsLayer="YES" maxValue="100" style="bar" id="aXy-ad-O8R">
                         <rect key="frame" x="20" y="35" width="367" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <binding destination="-2" name="maxValue" keyPath="self.progressBarMaxValue" id="u2T-NB-5a0"/>
+                        </connections>
                     </progressIndicator>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Kbb-Ka-aaQ">
                         <rect key="frame" x="18" y="20" width="424" height="14"/>
