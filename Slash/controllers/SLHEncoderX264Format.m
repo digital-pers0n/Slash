@@ -8,9 +8,33 @@
 
 #import "SLHEncoderX264Format.h"
 #import "SLHEncoderX264Options.h"
+#import "SLHPreferences.h"
 #import "SLHEncoderItem.h"
 #import "SLHMediaItem.h"
 #import "SLHFiltersController.h"
+#import "SLHEncoderArgument.h"
+
+extern NSString *const SLHEncoderMediaMapKey;
+extern NSString *const SLHEncoderMediaContainerKey;
+extern NSString *const SLHEncoderMediaStartTimeKey;
+extern NSString *const SLHEncoderMediaEndTimeKey;
+extern NSString *const SLHEncoderVideoBitrateKey;
+extern NSString *const SLHEncoderVideoMaxBitrateKey;
+extern NSString *const SLHEncoderVideoCRFBitrateKey;
+extern NSString *const SLHEncoderVideoCodecKey;
+extern NSString *const SLHEncoderVideoFiltersKey;
+extern NSString *const SLHEncoderVideoScaleSizeKey;
+extern NSString *const SLHEncoderVideoH264ProfileKey;
+extern NSString *const SLHEncoderVideoH264LevelKey;
+extern NSString *const SLHEncoderVideoH264PresetKey;
+extern NSString *const SLHEncoderVideoH264TuneKey;
+extern NSString *const SLHEncoderAudioCodecKey;
+extern NSString *const SLHEncoderAudioBitrateKey;
+extern NSString *const SLHEncoderAudioQualityKey;
+extern NSString *const SLHEncoderAudioFilterKey;
+extern NSString *const SLHEncoderAudioSampleRateKey;
+extern NSString *const SLHEncoderAudioChannelsKey;
+extern NSString *const SLHEncoderAudioNoAudioKey;
 
 typedef NS_ENUM(NSUInteger, SLHX264AudioSampleRateType) {
     SLHX264AudioSampleRate32000 = 32000,
