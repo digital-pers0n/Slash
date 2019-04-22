@@ -36,10 +36,7 @@ typedef struct time_interval {
 @property NSInteger subtitlesStreamIndex;
 
 @property SLHEncoderItemOptions *videoOptions;
-@property NSMutableDictionary *videoFilters;
-
 @property SLHEncoderItemOptions *audioOptions;
-@property NSMutableDictionary *audioFilters;
 
 @property SLHFilterOptions *filters;
 
