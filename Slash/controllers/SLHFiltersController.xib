@@ -8,9 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHFiltersController">
             <connections>
-                <outlet property="_audioFadeInTextField" destination="6fi-yb-FLy" id="IbB-3E-kYV"/>
-                <outlet property="_audioFadeOutTextField" destination="mZM-4I-whp" id="5dP-xb-wen"/>
-                <outlet property="_audioPreampTextField" destination="1mc-jf-qpl" id="9h9-Uv-efe"/>
                 <outlet property="_cropEditor" destination="uAw-yk-DxB" id="bNo-Ib-Ktn"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>

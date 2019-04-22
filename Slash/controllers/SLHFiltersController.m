@@ -28,11 +28,6 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 
 @interface SLHFiltersController () {
     
-    IBOutlet NSTextField *_cropTextField;
-    IBOutlet NSTextField *_audioFadeInTextField;
-    IBOutlet NSTextField *_audioFadeOutTextField;
-    IBOutlet NSTextField *_audioPreampTextField;
-    
     SLHEncoderItem *_encoderItem;
     
     IBOutlet SLHCropEditor *_cropEditor;
