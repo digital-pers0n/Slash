@@ -39,6 +39,8 @@ NSString *const SLHEncoderMediaContainerKey       = @"-f";
 NSString *const SLHEncoderMediaStartTimeKey       = @"-ss";
 NSString *const SLHEncoderMediaEndTimeKey         = @"-t";
 NSString *const SLHEncoderMediaNoSubtitlesKey     = @"-sn";
+NSString *const SLHEncoderMediaNoAudioKey         = @"-an";
+NSString *const SLHEncoderMediaNoVideoKey         = @"-vn";
 
 NSString *const SLHEncoderVideoBitrateKey         = @"-b:v";
 NSString *const SLHEncoderVideoMaxBitrateKey      = @"-maxrate";
@@ -46,7 +48,6 @@ NSString *const SLHEncoderVideoCRFBitrateKey      = @"-crf";
 NSString *const SLHEncoderVideoCodecKey           = @"-c:v";
 NSString *const SLHEncoderVideoFiltersKey         = @"-vf";
 NSString *const SLHEncoderVideoScaleSizeKey       = @"-s";
-NSString *const SLHEncoderVideoNoVideoKey         = @"-vn";
 
 NSString *const SLHEncoderVideoH264ProfileKey     = @"-profile:v";
 NSString *const SLHEncoderVideoH264LevelKey       = @"-level:v";
@@ -66,7 +67,6 @@ NSString *const SLHEncoderAudioQualityKey         = @"-aq";
 NSString *const SLHEncoderAudioFiltersKey         = @"-af";
 NSString *const SLHEncoderAudioSampleRateKey      = @"-ar";
 NSString *const SLHEncoderAudioChannelsKey        = @"-ac";
-NSString *const SLHEncoderAudioNoAudioKey         = @"-an";
 
 #pragma mark - SLHEncoderItem Filter Keys
 

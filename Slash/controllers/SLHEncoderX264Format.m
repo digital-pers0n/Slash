@@ -18,6 +18,7 @@ extern NSString *const SLHEncoderMediaMapKey;
 extern NSString *const SLHEncoderMediaContainerKey;
 extern NSString *const SLHEncoderMediaStartTimeKey;
 extern NSString *const SLHEncoderMediaEndTimeKey;
+extern NSString *const SLHEncoderMediaNoSubtitlesKey;
 extern NSString *const SLHEncoderVideoBitrateKey;
 extern NSString *const SLHEncoderVideoMaxBitrateKey;
 extern NSString *const SLHEncoderVideoCRFBitrateKey;
@@ -28,13 +29,14 @@ extern NSString *const SLHEncoderVideoH264ProfileKey;
 extern NSString *const SLHEncoderVideoH264LevelKey;
 extern NSString *const SLHEncoderVideoH264PresetKey;
 extern NSString *const SLHEncoderVideoH264TuneKey;
+extern NSString *const SLHEncoderMediaNoVideoKey ;
 extern NSString *const SLHEncoderAudioCodecKey;
 extern NSString *const SLHEncoderAudioBitrateKey;
 extern NSString *const SLHEncoderAudioQualityKey;
 extern NSString *const SLHEncoderAudioFilterKey;
 extern NSString *const SLHEncoderAudioSampleRateKey;
 extern NSString *const SLHEncoderAudioChannelsKey;
-extern NSString *const SLHEncoderAudioNoAudioKey;
+extern NSString *const SLHEncoderMediaNoAudioKey ;
 
 typedef NS_ENUM(NSUInteger, SLHX264AudioSampleRateType) {
     SLHX264AudioSampleRate32000 = 32000,
