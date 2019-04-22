@@ -14,5 +14,6 @@
 
 + (instancetype)filtersController;
 @property SLHEncoderItem *encoderItem;
+- (NSArray *)arguments;
 
 @end

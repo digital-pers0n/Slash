@@ -14,6 +14,9 @@
 
 extern NSString *const SLHPreferencesMPVFilePathKey;
 
+extern NSString *const SLHEncoderVideoFiltersKey;
+extern NSString *const SLHEncoderAudioFiltersKey;
+
 extern NSString *const SLHEncoderVideoFilterCropKey;
 extern NSString *const SLHEncoderVideoFilterDeinterlaceKey;
 extern NSString *const SLHEncoderAudioFilterFadeInKey;
@@ -55,6 +58,89 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+#pragma mark - Methods
+
+static inline NSString *_cropString(SLHFilterOptions *opts) {
+    return [NSString stringWithFormat:_videoCropFmt, opts.videoCropHeight, opts.videoCropWidth, opts.videoCropX, opts.videoCropY];
+}
+
+static inline NSString *_fadeInString(double val) {
+    return [NSString stringWithFormat:_audioFadeInFmt, val];
+}
+
+static inline NSString *_fadeOutString(double val, double stop) {
+    return [NSString stringWithFormat:_audioFadeOutFmt, val, stop];
+}
+
+static inline NSString *_preampString(NSInteger val) {
+    return [NSString stringWithFormat:_audioPreampFmt, val];
+}
+
+- (NSArray *)arguments {
+    NSMutableArray *args = [NSMutableArray new];
+    SLHFilterOptions *opts = _encoderItem.filters;
+    
+    // Video Filters
+    
+    if (opts.enableVideoFilters) {
+        NSMutableString *str = nil;
+        if (opts.videoCropX || opts.videoCropY || opts.videoCropWidth || opts.videoCropHeight) {
+            str = [NSMutableString new];
+            [str appendString:_cropString(opts)];
+        }
+        
+        if (opts.videoDeinterlace) {
+            if (str) {
+                [str appendString:@","];
+            } else {
+                str = [NSMutableString new];
+            }
+            [str appendString:SLHEncoderAudioFilterFadeInKey];
+        }
+        
+        if (str) {
+            [args addObject:SLHEncoderVideoFiltersKey];
+            [args addObject:str];
+        }
+    }
+    
+    // Audio Filters
+    
+    if (opts.enableAudioFilters) {
+        NSMutableString *str = nil;
+        if (opts.audioFadeIn > 0) {
+            str = [NSMutableString new];
+            [str appendString:_fadeInString(opts.audioFadeIn)];
+        }
+        
+        if (opts.audioFadeOut > 0) {
+            if (str) {
+                [str appendString:@","];
+            } else {
+                str = [NSMutableString new];
+            }
+            double val = opts.audioFadeOut;
+            double stop = _encoderItem.interval.end - _encoderItem.interval.start - val;
+            [str appendString:_fadeOutString(val, stop)];
+        }
+        
+        if (opts.audioPreamp) {
+            if (str) {
+                [str appendString:@","];
+            } else {
+                str = [NSMutableString new];
+            }
+            [str appendString:_preampString(opts.audioPreamp)];
+        }
+        
+        if (str) {
+            [args addObject:SLHEncoderAudioFiltersKey];
+            [args addObject:str];
+        }
+    }
+    return args;
 }
 
 #pragma mark - Properties
