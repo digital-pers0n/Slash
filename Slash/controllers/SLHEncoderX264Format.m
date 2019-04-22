@@ -469,7 +469,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 - (NSArray *)_videoArguments {
     SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
     NSMutableArray *args = [NSMutableArray new];
-    NSString *presetType, *profileType, *levelType, *containerType, *tuneType, *scaleVideo;
+    NSString *value;
     
     switch (options.encodingType) {
         case SLHX264EncodingSinglePass:
@@ -493,142 +493,142 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     
     switch (options.presetType) {
         case SLHX264PresetUltrafast:
-            presetType = @"ultrafast";
+            value = @"ultrafast";
             break;
         case  SLHX264PresetSuperfast:
-            presetType = @"superfast";
+            value = @"superfast";
             break;
         case SLHX264PresetVeryfast:
-            presetType = @"veryfast";
+            value = @"veryfast";
             break;
         case SLHX264PresetFaster:
-            presetType = @"faster";
+            value = @"faster";
             break;
         case SLHX264PresetFast:
-            presetType = @"fast";
+            value = @"fast";
             break;
         case SLHX264PresetMedium:
-            presetType = @"medium";
+            value = @"medium";
             break;
         case SLHX264PresetSlow:
-            presetType = @"slow";
+            value = @"slow";
             break;
         case SLHX264PresetSlower:
-            presetType = @"slower";
+            value = @"slower";
             break;
         case SLHX264PresetVeryslow:
-            presetType = @"veryslow";
+            value = @"veryslow";
             break;
         case SLHX264PresetPlacebo:
-            presetType = @"placebo";
+            value = @"placebo";
             break;
         case SLHX264PresetNone:
         default:
-            presetType = nil;
+            value = nil;
             break;
     }
-    if (presetType) {
+    if (value) {
         [args addObject:SLHEncoderVideoH264PresetKey];
-        [args addObject:presetType];
+        [args addObject:value];
     }
     
     switch (options.profileType) {
         case SLHX264ProfileBaseline:
-            profileType = @"baseline";
+            value = @"baseline";
             break;
         case SLHX264ProfileMain:
-            profileType = @"main";
+            value = @"main";
             break;
         case SLHX264ProfileHigh:
-            profileType = @"high";
+            value = @"high";
             break;
         case SLHX264ProfileNone:
         default:
-            profileType = nil;
+            value = nil;
             break;
     }
-    if (profileType) {
+    if (value) {
         [args addObject:SLHEncoderVideoH264ProfileKey];
-        [args addObject:presetType];
+        [args addObject:value];
     }
     
     switch (options.levelType) {
         case SLHX264Level10:
-            levelType = @"1.0";
+            value = @"1.0";
             break;
         case SLHX264Level11:
-            levelType = @"1.1";
+            value = @"1.1";
             break;
         case SLHX264Level12:
-            levelType = @"1.2";
+            value = @"1.2";
             break;
         case SLHX264Level13:
-            levelType = @"1.3";
+            value = @"1.3";
             break;
         case SLHX264Level20:
-            levelType = @"2.0";
+            value = @"2.0";
             break;
         case SLHX264Level21:
-            levelType = @"2.1";
+            value = @"2.1";
             break;
         case SLHX264Level22:
-            levelType = @"2.2";
+            value = @"2.2";
             break;
         case SLHX264Level30:
-            levelType = @"3.0";
+            value = @"3.0";
             break;
         case SLHX264Level31:
-            levelType = @"3.1";
+            value = @"3.1";
             break;
         case SLHX264Level32:
-            levelType = @"3.2";
+            value = @"3.2";
             break;
         case SLHX264Level40:
-            levelType = @"4.0";
+            value = @"4.0";
             break;
         case SLHX264Level41:
-            levelType = @"4.1";
+            value = @"4.1";
             break;
         case SLHX264Level42:
-            levelType = @"4.2";
+            value = @"4.2";
             break;
         case SLHX264Level50:
-            levelType = @"5.0";
+            value = @"5.0";
             break;
         case SLHX264Level51:
-            levelType = @"5.1";
+            value = @"5.1";
             break;
         case SLHX264LevelNone:
         default:
-            levelType = nil;
+            value = nil;
             break;
     }
-    if (levelType) {
-        [args addObject:SLHEncoderVideoH264ProfileKey];
-        [args addObject:presetType];
+    if (value) {
+        [args addObject:SLHEncoderVideoH264LevelKey];
+        [args addObject:value];
     }
     
     switch (options.containerType) {
         case SLHX264ContainerMP4:
-            containerType = @"mp4";
+            value = @"mp4";
             break;
         case SLHX264ContainerM4V:
-            containerType = @"m4v";
+            value = @"m4v";
             break;
         case SLHX264ContainerMKV:
-            containerType = @"mkv";
+            value = @"mkv";
             break;
         case SLHX264ContainerMOV:
-            containerType = @"mov";
+            value = @"mov";
             break;
         case SLHX264ContainerNone:
         default:
-            containerType = nil;
+            value = nil;
             break;
     }
-    if (containerType) {
+    if (value) {
         [args addObject:SLHEncoderMediaContainerKey];
-        [args addObject:presetType];
+        [args addObject:value];
     }
     
     SLHX264TuneType tune = options.tuneType;
@@ -657,30 +657,30 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
             default:
                 break;
         }
-        tuneType = [NSString stringWithFormat:@"%@%@%@", tmp,
+        value = [NSString stringWithFormat:@"%@%@%@", tmp,
                     (options.fastdecode) ? @",fastdecode" : @"",
                     (options.zerolatency) ? @",zerolatency" : @""];
     } else {
         if (options.fastdecode) {
             if (options.zerolatency) {
-                tuneType = @"fastdecode,zerolatency";
+                value = @"fastdecode,zerolatency";
             } else {
-                tuneType = @"fastdecode";
+                value = @"fastdecode";
             }
         } else if (options.zerolatency) {
-            tuneType = @"zerolatency";
+            value = @"zerolatency";
         } else {
-            tuneType = nil;
+            value = nil;
         }
     }
-    if (tuneType) {
+    if (value) {
         [args addObject:SLHEncoderVideoH264TuneKey];
-        [args addObject:presetType];
+        [args addObject:value];
     }
     if (options.scale) {
-        scaleVideo = [NSString stringWithFormat:@"%lux%lu", options.videoWidth, options.videoHeight];
+        value = [NSString stringWithFormat:@"%lux%lu", options.videoWidth, options.videoHeight];
         [args addObject:SLHEncoderVideoScaleSizeKey];
-        [args addObject:presetType];
+        [args addObject:value];
     }
     return args;
 }
