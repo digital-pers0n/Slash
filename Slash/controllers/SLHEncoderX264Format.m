@@ -471,6 +471,9 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     NSMutableArray *args = [NSMutableArray new];
     NSString *value;
     
+    [args addObject:SLHEncoderVideoCodecKey];
+    [args addObject:options.codecName];
+    
     switch (options.encodingType) {
         case SLHX264EncodingSinglePass:
             [args addObject:SLHEncoderVideoBitrateKey];
