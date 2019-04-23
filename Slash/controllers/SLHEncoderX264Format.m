@@ -477,13 +477,13 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     switch (options.encodingType) {
         case SLHX264EncodingSinglePass:
             [args addObject:SLHEncoderVideoBitrateKey];
-            [args addObject:@(options.bitRate).stringValue];
+            [args addObject:@(options.bitRate * 1024).stringValue];
             break;
         case SLHX264EncodingTwoPass:
             [args addObject:SLHEncoderVideoBitrateKey];
-            [args addObject:@(options.bitRate).stringValue];
+            [args addObject:@(options.bitRate * 1024).stringValue];
             [args addObject:SLHEncoderVideoMaxBitrateKey];
-            [args addObject:@(options.maxBitrate).stringValue];
+            [args addObject:@(options.maxBitrate * 1024).stringValue];
             break;
         case SLHX264EncodingCRFSinglePass:
             [args addObject:SLHEncoderVideoCRFBitrateKey];
