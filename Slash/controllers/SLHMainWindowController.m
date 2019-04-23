@@ -350,7 +350,7 @@
         outputPath = prefs.currentOutputPath;
     }
     NSString *outputName = sourcePath.lastPathComponent.stringByDeletingPathExtension;
-    outputPath = [NSString stringWithFormat:@"%@/%@_%lu%lu.%@", outputPath, outputName, time(0), clock(), sourcePath.pathExtension];
+    outputPath = [NSString stringWithFormat:@"%@/%@_%lu%02u.%@", outputPath, outputName, time(0), arc4random_uniform(100), sourcePath.pathExtension];
     SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithMediaItem:_currentMediaItem outputPath:outputPath];
     _outputFileNameTextField.stringValue = outputPath.lastPathComponent;
     encoderItem.interval = (TimeInterval){0, _currentMediaItem.duration};
