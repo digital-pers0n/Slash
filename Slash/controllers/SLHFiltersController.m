@@ -63,7 +63,7 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 #pragma mark - Methods
 
 static inline NSString *_cropString(SLHFilterOptions *opts) {
-    return [NSString stringWithFormat:_videoCropFmt, opts.videoCropHeight, opts.videoCropWidth, opts.videoCropX, opts.videoCropY];
+    return [NSString stringWithFormat:_videoCropFmt, opts.videoCropWidth, opts.videoCropHeight, opts.videoCropX, opts.videoCropY];
 }
 
 static inline NSString *_fadeInString(double val) {
