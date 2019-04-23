@@ -97,7 +97,7 @@ static inline NSString *_preampString(NSInteger val) {
             } else {
                 str = [NSMutableString new];
             }
-            [str appendString:SLHEncoderAudioFilterFadeInKey];
+            [str appendString:SLHEncoderVideoFilterDeinterlaceKey];
         }
         
         if (str) {
