@@ -148,6 +148,49 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     }
 }
 
+- (NSArray *)arguments {
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    NSString *ffmpegPath = [defs objectForKey:SLHPreferencesFFMpegFilePathKey];
+    if (!ffmpegPath) {
+        NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
+        return nil;
+    }
+    NSMutableArray *args = @[
+                             ffmpegPath, @"-nostdin", @"-hide_banner",
+                             @"-ss", @(_encoderItem.interval.start).stringValue,
+                             @"-i", _encoderItem.mediaItem.filePath
+                             ].mutableCopy;
+    if (_encoderItem.videoStreamIndex >= 0) {
+        [args addObjectsFromArray:[self _videoArguments]];
+    } else {
+        [args addObject:SLHEncoderMediaNoVideoKey ];
+    }
+    
+    if (_encoderItem.audioStreamIndex >= 0) {
+        [args addObjectsFromArray:[self _audioArguments]];
+    } else {
+        [args addObject:SLHEncoderMediaNoAudioKey ];
+    }
+    
+    if (_encoderItem.subtitlesStreamIndex == -1) {
+        [args addObject:SLHEncoderMediaNoSubtitlesKey];
+    }
+    
+    [args addObjectsFromArray:_filters.arguments];
+    [args addObject:SLHEncoderMediaEndTimeKey];
+    [args addObject:@(_encoderItem.interval.end - _encoderItem.interval.start).stringValue];
+    SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
+    if (options.encodingType == SLHX264EncodingTwoPass) {
+        NSMutableArray *passOne = args.mutableCopy;
+        [passOne addObject:@"-y"];
+        [passOne addObject:@"/dev/null"];
+        [args addObject:_encoderItem.outputPath];
+        return @[passOne, args];
+    }
+    [args addObject:_encoderItem.outputPath];
+    return @[args];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)presetDidChange:(NSPopUpButton *)sender {
