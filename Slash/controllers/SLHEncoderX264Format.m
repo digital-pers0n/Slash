@@ -466,6 +466,17 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     }
 }
 
+- (NSArray *)_audioArguments {
+    SLHEncoderItemOptions *audioOpts = _encoderItem.audioOptions;
+    NSArray *args = @[
+                      SLHEncoderAudioCodecKey, audioOpts.codecName,
+                      SLHEncoderAudioBitrateKey, @(audioOpts.bitRate * 1024).stringValue,
+                      SLHEncoderAudioSampleRateKey, @(audioOpts.sampleRate).stringValue,
+                      SLHEncoderAudioChannelsKey, @(audioOpts.numberOfChannels).stringValue
+                      ];
+    return args;
+}
+
 - (NSArray *)_videoArguments {
     SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
     NSMutableArray *args = [NSMutableArray new];
