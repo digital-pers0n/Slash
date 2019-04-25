@@ -125,6 +125,16 @@ typedef void (^respond_block)(SLHEncoderState);
 
 #pragma mark - Private
 
+static inline uint64_t _get_frames(const char *str) {
+    
+    char *s = strstr(str, "frame=");
+    if (s) {
+        return strtoul(s + 6, 0, 10);
+    }
+    
+    return 0;
+}
+
 static inline char **_nsarray2carray(NSArray <NSString *> *array) {
     size_t count = array.count;
     char **result = malloc(sizeof(char *) * (count + 1));
@@ -137,11 +147,42 @@ static inline char **_nsarray2carray(NSArray <NSString *> *array) {
 }
 
 static void _encoder_cb(char *data, void *ctx) {
-    
+    uint64_t frames = 0;
+    SLHEncoder *obj = (__bridge id)ctx;
+    if ((frames = _get_frames(data))) {
+        
+        dispatch_sync(obj->_main_thread, ^{
+            obj->_progressBar.doubleValue = frames;
+        });
+    } else {
+        size_t data_len = ENCODER_BUFFER_SIZE;
+        obj->_log_size += data_len;
+        char *tmp = realloc(obj->_log, (obj->_log_size * sizeof(char)) + 1);
+        if (tmp) {
+            strncat(tmp, data, data_len);
+            obj->_log = tmp;
+        }
+    }
 }
 
 static void _encoder_exit_cb(void *ctx, int exit_code) {
-    
+    SLHEncoder *obj = (__bridge id)ctx;
+    obj.inProgress = NO;
+    obj->_paused = NO;
+    if (exit_code == 0) {
+        obj->_block(SLHEncoderStateSuccess);
+    } else {
+        if (obj->_canceled) {
+            obj->_canceled = NO;
+            obj->_block(SLHEncoderStateCanceled);
+        } else {
+            obj->_block(SLHEncoderStateFailed);
+            dispatch_sync(obj->_main_thread, ^{
+               obj->_statusLineTextField.stringValue = @"Error";
+            });
+        }
+    }
+
 }
 
 @end
