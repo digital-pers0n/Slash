@@ -42,6 +42,10 @@ typedef void (^respond_block)(SLHEncoderState);
 
 @implementation SLHEncoder
 
+- (NSString *)windowNibName {
+    return self.className;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -58,12 +62,43 @@ typedef void (^respond_block)(SLHEncoderState);
 }
 
 - (void)encodeItem:(SLHEncoderItem *)item usingBlock:(void (^)(SLHEncoderState))block {
-    _block = block;
+    _block = [block copy];
+    NSArray *args = item.encoderArguments;
+    
+    // Clear the queue
+    if (queue_size(_queue)) {
+        queue_destroy(_queue);
+        queue_init(_queue, (void *)args_free);
+    }
+
+    for (NSArray *a in args) {
+        char **array = _nsarray2carray(a);
+        queue_enqueue(_queue, array);
+    }
+    if (item.videoStreamIndex != -1) {
+        SLHMediaItem *mediaItem = item.mediaItem;
+        for (SLHMediaItemTrack *t in mediaItem.tracks) {
+            if (t.mediaType == SLHMediaTypeVideo) {
+                self.progressBarMaxValue = t.frameRate * (item.interval.end - item.interval.start);
+                break;
+            }
+        }
+    } else {
+        self.progressBarMaxValue = 1;
+    }
+    NSWindow *window = self.window;
+    [NSApp runModalForWindow:window];
+    [NSApp endSheet:window];
+    [window orderOut:nil];
     
 }
 
+- (void)windowWillClose:(NSNotification *)notification {
+    [NSApp endSheet:self.window];
+}
+
 - (NSString *)encodingLog {
-    return @"";
+    return @(_log);
 }
 
 - (NSError *)error {
@@ -84,6 +119,10 @@ typedef void (^respond_block)(SLHEncoderState);
     if (_queue) {
         queue_destroy(_queue);
         free(_queue);
+    }
+    
+    if (_log) {
+        free(_log);
     }
 }
 
