@@ -88,9 +88,39 @@ typedef void (^respond_block)(SLHEncoderState);
 #pragma mark - IBActions
 
 - (IBAction)startEncoding:(id)sender {
+    if (_inProgress) {
+        BOOL value = (_paused) ? NO : YES;
+        encoder_pause(_enc, value);
+    } else {
+        if (queue_size(_queue)) {
+            if (_log) {
+                free(_log);
+            }
+            _log_size = 0;
+            _log = malloc(sizeof(char));
+            _log[0] = '\0';
+            void *ptr;
+            queue_dequeue(_queue, &ptr);
+            char **args = ptr;
+            encoder_set_args(_enc, args);
+            encoder_start(_enc, _encoder_cb, _encoder_exit_cb, (__bridge void *)(self));
+            self.inProgress = YES;
+            args_free(args);
+        }
+    }
+}
+
+- (IBAction)pauseEncoding:(id)sender {
+    BOOL value = (_paused) ? NO : YES;
+    encoder_pause(_enc, value);
+    _paused = value;
 }
 
 - (IBAction)stopEncoding:(id)sender {
+    self.inProgress = NO;
+    _paused = NO;
+    _canceled = YES;
+    encoder_stop(_enc);
 }
 
 #pragma mark - Private
