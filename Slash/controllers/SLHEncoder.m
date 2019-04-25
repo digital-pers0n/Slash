@@ -51,6 +51,8 @@ typedef void (^respond_block)(SLHEncoderState);
         
         _queue = malloc(sizeof(Queue));
         queue_init(_queue, (void *)args_free);
+        
+        _main_thread = dispatch_get_main_queue();
     }
     return self;
 }
