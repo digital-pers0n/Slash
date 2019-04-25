@@ -8,25 +8,34 @@
 
 #import "SLHEncoder.h"
 #import "SLHEncoderItem.h"
+#import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
 #import "slh_encoder.h"
+#import "slh_util.h"
+#import "slh_list.h"
 
 typedef void (^respond_block)(SLHEncoderState);
 
-@interface SLHEncoder () {
+@interface SLHEncoder () <NSWindowDelegate> {
     respond_block _block;
     NSError *_error;
     SLHEncoderItem *_encoderItem;
     BOOL _inProgress;
     BOOL _paused;
+    BOOL _canceled;
     
     IBOutlet NSTextField *_statusLineTextField;
     IBOutlet NSProgressIndicator *_progressBar;
     
     Encoder *_enc;
     Queue *_queue;
+    char *_log;
+    size_t _log_size;
+    dispatch_queue_t _main_thread;
 }
 
 @property BOOL inProgress;
+@property BOOL paused;
 @property double progressBarMaxValue;
 
 @end
