@@ -26,6 +26,7 @@ typedef void (^respond_block)(SLHEncoderState);
     
     IBOutlet NSTextField *_statusLineTextField;
     IBOutlet NSProgressIndicator *_progressBar;
+    IBOutlet NSButton *_pauseButton;
     
     Encoder *_enc;
     Queue *_queue;
@@ -226,6 +227,7 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
     }
     dispatch_sync(obj->_main_thread, ^{
         obj->_statusLineTextField.stringValue = statusString;
+        obj->_pauseButton.state = NSOffState;
     });
 
 
