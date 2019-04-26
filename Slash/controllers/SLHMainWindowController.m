@@ -333,7 +333,7 @@
     item = [[NSMenuItem alloc] initWithTitle:@"none" action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
     item.tag = -1;
     item.target = self;
-    [_videoStreamPopUp.menu addItem:item];
+    [_videoStreamPopUp.menu addItem:item.copy];
     item.action = @selector(audioStreamPopUpAction:);
     [_audioStreamPopUp.menu addItem:item.copy];
     item.action = @selector(subtitlesStreamPopUpAction:);
