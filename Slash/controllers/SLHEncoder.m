@@ -88,6 +88,7 @@ typedef void (^respond_block)(SLHEncoderState);
         self.progressBarMaxValue = 1;
     }
     NSWindow *window = self.window;
+    [window center];
     [NSApp runModalForWindow:window];
     [NSApp endSheet:window];
     [window orderOut:nil];
