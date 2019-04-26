@@ -194,6 +194,7 @@ static void _encoder_cb(char *data, void *ctx) {
         
         dispatch_sync(obj->_main_thread, ^{
             obj->_progressBar.doubleValue = frames;
+            obj->_statusLineTextField.stringValue = [NSString stringWithFormat:@"%llu of %.0f frames", frames, obj->_progressBarMaxValue];
         });
     } else {
         size_t data_len = ENCODER_BUFFER_SIZE;
@@ -210,19 +211,23 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
     SLHEncoder *obj = (__bridge id)ctx;
     obj.inProgress = NO;
     obj->_paused = NO;
+    NSString *statusString = @"";
     if (exit_code == 0) {
         obj->_block(SLHEncoderStateSuccess);
     } else {
         if (obj->_canceled) {
             obj->_canceled = NO;
             obj->_block(SLHEncoderStateCanceled);
+            statusString = @"Canceled";
         } else {
             obj->_block(SLHEncoderStateFailed);
-            dispatch_sync(obj->_main_thread, ^{
-               obj->_statusLineTextField.stringValue = @"Error";
-            });
+            statusString = @"Error";
         }
     }
+    dispatch_sync(obj->_main_thread, ^{
+        obj->_statusLineTextField.stringValue = statusString;
+    });
+
 
 }
 
