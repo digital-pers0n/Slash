@@ -179,10 +179,10 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     [args addObjectsFromArray:_filters.arguments];
     [args addObject:SLHEncoderMediaEndTimeKey];
     [args addObject:@(_encoderItem.interval.end - _encoderItem.interval.start).stringValue];
+    [args addObject:@"-y"];
     SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
     if (options.encodingType == SLHX264EncodingTwoPass) {
         NSMutableArray *passOne = args.mutableCopy;
-        [passOne addObject:@"-y"];
         [passOne addObject:@"/dev/null"];
         [args addObject:_encoderItem.outputPath];
         return @[passOne, args];
