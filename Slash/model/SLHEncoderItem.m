@@ -81,6 +81,7 @@
                 vOptions.videoWidth = vSize.width;
                 NSUInteger vBitrate = t.bitRate;
                 vOptions.bitRate = (vBitrate) ? vBitrate / 1000 : (item->_mediaItem.bitRate / 1000) - 128;
+                item->_videoStreamIndex = t.trackIndex;
                 video = YES;
             }
                 break;
@@ -92,6 +93,7 @@
                 aOptions.bitRate = (aBitrate) ? aBitrate / 1000  : 128;
                 aOptions.numberOfChannels = t.numberOfChannels;
                 aOptions.sampleRate = t.sampleRate.integerValue;
+                item->_audioStreamIndex = t.trackIndex;
                 audio = YES;
             }
                 break;
