@@ -19,6 +19,8 @@ extern NSString *const SLHEncoderMediaContainerKey;
 extern NSString *const SLHEncoderMediaStartTimeKey;
 extern NSString *const SLHEncoderMediaEndTimeKey;
 extern NSString *const SLHEncoderMediaNoSubtitlesKey;
+extern NSString *const SLHEncoderMediaOverwriteFilesKey;
+extern NSString *const SLHEncoderVideoBufsizeKey;
 extern NSString *const SLHEncoderVideoBitrateKey;
 extern NSString *const SLHEncoderVideoMaxBitrateKey;
 extern NSString *const SLHEncoderVideoCRFBitrateKey;
@@ -179,7 +181,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     [args addObjectsFromArray:_filters.arguments];
     [args addObject:SLHEncoderMediaEndTimeKey];
     [args addObject:@(_encoderItem.interval.end - _encoderItem.interval.start).stringValue];
-    [args addObject:@"-y"];
+    [args addObject:SLHEncoderMediaOverwriteFilesKey];
     SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
     if (options.encodingType == SLHX264EncodingTwoPass) {
         NSMutableArray *passOne = args.mutableCopy;

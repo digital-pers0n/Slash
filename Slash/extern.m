@@ -41,9 +41,11 @@ NSString *const SLHEncoderMediaEndTimeKey         = @"-t";
 NSString *const SLHEncoderMediaNoSubtitlesKey     = @"-sn";
 NSString *const SLHEncoderMediaNoAudioKey         = @"-an";
 NSString *const SLHEncoderMediaNoVideoKey         = @"-vn";
+NSString *const SLHEncoderMediaOverwriteFilesKey  = @"-y";
 
 NSString *const SLHEncoderVideoBitrateKey         = @"-b:v";
 NSString *const SLHEncoderVideoMaxBitrateKey      = @"-maxrate";
+NSString *const SLHEncoderVideoBufsizeKey         = @"-bufsize";
 NSString *const SLHEncoderVideoCRFBitrateKey      = @"-crf";
 NSString *const SLHEncoderVideoCodecKey           = @"-c:v";
 NSString *const SLHEncoderVideoFiltersKey         = @"-vf";
