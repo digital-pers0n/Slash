@@ -96,6 +96,7 @@
     if (_metadataEditor.hasWindow) {
         [_metadataEditor reloadData];
     }
+    [self _updatePopUpMenus:item];
 }
 
 #pragma mark - SLHMetadataEditor Delegate
@@ -338,6 +339,12 @@
     [_audioStreamPopUp.menu addItem:item.copy];
     item.action = @selector(subtitlesStreamPopUpAction:);
     [_subtitlesStreamPopUp.menu addItem:item.copy];
+}
+
+- (void)_updatePopUpMenus:(SLHEncoderItem *)item {
+    [_videoStreamPopUp selectItemWithTag:item.videoStreamIndex];
+    [_audioStreamPopUp selectItemWithTag:item.audioStreamIndex];
+    [_subtitlesStreamPopUp selectItemWithTag:item.subtitlesStreamIndex];
 }
 
 - (SLHEncoderItem *)_createSegment {
