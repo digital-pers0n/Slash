@@ -80,7 +80,9 @@
                 vOptions.videoHeight = vSize.height;
                 vOptions.videoWidth = vSize.width;
                 NSUInteger vBitrate = t.bitRate;
-                vOptions.bitRate = (vBitrate) ? vBitrate / 1000 : (item->_mediaItem.bitRate / 1000) - 128;
+                vBitrate = (vBitrate) ? vBitrate / 1000 : (item->_mediaItem.bitRate / 1000) - 128;
+                vOptions.maxBitrate = vBitrate << 1;
+                vOptions.bitRate = vBitrate;
                 item->_videoStreamIndex = t.trackIndex;
                 video = YES;
             }
