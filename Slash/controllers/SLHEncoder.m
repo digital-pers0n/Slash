@@ -96,6 +96,7 @@ typedef void (^respond_block)(SLHEncoderState);
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
+    [self stopEncoding:nil];
     [NSApp endSheet:self.window];
 }
 
