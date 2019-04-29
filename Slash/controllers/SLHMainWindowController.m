@@ -358,11 +358,21 @@
     }
     NSString *outputName = sourcePath.lastPathComponent.stringByDeletingPathExtension;
     outputPath = [NSString stringWithFormat:@"%@/%@_%lu%02u.%@", outputPath, outputName, time(0), arc4random_uniform(100), sourcePath.pathExtension];
-    SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithMediaItem:_currentMediaItem outputPath:outputPath];
-    _outputFileNameTextField.stringValue = outputPath.lastPathComponent;
-    encoderItem.interval = (TimeInterval){0, _currentMediaItem.duration};
-    encoderItem.tag = _formatsPopUp.selectedTag;
-    return encoderItem;
+    
+    NSInteger row = _tableView.selectedRow;
+    if (row >= 0) {         // Make a copy of a selected item
+        SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+        SLHEncoderItem *copy = item.copy;
+        copy.outputPath = outputPath;
+        return copy;
+    } else {                // Create a new item
+        SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithMediaItem:_currentMediaItem outputPath:outputPath];
+        _outputFileNameTextField.stringValue = outputPath.lastPathComponent;
+        encoderItem.interval = (TimeInterval){0, _currentMediaItem.duration};
+        encoderItem.tag = _formatsPopUp.selectedTag;
+        return encoderItem;
+    }
+
 }
 
 
