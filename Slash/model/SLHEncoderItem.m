@@ -17,27 +17,26 @@
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    SLHEncoderItem *item = [[SLHEncoderItem alloc] init];
-    item.mediaItem = _mediaItem;
-    item.outputPath = _outputPath.copy;
-    item.container = _container.copy;
-    item.interval = _interval;
+    SLHEncoderItem *item = [[self.class allocWithZone:zone] init];
     
-    item.videoStreamIndex = _videoStreamIndex;
-    item.audioStreamIndex = _audioStreamIndex;
-    item.subtitlesStreamIndex = _subtitlesStreamIndex;
+    item->_mediaItem = _mediaItem;
+    item->_outputPath = _outputPath.copy;
+    item->_container = _container.copy;
     
-    item.videoOptions = _videoOptions.copy;
-    item.audioOptions = _audioOptions.copy;
-    item.filters = _filters.copy;
+    item->_interval = _interval;
+    item->_videoStreamIndex = _videoStreamIndex;
+    item->_audioStreamIndex = _audioStreamIndex;
+    item->_subtitlesStreamIndex = _subtitlesStreamIndex;
     
-    item.twoPassEncoding = _twoPassEncoding;
-    item.firstPassOptions = _firstPassOptions.mutableCopy;
+    item->_videoOptions = _videoOptions.copy;
+    item->_audioOptions = _audioOptions.copy;
+    item->_filters = _filters.copy;
     
-    item.metadata = _metadata.mutableCopy;
-    item.tag = _tag;
-    [SLHEncoderItem matchSource:item];
+    item->_twoPassEncoding = _twoPassEncoding;
     
+    item->_metadata = _metadata.mutableCopy;
+    item->_tag = _tag;
+
     return item;
 }
 
