@@ -52,7 +52,6 @@
         _videoOptions = [SLHEncoderItemOptions new];
         _audioOptions = [SLHEncoderItemOptions new];
         _filters = [SLHFilterOptions new];
-        _firstPassOptions = @{}.mutableCopy;
         _metadata = @{}.mutableCopy;
         [SLHEncoderItem matchSource:self];
     }

@@ -41,7 +41,6 @@ typedef struct time_interval {
 @property SLHFilterOptions *filters;
 
 @property BOOL twoPassEncoding;
-@property NSMutableDictionary *firstPassOptions;
 
 @property NSMutableDictionary *metadata;
 
