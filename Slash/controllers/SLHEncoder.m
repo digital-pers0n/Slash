@@ -89,6 +89,7 @@ typedef void (^respond_block)(SLHEncoderState);
     }
     NSWindow *window = self.window;
     [window center];
+    [self startEncoding:nil];
     [NSApp runModalForWindow:window];
     [NSApp endSheet:window];
     [window orderOut:nil];
