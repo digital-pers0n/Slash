@@ -22,7 +22,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="MainWindow" animationBehavior="default" id="I5o-Ms-tuw">
+        <window title="Slash" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="MainWindow" animationBehavior="default" id="I5o-Ms-tuw">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="520" height="486"/>
@@ -32,6 +32,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="520" height="486"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="fTT-if-AzH">
+                        <rect key="frame" x="100" y="197" width="320" height="93"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Drop a File and Press '+' Button" id="EII-cQ-wet">
+                            <font key="font" metaFont="systemBold" size="32"/>
+                            <color key="textColor" white="0.29954907718120805" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="tyK-7t-S9G"/>
+                        </connections>
+                    </textField>
                     <button verticalHuggingPriority="750" id="aGt-Me-cvO">
                         <rect key="frame" x="156" y="5" width="81" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -372,6 +384,13 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
+                        <connections>
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="guX-9O-Ojg">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
                     </customView>
                     <button id="xmj-vN-6R1">
                         <rect key="frame" x="32" y="9" width="12" height="12"/>
@@ -404,7 +423,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="-276" y="-558"/>
+            <point key="canvasLocation" x="-284" y="-641"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
             <declaredKeys>
