@@ -10,20 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol SLHMetadataEditorDelegate;
+@class SLHEncoderItem;
 
 @interface SLHMetadataEditor : NSWindowController
 
-@property (nullable) IBOutlet id <SLHMetadataEditorDelegate> delegate;
-- (void)reloadData;
+@property SLHEncoderItem *encoderItem;
 @property (readonly) BOOL hasWindow;
-
-@end
-
-@protocol SLHMetadataEditorDelegate <NSObject>
-
-- (NSDictionary *)dataForMetadataEditor:(SLHMetadataEditor *)editor;
-- (void)metadataEditor:(SLHMetadataEditor *)editor didEndEditing:(NSDictionary *)data;
 
 @end
 

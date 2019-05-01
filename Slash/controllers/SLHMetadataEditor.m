@@ -8,6 +8,7 @@
 
 #import "SLHMetadataEditor.h"
 #import "SLHEncoderItem.h"
+#import "SLHEncoderItemMetadata.h"
 #import "SLHMediaItem.h"
 #import "SLHMetadataItem.h"
 #import "SLHMetadataIdentifiers.h"
@@ -18,6 +19,7 @@
     IBOutlet NSTextView *_artistTextView;
     IBOutlet NSTextView *_commentTextView;
     IBOutlet NSTextField *_dateTextField;
+    SLHEncoderItem *_encoderItem;
 }
 
 @end
@@ -30,22 +32,7 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-}
-
-static inline NSString * _getValue(NSDictionary *dict, NSString *key) {
-    NSString *str = dict[key];
-    return (str) ? str : @"";
-}
-
-- (void)reloadData {
-    NSDictionary *data = [_delegate dataForMetadataEditor:self];
-    _artistTextView.string = _getValue(data, SLHMetadataIdentifierArtist);
-    _titleTextView.string = _getValue(data, SLHMetadataIdentifierTitle);
-    _dateTextField.stringValue = _getValue(data, SLHMetadataIdentifierDate);
-    _commentTextView.string = _getValue(data, SLHMetadataIdentifierComment);
-    
 }
 
 - (void)_endEditing {

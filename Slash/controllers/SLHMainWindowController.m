@@ -20,7 +20,7 @@
 #import "SLHEncoderBaseFormat.h"
 #import "SLHEncoderX264Format.h"
 
-@interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, SLHMetadataEditorDelegate, NSTableViewDelegate> {
+@interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, NSTableViewDelegate> {
     SLHDragView *_dragView;
     SLHEncoderSettings *_encoderSettings;
     SLHMetadataEditor *_metadataEditor;
@@ -94,44 +94,9 @@
     fmt.encoderItem = item;
     _encoderSettings.delegate = fmt;
     if (_metadataEditor.hasWindow) {
-        [_metadataEditor reloadData];
+        _metadataEditor.encoderItem = item;
     }
     [self _updatePopUpMenus:item];
-}
-
-#pragma mark - SLHMetadataEditor Delegate
-
-- (NSDictionary *)dataForMetadataEditor:(SLHMetadataEditor *)editor {
-    NSInteger row = _tableView.selectedRow;
-    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
-    
-    NSMutableDictionary *data = item.metadata.mutableCopy;
-    if (data.count) {
-        return data;
-    } else {
-        NSArray *array = item.mediaItem.metadata;
-        for (SLHMetadataItem *m in array) {
-            if ([m.identifier isEqual:SLHMetadataIdentifierArtist]) {
-                data[SLHMetadataIdentifierArtist] = m.value;
-            } else if ([m.identifier isEqual:SLHMetadataIdentifierTitle]) {
-                data[SLHMetadataIdentifierTitle] = m.value;
-            } else if ([m.identifier isEqual:SLHMetadataIdentifierDate]) {
-                data[SLHMetadataIdentifierDate] = m.value;
-            } else if ([m.identifier isEqual:SLHMetadataIdentifierComment]) {
-                data[SLHMetadataIdentifierComment] = m.value;
-            }
-        }
-    }
-    if (!data.count) {  // No metadata
-        data[SLHMetadataIdentifierTitle] = item.mediaItem.filePath.lastPathComponent.stringByDeletingPathExtension;
-    }
-    return data;
-}
-
-- (void)metadataEditor:(SLHMetadataEditor *)editor didEndEditing:(NSDictionary *)data {
-    NSInteger row = _tableView.selectedRow;
-    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
-    item.metadata = data.mutableCopy;
 }
 
 #pragma mark - SLHPlayer Delegate
@@ -221,10 +186,11 @@
     
     if (!_metadataEditor) {
         _metadataEditor = [[SLHMetadataEditor alloc] init];
-        _metadataEditor.delegate = self;
     }
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     [_metadataEditor showWindow:sender];
-    [_metadataEditor reloadData];
+    _metadataEditor.encoderItem = item;
 }
 
 - (IBAction)addEncoderItem:(id)sender {
