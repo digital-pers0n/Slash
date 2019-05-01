@@ -10,6 +10,7 @@
 #import "SLHEncoderX264Options.h"
 #import "SLHPreferences.h"
 #import "SLHEncoderItem.h"
+#import "SLHEncoderItemMetadata.h"
 #import "SLHMediaItem.h"
 #import "SLHFiltersController.h"
 #import "SLHEncoderArgument.h"
@@ -188,9 +189,11 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         [args addObject:@"1024k"];
         NSMutableArray *passOne = args.mutableCopy;
         [passOne addObject:@"/dev/null"];
+        [args addObjectsFromArray:_encoderItem.metadata.arguments];
         [args addObject:_encoderItem.outputPath];
         return @[passOne, args];
     }
+    [args addObjectsFromArray:_encoderItem.metadata.arguments];
     [args addObject:_encoderItem.outputPath];
     return @[args];
 }
