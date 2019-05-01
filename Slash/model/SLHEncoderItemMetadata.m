@@ -7,8 +7,13 @@
 //
 
 #import "SLHEncoderItemMetadata.h"
+#import "SLHMediaItem.h"
+#import "SLHMetadataItem.h"
+#import "SLHMetadataIdentifiers.h"
 
 @implementation SLHEncoderItemMetadata
+
+#pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
     SLHEncoderItemMetadata *item = [[self.class allocWithZone:zone] init];
@@ -19,21 +24,59 @@
     return item;
 }
 
+#pragma mark - Initialization
+
+- (instancetype)init {
+    self = [super init];
+    _artist = @"";
+    _title = @"";
+    _comment = @"";
+    _date = @"";
+    return self;
+}
+
+- (instancetype)initWithMediaItem:(SLHMediaItem *)item {
+    self = [self init];
+    if (self) {
+        NSArray *array = item.metadata;
+        BOOL hasTitle = NO;
+        for (SLHMetadataItem *m in array) {
+            NSString *identifier = m.identifier;
+            if ([identifier isEqual:SLHMetadataIdentifierArtist]) {
+                _artist = m.value;
+            } else if ([identifier isEqual:SLHMetadataIdentifierTitle]) {
+                _title = m.value;
+                hasTitle = YES;
+            } else if ([identifier isEqual:SLHMetadataIdentifierDate]) {
+                _date = m.value;
+            } else if ([identifier isEqual:SLHMetadataIdentifierComment]) {
+                _comment = m.value;
+            }
+        }
+        if (!hasTitle) {
+            _title = item.filePath.lastPathComponent.stringByDeletingPathExtension;
+        }
+    }
+    return self;
+}
+
+#pragma mark - Methods
+
 - (NSArray<NSString *> *)arguments {
     NSMutableArray *args = [NSMutableArray new];
-    if (_title) {
+    if (_title.length) {
         [args addObject:@"-metadata"];
         [args addObject:[NSString stringWithFormat:@"title=%@", _title]];
     }
-    if (_artist) {
+    if (_artist.length) {
         [args addObject:@"-metadata"];
         [args addObject:[NSString stringWithFormat:@"artist=%@", _artist]];
     }
-    if (_date) {
+    if (_date.length) {
         [args addObject:@"-metadata"];
         [args addObject:[NSString stringWithFormat:@"date=%@", _date]];
     }
-    if (_comment) {
+    if (_comment.length) {
         [args addObject:@"-metadata"];
         [args addObject:[NSString stringWithFormat:@"comment=%@", _comment]];
     }

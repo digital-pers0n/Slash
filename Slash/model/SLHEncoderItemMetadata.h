@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+@class SLHMediaItem;
 
 @interface SLHEncoderItemMetadata : NSObject <NSCopying>
+
+- (instancetype)initWithMediaItem:(SLHMediaItem *)item;
 
 @property NSString *artist;
 @property NSString *title;
