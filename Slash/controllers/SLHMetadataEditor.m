@@ -36,11 +36,30 @@
 }
 
 - (void)_endEditing {
-    NSDictionary *data = @{ SLHMetadataIdentifierArtist: _artistTextView.string.copy,
-                            SLHMetadataIdentifierTitle: _titleTextView.string.copy,
-                            SLHMetadataIdentifierDate: _dateTextField.stringValue.copy,
-                            SLHMetadataIdentifierComment: _commentTextView.string.copy};
-    [_delegate metadataEditor:self didEndEditing:data];
+    
+    SLHEncoderItemMetadata *metadata = [[SLHEncoderItemMetadata alloc] init];
+    metadata.title = _titleTextView.string;
+    metadata.artist = _artistTextView.string;
+    metadata.comment = _commentTextView.string;
+    metadata.date = _dateTextField.stringValue;
+    _encoderItem.metadata = metadata.copy;
+}
+
+#pragma mark - Properties
+
+- (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    _encoderItem = encoderItem;
+    SLHEncoderItemMetadata *metadata = _encoderItem.metadata;
+
+    _titleTextView.string = metadata.title;
+   _artistTextView.string = metadata.artist;
+    _commentTextView.string = metadata.comment;
+    _dateTextField.stringValue = metadata.date;
+
+}
+
+- (SLHEncoderItem *)encoderItem {
+    return _encoderItem;
 }
 
 #pragma mark - IBActions
