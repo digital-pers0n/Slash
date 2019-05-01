@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class SLHEncoderItemOptions, SLHFilterOptions;
+@class SLHEncoderItemOptions, SLHFilterOptions, SLHEncoderItemMetadata;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -42,7 +42,7 @@ typedef struct time_interval {
 
 @property BOOL twoPassEncoding;
 
-@property NSMutableDictionary *metadata;
+@property SLHEncoderItemMetadata *metadata;
 
 @property (readonly) NSString * summary;
 

@@ -11,6 +11,7 @@
 #import "SLHMediaItemTrack.h"
 #import "SLHEncoderItemOptions.h"
 #import "SLHFilterOptions.h"
+#import "SLHEncoderItemMetadata.h"
 
 @implementation SLHEncoderItem
 
@@ -34,7 +35,7 @@
     
     item->_twoPassEncoding = _twoPassEncoding;
     
-    item->_metadata = _metadata.mutableCopy;
+    item->_metadata = _metadata.copy;
     item->_tag = _tag;
 
     return item;
@@ -52,7 +53,7 @@
         _videoOptions = [SLHEncoderItemOptions new];
         _audioOptions = [SLHEncoderItemOptions new];
         _filters = [SLHFilterOptions new];
-        _metadata = @{}.mutableCopy;
+        _metadata = [[SLHEncoderItemMetadata alloc] initWithMediaItem:item];
         [SLHEncoderItem matchSource:self];
     }
     return self;
