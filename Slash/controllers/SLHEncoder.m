@@ -10,6 +10,7 @@
 #import "SLHEncoderItem.h"
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
+#import "SLHStatusLineView.h"
 #import "slh_encoder.h"
 #import "slh_util.h"
 #import "slh_list.h"
@@ -24,7 +25,7 @@ typedef void (^respond_block)(SLHEncoderState);
     BOOL _paused;
     BOOL _canceled;
     
-    IBOutlet NSTextField *_statusLineTextField;
+    IBOutlet SLHStatusLineView *_statusLineView;
     IBOutlet NSProgressIndicator *_progressBar;
     IBOutlet NSButton *_pauseButton;
     
@@ -111,6 +112,7 @@ typedef void (^respond_block)(SLHEncoderState);
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    _statusLineView.wantsLayer = YES;
     
 }
 
@@ -142,7 +144,7 @@ typedef void (^respond_block)(SLHEncoderState);
     char **args = queue_peek(_queue);
     encoder_set_args(_enc, args);
     if (encoder_start(_enc, _encoder_cb, _encoder_exit_cb, (__bridge void *)(self))) {
-        _statusLineTextField.stringValue = @"Error";
+        _statusLineView.string = @"Error";
     }
     self.inProgress = YES;
 }
@@ -187,10 +189,10 @@ static void _encoder_cb(char *data, void *ctx) {
     uint64_t frames = 0;
     SLHEncoder *obj = (__bridge id)ctx;
     if ((frames = _get_frames(data))) {
-        
+        NSString *value = [NSString stringWithFormat:@"%llu of %.0f frames", frames, obj->_progressBarMaxValue];
         dispatch_sync(obj->_main_thread, ^{
             obj->_progressBar.doubleValue = frames;
-            obj->_statusLineTextField.stringValue = [NSString stringWithFormat:@"%llu of %.0f frames", frames, obj->_progressBarMaxValue];
+            obj->_statusLineView.string = value;
         });
     } else {
         size_t data_len = ENCODER_BUFFER_SIZE;
@@ -231,7 +233,7 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
         }
     }
     dispatch_sync(obj->_main_thread, ^{
-        obj->_statusLineTextField.stringValue = statusString;
+        obj->_statusLineView.string = statusString;
         obj->_pauseButton.state = NSOffState;
     });
 
