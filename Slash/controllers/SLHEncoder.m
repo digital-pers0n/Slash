@@ -133,20 +133,18 @@ typedef void (^respond_block)(SLHEncoderState);
 #pragma mark - IBActions
 
 - (IBAction)startEncoding:(id)sender {
-    if (queue_size(_queue)) {
-        if (_log) {
-            free(_log);
-        }
-        _log_size = 0;
-        _log = malloc(sizeof(char));
-        _log[0] = '\0';
-        char **args = queue_peek(_queue);
-        encoder_set_args(_enc, args);
-        if (encoder_start(_enc, _encoder_cb, _encoder_exit_cb, (__bridge void *)(self))) {
-            _statusLineTextField.stringValue = @"Error";
-        }
-        self.inProgress = YES;
+    if (_log) {
+        free(_log);
     }
+    _log_size = 0;
+    _log = malloc(sizeof(char));
+    _log[0] = '\0';
+    char **args = queue_peek(_queue);
+    encoder_set_args(_enc, args);
+    if (encoder_start(_enc, _encoder_cb, _encoder_exit_cb, (__bridge void *)(self))) {
+        _statusLineTextField.stringValue = @"Error";
+    }
+    self.inProgress = YES;
 }
 
 - (IBAction)pauseEncoding:(id)sender {
@@ -211,10 +209,17 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
     obj->_paused = NO;
     NSString *statusString = @"";
     if (exit_code == 0) {
-        obj->_block(SLHEncoderStateSuccess);
         void *ptr;
         queue_dequeue(obj->_queue, &ptr);
         args_free(ptr);
+        if (queue_size(obj->_queue)) {
+            [obj startEncoding:nil];
+        } else {
+            obj->_block(SLHEncoderStateSuccess);
+            dispatch_sync(obj->_main_thread, ^{
+               [obj.window performClose:nil];
+            });
+        }
     } else {
         if (obj->_canceled) {
             obj->_canceled = NO;
