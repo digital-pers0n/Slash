@@ -680,7 +680,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
             value = @"m4v";
             break;
         case SLHX264ContainerMKV:
-            value = @"mkv";
+            value = @"matroska";
             break;
         case SLHX264ContainerMOV:
             value = @"mov";
