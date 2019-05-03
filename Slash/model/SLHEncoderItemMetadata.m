@@ -39,22 +39,30 @@
     self = [self init];
     if (self) {
         NSArray *array = item.metadata;
-        BOOL hasTitle = NO;
+        NSMutableDictionary *mdata = [NSMutableDictionary new];
         for (SLHMetadataItem *m in array) {
-            NSString *identifier = m.identifier;
-            if ([identifier isEqual:SLHMetadataIdentifierArtist]) {
-                _artist = m.value;
-            } else if ([identifier isEqual:SLHMetadataIdentifierTitle]) {
-                _title = m.value;
-                hasTitle = YES;
-            } else if ([identifier isEqual:SLHMetadataIdentifierDate]) {
-                _date = m.value;
-            } else if ([identifier isEqual:SLHMetadataIdentifierComment]) {
-                _comment = m.value;
-            }
+            mdata[m.identifier] = m.value;
         }
-        if (!hasTitle) {
-            _title = item.filePath.lastPathComponent.stringByDeletingPathExtension;
+        
+        NSString *value = mdata[SLHMetadataIdentifierArtist];
+        if (value) {
+            _artist = value;
+        }
+        
+        value = mdata[SLHMetadataIdentifierTitle];
+        if (!value) {
+            value = item.filePath.lastPathComponent.stringByDeletingPathExtension;
+        }
+        _title = value;
+        
+        value = mdata[SLHMetadataIdentifierDate];
+        if (value) {
+            _date = value;
+        }
+        
+        value = mdata[SLHMetadataIdentifierComment];
+        if (value) {
+            _comment = value;
         }
     }
     return self;
