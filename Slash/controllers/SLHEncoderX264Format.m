@@ -130,6 +130,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         videoOptions.crf = 23;
         videoOptions.faststart = YES;
         _encoderItem.videoOptions = videoOptions;
+        _encoderItem.container = @"mp4";
         
         audioOptions.codecName = @"aac";
         audioOptions.bitRate = 128;
@@ -216,7 +217,36 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 }
 
 - (IBAction)containerDidChange:(NSPopUpButton *)sender {
-    ((SLHEncoderX264Options *)_encoderItem.videoOptions).containerType = sender.selectedTag;
+    SLHX264ContainerType tag = sender.selectedTag;
+    NSString *outputFileName = _encoderItem.outputFileName;
+    
+    switch (tag) {
+        case SLHX264ContainerMP4:
+            outputFileName = [outputFileName stringByDeletingPathExtension];
+            outputFileName = [outputFileName stringByAppendingPathExtension:@"mp4"];
+            _encoderItem.container = @"mp4";
+            break;
+        case SLHX264ContainerM4V:
+            outputFileName = [outputFileName stringByDeletingPathExtension];
+            outputFileName = [outputFileName stringByAppendingPathExtension:@"m4v"];
+            _encoderItem.container = @"m4v";
+            break;
+        case SLHX264ContainerMKV:
+            outputFileName = [outputFileName stringByDeletingPathExtension];
+            outputFileName = [outputFileName stringByAppendingPathExtension:@"mkv"];
+            _encoderItem.container = @"mkv";
+            break;
+        case SLHX264ContainerMOV:
+            outputFileName = [outputFileName stringByDeletingPathExtension];
+            outputFileName = [outputFileName stringByAppendingPathExtension:@"mov"];
+            _encoderItem.container = @"mov";
+            break;
+            
+        default:
+            break;
+    }
+    _encoderItem.outputFileName = outputFileName;
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).containerType = tag;
 }
 
 - (IBAction)profileDidChange:(NSPopUpButton *)sender {
