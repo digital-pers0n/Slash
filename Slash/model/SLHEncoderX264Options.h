@@ -89,5 +89,6 @@ typedef NS_ENUM(NSUInteger, SLHX264TuneType) {
 @property SLHX264TuneType tuneType;
 @property BOOL fastdecode;
 @property BOOL zerolatency;
+@property BOOL faststart;
 
 @end

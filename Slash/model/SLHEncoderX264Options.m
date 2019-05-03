@@ -35,6 +35,7 @@
     obj->_tuneType = _tuneType;
     obj->_fastdecode = _fastdecode;
     obj->_zerolatency = _zerolatency;
+    obj->_faststart = _faststart;
     return obj;
 }
 

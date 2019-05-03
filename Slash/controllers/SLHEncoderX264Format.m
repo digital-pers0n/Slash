@@ -28,6 +28,7 @@ extern NSString *const SLHEncoderVideoCRFBitrateKey;
 extern NSString *const SLHEncoderVideoCodecKey;
 extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
+extern NSString *const SLHEncoderVideoMovflagsKey;
 extern NSString *const SLHEncoderVideoH264ProfileKey;
 extern NSString *const SLHEncoderVideoH264LevelKey;
 extern NSString *const SLHEncoderVideoH264PresetKey;
@@ -127,6 +128,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         videoOptions.containerType = SLHX264ContainerMP4;
         videoOptions.codecName = @"libx264";
         videoOptions.crf = 23;
+        videoOptions.faststart = YES;
         _encoderItem.videoOptions = videoOptions;
         
         audioOptions.codecName = @"aac";
@@ -746,6 +748,11 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         [args addObject:SLHEncoderVideoScaleSizeKey];
         [args addObject:value];
     }
+    if (options.faststart) {
+        [args addObject:SLHEncoderVideoMovflagsKey];
+        [args addObject:@"+faststart"];
+    }
+    
     return args;
 }
 
