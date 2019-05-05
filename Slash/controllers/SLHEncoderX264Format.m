@@ -161,18 +161,23 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
         return nil;
     }
+    SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
     NSMutableArray *args = @[
                              ffmpegPath, @"-nostdin", @"-hide_banner",
                              @"-ss", @(_encoderItem.interval.start).stringValue,
                              @"-i", _encoderItem.mediaItem.filePath
                              ].mutableCopy;
     if (_encoderItem.videoStreamIndex >= 0) {
+        [args addObject:SLHEncoderMediaMapKey];
+        [args addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.videoStreamIndex]];
         [args addObjectsFromArray:[self _videoArguments]];
     } else {
         [args addObject:SLHEncoderMediaNoVideoKey ];
     }
     
     if (_encoderItem.audioStreamIndex >= 0) {
+        [args addObject:SLHEncoderMediaMapKey];
+        [args addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.audioStreamIndex]];
         [args addObjectsFromArray:[self _audioArguments]];
     } else {
         [args addObject:SLHEncoderMediaNoAudioKey ];
@@ -180,13 +185,26 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     
     if (_encoderItem.subtitlesStreamIndex == -1) {
         [args addObject:SLHEncoderMediaNoSubtitlesKey];
+    } else {
+        [args addObject:SLHEncoderMediaMapKey];
+        [args addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.subtitlesStreamIndex]];
+        [args addObject:@"-c:s"];
+        SLHX264ContainerType type = options.containerType;
+        if (type == SLHX264ContainerMP4 ||
+            type == SLHX264ContainerM4V ||
+            type == SLHX264ContainerMOV) {
+            
+            [args addObject:@"mov_text"];
+        } else {
+            [args addObject:@"copy"];
+        }
     }
     
     [args addObjectsFromArray:_filters.arguments];
     [args addObject:SLHEncoderMediaEndTimeKey];
     [args addObject:@(_encoderItem.interval.end - _encoderItem.interval.start).stringValue];
     [args addObject:SLHEncoderMediaOverwriteFilesKey];
-    SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
+    
     if (options.encodingType == SLHX264EncodingTwoPass) {
         [args addObject:SLHEncoderVideoBufsizeKey];
         [args addObject:@"1024k"];
