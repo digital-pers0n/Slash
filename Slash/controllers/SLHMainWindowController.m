@@ -278,7 +278,7 @@
                 break;
             case SLHMediaTypeAudio:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@, %@)", trackIndex, t.codecName, t.language] action:@selector(audioStreamPopUpAction:) keyEquivalent:@""];
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@, %@, %@, %lukbs)", trackIndex, t.codecName, t.language, t.channelLayout, t.bitRate / 1024] action:@selector(audioStreamPopUpAction:) keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_audioStreamPopUp.menu addItem:item];
