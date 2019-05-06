@@ -39,6 +39,7 @@
     IBOutlet NSPopUpButton *_videoStreamPopUp;
     IBOutlet NSTextView *_summaryTextView;
     IBOutlet NSTextField *_outputFileNameTextField;
+    IBOutlet NSTextView *_mediaInfoTextView;
 
 }
 
@@ -132,15 +133,18 @@
 #pragma mark - SLHDragView Delegate
 
 - (void)didReceiveFilename:(NSString *)filename {
-    _currentMediaItem = [SLHMediaItem mediaItemWithPath:filename];
-    if (_currentMediaItem.error) {
-        NSLog(@"Error: %@", _currentMediaItem.error.localizedDescription);
+    SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:filename];
+    if (mediaItem.error) {
+        NSLog(@"Error: %@", mediaItem.error.localizedDescription);
         return;
+    } else {
+        self.currentMediaItem = mediaItem;
+        [self _displayMediaInfo:mediaItem];
     }
-    [self _populatePopUpMenus:_currentMediaItem];
+    [self _populatePopUpMenus:mediaItem];
     [_arrayController removeObjects:_arrayController.arrangedObjects];
     _tempEncoderItem = nil;
-    [self.window setTitleWithRepresentedFilename:_currentMediaItem.filePath];
+    [self.window setTitleWithRepresentedFilename:mediaItem.filePath];
 }
 
 - (void)didBeginDraggingSession {
@@ -347,5 +351,44 @@
     return encoderItem;
 }
 
+- (void)_displayMediaInfo:(SLHMediaItem *)mediaItem {
+    
+    NSMutableString *mediaInfo = [NSMutableString new];
+    [mediaInfo appendFormat:@"Duration: %.3f, bitrate: %lu kb/s, format: %@\n\n", mediaItem.duration, mediaItem.bitRate / 1000, mediaItem.formatName];
+    [mediaInfo appendString:@"Streams:\n"];
+     for (SLHMediaItemTrack *t in mediaItem.tracks) {
+         SLHMediaType type = t.mediaType;
+         switch (type) {
+             case SLHMediaTypeVideo:
+                 [mediaInfo appendFormat:
+                 @"      Video #%lu: %@(%@), ""%.0fx%0.f, ""%@, ""%.2f fps\n",
+                  t.trackIndex, t.codecName, t.encodingProfile, t.videoSize.width, t.videoSize.height,
+                  t.pixelFormat, t.frameRate];
+                 break;
+             case  SLHMediaTypeAudio:
+                 [mediaInfo appendFormat:
+                 @"      Audio #%lu:"" %@, ""%@, %@, ""%@ Hz\n",
+                  t.trackIndex, t.codecName, t.channelLayout, t.language, t.sampleRate];
+                 break;
+             case SLHMediaTypeText:
+                 [mediaInfo appendFormat:
+                 @"  Subtitles #%lu:"" %@, ""%@\n", t.trackIndex, t.codecName, t.language];
+                 break;
+             case SLHMediaTypeUnknown:
+                 [mediaInfo appendFormat:
+                 @"    Unknown #%lu:"" %@\n", t.trackIndex,  t.codecName];
+                 break;
+                 
+             default:
+                 break;
+         }
+          
+     }
+    [mediaInfo appendString:@"\n\nMetadata:\n"];
+    for (SLHMetadataItem *i in mediaItem.metadata) {
+        [mediaInfo appendFormat:@"  %@: %@\n", i.identifier, i.value];
+    }
+    _mediaInfoTextView.string = mediaInfo;
+}
 
 @end

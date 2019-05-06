@@ -7,7 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class SLHMediaItem;
 
 @interface SLHMainWindowController : NSWindowController
+
+@property SLHMediaItem *currentMediaItem;
 
 @end
