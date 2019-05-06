@@ -51,6 +51,7 @@ NSString *const SLHEncoderVideoCodecKey           = @"-c:v";
 NSString *const SLHEncoderVideoFiltersKey         = @"-vf";
 NSString *const SLHEncoderVideoScaleSizeKey       = @"-s";
 NSString *const SLHEncoderVideoMovflagsKey        = @"-movflags";
+NSString *const SLHEncoderVideoPixelFormatKey     = @"-pix_fmt";
 
 NSString *const SLHEncoderVideoH264ProfileKey     = @"-profile:v";
 NSString *const SLHEncoderVideoH264LevelKey       = @"-level:v";

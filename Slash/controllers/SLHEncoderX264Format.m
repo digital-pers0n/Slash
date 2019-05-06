@@ -29,6 +29,7 @@ extern NSString *const SLHEncoderVideoCodecKey;
 extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
 extern NSString *const SLHEncoderVideoMovflagsKey;
+extern NSString *const SLHEncoderVideoPixelFormatKey;
 extern NSString *const SLHEncoderVideoH264ProfileKey;
 extern NSString *const SLHEncoderVideoH264LevelKey;
 extern NSString *const SLHEncoderVideoH264PresetKey;
@@ -800,6 +801,8 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         [args addObject:SLHEncoderVideoMovflagsKey];
         [args addObject:@"+faststart"];
     }
+    [args addObject:SLHEncoderVideoPixelFormatKey];
+    [args addObject:@"yuv420p"];
     
     return args;
 }
