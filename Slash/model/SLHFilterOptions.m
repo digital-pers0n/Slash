@@ -19,6 +19,8 @@
     copy->_videoCropWidth = _videoCropWidth;
     copy->_videoCropHeight = _videoCropHeight;
     copy->_videoDeinterlace = _videoDeinterlace;
+    copy->_burnSubtitles = _burnSubtitles;
+    copy->_subtitlesPath = _subtitlesPath;
     
     copy->_enableAudioFilters = _enableAudioFilters;
     copy->_audioFadeIn = _audioFadeIn;

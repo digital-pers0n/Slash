@@ -17,6 +17,8 @@
 @property NSInteger videoCropWidth;
 @property NSInteger videoCropHeight;
 @property BOOL videoDeinterlace;
+@property BOOL burnSubtitles;
+@property NSString *subtitlesPath;
 
 // Audio
 @property BOOL enableAudioFilters;
