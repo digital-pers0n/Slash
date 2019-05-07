@@ -34,6 +34,7 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
     SLHEncoderItem *_encoderItem;
     
     IBOutlet SLHCropEditor *_cropEditor;
+    IBOutlet NSTextField *_subtitlesNameTextField;
 }
 
 @end
@@ -201,5 +202,12 @@ static inline NSString *_preampString(NSInteger val) {
     _cropEditor.encoderItem = _encoderItem;
 }
 
+- (IBAction)subtitlesPath:(id)sender {
+    
+}
+
+- (IBAction)burnSubtitles:(id)sender {
+    
+}
 
 @end
