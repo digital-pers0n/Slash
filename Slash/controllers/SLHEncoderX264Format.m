@@ -8,6 +8,7 @@
 
 #import "SLHEncoderX264Format.h"
 #import "SLHEncoderX264Options.h"
+#import "SLHFilterOptions.h"
 #import "SLHPreferences.h"
 #import "SLHEncoderItem.h"
 #import "SLHEncoderItemMetadata.h"
@@ -187,17 +188,22 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     if (_encoderItem.subtitlesStreamIndex == -1) {
         [args addObject:SLHEncoderMediaNoSubtitlesKey];
     } else {
-        [args addObject:SLHEncoderMediaMapKey];
-        [args addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.subtitlesStreamIndex]];
-        [args addObject:@"-c:s"];
-        SLHX264ContainerType type = options.containerType;
-        if (type == SLHX264ContainerMP4 ||
-            type == SLHX264ContainerM4V ||
-            type == SLHX264ContainerMOV) {
-            
-            [args addObject:@"mov_text"];
+        SLHFilterOptions *filterOptions = _encoderItem.filters;
+        if (filterOptions.enableVideoFilters && filterOptions.burnSubtitles) {
+            [args addObject:SLHEncoderMediaNoSubtitlesKey];
         } else {
-            [args addObject:@"copy"];
+            [args addObject:SLHEncoderMediaMapKey];
+            [args addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.subtitlesStreamIndex]];
+            [args addObject:@"-c:s"];
+            SLHX264ContainerType type = options.containerType;
+            if (type == SLHX264ContainerMP4 ||
+                type == SLHX264ContainerM4V ||
+                type == SLHX264ContainerMOV) {
+                
+                [args addObject:@"mov_text"];
+            } else {
+                [args addObject:@"copy"];
+            }
         }
     }
     
