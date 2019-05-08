@@ -86,9 +86,9 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" id="dyH-HX-34d">
-                                <rect key="frame" x="456" y="425" width="63" height="28"/>
+                                <rect key="frame" x="451" y="433" width="63" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CFG-LW-HO7">
+                                <buttonCell key="cell" type="roundTextured" title="Play" bezelStyle="texturedRounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CFG-LW-HO7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
@@ -270,7 +270,7 @@
                             <button id="Ngr-8N-TGm">
                                 <rect key="frame" x="348" y="412" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="GSl-gK-pLz">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="GSl-gK-pLz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
@@ -521,7 +521,7 @@
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSFolder" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="SLHImageNameFolderTemplate" width="32" height="32"/>
     </resources>
 </document>
