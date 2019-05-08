@@ -358,7 +358,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="FWS-Fz-bwX">
                         <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -386,7 +386,6 @@
             <point key="canvasLocation" x="260.5" y="186"/>
         </customView>
         <customObject id="uAw-yk-DxB" customClass="SLHCropEditor"/>
-        <userDefaultsController representsSharedInstance="YES" id="ywM-Pe-hkM"/>
     </objects>
     <resources>
         <image name="NSQuickLookTemplate" width="19" height="12"/>

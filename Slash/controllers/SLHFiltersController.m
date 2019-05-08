@@ -11,6 +11,7 @@
 #import "SLHFilterOptions.h"
 #import "SLHCropEditor.h"
 #import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
 
 extern NSString *const SLHPreferencesMPVFilePathKey;
 
@@ -101,6 +102,41 @@ static inline NSString *_preampString(NSInteger val) {
             [str appendString:SLHEncoderVideoFilterDeinterlaceKey];
         }
         
+        if (opts.burnSubtitles) {
+            NSString *filterArgs = nil;
+            NSInteger streamIdx = _encoderItem.subtitlesStreamIndex;
+            if (streamIdx > -1) {
+            
+                NSInteger subtitlesIdx = -1;
+                for (SLHMediaItemTrack *t in _encoderItem.mediaItem.tracks) {
+                    if (t.mediaType == SLHMediaTypeText) {
+                        subtitlesIdx++;
+                        if (t.trackIndex == streamIdx) {
+                            break;
+                        }
+                    }
+                }
+               filterArgs = [NSString stringWithFormat:
+                                 @"subtitles='%@':si=%li", _encoderItem.mediaItem.filePath , subtitlesIdx];
+            } else if (opts.subtitlesPath) {
+                filterArgs = [NSString stringWithFormat:
+                              @"subtitles='%@'", opts.subtitlesPath];
+            }
+            
+            if (filterArgs) {
+                double startTime = _encoderItem.interval.start;
+                if (startTime > 0) {
+                    filterArgs = [NSString stringWithFormat:@"setpts=PTS+%.3f/TB,%@,setpts=PTS-STARTPTS", startTime, filterArgs];
+                }
+                if (str) {
+                    [str appendString:@","];
+                } else {
+                    str = [NSMutableString new];
+                }
+                [str appendString:filterArgs];
+            }
+        }
+        
         if (str) {
             [args addObject:SLHEncoderVideoFiltersKey];
             [args addObject:str];
@@ -151,6 +187,8 @@ static inline NSString *_preampString(NSInteger val) {
     if (_cropEditor.hasWindow && _encoderItem) {
         _cropEditor.encoderItem = encoderItem;
     }
+    
+    [self _updateSubtitlesName];
 }
 
 - (SLHEncoderItem *)encoderItem {
@@ -203,11 +241,36 @@ static inline NSString *_preampString(NSInteger val) {
 }
 
 - (IBAction)subtitlesPath:(id)sender {
-    
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowsMultipleSelection = NO;
+    panel.allowedFileTypes = @[@"srt", @"vtt", @"ass"];
+    [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSFileHandlingPanelOKButton) {
+            NSString *value = panel.URLs.firstObject.path;
+            _encoderItem.filters.subtitlesPath = value;
+            _subtitlesNameTextField.stringValue = value.lastPathComponent;
+        }
+    }];
 }
 
-- (IBAction)burnSubtitles:(id)sender {
-    
+- (IBAction)burnSubtitles:(NSButton *)sender {
+    if (sender.state == NSOnState) {
+        [self _updateSubtitlesName];
+    }
+}
+
+#pragma mark - Private
+
+- (void)_updateSubtitlesName {
+    NSInteger subsIdx = _encoderItem.subtitlesStreamIndex;
+    if (subsIdx > -1) {
+        SLHMediaItemTrack *t = _encoderItem.mediaItem.tracks[subsIdx];
+        _subtitlesNameTextField.stringValue = [NSString stringWithFormat:@"#%li: (%@, %@)", subsIdx, t.codecName, t.language];
+    } else if (_encoderItem.filters.subtitlesPath) {
+        _subtitlesNameTextField.stringValue = _encoderItem.filters.subtitlesPath.lastPathComponent;
+    } else {
+        _subtitlesNameTextField.stringValue = @"";
+    }
 }
 
 @end
