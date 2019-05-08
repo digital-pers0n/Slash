@@ -274,7 +274,7 @@
         switch (t.mediaType) {
             case SLHMediaTypeVideo:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%.0fx%.0f)", trackIndex, t.videoSize.width, t.videoSize.height] action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%.0fx%.0f, %@)", trackIndex, t.videoSize.width, t.videoSize.height, t.codecName] action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_videoStreamPopUp.menu addItem:item];
@@ -282,7 +282,7 @@
                 break;
             case SLHMediaTypeAudio:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@, %@, %@, %lukbs)", trackIndex, t.codecName, t.language, t.channelLayout, t.bitRate / 1024] action:@selector(audioStreamPopUpAction:) keyEquivalent:@""];
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@, %@, %@, %lukbs)", trackIndex, t.codecName, t.language, t.channelLayout, t.bitRate / 1000] action:@selector(audioStreamPopUpAction:) keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_audioStreamPopUp.menu addItem:item];
@@ -290,7 +290,7 @@
                 break;
             case SLHMediaTypeText:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@)", trackIndex, t.language] action:@selector(subtitlesStreamPopUpAction:) keyEquivalent:@""];
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@, %@)", trackIndex, t.language, t.codecName] action:@selector(subtitlesStreamPopUpAction:) keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_subtitlesStreamPopUp.menu addItem:item];
