@@ -214,7 +214,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     
     if (options.encodingType == SLHX264EncodingTwoPass) {
         [args addObject:SLHEncoderVideoBufsizeKey];
-        [args addObject:@"1024k"];
+        [args addObject:@((options.maxBitrate * 1.5) * 1000).stringValue];
         NSMutableArray *passOne = args.mutableCopy;
         [passOne addObject:@"/dev/null"];
         [args addObjectsFromArray:_encoderItem.metadata.arguments];
