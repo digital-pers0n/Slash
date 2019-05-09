@@ -125,7 +125,7 @@
     if (!codecName) { // Audio only?
         codecName = _mediaItem.tracks[0].codecName;
     }
-    NSString *source = [NSString stringWithFormat:@"%@\n:: %@, %.0fx%.0f, %lukb, %lukbs, %.3fs", _mediaItem.filePath, codecName, vSize.width, vSize.height, _mediaItem.fileSize / 1024, _mediaItem.bitRate / 1024, _mediaItem.duration];
+    NSString *source = [NSString stringWithFormat:@"%@\n:: %@, %.0fx%.0f, %lukb, %lukbs, %.3fs", _mediaItem.filePath, codecName, vSize.width, vSize.height, _mediaItem.fileSize / 1024, _mediaItem.bitRate / 1000, _mediaItem.duration];
     
     // Output file
     double duration = _interval.end - _interval.start;
