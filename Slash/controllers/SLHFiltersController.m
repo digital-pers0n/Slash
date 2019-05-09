@@ -243,7 +243,7 @@ static inline NSString *_preampString(NSInteger val) {
 - (IBAction)subtitlesPath:(id)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowsMultipleSelection = NO;
-    panel.allowedFileTypes = @[@"srt", @"vtt", @"ass"];
+    panel.allowedFileTypes = @[@"srt", @"vtt", @"ass", @"ssa"];
     [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSFileHandlingPanelOKButton) {
             NSString *value = panel.URLs.firstObject.path;
