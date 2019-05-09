@@ -161,11 +161,6 @@
 #pragma mark - IBActions
 
 - (IBAction)previewSourceFile:(id)sender {
-    
-    if (!_currentMediaItem) { // empty table
-        NSBeep();
-        return;
-    }
 
     if (!_player) {
         _player = [SLHPlayer playerWithMediaItem:_currentMediaItem];
@@ -183,11 +178,6 @@
 
 - (IBAction)showMetadataEditor:(id)sender {
     
-    if (!_tableView.numberOfRows) { // empty table
-        NSBeep();
-        return;
-    }
-    
     if (!_metadataEditor) {
         _metadataEditor = [[SLHMetadataEditor alloc] init];
     }
@@ -198,10 +188,7 @@
 }
 
 - (IBAction)addEncoderItem:(id)sender {
-    if (!_currentMediaItem) {
-        NSBeep();
-        return;
-    }
+
     SLHEncoderItem *encItem = [self _createSegment];
     [_arrayController addObject:encItem];
 }
@@ -211,9 +198,6 @@
     SLHEncoderBaseFormat *fmt = _formats[tag];
     (void)fmt.view; // load view
     _encoderSettings.delegate = fmt;
-    if (!_tableView.numberOfRows) { // empty table
-        return;
-    }
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     item.tag = tag;
@@ -221,10 +205,6 @@
 }
 
 - (IBAction)selectOutputFileName:(id)sender {
-    if (!_tableView.numberOfRows) {
-        NSBeep();
-        return;
-    }
     
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowsMultipleSelection = NO;
