@@ -10,6 +10,7 @@
 #import "SLHDragView.h"
 #import "SLHEncoderSettings.h"
 #import "SLHEncoderItem.h"
+#import "SLHEncoder.h"
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
 #import "SLHPreferences.h"
@@ -28,6 +29,7 @@
     NSArray <SLHEncoderBaseFormat *> *_formats;
     SLHEncoderItem *_tempEncoderItem;
     SLHMediaItem *_currentMediaItem;
+    SLHEncoder *_encoder;
     
     IBOutlet NSView *_customView;
     IBOutlet NSArrayController *_arrayController;
@@ -66,6 +68,9 @@
     _encoderSettings.view.frame = _customView.frame;
     _encoderSettings.view.autoresizingMask = _customView.autoresizingMask;
     [_customView.superview replaceSubview:_customView with:_encoderSettings.view];
+    
+    /* SLHEncoder */
+    _encoder = [[SLHEncoder alloc] init];
     
     /* NSTableView */
     _tableView.delegate = self;
