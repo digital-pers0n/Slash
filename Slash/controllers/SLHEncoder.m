@@ -217,17 +217,23 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
         if (queue_size(obj->_queue)) {
             [obj startEncoding:nil];
         } else {
-            obj->_block(SLHEncoderStateSuccess);
+            dispatch_sync(obj->_main_thread, ^{
+                obj->_block(SLHEncoderStateSuccess);
+            });
         }
     } else {
+        SLHEncoderState state;
         if (obj->_canceled) {
             obj->_canceled = NO;
-            obj->_block(SLHEncoderStateCanceled);
+            state = SLHEncoderStateCanceled;
             statusString = @"Canceled";
         } else {
-            obj->_block(SLHEncoderStateFailed);
+            state  = SLHEncoderStateFailed;
             statusString = @"Error";
         }
+        dispatch_sync(obj->_main_thread, ^{
+            obj->_block(state);
+        });
     }
     dispatch_sync(obj->_main_thread, ^{
         obj->_statusLineView.string = statusString;
