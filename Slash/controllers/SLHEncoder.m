@@ -218,9 +218,6 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
             [obj startEncoding:nil];
         } else {
             obj->_block(SLHEncoderStateSuccess);
-            dispatch_sync(obj->_main_thread, ^{
-               [obj.window performClose:nil];
-            });
         }
     } else {
         if (obj->_canceled) {
