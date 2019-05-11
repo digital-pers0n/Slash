@@ -23,7 +23,6 @@ typedef void (^respond_block)(SLHEncoderState);
     SLHEncoderItem *_encoderItem;
     BOOL _inProgress;
     BOOL _paused;
-    BOOL _canceled;
     
     IBOutlet SLHStatusLineView *_statusLineView;
     IBOutlet NSProgressIndicator *_progressBar;
@@ -223,8 +222,7 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
         }
     } else {
         SLHEncoderState state;
-        if (obj->_canceled) {
-            obj->_canceled = NO;
+        if (exit_code == SIGKILL) {
             state = SLHEncoderStateCanceled;
             statusString = @"Canceled";
         } else {
