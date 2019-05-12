@@ -802,6 +802,9 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         value = [NSString stringWithFormat:@"%lux%lu", options.videoWidth, options.videoHeight];
         [args addObject:SLHEncoderVideoScaleSizeKey];
         [args addObject:value];
+        
+        [args addObject:SLHEncoderVideoAspectRatioKey];
+        [args addObject:@((float)options.videoWidth / options.videoHeight).stringValue];
     }
     if (options.faststart) {
         [args addObject:SLHEncoderVideoMovflagsKey];
