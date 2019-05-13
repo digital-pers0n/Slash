@@ -217,10 +217,18 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     [args addObject:SLHEncoderMediaOverwriteFilesKey];
     
     if (options.encodingType == SLHX264EncodingTwoPass) {
+        extern char *g_temp_dir;
         [args addObject:SLHEncoderVideoBufsizeKey];
         [args addObject:@((options.maxBitrate * 1.5) * 1000).stringValue];
+        [args addObject:@"-passlogfile"];
+        [args addObject:@(g_temp_dir)];
+        [args addObject:@"-pass"];
+        
         NSMutableArray *passOne = args.mutableCopy;
+        [passOne addObject:@"1"];
         [passOne addObject:@"/dev/null"];
+        
+        [args addObject:@"2"];
         [args addObjectsFromArray:_encoderItem.metadata.arguments];
         [args addObject:_encoderItem.outputPath];
         return @[passOne, args];
