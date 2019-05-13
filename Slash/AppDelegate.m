@@ -15,6 +15,8 @@ static NSString *const _ffprobePath = @"/usr/local/bin/ffprobe";
 static NSString *const _mpvPath     = @"/usr/local/bin/mpv1";
 static NSString *const _appInitializedKey = @"appInitialized";
 
+char *g_temp_dir;
+
 extern NSString *const SLHPlayerMPVConfigPath;
 
 @interface AppDelegate ()
@@ -27,6 +29,24 @@ extern NSString *const SLHPlayerMPVConfigPath;
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    NSString *tmpDir = NSTemporaryDirectory();
+    if (tmpDir) {
+        tmpDir = [tmpDir stringByAppendingPathComponent:NSBundle.mainBundle.bundleIdentifier];
+    } else {
+        tmpDir = [NSString stringWithFormat:@"/tmp/%@", NSBundle.mainBundle.bundleIdentifier];
+    }
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if (![fm fileExistsAtPath:tmpDir isDirectory:0]) {
+        NSError *error = nil;
+        [fm createDirectoryAtPath:tmpDir withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"Initialization Error : %@", error.localizedDescription);
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert runModal];
+        } else {
+            g_temp_dir = strdup(tmpDir.UTF8String);
+        }
+    }
     [_mainWindow showWindow:self];
     _preferences = [SLHPreferences preferences];
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
@@ -100,6 +120,7 @@ extern NSString *const SLHPlayerMPVConfigPath;
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+    free(g_temp_dir);
 }
 
 #pragma mark - IBActions
