@@ -788,7 +788,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
                 tmp = @"grain";
                 break;
             case SLHX264TuneStill:
-                tmp = @"still";
+                tmp = @"stillimage";
                 break;
             case SLHX264TunePsnr:
                 tmp = @"psnr";
