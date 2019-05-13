@@ -13,6 +13,7 @@
 #import "SLHEncoderItem.h"
 #import "SLHEncoderItemMetadata.h"
 #import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
 #import "SLHFiltersController.h"
 #import "SLHEncoderArgument.h"
 
@@ -31,6 +32,7 @@ extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
 extern NSString *const SLHEncoderVideoMovflagsKey;
 extern NSString *const SLHEncoderVideoPixelFormatKey;
+extern NSString *const SLHEncoderVideoAspectRatioKey;
 extern NSString *const SLHEncoderVideoH264ProfileKey;
 extern NSString *const SLHEncoderVideoH264LevelKey;
 extern NSString *const SLHEncoderVideoH264PresetKey;
@@ -84,6 +86,8 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     IBOutlet NSPopUpButton *_audioChannelsPopUp;
     
 }
+
+@property BOOL keepAspectRatio;
 
 @end
 
@@ -288,6 +292,24 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 
 - (IBAction)channelsDidChange:(NSPopUpButton *)sender {
     _encoderItem.audioOptions.numberOfChannels = sender.selectedTag;
+}
+
+- (IBAction)heightDidChange:(id)sender {
+    if (_keepAspectRatio && _encoderItem.videoStreamIndex > -1) {
+        NSSize size = _encoderItem.mediaItem.tracks[_encoderItem.videoStreamIndex].videoSize;
+        double aspect = size.width / size.height;
+        SLHEncoderItemOptions *options = _encoderItem.videoOptions;
+        options.videoWidth = options.videoHeight * aspect;
+    }
+}
+
+- (IBAction)widthDidChange:(id)sender {
+    if (_keepAspectRatio && _encoderItem.videoStreamIndex > -1) {
+        NSSize size = _encoderItem.mediaItem.tracks[_encoderItem.videoStreamIndex].videoSize;
+        double aspect = size.width / size.height;
+        SLHEncoderItemOptions *options = _encoderItem.videoOptions;
+        options.videoHeight = options.videoWidth / aspect;
+    }
 }
 
 #pragma mark - Private
