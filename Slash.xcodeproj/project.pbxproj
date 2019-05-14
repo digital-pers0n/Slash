@@ -50,6 +50,8 @@
 		CE8806C42158267900827977 /* slh_media.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8806C22158267900827977 /* slh_media.c */; };
 		CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1C2193583D0089C084 /* SLHDragView.m */; };
 		CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1F219358A40089C084 /* SLHClipView.m */; };
+		CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */; };
+		CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */; };
 		CE9EBEB5225F7F1B00CBADDF /* SLHEncoderArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9EBEB4225F7F1B00CBADDF /* SLHEncoderArgument.m */; };
 		CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */; };
 		CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA35A29224B866D008583AF /* SLHImageView.m */; };
@@ -138,6 +140,9 @@
 		CE9C0D1C2193583D0089C084 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHDragView.m; sourceTree = "<group>"; };
 		CE9C0D1E219358A40089C084 /* SLHClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHClipView.h; sourceTree = "<group>"; };
 		CE9C0D1F219358A40089C084 /* SLHClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHClipView.m; sourceTree = "<group>"; };
+		CE9CBCAC228B037A001A8E37 /* SLHArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHArgumentsViewController.h; path = controllers/SLHArgumentsViewController.h; sourceTree = "<group>"; };
+		CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHArgumentsViewController.m; path = controllers/SLHArgumentsViewController.m; sourceTree = "<group>"; };
+		CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHArgumentsViewController.xib; path = controllers/SLHArgumentsViewController.xib; sourceTree = "<group>"; };
 		CE9EBEB3225F7F1B00CBADDF /* SLHEncoderArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderArgument.h; path = model/SLHEncoderArgument.h; sourceTree = "<group>"; };
 		CE9EBEB4225F7F1B00CBADDF /* SLHEncoderArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderArgument.m; path = model/SLHEncoderArgument.m; sourceTree = "<group>"; };
 		CEA1563D2194AF5A00B54F56 /* SLHTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTabBarView.h; sourceTree = "<group>"; };
@@ -206,6 +211,9 @@
 				CE1DC4152285B09F0086A895 /* SLHLogController.h */,
 				CE1DC4162285B09F0086A895 /* SLHLogController.m */,
 				CE1DC4172285B09F0086A895 /* SLHLogController.xib */,
+				CE9CBCAC228B037A001A8E37 /* SLHArgumentsViewController.h */,
+				CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */,
+				CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -409,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */,
+				CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */,
 				CE256B9A222D8AC8007B520E /* SLHMetadataEditor.xib in Resources */,
 				CE1414C7210D32CC00C02B2D /* script.lua in Resources */,
 				CE1414C6210D32C400C02B2D /* mpv.conf in Resources */,
@@ -441,6 +450,7 @@
 				CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */,
 				CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */,
 				CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */,
+				CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */,
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
 				CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */,
