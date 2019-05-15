@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SLHEncoderItem;
+
 @interface SLHArgumentsViewController : NSViewController
+
+@property SLHEncoderItem *encoderItem;
 
 @end
