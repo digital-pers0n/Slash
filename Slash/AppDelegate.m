@@ -43,10 +43,10 @@ extern NSString *const SLHPlayerMPVConfigPath;
             NSLog(@"Initialization Error : %@", error.localizedDescription);
             NSAlert *alert = [NSAlert alertWithError:error];
             [alert runModal];
-        } else {
-            g_temp_dir = strdup(tmpDir.UTF8String);
+            [NSApp terminate:self];
         }
     }
+     g_temp_dir = strdup(tmpDir.UTF8String);
     [_mainWindow showWindow:self];
     _preferences = [SLHPreferences preferences];
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
