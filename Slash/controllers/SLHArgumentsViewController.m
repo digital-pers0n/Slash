@@ -7,8 +7,15 @@
 //
 
 #import "SLHArgumentsViewController.h"
+#import "SLHEncoderItem.h"
 
-@interface SLHArgumentsViewController ()
+@interface SLHArgumentsViewController () <NSTableViewDataSource> {
+    IBOutlet NSTableView *_tableView;
+    NSMutableArray <NSString *> *_dataSource;
+    NSMutableArray <NSMutableArray <NSString *> *> *_arguments;
+    SLHEncoderItem *_encoderItem;
+    IBOutlet NSPopUpButton *_passPopUp;
+}
 
 @end
 

@@ -8,24 +8,26 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHArgumentsViewController">
             <connections>
+                <outlet property="_passPopUp" destination="fKh-gC-G1q" id="kTU-i0-dNa"/>
+                <outlet property="_tableView" destination="CX0-fk-fJI" id="U3r-1R-4KH"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="328" height="272"/>
+            <rect key="frame" x="0.0" y="0.0" width="328" height="270"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="HXp-9f-lmZ">
-                    <rect key="frame" x="0.0" y="1" width="328" height="271"/>
+                    <rect key="frame" x="0.0" y="40" width="328" height="230"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" drawsBackground="NO" id="2Jt-5k-m9f">
-                        <rect key="frame" x="1" y="1" width="326" height="269"/>
+                        <rect key="frame" x="1" y="1" width="326" height="228"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="CX0-fk-fJI">
-                                <rect key="frame" x="0.0" y="0.0" width="326" height="269"/>
+                                <rect key="frame" x="0.0" y="0.0" width="326" height="228"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -58,8 +60,31 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <popUpButton verticalHuggingPriority="750" id="fKh-gC-G1q">
+                    <rect key="frame" x="17" y="11" width="86" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="F7D-1b-TOd">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <menu key="menu" id="jOO-BL-D34"/>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="passDidChange:" target="-2" id="Exu-EJ-bRk"/>
+                    </connections>
+                </popUpButton>
+                <button verticalHuggingPriority="750" id="Z8N-8j-wxf">
+                    <rect key="frame" x="228" y="13" width="80" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="roundTextured" title="Apply" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t4g-GQ-2kq">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="applyChanges:" target="-2" id="e3g-E1-cTm"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="452" y="234"/>
+            <point key="canvasLocation" x="322" y="225"/>
         </customView>
     </objects>
 </document>
