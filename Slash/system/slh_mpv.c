@@ -21,6 +21,11 @@ static inline void plr_error(const char *s1, const char *s2) {
     fprintf(stderr, "%s : %s\n", s1, s2);
 }
 
+static inline char *_get_tmp_dir() {
+    extern char *g_temp_dir;
+    return (g_temp_dir) ? g_temp_dir : "/tmp";
+}
+
 #pragma mark - Initialize
 
 int plr_init(Player *p, char *const *args) {
@@ -31,7 +36,7 @@ int plr_init(Player *p, char *const *args) {
     
     char *tmp, *cmd, *pth;
     
-    asprintf(&pth, "/tmp/mpv_%lx", time(0));        // generate socket path name
+    asprintf(&pth, "%s/mpv_%lx", _get_tmp_dir(), time(0));        // generate socket path name
     p->socket_path = pth;
     
     asprintf(&cmd, "%s --list-options | grep input-ipc-server", ac[0]);
