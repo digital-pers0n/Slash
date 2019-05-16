@@ -58,6 +58,7 @@
 #pragma mark - Methods
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    _encoderItem = encoderItem;
     NSMenu *menu = _passPopUp.menu;
     [menu removeAllItems];
     [_arguments removeAllObjects];
