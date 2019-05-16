@@ -76,14 +76,11 @@ typedef void (^respond_block)(SLHEncoderState);
         char **array = _nsarray2carray(a);
         queue_enqueue(_queue, array);
     }
-    if (item.videoStreamIndex != -1) {
-        SLHMediaItem *mediaItem = item.mediaItem;
-        for (SLHMediaItemTrack *t in mediaItem.tracks) {
-            if (t.mediaType == SLHMediaTypeVideo) {
-                self.progressBarMaxValue = t.frameRate * (item.interval.end - item.interval.start);
-                break;
-            }
-        }
+    NSInteger streamIndex = item.videoStreamIndex;
+    if (streamIndex != -1) {
+        SLHMediaItemTrack *track = item.mediaItem.tracks[streamIndex];
+        TimeInterval interval = item.interval;
+        self.progressBarMaxValue = track.frameRate * (interval.end - interval.start);
     } else {
         self.progressBarMaxValue = 1;
     }
