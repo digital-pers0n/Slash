@@ -52,6 +52,8 @@
 		CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1F219358A40089C084 /* SLHClipView.m */; };
 		CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */; };
 		CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */; };
+		CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */; };
+		CE9CBCD7228C68A4001A8E37 /* SLHModalWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */; };
 		CE9EBEB5225F7F1B00CBADDF /* SLHEncoderArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9EBEB4225F7F1B00CBADDF /* SLHEncoderArgument.m */; };
 		CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */; };
 		CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA35A29224B866D008583AF /* SLHImageView.m */; };
@@ -143,6 +145,9 @@
 		CE9CBCAC228B037A001A8E37 /* SLHArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHArgumentsViewController.h; path = controllers/SLHArgumentsViewController.h; sourceTree = "<group>"; };
 		CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHArgumentsViewController.m; path = controllers/SLHArgumentsViewController.m; sourceTree = "<group>"; };
 		CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHArgumentsViewController.xib; path = controllers/SLHArgumentsViewController.xib; sourceTree = "<group>"; };
+		CE9CBCD3228C68A4001A8E37 /* SLHModalWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHModalWindowController.h; path = controllers/SLHModalWindowController.h; sourceTree = "<group>"; };
+		CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHModalWindowController.m; path = controllers/SLHModalWindowController.m; sourceTree = "<group>"; };
+		CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHModalWindowController.xib; path = controllers/SLHModalWindowController.xib; sourceTree = "<group>"; };
 		CE9EBEB3225F7F1B00CBADDF /* SLHEncoderArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderArgument.h; path = model/SLHEncoderArgument.h; sourceTree = "<group>"; };
 		CE9EBEB4225F7F1B00CBADDF /* SLHEncoderArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderArgument.m; path = model/SLHEncoderArgument.m; sourceTree = "<group>"; };
 		CEA1563D2194AF5A00B54F56 /* SLHTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTabBarView.h; sourceTree = "<group>"; };
@@ -214,6 +219,9 @@
 				CE9CBCAC228B037A001A8E37 /* SLHArgumentsViewController.h */,
 				CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */,
 				CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */,
+				CE9CBCD3228C68A4001A8E37 /* SLHModalWindowController.h */,
+				CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */,
+				CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -429,6 +437,7 @@
 				CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */,
 				CE2365602254C80A00B324E4 /* SLHEncoderQueue.xib in Resources */,
 				CE566A7D215EB849004E974F /* SLHPreferences.xib in Resources */,
+				CE9CBCD7228C68A4001A8E37 /* SLHModalWindowController.xib in Resources */,
 				CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */,
 				CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */,
 			);
@@ -462,6 +471,7 @@
 				CE2365642254C9CC00B324E4 /* SLHEncoder.m in Sources */,
 				CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
+				CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */,
 				CE8806C42158267900827977 /* slh_media.c in Sources */,
 				CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
