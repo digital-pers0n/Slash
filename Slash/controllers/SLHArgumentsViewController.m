@@ -82,6 +82,15 @@
 - (IBAction)applyChanges:(id)sender {
     _encoderItem.encoderArguments = _arguments.copy;
 }
+- (IBAction)revertChanges:(id)sender {
+    [_arguments removeAllObjects];
+    for (NSArray *a in _encoderItem.encoderArguments) {
+        [_arguments addObject:a.mutableCopy];
+    }
+    [_passPopUp selectItemAtIndex:0];
+    _dataSource = _arguments[0];
+    [_tableView reloadData];
+}
 
 - (IBAction)passDidChange:(id)sender {
     NSInteger index = _passPopUp.indexOfSelectedItem;
