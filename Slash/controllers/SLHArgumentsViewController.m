@@ -88,6 +88,29 @@
     _dataSource = _arguments[index];
     [_tableView reloadData];
 }
+- (IBAction)insertItem:(id)sender {
+    NSInteger idx = _tableView.selectedRow;
+    if (idx < _dataSource.count) {
+        idx++;
+        [_dataSource insertObject:@"(Empty)" atIndex:idx];
+        [_tableView reloadData];
+        [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:idx] byExtendingSelection:NO];
+        [_tableView scrollRowToVisible:idx];
+    } else {
+        NSBeep();
+    }
+}
+- (IBAction)removeItem:(id)sender {
+    NSInteger idx = _tableView.selectedRow;
+    if (idx < _dataSource.count) {
+        [_dataSource removeObjectAtIndex:idx--];
+        [_tableView reloadData];
+        [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:idx] byExtendingSelection:NO];
+        [_tableView scrollRowToVisible:idx];
+    } else {
+        NSBeep();
+    }
+}
 
 #pragma mark - NSTableView DataSource
 

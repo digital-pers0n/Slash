@@ -64,8 +64,8 @@
                     </scroller>
                 </scrollView>
                 <popUpButton verticalHuggingPriority="750" id="fKh-gC-G1q">
-                    <rect key="frame" x="17" y="11" width="86" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="150" y="11" width="86" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="F7D-1b-TOd">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -76,7 +76,7 @@
                     </connections>
                 </popUpButton>
                 <button verticalHuggingPriority="750" id="Z8N-8j-wxf">
-                    <rect key="frame" x="228" y="13" width="80" height="19"/>
+                    <rect key="frame" x="249" y="13" width="59" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="roundTextured" title="Apply" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t4g-GQ-2kq">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -86,8 +86,34 @@
                         <action selector="applyChanges:" target="-2" id="e3g-E1-cTm"/>
                     </connections>
                 </button>
+                <button id="VOU-vX-KBd">
+                    <rect key="frame" x="14" y="17" width="12" height="12"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="j0L-Nc-7al">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="insertItem:" target="-2" id="Uka-DD-hEs"/>
+                    </connections>
+                </button>
+                <button id="9gK-G1-N31">
+                    <rect key="frame" x="36" y="17" width="12" height="12"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSMenuMixedStateTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="sKv-mz-Qpx">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="removeItem:" target="-2" id="jvU-FP-VJe"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="322" y="225"/>
         </customView>
     </objects>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSMenuMixedStateTemplate" width="10" height="2"/>
+    </resources>
 </document>
