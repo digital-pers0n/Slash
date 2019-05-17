@@ -86,6 +86,7 @@ typedef void (^respond_block)(SLHEncoderState);
     }
     NSWindow *window = self.window;
     [window center];
+    [window setTitleWithRepresentedFilename:item.outputPath];
     [self startEncoding:nil];
     [NSApp runModalForWindow:window];
     [NSApp endSheet:window];
