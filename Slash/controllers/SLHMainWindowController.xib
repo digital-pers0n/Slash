@@ -72,7 +72,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LdD-wj-H6G">
-                                    <rect key="frame" x="464" y="0.0" width="16" height="427"/>
+                                    <rect key="frame" x="465" y="0.0" width="15" height="427"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -421,26 +421,32 @@
                                                                     <rect key="frame" x="39" y="20" width="101" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" id="wWX-I2-UHd">
-                                                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="down" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="5pk-bD-j1J"/>
+                                                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="down" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="5pk-bD-j1J">
+                                                                            <real key="minimum" value="0.0"/>
+                                                                        </numberFormatter>
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalStart" id="6GG-9o-Li1"/>
+                                                                        <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="Gpm-ii-Unh"/>
+                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalStart" previousBinding="Gpm-ii-Unh" id="5TB-2w-avC"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" id="jf6-d6-pTe">
                                                                     <rect key="frame" x="39" y="1" width="101" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" id="cpI-6k-YIZ">
-                                                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="down" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" groupingSeparator="," id="SK5-wn-fnM"/>
+                                                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="down" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" groupingSeparator="," id="SK5-wn-fnM">
+                                                                            <real key="minimum" value="0.0"/>
+                                                                        </numberFormatter>
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalEnd" id="YXZ-1G-r7v"/>
+                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalEnd" previousBinding="a7X-VY-CWi" id="Aqz-pb-lqs"/>
+                                                                        <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="a7X-VY-CWi"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
