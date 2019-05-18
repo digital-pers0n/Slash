@@ -197,6 +197,14 @@ static inline NSString *_preampString(NSInteger val) {
 
 #pragma mark - IBActions
 
+- (IBAction)resetCropArea:(id)sender {
+    SLHFilterOptions *options = _encoderItem.filters;
+    options.videoCropX = 0;
+    options.videoCropY = 0;
+    options.videoCropHeight = 0;
+    options.videoCropWidth = 0;
+}
+
 - (IBAction)previewCropArea:(id)sender {
     SLHFilterOptions *options = _encoderItem.filters;
     NSRect r = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);

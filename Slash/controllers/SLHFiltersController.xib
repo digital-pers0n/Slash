@@ -16,11 +16,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="319" height="256"/>
+            <rect key="frame" x="0.0" y="0.0" width="331" height="256"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="lM1-MF-KLI">
-                    <rect key="frame" x="18" y="200" width="33" height="14"/>
+                    <rect key="frame" x="23" y="200" width="33" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Crop:" id="5il-40-CmO">
                         <font key="font" metaFont="smallSystem"/>
@@ -37,17 +37,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ekw-F6-2CC">
-                    <rect key="frame" x="18" y="47" width="46" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fade In:" id="Uwq-up-9ju">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="uka-4k-SBc">
-                    <rect key="frame" x="160" y="45" width="55" height="14"/>
+                    <rect key="frame" x="170" y="47" width="55" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fade Out:" id="mDP-cr-4EE">
                         <font key="font" metaFont="smallSystem"/>
@@ -56,7 +47,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="egp-BD-eO0">
-                    <rect key="frame" x="18" y="23" width="48" height="14"/>
+                    <rect key="frame" x="19" y="23" width="48" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preamp:" id="t18-WM-Cy3">
                         <font key="font" metaFont="smallSystem"/>
@@ -79,7 +70,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="mZM-4I-whp">
-                    <rect key="frame" x="221" y="42" width="72" height="19"/>
+                    <rect key="frame" x="228" y="44" width="72" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" id="ELI-ak-Nmf">
                         <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="hc0-9Y-tJM"/>
@@ -233,7 +224,7 @@
                     </textFieldCell>
                 </textField>
                 <button toolTip="Open Editor" id="Dd4-Hu-S3w">
-                    <rect key="frame" x="236" y="178" width="18" height="19"/>
+                    <rect key="frame" x="230" y="178" width="18" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="Hp2-n8-wNh">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -272,7 +263,7 @@
                     </connections>
                 </stepper>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Nr3-AM-a6J">
-                    <rect key="frame" x="291" y="40" width="15" height="22"/>
+                    <rect key="frame" x="298" y="42" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="100" id="Sxz-qk-Qhc"/>
                     <connections>
@@ -281,7 +272,7 @@
                     </connections>
                 </stepper>
                 <button toolTip="Preview" id="0I8-Df-iRd">
-                    <rect key="frame" x="286" y="178" width="18" height="19"/>
+                    <rect key="frame" x="276" y="178" width="18" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="Yea-Ya-2D0">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -293,7 +284,7 @@
                     </connections>
                 </button>
                 <button toolTip="Detect Crop Area" id="9kg-ae-uXI">
-                    <rect key="frame" x="261" y="178" width="18" height="19"/>
+                    <rect key="frame" x="253" y="178" width="18" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameCropDetectTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="9ta-eI-Rm2">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -305,7 +296,7 @@
                     </connections>
                 </button>
                 <button id="oGy-e5-cES">
-                    <rect key="frame" x="238" y="218" width="62" height="20"/>
+                    <rect key="frame" x="252" y="218" width="62" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Enable" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="dkS-BO-lDg">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -316,7 +307,7 @@
                     </connections>
                 </button>
                 <button id="gAF-A6-XsD">
-                    <rect key="frame" x="238" y="69" width="62" height="20"/>
+                    <rect key="frame" x="252" y="69" width="61" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Enable" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="zui-fv-R3d">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -355,7 +346,7 @@
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MFy-zv-1Va">
                     <rect key="frame" x="126" y="105" width="180" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="FWS-Fz-bwX">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -382,13 +373,35 @@
                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="9wf-tl-eeg"/>
                     </connections>
                 </button>
+                <button toolTip="Reset Selection" id="hXg-VU-Un7">
+                    <rect key="frame" x="299" y="181" width="12" height="12"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="JCs-Id-p0O">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="resetCropArea:" target="-2" id="id7-9b-tSW"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="DQw-8H-kZ5"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ekw-F6-2CC">
+                    <rect key="frame" x="21" y="47" width="46" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fade In:" id="Uwq-up-9ju">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
-            <point key="canvasLocation" x="260.5" y="186"/>
+            <point key="canvasLocation" x="266.5" y="186"/>
         </customView>
         <customObject id="uAw-yk-DxB" customClass="SLHCropEditor"/>
     </objects>
     <resources>
         <image name="NSQuickLookTemplate" width="19" height="12"/>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
         <image name="SLHImageNameCropDetectTemplate" width="32" height="32"/>
         <image name="SLHImageNameEditTemplate" width="32" height="32"/>
         <image name="SLHImageNameFolderTemplate" width="32" height="32"/>
