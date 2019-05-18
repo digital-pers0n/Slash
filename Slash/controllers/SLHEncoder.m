@@ -213,7 +213,9 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
         queue_dequeue(obj->_queue, &ptr);
         args_free(ptr);
         if (queue_size(obj->_queue)) {
-            [obj startEncoding:nil];
+            dispatch_async(obj->_main_thread, ^{
+                [obj startEncoding:nil];
+            });
         } else {
             dispatch_sync(obj->_main_thread, ^{
                 obj->_block(SLHEncoderStateSuccess);

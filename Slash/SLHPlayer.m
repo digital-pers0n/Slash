@@ -16,6 +16,7 @@ extern NSString *const SLHPlayerMPVConfigPath;
 @interface SLHPlayer () {
     Player *_player;
     BOOL _fileLoaded;
+    dispatch_queue_t _main_thread;
 }
 
 @property BOOL fileLoaded;
@@ -83,7 +84,7 @@ extern NSString *const SLHPlayerMPVConfigPath;
     plr_connect(_player);
     _fileLoaded = NO;
     _hasWindow = YES;
-        
+    _main_thread = dispatch_get_main_queue();
 }
 
 static inline bool _isScript(const char *str) {
@@ -98,7 +99,9 @@ static void _mpv_callback(char *str, void *ctx) {
             {
                 //puts(str + 11);
                 double val = strtod(str + 11, 0);
-                [p.delegate player:p segmentStart:val];
+                dispatch_async(p->_main_thread, ^{
+                    [p.delegate player:p segmentStart:val];
+                });
             }
                 
                 break;
@@ -106,17 +109,28 @@ static void _mpv_callback(char *str, void *ctx) {
             {
                 //puts(str + 11);
                 double val = strtod(str + 11, 0);
-                [p.delegate player:p segmentEnd:val];
+                dispatch_async(p->_main_thread, ^{
+                    [p.delegate player:p segmentEnd:val];
+                });
+                
             }
                 break;
             case '+': // [script] +
+            {
                 //puts(str + 9);
-                [p.delegate playerDidEndEditingSegment:p];
+                dispatch_async(p->_main_thread, ^{
+                    [p.delegate playerDidEndEditingSegment:p];
+                });
+            }
                 break;
                 
             case '-': // [script] -
-                //puts(str + 9);
-                [p.delegate playerDidClearSegment:p];
+            {
+                 //puts(str + 9);
+                dispatch_async(p->_main_thread, ^{
+                    [p.delegate playerDidClearSegment:p];
+                });
+            }
                 break;
                 
             default:

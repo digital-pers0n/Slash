@@ -110,9 +110,7 @@
 - (void)player:(SLHPlayer *)p segmentStart:(double)start {
     if (!_tempEncoderItem || ![_arrayController.arrangedObjects containsObject:_tempEncoderItem]) {
         _tempEncoderItem = [self _createSegment];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [_arrayController addObject:_tempEncoderItem];
-        });
+        [_arrayController addObject:_tempEncoderItem];
     }
     _tempEncoderItem.intervalStart = start;
     
@@ -128,9 +126,7 @@
 
 - (void)playerDidClearSegment:(SLHPlayer *)p {
     if (_tempEncoderItem) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [_arrayController removeObject:_tempEncoderItem];
-        });
+        [_arrayController removeObject:_tempEncoderItem];
     }
         _tempEncoderItem = nil;
 }
