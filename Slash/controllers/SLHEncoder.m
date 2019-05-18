@@ -132,6 +132,7 @@ typedef void (^respond_block)(SLHEncoderState);
 #pragma mark - IBActions
 
 - (IBAction)startEncoding:(id)sender {
+     _statusLineView.string = @"Encoding...";
     if (_log) {
         free(_log);
     }
