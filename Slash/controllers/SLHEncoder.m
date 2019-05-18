@@ -89,14 +89,14 @@ typedef void (^respond_block)(SLHEncoderState);
     [window setTitleWithRepresentedFilename:item.outputPath];
     [self startEncoding:nil];
     [NSApp runModalForWindow:window];
-    [NSApp endSheet:window];
+    [NSApp stopModal];
     [window orderOut:nil];
     
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
     [self stopEncoding:nil];
-    [NSApp endSheet:self.window];
+    [NSApp stopModal];
 }
 
 - (NSString *)encodingLog {

@@ -39,7 +39,7 @@
 #pragma mark - NSWindowDelegate
 
 - (void)windowWillClose:(NSNotification *)notification {
-    [NSApp endSheet:self.window];
+    [NSApp stopModal];
 }
 
 @end
