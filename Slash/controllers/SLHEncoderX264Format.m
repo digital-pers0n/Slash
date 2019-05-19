@@ -137,6 +137,10 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         videoOptions.faststart = YES;
         _encoderItem.videoOptions = videoOptions;
         _encoderItem.container = @"mp4";
+        NSString *outputFileName = _encoderItem.outputFileName;
+        outputFileName = [outputFileName stringByDeletingPathExtension];
+        outputFileName = [outputFileName stringByAppendingPathExtension:@"mp4"];
+        _encoderItem.outputFileName = outputFileName;
         
         audioOptions.codecName = @"aac";
         audioOptions.bitRate = 128;
