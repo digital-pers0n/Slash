@@ -44,6 +44,7 @@
 		CE566A7D215EB849004E974F /* SLHPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE566A7B215EB849004E974F /* SLHPreferences.xib */; };
 		CE566A7F215EC93B004E974F /* extern.m in Sources */ = {isa = PBXBuildFile; fileRef = CE566A7E215EC93B004E974F /* extern.m */; };
 		CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */; };
+		CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
 		CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7E11EB22294ADC002C2456 /* SLHEncoderItemOptions.m */; };
 		CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */; };
@@ -130,6 +131,8 @@
 		CE566A7E215EC93B004E974F /* extern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extern.m; sourceTree = "<group>"; };
 		CE5998C9219DF81C0009FE08 /* SLHEncoderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderItem.h; path = model/SLHEncoderItem.h; sourceTree = "<group>"; };
 		CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItem.m; path = model/SLHEncoderItem.m; sourceTree = "<group>"; };
+		CE5EBC3422905511009BBAF7 /* SLHEncoderQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderQueueItem.h; path = model/SLHEncoderQueueItem.h; sourceTree = "<group>"; };
+		CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderQueueItem.m; path = model/SLHEncoderQueueItem.m; sourceTree = "<group>"; };
 		CE65BB0C21066B0500D2CBAA /* slh_process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_process.c; path = system/slh_process.c; sourceTree = "<group>"; };
 		CE65BB0D21066B0500D2CBAA /* slh_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_process.h; path = system/slh_process.h; sourceTree = "<group>"; };
 		CE7E11EA22294ADC002C2456 /* SLHEncoderItemOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderItemOptions.h; path = model/SLHEncoderItemOptions.h; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				CE9EBEB4225F7F1B00CBADDF /* SLHEncoderArgument.m */,
 				CE3893C3227886BF004BC3A2 /* SLHEncoderItemMetadata.h */,
 				CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */,
+				CE5EBC3422905511009BBAF7 /* SLHEncoderQueueItem.h */,
+				CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
 				CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */,
 				CE8806C42158267900827977 /* slh_media.c in Sources */,
+				CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */,
 				CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */,
