@@ -8,6 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SLHEncoderItem;
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SLHEncoderQueue : NSWindowController
 
+- (void)addEncoderItems:(NSArray <SLHEncoderItem *> *)array;
+
 @end
+
+NS_ASSUME_NONNULL_END
