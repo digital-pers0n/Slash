@@ -11,8 +11,6 @@
 #import "SLHPreferences.h"
 #import "slh_mpv.h"
 
-extern NSString *const SLHPlayerMPVConfigPath;
-
 @interface SLHPlayer () {
     Player *_player;
     BOOL _fileLoaded;

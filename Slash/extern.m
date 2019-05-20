@@ -27,11 +27,6 @@ NSString *const SLHMetadataIdentifierTitle          = @"title";
 NSString *const SLHMetadataIdentifierDate           = @"date";
 NSString *const SLHMetadataIdentifierComment        = @"comment";
 
-#pragma mark - SLHPlayer
-
-NSString *const SLHPlayerMPVConfigPath              = @"~/Library/Application Support/Slash/mpv.conf";
-
-
 #pragma mark - SLHEncoderItem Keys
 
 NSString *const SLHEncoderMediaMapKey             = @"-map";

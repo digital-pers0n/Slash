@@ -17,8 +17,6 @@ static NSString *const _appInitializedKey = @"appInitialized";
 
 char *g_temp_dir;
 
-extern NSString *const SLHPlayerMPVConfigPath;
-
 @interface AppDelegate ()
 
 @property IBOutlet SLHMainWindowController *mainWindow;
@@ -80,39 +78,6 @@ extern NSString *const SLHPlayerMPVConfigPath;
             [alert runModal];
         } else {
             [defs setBool:YES forKey:_appInitializedKey];
-        }
-    }
-    
-    { // Copy resources
-    
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSURL *appSupp = [fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject;
-        appSupp = [appSupp URLByAppendingPathComponent:@"Slash" isDirectory:YES];
-        NSString *path = appSupp.path;
-        
-        if (![fileManager fileExistsAtPath:path]) {
-            
-            [fileManager createDirectoryAtURL:appSupp withIntermediateDirectories:NO attributes:nil error:nil];
-        }
-        
-        NSString *mpvConfigPath = [SLHPlayerMPVConfigPath stringByExpandingTildeInPath];
-        if (![fileManager fileExistsAtPath:mpvConfigPath isDirectory:NO]) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"mpv" ofType:@"conf"];
-            NSError *error = nil;
-            [fileManager copyItemAtPath:path toPath:mpvConfigPath error:&error];
-            if (error) {
-                NSLog(@"Initialization error: %@", error.localizedDescription);
-            }
-        }
-        
-        NSString *luaScriptPath = [@"~/Library/Application Support/Slash/script.lua" stringByExpandingTildeInPath];
-        if (![fileManager fileExistsAtPath:luaScriptPath isDirectory:NO]) {
-            path = [[NSBundle mainBundle] pathForResource:@"script" ofType:@"lua"];
-            NSError *error = nil;
-            [fileManager copyItemAtPath:path toPath:luaScriptPath error:&error];
-            if (error) {
-                NSLog(@"Initialization error: %@", error.localizedDescription);
-            }
         }
     }
     
