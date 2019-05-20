@@ -16,6 +16,9 @@ extern NSString *const SLHPreferencesDefaultOutputPath;
     
     NSMutableArray <NSString *> *_recentOutputPaths;
     NSString *_currentOutputPath;
+    
+    NSString *_mpvConfigPath;
+    NSString *_mpvLuaScriptPath;
 
 }
 
@@ -44,6 +47,13 @@ extern NSString *const SLHPreferencesDefaultOutputPath;
 {
     self = [super init];
     if (self) {
+        _mpvConfigPath = [[NSBundle mainBundle] pathForResource:@"mpv" ofType:@"conf"];
+        _mpvLuaScriptPath = [[NSBundle mainBundle] pathForResource:@"script" ofType:@"lua"];
+        if (!_mpvConfigPath || !_mpvLuaScriptPath) {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Cannot Load Resources" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Aborting..."];
+            [alert runModal];
+            [NSApp terminate:nil];
+        }
         _recentOutputPaths = [[NSUserDefaults standardUserDefaults]
                               arrayForKey:SLHPreferencesRecentOutputPaths].mutableCopy;
         if (!_recentOutputPaths) {

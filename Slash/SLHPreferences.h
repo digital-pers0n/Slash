@@ -22,4 +22,7 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property (copy) NSString *currentOutputPath;
 @property BOOL outputPathSameAsInput;
 
+@property (readonly) NSString *mpvConfigPath;
+@property (readonly) NSString *mpvLuaScriptPath;
+
 @end
