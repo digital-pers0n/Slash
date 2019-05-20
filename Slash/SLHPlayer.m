@@ -68,9 +68,10 @@ extern NSString *const SLHPlayerMPVConfigPath;
     if (!mpvPath) { // use default path
         mpvPath = @"/usr/local/bin/mpv";
     }
-    
-    NSString *confPath = [SLHPlayerMPVConfigPath stringByExpandingTildeInPath];
-    const char *args[] = {mpvPath.UTF8String, "--include", confPath.UTF8String, NULL};
+    SLHPreferences *prefs = [SLHPreferences preferences];
+    NSString *confPath = prefs.mpvConfigPath;
+    NSString *scriptPath = prefs.mpvLuaScriptPath;
+    const char *args[] = {mpvPath.UTF8String, "--include", confPath.UTF8String, "--script", scriptPath.UTF8String, NULL};
     if (plr_init(_player, (char *const *)args) != 0) {
         _status = SLHPlayerStatusFailed;
         _error = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:@{ NSLocalizedDescriptionKey: @"Initialization Failed"}];
