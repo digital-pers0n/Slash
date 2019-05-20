@@ -24,6 +24,7 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="640" height="480"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <value key="minSize" type="size" width="400" height="320"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -119,6 +120,9 @@
                             <real value="250"/>
                             <real value="250"/>
                         </holdingPriorities>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="Lzd-EQ-pL9"/>
+                        </connections>
                     </splitView>
                     <button verticalHuggingPriority="750" id="gk8-HC-IiX">
                         <rect key="frame" x="552" y="6" width="80" height="25"/>

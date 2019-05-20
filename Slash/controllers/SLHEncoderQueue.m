@@ -13,7 +13,7 @@
 #import "SLHMediaItemTrack.h"
 #import "SLHEncoderQueueItem.h"
 
-@interface SLHEncoderQueue () <NSTableViewDelegate> {
+@interface SLHEncoderQueue () <NSTableViewDelegate, NSSplitViewDelegate> {
     
     IBOutlet NSView *_customView;
     IBOutlet SLHArgumentsViewController *_argumentsViewController;
@@ -77,6 +77,19 @@
 }
 
 - (IBAction)removeAll:(id)sender {
+}
+
+#pragma mark - NSSplitViewDelegate
+
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+    if (subview == _argumentsViewController.view) {
+        return YES;
+    }
+    return NO;
+}
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition ofSubviewAt:(NSInteger)dividerIndex {
+    return NSWidth(splitView.frame) - 285;
 }
 
 #pragma mark - NSTableView Delegate
