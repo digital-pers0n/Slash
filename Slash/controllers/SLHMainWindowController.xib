@@ -146,6 +146,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
+                            <action selector="addToQueue:" target="-2" id="A5I-wn-lFI"/>
                             <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="00b-hl-qGq"/>
                         </connections>
                     </button>
@@ -178,18 +179,18 @@
                                 <rect key="frame" x="6" y="0.0" width="358" height="382"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="DdK-Hs-kkL">
+                                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="DdK-Hs-kkL">
                                         <rect key="frame" x="0.0" y="0.0" width="358" height="137"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="0aZ-Zj-Ybf">
-                                            <rect key="frame" x="1" y="1" width="356" height="135"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="358" height="137"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" findStyle="panel" verticallyResizable="YES" id="saR-Jc-hSm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="356" height="135"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="358" height="137"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="356" height="135"/>
+                                                    <size key="minSize" width="358" height="137"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <attributedString key="textStorage">
                                                         <fragment content="Sample Text">
@@ -200,10 +201,14 @@
                                                         </fragment>
                                                     </attributedString>
                                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="356" height="135"/>
+                                                    <size key="minSize" width="358" height="137"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <connections>
-                                                        <binding destination="vks-Yg-j4w" name="value" keyPath="selection.summary" id="Xji-OE-jCF"/>
+                                                        <binding destination="vks-Yg-j4w" name="value" keyPath="selection.summary" id="903-tS-zM8">
+                                                            <dictionary key="options">
+                                                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </textView>
                                             </subviews>
@@ -214,7 +219,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ghD-WR-hi3">
-                                            <rect key="frame" x="341" y="1" width="16" height="135"/>
+                                            <rect key="frame" x="342" y="0.0" width="16" height="137"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -335,17 +340,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" id="UeW-jh-SLv">
-                                <rect key="frame" x="146" y="429" width="48" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uqk-JA-EsR">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="previewSourceFile:" target="-2" id="Pu6-aC-Blb"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="bHc-Dn-gpy">
                                 <rect key="frame" x="10" y="388" width="38" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -429,8 +423,8 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="Gpm-ii-Unh"/>
                                                                         <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalStart" previousBinding="Gpm-ii-Unh" id="5TB-2w-avC"/>
+                                                                        <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="Gpm-ii-Unh"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" id="jf6-d6-pTe">
