@@ -29,6 +29,7 @@
     NSArray <SLHEncoderBaseFormat *> *_formats;
     SLHEncoderItem *_tempEncoderItem;
     SLHMediaItem *_currentMediaItem;
+    NSString *_lastEncodedMediaFilePath;
     SLHEncoder *_encoder;
     
     IBOutlet NSView *_customView;
@@ -87,6 +88,12 @@
     }
     (void)x264Fmt.view;
     _encoderSettings.delegate = x264Fmt;
+}
+
+#pragma mark - Methods
+
+- (BOOL)hasSegments {
+    return _arrayController.canRemove;
 }
 
 #pragma mark - NSTableView Delegate
@@ -168,6 +175,27 @@
         _player.delegate = self;
     } else {
         [_player replaceCurrentItemWithMediaItem:_currentMediaItem];
+    }
+    if (_player.error) {
+        NSLog(@"Playback error: %@", _player.error.localizedDescription);
+        return;
+    }
+    [_player play];
+}
+
+- (IBAction)previewSegment:(id)sender {
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    [_player loopStart:item.interval.start end:item.interval.end];
+}
+
+- (IBAction)previewOutputFile:(id)sender {
+    SLHMediaItem *item = [SLHMediaItem mediaItemWithPath:_lastEncodedMediaFilePath];
+    if (!_player) {
+        _player = [SLHPlayer playerWithMediaItem:item];
+        _player.delegate = self;
+    } else {
+        [_player replaceCurrentItemWithMediaItem:item];
     }
     if (_player.error) {
         NSLog(@"Playback error: %@", _player.error.localizedDescription);

@@ -12,5 +12,11 @@
 @interface SLHMainWindowController : NSWindowController
 
 @property SLHMediaItem *currentMediaItem;
+@property (readonly) NSString *lastEncodedMediaFilePath;
+@property (readonly) BOOL hasSegments;
+
+- (IBAction)previewSourceFile:(id)sender;
+- (IBAction)previewSegment:(id)sender;
+- (IBAction)previewOutputFile:(id)sender;
 
 @end

@@ -94,5 +94,9 @@ char *g_temp_dir;
     [_preferences showWindow:sender];
 }
 
+- (IBAction)revealOutputFile:(id)sender {
+    NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
+    [sharedWorkspace selectFile:_mainWindow.lastEncodedMediaFilePath inFileViewerRootedAtPath:@""];
+}
 
 @end
