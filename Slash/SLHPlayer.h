@@ -122,6 +122,11 @@ typedef NS_ENUM(NSInteger, SLHPlayerStatus) {
 */
 - (void)seekToTime:(double)time;
 
+/**
+  Set A-B loop points 
+ */
+- (void)loopStart:(double)a end:(double)b;
+
 @end
 
 @protocol SLHPlayerDelegate <NSObject>

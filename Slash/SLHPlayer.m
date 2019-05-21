@@ -195,7 +195,18 @@ static inline void _launchPlayer(Player *p) {
     return 0;
 }
 
-- (void)seekToTime:(double)time {
+- (void)loopStart:(double)a end:(double)b {
+    char *start, *end, *pos;
+    asprintf(&start,  "{ \"command\": [\"set_property\", \"ab-loop-a\", \"%f\" ] }\n", a);
+    asprintf(&end,  "{ \"command\": [\"set_property\", \"ab-loop-b\", \"%f\" ] }\n", b);
+    asprintf(&pos,  "{ \"command\": [\"set_property\", \"time-pos\", \"%f\" ] }\n", a);
+    plr_msg_send(_player, pos);
+    plr_msg_send(_player, start);
+    plr_msg_send(_player, end);
+    
+    free(start);
+    free(end);
+    free(pos);
 }
 
 @end
