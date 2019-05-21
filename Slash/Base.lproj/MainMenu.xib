@@ -98,6 +98,45 @@
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
+                            <menuItem title="Preview File" keyEquivalent="j" id="byb-Hy-bBE">
+                                <connections>
+                                    <action selector="previewSourceFile:" target="ahF-xq-Cat" id="1yU-de-F1I"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.currentMediaItem" id="Y0K-8V-0N1">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Preview Output File" alternate="YES" keyEquivalent="j" id="3Yq-VM-Ssx">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="previewOutputFile:" target="ahF-xq-Cat" id="FZF-ip-r3t"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="kmz-3O-Yt0">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Preview Segment" keyEquivalent="J" id="vG6-zS-eKe">
+                                <connections>
+                                    <action selector="previewSegment:" target="ahF-xq-Cat" id="dZz-1Y-dQQ"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="haM-2B-qta"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Reveal Output File" keyEquivalent="f" id="7Xu-B5-EZR">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="revealOutputFile:" target="Voe-Tx-rLC" id="go0-t8-rNx"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="iRx-Ur-Bu4">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="I3Y-Um-WE1"/>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
