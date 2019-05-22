@@ -18,5 +18,6 @@
 - (IBAction)previewSourceFile:(id)sender;
 - (IBAction)previewSegment:(id)sender;
 - (IBAction)previewOutputFile:(id)sender;
+- (IBAction)updateSummary:(id)sender;
 
 @end

@@ -137,6 +137,12 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="I3Y-Um-WE1"/>
+                            <menuItem title="Update Summary" keyEquivalent="u" id="dw6-85-yNC">
+                                <connections>
+                                    <action selector="updateSummary:" target="ahF-xq-Cat" id="aNo-2i-RdM"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="SKd-DA-cHa"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>

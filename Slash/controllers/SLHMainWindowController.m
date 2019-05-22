@@ -271,6 +271,12 @@
     item.subtitlesStreamIndex = sender.tag;
 }
 
+- (IBAction)updateSummary:(id)sender {
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    _summaryTextView.string = item.summary;
+}
+
 #pragma mark - Private 
 
 - (void)_populatePopUpMenus:(SLHMediaItem *)mediaItem {
