@@ -72,7 +72,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LdD-wj-H6G">
-                                    <rect key="frame" x="465" y="0.0" width="15" height="427"/>
+                                    <rect key="frame" x="464" y="0.0" width="16" height="427"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -126,40 +126,32 @@
                             </binding>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" id="aGt-Me-cvO">
+                    <button toolTip="⌘+D Edit Metadata" verticalHuggingPriority="750" id="aGt-Me-cvO">
                         <rect key="frame" x="156" y="5" width="81" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Metadata..." bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Wy-bY-Yaq">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
+                            <string key="keyEquivalent">d</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="showMetadataEditor:" target="-2" id="MiS-B5-46y"/>
                             <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="Ver-i3-78o"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="djR-Ih-pr9">
+                    <button toolTip="⌘+R Add All Segments to the Queue" verticalHuggingPriority="750" id="djR-Ih-pr9">
                         <rect key="frame" x="344" y="5" width="81" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Queue" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FND-2p-Nck">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
+                            <string key="keyEquivalent">r</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="addToQueue:" target="-2" id="A5I-wn-lFI"/>
                             <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="00b-hl-qGq"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="Bbk-07-D71">
-                        <rect key="frame" x="433" y="5" width="81" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Export" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6ws-8q-uLc">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="startEncoding:" target="-2" id="r9o-Xh-IqJ"/>
-                            <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="tKT-aO-fsr"/>
                         </connections>
                     </button>
                     <customView id="XjQ-XZ-nwB">
@@ -474,12 +466,15 @@
                             </binding>
                         </connections>
                     </customView>
-                    <button id="xmj-vN-6R1">
+                    <button toolTip="⌫ Remove Selected Segment" id="xmj-vN-6R1">
                         <rect key="frame" x="32" y="9" width="12" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="uhp-t5-AwK">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                             <connections>
                                 <action selector="remove:" target="vks-Yg-j4w" id="aOg-GQ-oAP"/>
                             </connections>
@@ -488,12 +483,14 @@
                             <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="CSb-hX-D6y"/>
                         </connections>
                     </button>
-                    <button id="X8w-8q-oed">
+                    <button toolTip="⌘+N Add New Segment" id="X8w-8q-oed">
                         <rect key="frame" x="10" y="9" width="12" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyUpOrDown" inset="2" id="XJu-XI-mPd">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
+                            <string key="keyEquivalent">n</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="addEncoderItem:" target="-2" id="cmt-9d-Ybd"/>
@@ -502,6 +499,20 @@
                                     <string key="NSValueTransformerName">NSIsNotNil</string>
                                 </dictionary>
                             </binding>
+                        </connections>
+                    </button>
+                    <button toolTip="⌘+E Export Selected Segment" verticalHuggingPriority="750" id="Bbk-07-D71">
+                        <rect key="frame" x="433" y="5" width="81" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Export" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6ws-8q-uLc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <string key="keyEquivalent">e</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="startEncoding:" target="-2" id="r9o-Xh-IqJ"/>
+                            <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="tKT-aO-fsr"/>
                         </connections>
                     </button>
                 </subviews>
