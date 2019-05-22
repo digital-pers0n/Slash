@@ -88,6 +88,10 @@ char *g_temp_dir;
     free(g_temp_dir);
 }
 
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
+    return YES;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)openPreferences:(id)sender {
