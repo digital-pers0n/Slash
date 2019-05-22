@@ -21,7 +21,7 @@
 #import "SLHEncoderBaseFormat.h"
 #import "SLHEncoderX264Format.h"
 
-@interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, NSTableViewDelegate> {
+@interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, NSTableViewDelegate, NSWindowDelegate> {
     SLHDragView *_dragView;
     SLHEncoderSettings *_encoderSettings;
     SLHMetadataEditor *_metadataEditor;
@@ -94,6 +94,12 @@
 
 - (BOOL)hasSegments {
     return _arrayController.canRemove;
+}
+
+#pragma mark - NSWindowDelegate
+
+- (void)windowWillClose:(NSNotification *)notification {
+    _player = nil;
 }
 
 #pragma mark - NSTableView Delegate
