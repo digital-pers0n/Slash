@@ -13,6 +13,7 @@
 NSString *const SLHPreferencesFFMpegFilePathKey     = @"ffmpegBinary";
 NSString *const SLHPreferencesFFProbeFilePathKey    = @"ffprobeBinary";
 NSString *const SLHPreferencesMPVFilePathKey        = @"mpvBinary";
+NSString *const SLHPreferencesNumberOfThreadsKey    = @"numberOfThreads";
 NSString *const SLHPreferencesRecentOutputPaths     = @"recentOutputPaths";
 NSString *const SLHPreferencesOutputPathSameAsInput = @"outputPathSameAsInput";
 NSString *const SLHPreferencesDefaultOutputPath     = @"~/Movies/";
@@ -37,6 +38,7 @@ NSString *const SLHEncoderMediaNoSubtitlesKey     = @"-sn";
 NSString *const SLHEncoderMediaNoAudioKey         = @"-an";
 NSString *const SLHEncoderMediaNoVideoKey         = @"-vn";
 NSString *const SLHEncoderMediaOverwriteFilesKey  = @"-y";
+NSString *const SLHEncoderMediaThreadsKey         = @"-threads";
 
 NSString *const SLHEncoderVideoBitrateKey         = @"-b:v";
 NSString *const SLHEncoderVideoMaxBitrateKey      = @"-maxrate";

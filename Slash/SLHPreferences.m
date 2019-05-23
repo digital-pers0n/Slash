@@ -9,6 +9,7 @@
 #import "SLHPreferences.h"
 
 extern NSString *const SLHPreferencesDefaultOutputPath;
+extern NSString *const SLHPreferencesNumberOfThreadsKey;
 
 @interface SLHPreferences () {
     
@@ -54,8 +55,16 @@ extern NSString *const SLHPreferencesDefaultOutputPath;
             [alert runModal];
             [NSApp terminate:nil];
         }
-        _recentOutputPaths = [[NSUserDefaults standardUserDefaults]
-                              arrayForKey:SLHPreferencesRecentOutputPaths].mutableCopy;
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        id obj = [userDefaults objectForKey:SLHPreferencesNumberOfThreadsKey];
+        if (obj) {
+           _numberOfThreads = ((NSNumber *)obj).unsignedIntegerValue;
+        } else {
+            _numberOfThreads = NSProcessInfo.processInfo.processorCount;
+            [userDefaults setInteger:_numberOfThreads forKey:SLHPreferencesNumberOfThreadsKey];
+        }
+        
+        _recentOutputPaths = [userDefaults arrayForKey:SLHPreferencesRecentOutputPaths].mutableCopy;
         if (!_recentOutputPaths) {
             _recentOutputPaths = [[NSMutableArray alloc] init];
         }
@@ -200,5 +209,11 @@ extern NSString *const SLHPreferencesDefaultOutputPath;
     _currentOutputPath = [SLHPreferencesDefaultOutputPath stringByExpandingTildeInPath];
     [_outputPathPopUp selectItemAtIndex:0];
 }
+
+- (IBAction)updateNumberOfThreads:(NSTextField *)sender {
+    
+    _numberOfThreads = sender.integerValue;
+}
+
 
 @end

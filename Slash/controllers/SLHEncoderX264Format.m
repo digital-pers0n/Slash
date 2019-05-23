@@ -214,7 +214,10 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
             }
         }
     }
-    
+    extern NSString *const SLHEncoderMediaThreadsKey;
+    [args addObject:SLHEncoderMediaThreadsKey];
+    [args addObject:@(SLHPreferences.preferences.numberOfThreads).stringValue];
+
     [args addObjectsFromArray:_filters.arguments];
     [args addObject:SLHEncoderMediaEndTimeKey];
     [args addObject:@(_encoderItem.interval.end - _encoderItem.interval.start).stringValue];
