@@ -233,6 +233,8 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         
         NSMutableArray *passOne = args.mutableCopy;
         [passOne addObject:@"1"];
+        [passOne addObject:SLHEncoderMediaContainerKey];
+        [passOne addObject:@"null"];
         [passOne addObject:@"/dev/null"];
         
         [args addObject:@"2"];
@@ -763,29 +765,6 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     }
     if (value) {
         [args addObject:SLHEncoderVideoH264LevelKey];
-        [args addObject:value];
-    }
-    
-    switch (options.containerType) {
-        case SLHX264ContainerMP4:
-            value = @"mp4";
-            break;
-        case SLHX264ContainerM4V:
-            value = @"m4v";
-            break;
-        case SLHX264ContainerMKV:
-            value = @"matroska";
-            break;
-        case SLHX264ContainerMOV:
-            value = @"mov";
-            break;
-        case SLHX264ContainerNone:
-        default:
-            value = nil;
-            break;
-    }
-    if (value) {
-        [args addObject:SLHEncoderMediaContainerKey];
         [args addObject:value];
     }
     
