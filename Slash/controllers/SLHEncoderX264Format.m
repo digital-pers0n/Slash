@@ -225,8 +225,6 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     
     if (options.encodingType == SLHX264EncodingTwoPass) {
         extern char *g_temp_dir;
-        [args addObject:SLHEncoderVideoBufsizeKey];
-        [args addObject:@((options.maxBitrate * 1.5) * 1000).stringValue];
         [args addObject:@"-passlogfile"];
         [args addObject:@(g_temp_dir)];
         [args addObject:@"-pass"];
@@ -337,7 +335,6 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         case SLHX264EncodingSinglePass:
             _crfView.hidden = YES;
             _bitrateView.hidden = NO;
-            _maxBitrateView.hidden = YES;
             
             break;
             
@@ -633,14 +630,9 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     
     switch (options.encodingType) {
         case SLHX264EncodingSinglePass:
-            [args addObject:SLHEncoderVideoBitrateKey];
-            [args addObject:@(options.bitRate * 1000).stringValue];
-            break;
         case SLHX264EncodingTwoPass:
             [args addObject:SLHEncoderVideoBitrateKey];
             [args addObject:@(options.bitRate * 1000).stringValue];
-            [args addObject:SLHEncoderVideoMaxBitrateKey];
-            [args addObject:@(options.maxBitrate * 1000).stringValue];
             break;
         case SLHX264EncodingCRFSinglePass:
             [args addObject:SLHEncoderVideoCRFBitrateKey];
@@ -649,6 +641,13 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
             
         default:
             break;
+    }
+    NSUInteger maxrate = options.maxBitrate;
+    if (maxrate > 0) {
+        [args addObject:SLHEncoderVideoMaxBitrateKey];
+        [args addObject:@(maxrate * 1000).stringValue];
+        [args addObject:SLHEncoderVideoBufsizeKey];
+        [args addObject:@((options.maxBitrate * 2) * 1000).stringValue];
     }
     
     switch (options.presetType) {
