@@ -25,4 +25,6 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property (readonly) NSString *mpvConfigPath;
 @property (readonly) NSString *mpvLuaScriptPath;
 
+@property NSUInteger numberOfThreads;
+
 @end
