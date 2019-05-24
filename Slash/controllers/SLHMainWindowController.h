@@ -19,5 +19,9 @@
 - (IBAction)previewSegment:(id)sender;
 - (IBAction)previewOutputFile:(id)sender;
 - (IBAction)updateSummary:(id)sender;
+- (IBAction)updateOutputFileName:(id)sender;
+- (IBAction)startEncoding:(id)sender;
+- (IBAction)addToQueue:(id)sender;
+- (IBAction)showMetadataEditor:(id)sender;
 
 @end

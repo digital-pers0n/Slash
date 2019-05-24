@@ -283,6 +283,20 @@
     _summaryTextView.string = item.summary;
 }
 
+- (IBAction)updateOutputFileName:(id)sender {
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *encoderItem = _arrayController.arrangedObjects[row];
+    NSString *extension = encoderItem.container;
+    NSString *sourcePath = encoderItem.mediaItem.filePath;
+    if (!extension) {
+        extension = sourcePath.pathExtension;
+    }    
+    NSString *outputName = sourcePath.lastPathComponent.stringByDeletingPathExtension;
+    outputName = [outputName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
+    encoderItem.outputFileName = outputName;
+
+}
+
 #pragma mark - Private 
 
 - (void)_populatePopUpMenus:(SLHMediaItem *)mediaItem {

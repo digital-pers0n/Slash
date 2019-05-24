@@ -126,28 +126,12 @@
                             </binding>
                         </connections>
                     </textField>
-                    <button toolTip="⌘+D Edit Metadata" verticalHuggingPriority="750" id="aGt-Me-cvO">
-                        <rect key="frame" x="156" y="5" width="81" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Metadata..." bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Wy-bY-Yaq">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                            <string key="keyEquivalent">d</string>
-                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showMetadataEditor:" target="-2" id="MiS-B5-46y"/>
-                            <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="Ver-i3-78o"/>
-                        </connections>
-                    </button>
                     <button toolTip="⌘+R Add All Segments to the Queue" verticalHuggingPriority="750" id="djR-Ih-pr9">
                         <rect key="frame" x="344" y="5" width="81" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Queue" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FND-2p-Nck">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
-                            <string key="keyEquivalent">r</string>
-                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="addToQueue:" target="-2" id="A5I-wn-lFI"/>
@@ -507,12 +491,22 @@ CA
                         <buttonCell key="cell" type="roundTextured" title="Export" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6ws-8q-uLc">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
-                            <string key="keyEquivalent">e</string>
-                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="startEncoding:" target="-2" id="r9o-Xh-IqJ"/>
                             <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="tKT-aO-fsr"/>
+                        </connections>
+                    </button>
+                    <button toolTip="⌘+D Edit Metadata" verticalHuggingPriority="750" id="aGt-Me-cvO">
+                        <rect key="frame" x="156" y="5" width="81" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Metadata..." bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Wy-bY-Yaq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showMetadataEditor:" target="-2" id="MiS-B5-46y"/>
+                            <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="Ver-i3-78o"/>
                         </connections>
                     </button>
                 </subviews>
