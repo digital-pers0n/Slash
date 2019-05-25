@@ -136,11 +136,51 @@
                                     </binding>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Edit Metadata..." keyEquivalent="d" id="7HA-ou-sT0">
+                                <connections>
+                                    <action selector="showMetadataEditor:" target="ahF-xq-Cat" id="tMW-Bv-1jB"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="5ua-Sk-w7L"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="I3Y-Um-WE1"/>
+                            <menuItem title="Export Selected" keyEquivalent="e" id="9fy-Ng-PfI">
+                                <connections>
+                                    <action selector="startEncoding:" target="ahF-xq-Cat" id="HUe-pD-7PF"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="Zbg-9m-XNe"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Export Selected..." alternate="YES" keyEquivalent="e" id="pMW-0q-wkN">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="startEncoding:" target="ahF-xq-Cat" id="fTJ-Gd-RcI"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="Gqf-o9-kjC"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Add to Queue" keyEquivalent="r" id="Ep6-z4-PeF">
+                                <connections>
+                                    <action selector="addToQueue:" target="ahF-xq-Cat" id="hRC-jN-PuP"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="M7P-Tc-JXd"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Add to Queue and Clear " alternate="YES" keyEquivalent="r" id="qqV-H8-mdg">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="addToQueue:" target="ahF-xq-Cat" id="eNh-fl-4f3"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="xvw-KI-e3U"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="k2G-dE-znz"/>
                             <menuItem title="Update Summary" keyEquivalent="u" id="dw6-85-yNC">
                                 <connections>
                                     <action selector="updateSummary:" target="ahF-xq-Cat" id="aNo-2i-RdM"/>
                                     <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="SKd-DA-cHa"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Update Output File Name" alternate="YES" keyEquivalent="u" id="yNU-Iy-M7T">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="updateOutputFileName:" target="ahF-xq-Cat" id="LYo-OD-J9K"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="4Dh-bD-LI8"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
