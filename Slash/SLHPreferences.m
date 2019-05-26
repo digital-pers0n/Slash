@@ -10,6 +10,7 @@
 
 extern NSString *const SLHPreferencesDefaultOutputPath;
 extern NSString *const SLHPreferencesNumberOfThreadsKey;
+extern NSString *const SLHPreferencesUpdateOutputNameKey;
 
 @interface SLHPreferences () {
     
@@ -62,6 +63,12 @@ extern NSString *const SLHPreferencesNumberOfThreadsKey;
         } else {
             _numberOfThreads = NSProcessInfo.processInfo.processorCount;
             [userDefaults setInteger:_numberOfThreads forKey:SLHPreferencesNumberOfThreadsKey];
+        }
+        obj = [userDefaults objectForKey:SLHPreferencesUpdateOutputNameKey];
+        if (obj) {
+            _updateFileName = ((NSNumber *)obj).boolValue;
+        } else {
+            [userDefaults setBool:YES forKey:SLHPreferencesUpdateOutputNameKey];
         }
         
         _recentOutputPaths = [userDefaults arrayForKey:SLHPreferencesRecentOutputPaths].mutableCopy;
@@ -215,5 +222,8 @@ extern NSString *const SLHPreferencesNumberOfThreadsKey;
     _numberOfThreads = sender.integerValue;
 }
 
+- (IBAction)updateFileNameDidChange:(NSButton *)sender {
+    _updateFileName = (sender.state);
+}
 
 @end

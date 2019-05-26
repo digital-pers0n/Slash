@@ -14,6 +14,7 @@ NSString *const SLHPreferencesFFMpegFilePathKey     = @"ffmpegBinary";
 NSString *const SLHPreferencesFFProbeFilePathKey    = @"ffprobeBinary";
 NSString *const SLHPreferencesMPVFilePathKey        = @"mpvBinary";
 NSString *const SLHPreferencesNumberOfThreadsKey    = @"numberOfThreads";
+NSString *const SLHPreferencesUpdateOutputNameKey   = @"updateOutputName";
 NSString *const SLHPreferencesRecentOutputPaths     = @"recentOutputPaths";
 NSString *const SLHPreferencesOutputPathSameAsInput = @"outputPathSameAsInput";
 NSString *const SLHPreferencesDefaultOutputPath     = @"~/Movies/";
