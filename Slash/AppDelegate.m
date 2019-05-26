@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SLHMainWindowController.h"
 #import "SLHPreferences.h"
+#import "SLHMediaItem.h"
 
 static NSString *const _ffmpegPath  = @"/usr/local/bin/ffmpeg1";
 static NSString *const _ffprobePath = @"/usr/local/bin/ffprobe";
@@ -90,6 +91,51 @@ char *g_temp_dir;
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return YES;
+}
+
+static inline SLHMediaItem *_createMediaItem(NSString *path) {
+    SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:path];
+    if (mediaItem.error) {
+        NSLog(@"Error: %@", mediaItem.error.localizedDescription);
+        return nil;
+    }
+    return mediaItem;
+}
+
+- (void)openDocument:(id)sender {
+    NSWindow *window = _mainWindow.window;
+    [window makeKeyAndOrderFront:nil];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.allowsMultipleSelection = NO;
+    
+    [openPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        
+        if (result == NSOKButton) {
+            
+            NSString *path = openPanel.URL.path;
+            SLHMediaItem *item;
+            if ((item = _createMediaItem(path)) != nil) {
+                self->_mainWindow.currentMediaItem = item;
+            }
+        }
+        
+    }];
+    openPanel = nil;
+}
+
+- (void)newDocument:(id)sender {
+    [self openDocument:sender];
+}
+
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
+    [_mainWindow.window makeKeyAndOrderFront:nil];
+    SLHMediaItem *item;
+    if ((item = _createMediaItem(filename)) != nil) {
+        _mainWindow.currentMediaItem = item;
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark - IBActions
