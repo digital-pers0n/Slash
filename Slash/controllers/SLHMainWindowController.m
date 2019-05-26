@@ -11,6 +11,8 @@
 #import "SLHEncoderSettings.h"
 #import "SLHEncoderItem.h"
 #import "SLHEncoder.h"
+#import "SLHEncoderQueue.h"
+#import "SLHLogController.h"
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
 #import "SLHPreferences.h"
@@ -20,6 +22,8 @@
 #import "SLHMetadataIdentifiers.h"
 #import "SLHEncoderBaseFormat.h"
 #import "SLHEncoderX264Format.h"
+#import "SLHArgumentsViewController.h"
+#import "SLHModalWindowController.h"
 
 @interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, NSTableViewDelegate, NSWindowDelegate> {
     SLHDragView *_dragView;
@@ -173,6 +177,53 @@
 }
 
 #pragma mark - IBActions
+
+
+
+- (IBAction)startEncoding:(id)sender {
+    
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    item.encoderArguments = _formats[item.tag].arguments;
+    NSEvent *event = [NSApp currentEvent];
+    
+    if (event.modifierFlags & NSAlternateKeyMask) { // allow to edit arguments if the Option key is pressed
+        SLHModalWindowController *win = [SLHModalWindowController new];
+        SLHArgumentsViewController *argsView = [SLHArgumentsViewController new];
+        win.title = @"Encoding Arguments";
+        win.contentView = argsView.view;
+        argsView.encoderItem = item;
+        [win runModal];
+    
+    }
+    [_encoder encodeItem:item usingBlock:^(SLHEncoderState state) {
+        switch (state) {
+            case SLHEncoderStateSuccess:
+                _lastEncodedMediaFilePath = item.outputPath;
+                [_encoder.window performClose:nil];
+                if (SLHPreferences.preferences.updateFileName) {
+                    [self updateOutputFileName:nil];
+                }
+                                                                
+                break;
+            case SLHEncoderStateFailed:
+            {
+                NSString *log = _encoder.encodingLog;
+                if (log) {
+                    SLHLogController *logController = [[SLHLogController alloc] init];
+                    logController.log = log;
+                    [logController runModal];
+                }
+            }
+                break;
+            case SLHEncoderStateCanceled:
+                
+                break;
+            default:
+                break;
+        }
+    }];
+}
 
 - (IBAction)previewSourceFile:(id)sender {
 
