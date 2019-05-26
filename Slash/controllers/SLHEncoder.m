@@ -156,7 +156,6 @@ typedef void (^respond_block)(SLHEncoderState);
 - (IBAction)stopEncoding:(id)sender {
     self.inProgress = NO;
     _paused = NO;
-    _canceled = YES;
     encoder_stop(_enc);
 }
 
