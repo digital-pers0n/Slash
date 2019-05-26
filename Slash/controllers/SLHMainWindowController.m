@@ -100,6 +100,19 @@
     return _arrayController.canRemove;
 }
 
+- (void)setCurrentMediaItem:(SLHMediaItem *)mediaItem {
+    _currentMediaItem = mediaItem;
+    [self _displayMediaInfo:mediaItem];
+    [self _populatePopUpMenus:mediaItem];
+    [_arrayController removeObjects:_arrayController.arrangedObjects];
+    _tempEncoderItem = nil;
+    [self.window setTitleWithRepresentedFilename:mediaItem.filePath];
+}
+
+- (SLHMediaItem *)currentMediaItem {
+    return _currentMediaItem;
+}
+
 #pragma mark - NSWindowDelegate
 
 - (void)windowWillClose:(NSNotification *)notification {
@@ -155,14 +168,8 @@
     if (mediaItem.error) {
         NSLog(@"Error: %@", mediaItem.error.localizedDescription);
         return;
-    } else {
-        self.currentMediaItem = mediaItem;
-        [self _displayMediaInfo:mediaItem];
     }
-    [self _populatePopUpMenus:mediaItem];
-    [_arrayController removeObjects:_arrayController.arrangedObjects];
-    _tempEncoderItem = nil;
-    [self.window setTitleWithRepresentedFilename:mediaItem.filePath];
+    self.currentMediaItem = mediaItem;
 }
 
 - (void)didBeginDraggingSession {
