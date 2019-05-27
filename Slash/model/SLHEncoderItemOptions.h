@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface SLHEncoderItemOptions : NSObject <NSCopying>
+
+- (instancetype)initWithOptions:(SLHEncoderItemOptions *)options;
+
 @property NSString *codecName;
 
 @property BOOL scale;

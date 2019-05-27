@@ -10,6 +10,23 @@
 
 @implementation SLHEncoderItemOptions
 
+
+- (instancetype)initWithOptions:(SLHEncoderItemOptions *)options {
+    self = [super init];
+    if (self) {
+        _codecName = options.codecName.copy;
+        _scale = options.scale;
+        _videoWidth = options.videoWidth;
+        _videoHeight = options.videoHeight;
+        _bitRate = options.bitRate;
+        _maxBitrate = options.maxBitrate;
+        _crf = options.crf;
+        _sampleRate = options.sampleRate;
+        _numberOfChannels = options.numberOfChannels;
+    }
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     SLHEncoderItemOptions *item = [[self.class allocWithZone:zone] init];
     item->_codecName = _codecName.copy;

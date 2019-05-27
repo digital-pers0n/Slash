@@ -75,8 +75,6 @@ typedef NS_ENUM(NSUInteger, SLHX264TuneType) {
 
 @interface SLHEncoderX264Options : SLHEncoderItemOptions
 
-- (instancetype)initWithOptions:(SLHEncoderItemOptions *)options;
-
 @property SLHX264EncodingType encodingType;
 @property SLHX264PresetType presetType;
 @property SLHX264ProfileType profileType;
