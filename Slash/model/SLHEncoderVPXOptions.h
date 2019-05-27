@@ -8,6 +8,17 @@
 
 #import "SLHEncoderItemOptions.h"
 
+typedef NS_ENUM(NSUInteger, SLHVPXQualityType) {
+    SLHVPXQualityBest,
+    SLHVPXQualityGood,
+    SLHVPXQualityRealtime,
+};
+
 @interface SLHEncoderVPXOptions : SLHEncoderItemOptions
+
+@property BOOL twoPass;
+@property SLHVPXQualityType quality;
+@property NSInteger speed;
+@property NSUInteger lookAhead; //0 - 25
 
 @end
