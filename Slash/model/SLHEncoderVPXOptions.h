@@ -12,11 +12,13 @@ typedef NS_ENUM(NSUInteger, SLHVPXQualityType) {
     SLHVPXQualityBest,
     SLHVPXQualityGood,
     SLHVPXQualityRealtime,
+    SLHVPXQualityAuto = NSUIntegerMax
 };
 
 @interface SLHEncoderVPXOptions : SLHEncoderItemOptions
 
 @property BOOL twoPass;
+@property BOOL enableCRF;
 @property SLHVPXQualityType quality;
 @property NSInteger speed;
 @property NSUInteger lookAhead; //0 - 25
