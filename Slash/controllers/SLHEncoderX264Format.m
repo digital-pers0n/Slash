@@ -124,7 +124,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     SLHEncoderX264Options *videoOptions = (SLHEncoderX264Options *)_encoderItem.videoOptions;
     SLHEncoderItemOptions *audioOptions = _encoderItem.audioOptions;
     
-    if (![_encoderItem.videoOptions isKindOfClass:[SLHEncoderX264Options class]]) {
+    if (![videoOptions isKindOfClass:[SLHEncoderX264Options class]]) {
         videoOptions = [[SLHEncoderX264Options alloc] initWithOptions:videoOptions];
         videoOptions.encodingType = SLHX264EncodingSinglePass;
         videoOptions.presetType = SLHX264PresetNone;
