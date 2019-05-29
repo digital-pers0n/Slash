@@ -647,7 +647,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         [args addObject:SLHEncoderVideoMaxBitrateKey];
         [args addObject:@(maxrate * 1000).stringValue];
         [args addObject:SLHEncoderVideoBufsizeKey];
-        [args addObject:@((options.maxBitrate * 2) * 1000).stringValue];
+        [args addObject:@((maxrate * 2) * 1000).stringValue];
     }
     
     switch (options.presetType) {
