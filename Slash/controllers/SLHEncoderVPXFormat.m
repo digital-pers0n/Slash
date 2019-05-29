@@ -10,6 +10,8 @@
 #import "SLHEncoderItem.h"
 #import "SLHFiltersController.h"
 #import "SLHEncoderVPXOptions.h"
+#import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
 
 typedef NS_ENUM(NSUInteger, SLHVPXAudioSampleRateType) {
     SLHVPXAudioSampleRate32000 = 32000,
@@ -97,14 +99,33 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 #pragma mark - IBActions
 
 - (IBAction)qualityDidChange:(NSPopUpButton *)sender {
+    ((SLHEncoderVPXOptions *)_encoderItem.videoOptions).quality = sender.selectedTag;
 }
 - (IBAction)sampleRateDidChange:(NSPopUpButton *)sender {
+    _encoderItem.audioOptions.sampleRate = sender.selectedTag;
 }
 - (IBAction)channelsDidChange:(NSPopUpButton *)sender {
+    _encoderItem.audioOptions.numberOfChannels = sender.selectedTag;
 }
+
 - (IBAction)widthDidChange:(id)sender {
+    NSInteger videoIdx = _encoderItem.videoStreamIndex;
+    if (_keepAspectRatio && videoIdx > -1) {
+        NSSize size = _encoderItem.mediaItem.tracks[videoIdx].videoSize;
+        double aspect = size.width / size.height;
+        SLHEncoderItemOptions *options = _encoderItem.videoOptions;
+        options.videoHeight = options.videoWidth / aspect;
+    }
 }
+
 - (IBAction)heightDidChange:(id)sender {
+    NSInteger videoIdx = _encoderItem.videoStreamIndex;
+    if (_keepAspectRatio && videoIdx > -1) {
+        NSSize size = _encoderItem.mediaItem.tracks[videoIdx].videoSize;
+        double aspect = size.width / size.height;
+        SLHEncoderItemOptions *options = _encoderItem.videoOptions;
+        options.videoWidth = options.videoHeight * aspect;
+    }
 }
 
 
