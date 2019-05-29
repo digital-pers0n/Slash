@@ -195,4 +195,25 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 
 }
 
+#pragma mark - SLHEncoderSettingsDelegate
+
+- (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {
+    NSView *view = nil;
+    switch (tab) {
+        case SLHEncoderSettingsVideoTab:
+            view = _videoView;
+            break;
+        case SLHEncoderSettingsAudioTab:
+            view = _audioView;
+            break;
+        case SLHEncoderSettingsFiltersTab:
+            view = _filters.view;
+            break;
+            
+        default:
+            break;
+    }
+    return view;
+}
+
 @end
