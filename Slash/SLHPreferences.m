@@ -24,6 +24,8 @@ extern NSString *const SLHPreferencesUpdateOutputNameKey;
 
 }
 
+@property  NSUserDefaults *userDefaults;
+
 @property IBOutlet NSTextField *ffmpegPathTextField;
 @property IBOutlet NSTextField *ffprobePathTextField;
 @property IBOutlet NSTextField *mpvPathTextField;
@@ -81,6 +83,7 @@ extern NSString *const SLHPreferencesUpdateOutputNameKey;
         } else {
             _currentOutputPath = [SLHPreferencesDefaultOutputPath stringByExpandingTildeInPath];
         }
+        _userDefaults = userDefaults;
 
     }
     return self;
@@ -132,6 +135,31 @@ extern NSString *const SLHPreferencesUpdateOutputNameKey;
 
 - (void)setOutputPathSameAsInput:(BOOL)value {
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:@"outputPathSameAsInput"];
+}
+
+- (NSString *)ffmpegPath {
+    return [_userDefaults objectForKey:SLHPreferencesFFMpegFilePathKey];
+}
+
+- (void)setFfmpegPath:(NSString *)ffmpegPath {
+    [_userDefaults setObject:ffmpegPath forKey:SLHPreferencesFFMpegFilePathKey];
+}
+
+
+- (NSString *)ffprobePath {
+    return [_userDefaults objectForKey:SLHPreferencesFFProbeFilePathKey];
+}
+
+- (void)setFfprobePath:(NSString *)ffprobePath {
+    [_userDefaults setObject:ffprobePath forKey:SLHPreferencesFFProbeFilePathKey];
+}
+
+- (NSString *)mpvPath {
+    return [_userDefaults objectForKey:SLHPreferencesMPVFilePathKey];
+}
+
+- (void)setMpvPath:(NSString *)mpvPath {
+    [_userDefaults setObject:mpvPath forKey:SLHPreferencesMPVFilePathKey];
 }
 
 #pragma mark - IBActions

@@ -28,4 +28,8 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property (readonly) NSUInteger numberOfThreads;
 @property (readonly) BOOL updateFileName;
 
+@property NSString *ffmpegPath;
+@property NSString *ffprobePath;
+@property NSString *mpvPath;
+
 @end
