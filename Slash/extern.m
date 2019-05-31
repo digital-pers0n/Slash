@@ -40,6 +40,8 @@ NSString *const SLHEncoderMediaNoAudioKey         = @"-an";
 NSString *const SLHEncoderMediaNoVideoKey         = @"-vn";
 NSString *const SLHEncoderMediaOverwriteFilesKey  = @"-y";
 NSString *const SLHEncoderMediaThreadsKey         = @"-threads";
+NSString *const SLHEncoderMediaPassKey            = @"-pass";
+NSString *const SLHEncoderMediaPassLogKey         = @"-passlogfile";
 
 NSString *const SLHEncoderVideoBitrateKey         = @"-b:v";
 NSString *const SLHEncoderVideoMaxBitrateKey      = @"-maxrate";
