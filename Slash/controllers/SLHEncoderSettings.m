@@ -50,7 +50,11 @@
 #pragma mark - SLHTabBarViewDelegate
 
 - (void)tabBarView:(SLHTabBarView *)tabBar didSelectTabAtIndex:(NSUInteger)tab {
-    _scrollView.documentView = [_delegate encoderSettings:self viewForTab:tab];
+    NSView *view = [_delegate encoderSettings:self viewForTab:tab];
+    NSRect frame = view.frame;
+    frame.size.width = _scrollView.contentSize.width;
+    view.frame = frame;
+    _scrollView.documentView = view;
 }
 
 @end

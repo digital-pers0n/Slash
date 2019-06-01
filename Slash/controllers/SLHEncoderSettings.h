@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, SLHEncoderSettingsTab) {
 @interface SLHEncoderSettings : NSViewController
 
 @property (nullable) id <SLHEncoderSettingsDelegate> delegate;
-@property (readonly) NSView *selectedView;
+@property (nullable, readonly) NSView *selectedView;
 @property (readonly) SLHEncoderSettingsTab selectedTab;
 
 @end
