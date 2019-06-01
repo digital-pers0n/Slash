@@ -124,6 +124,10 @@ static inline NSString *_preampString(NSInteger val) {
             }
             
             if (filterArgs) {
+                if (opts.forceSubtitlesStyle) {
+                    NSString *style = opts.subtitlesStyle;
+                    filterArgs = [filterArgs stringByAppendingFormat:@":force_style='%@'", style];
+                }
                 double startTime = _encoderItem.interval.start;
                 if (startTime > 0) {
                     filterArgs = [NSString stringWithFormat:@"setpts=PTS+%.3f/TB,%@,setpts=PTS-STARTPTS", startTime, filterArgs];

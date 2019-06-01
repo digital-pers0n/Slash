@@ -20,7 +20,9 @@
     copy->_videoCropHeight = _videoCropHeight;
     copy->_videoDeinterlace = _videoDeinterlace;
     copy->_burnSubtitles = _burnSubtitles;
-    copy->_subtitlesPath = _subtitlesPath;
+    copy->_subtitlesPath = _subtitlesPath.copy;
+    copy->_forceSubtitlesStyle = _forceSubtitlesStyle;
+    copy->_subtitlesStyle = _subtitlesStyle.copy;
     
     copy->_enableAudioFilters = _enableAudioFilters;
     copy->_audioFadeIn = _audioFadeIn;

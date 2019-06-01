@@ -19,6 +19,8 @@
 @property BOOL videoDeinterlace;
 @property BOOL burnSubtitles;
 @property NSString *subtitlesPath;
+@property BOOL forceSubtitlesStyle;
+@property NSString *subtitlesStyle;
 
 // Audio
 @property BOOL enableAudioFilters;

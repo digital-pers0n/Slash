@@ -53,6 +53,7 @@
         _videoOptions = [SLHEncoderItemOptions new];
         _audioOptions = [SLHEncoderItemOptions new];
         _filters = [SLHFilterOptions new];
+        _filters.subtitlesStyle = @"FontName=Skia,FontSize=14,OutlineColour=&H00000000,BorderStyle=3,Outline=1";
         _metadata = [[SLHEncoderItemMetadata alloc] initWithMediaItem:item];
         [SLHEncoderItem matchSource:self];
     }
