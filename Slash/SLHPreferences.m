@@ -11,6 +11,9 @@
 extern NSString *const SLHPreferencesDefaultOutputPath;
 extern NSString *const SLHPreferencesNumberOfThreadsKey;
 extern NSString *const SLHPreferencesUpdateOutputNameKey;
+extern NSString *const SLHPreferencesDefaultFFMpegPath;
+extern NSString *const SLHPreferencesDefaultFFProbePath;
+extern NSString *const SLHPreferencesDefaultMPVPath;
 
 @interface SLHPreferences () {
     
@@ -82,6 +85,16 @@ extern NSString *const SLHPreferencesUpdateOutputNameKey;
             _currentOutputPath = _recentOutputPaths[0];
         } else {
             _currentOutputPath = [SLHPreferencesDefaultOutputPath stringByExpandingTildeInPath];
+        }
+        
+        if (!self.ffmpegPath) {
+            self.ffmpegPath = SLHPreferencesDefaultFFMpegPath;
+        }
+        if (!self.ffprobePath) {
+            self.ffprobePath = SLHPreferencesDefaultFFProbePath;
+        }
+        if (!self.mpvPath) {
+            self.mpvPath = SLHPreferencesDefaultMPVPath;
         }
         _userDefaults = userDefaults;
 
