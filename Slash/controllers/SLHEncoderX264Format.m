@@ -80,6 +80,9 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     IBOutlet NSPopUpButton *_profilePopUp;
     IBOutlet NSPopUpButton *_levelPopUp;
     
+    IBOutlet NSButton *_fastdecodeCheckBox;
+    IBOutlet NSButton *_zerolatencyCheckBox;
+    IBOutlet NSButton *_faststartCheckBox;
     
     // Audio
     
@@ -327,6 +330,18 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         SLHEncoderItemOptions *options = _encoderItem.videoOptions;
         options.videoHeight = options.videoWidth / aspect;
     }
+}
+
+- (IBAction)fastdecodeDidChange:(NSButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).fastdecode = sender.state;
+}
+
+- (IBAction)zerolatencyDidChange:(NSButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).zerolatency = sender.state;
+}
+
+- (IBAction)faststartDidChange:(NSButton *)sender {
+    ((SLHEncoderX264Options *)_encoderItem.videoOptions).faststart = sender.state;
 }
 
 #pragma mark - Private

@@ -16,12 +16,15 @@
                 <outlet property="_containerPopUp" destination="klB-is-CF6" id="hoI-dj-bRG"/>
                 <outlet property="_crfView" destination="Koh-k0-6Xt" id="3b0-Vi-lQu"/>
                 <outlet property="_encodingTypePopUp" destination="3Ah-Yt-c54" id="AhH-Or-9gx"/>
+                <outlet property="_fastdecodeCheckBox" destination="sgW-m1-o06" id="0gz-f0-WFH"/>
+                <outlet property="_faststartCheckBox" destination="3jL-jK-nF0" id="Wx6-5P-5eH"/>
                 <outlet property="_levelPopUp" destination="gGr-SN-MIn" id="jJZ-Z8-IuI"/>
                 <outlet property="_maxBitrateView" destination="8TJ-Ot-cTw" id="mky-cg-Jee"/>
                 <outlet property="_presetPopUp" destination="2DS-gJ-kb4" id="qPN-3y-KtL"/>
                 <outlet property="_profilePopUp" destination="qEO-Og-Vqz" id="oug-aX-O8h"/>
                 <outlet property="_tunePopUp" destination="2Ag-ue-zC2" id="vXo-RU-sqf"/>
                 <outlet property="_videoView" destination="Hz6-mo-xeY" id="Udp-Oj-xfs"/>
+                <outlet property="_zerolatencyCheckBox" destination="0nw-vE-myJ" id="f2I-cg-1v0"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -329,7 +332,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.fastdecode" id="Paa-52-UHV"/>
+                        <action selector="fastdecodeDidChange:" target="-2" id="WQp-KG-hpS"/>
                     </connections>
                 </button>
                 <button id="0nw-vE-myJ">
@@ -340,7 +343,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.zerolatency" id="N9Q-ko-nO5"/>
+                        <action selector="zerolatencyDidChange:" target="-2" id="EXo-hW-9I4"/>
                     </connections>
                 </button>
                 <button id="gE7-co-glc">
@@ -362,7 +365,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.faststart" id="f0I-Ld-kr5"/>
+                        <action selector="faststartDidChange:" target="-2" id="mxn-hz-9pR"/>
                     </connections>
                 </button>
                 <button toolTip="Keep aspect ratio" id="n3B-PP-wvQ">
