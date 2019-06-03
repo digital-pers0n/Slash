@@ -75,6 +75,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="widthDidChange:" target="-2" id="6pB-KJ-gFM"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="plE-pK-PKi"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="fMQ-Ns-tl6"/>
                     </connections>
                 </textField>
@@ -91,6 +92,7 @@
                     </textFieldCell>
                     <connections>
                         <action selector="heightDidChange:" target="-2" id="L0q-hf-uuM"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="4ds-h8-0bd"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="ad5-pZ-BRe"/>
                     </connections>
                 </textField>
@@ -109,6 +111,7 @@
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="I2e-kH-Jhb"/>
                     <connections>
                         <action selector="heightDidChange:" target="-2" id="v93-gW-b0w"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="kNa-tQ-DMk"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="kiH-Ns-f5w"/>
                     </connections>
                 </stepper>
@@ -118,6 +121,7 @@
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="cYX-FB-Dl4"/>
                     <connections>
                         <action selector="widthDidChange:" target="-2" id="px5-M6-BSN"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="60Y-cf-WW9"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="vE4-ie-gVD"/>
                     </connections>
                 </stepper>
@@ -140,6 +144,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="YMC-j5-8iu"/>
                         <binding destination="-2" name="value" keyPath="self.keepAspectRatio" id="NW3-cP-pq9"/>
                     </connections>
                 </button>
