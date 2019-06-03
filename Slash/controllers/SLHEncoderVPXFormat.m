@@ -13,11 +13,32 @@
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
 
-typedef NS_ENUM(NSUInteger, SLHVPXAudioSampleRateType) {
-    SLHVPXAudioSampleRate32000 = 32000,
-    SLHVPXAudioSampleRate44100 = 44100,
-    SLHVPXAudioSampleRate48000 = 48000,
-};
+extern NSString *const SLHEncoderMediaMapKey,
+                *const SLHEncoderMediaContainerKey,
+                *const SLHEncoderMediaStartTimeKey,
+                *const SLHEncoderMediaEndTimeKey,
+                *const SLHEncoderMediaNoSubtitlesKey,
+                *const SLHEncoderMediaNoAudioKey,
+                *const SLHEncoderMediaNoVideoKey,
+                *const SLHEncoderMediaOverwriteFilesKey,
+                *const SLHEncoderMediaThreadsKey,
+                *const SLHEncoderMediaPassKey,
+                *const SLHEncoderMediaPassLogKey,
+                *const SLHEncoderAudioCodecKey,
+                *const SLHEncoderAudioBitrateKey,
+                *const SLHEncoderAudioSampleRateKey,
+                *const SLHEncoderAudioChannelsKey,
+                *const SLHEncoderVideoCodecKey,
+                *const SLHEncoderVideoBitrateKey,
+                *const SLHEncoderVideoMaxBitrateKey,
+                *const SLHEncoderVideoBufsizeKey,
+                *const SLHEncoderVideoCRFBitrateKey,
+                *const SLHEncoderVideoAspectRatioKey,
+                *const SLHEncoderVideoPixelFormatKey,
+                *const SLHEncoderVideoScaleSizeKey,
+                *const SLHEncoderVideoVPXSpeedKey,
+                *const SLHEncoderVideoVPXRcLookaheadKey,
+                *const SLHEncoderVideoVPXQualityKey;
 
 typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     SLHVPXAudioChannels1 = 1,
@@ -36,6 +57,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     
 }
 
+@property SLHEncoderVPXOptions *options;
 @property BOOL keepAspectRatio;
 
 @end

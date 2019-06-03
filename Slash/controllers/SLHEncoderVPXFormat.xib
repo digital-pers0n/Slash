@@ -50,7 +50,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.twoPass" id="V87-1W-AMa"/>
+                        <binding destination="-2" name="value" keyPath="self.options.twoPass" id="LKq-U5-gJA"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Pxr-5q-Q4u">
@@ -161,8 +161,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="GDk-Xx-PZx"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="g0A-ZO-LUO"/>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.enableCRF" id="c9K-Mt-0yr"/>
                     </connections>
                 </textField>
                 <slider verticalHuggingPriority="750" id="vla-gH-lA8">
@@ -170,8 +170,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="4" maxValue="63" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="rkz-Ul-lGx"/>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="31d-O3-rDo"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="IEv-zn-xM1"/>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.enableCRF" id="ifU-uf-lJN"/>
                     </connections>
                 </slider>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cqm-Wk-jhc">
@@ -179,8 +179,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="4" maxValue="64" doubleValue="4" id="7iO-aW-dTA"/>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="sDj-0d-4Lg"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="8mw-aR-Vg1"/>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.enableCRF" id="rdV-bT-GZw"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yhv-UB-et3">
@@ -237,7 +237,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" id="SFe-jS-4fS"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.speed" id="Gm8-ir-9xx"/>
+                        <binding destination="-2" name="value" keyPath="self.options.speed" id="5CW-zS-xe7"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="O4u-hS-GT5">
@@ -254,7 +254,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" doubleValue="-7.5210000000000008" tickMarkPosition="above" sliderType="linear" id="OxG-Al-GDj"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.speed" id="y71-gJ-8hp"/>
+                        <binding destination="-2" name="value" keyPath="self.options.speed" id="n7e-V0-2qJ"/>
                     </connections>
                 </slider>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="tlc-NT-LBn">
@@ -262,7 +262,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="25" id="zZu-Fp-TG7"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.lookAhead" id="Pps-rB-KOe"/>
+                        <binding destination="-2" name="value" keyPath="self.options.lookAhead" id="pp3-N9-XSY"/>
                     </connections>
                 </stepper>
                 <textField verticalHuggingPriority="750" id="7rC-i0-S57">
@@ -278,7 +278,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.lookAhead" id="sCU-b2-Eji"/>
+                        <binding destination="-2" name="value" keyPath="self.options.lookAhead" id="PB3-LW-U7j"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="AgI-wD-chr">
@@ -295,7 +295,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="25" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="hqW-tl-gsU"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.lookAhead" id="qdT-og-Yst"/>
+                        <binding destination="-2" name="value" keyPath="self.options.lookAhead" id="4io-S9-iNq"/>
                     </connections>
                 </slider>
                 <button id="hi4-ej-Vb4">
@@ -306,7 +306,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.enableCRF" id="qcS-IH-Zau"/>
+                        <binding destination="-2" name="value" keyPath="self.options.enableCRF" id="eKS-7t-2Hn"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" id="Cb5-yS-vuO">
@@ -322,7 +322,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.speed" id="nJe-DU-02v"/>
+                        <binding destination="-2" name="value" keyPath="self.options.speed" id="JBP-g0-KwL"/>
                     </connections>
                 </textField>
             </subviews>
