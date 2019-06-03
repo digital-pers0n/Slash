@@ -32,7 +32,6 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     IBOutlet NSView *_videoView;
     IBOutlet NSView *_audioView;
     IBOutlet NSPopUpButton *_qualityPopUp;
-    IBOutlet NSPopUpButton *_sampleRatePopUp;
     IBOutlet NSPopUpButton *_channelsPopUp;
     
 }
@@ -78,13 +77,11 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         
         audioOptions.codecName = @"libopus";
         audioOptions.bitRate = 128;
-        audioOptions.sampleRate = SLHVPXAudioSampleRate44100;
         audioOptions.numberOfChannels = SLHVPXAudioChannels2;
     }
     
     if (self.view) {
         [_qualityPopUp selectItemWithTag:videoOptions.quality];
-        [_sampleRatePopUp selectItemWithTag:audioOptions.sampleRate];
         [_channelsPopUp selectItemWithTag:audioOptions.numberOfChannels];
         
         _filters.encoderItem = _encoderItem;
@@ -101,9 +98,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 - (IBAction)qualityDidChange:(NSPopUpButton *)sender {
     ((SLHEncoderVPXOptions *)_encoderItem.videoOptions).quality = sender.selectedTag;
 }
-- (IBAction)sampleRateDidChange:(NSPopUpButton *)sender {
-    _encoderItem.audioOptions.sampleRate = sender.selectedTag;
-}
+
 - (IBAction)channelsDidChange:(NSPopUpButton *)sender {
     _encoderItem.audioOptions.numberOfChannels = sender.selectedTag;
 }
@@ -158,23 +153,6 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     }
     
     // Audio
-    
-    {   // sampleRatePopUp
-        menu = _sampleRatePopUp.menu;
-        
-        menuItem = [[NSMenuItem alloc] initWithTitle:@"32000 Hz" action:nil keyEquivalent:@""];
-        menuItem.tag = SLHVPXAudioSampleRate32000;
-        [menu addItem:menuItem];
-        
-        menuItem = [[NSMenuItem alloc] initWithTitle:@"441000 Hz" action:nil keyEquivalent:@""];
-        menuItem.tag = SLHVPXAudioSampleRate44100;
-        [menu addItem:menuItem];
-        
-        menuItem = [[NSMenuItem alloc] initWithTitle:@"48000 Hz" action:nil keyEquivalent:@""];
-        menuItem.tag = SLHVPXAudioSampleRate48000;
-        [menu addItem:menuItem];
-        
-    }
     
     {   // channelsPopUp
         menu = _channelsPopUp.menu;

@@ -11,7 +11,6 @@
                 <outlet property="_audioView" destination="NQz-5C-ErZ" id="gbp-mW-3C8"/>
                 <outlet property="_channelsPopUp" destination="Rad-de-613" id="GcQ-B2-dXB"/>
                 <outlet property="_qualityPopUp" destination="lOW-J4-2Qz" id="JOH-Nc-qQi"/>
-                <outlet property="_sampleRatePopUp" destination="yso-xf-RT3" id="Zjb-GB-BJG"/>
                 <outlet property="_videoView" destination="Hz6-mo-xeY" id="dZJ-uk-yzd"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -325,7 +324,7 @@
             <point key="canvasLocation" x="240.5" y="217.5"/>
         </customView>
         <customView id="NQz-5C-ErZ">
-            <rect key="frame" x="0.0" y="0.0" width="296" height="118"/>
+            <rect key="frame" x="0.0" y="0.0" width="296" height="89"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" id="Rad-de-613">
@@ -344,27 +343,6 @@
                     <rect key="frame" x="36" y="53" width="56" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Channels:" id="pFI-Ku-b56">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="yso-xf-RT3">
-                    <rect key="frame" x="95" y="79" width="100" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="FGX-Bq-NyB">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" id="hld-Pv-vU5"/>
-                    </popUpButtonCell>
-                    <connections>
-                        <action selector="sampleRateDidChange:" target="-2" id="mQ0-E0-vUX"/>
-                    </connections>
-                </popUpButton>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="TZj-Uy-0QN">
-                    <rect key="frame" x="18" y="84" width="74" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Sample Rate:" id="3z1-4x-8YY">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -403,7 +381,7 @@
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="219" y="522"/>
+            <point key="canvasLocation" x="219" y="536.5"/>
         </customView>
     </objects>
 </document>
