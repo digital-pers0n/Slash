@@ -10,8 +10,11 @@
 #import "SLHEncoderItem.h"
 #import "SLHFiltersController.h"
 #import "SLHEncoderVPXOptions.h"
+#import "SLHFilterOptions.h"
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
+#import "SLHPreferences.h"
+#import "SLHEncoderItemMetadata.h"
 
 extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderMediaContainerKey,
@@ -115,6 +118,73 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     _filters = [SLHFiltersController filtersController];
 }
 
+- (NSArray *)arguments {
+    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
+    if (!ffmpegPath) {
+        NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
+        return nil;
+    }
+    
+    SLHEncoderVPXOptions *options = (id)_encoderItem.videoOptions;
+    TimeInterval ti = _encoderItem.interval;
+    NSMutableArray *args = @[  ffmpegPath, @"-nostdin", @"-hide_banner",
+                               SLHEncoderMediaOverwriteFilesKey,
+                               @"-ss", @(ti.start).stringValue,
+                               @"-i", _encoderItem.mediaItem.filePath,
+                               SLHEncoderMediaNoSubtitlesKey,
+                               SLHEncoderMediaEndTimeKey,
+                               @(ti.end - ti.start).stringValue,
+                               SLHEncoderMediaThreadsKey,
+                               @(SLHPreferences.preferences.numberOfThreads).stringValue,
+                               ].mutableCopy;
+    
+    NSMutableArray *videoArgs = NSMutableArray.new;
+    if (_encoderItem.videoStreamIndex >= 0) {
+        [videoArgs addObject:SLHEncoderMediaMapKey];
+        [videoArgs addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.videoStreamIndex]];
+        [videoArgs addObjectsFromArray:[self _videoArguments]];
+    } else {
+        [videoArgs addObject:SLHEncoderMediaNoVideoKey ];
+    }
+    
+
+    NSMutableArray *audioArgs = NSMutableArray.new;
+    if (_encoderItem.audioStreamIndex >= 0) {
+        [audioArgs addObject:SLHEncoderMediaMapKey];
+        [audioArgs addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.audioStreamIndex]];
+        [audioArgs addObjectsFromArray:[self _audioArguments]];
+    } else {
+        [audioArgs addObject:SLHEncoderMediaNoAudioKey ];
+    }
+    
+    NSArray *filterArgs = _filters.arguments;
+    NSMutableArray *output = NSMutableArray.new;
+    if (options.twoPass) {
+        extern char *g_temp_dir;
+        [args addObject:SLHEncoderMediaPassLogKey];
+        [args addObject:@(g_temp_dir)];
+        [args addObject:SLHEncoderMediaPassKey];
+        NSMutableArray *passOne = args.mutableCopy;
+        [passOne addObject:@"1"];
+        [passOne addObjectsFromArray:[self _firstPassArguments]];
+        [passOne addObject:SLHEncoderMediaContainerKey];
+        [passOne addObject:@"null"];
+        [passOne addObject:@"/dev/null"];
+        [args addObject:@"2"];
+        [output addObject:passOne];
+    }
+    
+    [args addObjectsFromArray:videoArgs];
+//    [args addObject:SLHEncoderMediaThreadsKey];
+//    [args addObject:@(SLHPreferences.preferences.numberOfThreads).stringValue];
+    [args addObjectsFromArray:audioArgs];
+    [args addObjectsFromArray:filterArgs];
+    [args addObjectsFromArray:_encoderItem.metadata.arguments];
+    [args addObject:_encoderItem.outputPath];
+    [output addObject:args];
+    return output;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)qualityDidChange:(NSPopUpButton *)sender {
@@ -193,6 +263,134 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         
     }
 
+}
+
+- (NSArray *)_audioArguments {
+    SLHEncoderItemOptions *audioOpts = _encoderItem.audioOptions;
+    NSArray *args = @[
+                      SLHEncoderAudioCodecKey, audioOpts.codecName,
+                      SLHEncoderAudioBitrateKey, @(audioOpts.bitRate * 1000).stringValue,
+                      SLHEncoderAudioChannelsKey, @(audioOpts.numberOfChannels).stringValue
+                      ];
+    return args;
+}
+
+- (NSArray *)_firstPassArguments {
+    SLHEncoderVPXOptions *options = (id)_encoderItem.videoOptions;
+    NSMutableArray *args = [NSMutableArray new];
+
+
+    
+    [args addObject:SLHEncoderVideoCodecKey];
+    [args addObject:options.codecName];
+    
+    NSUInteger bitrate = options.bitRate * 1000;
+    if (options.enableCRF) {
+        [args addObject:SLHEncoderVideoCRFBitrateKey];
+        [args addObject:@(options.crf).stringValue];
+        [args addObject:SLHEncoderVideoBitrateKey];
+        [args addObject:@(bitrate).stringValue];
+    } else {
+        [args addObject:SLHEncoderVideoBitrateKey];
+        [args addObject:@(bitrate).stringValue];
+        [args addObject:SLHEncoderVideoMaxBitrateKey];
+        [args addObject:@(bitrate).stringValue];
+        [args addObject:SLHEncoderVideoBufsizeKey];
+        [args addObject:@(bitrate * 2).stringValue];
+    }
+    
+   
+    [args addObject:SLHEncoderVideoVPXSpeedKey];
+    [args addObject:@"5"];
+    
+    
+    [args addObject:SLHEncoderVideoVPXRcLookaheadKey];
+    [args addObject:@(options.lookAhead).stringValue];
+    
+    if (options.scale) {
+        
+        NSUInteger width = options.videoWidth;
+        NSUInteger height = options.videoHeight;
+        NSString *value = [NSString stringWithFormat:@"%lux%lu", width, height];
+        [args addObject:SLHEncoderVideoScaleSizeKey];
+        [args addObject:value];
+        [args addObject:SLHEncoderVideoAspectRatioKey];
+        [args addObject:@((float)width / height).stringValue];
+    }
+    
+    
+    [args addObject:SLHEncoderVideoPixelFormatKey];
+    [args addObject:@"yuv420p"];
+//    [args addObject:SLHEncoderMediaThreadsKey];
+//    [args addObject:@(SLHPreferences.preferences.numberOfThreads).stringValue];
+    [args addObject:SLHEncoderMediaNoAudioKey];
+    [args addObjectsFromArray:_filters.arguments];
+    return args;
+}
+
+- (NSArray *)_videoArguments {
+    SLHEncoderVPXOptions *options = (id)_encoderItem.videoOptions;
+    NSMutableArray *args = [NSMutableArray new];
+    
+    [args addObject:SLHEncoderVideoCodecKey];
+    [args addObject:options.codecName];
+    
+    
+    NSUInteger bitrate = options.bitRate * 1000;
+    if (options.enableCRF) {
+        [args addObject:SLHEncoderVideoCRFBitrateKey];
+        [args addObject:@(options.crf).stringValue];
+        [args addObject:SLHEncoderVideoBitrateKey];
+        [args addObject:@(bitrate).stringValue];
+    } else {
+        [args addObject:SLHEncoderVideoBitrateKey];
+        [args addObject:@(bitrate).stringValue];
+        if (options.twoPass) {
+            [args addObject:SLHEncoderVideoMaxBitrateKey];
+            [args addObject:@(bitrate).stringValue];
+            [args addObject:SLHEncoderVideoBufsizeKey];
+            [args addObject:@(bitrate * 2).stringValue];
+        }
+    }
+
+    [args addObject:SLHEncoderVideoVPXSpeedKey];
+    [args addObject:@(options.speed).stringValue];
+
+    [args addObject:SLHEncoderVideoVPXRcLookaheadKey];
+    [args addObject:@(options.lookAhead).stringValue];
+    
+    SLHVPXQualityType quality = options.quality;
+    if (quality != SLHVPXQualityAuto) {
+        
+        [args addObject:SLHEncoderVideoVPXQualityKey];
+        switch (options.quality) {
+            case SLHVPXQualityBest:
+                [args addObject:@"best"];
+                break;
+            case SLHVPXQualityGood:
+                [args addObject:@"good"];
+                break;
+            case SLHVPXQualityRealtime:
+            default:
+                [args addObject:@"realtime"];
+                break;
+        }
+    }
+    
+    if (options.scale) {
+        NSUInteger width = options.videoWidth;
+        NSUInteger height = options.videoHeight;
+        NSString *value = [NSString stringWithFormat:@"%lux%lu", width, height];
+        [args addObject:SLHEncoderVideoScaleSizeKey];
+        [args addObject:value];
+        [args addObject:SLHEncoderVideoAspectRatioKey];
+        [args addObject:@((float)width / height).stringValue];
+    }
+
+    [args addObject:SLHEncoderVideoPixelFormatKey];
+    [args addObject:@"yuv420p"];
+    
+    return args;
 }
 
 #pragma mark - SLHEncoderSettingsDelegate
