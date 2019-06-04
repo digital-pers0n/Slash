@@ -115,6 +115,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self _initializePopUps];
     _filters = [SLHFiltersController filtersController];
 }
 
