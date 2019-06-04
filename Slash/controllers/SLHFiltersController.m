@@ -64,8 +64,15 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
 
 #pragma mark - Methods
 
-static inline NSString *_cropString(SLHFilterOptions *opts) {
-    return [NSString stringWithFormat:_videoCropFmt, opts.videoCropWidth, opts.videoCropHeight, opts.videoCropX, opts.videoCropY];
+static inline NSString *_cropString(SLHEncoderItem *item) {
+    SLHFilterOptions *opts = item.filters;
+    NSInteger y = opts.videoCropY;
+    NSInteger h = opts.videoCropHeight;
+    NSInteger idx = item.videoStreamIndex;
+    if (idx > -1) {
+        y = item.mediaItem.tracks[idx].videoSize.height - h - y;
+    }
+    return [NSString stringWithFormat:_videoCropFmt, opts.videoCropWidth, h, opts.videoCropX, y];
 }
 
 static inline NSString *_fadeInString(double val) {
@@ -90,7 +97,7 @@ static inline NSString *_preampString(NSInteger val) {
         NSMutableString *str = nil;
         if (opts.videoCropX || opts.videoCropY || opts.videoCropWidth || opts.videoCropHeight) {
             str = [NSMutableString new];
-            [str appendString:_cropString(opts)];
+            [str appendString:_cropString(_encoderItem)];
         }
         
         if (opts.videoDeinterlace) {
@@ -222,10 +229,15 @@ static inline NSString *_preampString(NSInteger val) {
         path = @"/usr/local/bin/mpv";
     }
     char *cmd;
+    NSInteger idx = _encoderItem.videoStreamIndex;
+    SLHMediaItem *mediaItem = _encoderItem.mediaItem;
+    if (idx > -1) {
+        r.origin.y = mediaItem.tracks[idx].videoSize.height - r.size.height - r.origin.y;
+    }
     asprintf(&cmd,
              "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
-             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=+%.3f \"%s\" &",
-             path.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.interval.start, _encoderItem.mediaItem.filePath.UTF8String);
+             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=%.3f \"%s\" &",
+             path.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.interval.start, mediaItem.filePath.UTF8String);
     system(cmd);
     free(cmd);
 }

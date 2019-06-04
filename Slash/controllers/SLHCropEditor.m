@@ -10,6 +10,7 @@
 #import "SLHImageView.h"
 #import "SLHEncoderItem.h"
 #import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
 #import "SLHFilterOptions.h"
 
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
@@ -40,10 +41,11 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
         path = @"/usr/local/bin/ffmpeg";
     }
     NSRect r = NSZeroRect;
+    SLHMediaItem *mediaItem = item.mediaItem;
     char *cmd;
     asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
              " | awk '/crop/ { print $NF }' | tail -1",
-             path.UTF8String, item.interval.start, item.mediaItem.filePath.UTF8String);
+             path.UTF8String, item.interval.start, mediaItem.filePath.UTF8String);
     FILE *pipe = popen(cmd, "r");
     const int len = 64;
     char str[len];
@@ -52,6 +54,12 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
         char *end = strchr(str, ':');
         long result[4] = {0, 0, 0, 0};
         _get_coordinates(++start, end, 0, result);
+        
+        NSInteger idx = item.videoStreamIndex;
+        if (idx > -1) {
+            result[3] = mediaItem.tracks[idx].videoSize.height - result[1] - result[3];
+        }
+        
         r = NSMakeRect(result[2], result[3], result[0], result[1]);
     }
     free(cmd);
@@ -112,10 +120,11 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
 
 - (NSRect)cropArea {
     NSRect r = NSZeroRect;
+    SLHMediaItem *mediaItem = _encoderItem.mediaItem;
     char *cmd;
     asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
              " | awk '/crop/ { print $NF }' | tail -1",
-             _ffmpegPath.UTF8String, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
+             _ffmpegPath.UTF8String, _startTime, mediaItem.filePath.UTF8String);
     FILE *pipe = popen(cmd, "r");
     const int len = 64;
     char str[len];
@@ -124,6 +133,12 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
         char *end = strchr(str, ':');
         long result[4] = {0, 0, 0, 0};
         _get_coordinates(++start, end, 0, result);
+        
+        NSInteger idx = _encoderItem.videoStreamIndex;
+        if (idx > -1) {
+            result[3] = mediaItem.tracks[idx].videoSize.height - result[1] - result[3];
+        }
+        
         r = NSMakeRect(result[2], result[3], result[0], result[1]);
     }
     free(cmd);
@@ -141,7 +156,7 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
         options.videoCropY = rect.origin.y;
         options.videoCropWidth = rect.size.width;
         options.videoCropHeight = rect.size.height;
-        dispatch_sync(_main_queue, ^{
+        dispatch_async(_main_queue, ^{
             sender.enabled = YES;
             _imageView.selectionRect = rect;
         });
@@ -172,8 +187,8 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
     char *cmd;
     asprintf(&cmd,
              "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
-             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=+%.3f \"%s\" &",
-             _mpvPath.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
+             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=%.3f \"%s\" &",
+             _mpvPath.UTF8String, r.size.width, r.size.height, r.origin.x, _imageView.imageSize.height - r.size.height - r.origin.y, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
     system(cmd);
     free(cmd);
 }
@@ -279,7 +294,7 @@ static inline void _safeCFRelease(CFTypeRef ref) {
     dispatch_async(_bg_queue, ^{
         char *cmd;
         asprintf(&cmd, "%s -loglevel 0 -ss %.3f -i \"%s\""
-                 " -vf \"rotate=PI,hflip\" -vframes 1 -q:v 2 -f image2pipe -",
+                  " -vframes 1 -q:v 2 -f image2pipe -",
                  _ffmpegPath.UTF8String, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
         FILE *pipe = popen(cmd, "r");
         const size_t block_length = 4096;
@@ -299,20 +314,13 @@ static inline void _safeCFRelease(CFTypeRef ref) {
         CGImageRef cfimage_ref = CGImageSourceCreateImageAtIndex(cfimage_source_ref, 0, NULL);
         if (cfimage_ref) {
            
-            dispatch_sync(_main_queue, ^{
-                // Hide the view to disable its annoying flip animtion
+            dispatch_async(_main_queue, ^{
+                // Hide the view to disable its annoying animtion
                  _imageView.hidden = YES;
                 [_imageView setImage:cfimage_ref imageProperties:0];
-                // Rotate and flip the frame because ffmpeg and Cocoa are using different coordinates
-                
-                _imageView.rotationAngle = M_PI;
-                [_imageView flipImageHorizontal:nil];
-                [_imageView zoomImageToFit:nil];
-                
                 _imageView.autoresizes = YES;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), _main_queue, ^{
-                    _imageView.hidden = NO;
-                });
+                _imageView.hidden = NO;
+                CFRelease(cfimage_ref);
             });
 
         } else {
@@ -321,7 +329,6 @@ static inline void _safeCFRelease(CFTypeRef ref) {
         free(cmd);
         pclose(pipe);
         free(output);
-        _safeCFRelease(cfimage_ref);
         _safeCFRelease(cfimage_source_ref);
         _safeCFRelease(cfdata_ref);
     });
