@@ -105,6 +105,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         audioOptions.numberOfChannels = SLHVPXAudioChannels2;
     }
     
+    self.options = videoOptions;
     if (self.view) {
         [_qualityPopUp selectItemWithTag:videoOptions.quality];
         [_channelsPopUp selectItemWithTag:audioOptions.numberOfChannels];
