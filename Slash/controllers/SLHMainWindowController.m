@@ -22,6 +22,7 @@
 #import "SLHMetadataIdentifiers.h"
 #import "SLHEncoderBaseFormat.h"
 #import "SLHEncoderX264Format.h"
+#import "SLHEncoderVPXFormat.h"
 #import "SLHArgumentsViewController.h"
 #import "SLHModalWindowController.h"
 
@@ -82,8 +83,9 @@
     
     /* SLHFormat */
     SLHEncoderX264Format *x264Fmt = [[SLHEncoderX264Format alloc] init];
-
-    _formats = @[x264Fmt];
+    SLHEncoderVPXFormat *vpxFmt = [[SLHEncoderVPXFormat alloc] init];
+    
+    _formats = @[x264Fmt, vpxFmt];
     NSMenu *formatsMenu = _formatsPopUp.menu;
     NSUInteger tag = 0;
     for (SLHEncoderBaseFormat *fmt in _formats) {
