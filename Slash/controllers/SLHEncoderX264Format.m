@@ -161,6 +161,9 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         [_profilePopUp selectItemWithTag:videoOptions.profileType];
         [_levelPopUp selectItemWithTag:videoOptions.levelType];
         [self _changeEncodingType];
+        _fastdecodeCheckBox.state = videoOptions.fastdecode;
+        _zerolatencyCheckBox.state = videoOptions.zerolatency;
+        _faststartCheckBox.state = videoOptions.faststart;
         
         [_audioSampleRatePopUp selectItemWithTag:audioOptions.sampleRate];
         [_audioChannelsPopUp selectItemWithTag:audioOptions.numberOfChannels];
