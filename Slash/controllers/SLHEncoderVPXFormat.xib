@@ -161,8 +161,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="GDk-Xx-PZx"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="g0A-ZO-LUO"/>
+                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="GDk-Xx-PZx"/>
                     </connections>
                 </textField>
                 <slider verticalHuggingPriority="750" id="vla-gH-lA8">
@@ -170,8 +170,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="4" maxValue="63" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="rkz-Ul-lGx"/>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="31d-O3-rDo"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="IEv-zn-xM1"/>
+                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="31d-O3-rDo"/>
                     </connections>
                 </slider>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cqm-Wk-jhc">
@@ -179,8 +179,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="4" maxValue="64" doubleValue="4" id="7iO-aW-dTA"/>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="sDj-0d-4Lg"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="8mw-aR-Vg1"/>
+                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="sDj-0d-4Lg"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yhv-UB-et3">
@@ -371,6 +371,9 @@
                     <rect key="frame" x="263" y="18" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="16" maxValue="510" doubleValue="16" id="mZX-Bb-dXT"/>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="sk5-fi-j2f"/>
+                    </connections>
                 </stepper>
                 <textField verticalHuggingPriority="750" id="cF6-T8-9o1">
                     <rect key="frame" x="198" y="20" width="67" height="19"/>
@@ -384,6 +387,9 @@
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="KfS-G7-dHI"/>
+                    </connections>
                 </textField>
             </subviews>
             <point key="canvasLocation" x="219" y="536.5"/>
