@@ -8,6 +8,6 @@
 
 #import "SLHEncoderVPXFormat.h"
 
-@interface SLHEncoderVP9Format : SLHEncoderVPXFormat
+@interface SLHEncoderVP9Format : SLHEncoderBaseFormat
 
 @end
