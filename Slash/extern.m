@@ -64,6 +64,7 @@ NSString *const SLHEncoderVideoVPXQualityKey      = @"-deadline";
 NSString *const SLHEncoderVideoVPXRcLookaheadKey  = @"-lag-in-frames";
 NSString *const SLHEncoderVideoVP9RowMTKey        = @"-row-mt";
 NSString *const SLHEncoderVideoVP9TileColumnsKey  = @"-tile-columns";
+NSString *const SLHEncoderVideoVP9TileRowsKey     = @"-tile-rows";
 NSString *const SLHEncoderVideoVP9FrameParallelKey    = @"-frame-parallel";
 
 NSString *const SLHEncoderAudioCodecKey           = @"-c:a";
