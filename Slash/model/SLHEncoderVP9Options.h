@@ -12,7 +12,7 @@
 
 @property NSUInteger tile_columns;
 @property NSUInteger tile_rows;
-@property NSUInteger frame_parallel;
+@property BOOL frame_parallel;
 @property BOOL row_mt;
 
 @end
