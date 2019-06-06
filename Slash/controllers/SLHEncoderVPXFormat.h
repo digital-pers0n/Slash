@@ -8,6 +8,16 @@
 
 #import "SLHEncoderBaseFormat.h"
 
+@class SLHFiltersController;
+
 @interface SLHEncoderVPXFormat : SLHEncoderBaseFormat
+
+@property (readonly) NSView *videoView;
+@property (readonly) NSView *audioView;
+@property (readonly) SLHFiltersController *filters;
+
+- (NSArray *)firstPassArguments;
+- (NSArray *)videoArguments;
+- (NSArray *)audioArguments;
 
 @end
