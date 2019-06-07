@@ -325,6 +325,17 @@
                         <binding destination="-2" name="value" keyPath="self.options.speed" id="JBP-g0-KwL"/>
                     </connections>
                 </textField>
+                <button id="fm1-Cj-8VP">
+                    <rect key="frame" x="208" y="114" width="123" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Enable auto-alt-ref" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="gHv-EN-yMo">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.options.enableAltRef" id="H1s-as-Vlq"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="240.5" y="217.5"/>
         </customView>

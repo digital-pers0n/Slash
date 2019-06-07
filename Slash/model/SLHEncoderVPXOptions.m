@@ -17,6 +17,7 @@
     obj->_quality = _quality;
     obj->_speed = _speed;
     obj->_lookAhead = _lookAhead;
+    obj->_enableAltRef = _enableAltRef;
     return obj;
 }
 

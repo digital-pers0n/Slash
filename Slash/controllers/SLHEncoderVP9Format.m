@@ -82,6 +82,7 @@ extern NSString *const SLHEncoderMediaMapKey,
         videoOptions.twoPass = NO;
         videoOptions.enableCRF = NO;
         videoOptions.lookAhead = 25;
+        videoOptions.enableAltRef = YES;
         videoOptions.crf = 25;
         videoOptions.codecName = @"libvpx-vp9";
         videoOptions.row_mt = YES;

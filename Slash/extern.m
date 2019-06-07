@@ -61,6 +61,7 @@ NSString *const SLHEncoderVideoH264TuneKey        = @"-tune";
 
 NSString *const SLHEncoderVideoVPXSpeedKey        = @"-cpu-used";
 NSString *const SLHEncoderVideoVPXQualityKey      = @"-deadline";
+NSString *const SLHEncoderVideoVPXAutoAltRefKey   = @"-auto-alt-ref";
 NSString *const SLHEncoderVideoVPXRcLookaheadKey  = @"-lag-in-frames";
 NSString *const SLHEncoderVideoVP9RowMTKey        = @"-row-mt";
 NSString *const SLHEncoderVideoVP9TileColumnsKey  = @"-tile-columns";

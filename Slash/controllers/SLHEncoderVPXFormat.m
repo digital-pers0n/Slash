@@ -41,7 +41,8 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderVideoScaleSizeKey,
                 *const SLHEncoderVideoVPXSpeedKey,
                 *const SLHEncoderVideoVPXRcLookaheadKey,
-                *const SLHEncoderVideoVPXQualityKey;
+                *const SLHEncoderVideoVPXQualityKey,
+                *const SLHEncoderVideoVPXAutoAltRefKey;
 
 typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     SLHVPXAudioChannels1 = 1,
@@ -91,6 +92,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         videoOptions.twoPass = NO;
         videoOptions.enableCRF = NO;
         videoOptions.lookAhead = 25;
+        videoOptions.enableAltRef = YES;
         videoOptions.crf = 25;
         videoOptions.codecName = @"libvpx";
         _encoderItem.videoOptions = videoOptions;
@@ -144,7 +146,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     if (_encoderItem.videoStreamIndex >= 0) {
         [videoArgs addObject:SLHEncoderMediaMapKey];
         [videoArgs addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.videoStreamIndex]];
-        [videoArgs addObjectsFromArray:[self _videoArguments]];
+        [videoArgs addObjectsFromArray:[self videoArguments]];
     } else {
         [videoArgs addObject:SLHEncoderMediaNoVideoKey ];
     }
@@ -154,7 +156,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     if (_encoderItem.audioStreamIndex >= 0) {
         [audioArgs addObject:SLHEncoderMediaMapKey];
         [audioArgs addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.audioStreamIndex]];
-        [audioArgs addObjectsFromArray:[self _audioArguments]];
+        [audioArgs addObjectsFromArray:[self audioArguments]];
     } else {
         [audioArgs addObject:SLHEncoderMediaNoAudioKey ];
     }
@@ -168,7 +170,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         [args addObject:SLHEncoderMediaPassKey];
         NSMutableArray *passOne = args.mutableCopy;
         [passOne addObject:@"1"];
-        [passOne addObjectsFromArray:[self _firstPassArguments]];
+        [passOne addObjectsFromArray:[self firstPassArguments]];
         [passOne addObject:SLHEncoderMediaContainerKey];
         [passOne addObject:@"null"];
         [passOne addObject:@"/dev/null"];
@@ -177,8 +179,6 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     }
     
     [args addObjectsFromArray:videoArgs];
-//    [args addObject:SLHEncoderMediaThreadsKey];
-//    [args addObject:@(SLHPreferences.preferences.numberOfThreads).stringValue];
     [args addObjectsFromArray:audioArgs];
     [args addObjectsFromArray:filterArgs];
     [args addObjectsFromArray:_encoderItem.metadata.arguments];
@@ -267,7 +267,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 
 }
 
-- (NSArray *)_audioArguments {
+- (NSArray *)audioArguments {
     SLHEncoderItemOptions *audioOpts = _encoderItem.audioOptions;
     NSArray *args = @[
                       SLHEncoderAudioCodecKey, audioOpts.codecName,
@@ -277,7 +277,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     return args;
 }
 
-- (NSArray *)_firstPassArguments {
+- (NSArray *)firstPassArguments {
     SLHEncoderVPXOptions *options = (id)_encoderItem.videoOptions;
     NSMutableArray *args = [NSMutableArray new];
 
@@ -303,9 +303,10 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     
    
     [args addObject:SLHEncoderVideoVPXSpeedKey];
-    [args addObject:@"5"];
+    [args addObject:@"4"];
     
-    
+    [args addObject:SLHEncoderVideoVPXAutoAltRefKey];
+    [args addObject:@(options.enableAltRef).stringValue];
     [args addObject:SLHEncoderVideoVPXRcLookaheadKey];
     [args addObject:@(options.lookAhead).stringValue];
     
@@ -323,14 +324,12 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     
     [args addObject:SLHEncoderVideoPixelFormatKey];
     [args addObject:@"yuv420p"];
-//    [args addObject:SLHEncoderMediaThreadsKey];
-//    [args addObject:@(SLHPreferences.preferences.numberOfThreads).stringValue];
     [args addObject:SLHEncoderMediaNoAudioKey];
     [args addObjectsFromArray:_filters.arguments];
     return args;
 }
 
-- (NSArray *)_videoArguments {
+- (NSArray *)videoArguments {
     SLHEncoderVPXOptions *options = (id)_encoderItem.videoOptions;
     NSMutableArray *args = [NSMutableArray new];
     
@@ -357,7 +356,9 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 
     [args addObject:SLHEncoderVideoVPXSpeedKey];
     [args addObject:@(options.speed).stringValue];
-
+    
+    [args addObject:SLHEncoderVideoVPXAutoAltRefKey];
+    [args addObject:@(options.enableAltRef).stringValue];
     [args addObject:SLHEncoderVideoVPXRcLookaheadKey];
     [args addObject:@(options.lookAhead).stringValue];
     
