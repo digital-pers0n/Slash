@@ -23,8 +23,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="xe3-wI-akd">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="5AH-aH-bs6">
-                            <real key="minimum" value="0.0"/>
-                            <real key="maximum" value="16"/>
+                            <real key="minimum" value="-1"/>
+                            <real key="maximum" value="6"/>
                         </numberFormatter>
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -37,19 +37,11 @@
                 <slider verticalHuggingPriority="750" id="Una-aQ-de5">
                     <rect key="frame" x="104" y="45" width="140" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="16" doubleValue="6" tickMarkPosition="above" sliderType="linear" id="eBh-2l-PZW"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-1" maxValue="6" doubleValue="6" tickMarkPosition="above" sliderType="linear" id="eBh-2l-PZW"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.videoOptions.tile_columns" id="gjE-Zl-52c"/>
                     </connections>
                 </slider>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="UfZ-Gp-0EH">
-                    <rect key="frame" x="319" y="42" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="16" doubleValue="4" id="88e-Xt-mpv"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.videoOptions.tile_columns" id="zUt-4a-w13"/>
-                    </connections>
-                </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="PWo-cw-TZZ">
                     <rect key="frame" x="27" y="47" width="71" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -64,8 +56,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="5gJ-Wy-yC4">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="0Me-if-D0E">
-                            <real key="minimum" value="0.0"/>
-                            <real key="maximum" value="16"/>
+                            <real key="minimum" value="-1"/>
+                            <real key="maximum" value="2"/>
                         </numberFormatter>
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +70,7 @@
                 <slider verticalHuggingPriority="750" id="KDY-rl-ccA">
                     <rect key="frame" x="104" y="21" width="140" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="16" doubleValue="6" tickMarkPosition="above" sliderType="linear" id="Xyj-vq-q0M"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-1" maxValue="2" doubleValue="2" tickMarkPosition="above" sliderType="linear" id="Xyj-vq-q0M"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.videoOptions.tile_rows" id="8nh-Aj-qli"/>
                     </connections>
@@ -86,7 +78,7 @@
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="x2y-v5-sNb">
                     <rect key="frame" x="319" y="18" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="16" id="SRr-gH-zBY"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-1" maxValue="2" id="SRr-gH-zBY"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.videoOptions.tile_rows" id="ukM-vB-RBG"/>
                     </connections>
@@ -122,6 +114,14 @@
                         <binding destination="-2" name="value" keyPath="self.videoOptions.frame_parallel" id="5GH-3k-ELa"/>
                     </connections>
                 </button>
+                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="UfZ-Gp-0EH">
+                    <rect key="frame" x="319" y="42" width="15" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-1" maxValue="6" doubleValue="4" id="88e-Xt-mpv"/>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.videoOptions.tile_columns" id="zUt-4a-w13"/>
+                    </connections>
+                </stepper>
             </subviews>
             <point key="canvasLocation" x="235" y="224"/>
         </customView>
