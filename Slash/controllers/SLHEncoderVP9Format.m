@@ -100,7 +100,7 @@ extern NSString *const SLHEncoderMediaMapKey,
         audioOptions.bitRate = 128;
         audioOptions.numberOfChannels = 2;
     }
-    _videoOptions = videoOptions;
+    self.videoOptions = videoOptions;
     _vpxFmt.encoderItem = encoderItem;
 }
 
