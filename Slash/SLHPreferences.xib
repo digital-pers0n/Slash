@@ -68,6 +68,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="selectFile:" target="-2" id="cDa-7F-6eY"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="C8l-Zi-4hx">
                         <rect key="frame" x="18" y="115" width="37" height="14"/>
@@ -171,6 +174,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="selectFile:" target="-2" id="fvo-CU-QUz"/>
+                        </connections>
                     </button>
                     <button id="0vA-U6-WDn">
                         <rect key="frame" x="17" y="17" width="219" height="20"/>
