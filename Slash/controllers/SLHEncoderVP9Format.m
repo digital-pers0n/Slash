@@ -11,6 +11,9 @@
 #import "SLHEncoderVPXFormat.h"
 #import "SLHFiltersController.h"
 #import "SLHEncoderItem.h"
+#import "SLHMediaItem.h"
+#import "SLHMediaItemTrack.h"
+#import "SLHEncoderItemMetadata.h"
 #import "SLHPreferences.h"
 
 extern NSString *const SLHEncoderMediaMapKey,
@@ -106,6 +109,83 @@ extern NSString *const SLHEncoderMediaMapKey,
 
 - (SLHEncoderItem *)encoderItem {
     return _vpxFmt.encoderItem;
+}
+
+- (NSArray<NSArray *> *)arguments {
+    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
+    if (!ffmpegPath) {
+        NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
+        return nil;
+    }
+    SLHEncoderItem *_encoderItem = _vpxFmt.encoderItem;
+    
+    SLHEncoderVPXOptions *options = (id)_encoderItem.videoOptions;
+    TimeInterval ti = _encoderItem.interval;
+    NSMutableArray *args = @[  ffmpegPath, @"-nostdin", @"-hide_banner",
+                               SLHEncoderMediaOverwriteFilesKey,
+                               @"-ss", @(ti.start).stringValue,
+                               @"-i", _encoderItem.mediaItem.filePath,
+                               SLHEncoderMediaNoSubtitlesKey,
+                               SLHEncoderMediaEndTimeKey,
+                               @(ti.end - ti.start).stringValue,
+                               SLHEncoderMediaThreadsKey,
+                               @(SLHPreferences.preferences.numberOfThreads).stringValue,
+                               ].mutableCopy;
+    
+    NSMutableArray *videoArgs = NSMutableArray.new;
+    if (_encoderItem.videoStreamIndex >= 0) {
+        [videoArgs addObject:SLHEncoderMediaMapKey];
+        [videoArgs addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.videoStreamIndex]];
+        [videoArgs addObjectsFromArray:_vpxFmt.videoArguments];
+        [videoArgs addObjectsFromArray:self.videoArguments];
+    } else {
+        [videoArgs addObject:SLHEncoderMediaNoVideoKey ];
+    }
+    
+    NSMutableArray *audioArgs = NSMutableArray.new;
+    if (_encoderItem.audioStreamIndex >= 0) {
+        [audioArgs addObject:SLHEncoderMediaMapKey];
+        [audioArgs addObject:[NSString stringWithFormat:@"0:%li", _encoderItem.audioStreamIndex]];
+        [audioArgs addObjectsFromArray:_vpxFmt.audioArguments];
+    } else {
+        [audioArgs addObject:SLHEncoderMediaNoAudioKey ];
+    }
+    
+    NSArray *filterArgs = _vpxFmt.filters.arguments;
+    NSMutableArray *output = NSMutableArray.new;
+    if (options.twoPass) {
+        extern char *g_temp_dir;
+        [args addObject:SLHEncoderMediaPassLogKey];
+        [args addObject:@(g_temp_dir)];
+        [args addObject:SLHEncoderMediaPassKey];
+        NSMutableArray *passOne = args.mutableCopy;
+        [passOne addObject:@"1"];
+        [passOne addObjectsFromArray:_vpxFmt.firstPassArguments];
+        [passOne addObjectsFromArray:self.videoArguments];
+        [passOne addObject:SLHEncoderMediaContainerKey];
+        [passOne addObject:@"null"];
+        [passOne addObject:@"/dev/null"];
+        [args addObject:@"2"];
+        [output addObject:passOne];
+    }
+    
+    [args addObjectsFromArray:videoArgs];
+    [args addObjectsFromArray:audioArgs];
+    [args addObjectsFromArray:filterArgs];
+    [args addObjectsFromArray:_encoderItem.metadata.arguments];
+    [args addObject:_encoderItem.outputPath];
+    [output addObject:args];
+    return output;
+    
+    return _vpxFmt.arguments;
+}
+
+- (NSArray *)videoArguments {
+    return @[SLHEncoderVideoVP9TileColumnsKey, @(_videoOptions.tile_columns).stringValue,
+                      SLHEncoderVideoVP9TileRowsKey, @(_videoOptions.tile_rows).stringValue,
+                      SLHEncoderVideoVP9FrameParallelKey, @(_videoOptions.frame_parallel).stringValue,
+                      SLHEncoderVideoVP9RowMTKey, @(_videoOptions.row_mt).stringValue];
+    
 }
 
 - (void)viewDidLoad {
