@@ -15,12 +15,14 @@ NSString *const SLHPreferencesFFProbeFilePathKey    = @"ffprobeBinary";
 NSString *const SLHPreferencesMPVFilePathKey        = @"mpvBinary";
 NSString *const SLHPreferencesNumberOfThreadsKey    = @"numberOfThreads";
 NSString *const SLHPreferencesUpdateOutputNameKey   = @"updateOutputName";
+NSString *const SLHPreferencesLastUsedFormatKey     = @"lastUsedFormat";
 NSString *const SLHPreferencesRecentOutputPaths     = @"recentOutputPaths";
 NSString *const SLHPreferencesOutputPathSameAsInput = @"outputPathSameAsInput";
 NSString *const SLHPreferencesDefaultOutputPath     = @"~/Movies/";
 NSString *const SLHPreferencesDefaultFFMpegPath     = @"/usr/local/bin/ffmpeg";
 NSString *const SLHPreferencesDefaultFFProbePath    = @"/usr/local/bin/ffprobe";
 NSString *const SLHPreferencesDefaultMPVPath        = @"/usr/local/bin/mpv";
+
 
 #pragma mark - SLHMetadataItem
 

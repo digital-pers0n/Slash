@@ -32,4 +32,6 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property NSString *ffprobePath;
 @property NSString *mpvPath;
 
+@property NSString *lastUsedFormatName;
+
 @end

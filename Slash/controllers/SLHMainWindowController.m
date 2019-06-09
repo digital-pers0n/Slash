@@ -94,8 +94,10 @@
         NSMenuItem *itm = [formatsMenu addItemWithTitle:fmt.formatName action:nil keyEquivalent:@""];
         itm.tag = tag++;
     }
-    (void)x264Fmt.view;
-    _encoderSettings.delegate = x264Fmt;
+    NSString *name = SLHPreferences.preferences.lastUsedFormatName;
+    if (name) {
+        [_formatsPopUp selectItemWithTitle:name];
+    }
 }
 
 #pragma mark - Methods
@@ -121,6 +123,7 @@
 
 - (void)windowWillClose:(NSNotification *)notification {
     _player = nil;
+    SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
 }
 
 #pragma mark - NSTableView Delegate

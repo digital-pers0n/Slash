@@ -11,6 +11,7 @@
 extern NSString *const SLHPreferencesDefaultOutputPath;
 extern NSString *const SLHPreferencesNumberOfThreadsKey;
 extern NSString *const SLHPreferencesUpdateOutputNameKey;
+extern NSString *const SLHPreferencesLastUsedFormatKey;
 extern NSString *const SLHPreferencesDefaultFFMpegPath;
 extern NSString *const SLHPreferencesDefaultFFProbePath;
 extern NSString *const SLHPreferencesDefaultMPVPath;
@@ -173,6 +174,14 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
 
 - (void)setMpvPath:(NSString *)mpvPath {
     [_userDefaults setObject:mpvPath forKey:SLHPreferencesMPVFilePathKey];
+}
+
+- (void)setLastUsedFormatName:(NSString *)lastUsedFormatName {
+    [_userDefaults setObject:lastUsedFormatName forKey:SLHPreferencesLastUsedFormatKey];
+}
+
+- (NSString *)lastUsedFormatName {
+    return [_userDefaults objectForKey:SLHPreferencesLastUsedFormatKey];
 }
 
 #pragma mark - IBActions
