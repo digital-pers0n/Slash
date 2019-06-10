@@ -18,5 +18,7 @@
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab;
 
 @property (readonly) NSArray <NSArray *> *arguments;
+@property NSDictionary *dictionaryRepresentation;
+
 
 @end
