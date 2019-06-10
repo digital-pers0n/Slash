@@ -34,7 +34,7 @@ extern NSString *const SLHEncoderVideoCRFBitrateKey;
 extern NSString *const SLHEncoderVideoCodecKey;
 extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
-extern NSString *const SLHEncoderVideoMovflagsKey;
+extern NSString *const SLHEncoderVideoH264MovflagsKey;
 extern NSString *const SLHEncoderVideoPixelFormatKey;
 extern NSString *const SLHEncoderVideoAspectRatioKey;
 extern NSString *const SLHEncoderVideoH264ProfileKey;
@@ -842,7 +842,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         [args addObject:@((float)options.videoWidth / options.videoHeight).stringValue];
     }
     if (options.faststart) {
-        [args addObject:SLHEncoderVideoMovflagsKey];
+        [args addObject:SLHEncoderVideoH264MovflagsKey];
         [args addObject:@"+faststart"];
     }
     [args addObject:SLHEncoderVideoPixelFormatKey];
