@@ -32,11 +32,13 @@
     SLHEncoderSettings *_encoderSettings;
     SLHMetadataEditor *_metadataEditor;
     SLHPlayer *_player;
+    SLHPlayer *_auxPlayer;
     NSArray <SLHEncoderBaseFormat *> *_formats;
     SLHEncoderItem *_tempEncoderItem;
     SLHMediaItem *_currentMediaItem;
     NSString *_lastEncodedMediaFilePath;
     SLHEncoder *_encoder;
+    SLHEncoderQueue *_queue;
     
     IBOutlet NSView *_customView;
     IBOutlet NSArrayController *_arrayController;
@@ -123,6 +125,7 @@
 
 - (void)windowWillClose:(NSNotification *)notification {
     _player = nil;
+    _auxPlayer = nil;
     SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
 }
 
@@ -188,6 +191,23 @@
 }
 - (void)didReceiveMouseEvent:(NSEvent *)event {
     
+}
+
+- (IBAction)addToQueue:(id)sender {
+    BOOL shouldRemoveItems = (NSApp.currentEvent.modifierFlags & NSAlternateKeyMask);
+    if (!_queue) {
+        _queue = [[SLHEncoderQueue alloc] init];
+    }
+    NSArray *items = _arrayController.arrangedObjects;
+    for (SLHEncoderItem *i in items) {
+        SLHEncoderBaseFormat *fmt = _formats[i.tag];
+        fmt.encoderItem = i;
+        i.encoderArguments = fmt.arguments;
+    }
+    if (shouldRemoveItems) {
+        [_queue addEncoderItems:items];
+        [_arrayController removeObjects:items];
+    }
 }
 
 #pragma mark - IBActions
@@ -257,22 +277,33 @@
 - (IBAction)previewSegment:(id)sender {
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
-    [_player loopStart:item.interval.start end:item.interval.end];
+    SLHMediaItem *mediaItem = item.mediaItem;
+    if (!_auxPlayer) {
+        _auxPlayer = [SLHPlayer playerWithMediaItem:mediaItem];
+    } else if (_auxPlayer.currentItem != mediaItem) {
+        [_auxPlayer replaceCurrentItemWithMediaItem:mediaItem];
+    }
+    [_auxPlayer play];
+    static const struct timespec s = { .tv_sec = 1, .tv_nsec = 0 };
+    nanosleep(&s, NULL);
+    [_auxPlayer loopStart:item.interval.start end:item.interval.end];
 }
 
 - (IBAction)previewOutputFile:(id)sender {
     SLHMediaItem *item = [SLHMediaItem mediaItemWithPath:_lastEncodedMediaFilePath];
-    if (!_player) {
-        _player = [SLHPlayer playerWithMediaItem:item];
-        _player.delegate = self;
-    } else {
-        [_player replaceCurrentItemWithMediaItem:item];
-    }
-    if (_player.error) {
-        NSLog(@"Playback error: %@", _player.error.localizedDescription);
+    if (item.error) {
         return;
     }
-    [_player play];
+    if (!_auxPlayer) {
+        _auxPlayer = [SLHPlayer playerWithMediaItem:item];
+    } else {
+        [_auxPlayer replaceCurrentItemWithMediaItem:item];
+    }
+    if (_auxPlayer.error) {
+        NSLog(@"Playback error: %@", _auxPlayer.error.localizedDescription);
+        return;
+    }
+    [_auxPlayer play];
 }
 
 
