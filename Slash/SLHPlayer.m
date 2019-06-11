@@ -186,6 +186,10 @@ static inline void _launchPlayer(Player *p) {
     if (!_hasWindow) {
         _launchPlayer(_player);
         _hasWindow = YES;
+    } else {
+        // clear ab-loop
+        static const char *cmd = "{ \"command\": [\"set_property\", \"ab-loop-a\", \"no\" ] }\n";
+        plr_msg_send(_player, cmd);
     }
     _currentItem = item;
     _loadFile(_player, _currentItem.filePath.UTF8String);
