@@ -158,7 +158,8 @@ static inline BOOL _isTag(const char *str) {
     }
     
     _metadata = array;
-    
+    free(keys);
+    free(values);
 }
 
 @end
