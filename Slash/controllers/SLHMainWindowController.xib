@@ -135,7 +135,11 @@
                         </buttonCell>
                         <connections>
                             <action selector="addToQueue:" target="-2" id="A5I-wn-lFI"/>
-                            <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="00b-hl-qGq"/>
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="geg-WW-Z6G">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                     <customView id="XjQ-XZ-nwB">
@@ -494,7 +498,11 @@ CA
                         </buttonCell>
                         <connections>
                             <action selector="startEncoding:" target="-2" id="r9o-Xh-IqJ"/>
-                            <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="tKT-aO-fsr"/>
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="CPv-1F-Z6l">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                     <button toolTip="⌘+D Edit Metadata" verticalHuggingPriority="750" id="aGt-Me-cvO">
@@ -506,7 +514,11 @@ CA
                         </buttonCell>
                         <connections>
                             <action selector="showMetadataEditor:" target="-2" id="MiS-B5-46y"/>
-                            <binding destination="vks-Yg-j4w" name="enabled" keyPath="canRemove" id="Ver-i3-78o"/>
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="0Ib-ND-vfh">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                 </subviews>
