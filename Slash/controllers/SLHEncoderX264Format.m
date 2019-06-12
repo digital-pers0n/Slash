@@ -34,13 +34,18 @@ extern NSString *const SLHEncoderVideoCRFBitrateKey;
 extern NSString *const SLHEncoderVideoCodecKey;
 extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
-extern NSString *const SLHEncoderVideoH264MovflagsKey;
 extern NSString *const SLHEncoderVideoPixelFormatKey;
 extern NSString *const SLHEncoderVideoAspectRatioKey;
+extern NSString *const SLHEncoderVideoH264MovflagsKey;
 extern NSString *const SLHEncoderVideoH264ProfileKey;
 extern NSString *const SLHEncoderVideoH264LevelKey;
 extern NSString *const SLHEncoderVideoH264PresetKey;
 extern NSString *const SLHEncoderVideoH264TuneKey;
+extern NSString *const SLHEncoderVideoH264EncodingTypeKey;
+extern NSString *const SLHEncoderVideoH264FaststartKey;
+extern NSString *const SLHEncoderVideoH264ZerolatencyKey;
+extern NSString *const SLHEncoderVideoH264FastdecodeKey;
+extern NSString *const SLHEncoderVideoH264ContainerTypeKey;
 extern NSString *const SLHEncoderAudioCodecKey;
 extern NSString *const SLHEncoderAudioBitrateKey;
 extern NSString *const SLHEncoderAudioQualityKey;
@@ -170,6 +175,76 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         
         _filters.encoderItem = _encoderItem;
     }
+}
+
+- (void)setDictionaryRepresentation:(NSDictionary *)dict {
+    [super setDictionaryRepresentation:dict];
+    SLHEncoderX264Options *opts = (id)_encoderItem.videoOptions;
+    NSNumber *val = dict[SLHEncoderVideoH264ProfileKey];
+    if (val) {
+        opts.profileType = val.unsignedIntegerValue;
+    }
+    
+    val = dict[SLHEncoderVideoH264LevelKey];
+    if (val) {
+        opts.levelType = val.unsignedIntegerValue;
+    }
+    
+    val = dict[SLHEncoderVideoH264PresetKey];
+    if (val) {
+        opts.presetType = val.unsignedIntegerValue;
+    }
+    
+    val = dict[SLHEncoderVideoH264TuneKey];
+    if (val) {
+        opts.tuneType = val.unsignedIntegerValue;
+    }
+    
+    val = dict[SLHEncoderVideoH264EncodingTypeKey];
+    if (val) {
+        opts.encodingType = val.unsignedIntegerValue;
+        [self _changeEncodingType];
+    }
+    
+    val = dict[SLHEncoderVideoH264FaststartKey];
+    if (val) {
+        opts.faststart = val.boolValue;
+    }
+    
+    val = dict[SLHEncoderVideoH264ZerolatencyKey];
+    if (val) {
+        opts.zerolatency = val.boolValue;
+    }
+    
+    val = dict[SLHEncoderVideoH264FastdecodeKey];
+    if (val) {
+        opts.fastdecode = val.boolValue;
+    }
+    
+    val = dict[SLHEncoderVideoH264ContainerTypeKey];
+    if (val) {
+        NSUInteger type = val.unsignedIntegerValue;
+        opts.containerType = type;
+        if (_containerPopUp) {
+            [_containerPopUp selectItemWithTag:type];
+            [self containerDidChange:_containerPopUp];
+        }
+    }
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *dict = super.dictionaryRepresentation.mutableCopy;
+    SLHEncoderX264Options *opts = (id)_encoderItem.videoOptions;
+    dict[SLHEncoderVideoH264ProfileKey] = @(opts.profileType);
+    dict[SLHEncoderVideoH264LevelKey] = @(opts.levelType);
+    dict[SLHEncoderVideoH264PresetKey] = @(opts.presetType);
+    dict[SLHEncoderVideoH264TuneKey] = @(opts.tuneType);
+    dict[SLHEncoderVideoH264EncodingTypeKey] = @(opts.encodingType);
+    dict[SLHEncoderVideoH264FaststartKey] = @(opts.faststart);
+    dict[SLHEncoderVideoH264ZerolatencyKey] = @(opts.zerolatency);
+    dict[SLHEncoderVideoH264FastdecodeKey] = @(opts.fastdecode);
+    dict[SLHEncoderVideoH264ContainerTypeKey] = @(opts.containerType);
+    return dict;
 }
 
 - (NSArray *)arguments {
