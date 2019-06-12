@@ -103,10 +103,6 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
     return self;
 }
 
-- (void)windowDidClose:(NSNotification *)notification {
-    [[NSUserDefaults standardUserDefaults] setObject:_recentOutputPaths forKey:SLHPreferencesRecentOutputPaths];
-}
-
 - (void)windowDidLoad {
     [super windowDidLoad];
     NSMenu *menu = _outputPathPopUp.menu;
@@ -139,16 +135,14 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
         }
         [_outputPathPopUp selectItemAtIndex:[menu indexOfItemWithTag:203] + 1];
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidClose:) name:NSWindowWillCloseNotification object:self.window];
 }
 
 - (BOOL)outputPathSameAsInput {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"outputPathSameAsInput"];
+    return [_userDefaults boolForKey:@"outputPathSameAsInput"];
 }
 
 - (void)setOutputPathSameAsInput:(BOOL)value {
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:@"outputPathSameAsInput"];
+    [_userDefaults setBool:value forKey:@"outputPathSameAsInput"];
 }
 
 - (NSString *)ffmpegPath {
@@ -191,7 +185,7 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
     [panel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSFileHandlingPanelOKButton) {
             NSString *value = panel.URLs.firstObject.path;
-            [[NSUserDefaults standardUserDefaults] setValue:value forKey:sender.identifier];
+            [_userDefaults setValue:value forKey:sender.identifier];
             switch (sender.tag) {
                 case 1:
                     _ffmpegPathTextField.stringValue = value;
@@ -279,7 +273,7 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
 #pragma mark - NSWindowDelegate 
 
 - (void)windowWillClose:(NSNotification *)notification {
-    [[NSUserDefaults standardUserDefaults] setObject:_recentOutputPaths forKey:SLHPreferencesRecentOutputPaths];
+    [_userDefaults setObject:_recentOutputPaths forKey:SLHPreferencesRecentOutputPaths];
 }
 
 @end
