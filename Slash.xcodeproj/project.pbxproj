@@ -11,8 +11,8 @@
 		CE0B4E18224A563E00D61D72 /* SLHCropEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */; };
 		CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */; };
 		CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */; };
-		CE120450229995E300C2A145 /* SLHPresetEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12044E229995E300C2A145 /* SLHPresetEditor.m */; };
-		CE120451229995E300C2A145 /* SLHPresetEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12044F229995E300C2A145 /* SLHPresetEditor.xib */; };
+		CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12044E229995E300C2A145 /* SLHPresetManager.m */; };
+		CE120451229995E300C2A145 /* SLHPresetManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12044F229995E300C2A145 /* SLHPresetManager.xib */; };
 		CE120455229C260A00C2A145 /* SLHEncoderVPXFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120453229C260A00C2A145 /* SLHEncoderVPXFormat.m */; };
 		CE120456229C260A00C2A145 /* SLHEncoderVPXFormat.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE120454229C260A00C2A145 /* SLHEncoderVPXFormat.xib */; };
 		CE120459229C2AEE00C2A145 /* SLHEncoderVPXOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120458229C2AEE00C2A145 /* SLHEncoderVPXOptions.m */; };
@@ -82,9 +82,9 @@
 		CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHCropEditor.m; path = controllers/SLHCropEditor.m; sourceTree = "<group>"; };
 		CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHCropEditor.xib; path = controllers/SLHCropEditor.xib; sourceTree = "<group>"; };
 		CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		CE12044D229995E300C2A145 /* SLHPresetEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetEditor.h; path = controllers/SLHPresetEditor.h; sourceTree = "<group>"; };
-		CE12044E229995E300C2A145 /* SLHPresetEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetEditor.m; path = controllers/SLHPresetEditor.m; sourceTree = "<group>"; };
-		CE12044F229995E300C2A145 /* SLHPresetEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHPresetEditor.xib; path = controllers/SLHPresetEditor.xib; sourceTree = "<group>"; };
+		CE12044D229995E300C2A145 /* SLHPresetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetManager.h; path = controllers/SLHPresetManager.h; sourceTree = "<group>"; };
+		CE12044E229995E300C2A145 /* SLHPresetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetManager.m; path = controllers/SLHPresetManager.m; sourceTree = "<group>"; };
+		CE12044F229995E300C2A145 /* SLHPresetManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHPresetManager.xib; path = controllers/SLHPresetManager.xib; sourceTree = "<group>"; };
 		CE120452229C260A00C2A145 /* SLHEncoderVPXFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderVPXFormat.h; path = controllers/SLHEncoderVPXFormat.h; sourceTree = "<group>"; };
 		CE120453229C260A00C2A145 /* SLHEncoderVPXFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderVPXFormat.m; path = controllers/SLHEncoderVPXFormat.m; sourceTree = "<group>"; };
 		CE120454229C260A00C2A145 /* SLHEncoderVPXFormat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderVPXFormat.xib; path = controllers/SLHEncoderVPXFormat.xib; sourceTree = "<group>"; };
@@ -246,9 +246,9 @@
 				CE9CBCD3228C68A4001A8E37 /* SLHModalWindowController.h */,
 				CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */,
 				CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */,
-				CE12044D229995E300C2A145 /* SLHPresetEditor.h */,
-				CE12044E229995E300C2A145 /* SLHPresetEditor.m */,
-				CE12044F229995E300C2A145 /* SLHPresetEditor.xib */,
+				CE12044D229995E300C2A145 /* SLHPresetManager.h */,
+				CE12044E229995E300C2A145 /* SLHPresetManager.m */,
+				CE12044F229995E300C2A145 /* SLHPresetManager.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -465,7 +465,7 @@
 			files = (
 				CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */,
 				CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */,
-				CE120451229995E300C2A145 /* SLHPresetEditor.xib in Resources */,
+				CE120451229995E300C2A145 /* SLHPresetManager.xib in Resources */,
 				CE256B9A222D8AC8007B520E /* SLHMetadataEditor.xib in Resources */,
 				CE1414C7210D32CC00C02B2D /* script.lua in Resources */,
 				CE1414C6210D32C400C02B2D /* mpv.conf in Resources */,
@@ -524,7 +524,7 @@
 				CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */,
 				CE477235226771F100FF5E0D /* slh_list.c in Sources */,
 				CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */,
-				CE120450229995E300C2A145 /* SLHPresetEditor.m in Sources */,
+				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
 				CE239375219CA86F00C21AA7 /* SLHMainWindowController.m in Sources */,
 				CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */,
