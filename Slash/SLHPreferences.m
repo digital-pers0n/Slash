@@ -16,7 +16,7 @@ extern NSString *const SLHPreferencesDefaultFFMpegPath;
 extern NSString *const SLHPreferencesDefaultFFProbePath;
 extern NSString *const SLHPreferencesDefaultMPVPath;
 
-@interface SLHPreferences () {
+@interface SLHPreferences () <NSWindowDelegate> {
     
     IBOutlet NSPopUpButton *_outputPathPopUp;
     
@@ -274,6 +274,12 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
 
 - (IBAction)updateFileNameDidChange:(NSButton *)sender {
     _updateFileName = (sender.state);
+}
+
+#pragma mark - NSWindowDelegate 
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [[NSUserDefaults standardUserDefaults] setObject:_recentOutputPaths forKey:SLHPreferencesRecentOutputPaths];
 }
 
 @end
