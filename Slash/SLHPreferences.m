@@ -25,6 +25,8 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
     
     NSString *_mpvConfigPath;
     NSString *_mpvLuaScriptPath;
+    
+    NSString *_appSupportPath;
 
 }
 
@@ -55,13 +57,9 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
 {
     self = [super init];
     if (self) {
-        _mpvConfigPath = [[NSBundle mainBundle] pathForResource:@"mpv" ofType:@"conf"];
-        _mpvLuaScriptPath = [[NSBundle mainBundle] pathForResource:@"script" ofType:@"lua"];
-        if (!_mpvConfigPath || !_mpvLuaScriptPath) {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Cannot Load Resources" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Aborting..."];
-            [alert runModal];
-            [NSApp terminate:nil];
-        }
+        
+        [self setUpPaths];
+        
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         id obj = [userDefaults objectForKey:SLHPreferencesNumberOfThreadsKey];
         if (obj) {
@@ -101,6 +99,50 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
 
     }
     return self;
+}
+
+- (void)setUpPaths {
+    NSError *error = nil;
+    NSFileManager *fm = NSFileManager.defaultManager;
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES)[0];
+    if (!path) {
+        NSLog(@"Error: Cannot find Application Support Directory.");
+        goto fatal_error;
+    }
+    path = [path stringByAppendingPathComponent:@"Slash"];
+    if (![fm fileExistsAtPath:path isDirectory:nil]) {
+        [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"Error: Cannot create '%@' directory.", path);
+            goto fatal_error;
+        }
+    }
+    _appSupportPath = path;
+    
+    _mpvConfigPath = [[NSBundle mainBundle] pathForResource:@"mpv" ofType:@"conf"];
+    _mpvLuaScriptPath = [[NSBundle mainBundle] pathForResource:@"script" ofType:@"lua"];
+    if (!_mpvConfigPath || !_mpvLuaScriptPath) {
+        NSLog(@"Error: Cannot load resources.");
+        goto fatal_error;
+    }
+    
+    return;
+    
+fatal_error:
+    
+    {
+        NSAlert *alert;
+        if (error) {
+            alert = [NSAlert alertWithError:error];
+        } else {
+            alert = [NSAlert alertWithMessageText:@"Initialization Failed." defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Aborting..."];
+            
+        }
+        [alert runModal];
+        exit(EXIT_FAILURE);
+    }
+    
+    return;
 }
 
 - (void)windowDidLoad {

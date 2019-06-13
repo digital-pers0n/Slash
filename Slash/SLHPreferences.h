@@ -19,6 +19,8 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 
 + (instancetype)preferences;
 
+@property (readonly) NSString *appSupportPath;
+
 @property (copy) NSString *currentOutputPath;
 @property BOOL outputPathSameAsInput;
 
