@@ -91,7 +91,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         videoOptions.quality = SLHVPXQualityAuto;
         videoOptions.twoPass = NO;
         videoOptions.enableCRF = NO;
-        videoOptions.lookAhead = 25;
+        videoOptions.lagInFrames = 25;
         videoOptions.enableAltRef = YES;
         videoOptions.crf = 25;
         videoOptions.codecName = @"libvpx";
@@ -308,7 +308,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     [args addObject:SLHEncoderVideoVPXAutoAltRefKey];
     [args addObject:@(options.enableAltRef).stringValue];
     [args addObject:SLHEncoderVideoVPXLagInFramesKey];
-    [args addObject:@(options.lookAhead).stringValue];
+    [args addObject:@(options.lagInFrames).stringValue];
     
     if (options.scale) {
         
@@ -360,7 +360,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     [args addObject:SLHEncoderVideoVPXAutoAltRefKey];
     [args addObject:@(options.enableAltRef).stringValue];
     [args addObject:SLHEncoderVideoVPXLagInFramesKey];
-    [args addObject:@(options.lookAhead).stringValue];
+    [args addObject:@(options.lagInFrames).stringValue];
     
     SLHVPXQualityType quality = options.quality;
     if (quality != SLHVPXQualityAuto) {

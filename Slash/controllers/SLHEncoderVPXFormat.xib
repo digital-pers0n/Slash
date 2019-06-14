@@ -262,7 +262,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="25" id="zZu-Fp-TG7"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.lookAhead" id="pp3-N9-XSY"/>
+                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="WNm-qi-cRu"/>
                     </connections>
                 </stepper>
                 <textField verticalHuggingPriority="750" id="7rC-i0-S57">
@@ -278,7 +278,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.lookAhead" id="PB3-LW-U7j"/>
+                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="ipR-Fh-fL1"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="AgI-wD-chr">
@@ -295,7 +295,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="25" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="hqW-tl-gsU"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.lookAhead" id="4io-S9-iNq"/>
+                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="clK-r7-CAk"/>
                     </connections>
                 </slider>
                 <button id="hi4-ej-Vb4">

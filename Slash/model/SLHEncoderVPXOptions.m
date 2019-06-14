@@ -16,7 +16,7 @@
     obj->_enableCRF = _enableCRF;
     obj->_quality = _quality;
     obj->_speed = _speed;
-    obj->_lookAhead = _lookAhead;
+    obj->_lagInFrames = _lagInFrames;
     obj->_enableAltRef = _enableAltRef;
     return obj;
 }
