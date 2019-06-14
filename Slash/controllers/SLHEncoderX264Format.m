@@ -36,6 +36,7 @@ extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
 extern NSString *const SLHEncoderVideoPixelFormatKey;
 extern NSString *const SLHEncoderVideoAspectRatioKey;
+extern NSString *const SLHEncoderVideoMaxGopSizeKey;
 extern NSString *const SLHEncoderVideoH264MovflagsKey;
 extern NSString *const SLHEncoderVideoH264ProfileKey;
 extern NSString *const SLHEncoderVideoH264LevelKey;
@@ -144,6 +145,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         videoOptions.containerType = SLHX264ContainerMP4;
         videoOptions.codecName = @"libx264";
         videoOptions.crf = 23;
+        videoOptions.maxGopSize = 250;
         videoOptions.faststart = YES;
         _encoderItem.videoOptions = videoOptions;
         _encoderItem.container = @"mp4";
@@ -744,6 +746,9 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         [args addObject:SLHEncoderVideoBufsizeKey];
         [args addObject:@((maxrate * 2) * 1000).stringValue];
     }
+    
+    [args addObject:SLHEncoderVideoMaxGopSizeKey];
+    [args addObject:@(options.maxGopSize).stringValue];
     
     switch (options.presetType) {
         case SLHX264PresetUltrafast:

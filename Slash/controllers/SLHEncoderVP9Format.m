@@ -87,6 +87,7 @@ extern NSString *const SLHEncoderMediaMapKey,
         videoOptions.lagInFrames = 25;
         videoOptions.enableAltRef = YES;
         videoOptions.crf = 25;
+        videoOptions.maxGopSize = 128;
         videoOptions.codecName = @"libvpx-vp9";
         videoOptions.row_mt = YES;
         videoOptions.frame_parallel = YES;

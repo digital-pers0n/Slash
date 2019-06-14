@@ -39,6 +39,7 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderVideoAspectRatioKey,
                 *const SLHEncoderVideoPixelFormatKey,
                 *const SLHEncoderVideoScaleSizeKey,
+                *const SLHEncoderVideoMaxGopSizeKey,
                 *const SLHEncoderVideoVPXSpeedKey,
                 *const SLHEncoderVideoVPXLagInFramesKey,
                 *const SLHEncoderVideoVPXQualityKey,
@@ -94,6 +95,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         videoOptions.lagInFrames = 25;
         videoOptions.enableAltRef = YES;
         videoOptions.crf = 25;
+        videoOptions.maxGopSize = 128;
         videoOptions.codecName = @"libvpx";
         _encoderItem.videoOptions = videoOptions;
         _encoderItem.container = @"webm";
@@ -301,6 +303,8 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         [args addObject:@(bitrate * 2).stringValue];
     }
     
+    [args addObject:SLHEncoderVideoMaxGopSizeKey];
+    [args addObject:@(options.maxGopSize).stringValue];
    
     [args addObject:SLHEncoderVideoVPXSpeedKey];
     [args addObject:@"4"];
@@ -353,7 +357,10 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
             [args addObject:@(bitrate * 2).stringValue];
         }
     }
-
+    
+    [args addObject:SLHEncoderVideoMaxGopSizeKey];
+    [args addObject:@(options.maxGopSize).stringValue];
+    
     [args addObject:SLHEncoderVideoVPXSpeedKey];
     [args addObject:@(options.speed).stringValue];
     

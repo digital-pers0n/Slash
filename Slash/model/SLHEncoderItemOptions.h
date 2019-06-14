@@ -21,6 +21,7 @@
 @property NSUInteger bitRate;
 @property NSUInteger maxBitrate;
 @property NSUInteger crf;
+@property NSUInteger maxGopSize;
 
 @property NSUInteger sampleRate;
 @property NSUInteger numberOfChannels;

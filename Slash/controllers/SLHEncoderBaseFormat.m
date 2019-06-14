@@ -19,6 +19,7 @@ extern NSString *const SLHEncoderVideoMaxBitrateKey;
 extern NSString *const SLHEncoderVideoCRFBitrateKey;
 extern NSString *const SLHEncoderVideoCodecKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
+extern NSString *const SLHEncoderVideoMaxGopSizeKey;
 extern NSString *const SLHEncoderAudioCodecKey;
 extern NSString *const SLHEncoderAudioBitrateKey;
 extern NSString *const SLHEncoderAudioSampleRateKey;
@@ -87,6 +88,11 @@ extern NSString *const SLHEncoderAudioChannelsKey;
         opts.scale = YES;
     }
     
+    val = dict[SLHEncoderVideoMaxGopSizeKey];
+    if (val) {
+        opts.maxGopSize = val.unsignedIntegerValue;
+    }
+    
     opts = _encoderItem.audioOptions;
     
     str = dict[SLHEncoderAudioCodecKey];
@@ -136,6 +142,7 @@ extern NSString *const SLHEncoderAudioChannelsKey;
     dict[SLHEncoderVideoBitrateKey] = @(opts.bitRate);
     dict[SLHEncoderVideoMaxBitrateKey] = @(opts.maxBitrate);
     dict[SLHEncoderVideoCRFBitrateKey] = @(opts.crf);
+    dict[SLHEncoderVideoMaxGopSizeKey] = @(opts.maxGopSize);
     
     str = opts.codecName;
     if (str) {
