@@ -40,7 +40,7 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderVideoPixelFormatKey,
                 *const SLHEncoderVideoScaleSizeKey,
                 *const SLHEncoderVideoVPXSpeedKey,
-                *const SLHEncoderVideoVPXRcLookaheadKey,
+                *const SLHEncoderVideoVPXLagInFramesKey,
                 *const SLHEncoderVideoVPXQualityKey,
                 *const SLHEncoderVideoVPXAutoAltRefKey;
 
@@ -307,7 +307,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     
     [args addObject:SLHEncoderVideoVPXAutoAltRefKey];
     [args addObject:@(options.enableAltRef).stringValue];
-    [args addObject:SLHEncoderVideoVPXRcLookaheadKey];
+    [args addObject:SLHEncoderVideoVPXLagInFramesKey];
     [args addObject:@(options.lookAhead).stringValue];
     
     if (options.scale) {
@@ -359,7 +359,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     
     [args addObject:SLHEncoderVideoVPXAutoAltRefKey];
     [args addObject:@(options.enableAltRef).stringValue];
-    [args addObject:SLHEncoderVideoVPXRcLookaheadKey];
+    [args addObject:SLHEncoderVideoVPXLagInFramesKey];
     [args addObject:@(options.lookAhead).stringValue];
     
     SLHVPXQualityType quality = options.quality;
