@@ -49,6 +49,8 @@
         _mediaItem = item;
         _outputPath = outputMediaPath;
         _subtitlesStreamIndex = -1;
+        _videoStreamIndex = -1;
+        _audioStreamIndex = -1;
         _twoPassEncoding = NO;
         _videoOptions = [SLHEncoderItemOptions new];
         _audioOptions = [SLHEncoderItemOptions new];
