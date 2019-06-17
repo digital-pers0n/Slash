@@ -173,8 +173,8 @@ int plr_disconnect(Player *p) {
     return 0;
 }
 
-ssize_t plr_msg_send(Player *p, const char *msg) {
-    return soc_send(p->soc, msg, strlen(msg));
+ssize_t plr_msg_send(Player *p, const char *msg, size_t len) {
+    return soc_send(p->soc, msg, len);
 }
 
 ssize_t plr_msg_recv(Player *p, char *buf, size_t len) {

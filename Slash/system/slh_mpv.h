@@ -91,10 +91,11 @@ void plr_destroy(Player *p);
  * Send a message to the player.
  * 
  * @param msg an array that contains a vaild mpv JSON IPC message.
+ * @param len length of the message
  * @return On success the number of bytes which were sent is returned. Otherwise -1.
  */
 
-ssize_t plr_msg_send(Player *p, const char *msg);
+ssize_t plr_msg_send(Player *p, const char *msg, size_t len);
 
 /**
  * Receive a message from the player.
