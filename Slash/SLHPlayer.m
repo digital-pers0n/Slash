@@ -152,8 +152,8 @@ static void _mpv_exit_cb(void *p, void *ctx) {
 
 static inline void _loadFile(Player *p, const char *path) {
     char *cmd;
-    asprintf(&cmd, "{ \"command\": [\"loadfile\", \"%s\"] }\n", path);
-    plr_msg_send(p, cmd);
+    size_t len = asprintf(&cmd, "{ \"command\": [\"loadfile\", \"%s\"] }\n", path);
+    plr_msg_send(p, cmd, len);
     free(cmd);
 }
 
@@ -173,13 +173,13 @@ static inline void _launchPlayer(Player *p) {
         _fileLoaded = YES;
         _loadFile(_player, _currentItem.filePath.UTF8String);
     }
-    char *cmd = "{ \"command\": [\"set_property\", \"pause\", \"no\"] }\n";
-    plr_msg_send(_player, cmd);
+    static const char cmd[] = "{ \"command\": [\"set_property\", \"pause\", \"no\"] }\n";
+    plr_msg_send(_player, cmd, sizeof(cmd) - 1);
 }
 
 - (void)pause {
-    char *cmd = "{ \"command\": [\"set_property\", \"pause\", \"yes\"] }\n";
-    plr_msg_send(_player, cmd);
+    static const char cmd[] = "{ \"command\": [\"set_property\", \"pause\", \"yes\"] }\n";
+    plr_msg_send(_player, cmd, sizeof(cmd) - 1);
 }
 
 - (void)replaceCurrentItemWithMediaItem:(SLHMediaItem *) item {
@@ -188,8 +188,8 @@ static inline void _launchPlayer(Player *p) {
         _hasWindow = YES;
     } else {
         // clear ab-loop
-        static const char *cmd = "{ \"command\": [\"set_property\", \"ab-loop-a\", \"no\" ] }\n";
-        plr_msg_send(_player, cmd);
+        static const char cmd[] = "{ \"command\": [\"set_property\", \"ab-loop-a\", \"no\" ] }\n";
+        plr_msg_send(_player, cmd, sizeof(cmd) - 1);
     }
     _currentItem = item;
     _loadFile(_player, _currentItem.filePath.UTF8String);
@@ -201,19 +201,20 @@ static inline void _launchPlayer(Player *p) {
 
 - (void)seekToTime:(double)time {
     char *pos;
-    asprintf(&pos,  "{ \"command\": [\"set_property\", \"time-pos\", \"%f\" ] }\n", time);
-    plr_msg_send(_player, pos);
+    size_t len = asprintf(&pos,  "{ \"command\": [\"set_property\", \"time-pos\", \"%f\" ] }\n", time);
+    plr_msg_send(_player, pos, len);
     free(pos);
 }
 
 - (void)loopStart:(double)a end:(double)b {
     char *start, *end, *pos;
-    asprintf(&start,  "{ \"command\": [\"set_property\", \"ab-loop-a\", \"%f\" ] }\n", a);
-    asprintf(&end,  "{ \"command\": [\"set_property\", \"ab-loop-b\", \"%f\" ] }\n", b);
-    asprintf(&pos,  "{ \"command\": [\"set_property\", \"time-pos\", \"%f\" ] }\n", a);
-    plr_msg_send(_player, pos);
-    plr_msg_send(_player, start);
-    plr_msg_send(_player, end);
+    size_t len_start, len_end, len_pos;
+    len_start = asprintf(&start,  "{ \"command\": [\"set_property\", \"ab-loop-a\", \"%f\" ] }\n", a);
+    len_end = asprintf(&end,  "{ \"command\": [\"set_property\", \"ab-loop-b\", \"%f\" ] }\n", b);
+    len_pos = asprintf(&pos,  "{ \"command\": [\"set_property\", \"time-pos\", \"%f\" ] }\n", a);
+    plr_msg_send(_player, pos, len_pos);
+    plr_msg_send(_player, start, len_start);
+    plr_msg_send(_player, end, len_end);
     
     free(start);
     free(end);
