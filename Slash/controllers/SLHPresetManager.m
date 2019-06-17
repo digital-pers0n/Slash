@@ -7,12 +7,42 @@
 //
 
 #import "SLHPresetManager.h"
+#import "SLHPreferences.h"
 
-@interface SLHPresetManager ()
+
+@interface SLHPresetManager () {
+    NSMutableDictionary *_presets;
+    NSString *_presetsPath;
+    
+    IBOutlet NSArrayController *_groupsController;
+    IBOutlet NSArrayController *_presetsController;
+    IBOutlet NSTableView *_groupsTableView;
+    IBOutlet NSTableView *_presetsTableView;
+}
+
+@property NSMutableDictionary *presets;
+@property (readonly) NSArray *groupsArray;
+@property NSArray *presetsArray;
 
 @end
 
 @implementation SLHPresetManager
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSString *presetsPath = [SLHPreferences.preferences.appSupportPath stringByAppendingPathComponent:@"presets.dict"];
+        NSMutableDictionary *presets = [NSMutableDictionary dictionaryWithContentsOfFile:presetsPath];
+        if (!presets) {
+            presets = NSMutableDictionary.new;
+        }
+        _presets = presets;
+        _presetsPath = presetsPath;
+        
+    }
+    return self;
+}
 
 - (NSString *)windowNibName {
     return self.className;
@@ -20,6 +50,57 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+}
+
+#pragma mark - Methods
+
+- (NSArray<NSDictionary *> *)presetsForName:(NSString *)name {
+    return _presets[name];
+}
+
+- (void)setPresets:(NSArray<NSDictionary *> *)presets forName:(NSString *)name {
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:presets.count];
+    for (NSDictionary *dict in presets) {
+        [array addObject:dict.mutableCopy];
+    }
+    _presets[name] = array;
+}
+
+- (void)savePresets {
+    [_presets writeToFile:_presetsPath atomically:YES];
+}
+
+#pragma mark - Properties
+
+- (NSArray *)groupsArray {
+    return _presets.allKeys;
+}
+
+- (NSArray *)presetsArray {
+    NSInteger row = _groupsTableView.selectedRow;
+    if (row < 0) {
+        return nil;
+    }
+    NSString *name = _groupsController.arrangedObjects[row];
+    return _presets[name];
+}
+
+- (void)setPresetsArray:(NSArray *)presetsArray {
+    NSInteger row = _groupsTableView.selectedRow;
+    if (row < 0) {
+        return;
+    }
+    NSString *name = _groupsController.arrangedObjects[row];
+    _presets[name] = presetsArray;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)duplicatePreset:(id)sender {
+    NSInteger row = _presetsTableView.selectedRow;
+    NSDictionary *value = _presetsController.arrangedObjects[row++];
+    [_presetsController insertObject:value.mutableCopy atArrangedObjectIndex:row];
+    [_presetsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 }
 
 @end
