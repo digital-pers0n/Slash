@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0A5B3022B924D400198163 /* SLHPresetNameDialog.m */; };
+		CE0A5B3322B924D400198163 /* SLHPresetNameDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0A5B3122B924D400198163 /* SLHPresetNameDialog.xib */; };
 		CE0B4E14224A40AD00D61D72 /* SLHFilterOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */; };
 		CE0B4E18224A563E00D61D72 /* SLHCropEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */; };
 		CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */; };
@@ -76,6 +78,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE0A5B2F22B924D400198163 /* SLHPresetNameDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetNameDialog.h; path = controllers/SLHPresetNameDialog.h; sourceTree = "<group>"; };
+		CE0A5B3022B924D400198163 /* SLHPresetNameDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetNameDialog.m; path = controllers/SLHPresetNameDialog.m; sourceTree = "<group>"; };
+		CE0A5B3122B924D400198163 /* SLHPresetNameDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHPresetNameDialog.xib; path = controllers/SLHPresetNameDialog.xib; sourceTree = "<group>"; };
 		CE0B4E12224A40AD00D61D72 /* SLHFilterOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHFilterOptions.h; path = model/SLHFilterOptions.h; sourceTree = "<group>"; };
 		CE0B4E13224A40AD00D61D72 /* SLHFilterOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHFilterOptions.m; path = model/SLHFilterOptions.m; sourceTree = "<group>"; };
 		CE0B4E15224A563E00D61D72 /* SLHCropEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHCropEditor.h; path = controllers/SLHCropEditor.h; sourceTree = "<group>"; };
@@ -249,6 +254,9 @@
 				CE12044D229995E300C2A145 /* SLHPresetManager.h */,
 				CE12044E229995E300C2A145 /* SLHPresetManager.m */,
 				CE12044F229995E300C2A145 /* SLHPresetManager.xib */,
+				CE0A5B2F22B924D400198163 /* SLHPresetNameDialog.h */,
+				CE0A5B3022B924D400198163 /* SLHPresetNameDialog.m */,
+				CE0A5B3122B924D400198163 /* SLHPresetNameDialog.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -470,6 +478,7 @@
 				CE1414C7210D32CC00C02B2D /* script.lua in Resources */,
 				CE1414C6210D32C400C02B2D /* mpv.conf in Resources */,
 				CE1DC4192285B09F0086A895 /* SLHLogController.xib in Resources */,
+				CE0A5B3322B924D400198163 /* SLHPresetNameDialog.xib in Resources */,
 				CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */,
 				CE239376219CA86F00C21AA7 /* SLHMainWindowController.xib in Resources */,
 				CE2365652254C9CC00B324E4 /* SLHEncoder.xib in Resources */,
@@ -508,6 +517,7 @@
 				CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */,
 				CE566A7F215EC93B004E974F /* extern.m in Sources */,
 				CE256B99222D8AC8007B520E /* SLHMetadataEditor.m in Sources */,
+				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
 				CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */,
 				CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */,
 				CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */,
