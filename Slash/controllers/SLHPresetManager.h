@@ -19,6 +19,7 @@ extern NSString *const SLHEncoderPresetNameKey;
 @property (nullable) id <SLHPresetManagerDelegate> delegate;
 - (nullable NSArray <NSDictionary *> *)presetsForName:(NSString *)name;
 - (void)setPresets:(NSArray <NSDictionary *> *)presets forName:(NSString *)name;
+- (void)setPreset:(NSDictionary *)preset forName:(NSString *)name;
 - (void)savePresets;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "SLHPresetManager.h"
 #import "SLHPreferences.h"
+#import "SLHPresetNameDialog.h"
 
 
 @interface SLHPresetManager () {
@@ -64,6 +65,23 @@
         [array addObject:dict.mutableCopy];
     }
     _presets[name] = array;
+}
+
+- (void)setPreset:(NSDictionary *)preset forName:(NSString *)name {
+    NSMutableArray *array = _presets[name];
+    if (!array) {
+        array = NSMutableArray.new;
+    }
+    NSMutableDictionary *dict = preset.mutableCopy;
+    SLHPresetNameDialog *dialog = SLHPresetNameDialog.new;
+    NSString *str = dict[SLHEncoderPresetNameKey];
+    if (str) {
+        dialog.presetName = str;
+    }
+    if ([dialog runModal] == NSModalResponseOK) {
+        dict[SLHEncoderPresetNameKey] = dialog.presetName;
+        [array addObject:dict];
+    }
 }
 
 - (void)savePresets {
