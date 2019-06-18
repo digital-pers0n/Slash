@@ -131,6 +131,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 }
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    super.encoderItem = encoderItem;
     _encoderItem = encoderItem;
     SLHEncoderX264Options *videoOptions = (SLHEncoderX264Options *)_encoderItem.videoOptions;
     SLHEncoderItemOptions *audioOptions = _encoderItem.audioOptions;

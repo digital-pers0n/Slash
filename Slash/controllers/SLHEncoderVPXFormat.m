@@ -82,6 +82,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 }
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    super.encoderItem = encoderItem;
     _encoderItem = encoderItem;
     SLHEncoderVPXOptions *videoOptions = (id)_encoderItem.videoOptions;
     SLHEncoderItemOptions *audioOptions = _encoderItem.audioOptions;
