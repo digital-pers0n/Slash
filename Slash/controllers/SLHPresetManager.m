@@ -81,6 +81,7 @@
     if ([dialog runModal] == NSModalResponseOK) {
         dict[SLHEncoderPresetNameKey] = dialog.presetName;
         [array addObject:dict];
+        _presets[name] = array;
     }
 }
 
