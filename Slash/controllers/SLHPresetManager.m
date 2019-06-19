@@ -130,4 +130,17 @@
     [_presetsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 }
 
+- (IBAction)loadPreset:(id)sender {
+    NSInteger row = _groupsTableView.selectedRow;
+    if (row < 0) {
+        return;
+    }
+    NSString *name = _groupsController.arrangedObjects[row];
+    row = _presetsTableView.selectedRow;
+    NSDictionary *dict = _presetsController.arrangedObjects[row];
+    if (name && dict) {
+        [_delegate presetManager:self loadPreset:dict forName:name];
+    }
+}
+
 @end

@@ -176,18 +176,6 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" id="Ew1-6R-dwp">
-                        <rect key="frame" x="415" y="6" width="63" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Duplicate" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TyK-r3-TJP">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="duplicatePreset:" target="-2" id="FM9-hc-9zK"/>
-                            <binding destination="tJC-8l-vp3" name="enabled" keyPath="canRemove" id="HCh-Y5-bJw"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" id="MyO-cu-OQF">
                         <rect key="frame" x="344" y="6" width="63" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -200,12 +188,36 @@
                             <binding destination="tJC-8l-vp3" name="enabled" keyPath="canRemove" id="scd-KR-ZGN"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" id="nQt-yD-KUf">
+                        <rect key="frame" x="136" y="6" width="63" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Load" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GrC-5I-2T1">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="loadPreset:" target="-2" id="7H8-Ub-Mge"/>
+                            <binding destination="tJC-8l-vp3" name="enabled" keyPath="canRemove" id="w5R-1D-Abm"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="Ew1-6R-dwp">
+                        <rect key="frame" x="415" y="6" width="63" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Duplicate" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TyK-r3-TJP">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="duplicatePreset:" target="-2" id="FM9-hc-9zK"/>
+                            <binding destination="tJC-8l-vp3" name="enabled" keyPath="canRemove" id="HCh-Y5-bJw"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="276" y="257"/>
+            <point key="canvasLocation" x="327" y="230"/>
         </window>
     </objects>
 </document>
