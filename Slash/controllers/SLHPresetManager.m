@@ -117,8 +117,16 @@
 
 - (IBAction)duplicatePreset:(id)sender {
     NSInteger row = _presetsTableView.selectedRow;
-    NSDictionary *value = _presetsController.arrangedObjects[row++];
-    [_presetsController insertObject:value.mutableCopy atArrangedObjectIndex:row];
+    NSDictionary *dict = _presetsController.arrangedObjects[row++];
+    NSMutableDictionary *dictCopy = dict.mutableCopy;
+    
+    SLHPresetNameDialog *dialog = SLHPresetNameDialog.new;
+    dialog.presetName = dictCopy[SLHEncoderPresetNameKey];
+    if ([dialog runModal] == NSModalResponseOK) {
+        dictCopy[SLHEncoderPresetNameKey] = dialog.presetName;
+    }
+    
+    [_presetsController insertObject:dict.mutableCopy atArrangedObjectIndex:row];
     [_presetsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 }
 
