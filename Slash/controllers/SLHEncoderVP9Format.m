@@ -75,6 +75,7 @@ extern NSString *const SLHEncoderMediaMapKey,
 }
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    super.encoderItem = encoderItem;
     SLHEncoderVP9Options *videoOptions = (id)encoderItem.videoOptions;
     SLHEncoderItemOptions *audioOptions = encoderItem.audioOptions;
     
