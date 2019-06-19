@@ -24,4 +24,10 @@ extern NSString *const SLHEncoderPresetNameKey;
 
 @end
 
+@protocol SLHPresetManagerDelegate <NSObject>
+
+- (void)presetManager:(SLHPresetManager *)manager loadPreset:(NSDictionary *)preset forName:(NSString *)name;
+
+@end
+
 NS_ASSUME_NONNULL_END
