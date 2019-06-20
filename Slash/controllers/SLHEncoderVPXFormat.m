@@ -207,7 +207,9 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     
     value = dict[SLHEncoderVideoVPXQualityKey];
     if (value) {
-        opts.quality = value.unsignedIntegerValue;
+        SLHVPXQualityType quality = value.unsignedIntegerValue;
+        opts.quality = quality;
+        [_qualityPopUp selectItemWithTag:quality];
     }
     
     value = dict[SLHEncoderVideoVPXSpeedKey];
