@@ -200,6 +200,43 @@ extern NSString *const SLHEncoderMediaMapKey,
     [videoView addSubview:_localView];
 }
 
+- (void)setDictionaryRepresentation:(NSDictionary *)dict {
+    _vpxFmt.dictionaryRepresentation = dict;
+    SLHEncoderVP9Options *opts = _videoOptions;
+    
+    NSNumber *value = dict[SLHEncoderVideoVP9TileColumnsKey];
+    if (value) {
+        opts.tile_columns = value.unsignedIntegerValue;
+    }
+    
+    value = dict[SLHEncoderVideoVP9TileRowsKey];
+    if (value) {
+        opts.tile_rows = value.unsignedIntegerValue;
+    }
+    
+    value = dict[SLHEncoderVideoVP9FrameParallelKey];
+    if (value) {
+        opts.frame_parallel = value.boolValue;
+    }
+    
+    value = dict[SLHEncoderVideoVP9RowMTKey];
+    if (value) {
+        opts.row_mt = value.boolValue;
+    }
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *dict = _vpxFmt.dictionaryRepresentation.mutableCopy;
+    SLHEncoderVP9Options *opts = _videoOptions;
+    
+    dict[SLHEncoderVideoVP9TileColumnsKey] = @(opts.tile_columns);
+    dict[SLHEncoderVideoVP9TileRowsKey] = @(opts.tile_rows);
+    dict[SLHEncoderVideoVP9FrameParallelKey] = @(opts.frame_parallel);
+    dict[SLHEncoderVideoVP9RowMTKey] = @(opts.row_mt);
+    
+    return dict;
+}
+
 #pragma mark - SLHEncoderSettingsDelegate
 
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {

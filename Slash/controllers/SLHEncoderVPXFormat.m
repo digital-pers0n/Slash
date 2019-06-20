@@ -43,7 +43,9 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderVideoVPXSpeedKey,
                 *const SLHEncoderVideoVPXLagInFramesKey,
                 *const SLHEncoderVideoVPXQualityKey,
-                *const SLHEncoderVideoVPXAutoAltRefKey;
+                *const SLHEncoderVideoVPXAutoAltRefKey,
+                *const SLHEncoderVideoVPXEnableTwoPassKey,
+                *const SLHEncoderVideoVPXEnableCRFKey;
 
 typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     SLHVPXAudioChannels1 = 1,
@@ -188,6 +190,53 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     [args addObject:_encoderItem.outputPath];
     [output addObject:args];
     return output;
+}
+
+- (void)setDictionaryRepresentation:(NSDictionary *)dict {
+    super.dictionaryRepresentation = dict;
+    SLHEncoderVPXOptions *opts = (id)_encoderItem.videoOptions;
+    NSNumber *value = dict[SLHEncoderVideoVPXEnableTwoPassKey];
+    if (value) {
+        opts.twoPass = value.boolValue;
+    }
+    
+    value = dict[SLHEncoderVideoVPXEnableCRFKey];
+    if (value) {
+        opts.enableCRF = value.boolValue;
+    }
+    
+    value = dict[SLHEncoderVideoVPXQualityKey];
+    if (value) {
+        opts.quality = value.unsignedIntegerValue;
+    }
+    
+    value = dict[SLHEncoderVideoVPXSpeedKey];
+    if (value) {
+        opts.speed = value.integerValue;
+    }
+    
+    value = dict[SLHEncoderVideoVPXLagInFramesKey];
+    if (value) {
+        opts.lagInFrames = value.unsignedIntegerValue;
+    }
+    
+    value = dict[SLHEncoderVideoVPXAutoAltRefKey];
+    if (value) {
+        opts.enableAltRef = value.boolValue;
+    }
+    
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *dict = super.dictionaryRepresentation.mutableCopy;
+    SLHEncoderVPXOptions *opts = (id)_encoderItem.videoOptions;
+    dict[SLHEncoderVideoVPXEnableTwoPassKey] = @(opts.twoPass);
+    dict[SLHEncoderVideoVPXEnableCRFKey] = @(opts.enableCRF);
+    dict[SLHEncoderVideoVPXQualityKey] = @(opts.quality);
+    dict[SLHEncoderVideoVPXSpeedKey] = @(opts.speed);
+    dict[SLHEncoderVideoVPXLagInFramesKey] = @(opts.lagInFrames);
+    dict[SLHEncoderVideoVPXAutoAltRefKey] = @(opts.enableAltRef);
+    return dict;
 }
 
 #pragma mark - IBActions

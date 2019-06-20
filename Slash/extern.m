@@ -94,3 +94,6 @@ NSString *const SLHEncoderVideoH264FaststartKey    = @"faststart";
 NSString *const SLHEncoderVideoH264ZerolatencyKey  = @"zerolatency";
 NSString *const SLHEncoderVideoH264FastdecodeKey   = @"fastdecode";
 NSString *const SLHEncoderVideoH264ContainerTypeKey = @"containerType";
+
+NSString *const SLHEncoderVideoVPXEnableTwoPassKey = @"enableTwoPass";
+NSString *const SLHEncoderVideoVPXEnableCRFKey     = @"enableCRF";
