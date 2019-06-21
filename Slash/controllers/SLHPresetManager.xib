@@ -94,6 +94,7 @@
                                     <connections>
                                         <binding destination="6yR-3a-PUV" name="content" keyPath="arrangedObjects" id="GJm-O8-jw8"/>
                                         <binding destination="6yR-3a-PUV" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="GJm-O8-jw8" id="Fbu-DO-JAd"/>
+                                        <outlet property="delegate" destination="-2" id="yJo-8G-HeV"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -217,7 +218,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="327" y="230"/>
+            <point key="canvasLocation" x="377" y="232"/>
         </window>
     </objects>
 </document>

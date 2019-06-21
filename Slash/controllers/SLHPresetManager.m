@@ -11,9 +11,10 @@
 #import "SLHPresetNameDialog.h"
 
 
-@interface SLHPresetManager () {
+@interface SLHPresetManager () <NSTableViewDelegate, NSWindowDelegate> {
     NSMutableDictionary *_presets;
     NSString *_presetsPath;
+    BOOL _hasWindow;
     
     IBOutlet NSArrayController *_groupsController;
     IBOutlet NSArrayController *_presetsController;
@@ -40,7 +41,7 @@
         }
         _presets = presets;
         _presetsPath = presetsPath;
-        
+        _hasWindow = NO;
     }
     return self;
 }
@@ -65,6 +66,10 @@
         [array addObject:dict.mutableCopy];
     }
     _presets[name] = array;
+    
+    if (_hasWindow) {
+        [self updateTableViews];
+    }
 }
 
 - (void)setPreset:(NSDictionary *)preset forName:(NSString *)name {
@@ -82,7 +87,15 @@
         dict[SLHEncoderPresetNameKey] = dialog.presetName;
         [array addObject:dict];
         _presets[name] = array;
+        if (_hasWindow) {
+            [self updateTableViews];
+        }
     }
+}
+
+- (void)updateTableViews {
+    [_groupsController setContent:self.groupsArray];
+    [_presetsController setContent:self.presetsArray];
 }
 
 - (void)savePresets {
@@ -141,6 +154,22 @@
     if (name && dict) {
         [_delegate presetManager:self loadPreset:dict forName:name];
     }
+}
+
+#pragma mark - NSTableViewDelegate
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    [_presetsController setContent:self.presetsArray];
+}
+
+#pragma mark - NSWindowDelegate
+
+- (void)windowWillClose:(NSNotification *)notification {
+    _hasWindow = NO;
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    _hasWindow = YES;
 }
 
 @end
