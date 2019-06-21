@@ -126,7 +126,7 @@
         dictCopy[SLHEncoderPresetNameKey] = dialog.presetName;
     }
     
-    [_presetsController insertObject:dict.mutableCopy atArrangedObjectIndex:row];
+    [_presetsController insertObject:dictCopy atArrangedObjectIndex:row];
     [_presetsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
 }
 
