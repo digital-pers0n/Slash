@@ -36,6 +36,7 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="486" height="346"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <value key="minSize" type="size" width="400" height="300"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="486" height="346"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -218,7 +219,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="377" y="232"/>
+            <point key="canvasLocation" x="340" y="230"/>
         </window>
     </objects>
 </document>
