@@ -13,6 +13,7 @@
 
 @interface SLHPresetManager () <NSTableViewDelegate, NSWindowDelegate> {
     NSMutableDictionary *_presets;
+    NSDictionary *_presetsCache;
     NSString *_presetsPath;
     BOOL _hasWindow;
     
@@ -40,6 +41,7 @@
             presets = NSMutableDictionary.new;
         }
         _presets = presets;
+        _presetsCache = presets.copy;
         _presetsPath = presetsPath;
         _hasWindow = NO;
     }
@@ -99,7 +101,11 @@
 }
 
 - (void)savePresets {
-    [_presets writeToFile:_presetsPath atomically:YES];
+    if (![_presets isEqualToDictionary:_presetsCache]) {
+        if(![_presets writeToFile:_presetsPath atomically:YES]) {
+            fprintf(stderr, "Error: %s - cannot save presets file", __PRETTY_FUNCTION__);
+        }
+    }
 }
 
 #pragma mark - Properties
