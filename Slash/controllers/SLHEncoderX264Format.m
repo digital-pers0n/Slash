@@ -183,45 +183,62 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 - (void)setDictionaryRepresentation:(NSDictionary *)dict {
     [super setDictionaryRepresentation:dict];
     SLHEncoderX264Options *opts = (id)_encoderItem.videoOptions;
+    
     NSNumber *val = dict[SLHEncoderVideoH264ProfileKey];
     if (val) {
-        opts.profileType = val.unsignedIntegerValue;
+        SLHX264ProfileType type = val.unsignedIntegerValue;
+        opts.profileType = type;
+        [_profilePopUp selectItemWithTag:type];
     }
     
     val = dict[SLHEncoderVideoH264LevelKey];
     if (val) {
-        opts.levelType = val.unsignedIntegerValue;
+        SLHX264LevelType type = val.unsignedIntegerValue;
+        opts.levelType = type;
+        [_levelPopUp selectItemWithTag:type];
     }
     
     val = dict[SLHEncoderVideoH264PresetKey];
     if (val) {
-        opts.presetType = val.unsignedIntegerValue;
+        SLHX264PresetType type = val.unsignedIntegerValue;
+        opts.presetType = type;
+        [_presetPopUp selectItemWithTag:type];
     }
     
     val = dict[SLHEncoderVideoH264TuneKey];
     if (val) {
-        opts.tuneType = val.unsignedIntegerValue;
+        SLHX264TuneType type = val.unsignedIntegerValue;
+        opts.tuneType = type;
+        [_tunePopUp selectItemWithTag:type];
     }
     
     val = dict[SLHEncoderVideoH264EncodingTypeKey];
     if (val) {
-        opts.encodingType = val.unsignedIntegerValue;
+        SLHX264EncodingType type = val.unsignedIntegerValue;
+        opts.encodingType = type;
+        [_encodingTypePopUp selectItemWithTag:type];
         [self _changeEncodingType];
     }
     
     val = dict[SLHEncoderVideoH264FaststartKey];
     if (val) {
-        opts.faststart = val.boolValue;
+        BOOL type = val.boolValue;
+        opts.faststart = type;
+        _faststartCheckBox.state = type;
     }
     
     val = dict[SLHEncoderVideoH264ZerolatencyKey];
     if (val) {
-        opts.zerolatency = val.boolValue;
+        BOOL type = val.boolValue;
+        opts.zerolatency = type;
+        _zerolatencyCheckBox.state = type;
     }
     
     val = dict[SLHEncoderVideoH264FastdecodeKey];
     if (val) {
-        opts.fastdecode = val.boolValue;
+        BOOL type = val.boolValue;
+        opts.fastdecode = type;
+        _fastdecodeCheckBox.state = type;
     }
     
     val = dict[SLHEncoderVideoH264ContainerTypeKey];
