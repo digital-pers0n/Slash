@@ -70,6 +70,7 @@ extern NSString *const SLHEncoderMediaMapKey,
     self = [super init];
     if (self) {
         _vpxFmt = [[SLHEncoderVPXFormat alloc] init];
+        [self.view setNeedsDisplay:YES];
     }
     return self;
 }
