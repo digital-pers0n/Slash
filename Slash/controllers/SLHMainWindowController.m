@@ -26,11 +26,13 @@
 #import "SLHEncoderVP9Format.h"
 #import "SLHArgumentsViewController.h"
 #import "SLHModalWindowController.h"
+#import "SLHPresetManager.h"
 
-@interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, NSTableViewDelegate, NSWindowDelegate> {
+@interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, SLHPresetManagerDelegate, NSTableViewDelegate, NSWindowDelegate, NSMenuDelegate> {
     SLHDragView *_dragView;
     SLHEncoderSettings *_encoderSettings;
     SLHMetadataEditor *_metadataEditor;
+    SLHPresetManager *_presetManager;
     SLHPlayer *_player;
     SLHPlayer *_auxPlayer;
     NSArray <SLHEncoderBaseFormat *> *_formats;
@@ -44,6 +46,7 @@
     IBOutlet NSArrayController *_arrayController;
     IBOutlet NSTableView *_tableView;
     IBOutlet NSPopUpButton *_formatsPopUp;
+    IBOutlet NSPopUpButton *_presetsPopUp;
     
     IBOutlet NSPopUpButton *_subtitlesStreamPopUp;
     IBOutlet NSPopUpButton *_audioStreamPopUp;
@@ -80,6 +83,11 @@
     
     /* SLHEncoder */
     _encoder = [[SLHEncoder alloc] init];
+    
+    /* SLHPresetManager */
+    _presetManager = [[SLHPresetManager alloc] init];
+    _presetManager.delegate = self;
+    _presetsPopUp.menu.delegate = self;
     
     /* NSTableView */
     _tableView.delegate = self;
@@ -127,6 +135,7 @@
     _player = nil;
     _auxPlayer = nil;
     SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
+    [_presetManager savePresets];
 }
 
 #pragma mark - NSTableView Delegate
@@ -143,6 +152,32 @@
         _metadataEditor.encoderItem = item;
     }
     [self _updatePopUpMenus:item];
+}
+
+#pragma mark - NSMenuDelegate
+
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+    NSMenuItem *item = menu.itemArray[0];
+    [menu removeAllItems];
+    [menu addItem:item];
+    SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
+    NSArray *presets = [_presetManager presetsForName:fmt.formatName];
+    if (presets && presets.count) {
+        for (NSDictionary *p in presets) {
+            NSMenuItem *i = [[NSMenuItem alloc] initWithTitle:p[SLHEncoderPresetNameKey] action:nil keyEquivalent:@""];
+            i.representedObject = p;
+            [menu addItem:i];
+        }
+    }
+}
+
+#pragma mark - SLHPresetManagerDelegate 
+
+- (void)presetManager:(SLHPresetManager *)manager loadPreset:(NSDictionary *)preset forName:(NSString *)name {
+    [_formatsPopUp selectItemWithTitle:name];
+    [self formatPopUpClicked:nil];
+    SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
+    fmt.dictionaryRepresentation = preset;
 }
 
 #pragma mark - SLHPlayer Delegate
@@ -213,6 +248,14 @@
 #pragma mark - IBActions
 
 
+- (IBAction)savePreset:(id)sender {
+    SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.indexOfSelectedItem];
+    [_presetManager setPreset:fmt.dictionaryRepresentation forName:fmt.formatName];
+}
+
+- (IBAction)showPresetsWindow:(id)sender {
+    [_presetManager.window makeKeyAndOrderFront:nil];
+}
 
 - (IBAction)startEncoding:(id)sender {
     
@@ -333,6 +376,11 @@
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     item.tag = tag;
     fmt.encoderItem = item;
+}
+
+- (IBAction)presetsPopUpClicked:(id)sender {
+    SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
+    fmt.dictionaryRepresentation = _presetsPopUp.selectedItem.representedObject;
 }
 
 - (IBAction)selectOutputFileName:(id)sender {
