@@ -14,6 +14,7 @@
                 <outlet property="_formatsPopUp" destination="8h0-o4-5Id" id="3l0-dt-De9"/>
                 <outlet property="_mediaInfoTextView" destination="LNt-gN-EGe" id="9eK-DI-RSo"/>
                 <outlet property="_outputFileNameTextField" destination="SWd-Rv-ZUJ" id="GZh-ia-YsD"/>
+                <outlet property="_presetsPopUp" destination="ls3-zh-eMY" id="IUc-V5-Bdm"/>
                 <outlet property="_subtitlesStreamPopUp" destination="49K-5F-cBl" id="77X-kh-S7E"/>
                 <outlet property="_summaryTextView" destination="saR-Jc-hSm" id="uaX-p1-k4i"/>
                 <outlet property="_tableView" destination="xuo-NL-H4q" id="w2A-aq-TkW"/>
@@ -147,7 +148,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" id="49K-5F-cBl">
-                                <rect key="frame" x="285" y="383" width="81" height="22"/>
+                                <rect key="frame" x="286" y="383" width="81" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h2s-Ye-A51">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -213,15 +214,6 @@
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
-                            <popUpButton verticalHuggingPriority="750" id="ls3-zh-eMY">
-                                <rect key="frame" x="267" y="432" width="100" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rbj-1l-12B">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <menu key="menu" id="ERP-yk-biW"/>
-                                </popUpButtonCell>
-                            </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cDO-KZ-ECm">
                                 <rect key="frame" x="4" y="413" width="44" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -302,15 +294,6 @@
                                     <menu key="menu" id="z7F-FX-Bjz"/>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6ir-i9-QJM">
-                                <rect key="frame" x="226" y="437" width="42" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preset:" id="zFt-PG-iht">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="VBO-79-c8D">
                                 <rect key="frame" x="4" y="437" width="45" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -324,6 +307,33 @@
                                 <rect key="frame" x="10" y="388" width="38" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Video:" id="tUb-dA-MQQ">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" id="ls3-zh-eMY">
+                                <rect key="frame" x="317" y="432" width="50" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="right" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="zcT-1y-xu2" id="rbj-1l-12B">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <menu key="menu" showsStateColumn="NO" id="ERP-yk-biW">
+                                        <items>
+                                            <menuItem image="NSActionTemplate" hidden="YES" id="zcT-1y-xu2">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="presetsPopUpClicked:" target="-2" id="HN4-la-gPg"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="UEU-iI-dFZ">
+                                <rect key="frame" x="264" y="437" width="54" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Presets:" id="gMF-rw-YqH">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -527,7 +537,7 @@ CA
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="-284" y="-641"/>
+            <point key="canvasLocation" x="-259" y="-859"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
             <declaredKeys>
@@ -537,6 +547,7 @@ CA
         </arrayController>
     </objects>
     <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="SLHImageNameFolderTemplate" width="32" height="32"/>
