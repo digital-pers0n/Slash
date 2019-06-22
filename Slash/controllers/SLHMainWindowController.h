@@ -23,5 +23,7 @@
 - (IBAction)startEncoding:(id)sender;
 - (IBAction)addToQueue:(id)sender;
 - (IBAction)showMetadataEditor:(id)sender;
+- (IBAction)savePreset:(id)sender;
+- (IBAction)showPresetsWindow:(id)sender;
 
 @end
