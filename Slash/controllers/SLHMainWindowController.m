@@ -380,6 +380,7 @@
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     item.tag = tag;
     fmt.encoderItem = item;
+    [self updateSummary:nil];
 }
 
 - (IBAction)presetsPopUpClicked:(id)sender {

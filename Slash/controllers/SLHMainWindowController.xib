@@ -73,7 +73,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LdD-wj-H6G">
-                                    <rect key="frame" x="464" y="0.0" width="16" height="427"/>
+                                    <rect key="frame" x="465" y="0.0" width="15" height="427"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -413,6 +413,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
+                                                                        <action selector="updateSummary:" target="-2" id="W9T-HC-IMN"/>
                                                                         <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalStart" previousBinding="Gpm-ii-Unh" id="5TB-2w-avC"/>
                                                                         <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="Gpm-ii-Unh"/>
                                                                     </connections>
@@ -429,6 +430,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
+                                                                        <action selector="updateSummary:" target="-2" id="jtX-1s-Iqu"/>
                                                                         <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalEnd" previousBinding="a7X-VY-CWi" id="Aqz-pb-lqs"/>
                                                                         <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="a7X-VY-CWi"/>
                                                                     </connections>
@@ -537,7 +539,7 @@ CA
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="-259" y="-859"/>
+            <point key="canvasLocation" x="-162" y="-862"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
             <declaredKeys>
