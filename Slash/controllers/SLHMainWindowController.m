@@ -178,6 +178,10 @@
     [self formatPopUpClicked:nil];
     SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
     fmt.dictionaryRepresentation = preset;
+    
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    [self _updatePopUpMenus:item];
 }
 
 #pragma mark - SLHPlayer Delegate
@@ -381,6 +385,9 @@
 - (IBAction)presetsPopUpClicked:(id)sender {
     SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.selectedTag];
     fmt.dictionaryRepresentation = _presetsPopUp.selectedItem.representedObject;
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    [self _updatePopUpMenus:item];
 }
 
 - (IBAction)selectOutputFileName:(id)sender {
