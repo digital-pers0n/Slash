@@ -33,16 +33,21 @@
 
 - (instancetype)init
 {
+    NSString *presetsPath = [SLHPreferences.preferences.appSupportPath stringByAppendingPathComponent:@"presets.dict"];
+    return [self initWithPresetsPath:presetsPath];
+    
+}
+
+- (instancetype)initWithPresetsPath:(NSString *)path {
     self = [super init];
     if (self) {
-        NSString *presetsPath = [SLHPreferences.preferences.appSupportPath stringByAppendingPathComponent:@"presets.dict"];
-        NSMutableDictionary *presets = [NSMutableDictionary dictionaryWithContentsOfFile:presetsPath];
+        NSMutableDictionary *presets = [NSMutableDictionary dictionaryWithContentsOfFile:path];
         if (!presets) {
             presets = NSMutableDictionary.new;
         }
         _presets = presets;
         _presetsCache = presets.copy;
-        _presetsPath = presetsPath;
+        _presetsPath = path.copy;
         _hasWindow = NO;
     }
     return self;

@@ -16,6 +16,9 @@ extern NSString *const SLHEncoderPresetNameKey;
 
 @interface SLHPresetManager : NSWindowController
 
+- (instancetype)initWithPresetsPath:(NSString *)path;
+@property (readonly) NSString *presetsPath;
+
 @property (nullable) id <SLHPresetManagerDelegate> delegate;
 - (nullable NSArray <NSDictionary *> *)presetsForName:(NSString *)name;
 - (void)setPresets:(NSArray <NSDictionary *> *)presets forName:(NSString *)name;
