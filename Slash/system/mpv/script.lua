@@ -20,7 +20,6 @@ end
 mp.add_forced_key_binding("p", "segment_clear", seg_clear)
 
 function seg_new()
-    clear()
     print("+")
     mp.osd_message("Segment Added")
 end
