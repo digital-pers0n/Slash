@@ -20,4 +20,9 @@
 - (NSArray *)videoArguments;
 - (NSArray *)audioArguments;
 
+// Bindings
+
+@property NSInteger cpuUsedMaxValue;
+@property NSInteger cpuUsedMinValue;
+
 @end

@@ -71,6 +71,16 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 
 @implementation SLHEncoderVPXFormat
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _cpuUsedMaxValue = 16;
+        _cpuUsedMinValue = -16;
+    }
+    return self;
+}
+
 - (NSString *)nibName {
     return self.className;
 }

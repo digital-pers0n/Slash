@@ -153,7 +153,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="zNg-1G-y6k">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="20J-hA-yBF">
-                            <real key="minimum" value="4"/>
+                            <real key="minimum" value="0.0"/>
                             <real key="maximum" value="64"/>
                         </numberFormatter>
                         <font key="font" metaFont="smallSystem"/>
@@ -161,25 +161,16 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="g0A-ZO-LUO"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Sbs-Cw-snD"/>
                         <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="GDk-Xx-PZx"/>
                     </connections>
                 </textField>
-                <slider verticalHuggingPriority="750" id="vla-gH-lA8">
-                    <rect key="frame" x="106" y="114" width="140" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="4" maxValue="63" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="rkz-Ul-lGx"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="IEv-zn-xM1"/>
-                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="31d-O3-rDo"/>
-                    </connections>
-                </slider>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cqm-Wk-jhc">
                     <rect key="frame" x="321" y="111" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="4" maxValue="64" doubleValue="4" id="7iO-aW-dTA"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="64" doubleValue="4" id="7iO-aW-dTA"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="8mw-aR-Vg1"/>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Nmz-6R-eeH"/>
                         <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="sDj-0d-4Lg"/>
                     </connections>
                 </stepper>
@@ -237,7 +228,9 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" id="SFe-jS-4fS"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.speed" id="5CW-zS-xe7"/>
+                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="uz3-1f-s6R"/>
+                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="uz3-1f-s6R" id="1Zr-Zd-3oG"/>
+                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="1Zr-Zd-3oG" id="c3n-cA-7q0"/>
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="O4u-hS-GT5">
@@ -254,7 +247,9 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" doubleValue="-7.5210000000000008" tickMarkPosition="above" sliderType="linear" id="OxG-Al-GDj"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.speed" id="n7e-V0-2qJ"/>
+                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="PBc-LA-RDy"/>
+                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="PBc-LA-RDy" id="cfP-AI-Huk"/>
+                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="cfP-AI-Huk" id="Oug-RD-mcg"/>
                     </connections>
                 </slider>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="tlc-NT-LBn">
@@ -322,7 +317,9 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.speed" id="JBP-g0-KwL"/>
+                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="YF6-hU-ih5"/>
+                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="YF6-hU-ih5" id="EuQ-lH-qhs"/>
+                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="EuQ-lH-qhs" id="e9M-yM-Iv6"/>
                     </connections>
                 </textField>
                 <button id="fm1-Cj-8VP">
@@ -376,8 +373,17 @@
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxGopSize" id="N9Q-eq-eeH"/>
                     </connections>
                 </slider>
+                <slider verticalHuggingPriority="750" id="vla-gH-lA8">
+                    <rect key="frame" x="106" y="115" width="140" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="63" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="rkz-Ul-lGx"/>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="xhF-VO-g0T"/>
+                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="31d-O3-rDo"/>
+                    </connections>
+                </slider>
             </subviews>
-            <point key="canvasLocation" x="238" y="228"/>
+            <point key="canvasLocation" x="175" y="229"/>
         </customView>
         <customView id="NQz-5C-ErZ">
             <rect key="frame" x="0.0" y="0.0" width="296" height="89"/>

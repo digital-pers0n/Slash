@@ -72,6 +72,8 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     self = [super init];
     if (self) {
         _vpxFmt = [[SLHEncoderVPXFormat alloc] init];
+        _vpxFmt.cpuUsedMinValue = -8;
+        _vpxFmt.cpuUsedMaxValue = 8;
         [self.view setNeedsDisplay:YES];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formatDidChange:) name:SLHMainWinodwEncoderFormatDidChange object:nil];
     }
