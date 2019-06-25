@@ -28,6 +28,8 @@
 #import "SLHModalWindowController.h"
 #import "SLHPresetManager.h"
 
+extern NSString *const SLHMainWinodwEncoderFormatDidChange;
+
 @interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, SLHPresetManagerDelegate, NSTableViewDelegate, NSWindowDelegate, NSMenuDelegate> {
     SLHDragView *_dragView;
     SLHEncoderSettings *_encoderSettings;
@@ -380,6 +382,8 @@
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     item.tag = tag;
     fmt.encoderItem = item;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SLHMainWinodwEncoderFormatDidChange object:fmt];
     [self updateSummary:nil];
 }
 

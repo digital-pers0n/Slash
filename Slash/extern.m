@@ -97,3 +97,7 @@ NSString *const SLHEncoderVideoH264ContainerTypeKey = @"containerType";
 
 NSString *const SLHEncoderVideoVPXEnableTwoPassKey = @"enableTwoPass";
 NSString *const SLHEncoderVideoVPXEnableCRFKey     = @"enableCRF";
+
+#pragma mark - SLHMainWindowController
+
+NSString *const SLHMainWinodwEncoderFormatDidChange = @"encoderFormatDidChange";
