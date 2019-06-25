@@ -47,6 +47,8 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderVideoVP9FrameParallelKey,
                 *const SLHEncoderVideoVP9RowMTKey;
 
+extern NSString *const SLHMainWinodwEncoderFormatDidChange;
+
 @interface SLHEncoderVP9Format ()
 
 @property SLHEncoderVP9Options *videoOptions;
@@ -71,6 +73,7 @@ extern NSString *const SLHEncoderMediaMapKey,
     if (self) {
         _vpxFmt = [[SLHEncoderVPXFormat alloc] init];
         [self.view setNeedsDisplay:YES];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formatDidChange:) name:SLHMainWinodwEncoderFormatDidChange object:nil];
     }
     return self;
 }
@@ -257,6 +260,20 @@ extern NSString *const SLHEncoderMediaMapKey,
             break;
     }
     return view;
+}
+
+#pragma mark - NSNotification
+
+- (void)formatDidChange:(NSNotification *)notification {
+    SLHEncoderBaseFormat *fmt = notification.object;
+    SLHEncoderItemOptions *opts = fmt.encoderItem.videoOptions;
+    if (opts == _videoOptions) {
+        if (fmt == self) {
+            opts.codecName = @"libvpx-vp9";
+        } else {
+            opts.codecName = @"libvpx";
+        }
+    }
 }
 
 @end
