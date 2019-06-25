@@ -154,7 +154,7 @@
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="zNg-1G-y6k">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="20J-hA-yBF">
                             <real key="minimum" value="0.0"/>
-                            <real key="maximum" value="64"/>
+                            <real key="maximum" value="63"/>
                         </numberFormatter>
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -168,7 +168,7 @@
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cqm-Wk-jhc">
                     <rect key="frame" x="321" y="111" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="64" doubleValue="4" id="7iO-aW-dTA"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="63" doubleValue="4" id="7iO-aW-dTA"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Nmz-6R-eeH"/>
                         <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="sDj-0d-4Lg"/>
