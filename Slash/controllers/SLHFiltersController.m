@@ -18,11 +18,11 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
 extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderAudioFiltersKey;
 
-extern NSString *const SLHEncoderVideoFilterCropKey;
-extern NSString *const SLHEncoderVideoFilterDeinterlaceKey;
-extern NSString *const SLHEncoderAudioFilterFadeInKey;
-extern NSString *const SLHEncoderAudioFilterFadeOutKey;
-extern NSString *const SLHEncoderAudioFilterPreampKey;
+extern NSString *const SLHEncoderFiltersVideoCropKey;
+extern NSString *const SLHEncoderFiltersVideoDeinterlaceKey;
+extern NSString *const SLHEncoderFiltersAudioFadeInKey;
+extern NSString *const SLHEncoderFiltersAudioFadeOutKey;
+extern NSString *const SLHEncoderFiltersAudioPreampKey;
 
 static NSString *const _videoCropFmt = @"crop=w=%ld:h=%ld:x=%ld:y=%ld";
 static NSString *const _audioFadeInFmt = @"afade=t=in:d=%.3f";
@@ -106,7 +106,7 @@ static inline NSString *_preampString(NSInteger val) {
             } else {
                 str = [NSMutableString new];
             }
-            [str appendString:SLHEncoderVideoFilterDeinterlaceKey];
+            [str appendString:SLHEncoderFiltersVideoDeinterlaceKey];
         }
         
         if (opts.burnSubtitles) {
