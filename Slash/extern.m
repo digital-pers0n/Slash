@@ -98,6 +98,12 @@ NSString *const SLHEncoderVideoH264ContainerTypeKey = @"containerType";
 NSString *const SLHEncoderVideoVPXEnableTwoPassKey = @"enableTwoPass";
 NSString *const SLHEncoderVideoVPXEnableCRFKey     = @"enableCRF";
 
+NSString *const SLHEncoderFiltersEnableVideoFiltersKey        = @"enableVideoFilters";
+NSString *const SLHEncoderFiltersEnableAudioFiltersKey        = @"enableAudioFilters";
+NSString *const SLHEncoderFiltersBurnSubtitlesKey             = @"burnSubtitles";
+NSString *const SLHEncoderFiltersForceSubtitlesStyleKey       = @"forceSubtitlesStyle";
+NSString *const SLHEncoderFiltersSubtitlesStyleKey            = @"subtitlesStyle";
+
 #pragma mark - SLHMainWindowController
 
 NSString *const SLHMainWinodwEncoderFormatDidChange = @"encoderFormatDidChange";

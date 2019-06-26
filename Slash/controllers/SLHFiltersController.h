@@ -16,4 +16,6 @@
 @property SLHEncoderItem *encoderItem;
 - (NSArray *)arguments;
 
+@property NSDictionary *dictionaryRepresentation;
+
 @end

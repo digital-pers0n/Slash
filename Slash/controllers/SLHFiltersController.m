@@ -24,6 +24,12 @@ extern NSString *const SLHEncoderFiltersAudioFadeInKey;
 extern NSString *const SLHEncoderFiltersAudioFadeOutKey;
 extern NSString *const SLHEncoderFiltersAudioPreampKey;
 
+extern NSString *const SLHEncoderFiltersEnableVideoFiltersKey;
+extern NSString *const SLHEncoderFiltersEnableAudioFiltersKey;
+extern NSString *const SLHEncoderFiltersBurnSubtitlesKey;
+extern NSString *const SLHEncoderFiltersForceSubtitlesStyleKey;
+extern NSString *const SLHEncoderFiltersSubtitlesStyleKey;
+
 static NSString *const _videoCropFmt = @"crop=w=%ld:h=%ld:x=%ld:y=%ld";
 static NSString *const _audioFadeInFmt = @"afade=t=in:d=%.3f";
 static NSString *const _audioFadeOutFmt = @"afade=t=out:d=%.3f:st=%.3f";
@@ -204,6 +210,72 @@ static inline NSString *_preampString(NSInteger val) {
 
 - (SLHEncoderItem *)encoderItem {
     return _encoderItem;
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *dict = NSMutableDictionary.new;
+    SLHFilterOptions *opts = _encoderItem.filters;
+    dict[SLHEncoderFiltersEnableVideoFiltersKey] = @(opts.enableVideoFilters);
+    NSRect rect = NSMakeRect(opts.videoCropX, opts.videoCropY, opts.videoCropWidth, opts.videoCropHeight);
+    dict[SLHEncoderFiltersVideoCropKey] = NSStringFromRect(rect);
+    dict[SLHEncoderFiltersVideoDeinterlaceKey] = @(opts.videoDeinterlace);
+    dict[SLHEncoderFiltersBurnSubtitlesKey] = @(opts.burnSubtitles);
+    dict[SLHEncoderFiltersForceSubtitlesStyleKey] = @(opts.forceSubtitlesStyle);
+    dict[SLHEncoderFiltersSubtitlesStyleKey] = opts.subtitlesStyle.copy;
+    
+    dict[SLHEncoderFiltersEnableAudioFiltersKey] = @(opts.enableAudioFilters);
+    dict[SLHEncoderFiltersAudioFadeInKey] = @(opts.audioFadeIn);
+    dict[SLHEncoderFiltersAudioFadeOutKey] = @(opts.audioFadeOut);
+    dict[SLHEncoderFiltersAudioPreampKey] = @(opts.audioPreamp);
+    
+    return dict;
+}
+
+- (void)setDictionaryRepresentation:(NSDictionary *)dict {
+    NSNumber *val;
+    SLHFilterOptions *opts = _encoderItem.filters;
+    
+    // Video Filters
+    
+    val = dict[SLHEncoderFiltersEnableVideoFiltersKey];
+    opts.enableVideoFilters = val.boolValue;
+    
+    NSString *str = dict[SLHEncoderFiltersVideoCropKey];
+    if (str) {
+        NSRect rect = NSRectFromString(str);
+        opts.videoCropX = rect.origin.x;
+        opts.videoCropY = rect.origin.y;
+        opts.videoCropWidth = rect.size.width;
+        opts.videoCropHeight = rect.size.height;
+    }
+    
+    val = dict[SLHEncoderFiltersVideoDeinterlaceKey];
+    opts.videoDeinterlace = val.boolValue;
+    
+    val =  dict[SLHEncoderFiltersBurnSubtitlesKey];
+    opts.burnSubtitles = val.boolValue;
+    
+    val = dict[SLHEncoderFiltersForceSubtitlesStyleKey];
+    opts.forceSubtitlesStyle = val.boolValue;
+    
+    str = dict[SLHEncoderFiltersSubtitlesStyleKey];
+    if (str) {
+        opts.subtitlesStyle = str;
+    }
+    
+    // Audio Filters
+    
+    val = dict[SLHEncoderFiltersEnableAudioFiltersKey];
+    opts.enableAudioFilters = val.boolValue;
+    
+    val = dict[SLHEncoderFiltersAudioFadeInKey];
+    opts.audioFadeIn = val.floatValue;
+    
+    val = dict[SLHEncoderFiltersAudioFadeOutKey];
+    opts.audioFadeOut = val.floatValue;
+    
+    val = dict[SLHEncoderFiltersAudioPreampKey];
+    opts.audioPreamp = val.integerValue;
 }
 
 #pragma mark - IBActions
