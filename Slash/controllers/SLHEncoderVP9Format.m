@@ -97,7 +97,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
         videoOptions.maxGopSize = 128;
         videoOptions.codecName = @"libvpx-vp9";
         videoOptions.row_mt = YES;
-        videoOptions.frame_parallel = YES;
+        videoOptions.frame_parallel = NO;
         videoOptions.tile_columns = 6;
         videoOptions.tile_rows = 2;
         encoderItem.videoOptions = videoOptions;
