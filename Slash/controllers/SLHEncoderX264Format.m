@@ -32,7 +32,6 @@ extern NSString *const SLHEncoderVideoBitrateKey;
 extern NSString *const SLHEncoderVideoMaxBitrateKey;
 extern NSString *const SLHEncoderVideoCRFBitrateKey;
 extern NSString *const SLHEncoderVideoCodecKey;
-extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderVideoScaleSizeKey;
 extern NSString *const SLHEncoderVideoPixelFormatKey;
 extern NSString *const SLHEncoderVideoAspectRatioKey;
@@ -49,8 +48,6 @@ extern NSString *const SLHEncoderVideoH264FastdecodeKey;
 extern NSString *const SLHEncoderVideoH264ContainerTypeKey;
 extern NSString *const SLHEncoderAudioCodecKey;
 extern NSString *const SLHEncoderAudioBitrateKey;
-extern NSString *const SLHEncoderAudioQualityKey;
-extern NSString *const SLHEncoderAudioFilterKey;
 extern NSString *const SLHEncoderAudioSampleRateKey;
 extern NSString *const SLHEncoderAudioChannelsKey;
 
