@@ -194,11 +194,12 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
         [_arrayController addObject:_tempEncoderItem];
     }
     _tempEncoderItem.intervalStart = start;
-    
+    [self updateSummary:nil];
 }
 
 - (void)player:(SLHPlayer *)p segmentEnd:(double)end {
     _tempEncoderItem.intervalEnd = end;
+    [self updateSummary:nil];
 }
 
 - (void)playerDidEndEditingSegment:(SLHPlayer *)p {
