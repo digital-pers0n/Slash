@@ -12,6 +12,8 @@
 #import "SLHCropEditor.h"
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
+#import "SLHPresetManager.h"
+#import "SLHPreferences.h"
 
 extern NSString *const SLHPreferencesMPVFilePathKey;
 
@@ -34,14 +36,17 @@ static NSString *const _videoCropFmt = @"crop=w=%ld:h=%ld:x=%ld:y=%ld";
 static NSString *const _audioFadeInFmt = @"afade=t=in:d=%.3f";
 static NSString *const _audioFadeOutFmt = @"afade=t=out:d=%.3f:st=%.3f";
 static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
+static NSString *const _filterPresetsNameKey = @"Filters";
 
 
-@interface SLHFiltersController () {
+@interface SLHFiltersController () <NSMenuDelegate, SLHPresetManagerDelegate> {
     
     SLHEncoderItem *_encoderItem;
+    SLHPresetManager *_presetManager;
     
     IBOutlet SLHCropEditor *_cropEditor;
     IBOutlet NSTextField *_subtitlesNameTextField;
+    IBOutlet NSPopUpButton *_presetsPopUp;
 }
 
 @end
@@ -57,6 +62,17 @@ static NSString *const _audioPreampFmt = @"acompressor=makeup=%ld";
         obj = [[SLHFiltersController alloc] init];
     });
     return obj;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSString *presetsPath = SLHPreferences.preferences.appSupportPath;
+        presetsPath = [presetsPath stringByAppendingPathComponent:@"filters.dict"];
+        _presetManager = [[SLHPresetManager alloc] initWithPresetsPath:presetsPath];
+    }
+    return self;
 }
 
 - (NSString *)nibName {
@@ -352,6 +368,41 @@ static inline NSString *_preampString(NSInteger val) {
 - (IBAction)burnSubtitles:(NSButton *)sender {
     if (sender.state == NSOnState) {
         [self _updateSubtitlesName];
+    }
+}
+
+- (IBAction)applyPreset:(NSPopUpButton *)sender {
+    NSDictionary *dict = sender.selectedItem.representedObject;
+    self.dictionaryRepresentation = dict;
+}
+
+- (IBAction)savePreset:(id)sender {
+    NSDictionary *dict = self.dictionaryRepresentation;
+    [_presetManager setPreset:dict forName:_filterPresetsNameKey];
+    [_presetManager savePresets];
+}
+
+- (IBAction)managePresets:(id)sender {
+    [_presetManager.window makeKeyAndOrderFront:nil];
+}
+
+#pragma mark - SLHPresetManagerDelegate 
+
+- (void)presetManager:(SLHPresetManager *)manager loadPreset:(NSDictionary *)preset forName:(NSString *)name {
+    self.dictionaryRepresentation = preset;
+}
+
+#pragma mark - NSMenuDelegate
+
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+    NSMenuItem *item = menu.itemArray.firstObject;
+    [menu removeAllItems];
+    [menu addItem:item];
+    NSArray *presets = [_presetManager presetsForName:_filterPresetsNameKey];
+    for (NSDictionary *dict in presets) {
+        item = [[NSMenuItem alloc] initWithTitle:dict[SLHEncoderPresetNameKey] action:nil keyEquivalent:@""];
+        item.representedObject = dict;
+        [menu addItem:item];
     }
 }
 
