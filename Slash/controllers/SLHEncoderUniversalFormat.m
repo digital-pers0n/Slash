@@ -8,7 +8,10 @@
 
 #import "SLHEncoderUniversalFormat.h"
 
-@interface SLHEncoderUniversalFormat ()
+@interface SLHEncoderUniversalFormat () <NSTableViewDataSource> {
+
+    IBOutlet NSTableView *_tableView;
+}
 
 @end
 
@@ -18,9 +21,21 @@
     return self.className;
 }
 
+- (NSString *)formatName {
+    return @"Universal";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+#pragma mark - IBActions
+
+- (IBAction)addArgument:(id)sender {
+}
+
+- (IBAction)removeArgument:(id)sender {
 }
 
 @end
