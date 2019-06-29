@@ -19,6 +19,12 @@
     return self;
 }
 
+- (instancetype)initWithOptions:(SLHEncoderItemOptions *)options {
+   self = [super initWithOptions:options];
+    _arguments = NSMutableArray.new;
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     SLHEncoderUniversalOptions *obj = [super copyWithZone:zone];
     obj->_arguments = _arguments.mutableCopy;
