@@ -168,4 +168,16 @@
     _outputPath = [NSString stringWithFormat:@"%@/%@", _outputPath.stringByDeletingLastPathComponent, outputFileName];
 }
 
+- (void)setNilValueForKey:(NSString *)key {
+    NSNumber *value;
+    if ([key isEqual:@"intervalEnd"]) {
+        value = @(_mediaItem.duration);
+    } else {
+        value = @(0);
+    }
+
+    [self setValue:value forKey:key];
+
+}
+
 @end
