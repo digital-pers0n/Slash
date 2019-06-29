@@ -126,7 +126,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     }
     SLHEncoderItem *_encoderItem = _vpxFmt.encoderItem;
     
-    SLHEncoderVPXOptions *options = (id)_encoderItem.videoOptions;
+    SLHEncoderVPXOptions *options = _videoOptions;
     TimeInterval ti = _encoderItem.interval;
     NSMutableArray *args = @[  ffmpegPath, @"-nostdin", @"-hide_banner",
                                SLHEncoderMediaOverwriteFilesKey,
