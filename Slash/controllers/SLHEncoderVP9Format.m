@@ -81,7 +81,6 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 }
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
-    super.encoderItem = encoderItem;
     SLHEncoderVP9Options *videoOptions = (id)encoderItem.videoOptions;
     SLHEncoderItemOptions *audioOptions = encoderItem.audioOptions;
     
@@ -184,8 +183,6 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     [args addObject:_encoderItem.outputPath];
     [output addObject:args];
     return output;
-    
-    return _vpxFmt.arguments;
 }
 
 - (NSArray *)videoArguments {
