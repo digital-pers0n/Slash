@@ -7,6 +7,20 @@
 //
 
 #import "SLHEncoderUniversalFormat.h"
+#import "SLHEncoderUniversalOptions.h"
+#import "SLHEncoderItem.h"
+#import "SLHMediaItem.h"
+#import "SLHFiltersController.h"
+#import "SLHEncoderItemMetadata.h"
+#import "SLHPreferences.h"
+
+extern NSString *const SLHEncoderUniversalVideoArgumentsKey;
+extern NSString *const SLHEncoderUniversalAudioArgumentsKey;
+
+extern NSString *const SLHEncoderMediaStartTimeKey;
+extern NSString *const SLHEncoderMediaEndTimeKey;
+extern NSString *const SLHEncoderMediaOverwriteFilesKey;
+extern NSString *const SLHEncoderMediaThreadsKey;
 
 @interface SLHEncoderUniversalFormat () <NSTableViewDataSource> {
 
@@ -33,7 +47,79 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    _filters = [SLHFiltersController filtersController];
+    _filters.encoderItem = _encoderItem;
+}
+
+- (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
+    super.encoderItem = encoderItem;
+    _encoderItem = encoderItem;
+    
+    SLHEncoderUniversalOptions *opts = (id)encoderItem.videoOptions;
+    if (![opts isKindOfClass:SLHEncoderUniversalOptions.class]) {
+        opts = [[SLHEncoderUniversalOptions alloc] initWithOptions:opts];
+        encoderItem.videoOptions = opts;
+    }
+    _videoArguments = opts;
+    
+    opts = (id)encoderItem.audioOptions;
+    if (![opts isKindOfClass:SLHEncoderUniversalOptions.class]) {
+        opts = [[SLHEncoderUniversalOptions alloc] initWithOptions:opts];
+        encoderItem.audioOptions = opts;
+    }
+    _audioArguments = opts;
+    
+    _dataSource = _videoArguments.arguments;
+    _filters.encoderItem = _encoderItem;
+    [_tableView reloadData];
+}
+
+- (SLHEncoderItem *)encoderItem {
+    return _encoderItem;
+}
+
+- (void)setDictionaryRepresentation:(NSDictionary *)dict {
+    NSArray *args = dict[SLHEncoderUniversalVideoArgumentsKey];
+    if (args) {
+        _videoArguments.arguments = args.mutableCopy;
+        _dataSource = _videoArguments.arguments;
+        [_tableView reloadData];
+    }
+    
+    args = dict[SLHEncoderUniversalAudioArgumentsKey];
+    if (args) {
+        _audioArguments.arguments = args.mutableCopy;
+    }
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *dict = NSMutableDictionary.new;
+    dict[SLHEncoderUniversalVideoArgumentsKey] = _videoArguments.arguments.copy;
+    dict[SLHEncoderUniversalAudioArgumentsKey] = _audioArguments.arguments.copy;
+    return dict;
+}
+
+- (NSArray<NSArray *> *)arguments {
+    NSMutableArray *args = NSMutableArray.new;
+    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
+    if (!ffmpegPath) {
+        NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
+        return nil;
+    }
+    TimeInterval ti = _encoderItem.interval;
+    [args addObjectsFromArray:@[ ffmpegPath, @"-nostdin", @"-hide_banner",
+                                 SLHEncoderMediaOverwriteFilesKey,
+                                 SLHEncoderMediaStartTimeKey,
+                                 @(ti.start).stringValue,
+                                 SLHEncoderMediaEndTimeKey,
+                                 @(ti.end - ti.start).stringValue,
+                                 @"-i", _encoderItem.mediaItem.filePath]];
+    [args addObjectsFromArray:_videoArguments.arguments];
+    [args addObjectsFromArray:_audioArguments.arguments];
+    [args addObjectsFromArray:_filters.arguments];
+    [args addObjectsFromArray:_encoderItem.metadata.arguments];
+    [args addObject:_encoderItem.outputPath];
+    return @[args];
 }
 
 #pragma mark - IBActions
