@@ -24,6 +24,7 @@
 #import "SLHEncoderX264Format.h"
 #import "SLHEncoderVPXFormat.h"
 #import "SLHEncoderVP9Format.h"
+#import "SLHEncoderUniversalFormat.h"
 #import "SLHArgumentsViewController.h"
 #import "SLHModalWindowController.h"
 #import "SLHPresetManager.h"
@@ -98,8 +99,9 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     SLHEncoderX264Format *x264Fmt = [[SLHEncoderX264Format alloc] init];
     SLHEncoderVPXFormat *vpxFmt = [[SLHEncoderVPXFormat alloc] init];
     SLHEncoderVP9Format *vp9Fmt = [[SLHEncoderVP9Format alloc] init];
+    SLHEncoderUniversalFormat *uniFmt = [[SLHEncoderUniversalFormat alloc] init];
     
-    _formats = @[x264Fmt, vpxFmt, vp9Fmt];
+    _formats = @[x264Fmt, vpxFmt, vp9Fmt, uniFmt];
     NSMenu *formatsMenu = _formatsPopUp.menu;
     NSUInteger tag = 0;
     for (SLHEncoderBaseFormat *fmt in _formats) {
