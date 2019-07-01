@@ -81,7 +81,7 @@ static const NSUInteger kNumberOfTabs = 3;
                          NSForegroundColorAttributeName: [NSColor colorWithDeviceWhite:0.36 alpha:1.0],
                          };
     
-    _labels = @[@"Video", @"Audio", @"Effects"];
+    _labels = @[@"Video", @"Audio", @"Filters"];
 }
 
 #pragma mark - Draw
