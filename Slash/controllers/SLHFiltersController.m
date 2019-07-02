@@ -14,6 +14,7 @@
 #import "SLHMediaItemTrack.h"
 #import "SLHPresetManager.h"
 #import "SLHPreferences.h"
+#import "SLHTextEditor.h"
 
 extern NSString *const SLHPreferencesMPVFilePathKey;
 
@@ -43,6 +44,9 @@ static NSString *const _filterPresetsNameKey = @"Filters";
     
     SLHEncoderItem *_encoderItem;
     SLHPresetManager *_presetManager;
+    SLHTextEditor *_textEditor;
+    NSPopover *_popover;
+    NSString *_editKey;
     
     IBOutlet SLHCropEditor *_cropEditor;
     IBOutlet NSTextField *_subtitlesNameTextField;
@@ -71,6 +75,17 @@ static NSString *const _filterPresetsNameKey = @"Filters";
         NSString *presetsPath = SLHPreferences.preferences.appSupportPath;
         presetsPath = [presetsPath stringByAppendingPathComponent:@"filters.dict"];
         _presetManager = [[SLHPresetManager alloc] initWithPresetsPath:presetsPath];
+        _textEditor = SLHTextEditor.new;
+        [_textEditor.view setNeedsDisplay:YES];
+        NSButton *button = _textEditor.doneButton;
+        button.action = @selector(popoverDone:);
+        button.target = self;
+        button = _textEditor.cancelButton;
+        button.action = @selector(popoverCancel:);
+        button.target = self;
+        _popover = [[NSPopover alloc] init];
+        _popover.behavior =  NSPopoverBehaviorTransient;
+        _popover.contentViewController = _textEditor;
     }
     return self;
 }
@@ -384,6 +399,22 @@ static inline NSString *_preampString(NSInteger val) {
 
 - (IBAction)managePresets:(id)sender {
     [_presetManager.window makeKeyAndOrderFront:nil];
+}
+
+- (IBAction)editSubtitlesStyle:(NSButton *)sender {
+    _editKey = @"subtitlesStyle";
+    _textEditor.textView.string = _encoderItem.filters.subtitlesStyle;
+    [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
+    
+}
+
+- (IBAction)popoverDone:(id)sender {
+    [_encoderItem.filters setValue:_textEditor.textView.string.copy forKey:_editKey];
+    [_popover close];
+}
+
+- (IBAction)popoverCancel:(id)sender {
+    [_popover close];
 }
 
 #pragma mark - SLHPresetManagerDelegate 
