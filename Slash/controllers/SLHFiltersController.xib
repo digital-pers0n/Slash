@@ -21,18 +21,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sEl-AB-f29">
-                    <rect key="frame" x="18" y="352" width="78" height="14"/>
+                    <rect key="frame" x="18" y="352" width="73" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Video Effects:" id="zUZ-gH-2vT">
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Video Filters:" id="zUZ-gH-2vT">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nYs-0m-Ifc">
-                    <rect key="frame" x="18" y="123" width="78" height="14"/>
+                    <rect key="frame" x="18" y="123" width="73" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Audio Effects:" id="kj0-lC-zK0">
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Audio Filters:" id="kj0-lC-zK0">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -553,8 +553,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="QDU-8T-BEn"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.additionalVideoFiltersString" id="aHS-PR-QiV"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="QDU-8T-BEn"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="dsc-RS-POn">
@@ -566,8 +566,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="GGh-f2-rxK"/>
                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.additionalAudioFiltersString" id="nu1-5a-5A3"/>
+                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="GGh-f2-rxK"/>
                     </connections>
                 </textField>
                 <button toolTip="Open Editor" id="KRq-8b-hP8">
