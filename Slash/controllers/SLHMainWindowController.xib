@@ -313,14 +313,14 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" id="ls3-zh-eMY">
-                                <rect key="frame" x="317" y="432" width="50" height="22"/>
+                                <rect key="frame" x="286" y="432" width="81" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="right" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="zcT-1y-xu2" id="rbj-1l-12B">
+                                <popUpButtonCell key="cell" type="push" title="Presets" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="zcT-1y-xu2" id="rbj-1l-12B">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" showsStateColumn="NO" id="ERP-yk-biW">
                                         <items>
-                                            <menuItem image="NSActionTemplate" hidden="YES" id="zcT-1y-xu2">
+                                            <menuItem title="Presets" hidden="YES" id="zcT-1y-xu2">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
@@ -330,15 +330,6 @@
                                     <action selector="presetsPopUpClicked:" target="-2" id="HN4-la-gPg"/>
                                 </connections>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="UEU-iI-dFZ">
-                                <rect key="frame" x="264" y="437" width="54" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Presets:" id="gMF-rw-YqH">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <connections>
                             <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="adk-jO-2hk">
@@ -414,7 +405,7 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <action selector="updateSummary:" target="-2" id="W9T-HC-IMN"/>
-                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalStart" previousBinding="Gpm-ii-Unh" id="5TB-2w-avC"/>
+                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalStart" previousBinding="Gpm-ii-Unh" id="4J9-2x-PRF"/>
                                                                         <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="Gpm-ii-Unh"/>
                                                                     </connections>
                                                                 </textField>
@@ -431,7 +422,7 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <action selector="updateSummary:" target="-2" id="jtX-1s-Iqu"/>
-                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalEnd" previousBinding="a7X-VY-CWi" id="Aqz-pb-lqs"/>
+                                                                        <binding destination="vHn-DC-q2L" name="value" keyPath="objectValue.intervalEnd" previousBinding="a7X-VY-CWi" id="GBn-Ci-pha"/>
                                                                         <binding destination="vHn-DC-q2L" name="maxValue" keyPath="objectValue.mediaItem.duration" id="a7X-VY-CWi"/>
                                                                     </connections>
                                                                 </textField>
@@ -539,7 +530,7 @@ CA
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="-162" y="-862"/>
+            <point key="canvasLocation" x="-332" y="-873"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
             <declaredKeys>
@@ -549,7 +540,6 @@ CA
         </arrayController>
     </objects>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="SLHImageNameFolderTemplate" width="32" height="32"/>
