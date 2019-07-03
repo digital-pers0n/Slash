@@ -23,11 +23,13 @@
     copy->_subtitlesPath = _subtitlesPath.copy;
     copy->_forceSubtitlesStyle = _forceSubtitlesStyle;
     copy->_subtitlesStyle = _subtitlesStyle.copy;
+    copy->_additionalVideoFiltersString = _additionalVideoFiltersString.copy;
     
     copy->_enableAudioFilters = _enableAudioFilters;
     copy->_audioFadeIn = _audioFadeIn;
     copy->_audioFadeOut = _audioFadeOut;
     copy->_audioPreamp = _audioPreamp;
+    copy->_additionalAudioFiltersString = _additionalAudioFiltersString.copy;
     
     return copy;
 }

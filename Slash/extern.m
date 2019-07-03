@@ -106,6 +106,8 @@ NSString *const SLHEncoderFiltersEnableAudioFiltersKey        = @"enableAudioFil
 NSString *const SLHEncoderFiltersBurnSubtitlesKey             = @"burnSubtitles";
 NSString *const SLHEncoderFiltersForceSubtitlesStyleKey       = @"forceSubtitlesStyle";
 NSString *const SLHEncoderFiltersSubtitlesStyleKey            = @"subtitlesStyle";
+NSString *const SLHEncoderFiltersAdditionalVideoFiltersKey    = @"additionalVideoFilters";
+NSString *const SLHEncoderFiltersAdditionalAudioFiltersKey    = @"additionalAudioFilters";
 
 #pragma mark - SLHMainWindowController
 

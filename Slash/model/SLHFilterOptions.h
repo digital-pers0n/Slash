@@ -21,11 +21,13 @@
 @property NSString *subtitlesPath;
 @property BOOL forceSubtitlesStyle;
 @property NSString *subtitlesStyle;
+@property NSString *additionalVideoFiltersString;
 
 // Audio
 @property BOOL enableAudioFilters;
 @property double audioFadeIn;
 @property double audioFadeOut;
 @property NSInteger audioPreamp;
+@property NSString *additionalAudioFiltersString;
 
 @end

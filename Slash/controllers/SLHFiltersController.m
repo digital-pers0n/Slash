@@ -32,6 +32,8 @@ extern NSString *const SLHEncoderFiltersEnableAudioFiltersKey;
 extern NSString *const SLHEncoderFiltersBurnSubtitlesKey;
 extern NSString *const SLHEncoderFiltersForceSubtitlesStyleKey;
 extern NSString *const SLHEncoderFiltersSubtitlesStyleKey;
+extern NSString *const SLHEncoderFiltersAdditionalVideoFiltersKey;
+extern NSString *const SLHEncoderFiltersAdditionalAudioFiltersKey;
 
 static NSString *const _videoCropFmt = @"crop=w=%ld:h=%ld:x=%ld:y=%ld";
 static NSString *const _audioFadeInFmt = @"afade=t=in:d=%.3f";
@@ -185,6 +187,16 @@ static inline NSString *_preampString(NSInteger val) {
             }
         }
         
+        NSString *filters = opts.additionalVideoFiltersString;
+        if (filters.length) {
+            if (str) {
+                [str appendString:@","];
+            } else {
+                str = NSMutableString.new;
+            }
+            [str appendString:filters];
+        }
+        
         if (str) {
             [args addObject:SLHEncoderVideoFiltersKey];
             [args addObject:str];
@@ -220,6 +232,16 @@ static inline NSString *_preampString(NSInteger val) {
             [str appendString:_preampString(opts.audioPreamp)];
         }
         
+        NSString *filters = opts.additionalAudioFiltersString;
+        if (filters.length) {
+            if (str) {
+                [str appendString:@","];
+            } else {
+                str = NSMutableString.new;
+            }
+            [str appendString:filters];
+        }
+        
         if (str) {
             [args addObject:SLHEncoderAudioFiltersKey];
             [args addObject:str];
@@ -253,11 +275,13 @@ static inline NSString *_preampString(NSInteger val) {
     dict[SLHEncoderFiltersBurnSubtitlesKey] = @(opts.burnSubtitles);
     dict[SLHEncoderFiltersForceSubtitlesStyleKey] = @(opts.forceSubtitlesStyle);
     dict[SLHEncoderFiltersSubtitlesStyleKey] = opts.subtitlesStyle.copy;
+    dict[SLHEncoderFiltersAdditionalVideoFiltersKey] = opts.additionalVideoFiltersString.copy;
     
     dict[SLHEncoderFiltersEnableAudioFiltersKey] = @(opts.enableAudioFilters);
     dict[SLHEncoderFiltersAudioFadeInKey] = @(opts.audioFadeIn);
     dict[SLHEncoderFiltersAudioFadeOutKey] = @(opts.audioFadeOut);
     dict[SLHEncoderFiltersAudioPreampKey] = @(opts.audioPreamp);
+    dict[SLHEncoderFiltersAdditionalAudioFiltersKey] = opts.additionalAudioFiltersString;
     
     return dict;
 }
@@ -294,6 +318,11 @@ static inline NSString *_preampString(NSInteger val) {
         opts.subtitlesStyle = str;
     }
     
+    str = dict[SLHEncoderFiltersAdditionalVideoFiltersKey];
+    if (str) {
+        opts.additionalVideoFiltersString = str;
+    }
+    
     // Audio Filters
     
     val = dict[SLHEncoderFiltersEnableAudioFiltersKey];
@@ -307,6 +336,11 @@ static inline NSString *_preampString(NSInteger val) {
     
     val = dict[SLHEncoderFiltersAudioPreampKey];
     opts.audioPreamp = val.integerValue;
+    
+    str = dict[SLHEncoderFiltersAdditionalAudioFiltersKey];
+    if (str) {
+        opts.additionalAudioFiltersString = str;
+    }
 }
 
 #pragma mark - IBActions
@@ -405,7 +439,18 @@ static inline NSString *_preampString(NSInteger val) {
     _editKey = @"subtitlesStyle";
     _textEditor.textView.string = _encoderItem.filters.subtitlesStyle;
     [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
-    
+}
+
+- (IBAction)editCustomVideoFilters:(NSButton *)sender {
+    _editKey = @"additionalVideoFiltersString";
+    _textEditor.textView.string = _encoderItem.filters.additionalVideoFiltersString;
+    [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
+}
+
+- (IBAction)editCustomAudioFilters:(NSButton *)sender {
+    _editKey = @"additionalAudioFiltersString";
+    _textEditor.textView.string = _encoderItem.filters.additionalAudioFiltersString;
+    [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
 }
 
 - (IBAction)popoverDone:(id)sender {

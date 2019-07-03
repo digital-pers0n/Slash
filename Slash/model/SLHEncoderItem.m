@@ -56,6 +56,8 @@
         _audioOptions = [SLHEncoderItemOptions new];
         _filters = [SLHFilterOptions new];
         _filters.subtitlesStyle = @"FontName=Helvetica,FontSize=14,PrimaryColour=&H00000000,BackColour=&H40FFFFFF,BorderStyle=4,Shadow=2,Outline=0";
+        _filters.additionalVideoFiltersString = @"";
+        _filters.additionalAudioFiltersString = @"";
         _metadata = [[SLHEncoderItemMetadata alloc] initWithMediaItem:item];
         [SLHEncoderItem matchSource:self];
     }
