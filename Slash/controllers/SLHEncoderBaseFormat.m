@@ -169,4 +169,10 @@ extern NSString *const SLHEncoderAudioChannelsKey;
     return dict;
 }
 
+#pragma mark - SLHEncoderSettingsDelegate
+
+- (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {
+    return nil;
+}
+
 @end
