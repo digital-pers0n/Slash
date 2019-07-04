@@ -73,7 +73,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LdD-wj-H6G">
-                                    <rect key="frame" x="465" y="0.0" width="15" height="427"/>
+                                    <rect key="frame" x="464" y="0.0" width="16" height="427"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -434,6 +434,7 @@
                                             <connections>
                                                 <binding destination="vks-Yg-j4w" name="content" keyPath="arrangedObjects" id="9Bq-Xe-LZt"/>
                                                 <binding destination="vks-Yg-j4w" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="9Bq-Xe-LZt" id="zcW-9e-hBJ"/>
+                                                <outlet property="delegate" destination="-2" id="uib-2P-Qte"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -530,7 +531,7 @@ CA
             <connections>
                 <outlet property="delegate" destination="-2" id="c4Z-Ub-cxh"/>
             </connections>
-            <point key="canvasLocation" x="-332" y="-873"/>
+            <point key="canvasLocation" x="-134" y="-877"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="vks-Yg-j4w" userLabel="Encoder Items" colorLabel="IBBuiltInLabel-Yellow">
             <declaredKeys>
