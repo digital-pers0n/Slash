@@ -468,7 +468,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
         switch (t.mediaType) {
             case SLHMediaTypeVideo:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%.0fx%.0f, %@)", trackIndex, t.videoSize.width, t.videoSize.height, t.codecName] action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%.0fx%.0f, %@, %g fps)", trackIndex, t.videoSize.width, t.videoSize.height, t.codecName, t.frameRate] action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_videoStreamPopUp.menu addItem:item];
