@@ -167,6 +167,43 @@
     }
 }
 
+- (IBAction)exportPresets:(id)sender {
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    panel.allowedFileTypes = @[@"dict"];
+    if ([panel runModal] == NSFileHandlingPanelOKButton) {
+        NSURL *url = panel.URL;
+        if (![_presets writeToURL:url atomically:YES]) {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Cannot save preset file" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Error while writing %@", url];
+            [alert runModal];
+        }
+    }
+}
+
+- (IBAction)importPresets:(id)sender {
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowedFileTypes = @[@"dict"];
+    if ([panel runModal] == NSFileHandlingPanelOKButton) {
+        NSURL *url = panel.URL;
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:url];
+        if (!dict) {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Cannot open preset file." defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Error while reading %@", url];
+            [alert runModal];
+            return;
+        }
+        NSArray *allKeys = dict.allKeys;
+        for (NSString *key in allKeys) {
+            NSArray *new_presets = dict[key];
+            NSMutableArray *old_presets = _presets[key];
+            if (old_presets) {
+                [old_presets addObjectsFromArray:new_presets];
+            } else {
+                _presets[key] = new_presets.mutableCopy;
+            }
+        }
+        [self updateTableViews];
+    }
+}
+
 #pragma mark - NSTableViewDelegate
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {

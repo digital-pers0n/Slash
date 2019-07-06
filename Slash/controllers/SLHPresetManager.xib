@@ -34,22 +34,22 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="486" height="346"/>
+            <rect key="contentRect" x="196" y="240" width="500" height="346"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
-            <value key="minSize" type="size" width="400" height="300"/>
+            <value key="minSize" type="size" width="500" height="300"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="486" height="346"/>
+                <rect key="frame" x="0.0" y="0.0" width="500" height="346"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="sUy-vG-b6L">
-                        <rect key="frame" x="-1" y="0.0" width="130" height="347"/>
+                        <rect key="frame" x="-1" y="-1" width="130" height="348"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" drawsBackground="NO" id="bry-8C-4DS">
-                            <rect key="frame" x="1" y="1" width="128" height="345"/>
+                            <rect key="frame" x="1" y="1" width="128" height="346"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="1XJ-Ca-zWR">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="346"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -111,20 +111,20 @@
                         </scroller>
                     </scrollView>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="Vfe-qt-mF3">
-                        <rect key="frame" x="132" y="31" width="355" height="316"/>
+                        <rect key="frame" x="132" y="31" width="369" height="316"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="a6e-mV-st6">
-                            <rect key="frame" x="1" y="1" width="353" height="314"/>
+                            <rect key="frame" x="1" y="1" width="367" height="314"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="BRE-tc-8Nz">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="367" height="314"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="350" minWidth="40" maxWidth="1000" id="yK9-jq-ROH">
+                                        <tableColumn width="364" minWidth="40" maxWidth="1000" id="yK9-jq-ROH">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -138,11 +138,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="Jfh-Py-Mlz">
-                                                    <rect key="frame" x="1" y="1" width="350" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="364" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="NxL-2N-AXN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="364" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="heo-DX-5Jw">
                                                                 <font key="font" metaFont="system"/>
@@ -179,7 +179,7 @@
                         </scroller>
                     </scrollView>
                     <button verticalHuggingPriority="750" id="MyO-cu-OQF">
-                        <rect key="frame" x="344" y="6" width="63" height="19"/>
+                        <rect key="frame" x="358" y="6" width="63" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Remove" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pJ3-n4-T1n">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -191,8 +191,8 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="nQt-yD-KUf">
-                        <rect key="frame" x="136" y="6" width="63" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="285" y="6" width="63" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Load" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GrC-5I-2T1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
@@ -203,7 +203,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="Ew1-6R-dwp">
-                        <rect key="frame" x="415" y="6" width="63" height="19"/>
+                        <rect key="frame" x="429" y="6" width="63" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Duplicate" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TyK-r3-TJP">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -214,12 +214,36 @@
                             <binding destination="tJC-8l-vp3" name="enabled" keyPath="canRemove" id="HCh-Y5-bJw"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" id="BcN-Fi-oYo">
+                        <rect key="frame" x="132" y="6" width="63" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Export..." bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aFd-aa-KVh">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="exportPresets:" target="-2" id="blE-oJ-Mtm"/>
+                            <binding destination="6yR-3a-PUV" name="enabled" keyPath="canRemove" id="hBo-Q1-vUG"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="4F4-Ft-2ff">
+                        <rect key="frame" x="203" y="6" width="63" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Import..." bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JgO-qR-QTl">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="importPresets:" target="-2" id="Xne-uf-MVg"/>
+                            <binding destination="6yR-3a-PUV" name="enabled" keyPath="canRemove" id="Blk-lF-xSY"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="340" y="230"/>
+            <point key="canvasLocation" x="260" y="235"/>
         </window>
     </objects>
 </document>
