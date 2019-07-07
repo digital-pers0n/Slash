@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSInteger tag;
 @property BOOL encoded;
 @property BOOL failed;
+@property NSString *log;
 
 @end
 
