@@ -15,7 +15,6 @@
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
 #import "SLHFiltersController.h"
-#import "SLHEncoderArgument.h"
 
 extern NSString *const SLHEncoderMediaMapKey;
 extern NSString *const SLHEncoderMediaContainerKey;
