@@ -468,7 +468,24 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
         switch (t.mediaType) {
             case SLHMediaTypeVideo:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%.0fx%.0f, %@, %g fps)", trackIndex, t.videoSize.width, t.videoSize.height, t.codecName, t.frameRate] action:@selector(videoStreamPopUpAction:) keyEquivalent:@""];
+                NSSize videoSize = t.videoSize;
+                NSSize codedVideoSize = t.codedVideoSize;
+                NSString *videoSizeString = [NSString stringWithFormat:@"%.0fx%.0f", videoSize.width, videoSize.height];
+                if (videoSize.width != codedVideoSize.width ||
+                    videoSize.height != codedVideoSize.height) {
+                    videoSizeString = [NSString stringWithFormat:@"%@ (coded %.0fx%.0f)", videoSizeString, codedVideoSize.width, codedVideoSize.height];
+                }
+                item = [[NSMenuItem alloc] initWithTitle:
+                        [NSString stringWithFormat:@"%lu: %@, %@ [SAR %@, DAR %@], %g fps, %g tbr",
+                                       trackIndex,
+                                       t.codecName,
+                                       videoSizeString,
+                                       t.sampleAspectRatio,
+                                       t.displayAspectRatio,
+                                       t.frameRate,
+                                       t.rFrameRate]
+                        action:@selector(videoStreamPopUpAction:)
+                        keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_videoStreamPopUp.menu addItem:item];
@@ -476,7 +493,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
                 break;
             case SLHMediaTypeAudio:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@, %@, %@, %lukbs)", trackIndex, t.codecName, t.language, t.channelLayout, t.bitRate / 1000] action:@selector(audioStreamPopUpAction:) keyEquivalent:@""];
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: %@, %@, %@, %lukbs", trackIndex, t.codecName, t.language, t.channelLayout, t.bitRate / 1000] action:@selector(audioStreamPopUpAction:) keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_audioStreamPopUp.menu addItem:item];
@@ -484,7 +501,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
                 break;
             case SLHMediaTypeText:
             {
-                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: (%@, %@)", trackIndex, t.language, t.codecName] action:@selector(subtitlesStreamPopUpAction:) keyEquivalent:@""];
+                item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%lu: %@, %@", trackIndex, t.language, t.codecName] action:@selector(subtitlesStreamPopUpAction:) keyEquivalent:@""];
                 item.tag = trackIndex;
                 item.target = self;
                 [_subtitlesStreamPopUp.menu addItem:item];
