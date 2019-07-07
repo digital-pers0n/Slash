@@ -85,6 +85,16 @@ static inline NSString *_cstr2nsstr(const char *str) {
     
 }
 
+static inline double _get_fps(char *fps) {
+    char *div;
+    long numerator = strtol(fps, &div, 10);
+    long denominator = 1;
+    if (*div == '/') {
+        denominator = strtol(div + 1, 0, 10);
+    }
+    return numerator / (double)denominator;
+}
+
 - (void)_setUpStreams {
     size_t nb_streams = media_nb_streams(_media);
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:nb_streams];
@@ -105,16 +115,10 @@ static inline NSString *_cstr2nsstr(const char *str) {
             track.pixelFormat = _cstr2nsstr(stream_get_value(stream, kMediaStreamPixFormatKey));
             
             // Get frame rate
-            char *fps = stream_get_value(stream, kMediaStreamFramerateKey);
-            if (fps) {
+            char *value = stream_get_value(stream, kMediaStreamFramerateKey);
+            if (value) {
                 //puts(fps);
-                char *div;
-                long fps_numerator = strtol(fps, &div, 10);
-                long fps_denominator = 1;
-                if (*div == '/') {
-                    fps_denominator = strtol(div + 1, 0, 10);
-                }
-                track.frameRate = fps_numerator / (double)fps_denominator;
+                track.frameRate = _get_fps(value);
                 //printf("fps: %.1f\n", track.frameRate);
                 
             }
