@@ -12,6 +12,9 @@
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
 #import "SLHEncoderQueueItem.h"
+#import "slh_encoder.h"
+#import "slh_util.h"
+#import "slh_list.h"
 
 @interface SLHEncoderQueue () <NSTableViewDelegate, NSSplitViewDelegate> {
     
@@ -20,6 +23,14 @@
     IBOutlet NSTableView *_tableView;
     IBOutlet NSArrayController *_arrayController;
     IBOutlet NSSplitView *_splitView;
+    
+    /* Encoder */
+    Encoder *_encoder;
+    Queue *_global_queue;
+    Queue *_encoder_queue;
+    char *_log;
+    size_t _log_size;
+    dispatch_queue_t _main_thread;
 }
 
 @property BOOL inProgress;
@@ -30,6 +41,46 @@
 
 - (NSString *)windowNibName {
     return self.className;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _encoder = malloc(sizeof(Encoder));
+        encoder_init(_encoder, (char *[]) { "", NULL });
+        
+        _global_queue = malloc(sizeof(Queue));
+        queue_init(_global_queue, NULL);
+        
+        _encoder_queue = malloc(sizeof(Queue));
+        queue_init(_encoder_queue, (void *)args_free);
+        
+        _main_thread = dispatch_get_main_queue();
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    if (_encoder) {
+        encoder_destroy(_encoder);
+        free(_encoder);
+    }
+    
+    if (_global_queue) {
+        queue_destroy(_global_queue);
+        free(_global_queue);
+    }
+    
+    if (_encoder_queue) {
+        queue_destroy(_encoder_queue);
+        free(_encoder_queue);
+    }
+    
+    if (_log) {
+        free(_log);
+    }
 }
 
 - (void)windowDidLoad {
