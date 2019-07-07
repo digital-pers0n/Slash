@@ -21,13 +21,17 @@ const char *kMediaStreamCodecNameKey            = "codec_name";
 const char *kMediaStreamCodecTypeKey            = "codec_type";
 const char *kMediaStreamWidthKey                = "width";
 const char *kMediaStreamHeightKey               = "height";
+const char *kMediaStreamCodedWidthKey           = "coded_width";
+const char *kMediaStreamCodedHeightKey          = "coded_height";
 const char *kMediaStreamDisplayAspectRatioKey   = "display_aspect_ratio";
+const char *kMediaStreamSampleAspectRatioKey    = "sample_aspect_ratio";
 const char *kMediaStreamPixFormatKey     = "pix_fmt";
 const char *kMediaStreamProfileKey       = "profile";
 const char *kMediaStreamDurationKey      = "duration";
 const char *kMediaStreamBitRateKey       = "bit_rate";
 const char *kMediaStreamMaxBitrateKey    = "max_bit_rate";
 const char *kMediaStreamFramerateKey     = "avg_frame_rate";
+const char *kMediaStreamRFramerateKey    = "r_frame_rate";
 
 const char *kMediaStreamSampleRateKey    = "sample_rate";
 const char *kMediaStreamChannelsKey      = "channels";

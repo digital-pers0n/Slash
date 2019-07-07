@@ -29,6 +29,11 @@ extern const char *kMediaStreamChannelsKey;             // audio: number of chan
 extern const char *kMediaStreamChannelLayoutKey;        // audio: channel layout
 extern const char *kMediaStreamFramerateKey;
 
+extern const char *kMediaStreamCodedWidthKey;
+extern const char *kMediaStreamCodedHeightKey;
+extern const char *kMediaStreamSampleAspectRatioKey;
+extern const char *kMediaStreamRFramerateKey;
+
 /* Metadata Keys */
 
 extern const char *kMediaMetadataTitleKey;

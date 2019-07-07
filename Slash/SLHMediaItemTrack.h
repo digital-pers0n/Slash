@@ -42,6 +42,21 @@ typedef NS_ENUM(NSUInteger, SLHMediaType) {
 @property NSSize videoSize;
 
 /**
+ Inciate teh video coded dimension.
+ */
+@property NSSize codedVideoSize;
+
+/**
+ Sample aspect ratio
+ */
+@property NSString *sampleAspectRatio;
+
+/**
+ Display aspect ratio
+*/
+@property NSString *displayAspectRatio;
+
+/**
  Indicate pixel format
  */
 @property NSString *pixelFormat;
@@ -60,6 +75,13 @@ typedef NS_ENUM(NSUInteger, SLHMediaType) {
  Frame rate of the track.
  */
 @property double frameRate;
+
+/**
+ r_frame_rate
+ From ffmpeg FAQ:
+ The smallest frame rate that can accurately represent all timestamps.
+ */
+@property double rFrameRate;
 
 @property NSUInteger numberOfChannels;
 @property NSString *channelLayout;

@@ -112,6 +112,11 @@ static inline double _get_fps(char *fps) {
         if (stream_codec_type(stream) == CodecTypeVideo) {
             track.videoSize = NSMakeSize(strtod(stream_get_value(stream, kMediaStreamWidthKey), 0),
                                          strtod(stream_get_value(stream, kMediaStreamHeightKey), 0));
+            // Get coded widthxheight
+            track.codedVideoSize = NSMakeSize(
+                                    strtod(stream_get_value(stream,kMediaStreamCodedWidthKey), 0),
+                                    strtod(stream_get_value(stream, kMediaStreamCodedHeightKey), 0));
+            
             track.pixelFormat = _cstr2nsstr(stream_get_value(stream, kMediaStreamPixFormatKey));
             
             // Get frame rate
@@ -121,6 +126,24 @@ static inline double _get_fps(char *fps) {
                 track.frameRate = _get_fps(value);
                 //printf("fps: %.1f\n", track.frameRate);
                 
+            }
+            
+            // Get r_frame_rate
+            value = stream_get_value(stream, kMediaStreamRFramerateKey);
+            if (value) {
+                track.rFrameRate = _get_fps(value);
+            }
+            
+            // Get display aspect ratio
+            value = stream_get_value(stream, kMediaStreamDisplayAspectRatioKey);
+            if (value) {
+                track.displayAspectRatio = @(value);
+            }
+            
+            // Get sample apsect ratio
+            value = stream_get_value(stream, kMediaStreamSampleAspectRatioKey);
+            if (value) {
+                track.sampleAspectRatio = @(value);
             }
             
         } else if (stream_codec_type(stream) == CodecTypeAudio) {
