@@ -127,7 +127,148 @@
 - (IBAction)stopEncoding:(id)sender {
 }
 
-- (IBAction)removeAll:(id)sender {
+#pragma mark - Private
+
+- (void)prepareGlobalQueue {
+    if (queue_size(_global_queue)) {
+        queue_destroy(_global_queue);
+        queue_init(_global_queue, NULL);
+    }
+    NSArray *items = _arrayController.arrangedObjects;
+    for (SLHEncoderQueueItem *item in items) {
+        if (!item.encoded) {
+            queue_enqueue(_global_queue, (__bridge const void *)(item));
+        }
+    }
+}
+
+static inline char **_nsarray2carray(NSArray <NSString *> *array) {
+    size_t count = array.count;
+    char **result = malloc(sizeof(char *) * (count + 1));
+    size_t i = 0;
+    for (NSString *str in array) {
+        result[i++] = strdup(str.UTF8String);
+    }
+    result[i] = NULL;
+    return result;
+}
+
+- (void)prepareEncoderQueue {
+    if (queue_size(_global_queue) == 0) {
+        return;     // nothing to be done;
+    }
+    SLHEncoderQueueItem *item = (__bridge id)(queue_peek(_global_queue));
+    if (item) {
+        if (queue_size(_encoder_queue)) {
+            queue_destroy(_encoder_queue);
+            queue_init(_encoder_queue, (void *)args_free);
+        }
+        NSArray *args = item.encoderArguments;
+        for (NSArray *a in args) {
+            char **array = _nsarray2carray(a);
+            queue_enqueue(_encoder_queue, array);
+        }
+    }
+}
+
+static inline uint64_t _get_frame_number(const char *str) {
+    
+    char *s = strstr(str, "frame=");
+    if (s) {
+        return strtoul(s + 6, 0, 10);
+    }
+    
+    return 0;
+}
+
+static void _encoder_callback(char *data, void *ctx) {
+    uint64_t frame_number = 0;
+    SLHEncoderQueue *obj = (__bridge id)ctx;
+    if ((frame_number = _get_frame_number(data))) {
+        dispatch_async(obj->_main_thread, ^{
+            SLHEncoderQueueItem *item = (__bridge id)queue_peek(obj->_global_queue);
+            item.currentFrameNumber = frame_number;
+        });
+    } else {
+        size_t data_len = ENCODER_BUFFER_SIZE;
+        obj->_log_size += data_len;
+        char *tmp = realloc(obj->_log, (obj->_log_size * sizeof(char)) + 1);
+        if (tmp) {
+            strncat(tmp, data, data_len);
+            obj->_log = tmp;
+        }
+    }
+    
+}
+
+static void _encoder_exit_callback(void *ctx, int exit_code) {
+    SLHEncoderQueue *obj = (__bridge id)ctx;
+    SLHEncoderQueueItem *item = (__bridge id)queue_peek(obj->_global_queue);
+    
+    void *ptr;
+    queue_dequeue(obj->_encoder_queue, &ptr);
+    args_free(ptr);
+    
+    if (queue_size(obj->_encoder_queue)) { // second pass
+        item.log = [NSString stringWithFormat:@"%s\n\n=== Second Pass ===\n\n", obj->_log];
+        dispatch_async(obj->_main_thread, ^{
+            [obj encode];
+        });
+        return;
+    }
+    
+    // Assign codes
+    if (exit_code == 0) {
+        item.encoded = YES;
+        item.failed = NO;
+    } else {
+        item.encoded = NO;
+        item.failed = YES;
+        puts(obj->_log);
+    }
+    
+    // Append log
+    NSString *str = item.log;
+    if (str) {
+        item.log = [str stringByAppendingString:@(obj->_log)];
+    } else {
+        item.log = @(obj->_log);
+    }
+    
+    if (queue_size(obj->_global_queue)) { // load next item
+        // dequeue previous item
+        void *ptr;
+        queue_dequeue(obj->_global_queue, &ptr);
+        
+        // Check if the queue is not empty and encoding wasn't stopped
+        if (queue_size(obj->_global_queue) && exit_code != SIGKILL) {
+            [obj prepareEncoderQueue];
+            [obj encode];
+            return;
+        }
+    }
+    if (exit_code == SIGKILL || queue_size(obj->_global_queue) == 0) {
+        obj.inProgress = NO;
+    }
+}
+
+- (int)encode {
+        
+    if (_log) {
+        free(_log);
+    }
+    _log_size = 0;
+    _log = malloc(sizeof(char));
+    _log[0] = '\0';
+    
+    char **args = queue_peek(_encoder_queue);
+    encoder_set_args(_encoder, args);
+    if (encoder_start(_encoder, _encoder_callback, _encoder_exit_callback, (__bridge void *)self)) {
+        NSLog(@"%s: encoder_start() cannot start encoding", __PRETTY_FUNCTION__);
+        return -1;
+    }
+    self.inProgress = YES;
+    return 0;
 }
 
 #pragma mark - NSSplitViewDelegate
