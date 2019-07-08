@@ -147,8 +147,10 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger row = _tableView.selectedRow;
-    id item = _arrayController.arrangedObjects[row];
-    _argumentsViewController.encoderItem = item;
+    if (row > -1) {
+        id item = _arrayController.arrangedObjects[row];
+        _argumentsViewController.encoderItem = item;
+    }
 }
 
 
