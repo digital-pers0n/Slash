@@ -133,6 +133,19 @@
                         </buttonCell>
                         <connections>
                             <action selector="startEncoding:" target="-2" id="BC6-0I-o9g"/>
+                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="Emj-1W-ypr" id="zZf-oK-mrr">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="Emj-1W-ypr">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="nDi-Gk-OFH">
@@ -144,6 +157,19 @@
                         </buttonCell>
                         <connections>
                             <action selector="removeAll:" target="-2" id="iYU-F6-ncA"/>
+                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="lyY-eG-KkS" id="xr3-DW-cow">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="lyY-eG-KkS">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="GVZ-QY-lQc">
@@ -155,6 +181,7 @@
                         </buttonCell>
                         <connections>
                             <action selector="pauseEncoding:" target="-2" id="Jat-Hy-038"/>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="vFM-UP-aTc"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="ygW-cV-Zxa">
@@ -166,6 +193,7 @@
                         </buttonCell>
                         <connections>
                             <action selector="stopEncoding:" target="-2" id="Nck-j0-4Xs"/>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="3uY-SG-1ge"/>
                         </connections>
                     </button>
                 </subviews>
@@ -174,7 +202,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="561" y="255"/>
+            <point key="canvasLocation" x="687" y="308"/>
         </window>
         <arrayController objectClassName="SLHEncoderQueueItem" selectsInsertedObjects="NO" id="y12-MD-jyl" userLabel="Encoder Items">
             <declaredKeys>
