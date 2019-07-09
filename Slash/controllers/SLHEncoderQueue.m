@@ -34,6 +34,7 @@
 }
 
 @property BOOL inProgress;
+@property BOOL paused;
 
 @end
 
@@ -119,12 +120,27 @@
 #pragma mark - IBActions
 
 - (IBAction)startEncoding:(id)sender {
+    [self prepareGlobalQueue];
+    [self prepareEncoderQueue];
+    if ([self encode] == 0) {
+        self.inProgress = YES;
+    }
 }
 
 - (IBAction)pauseEncoding:(id)sender {
+    BOOL value = (_paused) ? NO : YES;
+    encoder_pause(_encoder, value);
+    _paused = value;
 }
 
 - (IBAction)stopEncoding:(id)sender {
+    self.inProgress = NO;
+    _paused = NO;
+    encoder_stop(_encoder);
+}
+
+- (IBAction)removeAll:(id)sender {
+    [_arrayController removeObjects:_arrayController.arrangedObjects];
 }
 
 #pragma mark - Private
