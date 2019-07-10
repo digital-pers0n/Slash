@@ -61,6 +61,7 @@ NSString *const SLHEncoderVideoH264LevelKey       = @"-level:v";
 NSString *const SLHEncoderVideoH264PresetKey      = @"-preset";
 NSString *const SLHEncoderVideoH264TuneKey        = @"-tune";
 NSString *const SLHEncoderVideoH264MovflagsKey    = @"-movflags";
+NSString *const SLHEncoderVideoH264LookAheadKey    = @"-rc-lookahead";
 
 NSString *const SLHEncoderVideoVPXSpeedKey        = @"-cpu-used";
 NSString *const SLHEncoderVideoVPXQualityKey      = @"-deadline";

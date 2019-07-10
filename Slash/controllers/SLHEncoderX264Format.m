@@ -45,6 +45,7 @@ extern NSString *const SLHEncoderVideoH264FaststartKey;
 extern NSString *const SLHEncoderVideoH264ZerolatencyKey;
 extern NSString *const SLHEncoderVideoH264FastdecodeKey;
 extern NSString *const SLHEncoderVideoH264ContainerTypeKey;
+extern NSString *const SLHEncoderVideoH264LookAheadKey;
 extern NSString *const SLHEncoderAudioCodecKey;
 extern NSString *const SLHEncoderAudioBitrateKey;
 extern NSString *const SLHEncoderAudioSampleRateKey;
@@ -95,6 +96,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 }
 
 @property BOOL keepAspectRatio;
+@property SLHEncoderX264Options *videoOptions;
 
 @end
 
@@ -143,6 +145,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         videoOptions.codecName = @"libx264";
         videoOptions.crf = 23;
         videoOptions.maxGopSize = 250;
+        videoOptions.lookAhead = 25;
         videoOptions.faststart = YES;
         _encoderItem.videoOptions = videoOptions;
         _encoderItem.container = @"mp4";
@@ -174,6 +177,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         
         _filters.encoderItem = _encoderItem;
     }
+    self.videoOptions = videoOptions;
 }
 
 - (void)setDictionaryRepresentation:(NSDictionary *)dict {
@@ -246,6 +250,11 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
             [self containerDidChange:_containerPopUp];
         }
     }
+    
+    val = dict[SLHEncoderVideoH264LookAheadKey];
+    if (val) {
+        opts.lookAhead = val.unsignedIntegerValue;;
+    }
 }
 
 - (NSDictionary *)dictionaryRepresentation {
@@ -260,6 +269,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     dict[SLHEncoderVideoH264ZerolatencyKey] = @(opts.zerolatency);
     dict[SLHEncoderVideoH264FastdecodeKey] = @(opts.fastdecode);
     dict[SLHEncoderVideoH264ContainerTypeKey] = @(opts.containerType);
+    dict[SLHEncoderVideoH264LookAheadKey] = @(opts.lookAhead);
     return dict;
 }
 
@@ -941,6 +951,9 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     }
     [args addObject:SLHEncoderVideoPixelFormatKey];
     [args addObject:@"yuv420p"];
+    
+    [args addObject:SLHEncoderVideoH264LookAheadKey];
+    [args addObject:@(options.lookAhead).stringValue];
     
     return args;
 }
