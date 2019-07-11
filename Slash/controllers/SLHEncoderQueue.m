@@ -252,8 +252,8 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
     args_free(ptr);
     
     if (queue_size(obj->_encoder_queue)) { // second pass
-        item.log = [NSString stringWithFormat:@"%s\n\n=== Second Pass ===\n\n", obj->_log];
         dispatch_async(obj->_main_thread, ^{
+            item.log = [NSString stringWithFormat:@"%s\n\n=== Second Pass ===\n\n", obj->_log];
             [obj encode];
         });
         return;
@@ -270,12 +270,14 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
     }
     
     // Append log
-    NSString *str = item.log;
-    if (str) {
-        item.log = [str stringByAppendingString:@(obj->_log)];
-    } else {
-        item.log = @(obj->_log);
-    }
+    dispatch_sync(obj->_main_thread, ^{
+        NSString *str = item.log;
+        if (str) {
+            item.log = [str stringByAppendingString:@(obj->_log)];
+        } else {
+            item.log = @(obj->_log);
+        }
+    });
     
     if (queue_size(obj->_global_queue)) { // load next item
         // dequeue previous item
