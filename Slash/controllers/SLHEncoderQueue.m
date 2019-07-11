@@ -23,6 +23,9 @@
     IBOutlet NSTableView *_tableView;
     IBOutlet NSArrayController *_arrayController;
     IBOutlet NSSplitView *_splitView;
+    IBOutlet NSTextView *_logView;
+    IBOutlet NSScrollView *_logViewContainer;
+    
     
     /* Encoder */
     Encoder *_encoder;
@@ -35,6 +38,7 @@
 
 @property BOOL inProgress;
 @property BOOL paused;
+@property BOOL logViewState;
 
 @end
 
@@ -124,6 +128,10 @@
     [self prepareEncoderQueue];
     if ([self encode] == 0) {
         self.inProgress = YES;
+        if (!_logViewContainer.superview) {
+            _showLog(self);
+            self.logViewState = YES;
+        }
     }
 }
 
@@ -141,6 +149,24 @@
 
 - (IBAction)removeAll:(id)sender {
     [_arrayController removeObjects:_arrayController.arrangedObjects];
+}
+
+- (IBAction)toggleLogView:(id)sender {
+    
+    if (_logViewContainer.superview) {
+        NSView *view = _argumentsViewController.view;
+        view.frame = _logViewContainer.frame;
+        [_splitView replaceSubview:_logViewContainer with:view];
+    } else {
+        _showLog(self);
+    }
+}
+
+static inline void _showLog(SLHEncoderQueue *obj) {
+    NSView *view = obj->_argumentsViewController.view;
+    obj->_logViewContainer.frame = view.frame;
+    [obj->_splitView replaceSubview:view with:obj->_logViewContainer];
+    [obj->_logView scrollToEndOfDocument:nil];
 }
 
 #pragma mark - Private
@@ -307,6 +333,10 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
     if (row > -1) {
         id item = _arrayController.arrangedObjects[row];
         _argumentsViewController.encoderItem = item;
+        
+        if (_logViewContainer.superview) {
+            [_logView scrollToEndOfDocument:nil];
+        }
     }
 }
 

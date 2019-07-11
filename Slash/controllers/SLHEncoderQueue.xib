@@ -11,6 +11,8 @@
                 <outlet property="_argumentsViewController" destination="yXI-gd-xPR" id="6ym-lc-lGx"/>
                 <outlet property="_arrayController" destination="y12-MD-jyl" id="3dG-0o-sYA"/>
                 <outlet property="_customView" destination="EvA-Pg-a3X" id="VXm-2b-4Gd"/>
+                <outlet property="_logView" destination="SAd-HT-drT" id="Qhf-EZ-68V"/>
+                <outlet property="_logViewContainer" destination="AgO-Df-2hd" id="Jvw-KV-PTz"/>
                 <outlet property="_splitView" destination="Ca6-9N-tMW" id="sS9-Ml-jM3"/>
                 <outlet property="_tableView" destination="GJa-Iv-BAq" id="Fcw-nq-UB3"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -196,13 +198,38 @@
                             <binding destination="-2" name="enabled" keyPath="self.inProgress" id="3uY-SG-1ge"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" id="1e0-wv-0jo">
+                        <rect key="frame" x="96" y="6" width="80" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Show Log" alternateTitle="Hide Log" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f6N-5k-YwG">
+                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleLogView:" target="-2" id="Zgr-HV-JKE"/>
+                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="0xs-xU-lua" id="W68-Ot-y39">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="0xs-xU-lua">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="value" keyPath="self.logViewState" id="vya-gv-4fA"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <contentBorderThickness minY="36"/>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="687" y="308"/>
+            <point key="canvasLocation" x="-85" y="420"/>
         </window>
         <arrayController objectClassName="SLHEncoderQueueItem" selectsInsertedObjects="NO" id="y12-MD-jyl" userLabel="Encoder Items">
             <declaredKeys>
@@ -213,5 +240,50 @@
                 <string>tag</string>
             </declaredKeys>
         </arrayController>
+        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AgO-Df-2hd">
+            <rect key="frame" x="0.0" y="0.0" width="293" height="420"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <clipView key="contentView" id="nRm-89-EPv">
+                <rect key="frame" x="1" y="1" width="291" height="418"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="SAd-HT-drT">
+                        <rect key="frame" x="0.0" y="0.0" width="291" height="418"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <size key="minSize" width="291" height="418"/>
+                        <size key="maxSize" width="463" height="10000000"/>
+                        <attributedString key="textStorage">
+                            <fragment content="sample text">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="Menlo-Regular"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <size key="minSize" width="291" height="418"/>
+                        <size key="maxSize" width="463" height="10000000"/>
+                        <connections>
+                            <binding destination="y12-MD-jyl" name="value" keyPath="selection.log" id="CjW-f7-GxG">
+                                <dictionary key="options">
+                                    <bool key="NSConditionallySetsEditable" value="NO"/>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </textView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            </clipView>
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="QbJ-SE-Kr1">
+                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="lWZ-ch-8c6">
+                <rect key="frame" x="276" y="1" width="16" height="418"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+            <point key="canvasLocation" x="724.5" y="482"/>
+        </scrollView>
     </objects>
 </document>
