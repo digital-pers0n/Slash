@@ -21,6 +21,7 @@
     obj->_fastdecode = _fastdecode;
     obj->_zerolatency = _zerolatency;
     obj->_faststart = _faststart;
+    obj->_lookAhead = _lookAhead;
     return obj;
 }
 
