@@ -16,7 +16,7 @@
 #import "slh_util.h"
 #import "slh_list.h"
 
-@interface SLHEncoderQueue () <NSTableViewDelegate, NSSplitViewDelegate> {
+@interface SLHEncoderQueue () <NSTableViewDelegate, NSSplitViewDelegate, NSWindowDelegate> {
     
     IBOutlet NSView *_customView;
     IBOutlet SLHArgumentsViewController *_argumentsViewController;
@@ -342,5 +342,10 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
     }
 }
 
+#pragma mark - NSWindowDelegate
+
+- (BOOL)windowShouldClose:(id)sender {
+    return (_inProgress) ? NO : YES;
+}
 
 @end
