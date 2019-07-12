@@ -65,6 +65,11 @@
                             <menuItem title="Quit Slash" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.queue.inProgress" id="1lM-Ar-TRl">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </menuItem>
                         </items>
@@ -146,6 +151,15 @@
                             <menuItem title="Export Selected" keyEquivalent="e" id="9fy-Ng-PfI">
                                 <connections>
                                     <action selector="startEncoding:" target="ahF-xq-Cat" id="HUe-pD-7PF"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled2" keyPath="self.queue.inProgress" previousBinding="Zbg-9m-XNe" id="Ef9-gK-ZPd">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="Zbg-9m-XNe"/>
                                 </connections>
                             </menuItem>
@@ -153,12 +167,30 @@
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="startEncoding:" target="ahF-xq-Cat" id="fTJ-Gd-RcI"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled2" keyPath="self.queue.inProgress" previousBinding="Gqf-o9-kjC" id="VcK-3J-5to">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="Gqf-o9-kjC"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add to Queue" keyEquivalent="r" id="Ep6-z4-PeF">
                                 <connections>
                                     <action selector="addToQueue:" target="ahF-xq-Cat" id="hRC-jN-PuP"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled2" keyPath="self.queue.inProgress" previousBinding="M7P-Tc-JXd" id="Rkc-KY-7O6">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="M7P-Tc-JXd"/>
                                 </connections>
                             </menuItem>
@@ -166,6 +198,15 @@
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="addToQueue:" target="ahF-xq-Cat" id="eNh-fl-4f3"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled2" keyPath="self.queue.inProgress" previousBinding="xvw-KI-e3U" id="BLI-mW-ONY">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="xvw-KI-e3U"/>
                                 </connections>
                             </menuItem>
@@ -199,6 +240,11 @@
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.queue.inProgress" id="YYQ-Ds-RBa">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">

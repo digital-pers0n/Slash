@@ -7,13 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class SLHMediaItem;
+@class SLHMediaItem, SLHEncoderQueue;
 
 @interface SLHMainWindowController : NSWindowController
 
 @property SLHMediaItem *currentMediaItem;
 @property (readonly) NSString *lastEncodedMediaFilePath;
 @property (readonly) BOOL hasSegments;
+@property (readonly) SLHEncoderQueue *queue;
 
 - (IBAction)previewSourceFile:(id)sender;
 - (IBAction)previewSegment:(id)sender;
