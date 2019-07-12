@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addEncoderItems:(NSArray <SLHEncoderItem *> *)array;
 
+@property (readonly) BOOL inProgress;
+
 @end
 
 NS_ASSUME_NONNULL_END

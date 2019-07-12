@@ -136,7 +136,12 @@
                         </buttonCell>
                         <connections>
                             <action selector="addToQueue:" target="-2" id="A5I-wn-lFI"/>
-                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="geg-WW-Z6G">
+                            <binding destination="-2" name="enabled" keyPath="self.queue.inProgress" id="UZv-YK-B3N">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" previousBinding="UZv-YK-B3N" id="9rj-44-BdE">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
@@ -502,7 +507,12 @@ CA
                         </buttonCell>
                         <connections>
                             <action selector="startEncoding:" target="-2" id="r9o-Xh-IqJ"/>
-                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="CPv-1F-Z6l">
+                            <binding destination="-2" name="enabled" keyPath="self.queue.inProgress" id="vV9-8T-DOL">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" previousBinding="vV9-8T-DOL" id="GnW-4z-TxE">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>

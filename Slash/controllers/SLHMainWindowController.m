@@ -60,6 +60,8 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 
 }
 
+@property SLHEncoderQueue *queue;
+
 @end
 
 @implementation SLHMainWindowController
@@ -86,6 +88,9 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     
     /* SLHEncoder */
     _encoder = [[SLHEncoder alloc] init];
+    
+    /* SLHEncoderQueue */
+    self.queue = [[SLHEncoderQueue alloc] init];
     
     /* SLHPresetManager */
     _presetManager = [[SLHPresetManager alloc] init];
