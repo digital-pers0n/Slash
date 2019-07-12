@@ -242,25 +242,22 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     
 }
 
+#pragma mark - IBActions
+
 - (IBAction)addToQueue:(id)sender {
     BOOL shouldRemoveItems = (NSApp.currentEvent.modifierFlags & NSAlternateKeyMask);
-    if (!_queue) {
-        _queue = [[SLHEncoderQueue alloc] init];
-    }
     NSArray *items = _arrayController.arrangedObjects;
     for (SLHEncoderItem *i in items) {
         SLHEncoderBaseFormat *fmt = _formats[i.tag];
         fmt.encoderItem = i;
         i.encoderArguments = fmt.arguments;
     }
+    [_queue addEncoderItems:items];
+    
     if (shouldRemoveItems) {
-        [_queue addEncoderItems:items];
         [_arrayController removeObjects:items];
     }
 }
-
-#pragma mark - IBActions
-
 
 - (IBAction)savePreset:(id)sender {
     SLHEncoderBaseFormat *fmt = _formats[_formatsPopUp.indexOfSelectedItem];
