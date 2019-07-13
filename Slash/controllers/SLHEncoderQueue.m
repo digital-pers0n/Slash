@@ -259,15 +259,16 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
         return;
     }
     
-    // Assign codes
-    if (exit_code == 0) {
-        item.encoded = YES;
-        item.failed = NO;
-    } else {
-        item.encoded = NO;
-        item.failed = YES;
-        puts(obj->_log);
-    }
+    dispatch_async(obj->_main_thread, ^{
+        // Check exit code
+        if (exit_code == 0) {
+            item.encoded = YES;
+            item.failed = NO;
+        } else {
+            item.encoded = NO;
+            item.failed = YES;
+        }
+    });
     
     // Append log
     dispatch_sync(obj->_main_thread, ^{

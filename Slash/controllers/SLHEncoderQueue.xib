@@ -77,7 +77,7 @@
                                                                     </connections>
                                                                 </progressIndicator>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" id="nmr-7F-cVo">
-                                                                    <rect key="frame" x="1" y="22" width="291" height="17"/>
+                                                                    <rect key="frame" x="1" y="22" width="267" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Table View Cell" id="Bzj-00-naY">
                                                                         <font key="font" metaFont="system"/>
@@ -88,6 +88,30 @@
                                                                         <binding destination="3S5-K5-rEs" name="value" keyPath="objectValue.name.lastPathComponent" id="M6q-wh-joj"/>
                                                                     </connections>
                                                                 </textField>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LCQ-Ay-jUs">
+                                                                    <rect key="frame" x="274" y="22" width="16" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="ovE-MO-KCm"/>
+                                                                    <connections>
+                                                                        <binding destination="3S5-K5-rEs" name="hidden" keyPath="objectValue.encoded" id="Ox8-fd-0wf">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                    </connections>
+                                                                </imageView>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CWo-Ck-O70">
+                                                                    <rect key="frame" x="274" y="22" width="16" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusUnavailable" id="I3V-P2-xT1"/>
+                                                                    <connections>
+                                                                        <binding destination="3S5-K5-rEs" name="hidden" keyPath="objectValue.failed" id="RrE-rb-bFx">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                    </connections>
+                                                                </imageView>
                                                             </subviews>
                                                             <connections>
                                                                 <outlet property="textField" destination="nmr-7F-cVo" id="vQh-Ob-1uT"/>
@@ -230,7 +254,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-85" y="420"/>
+            <point key="canvasLocation" x="151" y="413"/>
         </window>
         <arrayController objectClassName="SLHEncoderQueueItem" selectsInsertedObjects="NO" id="y12-MD-jyl" userLabel="Encoder Items">
             <declaredKeys>
@@ -287,4 +311,8 @@
             <point key="canvasLocation" x="724.5" y="482"/>
         </scrollView>
     </objects>
+    <resources>
+        <image name="NSStatusAvailable" width="16" height="16"/>
+        <image name="NSStatusUnavailable" width="16" height="16"/>
+    </resources>
 </document>
