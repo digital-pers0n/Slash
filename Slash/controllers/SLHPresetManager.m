@@ -16,6 +16,7 @@
     NSDictionary *_presetsCache;
     NSString *_presetsPath;
     BOOL _hasWindow;
+    BOOL _hasChanges;
     
     IBOutlet NSArrayController *_groupsController;
     IBOutlet NSArrayController *_presetsController;
@@ -46,7 +47,11 @@
             presets = NSMutableDictionary.new;
         }
         _presets = presets;
-        _presetsCache = presets.copy;
+        _presetsCache = NSMutableDictionary.new;
+        
+        for (NSString *key in presets.allKeys) {
+            _presetsCache[key] = [presets[key] copy];
+        }
         _presetsPath = path.copy;
         _hasWindow = NO;
     }
