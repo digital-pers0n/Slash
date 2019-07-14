@@ -144,7 +144,9 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     _player = nil;
     _auxPlayer = nil;
     SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
-    [_presetManager savePresets];
+    if (_presetManager.hasChanges) {
+        [_presetManager savePresets];
+    }
 }
 
 #pragma mark - NSTableView Delegate
