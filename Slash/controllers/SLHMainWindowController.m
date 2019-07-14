@@ -248,6 +248,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 
 - (IBAction)addToQueue:(id)sender {
     BOOL shouldRemoveItems = (NSApp.currentEvent.modifierFlags & NSAlternateKeyMask);
+    [self.window endEditingFor:nil];
     NSArray *items = _arrayController.arrangedObjects;
     for (SLHEncoderItem *i in items) {
         SLHEncoderBaseFormat *fmt = _formats[i.tag];
@@ -272,6 +273,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 
 - (IBAction)startEncoding:(id)sender {
     
+    [self.window endEditingFor:nil];
     NSInteger row = _tableView.selectedRow;
     SLHEncoderItem *item = _arrayController.arrangedObjects[row];
     item.encoderArguments = _formats[item.tag].arguments;
