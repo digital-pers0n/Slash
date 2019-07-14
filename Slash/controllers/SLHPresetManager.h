@@ -23,6 +23,7 @@ extern NSString *const SLHEncoderPresetNameKey;
 - (nullable NSArray <NSDictionary *> *)presetsForName:(NSString *)name;
 - (void)setPresets:(NSArray <NSDictionary *> *)presets forName:(NSString *)name;
 - (void)setPreset:(NSDictionary *)preset forName:(NSString *)name;
+- (BOOL)hasChanges;
 - (void)savePresets;
 
 @end

@@ -13,7 +13,7 @@
 
 @interface SLHPresetManager () <NSTableViewDelegate, NSWindowDelegate> {
     NSMutableDictionary *_presets;
-    NSDictionary *_presetsCache;
+    NSMutableDictionary *_presetsCache;
     NSString *_presetsPath;
     BOOL _hasWindow;
     BOOL _hasChanges;
@@ -110,11 +110,16 @@
     [_presetsController setContent:self.presetsArray];
 }
 
-- (void)savePresets {
-    if (![_presets isEqualToDictionary:_presetsCache]) {
-        if(![_presets writeToFile:_presetsPath atomically:YES]) {
-            fprintf(stderr, "Error: %s - cannot save presets file", __PRETTY_FUNCTION__);
-        }
+- (BOOL)hasChanges {
+    if (!_hasChanges) {
+        _hasChanges = (![_presets isEqualToDictionary:_presetsCache]);
+    }
+    return _hasChanges;
+}
+
+- (void)savePresets {    
+    if(![_presets writeToFile:_presetsPath atomically:YES]) {
+        NSLog(@"Error: %s - cannot write presets to %@", __PRETTY_FUNCTION__, _presetsPath);
     }
 }
 
