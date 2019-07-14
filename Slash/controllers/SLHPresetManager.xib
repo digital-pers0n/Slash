@@ -49,7 +49,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="1XJ-Ca-zWR">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="346"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -118,7 +118,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="BRE-tc-8Nz">
-                                    <rect key="frame" x="0.0" y="0.0" width="367" height="314"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="367" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -235,7 +235,6 @@
                         </buttonCell>
                         <connections>
                             <action selector="importPresets:" target="-2" id="Xne-uf-MVg"/>
-                            <binding destination="6yR-3a-PUV" name="enabled" keyPath="canRemove" id="Blk-lF-xSY"/>
                         </connections>
                     </button>
                 </subviews>
