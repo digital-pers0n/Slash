@@ -267,7 +267,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 }
 
 - (IBAction)showPresetsWindow:(id)sender {
-    [_presetManager.window makeKeyAndOrderFront:nil];
+    [_presetManager showPresetsWindow:nil];
 }
 
 - (IBAction)startEncoding:(id)sender {

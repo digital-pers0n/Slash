@@ -149,6 +149,11 @@
 
 #pragma mark - IBActions
 
+- (void)showPresetsWindow:(id)sender {
+    [self.window makeKeyAndOrderFront:sender];
+    [self updateTableViews];
+}
+
 - (IBAction)duplicatePreset:(id)sender {
     NSInteger row = _presetsTableView.selectedRow;
     NSDictionary *dict = _presetsController.arrangedObjects[row++];

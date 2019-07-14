@@ -432,7 +432,7 @@ static inline NSString *_preampString(NSInteger val) {
 }
 
 - (IBAction)managePresets:(id)sender {
-    [_presetManager.window makeKeyAndOrderFront:nil];
+    [_presetManager showPresetsWindow:nil];
 }
 
 - (IBAction)editSubtitlesStyle:(NSButton *)sender {

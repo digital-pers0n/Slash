@@ -26,6 +26,8 @@ extern NSString *const SLHEncoderPresetNameKey;
 - (BOOL)hasChanges;
 - (void)savePresets;
 
+- (IBAction)showPresetsWindow:(nullable id)sender;
+
 @end
 
 @protocol SLHPresetManagerDelegate <NSObject>
