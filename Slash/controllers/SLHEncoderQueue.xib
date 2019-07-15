@@ -124,6 +124,7 @@
                                                 <binding destination="y12-MD-jyl" name="content" keyPath="arrangedObjects" id="MMr-wC-dyu"/>
                                                 <binding destination="y12-MD-jyl" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="MMr-wC-dyu" id="usE-si-FEJ"/>
                                                 <outlet property="delegate" destination="-2" id="Irw-b7-7rw"/>
+                                                <outlet property="menu" destination="G4K-fV-FNB" id="6wa-iL-n5j"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -308,8 +309,34 @@
                 <rect key="frame" x="276" y="1" width="16" height="418"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
-            <point key="canvasLocation" x="724.5" y="482"/>
+            <point key="canvasLocation" x="680.5" y="486"/>
         </scrollView>
+        <menu autoenablesItems="NO" id="G4K-fV-FNB">
+            <items>
+                <menuItem title="Reveal In Finder" tag="100" id="7NM-Nk-gVT">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="revealInFinder:" target="-2" id="hLl-cG-zFh"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Preview " tag="100" id="gzf-3G-wG1">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="previewSelected:" target="-2" id="xcE-EO-UxN"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Remove" id="37W-nE-H4j">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="removeSelected:" target="-2" id="nbC-6R-fwd"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="7fg-aH-AVM"/>
+            </connections>
+            <point key="canvasLocation" x="611.5" y="182.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSStatusAvailable" width="16" height="16"/>

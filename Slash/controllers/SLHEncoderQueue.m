@@ -12,6 +12,7 @@
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
 #import "SLHEncoderQueueItem.h"
+#import "SLHPreferences.h"
 #import "slh_encoder.h"
 #import "slh_util.h"
 #import "slh_list.h"
