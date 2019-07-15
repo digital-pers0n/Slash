@@ -349,4 +349,18 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
     return (_inProgress) ? NO : YES;
 }
 
+- (void)windowWillClose:(NSNotification *)notification {
+    // Remove encoded items automatically
+    NSArray *allItems = _arrayController.arrangedObjects;
+    NSMutableArray *toRemove = NSMutableArray.new;
+    for (SLHEncoderQueueItem *item in allItems) {
+        if (item.encoded) {
+            [toRemove addObject:item];
+        }
+    }
+    if (toRemove.count) {
+        [_arrayController removeObjects:toRemove];
+    }
+}
+
 @end
