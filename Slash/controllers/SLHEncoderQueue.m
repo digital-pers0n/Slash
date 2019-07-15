@@ -17,7 +17,7 @@
 #import "slh_util.h"
 #import "slh_list.h"
 
-@interface SLHEncoderQueue () <NSTableViewDelegate, NSSplitViewDelegate, NSWindowDelegate> {
+@interface SLHEncoderQueue () <NSTableViewDelegate, NSSplitViewDelegate, NSWindowDelegate, NSMenuDelegate> {
     
     IBOutlet NSView *_customView;
     IBOutlet SLHArgumentsViewController *_argumentsViewController;
@@ -160,6 +160,42 @@
         [_splitView replaceSubview:_logViewContainer with:view];
     } else {
         _showLog(self);
+    }
+}
+
+- (IBAction)revealInFinder:(id)sender {
+    NSInteger idx = _tableView.clickedRow;
+    if (idx > -1) {
+        SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
+        if (queueItem.encoded) {
+            NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
+            [sharedWorkspace selectFile:queueItem.name inFileViewerRootedAtPath:@""];
+        }
+    }
+}
+
+- (IBAction)previewSelected:(id)sender {
+    NSInteger idx = _tableView.clickedRow;
+    if (idx > -1) {
+        SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
+        if (queueItem.encoded) {
+            NSString *mpvPath = SLHPreferences.preferences.mpvPath;
+            if (!mpvPath) {
+                return;
+            }
+            char *cmd;
+            asprintf(&cmd, "%s --no-terminal --loop=yes \"%s\" &", mpvPath.UTF8String, queueItem.name.UTF8String);
+            system(cmd);
+            free(cmd);
+        }
+    }
+}
+
+- (IBAction)removeSelected:(id)sender {
+    NSInteger idx = _tableView.clickedRow;
+    if (idx > -1) {
+        SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
+        [_arrayController removeObject:queueItem];
     }
 }
 
