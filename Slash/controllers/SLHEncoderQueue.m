@@ -400,4 +400,26 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
     }
 }
 
+#pragma mark - NSMenuDelegate
+
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+    NSInteger idx = _tableView.clickedRow;
+    if (idx > -1) {
+        SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
+        NSArray *menuItems = menu.itemArray;
+        for (NSMenuItem *menuItem in menuItems) {
+            if (menuItem.tag == 100) {
+                menuItem.enabled = queueItem.encoded;
+            } else {
+                menuItem.enabled = YES;
+            }
+        }
+    } else {
+        NSArray *menuItems = menu.itemArray;
+        for (NSMenuItem *menuItem in menuItems) {
+            menuItem.enabled = NO;
+        }
+    }
+}
+
 @end
