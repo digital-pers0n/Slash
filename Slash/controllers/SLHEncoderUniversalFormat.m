@@ -13,6 +13,7 @@
 #import "SLHFiltersController.h"
 #import "SLHEncoderItemMetadata.h"
 #import "SLHPreferences.h"
+#import "SLHTextEditor.h"
 
 extern NSString *const SLHEncoderUniversalVideoArgumentsKey;
 extern NSString *const SLHEncoderUniversalAudioArgumentsKey;
@@ -28,6 +29,8 @@ extern NSString *const SLHEncoderMediaThreadsKey;
     NSMutableArray *_dataSource;
     SLHFiltersController *_filters;
     SLHEncoderItem *_encoderItem;
+    SLHTextEditor *_textEditor;
+    NSPopover *_popover;
 }
 
 @property SLHEncoderUniversalOptions *videoArguments;
@@ -49,6 +52,20 @@ extern NSString *const SLHEncoderMediaThreadsKey;
     [super viewDidLoad];
     _filters = [SLHFiltersController filtersController];
     _filters.encoderItem = _encoderItem;
+    _textEditor = SLHTextEditor.new;
+    NSRect frame = NSMakeRect(0, 0, 250, 400);
+    _textEditor.view.frame = frame;
+    
+    NSButton *button = _textEditor.doneButton;
+    button.action = @selector(popoverDone:);
+    button.target = self;
+    button = _textEditor.cancelButton;
+    button.action = @selector(popoverCancel:);
+    button.target = self;
+    
+    _popover = NSPopover.new;
+    _popover.behavior =  NSPopoverBehaviorTransient;
+    _popover.contentViewController = _textEditor;
 }
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
@@ -142,6 +159,22 @@ extern NSString *const SLHEncoderMediaThreadsKey;
     } else {
         NSBeep();
     }
+}
+
+- (IBAction)showTextEditor:(NSButton *)sender {
+    [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
+}
+
+- (IBAction)popoverDone:(id)sender {
+    NSString *string = _textEditor.textView.string;
+    NSArray *array = [string componentsSeparatedByString:@"\n"];
+    [_dataSource addObjectsFromArray:array];
+    [_tableView reloadData];
+    [_popover close];
+}
+
+- (IBAction)popoverCancel:(id)sender {
+    [_popover close];
 }
 
 #pragma mark - NSTableView DataSource
