@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSString *name;
 @property NSUInteger numberOfFrames;
 @property NSUInteger currentFrameNumber;
-@property NSInteger tag;
 @property BOOL encoded;
 @property BOOL failed;
 @property NSString *log;
