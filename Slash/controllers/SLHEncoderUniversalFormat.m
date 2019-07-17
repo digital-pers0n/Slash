@@ -171,6 +171,7 @@ extern NSString *const SLHEncoderMediaThreadsKey;
     [_dataSource addObjectsFromArray:array];
     [_tableView reloadData];
     [_popover close];
+    _textEditor.textView.string = @"";
 }
 
 - (IBAction)popoverCancel:(id)sender {
