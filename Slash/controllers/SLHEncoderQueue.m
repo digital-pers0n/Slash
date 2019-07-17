@@ -100,7 +100,6 @@
 - (void)addEncoderItems:(NSArray<SLHEncoderItem *> *)array {
     [self.window makeKeyAndOrderFront:nil];
     NSMutableArray *objects = [NSMutableArray arrayWithCapacity:array.count];
-    NSUInteger tag = [_arrayController.arrangedObjects count];
     
     for (SLHEncoderItem *i in array) {
         SLHEncoderQueueItem *obj = [SLHEncoderQueueItem new];
@@ -113,13 +112,9 @@
             SLHMediaItemTrack *t = i.mediaItem.tracks[streamIdx];
             obj.numberOfFrames = (interval.end - interval.start) * t.frameRate;
         }
-        obj.tag = tag++;
         [objects addObject:obj];
     }
     [_arrayController addObjects:objects];
-    /* Avoid a bug when NSArrayController sends tableViewSelectionDidChange: messages to a delegate
-       even if the selection is empty. The bug occurs if the allowsEmptySelection property was set to NO in the Interface Builder */
-    [_tableView setAllowsEmptySelection:NO];
 }
 
 #pragma mark - IBActions
