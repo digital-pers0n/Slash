@@ -73,7 +73,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LdD-wj-H6G">
-                                    <rect key="frame" x="464" y="0.0" width="16" height="427"/>
+                                    <rect key="frame" x="465" y="0.0" width="15" height="427"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -136,12 +136,12 @@
                         </buttonCell>
                         <connections>
                             <action selector="addToQueue:" target="-2" id="A5I-wn-lFI"/>
-                            <binding destination="-2" name="enabled" keyPath="self.queue.inProgress" id="UZv-YK-B3N">
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" previousBinding="UZv-YK-B3N" id="9rj-44-BdE">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" previousBinding="UZv-YK-B3N" id="9rj-44-BdE">
+                            <binding destination="-2" name="enabled" keyPath="self.queue.inProgress" id="UZv-YK-B3N">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
@@ -380,7 +380,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="co4-G0-xXs">
-                                                                    <rect key="frame" x="1" y="23" width="34" height="14"/>
+                                                                    <rect key="frame" x="1" y="21" width="34" height="14"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Start:" id="XEZ-H9-n6j">
                                                                         <font key="font" metaFont="smallSystem"/>
@@ -389,7 +389,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="5Af-Nu-inm">
-                                                                    <rect key="frame" x="7" y="3" width="28" height="14"/>
+                                                                    <rect key="frame" x="7" y="4" width="28" height="14"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="End:" id="DCf-fu-X4p">
                                                                         <font key="font" metaFont="smallSystem"/>
@@ -398,7 +398,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" id="vcf-Oj-ffh">
-                                                                    <rect key="frame" x="39" y="20" width="101" height="17"/>
+                                                                    <rect key="frame" x="39" y="18" width="101" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" id="wWX-I2-UHd">
                                                                         <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="down" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="5pk-bD-j1J">
@@ -415,7 +415,7 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" id="jf6-d6-pTe">
-                                                                    <rect key="frame" x="39" y="1" width="101" height="16"/>
+                                                                    <rect key="frame" x="39" y="2" width="101" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" id="cpI-6k-YIZ">
                                                                         <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="down" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" groupingSeparator="," id="SK5-wn-fnM">
@@ -507,12 +507,12 @@ CA
                         </buttonCell>
                         <connections>
                             <action selector="startEncoding:" target="-2" id="r9o-Xh-IqJ"/>
-                            <binding destination="-2" name="enabled" keyPath="self.queue.inProgress" id="vV9-8T-DOL">
+                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" previousBinding="vV9-8T-DOL" id="GnW-4z-TxE">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" previousBinding="vV9-8T-DOL" id="GnW-4z-TxE">
+                            <binding destination="-2" name="enabled" keyPath="self.queue.inProgress" id="vV9-8T-DOL">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
