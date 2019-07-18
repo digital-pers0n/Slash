@@ -73,7 +73,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LdD-wj-H6G">
-                                    <rect key="frame" x="465" y="0.0" width="15" height="427"/>
+                                    <rect key="frame" x="464" y="0.0" width="16" height="427"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -335,6 +335,28 @@
                                     <action selector="presetsPopUpClicked:" target="-2" id="HN4-la-gPg"/>
                                 </connections>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" id="5gD-Nc-EUZ">
+                                <rect key="frame" x="211" y="429" width="78" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Manage..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Yxh-W7-Vb1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showPresetsWindow:" target="-2" id="5Wd-vi-VDc"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="akf-ca-H8o">
+                                <rect key="frame" x="155" y="429" width="60" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vWL-C5-k65">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="savePreset:" target="-2" id="pW0-Zz-hAo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <connections>
                             <binding destination="vks-Yg-j4w" name="hidden" keyPath="canRemove" id="adk-jO-2hk">
