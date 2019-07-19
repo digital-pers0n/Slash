@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, SLHMediaItemStatus) {
 @class SLHMediaItemTrack;
 @class SLHMetadataItem;
 
-@interface SLHMediaItem : NSObject <NSCopying>
+@interface SLHMediaItem : NSObject
 
 /**
  * Create an instance of SLHMediaItem for playing a media file.
