@@ -237,8 +237,12 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
         obj->_statusLineView.string = statusString;
         obj->_pauseButton.state = NSOffState;
     });
-
-
+    
+#ifdef DEBUG
+    puts(obj->_log);
+    printf("==========================================\n Exit Code: %i\n", exit_code);
+#endif
+    
 }
 
 @end
