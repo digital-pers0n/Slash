@@ -62,11 +62,12 @@
 
 - (void)_setUpPlayer {
     _player = malloc(sizeof(Player));
-    NSString *mpvPath = [[NSUserDefaults standardUserDefaults] objectForKey:SLHPreferencesMPVFilePathKey];
+    
+    SLHPreferences *prefs = SLHPreferences.preferences;
+    NSString *mpvPath = prefs.mpvPath;
     if (!mpvPath) { // use default path
         mpvPath = @"/usr/local/bin/mpv";
     }
-    SLHPreferences *prefs = [SLHPreferences preferences];
     NSString *confPath = prefs.mpvConfigPath;
     NSString *scriptPath = prefs.mpvLuaScriptPath;
     const char *args[] = {mpvPath.UTF8String, "--include", confPath.UTF8String, "--script", scriptPath.UTF8String, NULL};

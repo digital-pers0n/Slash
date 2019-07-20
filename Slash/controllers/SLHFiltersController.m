@@ -361,7 +361,7 @@ static inline NSString *_preampString(NSInteger val) {
         NSBeep();
         return;
     }
-    NSString *path = [[NSUserDefaults standardUserDefaults] objectForKey:SLHPreferencesMPVFilePathKey];
+    NSString *path = SLHPreferences.preferences.mpvPath;
     if (!path) {
         path = @"/usr/local/bin/mpv";
     }

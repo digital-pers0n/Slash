@@ -12,9 +12,7 @@
 #import "SLHMediaItem.h"
 #import "SLHMediaItemTrack.h"
 #import "SLHFilterOptions.h"
-
-extern NSString *const SLHPreferencesFFMpegFilePathKey;
-extern NSString *const SLHPreferencesMPVFilePathKey;
+#import "SLHPreferences.h"
 
 @interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate> {
     
@@ -35,8 +33,7 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
 @implementation SLHCropEditor
 
 + (NSRect)cropRectForItem:(SLHEncoderItem *)item {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *path = [defaults objectForKey:SLHPreferencesFFMpegFilePathKey];
+    NSString *path = SLHPreferences.preferences.ffmpegPath;
     if (!path) {
         path = @"/usr/local/bin/ffmpeg";
     }
@@ -75,13 +72,13 @@ extern NSString *const SLHPreferencesMPVFilePathKey;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *path = [defaults objectForKey:SLHPreferencesFFMpegFilePathKey];
+    SLHPreferences *preferences = SLHPreferences.preferences;
+    NSString *path = preferences.ffmpegPath;;
     if (!path) {
         path = @"/usr/local/bin/ffmpeg";
     }
     _ffmpegPath = path;
-    path = [defaults objectForKey:SLHPreferencesMPVFilePathKey];
+    path = preferences.mpvPath;
     if (!path) {
         path = @"/usr/local/bin/mpv";
     }

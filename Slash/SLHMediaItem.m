@@ -51,7 +51,7 @@
         return;
     }
     
-    NSString *ffprobePath = [[NSUserDefaults standardUserDefaults] objectForKey:SLHPreferencesFFProbeFilePathKey];
+    NSString *ffprobePath = SLHPreferences.preferences.ffprobePath;
     _media = malloc(sizeof(Media));
     int ret = media_init(_media, ffprobePath.UTF8String, _filePath.UTF8String);
     
