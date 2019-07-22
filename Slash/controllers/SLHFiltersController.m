@@ -88,6 +88,7 @@ static NSString *const _filterPresetsNameKey = @"Filters";
         _popover = [[NSPopover alloc] init];
         _popover.behavior =  NSPopoverBehaviorTransient;
         _popover.contentViewController = _textEditor;
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(applicationWillClose:) name:NSApplicationWillTerminateNotification object:nil];
     }
     return self;
 }
@@ -99,6 +100,13 @@ static NSString *const _filterPresetsNameKey = @"Filters";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+- (void)applicationWillClose:(NSNotification *)notification {
+    if (_presetManager.hasChanges) {
+        [_presetManager savePresets];
+    }
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark - Methods
