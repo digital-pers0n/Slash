@@ -11,9 +11,8 @@
 #import "SLHPresetNameDialog.h"
 
 
-@interface SLHPresetManager () <NSTableViewDelegate, NSWindowDelegate> {
+@interface SLHPresetManager () <NSTableViewDelegate, NSWindowDelegate, NSTextFieldDelegate> {
     NSMutableDictionary *_presets;
-    NSMutableDictionary *_presetsCache;
     NSString *_presetsPath;
     BOOL _hasWindow;
     BOOL _hasChanges;
@@ -47,11 +46,6 @@
             presets = NSMutableDictionary.new;
         }
         _presets = presets;
-        _presetsCache = NSMutableDictionary.new;
-        
-        for (NSString *key in presets.allKeys) {
-            _presetsCache[key] = [presets[key] copy];
-        }
         _presetsPath = path.copy;
         _hasWindow = NO;
     }
@@ -82,6 +76,7 @@
     if (_hasWindow) {
         [self updateTableViews];
     }
+    _hasChanges = YES;
 }
 
 - (void)setPreset:(NSDictionary *)preset forName:(NSString *)name {
@@ -99,9 +94,11 @@
         dict[SLHEncoderPresetNameKey] = dialog.presetName;
         [array addObject:dict];
         _presets[name] = array;
+        
         if (_hasWindow) {
             [self updateTableViews];
         }
+        _hasChanges = YES;
     }
 }
 
@@ -111,16 +108,15 @@
 }
 
 - (BOOL)hasChanges {
-    if (!_hasChanges) {
-        _hasChanges = (![_presets isEqualToDictionary:_presetsCache]);
-    }
     return _hasChanges;
 }
 
 - (void)savePresets {    
     if(![_presets writeToFile:_presetsPath atomically:YES]) {
         NSLog(@"Error: %s - cannot write presets to %@", __PRETTY_FUNCTION__, _presetsPath);
+        return;
     }
+    _hasChanges = NO;
 }
 
 #pragma mark - Properties
@@ -145,6 +141,7 @@
     }
     NSString *name = _groupsController.arrangedObjects[row];
     _presets[name] = presetsArray;
+    _hasChanges = YES;
 }
 
 #pragma mark - IBActions
@@ -167,6 +164,7 @@
     
     [_presetsController insertObject:dictCopy atArrangedObjectIndex:row];
     [_presetsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    _hasChanges = YES;
 }
 
 - (IBAction)loadPreset:(id)sender {
@@ -216,13 +214,17 @@
             }
         }
         [self updateTableViews];
+        _hasChanges = YES;
     }
 }
 
 #pragma mark - NSTableViewDelegate
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-    [_presetsController setContent:self.presetsArray];
+    NSTableView *table = notification.object;
+    if (table == _groupsTableView) {
+        [_presetsController setContent:self.presetsArray];
+    }
 }
 
 #pragma mark - NSWindowDelegate
@@ -233,6 +235,12 @@
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
     _hasWindow = YES;
+}
+
+#pragma mark - NSTextFieldDelegate 
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+    _hasChanges = YES;
 }
 
 @end

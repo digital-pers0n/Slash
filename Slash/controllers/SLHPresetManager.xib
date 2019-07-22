@@ -151,6 +151,7 @@
                                                             </textFieldCell>
                                                             <connections>
                                                                 <binding destination="Jfh-Py-Mlz" name="value" keyPath="objectValue.encoderPresetName" id="AOz-63-J5f"/>
+                                                                <outlet property="delegate" destination="-2" id="PTh-bl-lfK"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -164,6 +165,7 @@
                                     <connections>
                                         <binding destination="tJC-8l-vp3" name="content" keyPath="arrangedObjects" id="0kw-gG-11u"/>
                                         <binding destination="tJC-8l-vp3" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="0kw-gG-11u" id="0El-4q-Mz0"/>
+                                        <outlet property="delegate" destination="-2" id="sPx-bV-55s"/>
                                     </connections>
                                 </tableView>
                             </subviews>
