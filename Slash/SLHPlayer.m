@@ -55,6 +55,7 @@
             _status = SLHPlayerStatusUnknown;
         }
         [self _setUpPlayer];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(applicationWillClose:) name:NSApplicationWillTerminateNotification object:nil];
 
     }
     return self;
@@ -144,9 +145,21 @@ static void _mpv_exit_cb(void *p, void *ctx) {
     player.hasWindow = NO;
 }
 
+- (void)cleanUp {
+    if (_player) {
+        plr_destroy(_player);
+        free(_player);
+        _player = NULL;
+    }
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
 -(void)dealloc {
-    plr_destroy(_player);
-    free(_player);
+    [self cleanUp];
+}
+
+- (void)applicationWillClose:(NSNotification *)notification {
+    [self cleanUp];
 }
 
 #pragma mark - Methods
