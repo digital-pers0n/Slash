@@ -13,6 +13,7 @@
 #import "SLHMediaItemTrack.h"
 #import "SLHEncoderQueueItem.h"
 #import "SLHPreferences.h"
+#import "SLHPlayer.h"
 #import "slh_encoder.h"
 #import "slh_util.h"
 #import "slh_list.h"
@@ -27,6 +28,7 @@
     IBOutlet NSTextView *_logView;
     IBOutlet NSScrollView *_logViewContainer;
     
+    SLHPlayer *_player;
     
     /* Encoder */
     Encoder *_encoder;
@@ -174,14 +176,22 @@
     if (idx > -1) {
         SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
         if (queueItem.encoded) {
-            NSString *mpvPath = SLHPreferences.preferences.mpvPath;
-            if (!mpvPath) {
+            SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:queueItem.name];
+            if (mediaItem.error) {
+                NSLog(@"%s: %@", __PRETTY_FUNCTION__, mediaItem.error.localizedDescription);
                 return;
             }
-            char *cmd;
-            asprintf(&cmd, "%s --no-terminal --loop=yes \"%s\" &", mpvPath.UTF8String, queueItem.name.UTF8String);
-            system(cmd);
-            free(cmd);
+            if (!_player) {
+                _player = [SLHPlayer playerWithMediaItem:mediaItem];
+
+            } else {
+                [_player replaceCurrentItemWithMediaItem:mediaItem];
+            }
+            if (_player.error) {
+                NSLog(@"%s: Playback error: %@", __PRETTY_FUNCTION__, _player.error.localizedDescription);
+                return;
+            }
+            [_player play];
         }
     }
 }
