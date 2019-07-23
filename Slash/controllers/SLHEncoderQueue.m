@@ -409,7 +409,7 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
     NSInteger idx = _tableView.clickedRow;
-    if (idx > -1) {
+    if (idx > -1 && !(_inProgress)) {
         SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
         NSArray *menuItems = menu.itemArray;
         for (NSMenuItem *menuItem in menuItems) {
