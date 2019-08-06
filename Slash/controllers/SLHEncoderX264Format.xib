@@ -239,7 +239,7 @@
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" id="3Ah-Yt-c54">
-                    <rect key="frame" x="100" y="215" width="92" height="22"/>
+                    <rect key="frame" x="100" y="217" width="92" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="N6J-Ei-ncI">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
