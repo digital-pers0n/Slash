@@ -55,6 +55,7 @@ extern NSString *const SLHEncoderMediaThreadsKey;
     _textEditor = SLHTextEditor.new;
     NSRect frame = NSMakeRect(0, 0, 250, 400);
     _textEditor.view.frame = frame;
+    _textEditor.textView.string = @"";
     
     NSButton *button = _textEditor.doneButton;
     button.action = @selector(popoverDone:);
