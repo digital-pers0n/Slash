@@ -266,7 +266,7 @@
                 <string>tag</string>
             </declaredKeys>
         </arrayController>
-        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AgO-Df-2hd">
+        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-Df-2hd">
             <rect key="frame" x="0.0" y="0.0" width="293" height="420"/>
             <autoresizingMask key="autoresizingMask"/>
             <clipView key="contentView" id="nRm-89-EPv">
