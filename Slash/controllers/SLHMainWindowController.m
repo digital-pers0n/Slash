@@ -231,6 +231,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
         return;
     }
     self.currentMediaItem = mediaItem;
+    [NSDocumentController.sharedDocumentController noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
 }
 
 - (void)didBeginDraggingSession {

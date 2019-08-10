@@ -72,12 +72,13 @@ static inline SLHMediaItem *_createMediaItem(NSString *path) {
     [openPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         
         if (result == NSOKButton) {
-            
-            NSString *path = openPanel.URL.path;
+            NSURL *URL = openPanel.URL;
+            NSString *path = URL.path;
             SLHMediaItem *item;
             if ((item = _createMediaItem(path)) != nil) {
                 self->_mainWindow.currentMediaItem = item;
             }
+            [NSDocumentController.sharedDocumentController noteNewRecentDocumentURL:URL];
         }
         
     }];
