@@ -23,6 +23,7 @@
 - (IBAction)updateOutputFileName:(id)sender;
 - (IBAction)startEncoding:(id)sender;
 - (IBAction)addToQueue:(id)sender;
+- (IBAction)showQueue:(id)sender;
 - (IBAction)showMetadataEditor:(id)sender;
 - (IBAction)savePreset:(id)sender;
 - (IBAction)showPresetsWindow:(id)sender;

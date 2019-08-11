@@ -247,6 +247,10 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 
 #pragma mark - IBActions
 
+- (IBAction)showQueue:(id)sender {
+    [_queue.window makeKeyAndOrderFront:nil];
+}
+
 - (IBAction)addToQueue:(id)sender {
     BOOL shouldRemoveItems = (NSApp.currentEvent.modifierFlags & NSAlternateKeyMask);
     [self.window endEditingFor:nil];

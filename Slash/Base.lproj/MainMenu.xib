@@ -210,6 +210,21 @@
                                     </binding>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Show Queue..." keyEquivalent="R" id="TZc-jf-pcO">
+                                <connections>
+                                    <action selector="showQueue:" target="ahF-xq-Cat" id="s73-Zd-rOs"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled2" keyPath="self.queue.inProgress" previousBinding="Ye3-Pd-zkV" id="uiJ-9j-wH3">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="Ye3-Pd-zkV"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="k2G-dE-znz"/>
                             <menuItem title="Update Summary" keyEquivalent="u" id="dw6-85-yNC">
                                 <connections>
