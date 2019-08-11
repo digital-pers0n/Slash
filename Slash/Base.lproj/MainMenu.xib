@@ -213,6 +213,7 @@
                             <menuItem title="Show Queue..." keyEquivalent="R" id="TZc-jf-pcO">
                                 <connections>
                                     <action selector="showQueue:" target="ahF-xq-Cat" id="s73-Zd-rOs"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="Ye3-Pd-zkV"/>
                                     <binding destination="ahF-xq-Cat" name="enabled2" keyPath="self.queue.inProgress" previousBinding="Ye3-Pd-zkV" id="uiJ-9j-wH3">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -222,7 +223,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="Ye3-Pd-zkV"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="k2G-dE-znz"/>
@@ -243,12 +243,23 @@
                             <menuItem title="Save Preset…" keyEquivalent="s" id="pxx-59-PXV">
                                 <connections>
                                     <action selector="savePreset:" target="ahF-xq-Cat" id="jrd-hi-ajA"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled2" keyPath="self.queue.inProgress" previousBinding="qfu-Kf-dvV" id="nJn-BG-aVf">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.hasSegments" id="qfu-Kf-dvV"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Manage Presets" id="yUX-UZ-fJ4">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showPresetsWindow:" target="ahF-xq-Cat" id="Pef-jg-8yL"/>
+                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.queue.inProgress" id="dcF-BB-Q8n"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="FUe-7V-Hyq"/>
