@@ -28,6 +28,7 @@
 #import "SLHArgumentsViewController.h"
 #import "SLHModalWindowController.h"
 #import "SLHPresetManager.h"
+#import "SLHTextEditor.h"
 
 extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 
@@ -44,6 +45,8 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     NSString *_lastEncodedMediaFilePath;
     SLHEncoder *_encoder;
     SLHEncoderQueue *_queue;
+    SLHTextEditor *_textEditor;
+    NSPopover *_popover;
     
     IBOutlet NSView *_customView;
     IBOutlet NSArrayController *_arrayController;
@@ -246,6 +249,41 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 }
 
 #pragma mark - IBActions
+
+- (IBAction)editOutputFileName:(NSButton *)sender {
+    if (!_popover) {
+        _textEditor = SLHTextEditor.new;
+        NSRect frame = NSMakeRect(0, 0, 500, 200);
+        _textEditor.view.frame = frame;
+        NSButton *button = _textEditor.doneButton;
+        button.action = @selector(popoverDone:);
+        button.target = self;
+        button = _textEditor.cancelButton;
+        button.action = @selector(popoverCancel:);
+        button.target = self;
+        _popover = NSPopover.new;
+        _popover.behavior =  NSPopoverBehaviorTransient;
+        _popover.contentViewController = _textEditor;
+    }
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    _textEditor.textView.string = item.outputFileName;
+    [_popover showRelativeToRect:sender.frame ofView:sender.superview preferredEdge:NSMinYEdge];
+}
+
+
+- (IBAction)popoverDone:(id)sender {
+    NSString *string = _textEditor.textView.string;
+    NSInteger row = _tableView.selectedRow;
+    SLHEncoderItem *item = _arrayController.arrangedObjects[row];
+    item.outputFileName = string;
+    _textEditor.textView.string = @"";
+    [_popover close];
+}
+
+- (IBAction)popoverCancel:(id)sender {
+    [_popover close];
+}
 
 - (IBAction)showQueue:(id)sender {
     [_queue.window makeKeyAndOrderFront:nil];
