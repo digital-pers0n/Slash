@@ -141,6 +141,17 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     return _currentMediaItem;
 }
 
+- (void)setIntervalValue:(id)value forKey:(NSString *)key {
+    
+    if (!_tempEncoderItem || ![_arrayController.arrangedObjects containsObject:_tempEncoderItem]) {
+        _tempEncoderItem = [self _createSegment];
+        [_arrayController addObject:_tempEncoderItem];
+    }
+    
+    [_tempEncoderItem setValue:value forKey:key];
+    [self updateSummary:nil];
+}
+
 #pragma mark - NSWindowDelegate
 
 - (void)windowWillClose:(NSNotification *)notification {
@@ -201,17 +212,11 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 #pragma mark - SLHPlayer Delegate
 
 - (void)player:(SLHPlayer *)p segmentStart:(double)start {
-    if (!_tempEncoderItem || ![_arrayController.arrangedObjects containsObject:_tempEncoderItem]) {
-        _tempEncoderItem = [self _createSegment];
-        [_arrayController addObject:_tempEncoderItem];
-    }
-    _tempEncoderItem.intervalStart = start;
-    [self updateSummary:nil];
+    [self setIntervalValue:@(start) forKey:@"intervalStart"];
 }
 
 - (void)player:(SLHPlayer *)p segmentEnd:(double)end {
-    _tempEncoderItem.intervalEnd = end;
-    [self updateSummary:nil];
+    [self setIntervalValue:@(end) forKey:@"intervalEnd"];
 }
 
 - (void)playerDidEndEditingSegment:(SLHPlayer *)p {
