@@ -1,0 +1,35 @@
+//
+//  MPVExtern.m
+//  Slash
+//
+//  Created by Terminator on 2019/10/12.
+//  Copyright © 2019年 digital-pers0n. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#pragma mark - Commands
+
+NSString * const MPVPlayerCommandLoadFile       = @"loadfile";
+NSString * const MPVPlayerCommandStop           = @"stop";
+
+#pragma mark - Properties
+
+NSString * const MPVPlayerPropertyMute                  = @"mute";
+NSString * const MPVPlayerPropertySpeed                 = @"speed";
+NSString * const MPVPlayerPropertyTimePosition          = @"time-pos";
+NSString * const MPVPlayerPropertyPercentPosition       = @"percent-pos";
+NSString * const MPVPlayerPropertyVolume                = @"volume";
+NSString * const MPVPlayerPropertyPause                 = @"pause";
+NSString * const MPVPlayerPropertyFilename              = @"filename";
+
+#pragma mark - Notifications
+
+NSString * const MPVPlayerWillShutdownNotification          = @"playerWillShutdown";
+NSString * const MPVPlayerWillStartPlaybackNotification     = @"playerWillStartPlayback";
+NSString * const MPVPlayerDidEndPlaybackNotification        = @"playerDidEndPlayback";
+NSString * const MPVPlayerDidLoadFileNotification           = @"playerDidLoadFile";
+NSString * const MPVPlayerDidEnterIdleModeNotification      = @"playerDidEnterIdleMode";
+NSString * const MPVPlayerVideoDidChangeNotification        = @"playerVideoDidChange";
+NSString * const MPVPlayerDidStartSeekNotification          = @"playerDidStartSeek";
+NSString * const MPVPlayerDidRestartPlaybackNotification    = @"playerDidRestartPlayback";

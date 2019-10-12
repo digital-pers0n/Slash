@@ -15,6 +15,7 @@
 		CE0B4E18224A563E00D61D72 /* SLHCropEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */; };
 		CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */; };
 		CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */; };
+		CE0EC704235214930053204B /* MPVExtern.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EC703235214930053204B /* MPVExtern.m */; };
 		CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12044E229995E300C2A145 /* SLHPresetManager.m */; };
 		CE120451229995E300C2A145 /* SLHPresetManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12044F229995E300C2A145 /* SLHPresetManager.xib */; };
 		CE120455229C260A00C2A145 /* SLHEncoderVPXFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120453229C260A00C2A145 /* SLHEncoderVPXFormat.m */; };
@@ -24,6 +25,8 @@
 		CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */; };
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
 		CE1414C7210D32CC00C02B2D /* script.lua in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C3210D31D900C02B2D /* script.lua */; };
+		CE166C5C2351F9FD001AF0CB /* libmpv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE166C5B2351F9FD001AF0CB /* libmpv.dylib */; };
+		CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE166C602351FDD9001AF0CB /* MPVPlayer.m */; };
 		CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */; };
 		CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1DC4162285B09F0086A895 /* SLHLogController.m */; };
 		CE1DC4192285B09F0086A895 /* SLHLogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1DC4172285B09F0086A895 /* SLHLogController.xib */; };
@@ -96,6 +99,7 @@
 		CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHCropEditor.m; path = controllers/SLHCropEditor.m; sourceTree = "<group>"; };
 		CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHCropEditor.xib; path = controllers/SLHCropEditor.xib; sourceTree = "<group>"; };
 		CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		CE0EC703235214930053204B /* MPVExtern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVExtern.m; path = MPVKit/MPVExtern.m; sourceTree = "<group>"; };
 		CE12044D229995E300C2A145 /* SLHPresetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetManager.h; path = controllers/SLHPresetManager.h; sourceTree = "<group>"; };
 		CE12044E229995E300C2A145 /* SLHPresetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetManager.m; path = controllers/SLHPresetManager.m; sourceTree = "<group>"; };
 		CE12044F229995E300C2A145 /* SLHPresetManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHPresetManager.xib; path = controllers/SLHPresetManager.xib; sourceTree = "<group>"; };
@@ -110,6 +114,12 @@
 		CE1414C2210D31D900C02B2D /* mpv.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mpv.conf; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		CE1414C3210D31D900C02B2D /* script.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		CE14612F21654E27006FB241 /* SLHMetadataIdentifiers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHMetadataIdentifiers.h; sourceTree = "<group>"; };
+		CE166C5B2351F9FD001AF0CB /* libmpv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpv.dylib; path = ../../../opt/lib/libmpv.dylib; sourceTree = "<group>"; };
+		CE166C5D2351FCC3001AF0CB /* MPVBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVBase.h; path = MPVKit/MPVBase.h; sourceTree = "<group>"; };
+		CE166C5F2351FDD9001AF0CB /* MPVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayer.h; path = MPVKit/MPVPlayer.h; sourceTree = "<group>"; };
+		CE166C602351FDD9001AF0CB /* MPVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayer.m; path = MPVKit/MPVPlayer.m; sourceTree = "<group>"; };
+		CE166C6423520181001AF0CB /* MPVPlayerCommands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVPlayerCommands.h; path = MPVKit/MPVPlayerCommands.h; sourceTree = "<group>"; };
+		CE166C652352019A001AF0CB /* MPVPlayerProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVPlayerProperties.h; path = MPVKit/MPVPlayerProperties.h; sourceTree = "<group>"; };
 		CE1D484A223FFB5B0026E8C2 /* SLHEncoderX264Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Options.h; path = model/SLHEncoderX264Options.h; sourceTree = "<group>"; };
 		CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderX264Options.m; path = model/SLHEncoderX264Options.m; sourceTree = "<group>"; };
 		CE1DC4152285B09F0086A895 /* SLHLogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHLogController.h; path = controllers/SLHLogController.h; sourceTree = "<group>"; };
@@ -217,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE166C5C2351F9FD001AF0CB /* libmpv.dylib in Frameworks */,
 				CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +238,7 @@
 		CE0B4E1C224A5BE400D61D72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE166C5B2351F9FD001AF0CB /* libmpv.dylib */,
 				CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */,
 			);
 			name = Frameworks;
@@ -292,6 +304,19 @@
 			path = system/mpv;
 			sourceTree = "<group>";
 		};
+		CE166C5E2351FCCF001AF0CB /* MPVKit */ = {
+			isa = PBXGroup;
+			children = (
+				CE166C652352019A001AF0CB /* MPVPlayerProperties.h */,
+				CE166C6423520181001AF0CB /* MPVPlayerCommands.h */,
+				CE166C5D2351FCC3001AF0CB /* MPVBase.h */,
+				CE166C5F2351FDD9001AF0CB /* MPVPlayer.h */,
+				CE166C602351FDD9001AF0CB /* MPVPlayer.m */,
+				CE0EC703235214930053204B /* MPVExtern.m */,
+			);
+			name = MPVKit;
+			sourceTree = "<group>";
+		};
 		CE4D40EB20FE8B9E0066ACE2 = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +337,7 @@
 		CE4D40F620FE8B9E0066ACE2 /* Slash */ = {
 			isa = PBXGroup;
 			children = (
+				CE166C5E2351FCCF001AF0CB /* MPVKit */,
 				CE5998CD219DF8300009FE08 /* model */,
 				CE12EF18219B3BED00F97637 /* controllers */,
 				CE9C0D1A2193583D0089C084 /* views */,
@@ -551,6 +577,7 @@
 				CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */,
 				CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */,
 				CE2365642254C9CC00B324E4 /* SLHEncoder.m in Sources */,
+				CE0EC704235214930053204B /* MPVExtern.m in Sources */,
 				CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
 				CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */,
@@ -564,6 +591,7 @@
 				CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */,
 				CE477235226771F100FF5E0D /* slh_list.c in Sources */,
 				CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */,
+				CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
 				CE239375219CA86F00C21AA7 /* SLHMainWindowController.m in Sources */,
