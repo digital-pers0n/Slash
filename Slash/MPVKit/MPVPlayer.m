@@ -45,21 +45,67 @@ static inline void check_error(int status) {
 
 @implementation MPVPlayer
 
-- (instancetype)init
-{
+- (instancetype)initWithOptions:(NSDictionary<NSString *,NSString *> *)options {
     self = [super init];
     if (self) {
-        if ([self setUp] != 0) {
+        __weak id ref = self;
+        int error = [self setUpUsingBlock:^{
+            [ref loadOptions:options];
+        }];
+        
+        if (error != MPV_ERROR_SUCCESS) {
             _status = MPVPlayerStatusFailed;
         } else {
             _status = MPVPlayerStatusReadyToPlay;
+            [self postInit];
+        }
+
+    }
+    return self;
+}
+
+- (instancetype)initWithConfig:(NSString *)path {
+    self = [super init];
+    if (self) {
+        __weak id ref = self;
+        int error = [self setUpUsingBlock:^{
+            int error = [ref loadConfig:path];
+            if (error != MPV_ERROR_SUCCESS) {
+                NSLog(@"Loading default options.");
+                [ref loadDefaultOptions];
+            }
+        }];
+        
+        if (error != MPV_ERROR_SUCCESS) {
+            _status = MPVPlayerStatusFailed;
+        } else {
+            _status = MPVPlayerStatusReadyToPlay;
+            [self postInit];
         }
     }
     return self;
 }
 
-- (int)setUp {
-    
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        __weak id ref = self;
+        int error = [self setUpUsingBlock:^{
+            [ref loadDefaultOptions];
+        }];
+        
+        if (error != MPV_ERROR_SUCCESS) {
+            _status = MPVPlayerStatusFailed;
+        } else {
+            _status = MPVPlayerStatusReadyToPlay;
+            [self postInit];
+        }
+    }
+    return self;
+}
+
+- (int)createMPVHandle {
     mpv_handle *mpv = mpv_create();
     if (!mpv) {
         
@@ -69,24 +115,14 @@ static inline void check_error(int status) {
                   initWithDomain:MPVPlayerErrorDomain
                   code:MPV_ERROR_GENERIC
                   userInfo:@{NSLocalizedDescriptionKey : @"Cannot create mpv_handle." }];
-        
         return MPV_ERROR_GENERIC;
     }
-    
-    check_error( mpv_set_option_string(mpv, "hwdec", "videotoolbox"));
-#ifdef ENABLE_LEGACY_GPU_SUPPORT
-    check_error( mpv_set_option_string(mpv, "hwdec-image-format", "uyvy422"));
-    //check_error( mpv_set_option_string(mpv, "hwdec-image-format", "rgba16f"));
-#endif
-    check_error( mpv_set_option_string(mpv, "input-default-bindings", "yes"));
-    
-    // for testing!
-    //check_error (mpv_set_option_string(mpv, "input-media-keys", "yes"));
-    check_error( mpv_set_option_string(mpv, "input-cursor", "yes"));
-    check_error( mpv_set_option_string(mpv, "input-vo-keyboard", "yes"));
-    
-    check_error( mpv_request_log_messages(mpv, "info"));
-    int error = mpv_initialize(mpv);
+    _mpv_handle = mpv;
+    return MPV_ERROR_SUCCESS;
+}
+
+- (int)initializeMPVHandle {
+    int error = mpv_initialize(_mpv_handle);
     if (error < 0) {
         
         NSLog(@"Cannot initialize mpv_handle.");
@@ -97,24 +133,77 @@ static inline void check_error(int status) {
                   userInfo:@{ NSLocalizedDescriptionKey :
                                   [NSString stringWithFormat:@"%s\n", mpv_error_string(error)]
                               }];
-        mpv_destroy(mpv);
+        mpv_destroy(_mpv_handle);
+        _mpv_handle = nil;
         return error;
     }
-    
-    check_error( mpv_set_option_string(mpv, "vo", "libmpv"));
-    _mpv_handle = mpv;
-    
-    _observed = [NSMutableDictionary new];
-    
-    _notificationCenter = [NSNotificationCenter defaultCenter];
-    
+    return MPV_ERROR_SUCCESS;
+}
+
+- (void)startEventListener {
     _eventThread = [[NSThread alloc] initWithTarget:self selector:@selector(readEvents) object:nil];
     _eventThread.qualityOfService = QOS_CLASS_UTILITY;
     _eventThread.name = @"com.home.mpvPlayer.EventThread";
     [_eventThread start];
-    
-    return 0;
 }
+
+- (void)loadDefaultOptions {
+    [self setString:@"videotoolbox" forProperty:@"hwdec"];
+    
+    #ifdef ENABLE_LEGACY_GPU_SUPPORT
+    [self setString:@"uyvy422" forProperty:@"hwdec-image-format"];
+    #endif
+    
+    [self setBool:YES forProperty:@"input-default-bindings"];
+    [self setString:@"libmpv" forProperty:@"vo"];
+}
+
+- (int)loadConfig:(NSString *)path {
+    int error = mpv_load_config_file(_mpv_handle, path.UTF8String);
+    if (error < 0) {
+        
+        NSLog(@"Cannot load config file %@", path);
+        
+        _error = [[NSError alloc]
+                  initWithDomain:MPVPlayerErrorDomain
+                  code:error
+                  userInfo:@{ NSLocalizedDescriptionKey :
+                                  [NSString stringWithFormat:@"%s\n", mpv_error_string(error)]
+                              }];
+        return error;
+    }
+    return MPV_ERROR_SUCCESS;
+}
+
+- (void)loadOptions:(NSDictionary *)options {
+    [options enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [self setString:obj forProperty:key];
+    }];
+}
+
+- (int)setUpUsingBlock:(void (^)(void))block {
+    int error = [self createMPVHandle];
+    if (error != MPV_ERROR_SUCCESS) {
+        return error;
+    }
+    
+    block();
+    
+#ifdef DEBUG
+    check_error( mpv_request_log_messages(_mpv_handle, "info") );
+#else
+    check_error( mpv_request_log_messages(_mpv_handle, "error") );
+#endif
+    
+    return [self initializeMPVHandle];
+}
+
+- (void)postInit {
+    _observed = [NSMutableDictionary new];
+    _notificationCenter = [NSNotificationCenter defaultCenter];
+    [self startEventListener];
+}
+
 
 - (void)dealloc
 {

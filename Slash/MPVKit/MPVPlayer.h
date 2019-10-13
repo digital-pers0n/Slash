@@ -21,6 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPVPlayer : NSObject
 
+- (instancetype)initWithOptions:(NSDictionary <NSString *, NSString *> *)options;
+
+/**
+ @param path Must be an absolute file path. If @p path cannot be loaded, the default options are loaded instead.
+ */
+- (instancetype)initWithConfig:(NSString *)path;
+
 @property (nonatomic, readonly, nullable) mpv_handle *mpv_handle;
 @property (readonly, nullable) NSError *error;
 @property (nonatomic, readonly) MPVPlayerStatus status;
