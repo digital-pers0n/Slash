@@ -68,6 +68,7 @@
 		CE8806C42158267900827977 /* slh_media.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8806C22158267900827977 /* slh_media.c */; };
 		CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1C2193583D0089C084 /* SLHDragView.m */; };
 		CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1F219358A40089C084 /* SLHClipView.m */; };
+		CE9C9BD42354B898002A5169 /* MPVOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */; };
 		CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */; };
 		CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */; };
 		CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */; };
@@ -193,6 +194,8 @@
 		CE9C0D1C2193583D0089C084 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHDragView.m; sourceTree = "<group>"; };
 		CE9C0D1E219358A40089C084 /* SLHClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHClipView.h; sourceTree = "<group>"; };
 		CE9C0D1F219358A40089C084 /* SLHClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHClipView.m; sourceTree = "<group>"; };
+		CE9C9BD22354B898002A5169 /* MPVOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVOpenGLView.h; path = MPVKit/MPVOpenGLView.h; sourceTree = "<group>"; };
+		CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVOpenGLView.m; path = MPVKit/MPVOpenGLView.m; sourceTree = "<group>"; };
 		CE9CBCAC228B037A001A8E37 /* SLHArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHArgumentsViewController.h; path = controllers/SLHArgumentsViewController.h; sourceTree = "<group>"; };
 		CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHArgumentsViewController.m; path = controllers/SLHArgumentsViewController.m; sourceTree = "<group>"; };
 		CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHArgumentsViewController.xib; path = controllers/SLHArgumentsViewController.xib; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 				CE166C5D2351FCC3001AF0CB /* MPVBase.h */,
 				CE166C5F2351FDD9001AF0CB /* MPVPlayer.h */,
 				CE166C602351FDD9001AF0CB /* MPVPlayer.m */,
+				CE9C9BD22354B898002A5169 /* MPVOpenGLView.h */,
+				CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */,
 				CE0EC703235214930053204B /* MPVExtern.m */,
 			);
 			name = MPVKit;
@@ -570,6 +575,7 @@
 				CE566A7F215EC93B004E974F /* extern.m in Sources */,
 				CE85A0F622C651830027F742 /* SLHEncoderUniversalFormat.m in Sources */,
 				CE58008E231C13DD000F5384 /* SLHWindowController.m in Sources */,
+				CE9C9BD42354B898002A5169 /* MPVOpenGLView.m in Sources */,
 				CE256B99222D8AC8007B520E /* SLHMetadataEditor.m in Sources */,
 				CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */,
 				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
