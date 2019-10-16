@@ -363,7 +363,7 @@ exit:
 }
 
 - (double)timePosition {
-    return [self boolForProperty:MPVPlayerPropertyTimePosition];
+    return [self doubleForProperty:MPVPlayerPropertyTimePosition];
 }
 
 - (void)setTimePosition:(double)currentTimePosition {
