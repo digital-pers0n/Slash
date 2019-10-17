@@ -11,9 +11,10 @@
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
 
-@interface SLHPlayerViewController () <MPVPropertyObserving>{
+@interface SLHPlayerViewController () <MPVPropertyObserving, NSControlTextEditingDelegate> {
     MPVPlayer *_player;
     double _currentPosition;
+    IBOutlet NSTextField *_textField;
     
     dispatch_queue_t _timer_queue;
     dispatch_source_t _timer;
@@ -77,6 +78,7 @@
     [super viewDidLoad];
     
     _timer_queue = dispatch_get_main_queue();
+    [_textField bind:@"doubleValue" toObject:self withKeyPath:@"self.currentPosition" options:nil];
 }
 
 #pragma mark - IBActions
@@ -115,6 +117,20 @@
         dispatch_cancel(_timer);
         _timer = nil;
     }
+}
+
+
+#pragma mark - NSControlTextEditingDelegate
+
+- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
+    [control unbind:@"doubleValue"];
+    return YES;
+}
+
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
+    _player.timePosition = control.doubleValue;
+    [control bind:@"doubleValue" toObject:self withKeyPath:@"self.currentPosition" options:nil];
+    return YES;
 }
 
 #pragma mark - MPVPropertyObserving
