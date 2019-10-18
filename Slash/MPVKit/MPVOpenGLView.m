@@ -207,8 +207,9 @@ typedef struct mpv_data_ {
 #ifdef MAC_OS_X_VERSION_10_14
     [super update];
 #endif
-    
-    [_glContext update];
+    dispatch_sync(_render_queue, ^{
+        [_glContext update];
+    });
 }
 
 - (void)viewWillStartLiveResize {
