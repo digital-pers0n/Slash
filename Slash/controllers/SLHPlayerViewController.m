@@ -101,7 +101,7 @@
 }
 
 - (IBAction)seek:(id)sender {
-    _player.timePosition = _currentPosition;
+    [_player seekTo:_currentPosition];
 }
 
 #pragma mark - Notifications

@@ -412,6 +412,10 @@ exit:
     [self performCommand:MPVPlayerCommandStop];
 }
 
+- (void)seekTo:(double)time {
+    mpv_command_async( _mpv_handle, 1, (const char * []) { "seek", [NSString stringWithFormat:@"%.3f", time].UTF8String, "absolute+keyframes", NULL } );
+}
+
 - (void)setBool:(BOOL)value forProperty:(NSString *)property {
     int error = mpv_set_value_for_key(_mpv_handle, (int)value, property.UTF8String);
     if (error != MPV_ERROR_SUCCESS) {

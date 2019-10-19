@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) double volume;
 @property (nonatomic, getter=isMuted) BOOL muted;
 
+- (void)seekTo:(double)time;
+
 - (void)shutdown;
 
 #pragma mark - Properties
