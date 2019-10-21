@@ -62,6 +62,12 @@
 		CE58008F231C13DD000F5384 /* SLHWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE58008D231C13DD000F5384 /* SLHWindowController.xib */; };
 		CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */; };
 		CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */; };
+		CE60C53F235E0B7A003DB25F /* libavcodec.58.53.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C53E235E0B7A003DB25F /* libavcodec.58.53.100.dylib */; };
+		CE60C541235E0BFA003DB25F /* libavformat.58.28.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C540235E0BFA003DB25F /* libavformat.58.28.101.dylib */; };
+		CE60C543235E0C10003DB25F /* libavutil.56.30.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C542235E0C10003DB25F /* libavutil.56.30.100.dylib */; };
+		CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C545235E0C47003DB25F /* MPVPlayerItem.m */; };
+		CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */; };
+		CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
 		CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7E11EB22294ADC002C2456 /* SLHEncoderItemOptions.m */; };
 		CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */; };
@@ -185,6 +191,15 @@
 		CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItem.m; path = model/SLHEncoderItem.m; sourceTree = "<group>"; };
 		CE5EBC3422905511009BBAF7 /* SLHEncoderQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderQueueItem.h; path = model/SLHEncoderQueueItem.h; sourceTree = "<group>"; };
 		CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderQueueItem.m; path = model/SLHEncoderQueueItem.m; sourceTree = "<group>"; };
+		CE60C53E235E0B7A003DB25F /* libavcodec.58.53.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.53.100.dylib; path = ../../../opt/lib/libavcodec.58.53.100.dylib; sourceTree = "<group>"; };
+		CE60C540235E0BFA003DB25F /* libavformat.58.28.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.28.101.dylib; path = ../../../opt/lib/libavformat.58.28.101.dylib; sourceTree = "<group>"; };
+		CE60C542235E0C10003DB25F /* libavutil.56.30.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.30.100.dylib; path = ../../../opt/lib/libavutil.56.30.100.dylib; sourceTree = "<group>"; };
+		CE60C544235E0C47003DB25F /* MPVPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItem.h; path = MPVKit/MPVPlayerItem.h; sourceTree = "<group>"; };
+		CE60C545235E0C47003DB25F /* MPVPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayerItem.m; path = MPVKit/MPVPlayerItem.m; sourceTree = "<group>"; };
+		CE60C547235E4E2D003DB25F /* MPVPlayerItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItemTrack.h; path = MPVKit/MPVPlayerItemTrack.h; sourceTree = "<group>"; };
+		CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayerItemTrack.m; path = MPVKit/MPVPlayerItemTrack.m; sourceTree = "<group>"; };
+		CE60C54A235E4EC0003DB25F /* MPVMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVMetadataItem.h; path = MPVKit/MPVMetadataItem.h; sourceTree = "<group>"; };
+		CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVMetadataItem.m; path = MPVKit/MPVMetadataItem.m; sourceTree = "<group>"; };
 		CE65BB0C21066B0500D2CBAA /* slh_process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_process.c; path = system/slh_process.c; sourceTree = "<group>"; };
 		CE65BB0D21066B0500D2CBAA /* slh_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_process.h; path = system/slh_process.h; sourceTree = "<group>"; };
 		CE7E11EA22294ADC002C2456 /* SLHEncoderItemOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderItemOptions.h; path = model/SLHEncoderItemOptions.h; sourceTree = "<group>"; };
@@ -238,6 +253,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE60C543235E0C10003DB25F /* libavutil.56.30.100.dylib in Frameworks */,
+				CE60C541235E0BFA003DB25F /* libavformat.58.28.101.dylib in Frameworks */,
+				CE60C53F235E0B7A003DB25F /* libavcodec.58.53.100.dylib in Frameworks */,
 				CE166C5C2351F9FD001AF0CB /* libmpv.dylib in Frameworks */,
 				CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */,
 			);
@@ -259,6 +277,9 @@
 		CE0B4E1C224A5BE400D61D72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE60C542235E0C10003DB25F /* libavutil.56.30.100.dylib */,
+				CE60C540235E0BFA003DB25F /* libavformat.58.28.101.dylib */,
+				CE60C53E235E0B7A003DB25F /* libavcodec.58.53.100.dylib */,
 				CE166C5B2351F9FD001AF0CB /* libmpv.dylib */,
 				CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */,
 			);
@@ -270,12 +291,10 @@
 			children = (
 				CED85AB621B85CFC00D01B36 /* formats */,
 				CE0B15F623571EA500AE606E /* player */,
+				CEC64095235A0D740009049C /* window */,
 				CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */,
 				CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */,
 				CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */,
-				CE58008B231C13DD000F5384 /* SLHWindowController.h */,
-				CE58008C231C13DD000F5384 /* SLHWindowController.m */,
-				CE58008D231C13DD000F5384 /* SLHWindowController.xib */,
 				CE239372219CA86F00C21AA7 /* SLHMainWindowController.h */,
 				CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */,
 				CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */,
@@ -337,6 +356,12 @@
 				CE9C9BD22354B898002A5169 /* MPVOpenGLView.h */,
 				CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */,
 				CE0EC703235214930053204B /* MPVExtern.m */,
+				CE60C544235E0C47003DB25F /* MPVPlayerItem.h */,
+				CE60C545235E0C47003DB25F /* MPVPlayerItem.m */,
+				CE60C547235E4E2D003DB25F /* MPVPlayerItemTrack.h */,
+				CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */,
+				CE60C54A235E4EC0003DB25F /* MPVMetadataItem.h */,
+				CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */,
 			);
 			name = MPVKit;
 			sourceTree = "<group>";
@@ -468,6 +493,16 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		CEC64095235A0D740009049C /* window */ = {
+			isa = PBXGroup;
+			children = (
+				CE58008B231C13DD000F5384 /* SLHWindowController.h */,
+				CE58008C231C13DD000F5384 /* SLHWindowController.m */,
+				CE58008D231C13DD000F5384 /* SLHWindowController.xib */,
+			);
+			name = window;
+			sourceTree = "<group>";
+		};
 		CED85AB621B85CFC00D01B36 /* formats */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,12 +627,14 @@
 				CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */,
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
+				CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */,
 				CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */,
 				CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */,
 				CE566A7F215EC93B004E974F /* extern.m in Sources */,
 				CE85A0F622C651830027F742 /* SLHEncoderUniversalFormat.m in Sources */,
 				CE58008E231C13DD000F5384 /* SLHWindowController.m in Sources */,
 				CE9C9BD42354B898002A5169 /* MPVOpenGLView.m in Sources */,
+				CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */,
 				CE0B15F023561AD600AE606E /* SLHPlayerView.m in Sources */,
 				CE256B99222D8AC8007B520E /* SLHMetadataEditor.m in Sources */,
 				CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */,
@@ -618,6 +655,7 @@
 				CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */,
 				CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */,
 				CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */,
+				CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */,
 				CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */,
 				CE477235226771F100FF5E0D /* slh_list.c in Sources */,
 				CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */,
