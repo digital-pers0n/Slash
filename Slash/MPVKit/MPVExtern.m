@@ -12,6 +12,8 @@
 
 NSString * const MPVPlayerCommandLoadFile       = @"loadfile";
 NSString * const MPVPlayerCommandStop           = @"stop";
+NSString * const MPVPlayerCommandFrameBackStep  = @"frame-back-step";
+NSString * const MPVPlayerCommandFrameStep      = @"frame-step";
 
 #pragma mark - Properties
 
@@ -22,6 +24,7 @@ NSString * const MPVPlayerPropertyPercentPosition       = @"percent-pos";
 NSString * const MPVPlayerPropertyVolume                = @"volume";
 NSString * const MPVPlayerPropertyPause                 = @"pause";
 NSString * const MPVPlayerPropertyFilename              = @"filename";
+NSString * const MPVPlayerPropertyDuration              = @"duration";
 
 #pragma mark - Notifications
 

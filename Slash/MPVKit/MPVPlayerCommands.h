@@ -17,4 +17,10 @@ extern NSString * const MPVPlayerCommandLoadFile;
 /** stop */
 extern NSString * const MPVPlayerCommandStop;
 
+/** frame-back-step */
+extern NSString * const MPVPlayerCommandFrameBackStep;
+
+/** frame-step */
+extern NSString * const MPVPlayerCommandFrameStep;
+
 #endif /* MPVPlayerCommands_h */
