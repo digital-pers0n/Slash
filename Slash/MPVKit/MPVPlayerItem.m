@@ -7,6 +7,8 @@
 //
 
 #import "MPVPlayerItem.h"
+#import "MPVMetadataItem.h"
+#import "MPVPlayerItemTrack.h"
 #import <libavformat/avformat.h>
 #import <libavutil/avutil.h>
 
@@ -126,7 +128,15 @@ bail:
 }
 
 - (void)readMetadata {
-    _metadata = @[];
+    
+    AVDictionaryEntry *pair = nil;
+    NSMutableArray *result = [NSMutableArray new];
+    
+    while ((pair = av_dict_get(_av_format->metadata, "", pair, AV_DICT_IGNORE_SUFFIX))) {
+        [result addObject:[[MPVMetadataItem alloc] initWithIdentifier:@(pair->key) value:@(pair->value)]];
+    }
+    
+    _metadata = result;
 }
 
 static const char *av_error_string(int error_code) {

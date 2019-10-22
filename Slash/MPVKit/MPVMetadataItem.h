@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPVMetadataItem : NSObject
 
+- (instancetype)initWithIdentifier:(NSString *)identifier value:(NSString *)value;
+
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *value;
+
 @end
 
 NS_ASSUME_NONNULL_END

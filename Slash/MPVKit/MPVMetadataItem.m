@@ -10,4 +10,17 @@
 
 @implementation MPVMetadataItem
 
+- (instancetype)init {
+    return [self initWithIdentifier:@"Empty" value:@"Empty"];
+}
+
+- (instancetype)initWithIdentifier:(NSString *)identifier value:(NSString *)value {
+    self = [super init];
+    if (self) {
+        _identifier = identifier.copy;
+        _value = value.copy;
+    }
+    return self;
+}
+
 @end
