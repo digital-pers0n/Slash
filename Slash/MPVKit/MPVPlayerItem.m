@@ -47,24 +47,35 @@ NSString * const MPVPlayerItemErrorDomain = @"com.home.mpvPlayerItem.ErrorDomain
             return self;
         }
         
-        NSError *err = nil;
-        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:&err];
-        if (err) {
-            NSLog(@"Failed to read file attributes of '%@'\n%@", url, err.localizedDescription);
-            _fileSize = 0;
-        } else {
-            _fileSize = attributes.fileSize;
-        }
-        
         _bitRate = _av_format->bit_rate;
         _duration = _av_format->duration / (double)AV_TIME_BASE;
         _formatName = @(_av_format->iformat->name);
         
+        if (url.fileURL) {
+            
+            NSError *error = nil;
+            NSNumber *value = nil;
+            [url getResourceValue:&value forKey:NSURLFileSizeKey error:&error];
+            
+            if (error) {
+                
+               NSLog(@"Failed to read file size of '%@', using estimate instead\n%@", url, error.localizedDescription);
+                _fileSize = _bitRate * _duration / 8192 * 1024;
+                
+            } else {
+                
+                _fileSize = value.unsignedLongLongValue;
+            }
+            
+        } else {
+            
+            _fileSize = _bitRate * _duration / 8192 * 1024;
+        }
+     
         [self readStreams];
         [self readMetadata];
         
         _status = MPVPlayerItemStatusReadyToPlay;
-        
         
 #ifdef DEBUG
         puts("-------------");
