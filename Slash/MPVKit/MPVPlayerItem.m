@@ -95,8 +95,16 @@ NSString * const MPVPlayerItemErrorDomain = @"com.home.mpvPlayerItem.ErrorDomain
 - (int)createAVFormat {
     
     _av_format = nil;
+    int error;
+    const char *url;
     
-    int error = avformat_open_input(&_av_format, _url.fileSystemRepresentation, nil, nil);
+    if (_url.fileURL) {
+        url = _url.fileSystemRepresentation;
+    } else {
+        url = _url.absoluteString.UTF8String;
+    }
+    
+    error = avformat_open_input(&_av_format, url, nil, nil);
     
     if (error) {
         goto bail;
