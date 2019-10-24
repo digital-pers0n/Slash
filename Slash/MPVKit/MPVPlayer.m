@@ -7,6 +7,7 @@
 //
 
 #import "MPVPlayer.h"
+#import "MPVPlayerItem.h"
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
 #import "MPVBase.h"
@@ -33,7 +34,9 @@ static inline void check_error(int status) {
     }
 }
 
-@interface MPVPlayer ()
+@interface MPVPlayer () {
+    MPVPlayerItem *_currentItem;
+}
 
 @property NSThread *eventThread;
 @property NSNotificationCenter *notificationCenter;
@@ -398,6 +401,22 @@ exit:
 
 - (void)openURL:(NSURL *)url {
     [self performCommand:MPVPlayerCommandLoadFile withArgument:url.absoluteString withArgument:nil];
+    _url = url;
+    _currentItem = nil;
+}
+
+- (MPVPlayerItem *)currentItem {
+    return _currentItem;
+}
+
+- (void)setCurrentItem:(MPVPlayerItem *)currentItem {
+    _url = nil;
+    _currentItem = currentItem;
+    if (currentItem) {
+        [self performCommand:MPVPlayerCommandLoadFile withArgument:currentItem.url.absoluteString];
+    } else {
+        [self stop];
+    }
 }
 
 - (void)play {

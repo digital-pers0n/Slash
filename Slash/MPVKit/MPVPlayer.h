@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerStatus) {
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MPVPropertyObserving;
+@class MPVPlayerItem;
 
 @interface MPVPlayer : NSObject
 
@@ -33,7 +34,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) MPVPlayerStatus status;
 
 - (void)openURL:(NSURL *)url;
+
+
+/** 
+ * @return the url that was passed to @c openURL: method previously, otherwise nil.
+ */
 @property (nonatomic, readonly, nullable) NSURL *url;
+
+/**
+ * @brief Get or set the player's current item
+ * @discussion Use this method for media files that can be represented as MPVPlayerItem class objects
+ * e.g. any supported media files that are not playlists or links to video streaming sites.
+ */
+@property (nonatomic, nullable) MPVPlayerItem *currentItem;
 
 #pragma mark - Playback Control
 
