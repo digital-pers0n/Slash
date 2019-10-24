@@ -64,7 +64,7 @@
 
 - (void)addObserverForPlayer:(MPVPlayer *)player {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(playerWillStartPlayback:) name:MPVPlayerWillStartPlaybackNotification object:player];
+    [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
 }
 
 - (void)createTimerWithInterval:(NSUInteger)seconds {
