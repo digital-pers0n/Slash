@@ -11,10 +11,13 @@
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
 
+#define bindObject(obj, value, keyPath) [obj bind:@#value toObject:self withKeyPath:@#keyPath options:nil]
+
 @interface SLHPlayerViewController () <MPVPropertyObserving, NSControlTextEditingDelegate> {
     MPVPlayer *_player;
     double _currentPosition;
     IBOutlet NSTextField *_textField;
+    IBOutlet NSSlider *_seekBar;
     
     dispatch_queue_t _timer_queue;
     dispatch_source_t _timer;
@@ -78,7 +81,10 @@
     [super viewDidLoad];
     
     _timer_queue = dispatch_get_main_queue();
-    [_textField bind:@"doubleValue" toObject:self withKeyPath:@"self.currentPosition" options:nil];
+    bindObject(_textField, doubleValue, self.currentPosition);
+    bindObject(_seekBar, doubleValue, self.currentPosition);
+    bindObject(_textField, enabled, self.seekable);
+    bindObject(_seekBar, enabled, self.seekable);
 }
 
 #pragma mark - IBActions
@@ -129,7 +135,7 @@
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
     _player.timePosition = control.doubleValue;
-    [control bind:@"doubleValue" toObject:self withKeyPath:@"self.currentPosition" options:nil];
+    bindObject(control, doubleValue, self.currentPosition);
     return YES;
 }
 
