@@ -24,7 +24,8 @@
 }
 
 @property (nonatomic) double duration;
-@property double currentPosition;
+@property (nonatomic) double currentPosition;
+@property (nonatomic) BOOL seekable;
 
 @end
 
@@ -112,10 +113,16 @@
 
 #pragma mark - Notifications
 
-- (void)playerWillStartPlayback:(NSNotification *)n {
-    self.duration = [_player doubleForProperty:MPVPlayerPropertyDuration];
-    [self createTimerWithInterval:1];
-    dispatch_resume(_timer);
+- (void)playerDidLoadFile:(NSNotification *)n {
+    double duration = [_player doubleForProperty:MPVPlayerPropertyDuration];
+    if (duration > 0) {
+        [self createTimerWithInterval:1];
+        dispatch_resume(_timer);
+        self.seekable = YES;
+    } else {
+        self.seekable = NO;
+    }
+    self.duration = duration;
 }
 
 - (void)playerDidEndPlayback:(NSNotification *)n {
