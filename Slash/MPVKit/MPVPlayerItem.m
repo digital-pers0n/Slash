@@ -143,7 +143,15 @@ bail:
 }
 
 - (void)readStreams {
-    _tracks = @[];
+    
+    NSMutableArray *result = [NSMutableArray new];
+    
+    for (int i = 0; i < _av_format->nb_streams; i++) {
+        MPVPlayerItemTrack *track = [[MPVPlayerItemTrack alloc] initWithFormat:_av_format stream:_av_format->streams[i]];
+        [result addObject:track];
+    }
+    
+    _tracks = result;
 }
 
 - (void)readMetadata {
