@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHPlayerViewController">
             <connections>
+                <outlet property="_seekBar" destination="piQ-K1-tlf" id="KZs-3b-c9x"/>
                 <outlet property="_textField" destination="gqT-I7-i3V" id="bg7-al-Uh3"/>
                 <outlet property="videoView" destination="Uj3-cZ-2Ao" id="JrX-9s-s9g"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -30,70 +31,62 @@
                         <slider wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="piQ-K1-tlf">
                             <rect key="frame" x="20" y="42" width="413" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8nu-Bh-cfm"/>
+                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8nu-Bh-cfm"/>
                             <connections>
                                 <action selector="seek:" target="-2" id="Lee-o4-c5O"/>
-                                <binding destination="-2" name="value" keyPath="self.currentPosition" previousBinding="TnN-gO-KN5" id="o1G-XQ-bPO"/>
                                 <binding destination="-2" name="maxValue" keyPath="self.duration" id="TnN-gO-KN5"/>
                             </connections>
                         </slider>
                         <button verticalHuggingPriority="750" misplaced="YES" id="CYF-ZT-sOm">
-                            <rect key="frame" x="409" y="15" width="24" height="22"/>
+                            <rect key="frame" x="409" y="16" width="24" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSEnterFullScreenTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H4c-WF-eBx">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                         </button>
-                        <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">
-                            <rect key="frame" x="18" y="16" width="82" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" placeholderString="99999.999" id="LEP-Fo-vke">
-                                <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt">
-                                    <real key="minimum" value="0.0"/>
-                                </numberFormatter>
-                                <font key="font" size="12" name="Menlo-Regular"/>
-                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                            <connections>
-                                <binding destination="-2" name="maxValue" keyPath="self.duration" id="5gf-Wl-DlS"/>
-                                <outlet property="delegate" destination="-2" id="ne7-VA-mEH"/>
-                            </connections>
-                        </textField>
                         <customView misplaced="YES" id="gPO-Z5-oCu">
                             <rect key="frame" x="121" y="11" width="215" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button toolTip="Mark end segment (O)" verticalHuggingPriority="750" misplaced="YES" id="qFW-gk-UEe">
-                                    <rect key="frame" x="32" y="4" width="24" height="22"/>
+                                    <rect key="frame" x="32" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jwz-0n-Czb">
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameRightFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jwz-0n-Czb">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                         <string key="keyEquivalent">o</string>
                                     </buttonCell>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="D6e-1S-wd4" id="oRZ-3z-UnT"/>
+                                    </connections>
                                 </button>
                                 <button toolTip="Mark start segment (I)" verticalHuggingPriority="750" misplaced="YES" id="t7O-Wg-wbw">
-                                    <rect key="frame" x="5" y="4" width="24" height="22"/>
+                                    <rect key="frame" x="5" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uRQ-7D-gkU">
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameLeftFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uRQ-7D-gkU">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                         <string key="keyEquivalent">i</string>
                                     </buttonCell>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="qFW-gk-UEe" id="pWW-Nx-Dol"/>
+                                    </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" misplaced="YES" id="g39-ft-GFi">
-                                    <rect key="frame" x="158" y="4" width="24" height="22"/>
+                                    <rect key="frame" x="158" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IZT-2h-8we">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                         <string key="keyEquivalent">;</string>
                                     </buttonCell>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="QNh-Fr-sDt" id="OZr-Cz-4KN"/>
+                                    </connections>
                                 </button>
                                 <button toolTip="Step forward (.)" verticalHuggingPriority="750" misplaced="YES" id="pjg-hu-H80">
-                                    <rect key="frame" x="122" y="4" width="24" height="22"/>
+                                    <rect key="frame" x="122" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -102,10 +95,11 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepForward:" target="-2" id="HSq-DI-44p"/>
+                                        <outlet property="nextKeyView" destination="g39-ft-GFi" id="gG9-zg-Fk2"/>
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" misplaced="YES" id="Se5-3n-x8u">
-                                    <rect key="frame" x="95" y="4" width="24" height="22"/>
+                                    <rect key="frame" x="95" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bxL-MM-b49">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -116,10 +110,11 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="play:" target="-2" id="bQ0-Kh-GGL"/>
+                                        <outlet property="nextKeyView" destination="pjg-hu-H80" id="283-dY-FQt"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Step back (,)" verticalHuggingPriority="750" misplaced="YES" id="D6e-1S-wd4">
-                                    <rect key="frame" x="68" y="4" width="24" height="22"/>
+                                    <rect key="frame" x="68" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -128,10 +123,11 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepBack:" target="-2" id="EYk-ZJ-L7Q"/>
+                                        <outlet property="nextKeyView" destination="Se5-3n-x8u" id="iHE-xX-dY6"/>
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" misplaced="YES" id="QNh-Fr-sDt">
-                                    <rect key="frame" x="185" y="4" width="24" height="22"/>
+                                    <rect key="frame" x="185" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LQU-BE-q6L">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -141,6 +137,23 @@ IA
                                 </button>
                             </subviews>
                         </customView>
+                        <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">
+                            <rect key="frame" x="18" y="18" width="82" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" placeholderString="" id="LEP-Fo-vke">
+                                <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt">
+                                    <real key="minimum" value="0.0"/>
+                                </numberFormatter>
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="maxValue" keyPath="self.duration" id="5gf-Wl-DlS"/>
+                                <outlet property="delegate" destination="-2" id="ne7-VA-mEH"/>
+                                <outlet property="nextKeyView" destination="t7O-Wg-wbw" id="fdq-xH-bvI"/>
+                            </connections>
+                        </textField>
                     </subviews>
                 </customView>
             </subviews>
@@ -148,12 +161,13 @@ IA
         </customView>
     </objects>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSEnterFullScreenTemplate" width="15" height="15"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
+        <image name="SLHImageNameLeftFacingBracketTemplate" width="15" height="15"/>
+        <image name="SLHImageNameRightFacingBracketTemplate" width="15" height="15"/>
         <image name="SLHImageNameStartTemplate" width="32" height="32"/>
     </resources>
 </document>
