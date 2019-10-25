@@ -108,7 +108,7 @@
 }
 
 - (IBAction)seek:(id)sender {
-    [_player seekTo:_currentPosition];
+    [_player seekTo:[sender doubleValue]];
 }
 
 #pragma mark - Notifications
