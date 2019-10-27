@@ -158,6 +158,7 @@ static inline void check_error(int status) {
     #endif
     
     [self setBool:YES forProperty:@"input-default-bindings"];
+    [self setBool:YES forProperty:@"keep-open"];
     [self setString:@"libmpv" forProperty:@"vo"];
 }
 
