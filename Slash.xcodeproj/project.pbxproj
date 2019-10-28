@@ -62,9 +62,9 @@
 		CE58008F231C13DD000F5384 /* SLHWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE58008D231C13DD000F5384 /* SLHWindowController.xib */; };
 		CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */; };
 		CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */; };
-		CE60C53F235E0B7A003DB25F /* libavcodec.58.53.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C53E235E0B7A003DB25F /* libavcodec.58.53.100.dylib */; };
-		CE60C541235E0BFA003DB25F /* libavformat.58.28.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C540235E0BFA003DB25F /* libavformat.58.28.101.dylib */; };
-		CE60C543235E0C10003DB25F /* libavutil.56.30.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C542235E0C10003DB25F /* libavutil.56.30.100.dylib */; };
+		CE60C53F235E0B7A003DB25F /* libavcodec.58.59.102.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C53E235E0B7A003DB25F /* libavcodec.58.59.102.dylib */; };
+		CE60C541235E0BFA003DB25F /* libavformat.58.33.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C540235E0BFA003DB25F /* libavformat.58.33.100.dylib */; };
+		CE60C543235E0C10003DB25F /* libavutil.56.35.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C542235E0C10003DB25F /* libavutil.56.35.101.dylib */; };
 		CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C545235E0C47003DB25F /* MPVPlayerItem.m */; };
 		CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */; };
 		CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */; };
@@ -191,9 +191,9 @@
 		CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItem.m; path = model/SLHEncoderItem.m; sourceTree = "<group>"; };
 		CE5EBC3422905511009BBAF7 /* SLHEncoderQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderQueueItem.h; path = model/SLHEncoderQueueItem.h; sourceTree = "<group>"; };
 		CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderQueueItem.m; path = model/SLHEncoderQueueItem.m; sourceTree = "<group>"; };
-		CE60C53E235E0B7A003DB25F /* libavcodec.58.53.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.53.100.dylib; path = ../../../opt/lib/libavcodec.58.53.100.dylib; sourceTree = "<group>"; };
-		CE60C540235E0BFA003DB25F /* libavformat.58.28.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.28.101.dylib; path = ../../../opt/lib/libavformat.58.28.101.dylib; sourceTree = "<group>"; };
-		CE60C542235E0C10003DB25F /* libavutil.56.30.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.30.100.dylib; path = ../../../opt/lib/libavutil.56.30.100.dylib; sourceTree = "<group>"; };
+		CE60C53E235E0B7A003DB25F /* libavcodec.58.59.102.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.59.102.dylib; path = ../../../opt/lib/libavcodec.58.59.102.dylib; sourceTree = "<group>"; };
+		CE60C540235E0BFA003DB25F /* libavformat.58.33.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.33.100.dylib; path = ../../../opt/lib/libavformat.58.33.100.dylib; sourceTree = "<group>"; };
+		CE60C542235E0C10003DB25F /* libavutil.56.35.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.35.101.dylib; path = ../../../opt/lib/libavutil.56.35.101.dylib; sourceTree = "<group>"; };
 		CE60C544235E0C47003DB25F /* MPVPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItem.h; path = MPVKit/MPVPlayerItem.h; sourceTree = "<group>"; };
 		CE60C545235E0C47003DB25F /* MPVPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayerItem.m; path = MPVKit/MPVPlayerItem.m; sourceTree = "<group>"; };
 		CE60C547235E4E2D003DB25F /* MPVPlayerItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItemTrack.h; path = MPVKit/MPVPlayerItemTrack.h; sourceTree = "<group>"; };
@@ -253,9 +253,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE60C543235E0C10003DB25F /* libavutil.56.30.100.dylib in Frameworks */,
-				CE60C541235E0BFA003DB25F /* libavformat.58.28.101.dylib in Frameworks */,
-				CE60C53F235E0B7A003DB25F /* libavcodec.58.53.100.dylib in Frameworks */,
+				CE60C543235E0C10003DB25F /* libavutil.56.35.101.dylib in Frameworks */,
+				CE60C541235E0BFA003DB25F /* libavformat.58.33.100.dylib in Frameworks */,
+				CE60C53F235E0B7A003DB25F /* libavcodec.58.59.102.dylib in Frameworks */,
 				CE166C5C2351F9FD001AF0CB /* libmpv.dylib in Frameworks */,
 				CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */,
 			);
@@ -277,9 +277,9 @@
 		CE0B4E1C224A5BE400D61D72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE60C542235E0C10003DB25F /* libavutil.56.30.100.dylib */,
-				CE60C540235E0BFA003DB25F /* libavformat.58.28.101.dylib */,
-				CE60C53E235E0B7A003DB25F /* libavcodec.58.53.100.dylib */,
+				CE60C542235E0C10003DB25F /* libavutil.56.35.101.dylib */,
+				CE60C540235E0BFA003DB25F /* libavformat.58.33.100.dylib */,
+				CE60C53E235E0B7A003DB25F /* libavcodec.58.59.102.dylib */,
 				CE166C5B2351F9FD001AF0CB /* libmpv.dylib */,
 				CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */,
 			);
@@ -730,7 +730,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/include;
 				LIBRARY_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -770,7 +770,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/include;
 				LIBRARY_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
