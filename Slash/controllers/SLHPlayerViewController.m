@@ -13,7 +13,7 @@
 
 #define bindObject(obj, value, keyPath) [obj bind:@#value toObject:self withKeyPath:@#keyPath options:nil]
 
-@interface SLHPlayerViewController () <MPVPropertyObserving, NSControlTextEditingDelegate> {
+@interface SLHPlayerViewController () <MPVPropertyObserving, NSControlTextEditingDelegate, SLHSliderCellMouseTrackingDelegate> {
     MPVPlayer *_player;
     double _currentPosition;
     IBOutlet NSTextField *_textField;
@@ -86,6 +86,8 @@
     bindObject(_seekBar, doubleValue, self.currentPosition);
     bindObject(_textField, enabled, self.seekable);
     bindObject(_seekBar, enabled, self.seekable);
+    SLHSliderCell *sliderCell = _seekBar.cell;
+    sliderCell.delegate = self;
 }
 
 #pragma mark - IBActions
@@ -150,6 +152,22 @@
 
 - (void)player:(MPVPlayer *)player didChangeValue:(id)value forProperty:(NSString *)property format:(mpv_format)format {
     
+}
+
+#pragma mark - SLHSliderCellMouseTracking
+
+- (void)sliderCellMouseUp:(SLHSliderCell *)cell {
+    _player.timePosition = cell.doubleValue;
+    dispatch_resume(_timer);
+    
+}
+
+- (void)sliderCellMouseDown:(SLHSliderCell *)cell {
+    dispatch_suspend(_timer);
+}
+
+- (void)sliderCellMouseDragged:(SLHSliderCell *)cell {
+    [_player seekTo:cell.doubleValue];
 }
 
 #pragma mark - dispatch source timer handler

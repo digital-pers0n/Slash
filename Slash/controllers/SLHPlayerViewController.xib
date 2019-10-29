@@ -31,9 +31,8 @@
                         <slider wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="piQ-K1-tlf">
                             <rect key="frame" x="20" y="42" width="413" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8nu-Bh-cfm"/>
+                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8nu-Bh-cfm" customClass="SLHSliderCell"/>
                             <connections>
-                                <action selector="seek:" target="-2" id="Lee-o4-c5O"/>
                                 <binding destination="-2" name="maxValue" keyPath="self.duration" id="TnN-gO-KN5"/>
                             </connections>
                         </slider>

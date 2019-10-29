@@ -68,6 +68,7 @@
 		CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C545235E0C47003DB25F /* MPVPlayerItem.m */; };
 		CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */; };
 		CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */; };
+		CE6467212368865D0048162D /* SLHSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6467202368865D0048162D /* SLHSliderCell.m */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
 		CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7E11EB22294ADC002C2456 /* SLHEncoderItemOptions.m */; };
 		CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */; };
@@ -200,6 +201,8 @@
 		CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayerItemTrack.m; path = MPVKit/MPVPlayerItemTrack.m; sourceTree = "<group>"; };
 		CE60C54A235E4EC0003DB25F /* MPVMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVMetadataItem.h; path = MPVKit/MPVMetadataItem.h; sourceTree = "<group>"; };
 		CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVMetadataItem.m; path = MPVKit/MPVMetadataItem.m; sourceTree = "<group>"; };
+		CE64671F2368865D0048162D /* SLHSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHSliderCell.h; sourceTree = "<group>"; };
+		CE6467202368865D0048162D /* SLHSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHSliderCell.m; sourceTree = "<group>"; };
 		CE65BB0C21066B0500D2CBAA /* slh_process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_process.c; path = system/slh_process.c; sourceTree = "<group>"; };
 		CE65BB0D21066B0500D2CBAA /* slh_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_process.h; path = system/slh_process.h; sourceTree = "<group>"; };
 		CE7E11EA22294ADC002C2456 /* SLHEncoderItemOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderItemOptions.h; path = model/SLHEncoderItemOptions.h; sourceTree = "<group>"; };
@@ -489,6 +492,8 @@
 				CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */,
 				CE0B15EE23561AD600AE606E /* SLHPlayerView.h */,
 				CE0B15EF23561AD600AE606E /* SLHPlayerView.m */,
+				CE64671F2368865D0048162D /* SLHSliderCell.h */,
+				CE6467202368865D0048162D /* SLHSliderCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -628,6 +633,7 @@
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
 				CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */,
+				CE6467212368865D0048162D /* SLHSliderCell.m in Sources */,
 				CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */,
 				CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */,
 				CE566A7F215EC93B004E974F /* extern.m in Sources */,
