@@ -75,6 +75,9 @@
 }
 
 - (void)createTimerWithInterval:(NSUInteger)seconds {
+    if (_timer) {
+        dispatch_cancel(_timer);
+    }
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _timer_queue);
     dispatch_set_context(_timer, (__bridge void*)self);
     dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC, 0.5 * NSEC_PER_SEC);
