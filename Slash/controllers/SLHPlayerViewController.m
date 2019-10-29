@@ -7,6 +7,8 @@
 //
 
 #import "SLHPlayerViewController.h"
+#import "SLHSliderCell.h"
+
 #import "MPVPlayer.h"
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
@@ -69,6 +71,7 @@
 - (void)addObserverForPlayer:(MPVPlayer *)player {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
+    [nc addObserver:self selector:@selector(playerDidEndPlayback:) name:MPVPlayerDidEndPlaybackNotification object:player];
 }
 
 - (void)createTimerWithInterval:(NSUInteger)seconds {
