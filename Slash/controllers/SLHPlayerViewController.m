@@ -10,6 +10,7 @@
 #import "SLHSliderCell.h"
 
 #import "MPVPlayer.h"
+#import "MPVPlayerItem.h"
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
 
@@ -28,6 +29,7 @@
 @property (nonatomic) double duration;
 @property (nonatomic) double currentPosition;
 @property (nonatomic) BOOL seekable;
+@property (nonatomic) NSNotificationCenter *notificationCenter;
 
 @end
 
@@ -35,6 +37,15 @@
 
 - (NSString *)nibName {
     return self.className;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _notificationCenter = [NSNotificationCenter defaultCenter];
+    }
+    return self;
 }
 
 #pragma mark - Properties
@@ -65,11 +76,11 @@
 #pragma mark - Methods
 
 - (void)removeObserverForPlayer:(MPVPlayer *)player {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:player];
+    [_notificationCenter removeObserver:self name:nil object:player];
 }
 
 - (void)addObserverForPlayer:(MPVPlayer *)player {
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSNotificationCenter *nc = _notificationCenter;
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
     [nc addObserver:self selector:@selector(playerDidEndPlayback:) name:MPVPlayerDidEndPlaybackNotification object:player];
 }
