@@ -8,11 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class MPVPlayer;
+
+extern NSString * const SLHPlayerViewControllerDidChangeInMarkNotification;
+extern NSString * const SLHPlayerViewControllerDidChangeOutMarkNotification;
 
 @interface SLHPlayerViewController : NSViewController
 
 @property (nullable) MPVPlayer *player;
 @property (nullable) IBOutlet NSView *videoView;
+@property (readonly) double inMark;
+@property (readonly) double outMark;
 
 @end
+
+NS_ASSUME_NONNULL_END

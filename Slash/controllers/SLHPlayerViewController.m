@@ -117,6 +117,29 @@
     [_player performCommand:MPVPlayerCommandFrameStep];
 }
 
+- (IBAction)inMark:(id)sender {
+    
+    _inMark = _player.timePosition;
+    [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeInMarkNotification object:self userInfo:nil];
+    
+    if (_inMark > _outMark) {
+        _outMark = _player.currentItem.duration;
+        [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeOutMarkNotification object:self userInfo:nil];
+    }
+}
+
+- (IBAction)outMark:(id)sender {
+    
+    _outMark = _player.timePosition;
+    [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeOutMarkNotification object:self userInfo:nil];
+    
+    if (_outMark < _inMark) {
+        _inMark = 0;
+        [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeInMarkNotification object:self userInfo:nil];
+    }
+
+}
+
 - (IBAction)play:(id)sender {
     BOOL state = [_player boolForProperty:MPVPlayerPropertyPause];
     if (state) {

@@ -113,3 +113,8 @@ NSString *const SLHEncoderFiltersAdditionalAudioFiltersKey    = @"additionalAudi
 #pragma mark - SLHMainWindowController
 
 NSString *const SLHMainWinodwEncoderFormatDidChange = @"encoderFormatDidChange";
+
+#pragma mark - SLHPlayerViewController Notifications
+
+NSString * const SLHPlayerViewControllerDidChangeInMarkNotification = @"playerViewControllerDidChangeInMark";
+NSString * const SLHPlayerViewControllerDidChangeOutMarkNotification = @"playerViewControllerDidChangeOutMark";

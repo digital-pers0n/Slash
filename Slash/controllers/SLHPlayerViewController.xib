@@ -57,6 +57,7 @@
                                         <string key="keyEquivalent">o</string>
                                     </buttonCell>
                                     <connections>
+                                        <action selector="outMark:" target="-2" id="zWB-RQ-iAK"/>
                                         <outlet property="nextKeyView" destination="D6e-1S-wd4" id="oRZ-3z-UnT"/>
                                     </connections>
                                 </button>
@@ -69,6 +70,7 @@
                                         <string key="keyEquivalent">i</string>
                                     </buttonCell>
                                     <connections>
+                                        <action selector="inMark:" target="-2" id="iu7-9V-ppR"/>
                                         <outlet property="nextKeyView" destination="qFW-gk-UEe" id="pWW-Nx-Dol"/>
                                     </connections>
                                 </button>
