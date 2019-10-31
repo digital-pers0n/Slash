@@ -140,6 +140,16 @@
 
 }
 
+- (IBAction)loopPlayback:(id)sender {
+    if ([sender state] == NSOnState) {
+        [_player setDouble:_inMark forProperty:MPVPlayerPropertyABLoopA];
+        [_player setDouble:_outMark forProperty:MPVPlayerPropertyABLoopB];
+        _player.timePosition = _inMark;
+    } else {
+        [_player setString:@"no" forProperty:MPVPlayerPropertyABLoopA];
+    }
+}
+
 - (IBAction)play:(id)sender {
     BOOL state = [_player boolForProperty:MPVPlayerPropertyPause];
     if (state) {

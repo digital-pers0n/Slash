@@ -25,6 +25,8 @@ NSString * const MPVPlayerPropertyVolume                = @"volume";
 NSString * const MPVPlayerPropertyPause                 = @"pause";
 NSString * const MPVPlayerPropertyFilename              = @"filename";
 NSString * const MPVPlayerPropertyDuration              = @"duration";
+NSString * const MPVPlayerPropertyABLoopA               = @"ab-loop-a";
+NSString * const MPVPlayerPropertyABLoopB               = @"ab-loop-b";
 
 #pragma mark - Notifications
 

@@ -35,4 +35,10 @@ extern NSString * const MPVPlayerPropertyFilename;
 /** duration */
 extern NSString * const MPVPlayerPropertyDuration;
 
+/** ab-loop-a */
+extern NSString * const MPVPlayerPropertyABLoopA;
+
+/** ab-loop-b */
+extern NSString * const MPVPlayerPropertyABLoopB;
+
 #endif /* MPVPlayerProperties_h */
