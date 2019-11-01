@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger, SLHMediaItemStatus) {
 @class SLHMediaItemTrack;
 @class SLHMetadataItem;
 
+/** @deprecated Use MPVPlayerItem instead */
+__attribute__((deprecated))
 @interface SLHMediaItem : NSObject
 
 /**

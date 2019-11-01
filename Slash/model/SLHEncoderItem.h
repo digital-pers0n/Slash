@@ -21,9 +21,13 @@ typedef struct time_interval {
 
 @interface SLHEncoderItem : NSObject <NSCopying>
 
-- (instancetype)initWithMediaItem:(SLHMediaItem *)item;
-- (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath;
+/** @deprecated Use MPVPlayerItem instead */
+- (instancetype)initWithMediaItem:(SLHMediaItem *)item __attribute__((deprecated));
 
+/** @deprecated Use MPVPlayerItem instead */
+- (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath __attribute__((deprecated));
+
+/** @deprecated Use MPVPlayerItem instead */
 @property SLHMediaItem *mediaItem;
 @property NSString *outputPath;
 @property NSString *outputFileName;
