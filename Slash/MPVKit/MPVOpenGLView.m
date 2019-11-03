@@ -33,6 +33,7 @@ typedef struct mpv_data_ {
     NSOpenGLContext *_glContext;
     dispatch_queue_t _render_queue;
     dispatch_queue_t _main_queue;
+    dispatch_queue_t _resize_queue;
     mpv_data _mpv;
 }
 
@@ -99,6 +100,10 @@ typedef struct mpv_data_ {
                                                                          DISPATCH_QUEUE_SERIAL,
                                                                          QOS_CLASS_USER_INTERACTIVE, 0);
     _render_queue = dispatch_queue_create("com.home.MPVOpenGLView.render-queue", attr);
+    attr = dispatch_queue_attr_make_with_qos_class(
+                                                   DISPATCH_QUEUE_CONCURRENT,
+                                                   QOS_CLASS_USER_INTERACTIVE, 0);
+    _resize_queue = dispatch_queue_create("com.home.MPVOpenGLView.resize-queue", attr);
     _main_queue = dispatch_get_main_queue();
     _glContext = self.openGLContext;
     _mpv.cgl_context = _glContext.CGLContextObj;
@@ -192,7 +197,7 @@ typedef struct mpv_data_ {
 #pragma mark - Overrides
 
 - (void)reshape {
-    
+
 #ifdef MAC_OS_X_VERSION_10_14
     [super reshape];
 #endif
@@ -207,19 +212,15 @@ typedef struct mpv_data_ {
 #ifdef MAC_OS_X_VERSION_10_14
     [super update];
 #endif
-    dispatch_sync(_render_queue, ^{
-        [_glContext update];
-    });
+    [_glContext update];
 }
 
 - (void)viewWillStartLiveResize {
     
     if (_mpv.render_context) {
-        self.wantsLayer = YES;
-        self.layer.drawsAsynchronously = YES;
+
         self.canDrawConcurrently = YES;
         mpv_render_context_set_update_callback(_mpv.render_context, &render_live_resize_callback, (__bridge void *)self );
-        [_glContext update];
     }
 }
 
@@ -227,35 +228,17 @@ typedef struct mpv_data_ {
     
     if (_mpv.render_context) {
         self.canDrawConcurrently = NO;
-        self.layer.drawsAsynchronously = NO;
         mpv_render_context_set_update_callback(_mpv.render_context, &render_context_callback, (__bridge void *)self );
-        self.needsDisplay = YES;
+        [self reshape];
+        [_glContext update];
     }
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
     
     if (_mpv.render_context) {
-        
-        if ([NSThread isMainThread]) {  // if main thread -
-            
-            if (self.inLiveResize) {    // use async drawing to avoid blocking during live resize
-                
-                resize_async(self);
-                
-            } else {
-                
-                if (self.wantsLayer) {
-                    
-                    self.wantsLayer = NO; // disable layer and draw a frame immediatly to avoid flickering
-                    resize_sync(self);
-                }
-            }
-            
-        } else {
-            
+        if (self.inLiveResize) {
             resize_sync(self);
-            
         }
     }
 }
@@ -313,6 +296,7 @@ static void render_context_callback(void *ctx) {
 
 #pragma mark live resize
 
+__unused
 static inline void resize_async(__unsafe_unretained MPVOpenGLView *obj) {
     dispatch_async_f(obj->_render_queue, &obj->_mpv, &resize);
 }
@@ -321,15 +305,22 @@ static inline void resize_sync(__unsafe_unretained MPVOpenGLView *obj) {
     dispatch_sync_f(obj->_render_queue, &obj->_mpv, &resize);
 }
 
-
 static void resize(void *ctx) {
     mpv_data *obj = ctx;
     
     CGLLockContext(obj->cgl_context);
     {
         CGLSetCurrentContext(obj->cgl_context);
-        mpv_render_context_render(obj->render_context, obj->render_params);
+        mpv_opengl_fbo fbo = obj->opengl_fbo;
+        int flag = 1;
         
+        mpv_render_param params[] = {
+            { .type = MPV_RENDER_PARAM_OPENGL_FBO, .data = &fbo },
+            { .type = MPV_RENDER_PARAM_FLIP_Y,     .data = &flag },
+            { 0 } };
+        
+        mpv_render_context_render(obj->render_context, params);
+
 #ifdef ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT
         CGLFlushDrawable(obj->cgl_context);
 #else
@@ -340,13 +331,13 @@ static void resize(void *ctx) {
     CGLUnlockContext(obj->cgl_context);
 }
 
-static void live_resize(MPVOpenGLView *obj) {
-    [obj setNeedsDisplay:YES];
+static void live_resize( __unsafe_unretained MPVOpenGLView *obj) {
+    resize_sync(obj);
 }
 
 static void render_live_resize_callback(void *ctx) {
     MPVOpenGLView *obj = (__bridge id)ctx;
-    dispatch_async_f(obj->_main_queue, ctx, (void *)live_resize);
+    dispatch_async_f(obj->_resize_queue, ctx, (void *)live_resize);
 }
 
 @end
