@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 @class SLHMediaItem;
+@class MPVPlayerItem;
 
 @interface SLHEncoderItemMetadata : NSObject <NSCopying>
 
+/** @deprecated Use MPVPlayerItem instead */
 - (instancetype)initWithMediaItem:(SLHMediaItem *)item;
+- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item;
 
 @property NSString *artist;
 @property NSString *title;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class SLHEncoderItemOptions, SLHFilterOptions, SLHEncoderItemMetadata;
+@class MPVPlayerItem;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,6 +30,12 @@ typedef struct time_interval {
 
 /** @deprecated Use MPVPlayerItem instead */
 @property SLHMediaItem *mediaItem;
+
+- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item;
+- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item outputPath:(NSString *)outputMediaPath;
+
+@property (nonatomic) MPVPlayerItem *playerItem;
+
 @property NSString *outputPath;
 @property NSString *outputFileName;
 @property NSString *container;

@@ -13,6 +13,8 @@
 #import "SLHFilterOptions.h"
 #import "SLHEncoderItemMetadata.h"
 
+#import "MPVPlayerItem.h"
+
 @implementation SLHEncoderItem
 
 #pragma mark - NSCopying
@@ -21,6 +23,8 @@
     SLHEncoderItem *item = [[self.class allocWithZone:zone] init];
     
     item->_mediaItem = _mediaItem;
+    item->_playerItem = _playerItem;
+    
     item->_outputPath = _outputPath.copy;
     item->_container = _container.copy;
     

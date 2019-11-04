@@ -10,6 +10,8 @@
 #import "SLHMediaItem.h"
 #import "SLHMetadataItem.h"
 #import "SLHMetadataIdentifiers.h"
+#import "MPVPlayerItem.h"
+#import "MPVMetadataItem.h"
 
 @implementation SLHEncoderItemMetadata
 
@@ -32,6 +34,42 @@
     _title = @"";
     _comment = @"";
     _date = @"";
+    return self;
+}
+
+- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item {
+    self = [super init];
+    if (self) {
+        NSArray *array = item.metadata;
+        NSMutableDictionary *mdata = [NSMutableDictionary new];
+        for (MPVMetadataItem *m in array) {
+            mdata[m.identifier.lowercaseString] = m.value;
+        }
+        
+        NSString *value = mdata[SLHMetadataIdentifierArtist];
+        if (value) {
+            _artist = value;
+        }
+        
+        value = mdata[SLHMetadataIdentifierTitle];
+        if (!value) {
+            value = item.url.path.lastPathComponent.stringByDeletingPathExtension;
+            if (!value) {
+                value = @"";
+            }
+        }
+        _title = value;
+        
+        value = mdata[SLHMetadataIdentifierDate];
+        if (value) {
+            _date = value;
+        }
+        
+        value = mdata[SLHMetadataIdentifierComment];
+        if (value) {
+            _comment = value;
+        }
+    }
     return self;
 }
 
