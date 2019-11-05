@@ -75,6 +75,7 @@
 		CE85A0F622C651830027F742 /* SLHEncoderUniversalFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85A0F422C651830027F742 /* SLHEncoderUniversalFormat.m */; };
 		CE85A0F722C651830027F742 /* SLHEncoderUniversalFormat.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE85A0F522C651830027F742 /* SLHEncoderUniversalFormat.xib */; };
 		CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85A0F922C657E40027F742 /* SLHEncoderUniversalOptions.m */; };
+		CE8628242371B0A700E0909F /* SLHTrimView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8628232371B0A700E0909F /* SLHTrimView.m */; };
 		CE8806C42158267900827977 /* slh_media.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8806C22158267900827977 /* slh_media.c */; };
 		CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1C2193583D0089C084 /* SLHDragView.m */; };
 		CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1F219358A40089C084 /* SLHClipView.m */; };
@@ -214,6 +215,8 @@
 		CE85A0F522C651830027F742 /* SLHEncoderUniversalFormat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderUniversalFormat.xib; path = controllers/SLHEncoderUniversalFormat.xib; sourceTree = "<group>"; };
 		CE85A0F822C657E40027F742 /* SLHEncoderUniversalOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderUniversalOptions.h; path = model/SLHEncoderUniversalOptions.h; sourceTree = "<group>"; };
 		CE85A0F922C657E40027F742 /* SLHEncoderUniversalOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderUniversalOptions.m; path = model/SLHEncoderUniversalOptions.m; sourceTree = "<group>"; };
+		CE8628222371B0A700E0909F /* SLHTrimView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTrimView.h; sourceTree = "<group>"; };
+		CE8628232371B0A700E0909F /* SLHTrimView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTrimView.m; sourceTree = "<group>"; };
 		CE8806C22158267900827977 /* slh_media.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_media.c; path = system/slh_media.c; sourceTree = "<group>"; };
 		CE8806C32158267900827977 /* slh_media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_media.h; path = system/slh_media.h; sourceTree = "<group>"; };
 		CE9C0D1B2193583D0089C084 /* SLHDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHDragView.h; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 		CE9C0D1A2193583D0089C084 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CE8628222371B0A700E0909F /* SLHTrimView.h */,
+				CE8628232371B0A700E0909F /* SLHTrimView.m */,
 				CE3893EB227B3D4A004BC3A2 /* SLHStatusLineView.h */,
 				CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */,
 				CEA35A28224B866D008583AF /* SLHImageView.h */,
@@ -679,6 +684,7 @@
 				CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */,
 				CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */,
 				CE120459229C2AEE00C2A145 /* SLHEncoderVPXOptions.m in Sources */,
+				CE8628242371B0A700E0909F /* SLHTrimView.m in Sources */,
 				CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
