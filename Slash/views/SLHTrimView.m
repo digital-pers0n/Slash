@@ -45,7 +45,7 @@
     NSRect activeArea = NSInsetRect(cellFrame, SLHKnobWidth, 4);
     path = [NSBezierPath bezierPathWithRoundedRect:activeArea xRadius:2 yRadius:2];
 
-    [[NSColor windowBackgroundColor] set];
+    [[NSColor selectedControlColor] set];
     [path fill];
 
 }
@@ -348,6 +348,11 @@ static char minValueKVOContext;
 
 - (void)drawRect:(NSRect)dirtyRect {
 
+    [[NSColor controlShadowColor] set];
+    NSBezierPath *path;
+    path = [NSBezierPath bezierPathWithRoundedRect:_oldFrame xRadius:3 yRadius:3];
+    [path stroke];
+    
     CGFloat startMark = (_startValue) / _maxValue * NSWidth(_maxSelectionFrame);
     CGFloat endMark = _endValue / _maxValue * NSWidth(_maxSelectionFrame);
     _cellFrame.origin.x = round(startMark);
