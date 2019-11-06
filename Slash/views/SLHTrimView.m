@@ -290,11 +290,13 @@ static char minValueKVOContext;
     if (result & SLHCellHitLeftKnob) {
         double deltaY = -event.scrollingDeltaY / NSWidth(_maxSelectionFrame) * _maxValue;
         self.startValue = _startValue + deltaY;
+        [self updateValue:@(_startValue) forBinding:@"startValue"];
         return;
     }
     if (result & SLHCellHitRightKnob) {
         double deltaY = -event.scrollingDeltaY / NSWidth(_maxSelectionFrame) * _maxValue;
         self.endValue = _endValue + deltaY;
+        [self updateValue:@(_endValue) forBinding:@"endValue"];
         return;
     }
     [self.superview scrollWheel:event];
