@@ -65,6 +65,12 @@ typedef struct time_interval {
 @property double intervalStart;
 @property double intervalEnd;
 
+/** Duration of a segment (seconds) */
+@property (readonly, nonatomic) double duration;
+
+/** Estimated output file size (bytes) */
+@property (readonly, nonatomic) uint64_t estimatedSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,6 +15,13 @@
 
 #import "MPVPlayerItem.h"
 
+@interface SLHEncoderItem ()
+
+@property (nonatomic) double duration;
+@property (nonatomic) uint64_t estimatedSize;
+
+@end
+
 @implementation SLHEncoderItem
 
 #pragma mark - NSCopying
@@ -156,6 +163,9 @@
 
 - (void)setIntervalStart:(double)val {
     _interval.start = val;
+    
+    self.estimatedSize = (_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192 * 1024;
+    self.duration = _interval.end - _interval.start;
 }
 
 - (double)intervalEnd {
@@ -164,6 +174,9 @@
 
 - (void)setIntervalEnd:(double)val {
     _interval.end = val;
+    
+    self.estimatedSize = (_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192 * 1024;
+    self.duration = _interval.end - _interval.start;
 }
 
 - (NSString *)outputFileName {
