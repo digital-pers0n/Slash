@@ -377,9 +377,7 @@ static char minValueKVOContext;
 #pragma mark NSTableView Support
 
 - (void)prepareForReuse {
-    [_bindingInfo.copy enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
-        [self unbind:key];
-    }];
+
     self.maxValue = 1;
     self.endValue = _maxValue;
     self.minValue = 0;
