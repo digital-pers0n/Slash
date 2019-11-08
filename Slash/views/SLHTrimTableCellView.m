@@ -17,13 +17,13 @@
     if (!objectValue) { return; }
     SLHEncoderItem *obj = objectValue;
     
-    [_trimView bind:@"startValue" toObject:obj withKeyPath:@"intervalStart" options:nil];
-    [_trimView bind:@"endValue" toObject:obj withKeyPath:@"intervalEnd" options:nil];
     [_trimView bind:@"maxValue" toObject:obj withKeyPath:@"playerItem.duration" options:nil];
- 
+        [_trimView bind:@"endValue" toObject:obj withKeyPath:@"intervalEnd" options:nil];
+    [_trimView bind:@"startValue" toObject:obj withKeyPath:@"intervalStart" options:nil];
+
     _trimView.maxValue = obj.playerItem.duration;
-    _trimView.startValue = obj.intervalStart;
     _trimView.endValue = obj.intervalEnd;
+    _trimView.startValue = obj.intervalStart;
 }
 
 - (void)dealloc {
