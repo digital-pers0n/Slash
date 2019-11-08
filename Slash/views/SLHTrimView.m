@@ -378,9 +378,11 @@ static char minValueKVOContext;
 
 - (void)prepareForReuse {
 
-    self.maxValue = 1;
-    self.endValue = _maxValue;
-    self.minValue = 0;
+    _maxValue = 1;
+    _endValue = _maxValue;
+    _startValue = 0;
+    _minValue = 0;
+
     [super prepareForReuse];
 }
 
