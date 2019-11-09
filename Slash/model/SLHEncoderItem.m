@@ -54,6 +54,34 @@
 
 #pragma mark - Initialize
 
+- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item outputPath:(NSString *)outputMediaPath {
+    self = [super init];
+    if (self) {
+        _playerItem = item;
+        _outputPath = outputMediaPath;
+        _subtitlesStreamIndex = -1;
+        _videoStreamIndex = -1;
+        _audioStreamIndex = -1;
+        _twoPassEncoding = NO;
+        _videoOptions = [SLHEncoderItemOptions new];
+        _audioOptions = [SLHEncoderItemOptions new];
+        _filters = [SLHFilterOptions new];
+        _filters.subtitlesStyle = @"FontName=Helvetica,FontSize=14,PrimaryColour=&H00000000,BackColour=&H40FFFFFF,BorderStyle=4,Shadow=2,Outline=0";
+        _filters.additionalVideoFiltersString = @"";
+        _filters.additionalAudioFiltersString = @"";
+        _metadata = [[SLHEncoderItemMetadata alloc] initWithPlayerItem:item];
+    }
+    return self;
+}
+
+- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item {
+    NSString *path = item.url.path;
+    NSString *ext = path.pathExtension;
+    path = [path stringByDeletingPathExtension];
+    path = [NSString stringWithFormat:@"%@_%lu.%@", path, time(0), ext];
+    return [self initWithPlayerItem:item outputPath:path];
+}
+
 - (instancetype)initWithMediaItem:(SLHMediaItem *)item outputPath:(NSString *)outputMediaPath {
     self = [super init];
     if (self) {
