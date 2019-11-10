@@ -81,6 +81,8 @@
 		CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1C2193583D0089C084 /* SLHDragView.m */; };
 		CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1F219358A40089C084 /* SLHClipView.m */; };
 		CE9C9BD42354B898002A5169 /* MPVOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */; };
+		CE9CA40123787FE4005CF368 /* SLHDisclosureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA40023787FE4005CF368 /* SLHDisclosureView.m */; };
+		CE9CA40423788350005CF368 /* SLHStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA40323788350005CF368 /* SLHStackView.m */; };
 		CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */; };
 		CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */; };
 		CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */; };
@@ -228,6 +230,10 @@
 		CE9C0D1F219358A40089C084 /* SLHClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHClipView.m; sourceTree = "<group>"; };
 		CE9C9BD22354B898002A5169 /* MPVOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVOpenGLView.h; path = MPVKit/MPVOpenGLView.h; sourceTree = "<group>"; };
 		CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVOpenGLView.m; path = MPVKit/MPVOpenGLView.m; sourceTree = "<group>"; };
+		CE9CA3FF23787FE4005CF368 /* SLHDisclosureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHDisclosureView.h; sourceTree = "<group>"; };
+		CE9CA40023787FE4005CF368 /* SLHDisclosureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHDisclosureView.m; sourceTree = "<group>"; };
+		CE9CA40223788350005CF368 /* SLHStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHStackView.h; sourceTree = "<group>"; };
+		CE9CA40323788350005CF368 /* SLHStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHStackView.m; sourceTree = "<group>"; };
 		CE9CBCAC228B037A001A8E37 /* SLHArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHArgumentsViewController.h; path = controllers/SLHArgumentsViewController.h; sourceTree = "<group>"; };
 		CE9CBCAD228B037A001A8E37 /* SLHArgumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHArgumentsViewController.m; path = controllers/SLHArgumentsViewController.m; sourceTree = "<group>"; };
 		CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHArgumentsViewController.xib; path = controllers/SLHArgumentsViewController.xib; sourceTree = "<group>"; };
@@ -486,6 +492,10 @@
 		CE9C0D1A2193583D0089C084 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CE9CA40223788350005CF368 /* SLHStackView.h */,
+				CE9CA40323788350005CF368 /* SLHStackView.m */,
+				CE9CA3FF23787FE4005CF368 /* SLHDisclosureView.h */,
+				CE9CA40023787FE4005CF368 /* SLHDisclosureView.m */,
 				CE4B6E3E2372C900006561AE /* SLHTrimTableCellView.h */,
 				CE4B6E3F2372C900006561AE /* SLHTrimTableCellView.m */,
 				CE8628222371B0A700E0909F /* SLHTrimView.h */,
@@ -677,6 +687,7 @@
 				CE477235226771F100FF5E0D /* slh_list.c in Sources */,
 				CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */,
 				CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */,
+				CE9CA40423788350005CF368 /* SLHStackView.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
 				CE239375219CA86F00C21AA7 /* SLHMainWindowController.m in Sources */,
@@ -688,6 +699,7 @@
 				CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */,
 				CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */,
 				CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */,
+				CE9CA40123787FE4005CF368 /* SLHDisclosureView.m in Sources */,
 				CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */,
 				CE120459229C2AEE00C2A145 /* SLHEncoderVPXOptions.m in Sources */,
 				CE8628242371B0A700E0909F /* SLHTrimView.m in Sources */,
