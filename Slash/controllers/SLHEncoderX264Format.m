@@ -116,7 +116,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     _crfView.hidden = YES;
     _crfView.frame = _bitrateView.frame;
     _crfView.autoresizingMask = _bitrateView.autoresizingMask;
-    [_videoView addSubview:_crfView];
+    [_bitrateView.superview addSubview:_crfView];
 
 }
 
