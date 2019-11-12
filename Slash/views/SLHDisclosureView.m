@@ -149,7 +149,6 @@ static IMP get_method_address(id target, SEL selector) {
             _buttonCell.stringValue = @"Hide";
             _closed = NO;
         } else {
-            puts("Closed");
             _buttonCell.stringValue = @"Show";
             _closed = YES;
         }

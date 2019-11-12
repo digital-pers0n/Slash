@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) IBInspectable NSString *title;
 @property (nonatomic, nullable) IBOutlet NSView *contentView;
-@property (nonatomic, nullable, weak) id <SLHDisclosureViewDelegate> delegate;
+@property (nonatomic, nullable, weak) IBOutlet id <SLHDisclosureViewDelegate> delegate;
 
 @end
 
