@@ -17,439 +17,536 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="258"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY" customClass="SLHStackView">
+            <rect key="frame" x="0.0" y="0.0" width="245" height="418"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <userGuides>
+                <userLayoutGuide location="77" affinity="minX"/>
+                <userLayoutGuide location="237" affinity="minX"/>
+            </userGuides>
             <subviews>
-                <popUpButton verticalHuggingPriority="750" id="lOW-J4-2Qz">
-                    <rect key="frame" x="251" y="219" width="86" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="GGk-Mn-r2x">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" id="uWO-Ts-1HE"/>
-                    </popUpButtonCell>
+                <customView id="UA6-B1-ZFW" customClass="SLHDisclosureView">
+                    <rect key="frame" x="0.0" y="280" width="245" height="138"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <customView id="Ffm-9f-mmT">
+                            <rect key="frame" x="0.0" y="0.0" width="245" height="118"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <userGuides>
+                                <userLayoutGuide location="12" affinity="minY"/>
+                            </userGuides>
+                            <subviews>
+                                <textField verticalHuggingPriority="750" id="x2w-aq-uyj">
+                                    <rect key="frame" x="77" y="35" width="149" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="H2y-vj-tGn">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="s1O-s6-dVc">
+                                            <real key="minimum" value="0.0"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <action selector="widthDidChange:" target="-2" id="6pB-KJ-gFM"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="plE-pK-PKi"/>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="fMQ-Ns-tl6"/>
+                                    </connections>
+                                </textField>
+                                <button toolTip="Keep aspect ratio" id="PCV-a8-nxI">
+                                    <rect key="frame" x="74" y="55" width="89" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Keep Aspect" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="Gxr-u7-blx">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="YMC-j5-8iu"/>
+                                        <binding destination="-2" name="value" keyPath="self.keepAspectRatio" id="NW3-cP-pq9"/>
+                                    </connections>
+                                </button>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Qs0-7A-eNz">
+                                    <rect key="frame" x="39" y="101" width="38" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Quality" id="ZIE-rK-O0f">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nlG-32-c0R">
+                                    <rect key="frame" x="40" y="15" width="36" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Height" id="OFk-cm-PDj">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <popUpButton verticalHuggingPriority="750" id="lOW-J4-2Qz">
+                                    <rect key="frame" x="74" y="95" width="166" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="GGk-Mn-r2x">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <menu key="menu" id="uWO-Ts-1HE"/>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="qualityDidChange:" target="-2" id="VUL-D4-DbA"/>
+                                    </connections>
+                                </popUpButton>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="JHs-GN-E3A">
+                                    <rect key="frame" x="224" y="10" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="I2e-kH-Jhb"/>
+                                    <connections>
+                                        <action selector="heightDidChange:" target="-2" id="v93-gW-b0w"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="kNa-tQ-DMk"/>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="kiH-Ns-f5w"/>
+                                    </connections>
+                                </stepper>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="eQk-2q-pg3">
+                                    <rect key="frame" x="224" y="33" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="cYX-FB-Dl4"/>
+                                    <connections>
+                                        <action selector="widthDidChange:" target="-2" id="px5-M6-BSN"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="60Y-cf-WW9"/>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="vE4-ie-gVD"/>
+                                    </connections>
+                                </stepper>
+                                <button id="aVY-bX-q9n">
+                                    <rect key="frame" x="74" y="71" width="84" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Scale Video" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="Nmr-RI-bi8">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.scale" id="yYT-eg-9Xc"/>
+                                    </connections>
+                                </button>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Pxr-5q-Q4u">
+                                    <rect key="frame" x="43" y="38" width="33" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Width" id="5y4-yu-fQ5">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="3rR-mb-GPc">
+                                    <rect key="frame" x="8" y="91" width="229" height="5"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <font key="titleFont" metaFont="system"/>
+                                </box>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ELa-fe-FbT">
+                                    <rect key="frame" x="20" y="73" width="55" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Resolution" id="Hhm-J8-VwB">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" id="eY5-4i-Dzk">
+                                    <rect key="frame" x="77" y="12" width="149" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="kNf-37-bZr">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="DZd-XO-745">
+                                            <real key="minimum" value="0.0"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <action selector="heightDidChange:" target="-2" id="L0q-hf-uuM"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="4ds-h8-0bd"/>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="ad5-pZ-BRe"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                        </customView>
+                    </subviews>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Video Parameters"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="qualityDidChange:" target="-2" id="VUL-D4-DbA"/>
+                        <outlet property="contentView" destination="Ffm-9f-mmT" id="hET-pg-oy1"/>
+                        <outlet property="delegate" destination="Hz6-mo-xeY" id="1wZ-na-DDO"/>
                     </connections>
-                </popUpButton>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Qs0-7A-eNz">
-                    <rect key="frame" x="193" y="224" width="55" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Quality:" id="ZIE-rK-O0f">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button id="xjB-vb-qjI">
-                    <rect key="frame" x="32" y="221" width="123" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Two pass encoding" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="hF4-3y-dV4">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                    </buttonCell>
+                </customView>
+                <customView id="eYw-LA-aD5" customClass="SLHDisclosureView">
+                    <rect key="frame" x="0.0" y="0.0" width="245" height="280"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <userGuides>
+                        <userLayoutGuide location="12" affinity="minY"/>
+                    </userGuides>
+                    <subviews>
+                        <customView id="hGL-3j-1uu">
+                            <rect key="frame" x="0.0" y="0.0" width="245" height="260"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <subviews>
+                                <textField verticalHuggingPriority="750" id="0Yp-zl-GbR">
+                                    <rect key="frame" x="77" y="188" width="149" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="zNg-1G-y6k">
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="20J-hA-yBF">
+                                            <real key="minimum" value="0.0"/>
+                                            <real key="maximum" value="63"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Sbs-Cw-snD"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="GDk-Xx-PZx"/>
+                                    </connections>
+                                </textField>
+                                <textField verticalHuggingPriority="750" id="7rC-i0-S57">
+                                    <rect key="frame" x="77" y="51" width="149" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="HDd-B0-Vhl">
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="era-Qg-09E">
+                                            <real key="minimum" value="0.0"/>
+                                            <real key="maximum" value="25"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="ipR-Fh-fL1"/>
+                                    </connections>
+                                </textField>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cqm-Wk-jhc">
+                                    <rect key="frame" x="224" y="186" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="63" doubleValue="4" id="7iO-aW-dTA"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Nmz-6R-eeH"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="sDj-0d-4Lg"/>
+                                    </connections>
+                                </stepper>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="tlc-NT-LBn">
+                                    <rect key="frame" x="224" y="49" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="25" id="zZu-Fp-TG7"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="WNm-qi-cRu"/>
+                                    </connections>
+                                </stepper>
+                                <textField verticalHuggingPriority="750" id="ZGc-Dv-3kM">
+                                    <rect key="frame" x="77" y="12" width="149" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="nUE-lV-yXq">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="tam-Ef-SX9">
+                                            <real key="minimum" value="0.0"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxGopSize" id="BHO-59-vQd"/>
+                                    </connections>
+                                </textField>
+                                <slider verticalHuggingPriority="750" id="5Jl-pC-BQE">
+                                    <rect key="frame" x="77" y="129" width="160" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" doubleValue="-7.5210000000000008" tickMarkPosition="above" sliderType="linear" id="OxG-Al-GDj"/>
+                                    <connections>
+                                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="PBc-LA-RDy"/>
+                                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="PBc-LA-RDy" id="cfP-AI-Huk"/>
+                                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="cfP-AI-Huk" id="Oug-RD-mcg"/>
+                                    </connections>
+                                </slider>
+                                <textField verticalHuggingPriority="750" id="HLc-cq-vO2">
+                                    <rect key="frame" x="77" y="149" width="149" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="9YR-7G-Dvt">
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="wmC-JQ-O2a">
+                                            <real key="minimum" value="0.0"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="bLm-LE-KiR"/>
+                                    </connections>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6Pr-jy-J1n">
+                                    <rect key="frame" x="36" y="170" width="40" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bitrate" id="UxB-st-YvI">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cZQ-hF-QZX">
+                                    <rect key="frame" x="224" y="147" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="50000" id="FFD-pw-Ooa"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="hMY-9t-jLp"/>
+                                    </connections>
+                                </stepper>
+                                <slider verticalHuggingPriority="750" id="Keq-01-Lak">
+                                    <rect key="frame" x="77" y="31" width="160" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="10000" doubleValue="250" tickMarkPosition="above" sliderType="linear" id="rwI-k0-pWe"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxGopSize" id="N9Q-eq-eeH"/>
+                                    </connections>
+                                </slider>
+                                <button id="hi4-ej-Vb4">
+                                    <rect key="frame" x="74" y="225" width="82" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="CRF-Based" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="31j-rp-iY2">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.options.enableCRF" id="eKS-7t-2Hn"/>
+                                    </connections>
+                                </button>
+                                <button id="fm1-Cj-8VP">
+                                    <rect key="frame" x="74" y="87" width="136" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Alternate Ref. Frames" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="gHv-EN-yMo">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.options.enableAltRef" id="H1s-as-Vlq"/>
+                                    </connections>
+                                </button>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="AgI-wD-chr">
+                                    <rect key="frame" x="3" y="72" width="73" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Lag In Frames" id="rIi-2h-ycs">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider verticalHuggingPriority="750" id="poz-74-G0R">
+                                    <rect key="frame" x="77" y="70" width="160" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="25" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="hqW-tl-gsU"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="clK-r7-CAk"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" id="wgY-ka-FqC">
+                                    <rect key="frame" x="77" y="168" width="160" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="20000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="SKf-oH-fny"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="xBa-DT-gx0"/>
+                                    </connections>
+                                </slider>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="2aK-mm-2yJ">
+                                    <rect key="frame" x="224" y="108" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" id="SFe-jS-4fS"/>
+                                    <connections>
+                                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="uz3-1f-s6R"/>
+                                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="uz3-1f-s6R" id="1Zr-Zd-3oG"/>
+                                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="1Zr-Zd-3oG" id="c3n-cA-7q0"/>
+                                    </connections>
+                                </stepper>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="yYM-zb-Acf">
+                                    <rect key="frame" x="224" y="10" width="15" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="HV9-l7-wgk"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxGopSize" id="3Ml-V9-vGq"/>
+                                    </connections>
+                                </stepper>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wjh-b1-BUa">
+                                    <rect key="frame" x="1" y="33" width="75" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Max GOP Size" id="UAq-5J-m4f">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <button id="xjB-vb-qjI">
+                                    <rect key="frame" x="74" y="243" width="71" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Two Pass" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="hF4-3y-dV4">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.options.twoPass" id="LKq-U5-gJA"/>
+                                    </connections>
+                                </button>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Dpp-2J-5ef">
+                                    <rect key="frame" x="15" y="90" width="61" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="auto-alt-ref" id="7ae-DN-624">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" id="Cb5-yS-vuO">
+                                    <rect key="frame" x="77" y="110" width="149" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="xQr-Uw-0qh">
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="ZaO-CU-nZf">
+                                            <real key="minimum" value="-16"/>
+                                            <real key="maximum" value="16"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="YF6-hU-ih5"/>
+                                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="YF6-hU-ih5" id="EuQ-lH-qhs"/>
+                                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="EuQ-lH-qhs" id="e9M-yM-Iv6"/>
+                                    </connections>
+                                </textField>
+                                <slider verticalHuggingPriority="750" id="vla-gH-lA8">
+                                    <rect key="frame" x="77" y="208" width="160" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="63" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="rkz-Ul-lGx"/>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="xhF-VO-g0T"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="31d-O3-rDo"/>
+                                    </connections>
+                                </slider>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="O4u-hS-GT5">
+                                    <rect key="frame" x="38" y="131" width="38" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Speed" id="cmb-gy-0oe">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yhv-UB-et3">
+                                    <rect key="frame" x="49" y="209" width="27" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="CRF" id="iGj-q5-zMc">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="EV1-bl-2de">
+                                    <rect key="frame" x="27" y="245" width="49" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Encoding" id="a8x-FW-uCD">
+                                        <font key="font" metaFont="system" size="10"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                        </customView>
+                    </subviews>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Bitrate Control"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.twoPass" id="LKq-U5-gJA"/>
+                        <outlet property="contentView" destination="hGL-3j-1uu" id="Zy2-An-xH8"/>
+                        <outlet property="delegate" destination="Hz6-mo-xeY" id="r8D-nS-u69"/>
                     </connections>
-                </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Pxr-5q-Q4u">
-                    <rect key="frame" x="106" y="160" width="35" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Width" id="5y4-yu-fQ5">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="x2w-aq-uyj">
-                    <rect key="frame" x="84" y="175" width="75" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="H2y-vj-tGn">
-                        <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="s1O-s6-dVc">
-                            <real key="minimum" value="0.0"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <action selector="widthDidChange:" target="-2" id="6pB-KJ-gFM"/>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="plE-pK-PKi"/>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="fMQ-Ns-tl6"/>
-                    </connections>
-                </textField>
-                <textField verticalHuggingPriority="750" id="eY5-4i-Dzk">
-                    <rect key="frame" x="195" y="175" width="75" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="kNf-37-bZr">
-                        <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="DZd-XO-745">
-                            <real key="minimum" value="0.0"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <action selector="heightDidChange:" target="-2" id="L0q-hf-uuM"/>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="4ds-h8-0bd"/>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="ad5-pZ-BRe"/>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nlG-32-c0R">
-                    <rect key="frame" x="215" y="160" width="39" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Height" id="OFk-cm-PDj">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="JHs-GN-E3A">
-                    <rect key="frame" x="268" y="173" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="I2e-kH-Jhb"/>
-                    <connections>
-                        <action selector="heightDidChange:" target="-2" id="v93-gW-b0w"/>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="kNa-tQ-DMk"/>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="kiH-Ns-f5w"/>
-                    </connections>
-                </stepper>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="eQk-2q-pg3">
-                    <rect key="frame" x="157" y="173" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9999" id="cYX-FB-Dl4"/>
-                    <connections>
-                        <action selector="widthDidChange:" target="-2" id="px5-M6-BSN"/>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="60Y-cf-WW9"/>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="vE4-ie-gVD"/>
-                    </connections>
-                </stepper>
-                <button id="aVY-bX-q9n">
-                    <rect key="frame" x="32" y="199" width="84" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Scale Video" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="Nmr-RI-bi8">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.scale" id="yYT-eg-9Xc"/>
-                    </connections>
-                </button>
-                <button toolTip="Keep aspect ratio" id="PCV-a8-nxI">
-                    <rect key="frame" x="175" y="177" width="14" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="Gxr-u7-blx">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="YMC-j5-8iu"/>
-                        <binding destination="-2" name="value" keyPath="self.keepAspectRatio" id="NW3-cP-pq9"/>
-                    </connections>
-                </button>
-                <textField verticalHuggingPriority="750" id="0Yp-zl-GbR">
-                    <rect key="frame" x="254" y="113" width="69" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="zNg-1G-y6k">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="20J-hA-yBF">
-                            <real key="minimum" value="0.0"/>
-                            <real key="maximum" value="63"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Sbs-Cw-snD"/>
-                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="GDk-Xx-PZx"/>
-                    </connections>
-                </textField>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cqm-Wk-jhc">
-                    <rect key="frame" x="321" y="111" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="63" doubleValue="4" id="7iO-aW-dTA"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="Nmz-6R-eeH"/>
-                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="sDj-0d-4Lg"/>
-                    </connections>
-                </stepper>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yhv-UB-et3">
-                    <rect key="frame" x="62" y="116" width="38" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="CRF:" id="iGj-q5-zMc">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="HLc-cq-vO2">
-                    <rect key="frame" x="254" y="89" width="69" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9YR-7G-Dvt">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="wmC-JQ-O2a">
-                            <real key="minimum" value="0.0"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="bLm-LE-KiR"/>
-                    </connections>
-                </textField>
-                <slider verticalHuggingPriority="750" id="wgY-ka-FqC">
-                    <rect key="frame" x="106" y="90" width="140" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="20000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="SKf-oH-fny"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="xBa-DT-gx0"/>
-                    </connections>
-                </slider>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="cZQ-hF-QZX">
-                    <rect key="frame" x="321" y="87" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="50000" id="FFD-pw-Ooa"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="hMY-9t-jLp"/>
-                    </connections>
-                </stepper>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6Pr-jy-J1n">
-                    <rect key="frame" x="57" y="92" width="43" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bitrate:" id="UxB-st-YvI">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="2aK-mm-2yJ">
-                    <rect key="frame" x="321" y="63" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" id="SFe-jS-4fS"/>
-                    <connections>
-                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="uz3-1f-s6R"/>
-                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="uz3-1f-s6R" id="1Zr-Zd-3oG"/>
-                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="1Zr-Zd-3oG" id="c3n-cA-7q0"/>
-                    </connections>
-                </stepper>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="O4u-hS-GT5">
-                    <rect key="frame" x="57" y="68" width="43" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Speed:" id="cmb-gy-0oe">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <slider verticalHuggingPriority="750" id="5Jl-pC-BQE">
-                    <rect key="frame" x="106" y="66" width="140" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" doubleValue="-7.5210000000000008" tickMarkPosition="above" sliderType="linear" id="OxG-Al-GDj"/>
-                    <connections>
-                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="PBc-LA-RDy"/>
-                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="PBc-LA-RDy" id="cfP-AI-Huk"/>
-                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="cfP-AI-Huk" id="Oug-RD-mcg"/>
-                    </connections>
-                </slider>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="tlc-NT-LBn">
-                    <rect key="frame" x="321" y="39" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="25" id="zZu-Fp-TG7"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="WNm-qi-cRu"/>
-                    </connections>
-                </stepper>
-                <textField verticalHuggingPriority="750" id="7rC-i0-S57">
-                    <rect key="frame" x="254" y="41" width="69" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="HDd-B0-Vhl">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="era-Qg-09E">
-                            <real key="minimum" value="0.0"/>
-                            <real key="maximum" value="25"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="ipR-Fh-fL1"/>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="AgI-wD-chr">
-                    <rect key="frame" x="21" y="44" width="79" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Lag in frames:" id="rIi-2h-ycs">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <slider verticalHuggingPriority="750" id="poz-74-G0R">
-                    <rect key="frame" x="106" y="42" width="140" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="25" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="hqW-tl-gsU"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.lagInFrames" id="clK-r7-CAk"/>
-                    </connections>
-                </slider>
-                <button id="hi4-ej-Vb4">
-                    <rect key="frame" x="32" y="135" width="123" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Enable CRF" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="31j-rp-iY2">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.enableCRF" id="eKS-7t-2Hn"/>
-                    </connections>
-                </button>
-                <textField verticalHuggingPriority="750" id="Cb5-yS-vuO">
-                    <rect key="frame" x="254" y="65" width="69" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="xQr-Uw-0qh">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="ZaO-CU-nZf">
-                            <real key="minimum" value="-16"/>
-                            <real key="maximum" value="16"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="maxValue" keyPath="self.cpuUsedMaxValue" id="YF6-hU-ih5"/>
-                        <binding destination="-2" name="minValue" keyPath="self.cpuUsedMinValue" previousBinding="YF6-hU-ih5" id="EuQ-lH-qhs"/>
-                        <binding destination="-2" name="value" keyPath="self.options.speed" previousBinding="EuQ-lH-qhs" id="e9M-yM-Iv6"/>
-                    </connections>
-                </textField>
-                <button id="fm1-Cj-8VP">
-                    <rect key="frame" x="213" y="135" width="123" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Enable auto-alt-ref" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="gHv-EN-yMo">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.options.enableAltRef" id="H1s-as-Vlq"/>
-                    </connections>
-                </button>
-                <textField verticalHuggingPriority="750" id="ZGc-Dv-3kM">
-                    <rect key="frame" x="254" y="17" width="69" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="nUE-lV-yXq">
-                        <numberFormatter key="formatter" formatterBehavior="custom10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="tam-Ef-SX9">
-                            <real key="minimum" value="0.0"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxGopSize" id="BHO-59-vQd"/>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wjh-b1-BUa">
-                    <rect key="frame" x="18" y="20" width="82" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Max GOP Size:" id="UAq-5J-m4f">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="yYM-zb-Acf">
-                    <rect key="frame" x="321" y="15" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="HV9-l7-wgk"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxGopSize" id="3Ml-V9-vGq"/>
-                    </connections>
-                </stepper>
-                <slider verticalHuggingPriority="750" id="Keq-01-Lak">
-                    <rect key="frame" x="108" y="18" width="138" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="10000" doubleValue="250" tickMarkPosition="above" sliderType="linear" id="rwI-k0-pWe"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.maxGopSize" id="N9Q-eq-eeH"/>
-                    </connections>
-                </slider>
-                <slider verticalHuggingPriority="750" id="vla-gH-lA8">
-                    <rect key="frame" x="106" y="115" width="140" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="63" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="rkz-Ul-lGx"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.crf" id="xhF-VO-g0T"/>
-                        <binding destination="-2" name="enabled" keyPath="self.options.enableCRF" id="31d-O3-rDo"/>
-                    </connections>
-                </slider>
+                </customView>
             </subviews>
-            <point key="canvasLocation" x="175" y="229"/>
+            <point key="canvasLocation" x="164.5" y="197"/>
         </customView>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="NQz-5C-ErZ">
-            <rect key="frame" x="0.0" y="0.0" width="296" height="89"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="NQz-5C-ErZ" customClass="SLHDisclosureView">
+            <rect key="frame" x="0.0" y="0.0" width="245" height="93"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
-                <popUpButton verticalHuggingPriority="750" id="Rad-de-613">
-                    <rect key="frame" x="95" y="48" width="100" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1j7-wP-SK2">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" id="MrX-vp-kzw"/>
-                    </popUpButtonCell>
-                    <connections>
-                        <action selector="channelsDidChange:" target="-2" id="en6-Tb-eFx"/>
-                    </connections>
-                </popUpButton>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="UCr-Cm-6Rp">
-                    <rect key="frame" x="36" y="53" width="56" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Channels:" id="pFI-Ku-b56">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="juk-Ym-xG7">
-                    <rect key="frame" x="49" y="22" width="43" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bitrate:" id="1Wd-fS-F32">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <slider verticalHuggingPriority="750" id="z47-Sh-G52">
-                    <rect key="frame" x="98" y="21" width="92" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="16" maxValue="510" doubleValue="128" tickMarkPosition="above" sliderType="linear" id="RNw-IP-Zvj"/>
-                </slider>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="6es-QH-7Fa">
-                    <rect key="frame" x="263" y="18" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="16" maxValue="510" doubleValue="16" id="mZX-Bb-dXT"/>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="sk5-fi-j2f"/>
-                    </connections>
-                </stepper>
-                <textField verticalHuggingPriority="750" id="cF6-T8-9o1">
-                    <rect key="frame" x="198" y="20" width="67" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="xRA-0b-SOE">
-                        <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" allowsFloats="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="FfC-Tl-dIg">
-                            <real key="minimum" value="16"/>
-                            <real key="maximum" value="510"/>
-                        </numberFormatter>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="KfS-G7-dHI"/>
-                    </connections>
-                </textField>
+                <customView id="4hM-Ua-wUt">
+                    <rect key="frame" x="0.0" y="0.0" width="245" height="73"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <userGuides>
+                        <userLayoutGuide location="12" affinity="minY"/>
+                    </userGuides>
+                    <subviews>
+                        <slider verticalHuggingPriority="750" id="z47-Sh-G52">
+                            <rect key="frame" x="77" y="31" width="160" height="17"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="16" maxValue="510" doubleValue="128" tickMarkPosition="above" sliderType="linear" id="RNw-IP-Zvj"/>
+                        </slider>
+                        <popUpButton verticalHuggingPriority="750" id="Rad-de-613">
+                            <rect key="frame" x="74" y="50" width="166" height="22"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1j7-wP-SK2">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
+                                <menu key="menu" id="MrX-vp-kzw"/>
+                            </popUpButtonCell>
+                            <connections>
+                                <action selector="channelsDidChange:" target="-2" id="en6-Tb-eFx"/>
+                            </connections>
+                        </popUpButton>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="UCr-Cm-6Rp">
+                            <rect key="frame" x="23" y="56" width="52" height="13"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Channels" id="pFI-Ku-b56">
+                                <font key="font" metaFont="system" size="10"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="juk-Ym-xG7">
+                            <rect key="frame" x="35" y="34" width="40" height="13"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bitrate" id="1Wd-fS-F32">
+                                <font key="font" metaFont="system" size="10"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" id="cF6-T8-9o1">
+                            <rect key="frame" x="77" y="12" width="149" height="19"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="xRA-0b-SOE">
+                                <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" allowsFloats="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="FfC-Tl-dIg">
+                                    <real key="minimum" value="16"/>
+                                    <real key="maximum" value="510"/>
+                                </numberFormatter>
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="KfS-G7-dHI"/>
+                            </connections>
+                        </textField>
+                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="6es-QH-7Fa">
+                            <rect key="frame" x="224" y="10" width="15" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                            <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="16" maxValue="510" doubleValue="16" id="mZX-Bb-dXT"/>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="sk5-fi-j2f"/>
+                            </connections>
+                        </stepper>
+                    </subviews>
+                </customView>
             </subviews>
-            <point key="canvasLocation" x="219" y="536.5"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Audio Parameters"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="contentView" destination="4hM-Ua-wUt" id="MqQ-xb-aia"/>
+            </connections>
+            <point key="canvasLocation" x="164.5" y="511.5"/>
         </customView>
     </objects>
 </document>
