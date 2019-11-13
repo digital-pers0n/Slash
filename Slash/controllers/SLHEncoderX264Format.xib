@@ -31,7 +31,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY" customClass="SLHStackView">
-            <rect key="frame" x="0.0" y="0.0" width="245" height="496"/>
+            <rect key="frame" x="0.0" y="0.0" width="245" height="491"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <userGuides>
                 <userLayoutGuide location="76" affinity="minX"/>
@@ -39,7 +39,7 @@
             </userGuides>
             <subviews>
                 <customView misplaced="YES" id="HPy-nQ-j3J" customClass="SLHDisclosureView">
-                    <rect key="frame" x="0.0" y="358" width="245" height="138"/>
+                    <rect key="frame" x="0.0" y="353" width="245" height="138"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
                         <customView misplaced="YES" id="9uF-vh-P7u">
@@ -47,7 +47,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="HKY-k3-T0s">
-                                    <rect key="frame" x="39" y="100" width="36" height="13"/>
+                                    <rect key="frame" x="39" y="101" width="36" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Preset" id="zyM-zL-mKx">
                                         <font key="font" metaFont="system" size="10"/>
@@ -56,7 +56,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <popUpButton verticalHuggingPriority="750" misplaced="YES" id="2DS-gJ-kb4">
-                                    <rect key="frame" x="75" y="95" width="165" height="22"/>
+                                    <rect key="frame" x="74" y="95" width="166" height="22"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="VTO-ud-Dd0">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -101,20 +101,9 @@
                                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoWidth" id="fG7-lK-eLj"/>
                                     </connections>
                                 </textField>
-                                <button id="gE7-co-glc">
-                                    <rect key="frame" x="74" y="70" width="84" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="check" title="Scale Video" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="w8R-Rf-rGo">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system" size="10"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.scale" id="l6w-uT-qNt"/>
-                                    </connections>
-                                </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ewo-82-7ZY">
-                                    <rect key="frame" x="42" y="38" width="33" height="13"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="43" y="38" width="33" height="13"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Width" id="YlN-fr-eE7">
                                         <font key="font" metaFont="system" size="10"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -123,10 +112,10 @@
                                 </textField>
                                 <button toolTip="Keep aspect ratio" id="n3B-PP-wvQ">
                                     <rect key="frame" x="74" y="57" width="97" height="14"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Keep Aspect" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="0Rh-pU-JSC">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system" size="10"/>
+                                        <font key="font" metaFont="system" size="11"/>
                                     </buttonCell>
                                     <connections>
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.videoOptions.scale" id="4hO-3Z-RRj"/>
@@ -144,7 +133,7 @@
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="FaD-MI-kY4">
                                     <rect key="frame" x="40" y="15" width="36" height="13"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Height" id="bDE-m9-gs4">
                                         <font key="font" metaFont="system" size="10"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -178,6 +167,17 @@
                                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="umc-81-bPB"/>
                                     </connections>
                                 </stepper>
+                                <button id="gE7-co-glc">
+                                    <rect key="frame" x="74" y="70" width="84" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Scale Video" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="w8R-Rf-rGo">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system" size="11"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.scale" id="l6w-uT-qNt"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </customView>
                     </subviews>
@@ -190,15 +190,18 @@
                     </connections>
                 </customView>
                 <customView id="d8N-ej-0dq" customClass="SLHDisclosureView">
-                    <rect key="frame" x="0.0" y="0.0" width="245" height="358"/>
+                    <rect key="frame" x="0.0" y="0.0" width="245" height="353"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <userGuides>
+                        <userLayoutGuide location="16" affinity="minY"/>
+                    </userGuides>
                     <subviews>
                         <customView id="2Xp-SH-MhE">
-                            <rect key="frame" x="0.0" y="0.0" width="245" height="338"/>
+                            <rect key="frame" x="0.0" y="0.0" width="245" height="333"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nms-vJ-9iQ">
-                                    <rect key="frame" x="47" y="320" width="28" height="13"/>
+                                    <rect key="frame" x="47" y="315" width="28" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Type" id="DqB-f9-LVI">
                                         <font key="font" metaFont="system" size="10"/>
@@ -253,7 +256,7 @@
                                     </subviews>
                                 </customView>
                                 <popUpButton verticalHuggingPriority="750" id="3Ah-Yt-c54">
-                                    <rect key="frame" x="74" y="315" width="166" height="22"/>
+                                    <rect key="frame" x="74" y="310" width="166" height="22"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="N6J-Ei-ncI">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -265,7 +268,7 @@
                                     </connections>
                                 </popUpButton>
                                 <customView id="sAS-86-JBi">
-                                    <rect key="frame" x="0.0" y="276" width="237" height="38"/>
+                                    <rect key="frame" x="0.0" y="272" width="237" height="38"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <subviews>
                                         <slider verticalHuggingPriority="750" id="VNS-3w-0qX">
@@ -337,7 +340,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="fastdecode" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="uHb-dP-buM">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system" size="10"/>
+                                        <font key="font" metaFont="system" size="11"/>
                                     </buttonCell>
                                     <connections>
                                         <action selector="fastdecodeDidChange:" target="-2" id="WQp-KG-hpS"/>
@@ -405,7 +408,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="zerolatency" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="VoY-a9-TI2">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system" size="10"/>
+                                        <font key="font" metaFont="system" size="11"/>
                                     </buttonCell>
                                     <connections>
                                         <action selector="zerolatencyDidChange:" target="-2" id="EXo-hW-9I4"/>
@@ -416,7 +419,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="faststart" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="Ox4-eN-TpO">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system" size="10"/>
+                                        <font key="font" metaFont="system" size="11"/>
                                     </buttonCell>
                                     <connections>
                                         <action selector="faststartDidChange:" target="-2" id="mxn-hz-9pR"/>
@@ -535,7 +538,7 @@
                     </connections>
                 </customView>
             </subviews>
-            <point key="canvasLocation" x="228.5" y="265"/>
+            <point key="canvasLocation" x="228.5" y="262.5"/>
         </customView>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="b3N-ZO-VeA" customClass="SLHDisclosureView">
             <rect key="frame" x="0.0" y="0.0" width="245" height="142"/>
