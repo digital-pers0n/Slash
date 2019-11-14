@@ -14,9 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHTabBarView : NSView
 
-@property (nullable) IBOutlet id <SLHTabBarViewDelegate> delegate;
-@property (readonly) NSArray <NSString *> *labels;
-@property (readonly) NSUInteger selectedTabIndex;
+@property (nullable, weak, nonatomic) IBOutlet id <SLHTabBarViewDelegate> delegate;
+@property (readonly, nonatomic) NSUInteger selectedTabIndex;
 
 @end
 

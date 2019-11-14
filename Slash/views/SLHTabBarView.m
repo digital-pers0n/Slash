@@ -8,28 +8,21 @@
 
 #import "SLHTabBarView.h"
 
-static const NSUInteger kNumberOfTabs = 3;
+static const NSUInteger kNumberOfTabs = 5;
 
 @interface SLHTabBarView () {
-    // Colors
-    NSColor *_backgroundColor;
-    NSColor *_foregroundColor;
-    NSColor *_highlightColor;
-    NSColor *_strokeColor;
-    
-    // Font attributes
-    NSDictionary *_activeFontAttrs;
-    NSDictionary *_inactiveFontAttrs;
     
     // Indices
     NSUInteger _selectedTabIndex;
     NSInteger _highlightedTabIndex;
     
-    // Labels
-    NSArray <NSString *> *_labels;
+    // Tabs
+    NSArray <NSImage *> *_icons;
+    NSArray <NSString *> *_toolTips;
+    NSButtonCell *_tabCell;
     
     // Other
-    NSRect *_rects;
+    NSRect _rects[kNumberOfTabs];
     NSTrackingArea *_trackingArea;
 }
 
@@ -58,44 +51,38 @@ static const NSUInteger kNumberOfTabs = 3;
 }
 
 - (void)_setUp {
-    _backgroundColor = [NSColor colorWithDeviceWhite:0.95 alpha:1];
-    _foregroundColor = [NSColor colorWithDeviceWhite:0.98 alpha:1];
-    _highlightColor = [NSColor colorWithDeviceWhite:1 alpha:1];
-    _strokeColor = [NSColor lightGrayColor];
-    
-    _rects = malloc(sizeof(NSRect) * kNumberOfTabs);
+    _trackingArea = [NSTrackingArea new];   // dummy tracking area to avoid if() check in the updateTrackingAreas method
     _selectedTabIndex = 0;
     _highlightedTabIndex = -1;
     
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    [paragraph setLineBreakMode: NSLineBreakByTruncatingTail];
-    [paragraph setAlignment:NSTextAlignmentCenter];
-    NSUInteger fontSize = 10;
-    _activeFontAttrs =  @{
-                        NSFontAttributeName:[NSFont systemFontOfSize:fontSize],
-                        NSParagraphStyleAttributeName: paragraph,
-                        };
-    _inactiveFontAttrs = @{
-                         NSFontAttributeName:[NSFont systemFontOfSize:fontSize],
-                         NSParagraphStyleAttributeName: paragraph,
-                         NSForegroundColorAttributeName: [NSColor colorWithDeviceWhite:0.36 alpha:1.0],
-                         };
+    _icons = @[
+               [NSImage imageNamed:@"SLHImageNameVideoTemplate"],
+               [NSImage imageNamed:@"SLHImageNameAudioTemplate"],
+               [NSImage imageNamed:@"SLHImageNameFiltersTemplate"],
+               [NSImage imageNamed:@"SLHImageNameInfoTemplate"],
+               [NSImage imageNamed:@"SLHImageNameMetadataTemplate"],
+               ];
     
-    _labels = @[@"Video", @"Audio", @"Filters"];
+    _toolTips = @[
+                  @"Show Video parameters",
+                  @"Show Audio parameters",
+                  @"Show Filters parameters",
+                  @"Show File information",
+                  @"Show Metadata Editor"
+                ];
+    
+    assert(_icons.count == kNumberOfTabs && _toolTips.count == kNumberOfTabs);
+    
+    _tabCell = [[NSButtonCell alloc] init];
+    _tabCell.bordered = NO;
+    [_tabCell setButtonType:NSButtonTypeToggle];
 }
 
 #pragma mark - Draw
 
-static inline void _calcTextFrame(NSRect *cellFrame, CGFloat textHeight) {
-    cellFrame->origin.y = (NSHeight(*cellFrame) - textHeight) / 2;
-    cellFrame->size.height = textHeight;
-    cellFrame->origin.x += 4;
-    cellFrame->size.width -= 8;
-}
-
 - (void)drawRect:(NSRect)dirtyRect {
+    
     NSRect bounds = self.bounds;
-    NSRect viewFrame = bounds;
     CGFloat tabWidth = NSWidth(bounds) / kNumberOfTabs;
     
     if (tabWidth != NSWidth(_rects[0])) { // recalculate tab rects
@@ -106,38 +93,37 @@ static inline void _calcTextFrame(NSRect *cellFrame, CGFloat textHeight) {
         }
     }
     
-    for (int i = 0; i < kNumberOfTabs; i++) {
+    int idx = 0;
+    for (NSImage *icon in _icons) {
         
-        NSRect cellFrame = _rects[i];
-        NSDictionary *attrs;
-        if (i == _selectedTabIndex) { // set font attributes and tab color
-            [_foregroundColor set];
-            attrs = _activeFontAttrs;
-        } else {
-            if (i == _highlightedTabIndex) {
-                [_highlightColor set];
-            } else {
-                [_backgroundColor set];
-            }
-            attrs = _inactiveFontAttrs;
+        _tabCell.image = icon;
+        
+        if (_selectedTabIndex == idx) {
+            _tabCell.state = NSOnState;
+            [_tabCell drawWithFrame:_rects[idx++] inView:self];
+            _tabCell.state = NSOffState;
+            continue;
         }
-        NSRectFill(cellFrame);
         
-        /* calculate label frame */
-        NSString *label = _labels[i];
-        CGFloat textHeight = [label sizeWithAttributes:attrs].height;
-        _calcTextFrame(&cellFrame, textHeight);
-        [label drawInRect:cellFrame withAttributes:attrs];
+        if (_highlightedTabIndex == idx) {
+            _tabCell.highlighted  = YES;
+            [_tabCell drawWithFrame:_rects[idx++] inView:self];
+            _tabCell.highlighted = NO;
+            continue;
+        }
+        
+        [_tabCell drawWithFrame:_rects[idx++] inView:self];
     }
-    [_strokeColor set];
-    NSFrameRect(viewFrame);
 }
+
+
 
 #pragma mark - Mouse Tracking
 
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
-    _trackingArea = [[NSTrackingArea alloc] initWithRect:self.frame
+    [self removeTrackingArea:_trackingArea];
+    _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
                                                  options:NSTrackingActiveAlways|NSTrackingMouseEnteredAndExited|NSTrackingInVisibleRect|NSTrackingMouseMoved
                                                    owner:self
                                                 userInfo:nil];
@@ -150,6 +136,8 @@ static inline void _calcTextFrame(NSRect *cellFrame, CGFloat textHeight) {
     
     for (int i = 0; i < kNumberOfTabs; i++) {
         if ([self mouse:local_point inRect:_rects[i]]) {
+            self.toolTip = nil;
+            self.toolTip = _toolTips[i];
             if (i == _highlightedTabIndex) {    // ignore if already highlighted
                 break;
             }
