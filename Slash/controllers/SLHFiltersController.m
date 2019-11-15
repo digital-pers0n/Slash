@@ -446,19 +446,19 @@ static inline NSString *_preampString(NSInteger val) {
 - (IBAction)editSubtitlesStyle:(NSButton *)sender {
     _editKey = @"subtitlesStyle";
     _textEditor.textView.string = _encoderItem.filters.subtitlesStyle;
-    [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
+    [_popover showRelativeToRect:sender.frame ofView:sender.superview preferredEdge:NSMinYEdge];
 }
 
 - (IBAction)editCustomVideoFilters:(NSButton *)sender {
     _editKey = @"additionalVideoFiltersString";
     _textEditor.textView.string = _encoderItem.filters.additionalVideoFiltersString;
-    [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
+    [_popover showRelativeToRect:sender.frame ofView:sender.superview preferredEdge:NSMinYEdge];
 }
 
 - (IBAction)editCustomAudioFilters:(NSButton *)sender {
     _editKey = @"additionalAudioFiltersString";
     _textEditor.textView.string = _encoderItem.filters.additionalAudioFiltersString;
-    [_popover showRelativeToRect:sender.frame ofView:self.view preferredEdge:NSMinYEdge];
+    [_popover showRelativeToRect:sender.frame ofView:sender.superview preferredEdge:NSMinYEdge];
 }
 
 - (IBAction)popoverDone:(id)sender {
