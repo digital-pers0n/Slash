@@ -192,7 +192,7 @@
 - (void)setIntervalStart:(double)val {
     _interval.start = val;
     
-    self.estimatedSize = (_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192 * 1024;
+    self.estimatedSize = ((_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192) * (1 << 20);
     self.duration = _interval.end - _interval.start;
 }
 
@@ -203,7 +203,7 @@
 - (void)setIntervalEnd:(double)val {
     _interval.end = val;
     
-    self.estimatedSize = (_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192 * 1024;
+    self.estimatedSize = ((_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192) * (1 << 20);
     self.duration = _interval.end - _interval.start;
 }
 
