@@ -155,7 +155,8 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         _encoderItem.outputFileName = outputFileName;
         
         audioOptions.codecName = @"aac";
-        audioOptions.bitRate = 128;
+        NSUInteger aBitRate = audioOptions.bitRate;
+        audioOptions.bitRate = (aBitRate) ? aBitRate : 128;
         audioOptions.sampleRate = SLHX264AudioSampleRate44100;
         audioOptions.numberOfChannels = SLHX264AudioChannels2;
     }

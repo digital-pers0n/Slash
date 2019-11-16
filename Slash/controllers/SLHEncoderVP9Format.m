@@ -107,7 +107,8 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
         encoderItem.outputFileName = outputFileName;
         
         audioOptions.codecName = @"libopus";
-        audioOptions.bitRate = 128;
+        NSUInteger aBitRate = audioOptions.bitRate;
+        audioOptions.bitRate = (aBitRate) ? aBitRate : 128;
         audioOptions.numberOfChannels = 2;
     }
     self.videoOptions = videoOptions;
