@@ -28,11 +28,21 @@
     // Do view setup here.
 }
 
+- (void)fitToWidth:(NSView *)view {
+    NSRect frame = view.frame;
+    frame.size.width = _scrollView.contentSize.width;
+    view.frame = frame;
+}
+
 #pragma mark - Properties
 
 - (void)setDelegate:(id<SLHEncoderSettingsDelegate>)delegate {
     _delegate = delegate;
-    _scrollView.documentView = [_delegate encoderSettings:self viewForTab:_tabBarView.selectedTabIndex];
+    NSView *view = [_delegate encoderSettings:self viewForTab:_tabBarView.selectedTabIndex];
+    if (view) {
+        [self fitToWidth:view];
+        _scrollView.documentView = view;
+    }
 }
 
 - (id<SLHEncoderSettingsDelegate>)delegate {
@@ -51,9 +61,7 @@
 
 - (void)tabBarView:(SLHTabBarView *)tabBar didSelectTabAtIndex:(NSUInteger)tab {
     NSView *view = [_delegate encoderSettings:self viewForTab:tab];
-    NSRect frame = view.frame;
-    frame.size.width = _scrollView.contentSize.width;
-    view.frame = frame;
+    [self fitToWidth:view];
     _scrollView.documentView = view;
 }
 
