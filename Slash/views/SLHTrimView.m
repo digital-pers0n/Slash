@@ -278,9 +278,49 @@ static char minValueKVOContext;
 
 - (void)mouseDown:(NSEvent *)event {
     _hitTestResult = [_selectionCell hitTestForEvent:event inRect:_cellFrame ofView:self];
-    if (_hitTestResult == SLHCellHitNone) {
-        [self.superview mouseDown:event];
+    if (_hitTestResult == SLHCellHitNone && event.clickCount < 2) {
+        [super mouseDown:event];
     }
+}
+
+- (void)mouseUp:(NSEvent *)event {
+    if (event.clickCount == 2) {
+        NSPoint event_location = event.locationInWindow;
+        NSPoint local_point = [self convertPoint:event_location fromView:nil];
+        double value = (local_point.x / (NSWidth(_oldFrame)) * _maxValue);
+        
+        if (_hitTestResult == SLHCellHitNone) {
+            if (value < _startValue) {
+                self.startValue = value;
+                 [self updateValue:@(_startValue) forBinding:@"startValue"];
+                return;
+            }
+            
+            self.endValue = value;
+            [self updateValue:@(_endValue) forBinding:@"endValue"];
+            return;
+        }
+        
+        if (_hitTestResult & SLHCellHitContentArea &&
+          !(_hitTestResult & SLHCellHitLeftKnob)   &&
+          !(_hitTestResult & SLHCellHitRightKnob)) {
+   
+            double distanceToStart = value - _startValue;
+            double distanceToEnd = _endValue - value;
+            
+            if (distanceToStart < distanceToEnd) {
+                self.startValue = value;
+                 [self updateValue:@(_startValue) forBinding:@"startValue"];
+                return;
+            }
+            
+            self.endValue = value;
+            [self updateValue:@(_endValue) forBinding:@"endValue"];
+            return;
+        }
+        
+    }
+    [super mouseUp:event];
 }
 
 - (void)scrollWheel:(NSEvent *)event {
