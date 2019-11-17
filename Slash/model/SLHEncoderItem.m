@@ -14,6 +14,7 @@
 #import "SLHEncoderItemMetadata.h"
 
 #import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
 
 @interface SLHEncoderItem ()
 
@@ -72,6 +73,59 @@
         _metadata = [[SLHEncoderItemMetadata alloc] initWithPlayerItem:item];
     }
     return self;
+}
+
+- (void)matchSource {
+    BOOL hasAudio = NO, hasVideo = NO;
+    
+    for (MPVPlayerItemTrack *t in _playerItem.tracks) {
+
+        switch (t.mediaType) {
+                
+            case MPVMediaTypeVideo:
+            {
+                if (hasVideo) {
+                    break;
+                }
+                
+                SLHEncoderItemOptions *vOptions = _videoOptions;
+                NSSize vSize = t.videoSize;
+                vOptions.videoHeight = vSize.height;
+                vOptions.videoWidth = vSize.width;
+                NSUInteger vBitrate = t.bitRate;
+                vBitrate = (vBitrate) ? vBitrate / 1000 : (_playerItem.bitRate / 1000) - 128;
+                vOptions.maxBitrate = vBitrate << 1;
+                vOptions.bitRate = vBitrate;
+                _videoStreamIndex = t.trackIndex;
+                hasVideo = YES;
+            }
+                break;
+                
+            case MPVMediaTypeAudio:
+            {
+                if (hasAudio) {
+                    break;
+                }
+                
+                SLHEncoderItemOptions *aOptions = _audioOptions;
+                NSUInteger aBitrate = t.bitRate;
+                aOptions.bitRate = (aBitrate) ? aBitrate / 1000  : 128;
+                aOptions.numberOfChannels = t.numberOfChannels;
+                aOptions.sampleRate = t.sampleRate;
+                _audioStreamIndex = t.trackIndex;
+                hasAudio = YES;
+            }
+                break;
+                
+            default:
+                break;
+        }
+        if (hasAudio && hasVideo) {
+            break;
+        }
+    }
+    self.intervalStart = 0;
+    self.intervalEnd = _playerItem.duration;
 }
 
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item {

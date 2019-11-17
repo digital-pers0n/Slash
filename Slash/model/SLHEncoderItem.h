@@ -36,6 +36,8 @@ typedef struct time_interval {
 
 @property (nonatomic) MPVPlayerItem *playerItem;
 
+- (void)matchSource;
+
 @property NSString *outputPath;
 @property NSString *outputFileName;
 @property NSString *container;
