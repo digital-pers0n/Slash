@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, SLHEncoderSettingsTab) {
     SLHEncoderSettingsVideoTab,
     SLHEncoderSettingsAudioTab,
-    SLHEncoderSettingsFiltersTab
+    SLHEncoderSettingsFiltersTab,
+    SLHEncoderSettingsFileInfoTab
 };
 
 @protocol SLHEncoderSettingsDelegate;

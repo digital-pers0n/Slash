@@ -482,6 +482,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
             break;
             
         default:
+            view = [super encoderSettings:enc viewForTab:tab];
             break;
     }
     return view;

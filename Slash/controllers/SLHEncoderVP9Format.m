@@ -257,6 +257,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
             break;
             
         default:
+            view = [_vpxFmt encoderSettings:enc viewForTab:tab];
             break;
     }
     return view;

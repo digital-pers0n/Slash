@@ -9,6 +9,7 @@
 #import "SLHEncoderBaseFormat.h"
 #import "SLHEncoderItem.h"
 #import "SLHEncoderItemOptions.h"
+#import "SLHFileInfo.h"
 
 extern NSString *const SLHEncoderMediaContainerKey;
 extern NSString *const SLHEncoderMediaNoSubtitlesKey;
@@ -25,7 +26,9 @@ extern NSString *const SLHEncoderAudioBitrateKey;
 extern NSString *const SLHEncoderAudioSampleRateKey;
 extern NSString *const SLHEncoderAudioChannelsKey;
 
-@interface SLHEncoderBaseFormat ()
+@interface SLHEncoderBaseFormat () {
+    SLHFileInfo *_fileInfo;
+}
 
 @end
 
@@ -34,6 +37,7 @@ extern NSString *const SLHEncoderAudioChannelsKey;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+    _fileInfo = [SLHFileInfo fileInfo];
 }
 
 - (void)setDictionaryRepresentation:(NSDictionary *)dict {
@@ -172,6 +176,10 @@ extern NSString *const SLHEncoderAudioChannelsKey;
 #pragma mark - SLHEncoderSettingsDelegate
 
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {
+    if (tab == SLHEncoderSettingsFileInfoTab) {
+        _fileInfo.playerItem = _encoderItem.playerItem;
+        return _fileInfo.view;
+    }
     return nil;
 }
 

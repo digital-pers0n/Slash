@@ -213,6 +213,7 @@ extern NSString *const SLHEncoderMediaThreadsKey;
             break;
             
         default:
+            return [super encoderSettings:enc viewForTab:tab];
             break;
     }
     [_tableView reloadData];

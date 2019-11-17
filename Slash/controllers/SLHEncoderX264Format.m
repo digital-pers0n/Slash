@@ -974,6 +974,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
             break;
             
         default:
+            view = [super encoderSettings:enc viewForTab:tab];
             break;
     }
     return view;
