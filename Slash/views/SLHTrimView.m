@@ -86,6 +86,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
 @interface SLHTrimView () {
     double _startValue;
     double _endValue;
+    NSTrackingArea *_trackingArea;
 }
 
 @property SLHTrimSelectionCell *selectionCell;
@@ -114,6 +115,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     _cellFrame = _oldFrame;
     self.minValue = 0;
     _bindingInfo = [NSMutableDictionary new];
+    _trackingArea = [NSTrackingArea new];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -274,7 +276,27 @@ static char minValueKVOContext;
     }
 }
 
+#pragma mark Mouse Tracking
+
+- (void)updateTrackingAreas {
+    [super updateTrackingAreas];
+    [self removeTrackingArea:_trackingArea];
+    _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
+                                                 options:NSTrackingInVisibleRect | NSTrackingActiveInKeyWindow | NSTrackingMouseMoved
+                                                   owner:self
+                                                userInfo:nil];
+    [self addTrackingArea:_trackingArea];
+}
+
 #pragma mark Events
+
+- (void)mouseMoved:(NSEvent *)event {
+    NSPoint event_location = event.locationInWindow;
+    NSPoint local_point = [self convertPoint:event_location fromView:nil];
+    double value = (local_point.x / (NSWidth(_oldFrame)) * _maxValue);
+    self.toolTip = nil;
+    self.toolTip = @(value).stringValue;
+}
 
 - (void)mouseDown:(NSEvent *)event {
     _hitTestResult = [_selectionCell hitTestForEvent:event inRect:_cellFrame ofView:self];
