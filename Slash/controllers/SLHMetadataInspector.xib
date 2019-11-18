@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <development version="7000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SLHMetadataInspector">
+            <connections>
+                <outlet property="_artistView" destination="xKL-WV-dWI" id="wyJ-R8-X38"/>
+                <outlet property="_commentView" destination="Dgh-WQ-mc8" id="094-Hl-jFu"/>
+                <outlet property="_dateView" destination="F7Y-XN-luD" id="iJG-dh-FyF"/>
+                <outlet property="_noSelectionView" destination="x9U-Wr-FuN" id="3A2-2f-iAl"/>
+                <outlet property="_stackView" destination="Hz6-mo-xeY" id="86C-gB-o0g"/>
+                <outlet property="_titleView" destination="CjE-Te-7Hh" id="aAT-p2-AFc"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY" customClass="SLHStackView">
+            <rect key="frame" x="0.0" y="0.0" width="232" height="148"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <point key="canvasLocation" x="60" y="11"/>
+        </customView>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-WV-dWI" customClass="SLHDisclosureView">
+            <rect key="frame" x="0.0" y="0.0" width="232" height="86"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView misplaced="YES" id="snQ-Tk-9I5">
+                    <rect key="frame" x="0.0" y="0.0" width="232" height="66"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <scrollView wantsLayer="YES" misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="k18-Nw-8RB">
+                            <rect key="frame" x="8" y="16" width="216" height="50"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <clipView key="contentView" id="TQO-Zl-20g">
+                                <rect key="frame" x="1" y="1" width="214" height="48"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textView importsGraphics="NO" richText="NO" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="iKI-eo-WcI">
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="214" height="48"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                        <attributedString key="textStorage">
+                                            <fragment content="sample text">
+                                                <attributes>
+                                                    <color key="NSColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="214" height="48"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                        <connections>
+                                            <binding destination="-2" name="value" keyPath="self.encoderItem.metadata.artist" id="zUI-yC-T6j"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="BTR-uG-lCt">
+                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="hyt-Es-WLx">
+                                <rect key="frame" x="199" y="1" width="16" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
+                    </subviews>
+                </customView>
+            </subviews>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Artist"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="contentView" destination="snQ-Tk-9I5" id="i8t-MA-8mo"/>
+            </connections>
+            <point key="canvasLocation" x="368" y="-31.5"/>
+        </customView>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjE-Te-7Hh" customClass="SLHDisclosureView">
+            <rect key="frame" x="0.0" y="0.0" width="232" height="86"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView misplaced="YES" id="GuX-eu-age">
+                    <rect key="frame" x="0.0" y="-1" width="232" height="66"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <scrollView wantsLayer="YES" misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="duR-uP-yac">
+                            <rect key="frame" x="8" y="16" width="216" height="50"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <clipView key="contentView" id="LIT-mq-AgG">
+                                <rect key="frame" x="1" y="1" width="214" height="48"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textView importsGraphics="NO" richText="NO" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="Nty-wY-HIe">
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="214" height="48"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                        <attributedString key="textStorage">
+                                            <fragment content="sample text">
+                                                <attributes>
+                                                    <color key="NSColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="214" height="48"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                        <connections>
+                                            <binding destination="-2" name="value" keyPath="self.encoderItem.metadata.title" id="yAz-IQ-pVI"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="dPg-rD-jhN">
+                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Ibm-CQ-Uxh">
+                                <rect key="frame" x="199" y="1" width="16" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
+                    </subviews>
+                </customView>
+            </subviews>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Title"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="contentView" destination="GuX-eu-age" id="fNC-ek-9Wp"/>
+            </connections>
+            <point key="canvasLocation" x="368" y="121.5"/>
+        </customView>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dgh-WQ-mc8" customClass="SLHDisclosureView">
+            <rect key="frame" x="0.0" y="0.0" width="232" height="136"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView misplaced="YES" id="Jvy-8L-HVT">
+                    <rect key="frame" x="0.0" y="0.0" width="232" height="116"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <scrollView wantsLayer="YES" misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="KdK-VZ-sYg">
+                            <rect key="frame" x="8" y="16" width="216" height="100"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <clipView key="contentView" id="yIg-t5-1ZV">
+                                <rect key="frame" x="1" y="1" width="214" height="98"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textView importsGraphics="NO" richText="NO" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="Mxw-MF-iKz">
+                                        <rect key="frame" x="0.0" y="-1" width="214" height="98"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="214" height="98"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                        <attributedString key="textStorage">
+                                            <fragment content="sample text">
+                                                <attributes>
+                                                    <color key="NSColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" metaFont="controlContent" size="11"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="214" height="98"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
+                                        <connections>
+                                            <binding destination="-2" name="value" keyPath="self.encoderItem.metadata.comment" id="4gh-x1-JqJ"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="G95-pI-tq7">
+                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="gxk-F4-7c3">
+                                <rect key="frame" x="199" y="1" width="16" height="98"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
+                    </subviews>
+                </customView>
+            </subviews>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Comment"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="contentView" destination="Jvy-8L-HVT" id="JQi-fj-yWG"/>
+            </connections>
+            <point key="canvasLocation" x="368" y="299"/>
+        </customView>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F7Y-XN-luD" customClass="SLHDisclosureView">
+            <rect key="frame" x="0.0" y="0.0" width="164" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView misplaced="YES" id="vib-A2-jLV">
+                    <rect key="frame" x="0.0" y="0.0" width="164" height="35"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" misplaced="YES" id="hOK-4c-8lW">
+                            <rect key="frame" x="8" y="16" width="148" height="19"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="sample text" drawsBackground="YES" id="qJE-2x-NtL">
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.metadata.date" id="NgA-hD-aNl"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                </customView>
+            </subviews>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Date"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="contentView" destination="vib-A2-jLV" id="qLp-D2-U89"/>
+            </connections>
+            <point key="canvasLocation" x="604" y="-53.5"/>
+        </customView>
+        <customView misplaced="YES" id="x9U-Wr-FuN">
+            <rect key="frame" x="0.0" y="0.0" width="202" height="217"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="U8d-Wt-5TX">
+                    <rect key="frame" x="42" y="97" width="118" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="KJa-hb-hJJ">
+                        <font key="font" metaFont="system" size="20"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="340" y="-217.5"/>
+        </customView>
+    </objects>
+</document>
