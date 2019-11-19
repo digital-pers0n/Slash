@@ -107,6 +107,12 @@ typedef NS_ENUM(NSInteger, MPVPlayerItemStatus) {
 @property (readonly, nonatomic) NSURL *url;
 
 /**
+ * Media file path
+ * @note Same as MPVPlayerItem.url.path
+ */
+@property (readonly, nonatomic) NSString *filePath;
+
+/**
  * Media format name
  */
 @property (readonly, nonatomic) NSString *formatName;

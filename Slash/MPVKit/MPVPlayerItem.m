@@ -23,6 +23,8 @@ NSString * const MPVPlayerItemErrorDomain = @"com.home.mpvPlayerItem.ErrorDomain
 
 @implementation MPVPlayerItem
 
+#pragma mark - Initialization
+
 + (instancetype)playerItemWithPath:(NSString *)path {
     return [[MPVPlayerItem alloc] initWithPath:path];
 }
@@ -170,6 +172,12 @@ static const char *av_error_string(int error_code) {
     static char buffer[AV_ERROR_MAX_STRING_SIZE];
     av_strerror(error_code, buffer, AV_ERROR_MAX_STRING_SIZE);
     return buffer;
+}
+
+#pragma mark - Properties
+
+- (NSString *)filePath {
+    return _url.path;
 }
 
 @end
