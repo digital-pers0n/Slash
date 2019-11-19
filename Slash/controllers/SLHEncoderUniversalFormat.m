@@ -15,6 +15,9 @@
 #import "SLHPreferences.h"
 #import "SLHTextEditor.h"
 
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
 extern NSString *const SLHEncoderUniversalVideoArgumentsKey;
 extern NSString *const SLHEncoderUniversalAudioArgumentsKey;
 
@@ -131,7 +134,7 @@ extern NSString *const SLHEncoderMediaThreadsKey;
                                  @(ti.start).stringValue,
                                  SLHEncoderMediaEndTimeKey,
                                  @(ti.end - ti.start).stringValue,
-                                 @"-i", _encoderItem.mediaItem.filePath]];
+                                 @"-i", _encoderItem.playerItem.filePath]];
     [args addObjectsFromArray:_videoArguments.arguments];
     [args addObjectsFromArray:_audioArguments.arguments];
     [args addObjectsFromArray:_filters.arguments];

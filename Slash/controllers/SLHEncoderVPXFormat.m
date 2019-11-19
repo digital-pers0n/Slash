@@ -16,6 +16,9 @@
 #import "SLHPreferences.h"
 #import "SLHEncoderItemMetadata.h"
 
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
 extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderMediaContainerKey,
                 *const SLHEncoderMediaStartTimeKey,
@@ -150,7 +153,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     NSMutableArray *args = @[  ffmpegPath, @"-nostdin", @"-hide_banner",
                                SLHEncoderMediaOverwriteFilesKey,
                                @"-ss", @(ti.start).stringValue,
-                               @"-i", _encoderItem.mediaItem.filePath,
+                               @"-i", _encoderItem.playerItem.filePath,
                                SLHEncoderMediaNoSubtitlesKey,
                                SLHEncoderMediaEndTimeKey,
                                @(ti.end - ti.start).stringValue,
@@ -265,7 +268,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 - (IBAction)widthDidChange:(id)sender {
     NSInteger videoIdx = _encoderItem.videoStreamIndex;
     if (_keepAspectRatio && videoIdx > -1) {
-        NSSize size = _encoderItem.mediaItem.tracks[videoIdx].videoSize;
+        NSSize size = _encoderItem.playerItem.tracks[videoIdx].videoSize;
         double aspect = size.width / size.height;
         SLHEncoderItemOptions *options = _encoderItem.videoOptions;
         options.videoHeight = options.videoWidth / aspect;
@@ -275,7 +278,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 - (IBAction)heightDidChange:(id)sender {
     NSInteger videoIdx = _encoderItem.videoStreamIndex;
     if (_keepAspectRatio && videoIdx > -1) {
-        NSSize size = _encoderItem.mediaItem.tracks[videoIdx].videoSize;
+        NSSize size = _encoderItem.playerItem.tracks[videoIdx].videoSize;
         double aspect = size.width / size.height;
         SLHEncoderItemOptions *options = _encoderItem.videoOptions;
         options.videoWidth = options.videoHeight * aspect;

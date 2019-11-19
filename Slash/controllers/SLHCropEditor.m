@@ -14,6 +14,9 @@
 #import "SLHFilterOptions.h"
 #import "SLHPreferences.h"
 
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
 @interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate> {
     
     IBOutlet SLHImageView *_imageView;
@@ -38,11 +41,11 @@
         path = @"/usr/local/bin/ffmpeg";
     }
     NSRect r = NSZeroRect;
-    SLHMediaItem *mediaItem = item.mediaItem;
+    MPVPlayerItem *playerItem = item.playerItem;
     char *cmd;
     asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
              " | awk '/crop/ { print $NF }' | tail -1",
-             path.UTF8String, item.interval.start, mediaItem.filePath.UTF8String);
+             path.UTF8String, item.interval.start, playerItem.url.fileSystemRepresentation);
     FILE *pipe = popen(cmd, "r");
     const int len = 64;
     char str[len];
@@ -54,7 +57,7 @@
         
         NSInteger idx = item.videoStreamIndex;
         if (idx > -1) {
-            result[3] = mediaItem.tracks[idx].videoSize.height - result[1] - result[3];
+            result[3] = playerItem.tracks[idx].videoSize.height - result[1] - result[3];
         }
         
         r = NSMakeRect(result[2], result[3], result[0], result[1]);
@@ -117,11 +120,11 @@
 
 - (NSRect)cropArea {
     NSRect r = NSZeroRect;
-    SLHMediaItem *mediaItem = _encoderItem.mediaItem;
+    MPVPlayerItem *playerItem = _encoderItem.playerItem;
     char *cmd;
     asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
              " | awk '/crop/ { print $NF }' | tail -1",
-             _ffmpegPath.UTF8String, _startTime, mediaItem.filePath.UTF8String);
+             _ffmpegPath.UTF8String, _startTime, playerItem.url.fileSystemRepresentation);
     FILE *pipe = popen(cmd, "r");
     const int len = 64;
     char str[len];
@@ -133,7 +136,7 @@
         
         NSInteger idx = _encoderItem.videoStreamIndex;
         if (idx > -1) {
-            result[3] = mediaItem.tracks[idx].videoSize.height - result[1] - result[3];
+            result[3] = playerItem.tracks[idx].videoSize.height - result[1] - result[3];
         }
         
         r = NSMakeRect(result[2], result[3], result[0], result[1]);
@@ -185,7 +188,7 @@
     asprintf(&cmd,
              "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
              " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=%.3f \"%s\" &",
-             _mpvPath.UTF8String, r.size.width, r.size.height, r.origin.x, _imageView.imageSize.height - r.size.height - r.origin.y, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
+             _mpvPath.UTF8String, r.size.width, r.size.height, r.origin.x, _imageView.imageSize.height - r.size.height - r.origin.y, _startTime, _encoderItem.playerItem.url.fileSystemRepresentation);
     system(cmd);
     free(cmd);
 }
@@ -292,7 +295,7 @@ static inline void _safeCFRelease(CFTypeRef ref) {
         char *cmd;
         asprintf(&cmd, "%s -loglevel 0 -ss %.3f -i \"%s\""
                   " -vframes 1 -q:v 2 -f image2pipe -",
-                 _ffmpegPath.UTF8String, _startTime, _encoderItem.mediaItem.filePath.UTF8String);
+                 _ffmpegPath.UTF8String, _startTime, _encoderItem.playerItem.url.fileSystemRepresentation);
         FILE *pipe = popen(cmd, "r");
         const size_t block_length = 4096;
         size_t bytes_total = 0;

@@ -16,6 +16,9 @@
 #import "SLHMediaItemTrack.h"
 #import "SLHFiltersController.h"
 
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
 extern NSString *const SLHEncoderMediaMapKey;
 extern NSString *const SLHEncoderMediaContainerKey;
 extern NSString *const SLHEncoderMediaStartTimeKey;
@@ -284,7 +287,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     NSMutableArray *args = @[
                              ffmpegPath, @"-nostdin", @"-hide_banner",
                              @"-ss", @(_encoderItem.interval.start).stringValue,
-                             @"-i", _encoderItem.mediaItem.filePath
+                             @"-i", _encoderItem.playerItem.filePath
                              ].mutableCopy;
     if (_encoderItem.videoStreamIndex >= 0) {
         [args addObject:SLHEncoderMediaMapKey];
@@ -420,7 +423,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 
 - (IBAction)heightDidChange:(id)sender {
     if (_keepAspectRatio && _encoderItem.videoStreamIndex > -1) {
-        NSSize size = _encoderItem.mediaItem.tracks[_encoderItem.videoStreamIndex].videoSize;
+        NSSize size = _encoderItem.playerItem.tracks[_encoderItem.videoStreamIndex].videoSize;
         double aspect = size.width / size.height;
         SLHEncoderItemOptions *options = _encoderItem.videoOptions;
         options.videoWidth = options.videoHeight * aspect;
@@ -429,7 +432,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 
 - (IBAction)widthDidChange:(id)sender {
     if (_keepAspectRatio && _encoderItem.videoStreamIndex > -1) {
-        NSSize size = _encoderItem.mediaItem.tracks[_encoderItem.videoStreamIndex].videoSize;
+        NSSize size = _encoderItem.playerItem.tracks[_encoderItem.videoStreamIndex].videoSize;
         double aspect = size.width / size.height;
         SLHEncoderItemOptions *options = _encoderItem.videoOptions;
         options.videoHeight = options.videoWidth / aspect;

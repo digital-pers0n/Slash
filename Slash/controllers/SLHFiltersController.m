@@ -16,6 +16,9 @@
 #import "SLHPreferences.h"
 #import "SLHTextEditor.h"
 
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
 extern NSString *const SLHPreferencesMPVFilePathKey;
 
 extern NSString *const SLHEncoderVideoFiltersKey;
@@ -117,7 +120,7 @@ static inline NSString *_cropString(SLHEncoderItem *item) {
     NSInteger h = opts.videoCropHeight;
     NSInteger idx = item.videoStreamIndex;
     if (idx > -1) {
-        y = item.mediaItem.tracks[idx].videoSize.height - h - y;
+        y = item.playerItem.tracks[idx].videoSize.height - h - y;
     }
     return [NSString stringWithFormat:_videoCropFmt, opts.videoCropWidth, h, opts.videoCropX, y];
 }
@@ -162,7 +165,7 @@ static inline NSString *_preampString(NSInteger val) {
             if (streamIdx > -1) {
             
                 NSInteger subtitlesIdx = -1;
-                for (SLHMediaItemTrack *t in _encoderItem.mediaItem.tracks) {
+                for (MPVPlayerItemTrack *t in _encoderItem.playerItem.tracks) {
                     if (t.mediaType == SLHMediaTypeText) {
                         subtitlesIdx++;
                         if (t.trackIndex == streamIdx) {
@@ -171,7 +174,7 @@ static inline NSString *_preampString(NSInteger val) {
                     }
                 }
                filterArgs = [NSString stringWithFormat:
-                                 @"subtitles='%@':si=%li", _encoderItem.mediaItem.filePath , subtitlesIdx];
+                                 @"subtitles='%@':si=%li", _encoderItem.playerItem.filePath , subtitlesIdx];
             } else if (opts.subtitlesPath) {
                 filterArgs = [NSString stringWithFormat:
                               @"subtitles='%@'", opts.subtitlesPath];
@@ -375,14 +378,15 @@ static inline NSString *_preampString(NSInteger val) {
     }
     char *cmd;
     NSInteger idx = _encoderItem.videoStreamIndex;
-    SLHMediaItem *mediaItem = _encoderItem.mediaItem;
+    //SLHMediaItem *playerItem = _encoderItem.mediaItem;
+    MPVPlayerItem *playerItem = _encoderItem.playerItem;
     if (idx > -1) {
-        r.origin.y = mediaItem.tracks[idx].videoSize.height - r.size.height - r.origin.y;
+        r.origin.y = playerItem.tracks[idx].videoSize.height - r.size.height - r.origin.y;
     }
     asprintf(&cmd,
              "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
              " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=%.3f \"%s\" &",
-             path.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.interval.start, mediaItem.filePath.UTF8String);
+             path.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.interval.start, playerItem.url.fileSystemRepresentation);
     system(cmd);
     free(cmd);
 }
@@ -495,7 +499,7 @@ static inline NSString *_preampString(NSInteger val) {
 - (void)_updateSubtitlesName {
     NSInteger subsIdx = _encoderItem.subtitlesStreamIndex;
     if (subsIdx > -1) {
-        SLHMediaItemTrack *t = _encoderItem.mediaItem.tracks[subsIdx];
+        MPVPlayerItemTrack *t = _encoderItem.playerItem.tracks[subsIdx];
         _subtitlesNameTextField.stringValue = [NSString stringWithFormat:@"#%li: (%@, %@)", subsIdx, t.codecName, t.language];
     } else if (_encoderItem.filters.subtitlesPath) {
         _subtitlesNameTextField.stringValue = _encoderItem.filters.subtitlesPath.lastPathComponent;

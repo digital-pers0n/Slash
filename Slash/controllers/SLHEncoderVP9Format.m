@@ -16,6 +16,9 @@
 #import "SLHEncoderItemMetadata.h"
 #import "SLHPreferences.h"
 
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
 extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderMediaContainerKey,
                 *const SLHEncoderMediaStartTimeKey,
@@ -132,7 +135,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     NSMutableArray *args = @[  ffmpegPath, @"-nostdin", @"-hide_banner",
                                SLHEncoderMediaOverwriteFilesKey,
                                @"-ss", @(ti.start).stringValue,
-                               @"-i", _encoderItem.mediaItem.filePath,
+                               @"-i", _encoderItem.playerItem.filePath,
                                SLHEncoderMediaNoSubtitlesKey,
                                SLHEncoderMediaEndTimeKey,
                                @(ti.end - ti.start).stringValue,
