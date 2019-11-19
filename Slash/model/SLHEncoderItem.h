@@ -29,7 +29,7 @@ typedef struct time_interval {
 - (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath __attribute__((deprecated));
 
 /** @deprecated Use MPVPlayerItem instead */
-@property SLHMediaItem *mediaItem;
+@property SLHMediaItem *mediaItem __attribute__((deprecated));
 
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item;
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item outputPath:(NSString *)outputMediaPath;
