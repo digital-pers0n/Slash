@@ -15,6 +15,9 @@
 #import "slh_util.h"
 #import "slh_list.h"
 
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
 typedef void (^respond_block)(SLHEncoderState);
 
 @interface SLHEncoder () <NSWindowDelegate> {
@@ -78,9 +81,9 @@ typedef void (^respond_block)(SLHEncoderState);
     }
     NSInteger streamIndex = item.videoStreamIndex;
     if (streamIndex != -1) {
-        SLHMediaItemTrack *track = item.mediaItem.tracks[streamIndex];
+        MPVPlayerItemTrack *track = item.playerItem.tracks[streamIndex];
         TimeInterval interval = item.interval;
-        self.progressBarMaxValue = track.frameRate * (interval.end - interval.start);
+        self.progressBarMaxValue = track.averageFrameRate * (interval.end - interval.start);
     } else {
         self.progressBarMaxValue = 1;
     }
