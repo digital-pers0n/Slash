@@ -14,7 +14,8 @@ typedef NS_ENUM(NSUInteger, SLHEncoderSettingsTab) {
     SLHEncoderSettingsVideoTab,
     SLHEncoderSettingsAudioTab,
     SLHEncoderSettingsFiltersTab,
-    SLHEncoderSettingsFileInfoTab
+    SLHEncoderSettingsFileInfoTab,
+    SLHEncoderSettingsMetadataInspectorTab
 };
 
 @protocol SLHEncoderSettingsDelegate;

@@ -10,6 +10,7 @@
 #import "SLHEncoderItem.h"
 #import "SLHEncoderItemOptions.h"
 #import "SLHFileInfo.h"
+#import "SLHMetadataInspector.h"
 
 extern NSString *const SLHEncoderMediaContainerKey;
 extern NSString *const SLHEncoderMediaNoSubtitlesKey;
@@ -28,6 +29,7 @@ extern NSString *const SLHEncoderAudioChannelsKey;
 
 @interface SLHEncoderBaseFormat () {
     SLHFileInfo *_fileInfo;
+    SLHMetadataInspector *_metadataInspector;
 }
 
 @end
@@ -38,6 +40,7 @@ extern NSString *const SLHEncoderAudioChannelsKey;
     [super viewDidLoad];
     // Do view setup here.
     _fileInfo = [SLHFileInfo fileInfo];
+    _metadataInspector = [SLHMetadataInspector metadataInspector];
 }
 
 - (void)setDictionaryRepresentation:(NSDictionary *)dict {
@@ -179,6 +182,10 @@ extern NSString *const SLHEncoderAudioChannelsKey;
     if (tab == SLHEncoderSettingsFileInfoTab) {
         _fileInfo.playerItem = _encoderItem.playerItem;
         return _fileInfo.view;
+    }
+    if (tab == SLHEncoderSettingsMetadataInspectorTab) {
+        _metadataInspector.encoderItem = _encoderItem;
+        return _metadataInspector.view;
     }
     return nil;
 }
