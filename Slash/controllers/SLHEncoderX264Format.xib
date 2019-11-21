@@ -123,7 +123,7 @@
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Kg5-bY-axb">
-                                    <rect key="frame" x="25" y="73" width="55" height="13"/>
+                                    <rect key="frame" x="25" y="74" width="55" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Resolution" id="lC5-8k-SGn">
                                         <font key="font" metaFont="system" size="10"/>
@@ -201,7 +201,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nms-vJ-9iQ">
-                                    <rect key="frame" x="52" y="315" width="28" height="13"/>
+                                    <rect key="frame" x="52" y="316" width="28" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Type" id="DqB-f9-LVI">
                                         <font key="font" metaFont="system" size="10"/>

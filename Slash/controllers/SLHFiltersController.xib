@@ -658,7 +658,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Open Editor" id="ixa-qd-CRw">
-                                    <rect key="frame" x="250" y="16" width="15" height="19"/>
+                                    <rect key="frame" x="251" y="16" width="15" height="19"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="xqW-GN-q8W">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
