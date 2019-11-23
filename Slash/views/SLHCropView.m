@@ -17,8 +17,8 @@ typedef NS_ENUM(NSUInteger, SLHTrackingArea) {
     SLHTrackingAreaRight,
     SLHTrackingAreaTopLeft,
     SLHTrackingAreaTopRight,
-    SLHTrackingAreaBottomRight,
     SLHTrackingAreaBottomLeft,
+    SLHTrackingAreaBottomRight,
     SLHTrackingAreaNone
 };
 
