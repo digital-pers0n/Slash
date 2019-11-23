@@ -66,10 +66,9 @@ static NSString * const SLHTrackingAreaKey = @"trackingAreaKey";
 }
 
 - (void)setUp {
-    _currentFrame = self.bounds;
+    _currentFrame = self.frame;
     _activeArea = SLHTrackingAreaNone;
-    _cropRect = self.bounds;
-    _currentFrame = _cropRect;
+    _cropRect = _currentFrame;
     _size = _cropRect.size;
     _tintColor = [NSColor.purpleColor colorWithAlphaComponent:0.3];
     _lineColor = NSColor.whiteColor;
