@@ -91,6 +91,7 @@
 		CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCAE228B037A001A8E37 /* SLHArgumentsViewController.xib */; };
 		CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */; };
 		CE9CBCD7228C68A4001A8E37 /* SLHModalWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */; };
+		CE9E3346238ABFDC00356342 /* SLHTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9E3345238ABFDC00356342 /* SLHTimeFormatter.m */; };
 		CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */; };
 		CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA35A29224B866D008583AF /* SLHImageView.m */; };
 		CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA552722A7FFA90079CD27 /* SLHEncoderVP9Format.m */; };
@@ -251,6 +252,8 @@
 		CE9CBCD3228C68A4001A8E37 /* SLHModalWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHModalWindowController.h; path = controllers/SLHModalWindowController.h; sourceTree = "<group>"; };
 		CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHModalWindowController.m; path = controllers/SLHModalWindowController.m; sourceTree = "<group>"; };
 		CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHModalWindowController.xib; path = controllers/SLHModalWindowController.xib; sourceTree = "<group>"; };
+		CE9E3344238ABFDC00356342 /* SLHTimeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTimeFormatter.h; path = utils/SLHTimeFormatter.h; sourceTree = "<group>"; };
+		CE9E3345238ABFDC00356342 /* SLHTimeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTimeFormatter.m; path = utils/SLHTimeFormatter.m; sourceTree = "<group>"; };
 		CEA1563D2194AF5A00B54F56 /* SLHTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTabBarView.h; sourceTree = "<group>"; };
 		CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTabBarView.m; sourceTree = "<group>"; };
 		CEA35A28224B866D008583AF /* SLHImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHImageView.h; sourceTree = "<group>"; };
@@ -424,6 +427,7 @@
 				CE5998CD219DF8300009FE08 /* model */,
 				CE12EF18219B3BED00F97637 /* controllers */,
 				CE9C0D1A2193583D0089C084 /* views */,
+				CE9E3347238AC8C600356342 /* utils */,
 				CE65BB0F21066B1100D2CBAA /* system */,
 				CE4D40F720FE8B9E0066ACE2 /* AppDelegate.h */,
 				CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */,
@@ -537,6 +541,15 @@
 				CE6467202368865D0048162D /* SLHSliderCell.m */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		CE9E3347238AC8C600356342 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E3344238ABFDC00356342 /* SLHTimeFormatter.h */,
+				CE9E3345238ABFDC00356342 /* SLHTimeFormatter.m */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 		CEC64095235A0D740009049C /* window */ = {
@@ -694,6 +707,7 @@
 				CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */,
 				CE80A8AB2380560300CC4C7A /* SLHFileInfo.m in Sources */,
 				CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */,
+				CE9E3346238ABFDC00356342 /* SLHTimeFormatter.m in Sources */,
 				CE2365642254C9CC00B324E4 /* SLHEncoder.m in Sources */,
 				CE0EC704235214930053204B /* MPVExtern.m in Sources */,
 				CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */,
