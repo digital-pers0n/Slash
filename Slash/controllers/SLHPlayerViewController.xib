@@ -45,11 +45,11 @@
                             </buttonCell>
                         </button>
                         <customView misplaced="YES" id="gPO-Z5-oCu">
-                            <rect key="frame" x="121" y="11" width="215" height="30"/>
+                            <rect key="frame" x="122" y="11" width="210" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button toolTip="Mark end segment (O)" verticalHuggingPriority="750" misplaced="YES" id="qFW-gk-UEe">
-                                    <rect key="frame" x="32" y="5" width="24" height="21"/>
+                                    <rect key="frame" x="34" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameRightFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jwz-0n-Czb">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -62,7 +62,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Mark start segment (I)" verticalHuggingPriority="750" misplaced="YES" id="t7O-Wg-wbw">
-                                    <rect key="frame" x="5" y="5" width="24" height="21"/>
+                                    <rect key="frame" x="7" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameLeftFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uRQ-7D-gkU">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -75,7 +75,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" misplaced="YES" id="g39-ft-GFi">
-                                    <rect key="frame" x="158" y="5" width="24" height="21"/>
+                                    <rect key="frame" x="152" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IZT-2h-8we">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -87,7 +87,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Step forward (.)" verticalHuggingPriority="750" misplaced="YES" id="pjg-hu-H80">
-                                    <rect key="frame" x="122" y="5" width="24" height="21"/>
+                                    <rect key="frame" x="120" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -100,7 +100,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" misplaced="YES" id="Se5-3n-x8u">
-                                    <rect key="frame" x="95" y="5" width="24" height="21"/>
+                                    <rect key="frame" x="93" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bxL-MM-b49">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -115,7 +115,7 @@ IA
                                     </connections>
                                 </button>
                                 <button toolTip="Step back (,)" verticalHuggingPriority="750" misplaced="YES" id="D6e-1S-wd4">
-                                    <rect key="frame" x="68" y="5" width="24" height="21"/>
+                                    <rect key="frame" x="66" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -128,7 +128,7 @@ IA
                                     </connections>
                                 </button>
                                 <button toolTip="Loop Selection" verticalHuggingPriority="750" misplaced="YES" id="QNh-Fr-sDt">
-                                    <rect key="frame" x="185" y="5" width="24" height="21"/>
+                                    <rect key="frame" x="179" y="5" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LQU-BE-q6L">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -142,10 +142,10 @@ IA
                             </subviews>
                         </customView>
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">
-                            <rect key="frame" x="18" y="18" width="82" height="16"/>
+                            <rect key="frame" x="18" y="19" width="97" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" placeholderString="" id="LEP-Fo-vke">
-                                <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt">
+                                <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt" customClass="SLHTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
                                 <font key="font" metaFont="smallSystem"/>
