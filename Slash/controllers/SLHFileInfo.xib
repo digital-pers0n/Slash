@@ -52,10 +52,10 @@
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="JqC-cG-9Mu">
-                            <rect key="frame" x="68" y="49" width="127" height="14"/>
+                            <rect key="frame" x="68" y="49" width="135" height="14"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="De4-rw-8L3">
-                                <byteCountFormatter key="formatter" countStyle="decimal" allowsNonnumericFormatting="NO" id="d8w-xc-2kq"/>
+                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" id="De4-rw-8L3">
+                                <customFormatter key="formatter" id="VUY-uM-Kqf" customClass="SLHBitrateFormatter"/>
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -63,15 +63,6 @@
                             <connections>
                                 <binding destination="-2" name="value" keyPath="self.playerItem.bitRate" id="9e0-3V-gtq"/>
                             </connections>
-                        </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="oVh-7w-V8S">
-                            <rect key="frame" x="24" y="50" width="39" height="13"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="BitRate" id="qIs-Zh-qlw">
-                                <font key="font" metaFont="system" size="10"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="ghb-WH-wBm">
                             <rect key="frame" x="18" y="32" width="45" height="13"/>
@@ -95,15 +86,6 @@
                                 <binding destination="-2" name="value" keyPath="self.playerItem.fileSize" id="8Sa-oe-fEx"/>
                             </connections>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="MC0-RF-8y2">
-                            <rect key="frame" x="191" y="49" width="12" height="14"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="/s" id="Tej-0z-TfI">
-                                <font key="font" metaFont="smallSystem"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="cV9-we-0sA">
                             <rect key="frame" x="17" y="14" width="46" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -125,6 +107,15 @@
                             <connections>
                                 <binding destination="-2" name="value" keyPath="self.playerItem.duration" id="Jzg-rG-jLV"/>
                             </connections>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="oVh-7w-V8S">
+                            <rect key="frame" x="12" y="50" width="52" height="13"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Data Rate" id="qIs-Zh-qlw">
+                                <font key="font" metaFont="system" size="10"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
                         </textField>
                     </subviews>
                 </customView>
