@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <development version="7000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHFileInfo">
@@ -143,7 +143,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="208" height="187"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="bar" allowsNonContiguousLayout="YES" id="pL0-Md-MJt">
+                                    <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="NO" findStyle="bar" allowsNonContiguousLayout="YES" id="pL0-Md-MJt">
                                         <rect key="frame" x="0.0" y="0.0" width="208" height="187"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -160,6 +160,8 @@
                                             </fragment>
                                         </attributedString>
                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="208" height="187"/>
+                                        <size key="maxSize" width="463" height="10000000"/>
                                         <connections>
                                             <binding destination="-2" name="value" keyPath="self.streamsDescription" id="9QM-Rh-Ss8">
                                                 <dictionary key="options">
@@ -193,20 +195,20 @@
             <point key="canvasLocation" x="242" y="259"/>
         </customView>
         <customView misplaced="YES" id="3lm-t1-xok">
-            <rect key="frame" x="0.0" y="0.0" width="173" height="219"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="200" height="320"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Iag-cn-An3">
-                    <rect key="frame" x="35" y="99" width="102" height="21"/>
+                    <rect key="frame" x="29" y="150" width="142" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Selection" id="Iws-Ik-mZV">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No Selection" id="Iws-Ik-mZV">
                         <font key="font" metaFont="system" size="17"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="490.5" y="115.5"/>
+            <point key="canvasLocation" x="490" y="115"/>
         </customView>
     </objects>
 </document>
