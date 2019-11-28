@@ -12,13 +12,17 @@
 
 
 - (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
+    
+    BOOL value = [super startTrackingAt:startPoint inView:controlView];
     [_delegate sliderCellMouseDown:self];
-    return [super startTrackingAt:startPoint inView:controlView];
+    return value;
 }
 
 - (BOOL)continueTracking:(NSPoint)lastPoint at:(NSPoint)currentPoint inView:(NSView *)controlView {
+    
+    BOOL value = [super continueTracking:lastPoint at:currentPoint inView:controlView];
     [_delegate sliderCellMouseDragged:self];
-    return [super continueTracking:lastPoint at:currentPoint inView:controlView];
+    return value;
 }
 
 - (void)stopTracking:(NSPoint)lastPoint at:(NSPoint)stopPoint inView:(NSView *)controlView mouseIsUp:(BOOL)flag {
