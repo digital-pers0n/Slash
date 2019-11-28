@@ -438,6 +438,12 @@ exit:
     mpv_command_async( _mpv_handle, 1, (const char * []) { "seek", buffer, "absolute+keyframes", NULL } );
 }
 
+- (void)seekExactTo:(double)time {
+    char buffer[16];
+    snprintf(buffer, 16, "%f", time);
+    mpv_command_async( _mpv_handle, 1, (const char * []) { "seek", buffer, "absolute+exact", NULL } );
+}
+
 - (void)setBool:(BOOL)value forProperty:(NSString *)property {
     int error = mpv_set_value_for_key(_mpv_handle, (int)value, property.UTF8String);
     if (error != MPV_ERROR_SUCCESS) {

@@ -217,7 +217,8 @@
 }
 
 - (void)sliderCellMouseDragged:(SLHSliderCell *)cell {
-    [_player seekTo:cell.doubleValue];
+    [_player seekExactTo:cell.doubleValue];
+    self.currentPosition = cell.doubleValue; // for some reason this property is not updated automatically
 }
 
 #pragma mark - dispatch source timer handler

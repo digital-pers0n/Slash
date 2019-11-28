@@ -63,6 +63,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** async keyframe seek, faster than @c seekExactTo: method, but unprecise. */
 - (void)seekTo:(double)time;
 
+/** async exact seek, slower than @c seekTo: method, but much more precise. */
+- (void)seekExactTo:(double)time;
+
 - (void)shutdown;
 
 #pragma mark - Properties
