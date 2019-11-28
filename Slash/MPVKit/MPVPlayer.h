@@ -60,6 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) double volume;
 @property (nonatomic, getter=isMuted) BOOL muted;
 
+/** async keyframe seek, faster than @c seekExactTo: method, but unprecise. */
 - (void)seekTo:(double)time;
 
 - (void)shutdown;
