@@ -433,7 +433,9 @@ exit:
 }
 
 - (void)seekTo:(double)time {
-    mpv_command_async( _mpv_handle, 1, (const char * []) { "seek", [NSString stringWithFormat:@"%.3f", time].UTF8String, "absolute+keyframes", NULL } );
+    char buffer[16];
+    snprintf(buffer, 16, "%f", time);
+    mpv_command_async( _mpv_handle, 1, (const char * []) { "seek", buffer, "absolute+keyframes", NULL } );
 }
 
 - (void)setBool:(BOOL)value forProperty:(NSString *)property {
