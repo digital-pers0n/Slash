@@ -207,9 +207,9 @@
 #pragma mark - SLHSliderCellMouseTracking
 
 - (void)sliderCellMouseUp:(SLHSliderCell *)cell {
-    _player.timePosition = cell.doubleValue;
+   _player.timePosition = cell.doubleValue;
+    self.currentPosition = cell.doubleValue;
     dispatch_resume(_timer);
-    
 }
 
 - (void)sliderCellMouseDown:(SLHSliderCell *)cell {
