@@ -166,16 +166,16 @@
 
 #pragma mark - IBActions
 
-- (IBAction)videoStreamPopUpAction:(id)sender {
-    
+- (IBAction)videoStreamPopUpAction:(NSMenuItem *)sender {
+    _currentEncoderItem.videoStreamIndex = sender.tag;
 }
 
-- (IBAction)audioStreamPopUpAction:(id)sender {
-    
+- (IBAction)audioStreamPopUpAction:(NSMenuItem *)sender {
+    _currentEncoderItem.audioStreamIndex = sender.tag;
 }
 
-- (IBAction)subtitlesStreamPopUpAction:(id)sender {
-    
+- (IBAction)subtitlesStreamPopUpAction:(NSMenuItem *)sender {
+    _currentEncoderItem.subtitlesStreamIndex = sender.tag;
 }
 
 - (IBAction)formatsPopUpAction:(id)sender {
