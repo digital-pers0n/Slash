@@ -24,6 +24,9 @@
     _trimView.maxValue = obj.playerItem.duration;
     _trimView.endValue = obj.intervalEnd;
     _trimView.startValue = obj.intervalStart;
+    
+    [super setObjectValue:objectValue];
+ 
 }
 
 - (void)dealloc {
