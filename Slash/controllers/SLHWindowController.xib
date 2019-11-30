@@ -556,10 +556,7 @@
                     <toolbarItem reference="qmD-08-Gtt"/>
                 </defaultToolbarItems>
             </toolbar>
-            <connections>
-                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
-            </connections>
-            <point key="canvasLocation" x="379" y="-4103"/>
+            <point key="canvasLocation" x="378" y="-4133"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="3cJ-e5-Y82" userLabel="Items Array Controller" colorLabel="IBBuiltInLabel-Yellow"/>
         <arrayController objectClassName="SLHEncoderBaseFormat" editable="NO" id="FId-6h-ocY">

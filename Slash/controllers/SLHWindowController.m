@@ -61,6 +61,9 @@
 
     [_sbView.superview replaceSubview:_sbView with:_encoderSettings.view];
     
+    _sideBarWidth = NSWidth(_sbView.frame);
+    _bottomBarHeight = NSHeight(_bottomBarView.frame);
+    self.window.delegate = self;
     
     /* SLHFormat */
     SLHEncoderX264Format *x264Fmt = [[SLHEncoderX264Format alloc] init];
