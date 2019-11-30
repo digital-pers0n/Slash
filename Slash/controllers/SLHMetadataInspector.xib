@@ -39,7 +39,7 @@
                                 <rect key="frame" x="1" y="1" width="214" height="48"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView importsGraphics="NO" richText="NO" verticallyResizable="NO" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="iKI-eo-WcI">
+                                    <textView importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="iKI-eo-WcI">
                                         <rect key="frame" x="0.0" y="0.0" width="214" height="48"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -56,8 +56,6 @@
                                             </fragment>
                                         </attributedString>
                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="minSize" width="214" height="48"/>
-                                        <size key="maxSize" width="463" height="10000000"/>
                                         <connections>
                                             <binding destination="-2" name="value" keyPath="self.encoderItem.metadata.artist" id="zUI-yC-T6j"/>
                                         </connections>
@@ -100,7 +98,7 @@
                                 <rect key="frame" x="1" y="1" width="214" height="48"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView importsGraphics="NO" richText="NO" verticallyResizable="NO" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="Nty-wY-HIe">
+                                    <textView importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="Nty-wY-HIe">
                                         <rect key="frame" x="0.0" y="0.0" width="214" height="48"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -117,8 +115,6 @@
                                             </fragment>
                                         </attributedString>
                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="minSize" width="214" height="48"/>
-                                        <size key="maxSize" width="463" height="10000000"/>
                                         <connections>
                                             <binding destination="-2" name="value" keyPath="self.encoderItem.metadata.title" id="yAz-IQ-pVI"/>
                                         </connections>
@@ -161,7 +157,7 @@
                                 <rect key="frame" x="1" y="1" width="214" height="98"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView importsGraphics="NO" richText="NO" verticallyResizable="NO" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="Mxw-MF-iKz">
+                                    <textView importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="Mxw-MF-iKz">
                                         <rect key="frame" x="0.0" y="-1" width="214" height="98"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -178,8 +174,6 @@
                                             </fragment>
                                         </attributedString>
                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="minSize" width="214" height="98"/>
-                                        <size key="maxSize" width="463" height="10000000"/>
                                         <connections>
                                             <binding destination="-2" name="value" keyPath="self.encoderItem.metadata.comment" id="4gh-x1-JqJ"/>
                                         </connections>
