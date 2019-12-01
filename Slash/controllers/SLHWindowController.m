@@ -86,6 +86,9 @@
     /* MPVPlayer */
     MPVPlayer *player = [[MPVPlayer alloc] init];
     _playerView.player = player;
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
 
 }
 
@@ -213,6 +216,12 @@
 
 - (IBAction)selectOutputPath:(NSButton *)sender {
 
+}
+
+#pragma mark - MPVPlayer Notifications
+
+- (void)playerDidLoadFile:(NSNotification *)n {
+    _playerView.player.timePosition = _currentEncoderItem.interval.start;
 }
 
 #pragma mark - NSDraggingDestination
