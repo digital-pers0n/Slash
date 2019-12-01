@@ -169,6 +169,23 @@
 
 #pragma mark - IBActions
 
+// TODO: allow to open files from disk
+- (IBAction)addEncoderItem:(id)sender {
+    if (_currentEncoderItem) {
+        SLHEncoderItem *encoderItem = _currentEncoderItem.copy;
+        NSString *extension = encoderItem.outputPath.pathExtension;
+        NSString *fileName = encoderItem.playerItem.url.lastPathComponent.stringByDeletingPathExtension;
+        encoderItem.outputFileName = [fileName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
+        [_itemsArrayController insertObject:encoderItem
+                      atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:_currentEncoderItem] + 1];
+    } else {
+        NSBeep();
+        /*
+        [NSApp.delegate performSelector:@selector(openDocument:) withObject:nil];
+         */
+    }
+}
+
 - (IBAction)videoStreamPopUpAction:(NSMenuItem *)sender {
     _currentEncoderItem.videoStreamIndex = sender.tag;
 }

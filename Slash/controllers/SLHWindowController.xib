@@ -295,7 +295,7 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="add:" target="3cJ-e5-Y82" id="DG1-9c-RaM"/>
+                                                    <action selector="addEncoderItem:" target="-2" id="7lL-dd-ow3"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" misplaced="YES" id="xEo-sl-w0b">
