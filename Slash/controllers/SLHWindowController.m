@@ -215,7 +215,22 @@
 }
 
 - (IBAction)selectOutputPath:(NSButton *)sender {
-
+    
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowsMultipleSelection = NO;
+    panel.canChooseFiles = NO;
+    panel.canChooseDirectories = YES;
+    panel.canCreateDirectories = YES;
+    NSModalResponse returnCode = [panel runModal];
+    
+    if (returnCode == NSModalResponseOK) {
+        
+        NSString *path = panel.URL.path;
+        NSTableCellView *tableCell = (id)sender.superview;
+        SLHEncoderItem *encoderItem = tableCell.objectValue;
+        NSString *outname = encoderItem.outputPath.lastPathComponent;
+        encoderItem.outputPath = [NSString stringWithFormat:@"%@/%@", path, outname];
+    }
 }
 
 #pragma mark - MPVPlayer Notifications
