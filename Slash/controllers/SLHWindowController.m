@@ -224,20 +224,27 @@
     if ([pboard.types containsObject:NSFilenamesPboardType] && sourceDragMask & NSDragOperationGeneric) {
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSString * path = files.firstObject;
-        MPVPlayerItem *item = [MPVPlayerItem playerItemWithPath:path];
-        if (item.error) {
-            [NSApp presentError:item.error];
+        MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithPath:path];
+        if (playerItem.error) {
+            [NSApp presentError:playerItem.error];
             return NO;
         }
-        _playerView.player.currentItem = item;
-        SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:item];
+        _playerView.player.currentItem = playerItem;
+        SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
         self.currentEncoderItem = encoderItem;
         [_itemsArrayController addObject:encoderItem];
         [encoderItem matchSource];
-        [self populatePopUpMenus:item];
+        [self populatePopUpMenus:playerItem];
+        [self updateWindowTitle:playerItem.url];
         result = YES;
     }
     return result;
+}
+
+- (void)updateWindowTitle:(NSURL *)url {
+    NSWindow *window = self.window;
+    window.title = url.lastPathComponent;
+    window.representedURL = url;
 }
 
 #pragma mark - NSTableViewDelegate
@@ -250,9 +257,16 @@
     _encoderSettings.delegate = fmt;
     
     MPVPlayer *player = _playerView.player;
-    player.currentItem = encoderItem.playerItem;
-    [player pause];
+    MPVPlayerItem *playerItem = encoderItem.playerItem;
+    if (playerItem != _currentEncoderItem.playerItem) {
+        
+        player.currentItem = playerItem;
+        [player pause];
+        [self populatePopUpMenus:playerItem];
+        [self updateWindowTitle:playerItem.url];
+    }
     
+    self.currentEncoderItem = encoderItem;
     [self updatePopUpMenus:encoderItem];
 }
 
