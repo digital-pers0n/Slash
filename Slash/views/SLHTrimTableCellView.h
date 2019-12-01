@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLHTrimTableCellView : NSTableCellView
 
 @property (nonatomic, nullable) IBOutlet SLHTrimView *trimView;
+@property (nonatomic, nullable) IBOutlet NSTextField *outNameTextField;
 
 @end
 

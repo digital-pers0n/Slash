@@ -15,11 +15,13 @@
 
 - (void)setObjectValue:(id)objectValue {
     if (!objectValue) { return; }
+
     SLHEncoderItem *obj = objectValue;
     
     [_trimView bind:@"maxValue" toObject:obj withKeyPath:@"playerItem.duration" options:nil];
         [_trimView bind:@"endValue" toObject:obj withKeyPath:@"intervalEnd" options:nil];
     [_trimView bind:@"startValue" toObject:obj withKeyPath:@"intervalStart" options:nil];
+    [_outNameTextField bind:@"stringValue" toObject:obj withKeyPath:@"outputFileName" options:nil];
 
     _trimView.maxValue = obj.playerItem.duration;
     _trimView.endValue = obj.intervalEnd;
@@ -34,11 +36,13 @@
     [_trimView unbind:@"startValue"];
     [_trimView unbind:@"endValue"];
     [_trimView unbind:@"maxValue"];
+    [_outNameTextField unbind:@"stringValue"];
 }
 
 - (void)prepareForReuse {
 
     [_trimView prepareForReuse];
+    [_outNameTextField prepareForReuse];
     [super prepareForReuse];
 }
 
