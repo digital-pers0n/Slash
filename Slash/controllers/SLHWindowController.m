@@ -198,6 +198,10 @@
         encoderItem.outputFileName = [fileName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
         [_itemsArrayController insertObject:encoderItem
                       atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:_currentEncoderItem] + 1];
+        
+        // Force Key-Value observer to update
+        encoderItem.intervalStart = _currentEncoderItem.interval.start;
+        
     } else {
         NSBeep();
         /*
