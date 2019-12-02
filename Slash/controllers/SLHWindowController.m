@@ -12,6 +12,7 @@
 #import "SLHEncoderItemOptions.h"
 #import "SLHEncoderSettings.h"
 #import "SLHPreferences.h"
+#import "SLHTextEditor.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -37,6 +38,9 @@
     IBOutlet NSPopUpButton *_formatsPopUp;
     
     SLHEncoderSettings *_encoderSettings;
+    SLHTextEditor *_textEditor;
+    NSPopover *_popover;
+    
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
 }
@@ -210,7 +214,47 @@
     encoderFormat.view.needsDisplay = YES;
 }
 
+- (IBAction)textEditorDone:(id)sender {
+    NSString *outPath = _textEditor.textView.string.copy;
+    SLHEncoderItem *encoderItem = _textEditor.representedObject;
+    
+    [encoderItem willChangeValueForKey:@"outputFileName"];
+    {
+        encoderItem.outputPath = outPath;
+    }
+    [encoderItem didChangeValueForKey:@"outputFileName"];
+    
+    [_popover close];
+    _textEditor.representedObject = nil;
+}
+
+- (IBAction)textEditorCancel:(id)sender {
+     [_popover close];
+    _textEditor.representedObject = nil;
+}
+
 - (IBAction)showTextEditor:(NSButton *)sender {
+    
+    if (!_popover) {
+        _textEditor = SLHTextEditor.new;
+        NSRect frame = NSMakeRect(0, 0, 500, 200);
+        _textEditor.view.frame = frame;
+        NSButton *button = _textEditor.doneButton;
+        button.action = @selector(textEditorDone:);
+        button.target = self;
+        button = _textEditor.cancelButton;
+        button.action = @selector(textEditorCancel:);
+        button.target = self;
+        _popover = NSPopover.new;
+        _popover.contentViewController = _textEditor;
+    }
+    
+    NSTableCellView *tableCell = (id)sender.superview;
+    SLHEncoderItem *encoderItem = tableCell.objectValue;
+    _textEditor.representedObject = encoderItem;
+    NSString *outPath = encoderItem.outputPath;
+    _textEditor.textView.string = outPath;
+    [_popover showRelativeToRect:sender.frame ofView:sender.superview preferredEdge:NSMinYEdge];
 
 }
 

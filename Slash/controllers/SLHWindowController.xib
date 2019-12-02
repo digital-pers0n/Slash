@@ -251,6 +251,9 @@
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" metaFont="smallSystem"/>
                                                                                     </buttonCell>
+                                                                                    <connections>
+                                                                                        <action selector="showTextEditor:" target="-2" id="jA2-bz-aH1"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" misplaced="YES" id="JMs-Ka-ajZ">
                                                                                     <rect key="frame" x="290" y="2" width="19" height="17"/>
