@@ -57,16 +57,10 @@
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
                                                         <rect key="frame" x="341" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="h7M-rO-l2A" id="Lyi-GL-UQr">
+                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lyi-GL-UQr">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="dZg-Ed-3Yi">
-                                                                <items>
-                                                                    <menuItem title="Item 1" state="on" id="h7M-rO-l2A"/>
-                                                                    <menuItem title="Item 2" id="kRJ-nW-Kko"/>
-                                                                    <menuItem title="Item 3" id="sVU-jq-ula"/>
-                                                                </items>
-                                                            </menu>
+                                                            <menu key="menu" id="dZg-Ed-3Yi"/>
                                                         </popUpButtonCell>
                                                         <connections>
                                                             <action selector="formatsPopUpAction:" target="-2" id="Mf0-4t-h4K"/>
@@ -77,46 +71,28 @@
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="Idt-of-EEP">
                                                         <rect key="frame" x="7" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="5du-bb-ZTD" id="9Qe-WC-173">
+                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Qe-WC-173">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="ZHb-sB-f0T">
-                                                                <items>
-                                                                    <menuItem title="Item 1" state="on" id="5du-bb-ZTD"/>
-                                                                    <menuItem title="Item 2" id="VZG-kN-0o7"/>
-                                                                    <menuItem title="Item 3" id="MUq-E2-jGe"/>
-                                                                </items>
-                                                            </menu>
+                                                            <menu key="menu" id="ZHb-sB-f0T"/>
                                                         </popUpButtonCell>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
                                                         <rect key="frame" x="101" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="3rf-gl-csD" id="32l-D9-SdJ">
+                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32l-D9-SdJ">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="Xzr-1Y-15U">
-                                                                <items>
-                                                                    <menuItem title="Item 1" state="on" id="3rf-gl-csD"/>
-                                                                    <menuItem title="Item 2" id="SCw-u4-M3K"/>
-                                                                    <menuItem title="Item 3" id="I2t-6i-Ggt"/>
-                                                                </items>
-                                                            </menu>
+                                                            <menu key="menu" id="Xzr-1Y-15U"/>
                                                         </popUpButtonCell>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
                                                         <rect key="frame" x="195" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="3Vw-hp-0a0" id="71C-wZ-lMD">
+                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="71C-wZ-lMD">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="p7p-Yx-HNc">
-                                                                <items>
-                                                                    <menuItem title="Item 1" state="on" id="3Vw-hp-0a0"/>
-                                                                    <menuItem title="Item 2" id="ULf-ge-quE"/>
-                                                                    <menuItem title="Item 3" id="7WG-uU-cd6"/>
-                                                                </items>
-                                                            </menu>
+                                                            <menu key="menu" id="p7p-Yx-HNc"/>
                                                         </popUpButtonCell>
                                                     </popUpButton>
                                                 </subviews>
