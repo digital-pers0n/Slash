@@ -96,6 +96,19 @@
 
 }
 
+#pragma mark - Methods
+
+- (NSString *)outputPathForSourcePath:(NSString *)sourcePath {
+    NSString *outputPath = nil;
+    SLHPreferences *prefs = [SLHPreferences preferences];
+    if (prefs.outputPathSameAsInput) {
+        outputPath = [sourcePath stringByDeletingLastPathComponent];
+    } else {
+        outputPath = prefs.currentOutputPath;
+    }
+    return outputPath;
+}
+
 #pragma mark - PopUp Menus
 
 - (void)populatePopUpMenus:(MPVPlayerItem *)playerItem {
@@ -316,6 +329,8 @@
         }
         _playerView.player.currentItem = playerItem;
         SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
+        NSString *outputName = encoderItem.outputFileName;
+        encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
         self.currentEncoderItem = encoderItem;
         [_itemsArrayController addObject:encoderItem];
         [encoderItem matchSource];
