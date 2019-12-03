@@ -288,7 +288,7 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="remove:" target="3cJ-e5-Y82" id="1FF-8k-aCD"/>
+                                                    <action selector="removeEncoderItem:" target="-2" id="XYN-H3-Hhc"/>
                                                     <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="Xfx-TG-ocN"/>
                                                 </connections>
                                             </button>
