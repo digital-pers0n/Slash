@@ -204,6 +204,11 @@ extern NSString *const SLHEncoderMediaThreadsKey;
 #pragma mark - SLHEncoderSettingsDelegate
 
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {
+    
+    if (_encoderItem == nil) {
+        return self.noSelectionView;
+    }
+    
     switch (tab) {
         case SLHEncoderSettingsVideoTab:
             _dataSource = _videoArguments.arguments;

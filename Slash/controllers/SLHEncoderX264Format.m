@@ -964,6 +964,11 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 #pragma mark - SLHEncoderSettingsDelegate
 
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {
+    
+    if (_encoderItem == nil) {
+        return self.noSelectionView;
+    }
+    
     NSView *view = nil;
     switch (tab) {
         case SLHEncoderSettingsVideoTab:

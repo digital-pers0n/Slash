@@ -11,6 +11,7 @@
 #import "SLHEncoderItemOptions.h"
 #import "SLHFileInfo.h"
 #import "SLHMetadataInspector.h"
+#import "SLHEmptyView.h"
 
 extern NSString *const SLHEncoderMediaContainerKey;
 extern NSString *const SLHEncoderMediaNoSubtitlesKey;
@@ -41,6 +42,10 @@ extern NSString *const SLHEncoderAudioChannelsKey;
     // Do view setup here.
     _fileInfo = [SLHFileInfo fileInfo];
     _metadataInspector = [SLHMetadataInspector metadataInspector];
+    SLHEmptyView *noSelectionView = [[SLHEmptyView alloc] initWithFrame:NSMakeRect(0, 0, 200, 400)];
+    noSelectionView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    noSelectionView.stringValue = @"No Selection";
+    _noSelectionView = noSelectionView;
 }
 
 - (void)setDictionaryRepresentation:(NSDictionary *)dict {

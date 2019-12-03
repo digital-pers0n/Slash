@@ -15,6 +15,8 @@
 
 @property SLHEncoderItem *encoderItem;
 @property (readonly) NSString *formatName;
+@property (readonly, nonatomic) NSView *noSelectionView;
+
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab;
 
 @property (readonly) NSArray <NSArray *> *arguments;

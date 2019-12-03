@@ -247,6 +247,9 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
 #pragma mark - SLHEncoderSettingsDelegate
 
 - (NSView *)encoderSettings:(SLHEncoderSettings *)enc viewForTab:(SLHEncoderSettingsTab) tab {
+    if (_vpxFmt.encoderItem == nil) {
+        return _vpxFmt.noSelectionView;
+    }
     NSView *view = nil;
     switch (tab) {
         case SLHEncoderSettingsVideoTab:
