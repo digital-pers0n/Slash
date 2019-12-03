@@ -182,6 +182,9 @@
         dispatch_cancel(_timer);
         _timer = nil;
     }
+    self.seekable = NO;
+    self.currentPosition = 0;
+    self.duration = 0;
 }
 
 

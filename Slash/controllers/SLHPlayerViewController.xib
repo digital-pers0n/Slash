@@ -43,6 +43,13 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
+                            <connections>
+                                <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="OmJ-tg-i6Q">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
                         </button>
                         <customView misplaced="YES" id="gPO-Z5-oCu">
                             <rect key="frame" x="122" y="6" width="210" height="26"/>
@@ -58,6 +65,11 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="outMark:" target="-2" id="zWB-RQ-iAK"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="94W-nB-stN">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
                                         <outlet property="nextKeyView" destination="D6e-1S-wd4" id="oRZ-3z-UnT"/>
                                     </connections>
                                 </button>
@@ -71,6 +83,11 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="inMark:" target="-2" id="iu7-9V-ppR"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="mXd-d7-Nlq">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
                                         <outlet property="nextKeyView" destination="qFW-gk-UEe" id="pWW-Nx-Dol"/>
                                     </connections>
                                 </button>
@@ -83,6 +100,11 @@
                                         <string key="keyEquivalent">;</string>
                                     </buttonCell>
                                     <connections>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="tV6-UT-kEH">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
                                         <outlet property="nextKeyView" destination="QNh-Fr-sDt" id="OZr-Cz-4KN"/>
                                     </connections>
                                 </button>
@@ -96,6 +118,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepForward:" target="-2" id="HSq-DI-44p"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.seekable" id="odF-Gr-bG5"/>
                                         <outlet property="nextKeyView" destination="g39-ft-GFi" id="gG9-zg-Fk2"/>
                                     </connections>
                                 </button>
@@ -111,6 +134,11 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="play:" target="-2" id="bQ0-Kh-GGL"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="CZR-4p-kcW">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
                                         <outlet property="nextKeyView" destination="pjg-hu-H80" id="283-dY-FQt"/>
                                     </connections>
                                 </button>
@@ -124,6 +152,7 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepBack:" target="-2" id="EYk-ZJ-L7Q"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.seekable" id="exD-Lg-Uer"/>
                                         <outlet property="nextKeyView" destination="Se5-3n-x8u" id="iHE-xX-dY6"/>
                                     </connections>
                                 </button>
@@ -137,6 +166,11 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="loopPlayback:" target="-2" id="ZiK-pG-Zro"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="pkq-AG-Vnt">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </button>
                             </subviews>
@@ -148,7 +182,7 @@ IA
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt" customClass="SLHTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
-                                <font key="font" metaFont="system" size="11"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -165,7 +199,7 @@ IA
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="ttY-7K-ldI" customClass="SLHTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
-                                <font key="font" metaFont="system" size="11"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
