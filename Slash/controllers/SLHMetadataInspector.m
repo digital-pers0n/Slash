@@ -19,7 +19,6 @@
     IBOutlet SLHDisclosureView *_artistView;
     IBOutlet SLHDisclosureView *_commentView;
     IBOutlet SLHDisclosureView *_dateView;
-    IBOutlet NSView *_noSelectionView;
 }
 
 @end
@@ -40,12 +39,6 @@
 
 #pragma mark - Overrides 
 
-- (NSView *)view {
-    if (_encoderItem) {
-        return [super view];
-    }
-    return _noSelectionView;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

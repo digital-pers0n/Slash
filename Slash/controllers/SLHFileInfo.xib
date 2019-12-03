@@ -9,7 +9,6 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SLHFileInfo">
             <connections>
                 <outlet property="_fileInfoView" destination="mVd-3N-CCL" id="vbN-Rt-tcT"/>
-                <outlet property="_noSelectionView" destination="3lm-t1-xok" id="MI5-zQ-QDN"/>
                 <outlet property="_stackView" destination="Hz6-mo-xeY" id="4Ai-9n-Wq5"/>
                 <outlet property="_streamsView" destination="GbU-ov-9ys" id="QtQ-kG-2RA"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -160,8 +159,6 @@
                                             </fragment>
                                         </attributedString>
                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="minSize" width="208" height="187"/>
-                                        <size key="maxSize" width="463" height="10000000"/>
                                         <connections>
                                             <binding destination="-2" name="value" keyPath="self.streamsDescription" id="9QM-Rh-Ss8">
                                                 <dictionary key="options">
@@ -193,22 +190,6 @@
                 <outlet property="contentView" destination="rh3-BG-j0H" id="bvQ-d7-xcp"/>
             </connections>
             <point key="canvasLocation" x="242" y="259"/>
-        </customView>
-        <customView misplaced="YES" id="3lm-t1-xok">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="320"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Iag-cn-An3">
-                    <rect key="frame" x="29" y="150" width="142" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No Selection" id="Iws-Ik-mZV">
-                        <font key="font" metaFont="system" size="17"/>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-            </subviews>
-            <point key="canvasLocation" x="490" y="115"/>
         </customView>
     </objects>
 </document>

@@ -17,7 +17,6 @@
     IBOutlet SLHStackView *_stackView;
     IBOutlet SLHDisclosureView *_fileInfoView;
     IBOutlet SLHDisclosureView *_streamsView;
-    IBOutlet NSView *_noSelectionView;
 }
 
 @property (nonatomic) NSString *streamsDescription;
@@ -74,13 +73,6 @@
 }
 
 #pragma mark - Overrides
-
-- (NSView *)view {
-    if (_playerItem) {
-        return [super view];
-    }
-    return _noSelectionView;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

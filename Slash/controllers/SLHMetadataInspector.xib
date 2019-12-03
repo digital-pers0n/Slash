@@ -11,7 +11,6 @@
                 <outlet property="_artistView" destination="xKL-WV-dWI" id="wyJ-R8-X38"/>
                 <outlet property="_commentView" destination="Dgh-WQ-mc8" id="094-Hl-jFu"/>
                 <outlet property="_dateView" destination="F7Y-XN-luD" id="iJG-dh-FyF"/>
-                <outlet property="_noSelectionView" destination="x9U-Wr-FuN" id="3A2-2f-iAl"/>
                 <outlet property="_stackView" destination="Hz6-mo-xeY" id="86C-gB-o0g"/>
                 <outlet property="_titleView" destination="CjE-Te-7Hh" id="aAT-p2-AFc"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -231,22 +230,6 @@
                 <outlet property="contentView" destination="vib-A2-jLV" id="qLp-D2-U89"/>
             </connections>
             <point key="canvasLocation" x="604" y="-53.5"/>
-        </customView>
-        <customView misplaced="YES" id="x9U-Wr-FuN">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="320"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="U8d-Wt-5TX">
-                    <rect key="frame" x="29" y="150" width="142" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No Selection" id="KJa-hb-hJJ">
-                        <font key="font" metaFont="system" size="17"/>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-            </subviews>
-            <point key="canvasLocation" x="538" y="-289"/>
         </customView>
     </objects>
 </document>
