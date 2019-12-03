@@ -34,15 +34,21 @@
     view.frame = frame;
 }
 
-#pragma mark - Properties
+- (void)reloadTab {
 
-- (void)setDelegate:(id<SLHEncoderSettingsDelegate>)delegate {
-    _delegate = delegate;
     NSView *view = [_delegate encoderSettings:self viewForTab:_tabBarView.selectedTabIndex];
     if (view) {
         [self fitToWidth:view];
         _scrollView.documentView = view;
     }
+
+}
+
+#pragma mark - Properties
+
+- (void)setDelegate:(id<SLHEncoderSettingsDelegate>)delegate {
+    _delegate = delegate;
+    [self reloadTab];
 }
 
 - (id<SLHEncoderSettingsDelegate>)delegate {
