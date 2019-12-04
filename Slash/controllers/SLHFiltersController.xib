@@ -97,10 +97,10 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button toolTip="Reset Selection" id="hXg-VU-Un7">
-                                    <rect key="frame" x="162" y="247" width="19" height="19"/>
+                                <button toolTip="Reset Selection" misplaced="YES" id="hXg-VU-Un7">
+                                    <rect key="frame" x="158" y="247" width="15" height="19"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="JCs-Id-p0O">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameCancelTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="JCs-Id-p0O">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                     </buttonCell>
@@ -130,10 +130,10 @@
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="xb3-1E-9vT"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Preview" id="0I8-Df-iRd">
-                                    <rect key="frame" x="138" y="247" width="19" height="19"/>
+                                <button toolTip="Preview" misplaced="YES" id="0I8-Df-iRd">
+                                    <rect key="frame" x="136" y="247" width="17" height="19"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="Yea-Ya-2D0">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNamePreviewTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="Yea-Ya-2D0">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                     </buttonCell>
@@ -273,8 +273,8 @@
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="9wf-tl-eeg"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Detect Crop Area" id="9kg-ae-uXI">
-                                    <rect key="frame" x="114" y="247" width="19" height="19"/>
+                                <button toolTip="Detect Crop Area" misplaced="YES" id="9kg-ae-uXI">
+                                    <rect key="frame" x="114" y="247" width="17" height="19"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameCropDetectTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="9ta-eI-Rm2">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -698,10 +698,10 @@
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
-        <image name="NSQuickLookTemplate" width="19" height="12"/>
-        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="SLHImageNameCancelTemplate" width="15" height="15"/>
         <image name="SLHImageNameCropDetectTemplate" width="15" height="15"/>
         <image name="SLHImageNameEditTemplate" width="15" height="15"/>
         <image name="SLHImageNameFolderTemplate" width="15" height="15"/>
+        <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
     </resources>
 </document>
