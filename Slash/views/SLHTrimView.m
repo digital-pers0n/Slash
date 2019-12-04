@@ -18,7 +18,11 @@
 #define SLHCellHitLeftKnob     NSCellHitEditableTextArea
 #define SLHCellHitRightKnob    NSCellHitTrackableArea
 
-@interface SLHTrimSelectionCell : NSCell
+@interface SLHTrimSelectionCell : NSCell {
+    NSColor *_strokeColor;
+    NSColor *_backgroundColor;
+    NSColor *_foregroundColor;
+}
 
 @property (nonatomic) NSRect cellFrame;
 
@@ -26,18 +30,29 @@
 
 @implementation SLHTrimSelectionCell
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _strokeColor = [NSColor controlShadowColor];
+        _backgroundColor = [[NSColor controlBackgroundColor] highlightWithLevel:0.2];
+        _foregroundColor = [NSColor selectedControlColor];
+    }
+    return self;
+}
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     
     /* Draw frame */
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(cellFrame, 1, 1) xRadius:3 yRadius:3];
     
-    [[NSColor controlShadowColor] setStroke];
+    [_strokeColor setStroke];
     [path stroke];
     
     /* Draw body */
     path = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(cellFrame, 2, 2) xRadius:3 yRadius:3];
 
-    [[[NSColor controlBackgroundColor] highlightWithLevel:0.2] setFill];
+    [_backgroundColor setFill];
     [path fill];
     
     
@@ -45,7 +60,7 @@
     NSRect activeArea = NSInsetRect(cellFrame, SLHKnobWidth, 4);
     path = [NSBezierPath bezierPathWithRoundedRect:activeArea xRadius:2 yRadius:2];
 
-    [[NSColor selectedControlColor] set];
+    [_foregroundColor set];
     [path fill];
 
 }
