@@ -102,6 +102,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     double _startValue;
     double _endValue;
     NSTrackingArea *_trackingArea;
+    CGFloat _mouseX;
 }
 
 @property SLHTrimSelectionCell *selectionCell;
@@ -315,6 +316,7 @@ static char minValueKVOContext;
 
 - (void)mouseDown:(NSEvent *)event {
     _hitTestResult = [_selectionCell hitTestForEvent:event inRect:_cellFrame ofView:self];
+    _mouseX = event.locationInWindow.x;
     if (_hitTestResult == SLHCellHitNone && event.clickCount < 2) {
         [super mouseDown:event];
     }
@@ -382,18 +384,23 @@ static char minValueKVOContext;
 - (void)mouseDragged:(NSEvent *)event {
     
     if (_hitTestResult & SLHCellHitLeftKnob ) {
-        CGFloat deltaX = (event.deltaX / (NSWidth(_maxSelectionFrame)) * _maxValue);
+        CGFloat newMouseX = event.locationInWindow.x;
+        CGFloat deltaX = ((newMouseX - _mouseX) / (NSWidth(_maxSelectionFrame)) * _maxValue);
         double candidate = _startValue + deltaX;
         self.startValue = candidate;
         [self updateValue:@(_startValue) forBinding:@"startValue"];
+        
+        _mouseX = newMouseX;
         return;
     }
     
     if (_hitTestResult & SLHCellHitRightKnob) {
-        CGFloat deltaX = (event.deltaX / NSWidth(_maxSelectionFrame) * _maxValue);
+        CGFloat newMouseX = event.locationInWindow.x;
+        CGFloat deltaX = ((newMouseX - _mouseX) / NSWidth(_maxSelectionFrame) * _maxValue);
         double candidate = _endValue + deltaX;
         self.endValue = candidate;
         [self updateValue:@(_endValue) forBinding:@"endValue"];
+        _mouseX = newMouseX;
         return;
     }
     [self.superview mouseDragged:event];
