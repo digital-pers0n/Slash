@@ -206,8 +206,8 @@
                                         <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropX" id="1a3-Jq-6zi"/>
                                     </connections>
                                 </stepper>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="5Lm-jJ-O9T">
-                                    <rect key="frame" x="25" y="68" width="67" height="13"/>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="5Lm-jJ-O9T">
+                                    <rect key="frame" x="25" y="70" width="67" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Subtitles File" id="EYY-8F-nBL">
                                         <font key="font" metaFont="system" size="10"/>
@@ -215,8 +215,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MFy-zv-1Va">
-                                    <rect key="frame" x="112" y="69" width="141" height="14"/>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="MFy-zv-1Va">
+                                    <rect key="frame" x="112" y="70" width="141" height="14"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="FWS-Fz-bwX">
                                         <font key="font" metaFont="smallSystem"/>
@@ -669,8 +669,8 @@
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableAudioFilters" id="93h-Sv-Hs6"/>
                                     </connections>
                                 </button>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="SSN-6h-gin">
-                                    <rect key="frame" x="62" y="111" width="30" height="13"/>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="SSN-6h-gin">
+                                    <rect key="frame" x="62" y="112" width="30" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="State" id="BvW-rf-fM3">
                                         <font key="font" metaFont="system" size="10"/>
