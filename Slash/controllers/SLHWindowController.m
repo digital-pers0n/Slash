@@ -380,10 +380,14 @@
         NSString *outputName = encoderItem.outputFileName;
         encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
         self.currentEncoderItem = encoderItem;
-        [_itemsArrayController addObject:encoderItem];
+        
         [encoderItem matchSource];
         [self populatePopUpMenus:playerItem];
+        [self updatePopUpMenus:encoderItem];
         [self updateWindowTitle:playerItem.url];
+        
+        [_itemsArrayController addObject:encoderItem];
+        
         result = YES;
     }
     return result;
