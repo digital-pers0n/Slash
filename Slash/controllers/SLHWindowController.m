@@ -371,6 +371,12 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
      SLHEncoderItem *encoderItem = _itemsArrayController.selectedObjects.firstObject;
+    
+    /* Check if already selected */
+    if (encoderItem == _currentEncoderItem) {
+        return;
+    }
+    
     [_formatsArrayController setSelectionIndex:encoderItem.tag];
     SLHEncoderBaseFormat *fmt = _formatsArrayController.selectedObjects.firstObject;
     fmt.encoderItem = encoderItem;
