@@ -17,6 +17,7 @@
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
+#import "MPVPlayerProperties.h"
 
 #import "SLHEncoderVP9Format.h"
 #import "SLHEncoderVPXFormat.h"
@@ -227,15 +228,42 @@
 }
 
 - (IBAction)videoStreamPopUpAction:(NSMenuItem *)sender {
-    _currentEncoderItem.videoStreamIndex = sender.tag;
+    NSInteger tag = sender.tag;
+    _currentEncoderItem.videoStreamIndex = tag;
+    
+    if (tag == -1) {
+        [_playerView.player setBool:NO
+                          forProperty:MPVPlayerPropertyVideoID];
+    } else {
+        [_playerView.player setInteger:[sender.menu indexOfItem:sender] + 1
+                           forProperty:MPVPlayerPropertyVideoID];
+    }
 }
 
 - (IBAction)audioStreamPopUpAction:(NSMenuItem *)sender {
-    _currentEncoderItem.audioStreamIndex = sender.tag;
+    NSInteger tag = sender.tag;
+    _currentEncoderItem.audioStreamIndex = tag;
+    
+    if (tag == -1) {
+        [_playerView.player setBool:NO
+                          forProperty:MPVPlayerPropertyAudioID];
+    } else {
+        [_playerView.player setInteger:[sender.menu indexOfItem:sender] + 1
+                           forProperty:MPVPlayerPropertyAudioID];
+    }
 }
 
 - (IBAction)subtitlesStreamPopUpAction:(NSMenuItem *)sender {
-    _currentEncoderItem.subtitlesStreamIndex = sender.tag;
+    NSInteger tag = sender.tag;
+    _currentEncoderItem.subtitlesStreamIndex = tag;
+    
+    if (tag == -1) {
+        [_playerView.player setBool:NO
+                          forProperty:MPVPlayerPropertySubtitleID];
+    } else {
+        [_playerView.player setInteger:[sender.menu indexOfItem:sender] + 1
+                           forProperty:MPVPlayerPropertySubtitleID];
+    }
 }
 
 - (IBAction)formatsPopUpAction:(id)sender {

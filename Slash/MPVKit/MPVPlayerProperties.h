@@ -41,4 +41,13 @@ extern NSString * const MPVPlayerPropertyABLoopA;
 /** ab-loop-b */
 extern NSString * const MPVPlayerPropertyABLoopB;
 
+/** vid */
+extern NSString * const MPVPlayerPropertyVideoID;
+
+/** aid */
+extern NSString * const MPVPlayerPropertyAudioID;
+
+/** sid */
+extern NSString * const MPVPlayerPropertySubtitleID;
+
 #endif /* MPVPlayerProperties_h */
