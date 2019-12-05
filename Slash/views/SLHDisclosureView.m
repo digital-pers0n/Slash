@@ -181,6 +181,8 @@ static IMP get_method_address(id target, SEL selector) {
     SLHDisclosureHeaderView *_headerView;
     NSView *_contentView;
     NSSize _savedSize;
+    
+    NSColor *_separatorColor;
 }
 
 @end
@@ -217,6 +219,8 @@ static IMP get_method_address(id target, SEL selector) {
 
     [self addSubview:_headerView];
     _savedSize = headerFrame.size;
+    
+    _separatorColor = [NSColor controlShadowColor];
 
 }
 
@@ -289,7 +293,7 @@ static NSRect update_frame_origin(NSSize newSize, NSRect oldFrame) {
 #endif
     
     frame.size.height = 1;
-    [[NSColor controlShadowColor] set];
+    [_separatorColor set];
     NSFrameRect(frame);
 }
 

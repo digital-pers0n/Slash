@@ -103,6 +103,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     double _endValue;
     NSTrackingArea *_trackingArea;
     CGFloat _mouseX;
+    NSColor *_strokeColor;
 }
 
 @property SLHTrimSelectionCell *selectionCell;
@@ -132,6 +133,8 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     self.minValue = 0;
     _bindingInfo = [NSMutableDictionary new];
     _trackingArea = [NSTrackingArea new];
+    
+    _strokeColor = [NSColor controlShadowColor];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -432,7 +435,7 @@ static char minValueKVOContext;
 
 - (void)drawRect:(NSRect)dirtyRect {
 
-    [[NSColor controlShadowColor] set];
+    [_strokeColor set];
     NSBezierPath *path;
     path = [NSBezierPath bezierPathWithRoundedRect:_oldFrame xRadius:3 yRadius:3];
     [path stroke];
