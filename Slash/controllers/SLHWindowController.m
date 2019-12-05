@@ -391,7 +391,10 @@
         NSString * path = files.firstObject;
         MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithPath:path];
         if (playerItem.error) {
-            [NSApp presentError:playerItem.error];
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = [NSString stringWithFormat:@"Cannot load %@", path];
+            alert.informativeText = playerItem.error.localizedDescription;
+            [alert runModal];
             return NO;
         }
         
