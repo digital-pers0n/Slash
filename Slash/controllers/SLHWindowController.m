@@ -379,7 +379,6 @@
         SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
         NSString *outputName = encoderItem.outputFileName;
         encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
-        self.currentEncoderItem = encoderItem;
         
         [encoderItem matchSource];
         [self populatePopUpMenus:playerItem];
