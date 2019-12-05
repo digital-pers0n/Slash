@@ -99,6 +99,25 @@
 
 #pragma mark - Methods
 
+- (BOOL)hasMediaStreams:(MPVPlayerItem *)playerItem {
+    for (MPVPlayerItemTrack * track in playerItem.tracks) {
+        switch (track.mediaType) {
+                
+            case MPVMediaTypeVideo:
+            case MPVMediaTypeAudio:
+                
+                return YES;
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return NO;
+}
+
 - (NSString *)outputPathForSourcePath:(NSString *)sourcePath {
     NSString *outputPath = nil;
     SLHPreferences *prefs = [SLHPreferences preferences];
@@ -375,6 +394,15 @@
             [NSApp presentError:playerItem.error];
             return NO;
         }
+        
+        if (![self hasMediaStreams:playerItem]) {
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = [NSString stringWithFormat:@"Cannot load %@", path];
+            alert.informativeText = @"File doesn't not contain playable streams.";
+            [alert runModal];
+            return NO;
+        }
+        
         _playerView.player.currentItem = playerItem;
         SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
         NSString *outputName = encoderItem.outputFileName;
