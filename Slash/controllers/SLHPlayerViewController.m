@@ -213,10 +213,12 @@
    _player.timePosition = cell.doubleValue;
     self.currentPosition = cell.doubleValue;
     dispatch_resume(_timer);
+    bindObject(_seekBar, doubleValue, self.currentPosition);
 }
 
 - (void)sliderCellMouseDown:(SLHSliderCell *)cell {
     dispatch_suspend(_timer);
+    [_seekBar unbind:@"doubleValue"];
 }
 
 - (void)sliderCellMouseDragged:(SLHSliderCell *)cell {
