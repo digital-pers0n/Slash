@@ -17,9 +17,12 @@
     IBOutlet SLHStackView *_stackView;
     IBOutlet SLHDisclosureView *_fileInfoView;
     IBOutlet SLHDisclosureView *_streamsView;
+    
+    IBOutlet NSArrayController *_tracksArrayController;
+    NSArray <NSString *> *_tracksDescription;
 }
 
-@property (nonatomic) NSString *streamsDescription;
+@property (nonatomic) NSArray <NSString *> * tracksDescription;
 
 @end
 
@@ -44,31 +47,34 @@
     }
     _playerItem = playerItem;
     if (playerItem) {
-        NSMutableString *infoString = [NSMutableString new];
+        
+        NSMutableArray *infoArray = [NSMutableArray new];
         for (MPVPlayerItemTrack *track in _playerItem.tracks) {
+            NSMutableString *infoString = [NSMutableString new];
             [infoString appendFormat:@"#%lu: %@, ", track.trackIndex, track.codecName];
             switch (track.mediaType) {
                 case MPVMediaTypeVideo:
-                    [infoString appendFormat:@"%@, %.0fx%.0f\n", track.pixFormatName, track.videoSize.width, track.videoSize.height];
+                    [infoString appendFormat:@"%@, %.0fx%.0f", track.pixFormatName, track.videoSize.width, track.videoSize.height];
                     break;
                     
                 case MPVMediaTypeAudio:
-                    [infoString appendFormat:@"%@, %lu Hz, %@\n", track.channelLayout, track.sampleRate, track.language];
+                    [infoString appendFormat:@"%@, %lu Hz, %@", track.channelLayout, track.sampleRate, track.language];
                     break;
                     
                 case MPVMediaTypeText:
-                    [infoString appendFormat:@"%@\n", track.language];
+                    [infoString appendFormat:@"%@", track.language];
                     break;
                     
                 default:
-                    [infoString appendFormat:@"%@\n", track.mediaTypeName];
+                    [infoString appendFormat:@"%@", track.mediaTypeName];
                     
                     break;
             }
+            [infoArray addObject:infoString.copy];
         }
-        self.streamsDescription = infoString.copy;
+        self.tracksDescription = infoArray.copy;
     } else {
-        self.streamsDescription = @"Empty";
+        [_tracksArrayController removeObjects:_tracksArrayController.arrangedObjects];
     }
 }
 

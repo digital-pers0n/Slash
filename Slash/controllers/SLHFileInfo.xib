@@ -10,7 +10,8 @@
             <connections>
                 <outlet property="_fileInfoView" destination="mVd-3N-CCL" id="vbN-Rt-tcT"/>
                 <outlet property="_stackView" destination="Hz6-mo-xeY" id="4Ai-9n-Wq5"/>
-                <outlet property="_streamsView" destination="GbU-ov-9ys" id="QtQ-kG-2RA"/>
+                <outlet property="_streamsView" destination="jf8-vU-qJy" id="tx5-gS-n9k"/>
+                <outlet property="_tracksArrayController" destination="1TP-rz-Dci" id="e3a-8t-s0x"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -127,56 +128,79 @@
             </connections>
             <point key="canvasLocation" x="235" y="51.5"/>
         </customView>
-        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GbU-ov-9ys" customClass="SLHDisclosureView">
+        <customView misplaced="YES" id="jf8-vU-qJy" customClass="SLHDisclosureView">
             <rect key="frame" x="0.0" y="0.0" width="208" height="227"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView misplaced="YES" id="rh3-BG-j0H">
+                <customView misplaced="YES" id="NUn-0k-2np">
                     <rect key="frame" x="0.0" y="0.0" width="208" height="207"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <scrollView misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="BnG-Ye-tQM">
+                        <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="PxI-OX-ZtM">
                             <rect key="frame" x="0.0" y="20" width="208" height="187"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                            <clipView key="contentView" id="n9s-Q7-w5p">
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <clipView key="contentView" id="0fT-FU-idI">
                                 <rect key="frame" x="0.0" y="0.0" width="208" height="187"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="NO" findStyle="bar" allowsNonContiguousLayout="YES" id="pL0-Md-MJt">
+                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" viewBased="YES" id="xbW-iO-Rnb">
                                         <rect key="frame" x="0.0" y="0.0" width="208" height="187"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <size key="intercellSpacing" width="3" height="2"/>
                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="minSize" width="208" height="187"/>
-                                        <size key="maxSize" width="463" height="10000000"/>
-                                        <attributedString key="textStorage">
-                                            <fragment content="Sample Text">
-                                                <attributes>
-                                                    <color key="NSColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="10" name="Monaco"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                        <tableColumns>
+                                            <tableColumn width="205.0859375" minWidth="40" maxWidth="1000" id="jGb-Sq-mIg">
+                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                </tableHeaderCell>
+                                                <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="cmy-9Q-gCz">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                <prototypeCellViews>
+                                                    <tableCellView misplaced="YES" id="fwx-mg-42a">
+                                                        <rect key="frame" x="1" y="1" width="205" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" id="1O0-qO-UBx">
+                                                                <rect key="frame" x="0.0" y="1" width="205" height="15"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="ski-At-iTV">
+                                                                    <font key="font" size="10" name="Monaco"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <binding destination="fwx-mg-42a" name="value" keyPath="objectValue" id="9v1-yI-Xfd"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <connections>
+                                                            <outlet property="textField" destination="1O0-qO-UBx" id="BQx-PG-jwI"/>
+                                                        </connections>
+                                                    </tableCellView>
+                                                </prototypeCellViews>
+                                            </tableColumn>
+                                        </tableColumns>
                                         <connections>
-                                            <binding destination="-2" name="value" keyPath="self.streamsDescription" id="9QM-Rh-Ss8">
-                                                <dictionary key="options">
-                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                    <bool key="NSConditionallySetsEditable" value="NO"/>
-                                                </dictionary>
-                                            </binding>
+                                            <binding destination="1TP-rz-Dci" name="content" keyPath="arrangedObjects" id="qHV-dO-otU"/>
+                                            <binding destination="1TP-rz-Dci" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="qHV-dO-otU" id="hO1-lY-J37"/>
+                                            <binding destination="1TP-rz-Dci" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="hO1-lY-J37" id="DVb-cq-Scz"/>
                                         </connections>
-                                    </textView>
+                                    </tableView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </clipView>
-                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="ye0-Lv-UCz">
-                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="nAB-Pf-3Ia">
+                                <rect key="frame" x="1" y="119" width="223" height="15"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
-                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Igg-tG-g4w">
-                                <rect key="frame" x="192" y="0.0" width="16" height="187"/>
+                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="oqD-op-lOf">
+                                <rect key="frame" x="224" y="17" width="15" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
                         </scrollView>
@@ -187,9 +211,14 @@
                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="Streams"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="contentView" destination="rh3-BG-j0H" id="bvQ-d7-xcp"/>
+                <outlet property="contentView" destination="NUn-0k-2np" id="ogZ-XK-nNa"/>
             </connections>
-            <point key="canvasLocation" x="242" y="259"/>
+            <point key="canvasLocation" x="269" y="376"/>
         </customView>
+        <arrayController objectClassName="NSString" editable="NO" selectsInsertedObjects="NO" id="1TP-rz-Dci" userLabel="Player Item Tracks">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.tracksDescription" id="k1N-7u-DSn"/>
+            </connections>
+        </arrayController>
     </objects>
 </document>
