@@ -294,7 +294,7 @@ static NSRect update_frame_origin(NSSize newSize, NSRect oldFrame) {
     
     frame.size.height = 1;
     [_separatorColor set];
-    NSFrameRect(frame);
+    [NSBezierPath fillRect:frame];
 }
 
 - (void)setFrame:(NSRect)frame {
