@@ -22,6 +22,9 @@
     IBOutlet NSTextField *_textField;
     IBOutlet NSSlider *_seekBar;
     
+    BOOL _canSeek;
+    
+    dispatch_queue_t _seek_queue;
     dispatch_queue_t _timer_queue;
     dispatch_source_t _timer;
 }
@@ -83,6 +86,7 @@
     NSNotificationCenter *nc = _notificationCenter;
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
     [nc addObserver:self selector:@selector(playerDidEndPlayback:) name:MPVPlayerDidEndPlaybackNotification object:player];
+   [nc addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:player];
 }
 
 - (void)createTimerWithInterval:(NSUInteger)seconds {
@@ -99,6 +103,12 @@
     [super viewDidLoad];
     
     _timer_queue = dispatch_get_main_queue();
+    
+    dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(
+                                                                         DISPATCH_QUEUE_SERIAL,
+                                                                         QOS_CLASS_USER_INTERACTIVE, 0);
+    _seek_queue = dispatch_queue_create("com.home.SLHPlayerViewController.seek-queue", attr);
+
     bindObject(_textField, doubleValue, self.currentPosition);
     bindObject(_seekBar, doubleValue, self.currentPosition);
     bindObject(_textField, enabled, self.seekable);
@@ -187,6 +197,10 @@
     self.duration = 0;
 }
 
+- (void)playerDidRestartPlayback:(NSNotification *)n {
+    self.currentPosition = _player.timePosition;
+    _canSeek = YES;
+}
 
 #pragma mark - NSControlTextEditingDelegate
 
@@ -222,8 +236,18 @@
 }
 
 - (void)sliderCellMouseDragged:(SLHSliderCell *)cell {
-    [_player seekExactTo:cell.doubleValue];
-    self.currentPosition = cell.doubleValue; // for some reason this property is not updated automatically
+
+    if (_canSeek) {
+        
+        __unsafe_unretained typeof(self) obj = self;
+        double value = cell.doubleValue;
+        
+        dispatch_async(_seek_queue, ^{
+            obj->_player.timePosition = value;
+        });
+        
+        _canSeek = NO;
+    }
 }
 
 #pragma mark - dispatch source timer handler
