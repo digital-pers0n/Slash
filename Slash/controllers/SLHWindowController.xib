@@ -65,6 +65,7 @@
                                                         <connections>
                                                             <action selector="formatsPopUpAction:" target="-2" id="Mf0-4t-h4K"/>
                                                             <binding destination="FId-6h-ocY" name="content" keyPath="arrangedObjects.formatName" id="JC5-55-McN"/>
+                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="NZW-9G-O5I"/>
                                                             <binding destination="FId-6h-ocY" name="selectedIndex" keyPath="selectionIndex" previousBinding="JC5-55-McN" id="UPE-6W-Ik4"/>
                                                         </connections>
                                                     </popUpButton>
@@ -76,6 +77,9 @@
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <menu key="menu" id="ZHb-sB-f0T"/>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="A2V-ov-dJY"/>
+                                                        </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
                                                         <rect key="frame" x="101" y="3" width="90" height="22"/>
@@ -85,6 +89,9 @@
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <menu key="menu" id="Xzr-1Y-15U"/>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="zS4-gb-11x"/>
+                                                        </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
                                                         <rect key="frame" x="195" y="3" width="90" height="22"/>
@@ -94,6 +101,9 @@
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <menu key="menu" id="p7p-Yx-HNc"/>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="dUL-ze-oes"/>
+                                                        </connections>
                                                     </popUpButton>
                                                 </subviews>
                                             </customView>
