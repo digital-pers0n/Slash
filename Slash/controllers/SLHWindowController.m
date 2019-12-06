@@ -129,6 +129,38 @@
     return outputPath;
 }
 
+- (void)matchVideoStreamsToEncoderItem:(SLHEncoderItem *)encoderItem {
+    
+    MPVPlayer *player = _playerView.player;
+    
+    NSInteger streamIdx = encoderItem.videoStreamIndex;
+    if (streamIdx == -1) {
+        [player setBool:NO
+            forProperty:MPVPlayerPropertyVideoID];
+    } else {
+        [player setInteger:_videoStreamPopUp.indexOfSelectedItem + 1
+               forProperty:MPVPlayerPropertyVideoID];
+    }
+    
+    streamIdx = encoderItem.audioStreamIndex;
+    if (streamIdx == -1) {
+        [player setBool:NO
+            forProperty:MPVPlayerPropertyAudioID];
+    } else {
+        [player setInteger:_audioStreamPopUp.indexOfSelectedItem + 1
+               forProperty:MPVPlayerPropertyAudioID];
+    }
+    
+    streamIdx = encoderItem.subtitlesStreamIndex;
+    if (streamIdx == -1) {
+        [player setBool:NO
+            forProperty:MPVPlayerPropertySubtitleID];
+    } else {
+        [player setInteger:_subtitlesStreamPopUp.indexOfSelectedItem + 1
+               forProperty:MPVPlayerPropertySubtitleID];
+    }
+}
+
 #pragma mark - PopUp Menus
 
 - (void)populatePopUpMenus:(MPVPlayerItem *)playerItem {
@@ -361,6 +393,7 @@
 
 - (void)playerDidLoadFile:(NSNotification *)n {
     _playerView.player.timePosition = _currentEncoderItem.interval.start;
+   [self matchVideoStreamsToEncoderItem:_currentEncoderItem];
 }
 
 #pragma mark - NSDraggingDestination
@@ -448,14 +481,19 @@
     MPVPlayerItem *playerItem = encoderItem.playerItem;
     if (playerItem != _currentEncoderItem.playerItem) {
         
+        self.currentEncoderItem = encoderItem;
         player.currentItem = playerItem;
         [player pause];
         [self populatePopUpMenus:playerItem];
         [self updateWindowTitle:playerItem.url];
-    }
+        [self updatePopUpMenus:encoderItem];
     
-    self.currentEncoderItem = encoderItem;
-    [self updatePopUpMenus:encoderItem];
+    } else {
+        
+        self.currentEncoderItem = encoderItem;
+        [self updatePopUpMenus:encoderItem];
+        [self matchVideoStreamsToEncoderItem:encoderItem];
+    }
 }
 
 #pragma mark - NSWindowDelegate
