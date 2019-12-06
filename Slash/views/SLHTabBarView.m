@@ -78,21 +78,24 @@ static const NSUInteger kNumberOfTabs = 5;
     [_tabCell setButtonType:NSButtonTypeToggle];
 }
 
+#pragma mark - Overrides
+
+- (void)setFrame:(NSRect)frame {
+    
+    CGFloat tabWidth = NSWidth(frame) / kNumberOfTabs;
+    
+    NSRect tabFrame = NSMakeRect(0, 0, tabWidth, NSHeight(frame));
+    for (int i = 0; i < kNumberOfTabs; i++) {
+        tabFrame.origin.x = tabWidth * i;
+        _rects[i] = tabFrame;
+    }
+    [super setFrame:frame];
+}
+
 #pragma mark - Draw
 
 - (void)drawRect:(NSRect)dirtyRect {
-    
-    NSRect bounds = self.bounds;
-    CGFloat tabWidth = NSWidth(bounds) / kNumberOfTabs;
-    
-    if (tabWidth != NSWidth(_rects[0])) { // recalculate tab rects
-        bounds.size.width = tabWidth;
-        for (int i = 0; i < kNumberOfTabs; i++) {
-            bounds.origin.x = tabWidth * i;
-            _rects[i] = bounds;
-        }
-    }
-    
+
     int idx = 0;
     for (NSImage *icon in _icons) {
         
