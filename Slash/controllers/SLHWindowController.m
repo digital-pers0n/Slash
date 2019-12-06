@@ -448,6 +448,7 @@
         [self populatePopUpMenus:playerItem];
         [self updatePopUpMenus:encoderItem];
         [self updateWindowTitle:playerItem.url];
+        encoderItem.tag =  _formatsPopUp.indexOfSelectedItem;
         
         [_itemsArrayController addObject:encoderItem];
         
