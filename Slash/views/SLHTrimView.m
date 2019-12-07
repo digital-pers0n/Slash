@@ -9,6 +9,7 @@
 #import "SLHTrimView.h"
 
 //#define DEBUG_TRIMVIEW_DRAWING 1
+//#define ENABLE_TRIMVIEW_SCROLL_WHEEL 1
 
 #define SLHKnobWidth 10
 #define SLHMinWidth  SLHKnobWidth * 2
@@ -365,25 +366,6 @@ static char minValueKVOContext;
     [super mouseUp:event];
 }
 
-- (void)scrollWheel:(NSEvent *)event {
-    
-    NSCellHitResult result = [_selectionCell hitTestForEvent:event inRect:_cellFrame ofView:self];
-    
-    if (result & SLHCellHitLeftKnob) {
-        double deltaY = -event.scrollingDeltaY / NSWidth(_maxSelectionFrame) * _maxValue;
-        self.startValue = _startValue + deltaY;
-        [self updateValue:@(_startValue) forBinding:@"startValue"];
-        return;
-    }
-    if (result & SLHCellHitRightKnob) {
-        double deltaY = -event.scrollingDeltaY / NSWidth(_maxSelectionFrame) * _maxValue;
-        self.endValue = _endValue + deltaY;
-        [self updateValue:@(_endValue) forBinding:@"endValue"];
-        return;
-    }
-    [self.superview scrollWheel:event];
-}
-
 - (void)mouseDragged:(NSEvent *)event {
     
     if (_hitTestResult & SLHCellHitLeftKnob ) {
@@ -408,6 +390,29 @@ static char minValueKVOContext;
     }
     [self.superview mouseDragged:event];
 }
+
+#if ENABLE_TRIMVIEW_SCROLL_WHEEL
+
+- (void)scrollWheel:(NSEvent *)event {
+    
+    NSCellHitResult result = [_selectionCell hitTestForEvent:event inRect:_cellFrame ofView:self];
+    
+    if (result & SLHCellHitLeftKnob) {
+        double deltaY = -event.scrollingDeltaY / NSWidth(_maxSelectionFrame) * _maxValue;
+        self.startValue = _startValue + deltaY;
+        [self updateValue:@(_startValue) forBinding:@"startValue"];
+        return;
+    }
+    if (result & SLHCellHitRightKnob) {
+        double deltaY = -event.scrollingDeltaY / NSWidth(_maxSelectionFrame) * _maxValue;
+        self.endValue = _endValue + deltaY;
+        [self updateValue:@(_endValue) forBinding:@"endValue"];
+        return;
+    }
+    [self.superview scrollWheel:event];
+}
+
+#endif
 
 #pragma mark Frame
 
