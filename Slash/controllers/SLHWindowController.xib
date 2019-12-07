@@ -408,18 +408,22 @@
                             </buttonCell>
                         </button>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="BF0EBE4B-58F7-4D30-8149-843CA678654C" label="Test" paletteLabel="Test" tag="1" image="NSSmartBadgeTemplate" id="jCr-gf-Cg3">
+                    <toolbarItem implicitItemIdentifier="BF0EBE4B-58F7-4D30-8149-843CA678654C" label="Encode" paletteLabel="Encode" tag="1" image="SLHImageNameStartEncodingTemplate" id="jCr-gf-Cg3">
                         <nil key="toolTip"/>
                         <size key="minSize" width="32" height="19"/>
                         <size key="maxSize" width="40" height="25"/>
                         <button key="view" verticalHuggingPriority="750" tag="1" id="rF8-cb-x5A">
-                            <rect key="frame" x="0.0" y="14" width="40" height="25"/>
+                            <rect key="frame" x="4" y="14" width="40" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSSmartBadgeTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oUW-iJ-7nj">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SLHImageNameStartEncodingTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="oUW-iJ-7nj">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
+                        <connections>
+                            <action selector="startEncoding:" target="-2" id="bSK-2k-bfp"/>
+                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="Abm-L3-Gij"/>
+                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="60A76D3B-4512-4B47-BC71-1FB67EF5E7FD" label="Format" paletteLabel="Format" id="IFi-up-EdT">
                         <nil key="toolTip"/>
@@ -564,8 +568,8 @@
         <image name="NSLockUnlockedTemplate" width="10" height="14"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="NSShareTemplate" width="11" height="16"/>
-        <image name="NSSmartBadgeTemplate" width="14" height="14"/>
         <image name="SLHImageNameEditTemplate" width="15" height="15"/>
         <image name="SLHImageNameFolderTemplate" width="15" height="15"/>
+        <image name="SLHImageNameStartEncodingTemplate" width="19" height="19"/>
     </resources>
 </document>
