@@ -321,12 +321,20 @@ static char minValueKVOContext;
 - (void)mouseDown:(NSEvent *)event {
     _hitTestResult = [_selectionCell hitTestForEvent:event inRect:_cellFrame ofView:self];
     _mouseX = event.locationInWindow.x;
+
     if (_hitTestResult == SLHCellHitNone && event.clickCount < 2) {
         [super mouseDown:event];
+    } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
+        [_delegate trimViewMouseDown:self];
     }
 }
 
 - (void)mouseUp:(NSEvent *)event {
+    
+    if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
+        [_delegate trimViewMouseUp:self];
+    }
+    
     if (event.clickCount == 2) {
         NSPoint event_location = event.locationInWindow;
         NSPoint local_point = [self convertPoint:event_location fromView:nil];
@@ -376,6 +384,7 @@ static char minValueKVOContext;
         [self updateValue:@(_startValue) forBinding:@"startValue"];
         
         _mouseX = newMouseX;
+        [_delegate trimViewMouseDraggedStartPosition:self];
         return;
     }
     
@@ -386,6 +395,7 @@ static char minValueKVOContext;
         self.endValue = candidate;
         [self updateValue:@(_endValue) forBinding:@"endValue"];
         _mouseX = newMouseX;
+        [_delegate trimViewMouseDraggedEndPosition:self];
         return;
     }
     [self.superview mouseDragged:event];

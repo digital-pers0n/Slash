@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SLHTrimViewDelegate;
+
 @interface SLHTrimView : NSView
+
+@property (nonatomic, weak) IBOutlet id <SLHTrimViewDelegate> delegate;
 
 /** 
  @discussion Must be greater than 0.
@@ -33,6 +37,15 @@ NS_ASSUME_NONNULL_BEGIN
              are ignored.
  */
 @property (nonatomic) double endValue;
+
+@end
+
+@protocol SLHTrimViewDelegate <NSObject>
+
+- (void)trimViewMouseDown:(SLHTrimView *)trimView;
+- (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView;
+- (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView;
+- (void)trimViewMouseUp:(SLHTrimView *)trimView;
 
 @end
 
