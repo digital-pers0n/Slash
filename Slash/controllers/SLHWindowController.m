@@ -63,7 +63,11 @@
     _encoderSettings = [[SLHEncoderSettings alloc] init];
     _encoderSettings.view.autoresizingMask = _sbView.autoresizingMask;
     _encoderSettings.view.frame = _sbView.frame;
-
+    
+    if ([_inspectorSplitView isSubviewCollapsed:_sbView]) {
+        _encoderSettings.view.hidden = YES;
+    }
+    
     [_sbView.superview replaceSubview:_sbView with:_encoderSettings.view];
     
     _sideBarWidth = NSWidth(_sbView.frame);
@@ -505,12 +509,16 @@
 }
 
 - (void)windowDidResize:(NSNotification *)notification {
-    [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
+        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    }
     [_videoSplitView setPosition:NSHeight(_videoSplitView.frame) - _bottomBarHeight ofDividerAtIndex:0];
 }
 
 - (void)windowDidEndLiveResize:(NSNotification *)notification {
-    [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
+        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    }
 }
 
 - (void)windowWillEnterFullScreen:(NSNotification *)notification {
@@ -519,7 +527,11 @@
 }
 
 - (void)windowDidEnterFullScreen:(NSNotification *)notification {
-    [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    
+    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
+        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    }
+    
     [_videoSplitView setPosition:NSHeight(_videoSplitView.frame) - _bottomBarHeight ofDividerAtIndex:0];
 }
 
@@ -529,17 +541,24 @@
 }
 
 - (void)windowDidExitFullScreen:(NSNotification *)notification {
-    [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    
+    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
+        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    }
+    
     [_videoSplitView setPosition:NSHeight(_videoSplitView.frame) - _bottomBarHeight ofDividerAtIndex:0];
 }
 
 #pragma mark - NSSplitViewDelegate
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+    if (subview == _encoderSettings.view) {
+        return YES;
+    }
     return NO;
 }
 - (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)view {
-    return NO;
+    return YES;
 }
 
 //#if 0
