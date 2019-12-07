@@ -13,6 +13,10 @@
 #import "SLHEncoderSettings.h"
 #import "SLHPreferences.h"
 #import "SLHTextEditor.h"
+#import "SLHEncoder.h"
+#import "SLHModalWindowController.h"
+#import "SLHArgumentsViewController.h"
+#import "SLHLogController.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -39,6 +43,7 @@
     IBOutlet NSPopUpButton *_formatsPopUp;
     
     SLHEncoderSettings *_encoderSettings;
+    SLHEncoder *_encoder;
     SLHTextEditor *_textEditor;
     NSPopover *_popover;
     
@@ -47,6 +52,7 @@
 }
 
 @property (nonatomic) SLHEncoderItem *currentEncoderItem;
+@property (nonatomic, nullable) NSString *lastEncodedMediaFilePath;
 
 @end
 
@@ -58,6 +64,9 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    /* SLHEncoder */
+    _encoder = [[SLHEncoder alloc] init];
     
     /* SLHEncoderSettings */
     _encoderSettings = [[SLHEncoderSettings alloc] init];
@@ -244,6 +253,59 @@
 }
 
 #pragma mark - IBActions
+
+- (IBAction)startEncoding:(id)sender {
+    [self.window endEditingFor:nil];
+    _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
+    
+    [_encoder encodeItem:_currentEncoderItem usingBlock:^(SLHEncoderState state) {
+        switch (state)  {
+                
+            case SLHEncoderStateSuccess: {
+                _lastEncodedMediaFilePath = _currentEncoderItem.outputPath;
+                if (SLHPreferences.preferences.updateFileName) {
+                    [self updateOutputFileName:nil];
+                }
+                break;
+            }
+                
+            case SLHEncoderStateFailed: {
+                NSString *log = _encoder.encodingLog;
+                if (log) {
+                    SLHLogController * logWindow = [[SLHLogController alloc] init];
+                    logWindow.log = log;
+                    [logWindow runModal];
+                }
+                break;
+            }
+                
+            case SLHEncoderStateCanceled: {
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }];
+    
+    [_encoder.window performClose:nil];
+}
+
+- (IBAction)updateOutputFileName:(id)sender {
+    
+    SLHEncoderItem *encoderItem = _currentEncoderItem;
+    
+    NSString *extension = encoderItem.container;
+    NSURL *sourceURL = encoderItem.playerItem.url;
+    
+    if (!extension) {
+        extension = sourceURL.pathExtension;
+    }
+
+    NSString *outputName = sourceURL.lastPathComponent.stringByDeletingPathExtension;
+    outputName = [outputName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
+    encoderItem.outputFileName = outputName;
+}
 
 // TODO: allow to open files from disk
 - (IBAction)addEncoderItem:(id)sender {
