@@ -503,6 +503,11 @@
 
 #pragma mark - NSWindowDelegate
 
+- (void)windowWillClose:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
+}
+
 - (void)windowWillStartLiveResize:(NSNotification *)notification {
     _sideBarWidth = NSWidth(_encoderSettings.view.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
