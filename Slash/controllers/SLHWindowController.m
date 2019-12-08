@@ -575,45 +575,14 @@
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
 }
 
-- (void)windowDidResize:(NSNotification *)notification {
-    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
-        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
-    }
-    [_videoSplitView setPosition:NSHeight(_videoSplitView.frame) - _bottomBarHeight ofDividerAtIndex:0];
-}
-
-- (void)windowDidEndLiveResize:(NSNotification *)notification {
-    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
-        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
-    }
-}
-
 - (void)windowWillEnterFullScreen:(NSNotification *)notification {
     _sideBarWidth = NSWidth(_encoderSettings.view.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
 }
 
-- (void)windowDidEnterFullScreen:(NSNotification *)notification {
-    
-    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
-        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
-    }
-    
-    [_videoSplitView setPosition:NSHeight(_videoSplitView.frame) - _bottomBarHeight ofDividerAtIndex:0];
-}
-
 - (void)windowWillExitFullScreen:(NSNotification *)notification {
     _sideBarWidth = NSWidth(_encoderSettings.view.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
-}
-
-- (void)windowDidExitFullScreen:(NSNotification *)notification {
-    
-    if (![_inspectorSplitView isSubviewCollapsed:_encoderSettings.view]) {
-        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
-    }
-    
-    [_videoSplitView setPosition:NSHeight(_videoSplitView.frame) - _bottomBarHeight ofDividerAtIndex:0];
 }
 
 #pragma mark - NSSplitViewDelegate
@@ -642,6 +611,17 @@
         return NSWidth(splitView.frame) - 260;
     }
     return NSHeight(splitView.frame) - 220;
+}
+
+- (void)splitView:(NSSplitView*)splitView resizeSubviewsWithOldSize:(NSSize)oldSize {
+   [splitView adjustSubviews];
+    if (splitView == _inspectorSplitView) {
+        if (![splitView isSubviewCollapsed:_encoderSettings.view]) {
+            [splitView setPosition:(NSWidth(splitView.frame) - _sideBarWidth) ofDividerAtIndex:0];
+        }
+        return;
+    }
+     [splitView setPosition:(NSHeight(splitView.frame) - _bottomBarHeight) ofDividerAtIndex:0];
 }
 
 //#endif
