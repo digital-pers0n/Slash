@@ -87,6 +87,7 @@
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
     [nc addObserver:self selector:@selector(playerDidEndPlayback:) name:MPVPlayerDidEndPlaybackNotification object:player];
    [nc addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:player];
+    [nc addObserver:self selector:@selector(playerDidStartSeek:) name:MPVPlayerDidStartSeekNotification object:player];
 }
 
 - (void)createTimerWithInterval:(NSUInteger)seconds {
@@ -198,8 +199,14 @@
 }
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
+    if (!_canSeek) {
+        [_player seekExactTo:_seekBar.doubleValue];
+        _canSeek = YES;
+    }
+}
+
+- (void)playerDidStartSeek:(NSNotification *)n {
     self.currentPosition = _player.timePosition;
-    _canSeek = YES;
 }
 
 #pragma mark - NSControlTextEditingDelegate
