@@ -17,6 +17,7 @@
 #import "SLHModalWindowController.h"
 #import "SLHArgumentsViewController.h"
 #import "SLHLogController.h"
+#import "SLHTrimView.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -28,7 +29,7 @@
 #import "SLHEncoderX264Format.h"
 #import "SLHEncoderUniversalFormat.h"
 
-@interface SLHWindowController () <NSSplitViewDelegate, NSWindowDelegate, NSDraggingDestination, NSTableViewDelegate> {
+@interface SLHWindowController () <NSSplitViewDelegate, NSWindowDelegate, NSDraggingDestination, NSTableViewDelegate, SLHTrimViewDelegate> {
     IBOutlet SLHPlayerView *_playerView;
     IBOutlet NSView *_sbView;
     IBOutlet NSView *_bottomBarView;
@@ -49,6 +50,11 @@
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
+
+    struct _trimViewFlags {
+        unsigned int isSeeking:1;
+        unsigned int needsUpdateStartValue:1;
+    } _TVFlags;
 }
 
 @property (nonatomic) SLHEncoderItem *currentEncoderItem;
@@ -470,6 +476,17 @@
    [self matchVideoStreamsToEncoderItem:_currentEncoderItem];
 }
 
+- (void)playerDidRestartPlayback:(NSNotification *)n {
+    if (_TVFlags.isSeeking) {
+        if (_TVFlags.needsUpdateStartValue) {
+            _currentEncoderItem.intervalStart = _playerView.player.timePosition;
+        } else {
+            _currentEncoderItem.intervalEnd = _playerView.player.timePosition;
+        }
+    }
+    _TVFlags.isSeeking = 0;
+}
+
 #pragma mark - NSDraggingDestination
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
@@ -569,6 +586,35 @@
         [self updatePopUpMenus:encoderItem];
         [self matchVideoStreamsToEncoderItem:encoderItem];
     }
+}
+
+#pragma mark - SLHTrimViewDelegate
+
+static double currentTime;
+
+- (void)trimViewMouseDown:(SLHTrimView *)trimView {
+    currentTime = _playerView.player.timePosition;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:_playerView.player];
+    
+}
+
+- (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView {
+    [_playerView.player seekExactTo:trimView.startValue];
+    _TVFlags.needsUpdateStartValue = 1;
+    _TVFlags.isSeeking = 1;
+}
+
+- (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView {
+    [_playerView.player seekExactTo:trimView.endValue];
+    _TVFlags.needsUpdateStartValue = 0;
+    _TVFlags.isSeeking = 1;
+}
+
+- (void)trimViewMouseUp:(SLHTrimView *)trimView {
+
+    _playerView.player.timePosition = currentTime;
+    _TVFlags.isSeeking = 0;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPVPlayerDidRestartPlaybackNotification object:_playerView.player];
 }
 
 #pragma mark - NSWindowDelegate

@@ -220,6 +220,9 @@
                                                                                 <customView wantsLayer="YES" misplaced="YES" id="mUl-BP-3j7" customClass="SLHTrimView">
                                                                                     <rect key="frame" x="3" y="20" width="306" height="28"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                                    <connections>
+                                                                                        <outlet property="delegate" destination="-2" id="noz-qO-mgr"/>
+                                                                                    </connections>
                                                                                 </customView>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="J15-AF-dCH">
                                                                                     <rect key="frame" x="3" y="3" width="263" height="14"/>
