@@ -258,6 +258,15 @@
     [self.window endEditingFor:nil];
     _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
     
+    if (NSApp.currentEvent.modifierFlags & NSAlternateKeyMask) {
+        SLHModalWindowController *win = [[SLHModalWindowController alloc] init];
+        SLHArgumentsViewController *argsView = [[SLHArgumentsViewController alloc] init];
+        win.title = @"Encoding Arguments";
+        win.contentView = argsView.view;
+        argsView.encoderItem = _currentEncoderItem;
+        [win runModal];
+    }
+    
     [_encoder encodeItem:_currentEncoderItem usingBlock:^(SLHEncoderState state) {
         switch (state)  {
                 
