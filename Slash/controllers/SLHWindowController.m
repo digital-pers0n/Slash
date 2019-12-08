@@ -286,9 +286,8 @@
             default:
                 break;
         }
+        [_encoder.window performClose:nil];
     }];
-    
-    [_encoder.window performClose:nil];
 }
 
 - (IBAction)updateOutputFileName:(id)sender {
