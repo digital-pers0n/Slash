@@ -604,6 +604,14 @@ static double currentTime;
     
 }
 
+- (void)trimViewMouseDownStartPosition:(SLHTrimView *)trimView {
+    _playerView.player.timePosition = trimView.startValue;
+}
+
+- (void)trimViewMouseDownEndPosition:(SLHTrimView *)trimView {
+    _playerView.player.timePosition = trimView.endValue;
+}
+
 - (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView {
     [_playerView.player seekExactTo:trimView.startValue];
     _TVFlags.needsUpdateStartValue = 1;
