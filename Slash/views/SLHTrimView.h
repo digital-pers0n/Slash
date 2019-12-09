@@ -43,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol SLHTrimViewDelegate <NSObject>
 
 - (void)trimViewMouseDown:(SLHTrimView *)trimView;
+- (void)trimViewMouseDownStartPosition:(SLHTrimView *)trimView;
+- (void)trimViewMouseDownEndPosition:(SLHTrimView *)trimView;
 - (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView;
 - (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView;
 - (void)trimViewMouseUp:(SLHTrimView *)trimView;

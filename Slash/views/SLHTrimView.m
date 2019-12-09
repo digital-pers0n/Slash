@@ -326,6 +326,11 @@ static char minValueKVOContext;
         [super mouseDown:event];
     } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
         [_delegate trimViewMouseDown:self];
+        if (_hitTestResult & SLHCellHitLeftKnob) {
+            [_delegate trimViewMouseDraggedStartPosition:self];
+        } else {
+            [_delegate trimViewMouseDraggedEndPosition:self];
+        }
     }
 }
 
