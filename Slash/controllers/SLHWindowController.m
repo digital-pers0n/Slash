@@ -669,13 +669,15 @@ static double currentTime;
 
 - (void)splitView:(NSSplitView*)splitView resizeSubviewsWithOldSize:(NSSize)oldSize {
    [splitView adjustSubviews];
-    if (splitView == _inspectorSplitView) {
-        if (![splitView isSubviewCollapsed:_encoderSettings.view]) {
-            [splitView setPosition:(NSWidth(splitView.frame) - _sideBarWidth) ofDividerAtIndex:0];
+    if (self.window.inLiveResize) {
+        if (splitView == _inspectorSplitView) {
+            if (![splitView isSubviewCollapsed:_encoderSettings.view]) {
+                [splitView setPosition:(NSWidth(splitView.frame) - _sideBarWidth) ofDividerAtIndex:0];
+            }
+            return;
         }
-        return;
+        [splitView setPosition:(NSHeight(splitView.frame) - _bottomBarHeight) ofDividerAtIndex:0];
     }
-     [splitView setPosition:(NSHeight(splitView.frame) - _bottomBarHeight) ofDividerAtIndex:0];
 }
 
 //#endif
