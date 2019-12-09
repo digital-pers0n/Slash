@@ -36,11 +36,6 @@
         if (NSMinY(newFrame) < 0) {
             frame.size.height -= NSMinY(newFrame);
             self.frame = frame;
-            
-            for (NSView *subview in subviews) {
-                NSRect viewFrame = subview.frame;
-                viewFrame.origin.y -= NSMinY(newFrame);
-            }
             newFrame.origin.y = 0;
         }
         
