@@ -331,9 +331,6 @@
                                     <real value="490"/>
                                     <real value="490"/>
                                 </holdingPriorities>
-                                <connections>
-                                    <outlet property="delegate" destination="-2" id="Vl8-Ur-nmp"/>
-                                </connections>
                             </splitView>
                             <customView id="qd1-2b-8Uz">
                                 <rect key="frame" x="441" y="0.0" width="204" height="387"/>
@@ -344,9 +341,6 @@
                             <real value="490"/>
                             <real value="490"/>
                         </holdingPriorities>
-                        <connections>
-                            <outlet property="delegate" destination="-2" id="oU0-hO-yvy"/>
-                        </connections>
                     </splitView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="EbO-kY-RJo">
                         <rect key="frame" x="5" y="4" width="30" height="12"/>

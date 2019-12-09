@@ -84,6 +84,8 @@
     }
     
     [_sbView.superview replaceSubview:_sbView with:_encoderSettings.view];
+    _videoSplitView.delegate = self;
+    _inspectorSplitView.delegate = self;
     
     _sideBarWidth = NSWidth(_sbView.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
