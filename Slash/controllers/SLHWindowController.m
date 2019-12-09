@@ -595,6 +595,10 @@
 static double currentTime;
 
 - (void)trimViewMouseDown:(SLHTrimView *)trimView {
+    NSTableCellView *tcv = (id)trimView.superview;
+    if (tcv.objectValue != _currentEncoderItem) {
+        [_itemsArrayController setSelectedObjects:@[tcv.objectValue]];
+    }
     currentTime = _playerView.player.timePosition;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:_playerView.player];
     
