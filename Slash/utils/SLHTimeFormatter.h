@@ -14,9 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedFormatter;
 
-@property (nonatomic) double maxValue;
-@property (nonatomic) double minValue;
-
 @end
 
 NS_ASSUME_NONNULL_END
