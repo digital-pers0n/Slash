@@ -18,6 +18,7 @@
 #import "SLHArgumentsViewController.h"
 #import "SLHLogController.h"
 #import "SLHTrimView.h"
+#import "SLHPresetManager.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -29,7 +30,7 @@
 #import "SLHEncoderX264Format.h"
 #import "SLHEncoderUniversalFormat.h"
 
-@interface SLHWindowController () <NSSplitViewDelegate, NSWindowDelegate, NSDraggingDestination, NSTableViewDelegate, SLHTrimViewDelegate> {
+@interface SLHWindowController () <NSSplitViewDelegate, NSWindowDelegate, NSDraggingDestination, NSTableViewDelegate, SLHTrimViewDelegate, NSMenuDelegate, SLHPresetManagerDelegate> {
     IBOutlet SLHPlayerView *_playerView;
     IBOutlet NSView *_sbView;
     IBOutlet NSView *_bottomBarView;
@@ -43,6 +44,8 @@
     IBOutlet NSPopUpButton *_subtitlesStreamPopUp;
     IBOutlet NSPopUpButton *_formatsPopUp;
     
+    SLHPresetManager *_presetManager;
+    NSArray <NSMenuItem *> *_defaultPresetMenuItems;
     SLHEncoderSettings *_encoderSettings;
     SLHEncoder *_encoder;
     SLHTextEditor *_textEditor;
@@ -70,6 +73,11 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    /* SLHPresetManager */
+    _presetManager = [[SLHPresetManager alloc] init];
+    _presetManager.delegate = self;
+    [self createDefaultPresetMenuItems];
     
     /* SLHEncoder */
     _encoder = [[SLHEncoder alloc] init];
@@ -182,6 +190,16 @@
     }
 }
 
+
+- (void)createDefaultPresetMenuItems {
+    NSMenuItem *separator = [NSMenuItem separatorItem];
+    NSMenuItem *managePresets = [[NSMenuItem alloc] initWithTitle:@"Manage Presets" action:@selector(showPresetsWindow:) keyEquivalent:@""];
+    managePresets.target = _presetManager;
+    NSMenuItem *savePreset = [[NSMenuItem alloc] initWithTitle:@"Save Preset" action:@selector(savePreset:) keyEquivalent:@""];
+    savePreset.target = self;
+    _defaultPresetMenuItems =  @[separator, savePreset, managePresets];
+}
+
 #pragma mark - PopUp Menus
 
 - (void)populatePopUpMenus:(MPVPlayerItem *)playerItem {
@@ -261,6 +279,17 @@
 }
 
 #pragma mark - IBActions
+
+- (IBAction)loadPreset:(NSMenuItem *)sender {
+    SLHEncoderBaseFormat * baseFormat = _formatsArrayController.selectedObjects.firstObject;
+    baseFormat.dictionaryRepresentation = sender.representedObject;
+    [self updatePopUpMenus:_currentEncoderItem];
+}
+
+- (IBAction)savePreset:(id)sender {
+    SLHEncoderBaseFormat * baseFormat = _formatsArrayController.selectedObjects.firstObject;
+    [_presetManager setPreset:baseFormat.dictionaryRepresentation forName:baseFormat.formatName];
+}
 
 - (IBAction)startEncoding:(id)sender {
     [self.window endEditingFor:nil];
@@ -629,6 +658,42 @@ static double currentTime;
     _playerView.player.timePosition = currentTime;
     _TVFlags.isSeeking = 0;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPVPlayerDidRestartPlaybackNotification object:_playerView.player];
+}
+
+#pragma mark - NSMenuDelegate
+
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+    NSMenuItem *titleItem = menu.itemArray.firstObject;
+    [menu removeAllItems];
+    [menu addItem:titleItem];
+    
+    SLHEncoderBaseFormat *baseFormat = _formatsArrayController.selectedObjects.firstObject;
+    NSArray *presets = [_presetManager presetsForName:baseFormat.formatName];
+    
+    if (presets && presets.count) {
+        for (NSDictionary *preset in presets) {
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:preset[SLHEncoderPresetNameKey] action:@selector(loadPreset:) keyEquivalent:@""];
+            menuItem.representedObject = preset;
+            [menu addItem:menuItem];
+        }
+
+    }
+    
+    for (NSMenuItem *item in _defaultPresetMenuItems) {
+        [menu addItem:item];
+    }
+    
+}
+
+#pragma mark - SLHPresetManagerDelegate
+
+- (void)presetManager:(SLHPresetManager *)manager loadPreset:(NSDictionary *)preset forName:(NSString *)name {
+    [_formatsPopUp selectItemWithTitle:name];
+    [self formatsPopUpAction:_formatsPopUp];
+    
+    SLHEncoderBaseFormat *baseFormat = _formatsArrayController.selectedObjects.firstObject;
+    baseFormat.dictionaryRepresentation = preset;
+    [self updatePopUpMenus:_currentEncoderItem];
 }
 
 #pragma mark - NSWindowDelegate

@@ -305,20 +305,35 @@
                                                     <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="Xfx-TG-ocN"/>
                                                 </connections>
                                             </button>
-                                            <button verticalHuggingPriority="750" misplaced="YES" id="Ppj-RM-YWH">
-                                                <rect key="frame" x="61" y="117" width="21" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSIconViewTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="zBd-8E-Kq5">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                            </button>
-                                            <button verticalHuggingPriority="750" misplaced="YES" id="dwk-iq-G09">
-                                                <rect key="frame" x="411" y="117" width="21" height="21"/>
+                                            <popUpButton toolTip="Load Preset" misplaced="YES" id="QS8-0O-UhT">
+                                                <rect key="frame" x="397" y="118" width="38" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSShareTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" inset="2" id="bb3-yh-TDJ">
+                                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="vK3-kx-OJd">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
+                                                    <menu key="menu" id="QwP-Ld-pTH">
+                                                        <items>
+                                                            <menuItem state="on" image="NSActionTemplate" hidden="YES" id="OQq-V8-D6Z"/>
+                                                        </items>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="-2" id="S3q-Dj-ZFK"/>
+                                                        </connections>
+                                                    </menu>
+                                                </popUpButtonCell>
+                                                <connections>
+                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="YrJ-sF-ZPO">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </popUpButton>
+                                            <button toolTip="Encode Selection" verticalHuggingPriority="750" misplaced="YES" id="hcj-0V-OZI">
+                                                <rect key="frame" x="66" y="117" width="21" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameStartEncodingTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="sff-T7-905">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="startEncoding:" target="-2" id="Hcj-Iv-q3d"/>
