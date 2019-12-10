@@ -10,6 +10,17 @@
 
 @implementation SLHTimeFormatter
 
++ (instancetype)sharedFormatter {
+    static id obj = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        obj = [[self.class alloc] init];
+    });
+    
+    return obj;
+}
+
 - (NSString *)stringForObjectValue:(id)obj {
     
     double value = [obj doubleValue];

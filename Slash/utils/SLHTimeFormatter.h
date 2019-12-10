@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHTimeFormatter : NSNumberFormatter
 
++ (instancetype)sharedFormatter;
+
 @property (nonatomic) double maxValue;
 @property (nonatomic) double minValue;
 
