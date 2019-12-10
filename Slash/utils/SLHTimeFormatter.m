@@ -48,10 +48,7 @@
                 double minutes = components[1].doubleValue * 60;
                 double seconds = components[2].doubleValue;
                 double total = hours + minutes + seconds;
-                if (total > self.maximum.doubleValue) {
-                    if (error) {
-                        *error = [NSString stringWithFormat:@"%g is too large", total];
-                    }
+                if (![super getObjectValue:obj forString:@(total).stringValue errorDescription:error]) {
                     return NO;
                 }
                 *obj = @(total);
