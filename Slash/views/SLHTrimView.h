@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) IBOutlet id <SLHTrimViewDelegate> delegate;
 
+/**
+ @discussion a trim view's tool tip formatter
+ */
+@property (nullable, strong) IBOutlet NSFormatter *formatter;
+
 /** 
  @discussion Must be greater than 0.
  */

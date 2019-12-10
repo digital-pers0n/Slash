@@ -9,6 +9,8 @@
 #import "SLHTrimTableCellView.h"
 #import "SLHTrimView.h"
 #import "SLHEncoderItem.h"
+#import "SLHTimeFormatter.h"
+
 #import "MPVPlayerItem.h"
 
 @implementation SLHTrimTableCellView
@@ -27,6 +29,7 @@
     _trimView.maxValue = obj.playerItem.duration;
     _trimView.endValue = obj.intervalEnd;
     _trimView.startValue = obj.intervalStart;
+    _trimView.formatter = [SLHTimeFormatter sharedFormatter];
     
     [super setObjectValue:objectValue];
  

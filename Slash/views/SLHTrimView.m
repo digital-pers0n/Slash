@@ -315,7 +315,11 @@ static char minValueKVOContext;
     NSPoint local_point = [self convertPoint:event_location fromView:nil];
     double value = (local_point.x / (NSWidth(_oldFrame)) * _maxValue);
     self.toolTip = nil;
-    self.toolTip = @(value).stringValue;
+    if (_formatter) {
+        self.toolTip = [_formatter stringForObjectValue:@(value)];
+    } else {
+        self.toolTip = @(value).stringValue;
+    }
 }
 
 - (void)mouseDown:(NSEvent *)event {
