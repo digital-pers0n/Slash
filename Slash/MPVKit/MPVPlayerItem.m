@@ -50,7 +50,11 @@ NSString * const MPVPlayerItemErrorDomain = @"com.home.mpvPlayerItem.ErrorDomain
         }
         
         _bitRate = _av_format->bit_rate;
-        _duration = _av_format->duration / (double)AV_TIME_BASE;
+        if (_av_format->duration == AV_NOPTS_VALUE) {
+            _duration = 1;
+        } else {
+            _duration = _av_format->duration / (double)AV_TIME_BASE;
+        }
         _formatName = @(_av_format->iformat->name);
         
         if (url.fileURL) {
