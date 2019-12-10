@@ -321,7 +321,12 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="selectOutputPath:" target="-2" id="cIm-QN-1Q1"/>
+                                                    <action selector="startEncoding:" target="-2" id="Hcj-Iv-q3d"/>
+                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="hKe-Hx-Xee">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
                                                 </connections>
                                             </button>
                                         </subviews>
