@@ -310,6 +310,36 @@
 
 #pragma mark - IBActions
 
+// TODO: to be implemented...
+
+- (IBAction)previewSourceFile:(id)sender {
+    
+}
+
+- (IBAction)previewSegment:(id)sender {
+    
+}
+
+- (IBAction)previewOutputFile:(id)sender {
+    
+}
+
+- (IBAction)addSelectionToQueue:(id)sender {
+    
+}
+
+- (IBAction)addAllToQueue:(id)sender {
+    
+}
+
+- (IBAction)showQueue:(id)sender {
+    
+}
+
+- (IBAction)showPresetsWindow:(id)sender {
+    
+}
+
 - (IBAction)loadPreset:(NSMenuItem *)sender {
     SLHEncoderBaseFormat * baseFormat = _formatsArrayController.selectedObjects.firstObject;
     baseFormat.dictionaryRepresentation = sender.representedObject;
