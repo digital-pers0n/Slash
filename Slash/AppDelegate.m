@@ -10,6 +10,9 @@
 #import "SLHMainWindowController.h"
 #import "SLHPreferences.h"
 #import "SLHMediaItem.h"
+#import "SLHWindowController.h"
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
 
 char *g_temp_dir;
 
@@ -17,6 +20,7 @@ char *g_temp_dir;
 
 @property IBOutlet SLHMainWindowController *mainWindow;
 @property SLHPreferences *preferences;
+@property (nonatomic, weak) IBOutlet SLHWindowController *mainWindowController;
 
 @end
 
@@ -41,7 +45,10 @@ char *g_temp_dir;
         }
     }
      g_temp_dir = strdup(tmpDir.UTF8String);
-    [_mainWindow showWindow:self];
+    
+    [_mainWindowController showWindow:self];
+    
+//    [_mainWindow showWindow:self];
     _preferences = [SLHPreferences preferences];
 }
 
