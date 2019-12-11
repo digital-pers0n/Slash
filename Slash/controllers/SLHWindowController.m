@@ -621,6 +621,7 @@
             return NO;
         }
         [self createEncoderItemWith:playerItem];
+        [NSDocumentController.sharedDocumentController noteNewRecentDocumentURL:[NSURL fileURLWithPath:path]];
         result = YES;
     }
     return result;
