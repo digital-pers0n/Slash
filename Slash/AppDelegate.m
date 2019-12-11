@@ -61,31 +61,21 @@ char *g_temp_dir;
     return YES;
 }
 
-static inline SLHMediaItem *_createMediaItem(NSString *path) {
-    SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:path];
-    if (mediaItem.error) {
-        NSLog(@"Error: %@", mediaItem.error.localizedDescription);
-        return nil;
-    }
-    return mediaItem;
-}
-
 - (void)openDocument:(id)sender {
-    NSWindow *window = _mainWindow.window;
+    NSWindow *window = _mainWindowController.window;
     [window makeKeyAndOrderFront:nil];
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.allowsMultipleSelection = NO;
+    
+    __unsafe_unretained typeof(self) obj = self;
     
     [openPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         
         if (result == NSOKButton) {
             NSURL *URL = openPanel.URL;
-            NSString *path = URL.path;
-            SLHMediaItem *item;
-            if ((item = _createMediaItem(path)) != nil) {
-                self->_mainWindow.currentMediaItem = item;
+            if ([obj->_mainWindowController loadFileURL:URL]) {
+                [NSDocumentController.sharedDocumentController noteNewRecentDocumentURL:URL];
             }
-            [NSDocumentController.sharedDocumentController noteNewRecentDocumentURL:URL];
         }
         
     }];
@@ -97,14 +87,8 @@ static inline SLHMediaItem *_createMediaItem(NSString *path) {
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
-    [_mainWindow.window makeKeyAndOrderFront:nil];
-    SLHMediaItem *item;
-    if ((item = _createMediaItem(filename)) != nil) {
-        _mainWindow.currentMediaItem = item;
-        return YES;
-    }
-    
-    return NO;
+    [_mainWindowController.window makeKeyAndOrderFront:nil];
+    return [_mainWindowController loadFileURL:[NSURL fileURLWithPath:filename]];;
 }
 
 #pragma mark - IBActions
@@ -115,7 +99,7 @@ static inline SLHMediaItem *_createMediaItem(NSString *path) {
 
 - (IBAction)revealOutputFile:(id)sender {
     NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
-    [sharedWorkspace selectFile:_mainWindow.lastEncodedMediaFilePath inFileViewerRootedAtPath:@""];
+    [sharedWorkspace selectFile:_mainWindowController.lastEncodedMediaFilePath inFileViewerRootedAtPath:@""];
 }
 
 @end
