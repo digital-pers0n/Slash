@@ -128,6 +128,21 @@
 
 #pragma mark - Methods
 
+- (void)createEncoderItemWith:(MPVPlayerItem *)playerItem {
+    _playerView.player.currentItem = playerItem;
+    SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
+    NSString *outputName = encoderItem.outputFileName;
+    encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
+    
+    [encoderItem matchSource];
+    [self populatePopUpMenus:playerItem];
+    [self updatePopUpMenus:encoderItem];
+    [self updateWindowTitle:playerItem.url];
+    encoderItem.tag =  _formatsPopUp.indexOfSelectedItem;
+    
+    [_itemsArrayController addObject:encoderItem];
+}
+
 - (BOOL)hasMediaStreams:(MPVPlayerItem *)playerItem {
     for (MPVPlayerItemTrack * track in playerItem.tracks) {
         switch (track.mediaType) {
@@ -560,20 +575,7 @@
             [alert runModal];
             return NO;
         }
-        
-        _playerView.player.currentItem = playerItem;
-        SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
-        NSString *outputName = encoderItem.outputFileName;
-        encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
-        
-        [encoderItem matchSource];
-        [self populatePopUpMenus:playerItem];
-        [self updatePopUpMenus:encoderItem];
-        [self updateWindowTitle:playerItem.url];
-        encoderItem.tag =  _formatsPopUp.indexOfSelectedItem;
-        
-        [_itemsArrayController addObject:encoderItem];
-        
+        [self createEncoderItemWith:playerItem];
         result = YES;
     }
     return result;
