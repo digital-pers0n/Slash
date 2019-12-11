@@ -128,6 +128,21 @@
 
 #pragma mark - Methods
 
+- (BOOL)loadFileURL:(NSURL *)url {
+    MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithURL:url];
+    if (playerItem.error) {
+        NSLog(@"Cannot load %@\n %@", url, playerItem.error.localizedDescription);
+        return NO;
+    }
+    if (![self hasMediaStreams:playerItem]) {
+        NSLog(@"Cannot load %@\n File doesn't contain playable streams.", url);
+        return NO;
+    }
+    [self createEncoderItemWith:playerItem];
+    return YES;
+}
+
+
 - (void)createEncoderItemWith:(MPVPlayerItem *)playerItem {
     _playerView.player.currentItem = playerItem;
     SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
