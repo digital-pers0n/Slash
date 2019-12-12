@@ -128,6 +128,19 @@
 
 #pragma mark - Methods
 
+- (void)showSideBarIfNeeded {
+    
+    NSView *v = _encoderSettings.view;
+    
+    if ([_inspectorSplitView isSubviewCollapsed:v]) {
+        [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+    }
+}
+
+- (BOOL)isSideBarHidden {
+    return [_inspectorSplitView isSubviewCollapsed:_encoderSettings.view];
+}
+
 - (BOOL)loadFileURL:(NSURL *)url {
     MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithURL:url];
     if (playerItem.error) {
@@ -309,6 +322,45 @@
 }
 
 #pragma mark - IBActions
+
+- (IBAction)toggleSideBar:(id)sender {
+    CGFloat width = [_inspectorSplitView isSubviewCollapsed:_encoderSettings.view] ? _sideBarWidth : 0;
+    [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - width ofDividerAtIndex:0];
+}
+
+- (IBAction)showSideBar:(id)sender {
+    [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
+}
+
+- (IBAction)hideSideBar:(id)sender {
+    [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) ofDividerAtIndex:0];
+}
+
+- (IBAction)showMetadataEditor:(id)sender {
+    [self showSideBarIfNeeded];
+    _encoderSettings.selectedTab = SLHEncoderSettingsMetadataInspectorTab;
+}
+
+- (IBAction)showFileInfo:(id)sender {
+    [self showSideBarIfNeeded];
+    _encoderSettings.selectedTab = SLHEncoderSettingsFileInfoTab;
+}
+
+- (IBAction)showFiltersSettings:(id)sender {
+    [self showSideBarIfNeeded];
+    _encoderSettings.selectedTab = SLHEncoderSettingsFiltersTab;
+}
+
+- (IBAction)showAudioSettings:(id)sender {
+    [self showSideBarIfNeeded];
+    _encoderSettings.selectedTab = SLHEncoderSettingsAudioTab;
+}
+
+- (IBAction)showVideoSettings:(id)sender {
+    [self showSideBarIfNeeded];
+    _encoderSettings.selectedTab = SLHEncoderSettingsVideoTab;
+}
+
 
 // TODO: to be implemented...
 

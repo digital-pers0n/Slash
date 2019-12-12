@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)loadFileURL:(NSURL *)url;
 
+@property (readonly, nonatomic, getter=isSideBarHidden) BOOL sideBarHidden;
+
 - (IBAction)previewSourceFile:(id)sender;
 - (IBAction)previewSegment:(id)sender;
 - (IBAction)previewOutputFile:(id)sender;

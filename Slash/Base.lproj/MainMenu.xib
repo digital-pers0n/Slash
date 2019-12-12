@@ -509,6 +509,57 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="View" id="dtg-LZ-T8I">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="View" id="v8g-ue-CTd">
+                        <items>
+                            <menuItem title="Sidebar" id="Aou-Ug-65v">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Sidebar" id="kQo-Jk-6DC">
+                                    <items>
+                                        <menuItem title="Show Video Settings" keyEquivalent="1" id="cYo-tw-0aa">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="showVideoSettings:" target="lKY-o8-vkq" id="liK-U8-6rz"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Audio Settings" keyEquivalent="2" id="S4U-P5-e7D">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="showAudioSettings:" target="lKY-o8-vkq" id="Xmz-Sp-E0Y"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Filters Settings" keyEquivalent="3" id="EWr-T1-eCl">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="showFiltersSettings:" target="lKY-o8-vkq" id="cA3-5a-MgG"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Media Info" keyEquivalent="4" id="Sf6-Z2-b7q">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="showFileInfo:" target="lKY-o8-vkq" id="PzS-Dp-V6Q"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Metadata Editor" keyEquivalent="5" id="0we-Rb-SAk">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="showMetadataEditor:" target="lKY-o8-vkq" id="eQw-sm-11L"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Acq-Hu-XMk"/>
+                                        <menuItem title="Toggle Sidebar" keyEquivalent="0" id="tPr-to-rPv">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleSideBar:" target="lKY-o8-vkq" id="VBK-gV-o1u"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Window" id="aUF-d1-5bR">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
