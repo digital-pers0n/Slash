@@ -63,6 +63,10 @@
     return _tabBarView.selectedTabIndex;
 }
 
+- (void)setSelectedTab:(SLHEncoderSettingsTab)selectedTab {
+    _tabBarView.selectedTabIndex = selectedTab;
+}
+
 #pragma mark - SLHTabBarViewDelegate
 
 - (void)tabBarView:(SLHTabBarView *)tabBar didSelectTabAtIndex:(NSUInteger)tab {

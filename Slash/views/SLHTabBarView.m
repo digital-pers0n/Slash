@@ -78,6 +78,14 @@ static const NSUInteger kNumberOfTabs = 5;
     [_tabCell setButtonType:NSButtonTypeToggle];
 }
 
+- (void)setSelectedTabIndex:(NSUInteger)selectedTabIndex {
+    if (selectedTabIndex < kNumberOfTabs) {
+        _selectedTabIndex = selectedTabIndex;
+        [_delegate tabBarView:self didSelectTabAtIndex:selectedTabIndex];
+        self.needsDisplay = YES;
+    }
+}
+
 #pragma mark - Overrides
 
 - (void)setFrame:(NSRect)frame {

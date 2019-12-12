@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, SLHEncoderSettingsTab) {
 
 @property (nullable) id <SLHEncoderSettingsDelegate> delegate;
 @property (nullable, readonly) NSView *selectedView;
-@property (readonly) SLHEncoderSettingsTab selectedTab;
+@property (nonatomic) SLHEncoderSettingsTab selectedTab;
 
 
 /** Reload current tab */
