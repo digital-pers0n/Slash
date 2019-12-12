@@ -18,7 +18,6 @@ char *g_temp_dir;
 
 @interface AppDelegate ()
 
-@property IBOutlet SLHMainWindowController *mainWindow;
 @property SLHPreferences *preferences;
 @property (nonatomic, weak) IBOutlet SLHWindowController *mainWindowController;
 

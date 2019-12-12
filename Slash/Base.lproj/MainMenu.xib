@@ -13,11 +13,9 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="ahF-xq-Cat" customClass="SLHMainWindowController" colorLabel="IBBuiltInLabel-Red"/>
         <customObject id="lKY-o8-vkq" customClass="SLHWindowController" colorLabel="IBBuiltInLabel-Red"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="mainWindow" destination="ahF-xq-Cat" id="VTt-ZM-Bqi"/>
                 <outlet property="mainWindowController" destination="lKY-o8-vkq" id="VY1-fu-Ju3"/>
             </connections>
         </customObject>
@@ -67,11 +65,6 @@
                             <menuItem title="Quit Slash" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
-                                    <binding destination="ahF-xq-Cat" name="enabled" keyPath="self.queue.inProgress" id="1lM-Ar-TRl">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
                         </items>
@@ -151,6 +144,11 @@
                             <menuItem title="Export Selected" keyEquivalent="e" id="9fy-Ng-PfI">
                                 <connections>
                                     <action selector="startEncoding:" target="lKY-o8-vkq" id="7Y5-Re-0Bq"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="koH-0e-0kS">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="koH-0e-0kS" id="WlT-xO-a2A">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -160,17 +158,17 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="koH-0e-0kS">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Export Selected..." alternate="YES" keyEquivalent="e" id="pMW-0q-wkN">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="startEncoding:" target="lKY-o8-vkq" id="EgG-dZ-5zO"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="0q1-ck-1co">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="0q1-ck-1co" id="SUL-k3-bza">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -180,16 +178,16 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="0q1-ck-1co">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add to Queue" keyEquivalent="r" id="Ep6-z4-PeF">
                                 <connections>
                                     <action selector="addSelectionToQueue:" target="lKY-o8-vkq" id="jnq-PO-qdw"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="q2q-ko-aHP">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="q2q-ko-aHP" id="ayz-Ie-dMd">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -199,17 +197,17 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="q2q-ko-aHP">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add to Queue and Clear " alternate="YES" keyEquivalent="r" id="qqV-H8-mdg">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="addSelectionToQueue:" target="lKY-o8-vkq" id="AqJ-bU-zQ9"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="6Ns-U8-HdV">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="6Ns-U8-HdV" id="hKZ-9c-4FA">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -219,16 +217,16 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="6Ns-U8-HdV">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Queue..." keyEquivalent="R" id="TZc-jf-pcO">
                                 <connections>
                                     <action selector="showQueue:" target="lKY-o8-vkq" id="LlM-TJ-Jlg"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="o3l-dC-maj">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="o3l-dC-maj" id="Rxm-OY-76D">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -236,11 +234,6 @@
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="o3l-dC-maj">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -261,6 +254,11 @@
                             <menuItem title="Save Preset…" keyEquivalent="s" id="pxx-59-PXV">
                                 <connections>
                                     <action selector="savePreset:" target="lKY-o8-vkq" id="VKZ-VP-oVH"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="6pD-vh-jmM">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="6pD-vh-jmM" id="HGE-Da-c6d">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -268,11 +266,6 @@
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="6pD-vh-jmM">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
