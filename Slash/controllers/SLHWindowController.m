@@ -389,7 +389,7 @@
 }
 
 - (IBAction)showPresetsWindow:(id)sender {
-    
+    [_presetManager.window makeKeyAndOrderFront:sender];
 }
 
 - (IBAction)loadPreset:(NSMenuItem *)sender {
