@@ -130,6 +130,21 @@
 
 #pragma mark - Methods
 
+- (void)resetWindow {
+    
+    self.currentEncoderItem = nil;
+    _playerView.player.currentItem = nil;
+    [_formatsArrayController.selection setValue:nil forKey:@"encoderItem"];
+    NSWindow *window = self.window;
+    window.representedURL = nil;
+    window.title = @"";
+    [_encoderSettings reloadTab];
+    [_videoStreamPopUp removeAllItems];
+    [_audioStreamPopUp removeAllItems];
+    [_subtitlesStreamPopUp removeAllItems];
+    
+}
+
 - (void)showSideBarIfNeeded {
     
     NSView *v = _encoderSettings.view;
@@ -490,16 +505,7 @@
 - (IBAction)removeEncoderItem:(id)sender {
     [_itemsArrayController remove:sender];
     if (!_itemsArrayController.canRemove) {
-        self.currentEncoderItem = nil;
-        _playerView.player.currentItem = nil;
-        [_formatsArrayController.selection setValue:nil forKey:@"encoderItem"];
-        NSWindow *window = self.window;
-        window.representedURL = nil;
-        window.title = @"";
-        [_encoderSettings reloadTab];
-        [_videoStreamPopUp removeAllItems];
-        [_audioStreamPopUp removeAllItems];
-        [_subtitlesStreamPopUp removeAllItems];
+        [self resetWindow];
     }
 }
 
