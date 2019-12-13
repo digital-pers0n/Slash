@@ -424,7 +424,7 @@
             case SLHEncoderStateSuccess: {
                 _lastEncodedMediaFilePath = _currentEncoderItem.outputPath;
                 if (SLHPreferences.preferences.updateFileName) {
-                    [self updateOutputFileName:nil];
+                    [self updateOutputFileName:sender];
                 }
                 break;
             }
