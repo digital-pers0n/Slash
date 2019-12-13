@@ -30,6 +30,8 @@
 #import "SLHEncoderX264Format.h"
 #import "SLHEncoderUniversalFormat.h"
 
+extern NSString *const SLHEncoderFormatDidChangeNotification;
+
 @interface SLHWindowController () <NSSplitViewDelegate, NSWindowDelegate, NSDraggingDestination, NSTableViewDelegate, SLHTrimViewDelegate, NSMenuDelegate, SLHPresetManagerDelegate> {
     IBOutlet SLHPlayerView *_playerView;
     IBOutlet NSView *_sbView;
@@ -555,6 +557,8 @@
     encoderItem.tag = _formatsArrayController.selectionIndex;
     _encoderSettings.delegate = encoderFormat;
     encoderFormat.view.needsDisplay = YES;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SLHEncoderFormatDidChangeNotification object:encoderFormat];
 }
 
 - (IBAction)textEditorDone:(id)sender {
