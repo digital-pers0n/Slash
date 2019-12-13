@@ -19,6 +19,7 @@
 #import "SLHLogController.h"
 #import "SLHTrimView.h"
 #import "SLHPresetManager.h"
+#import "SLHEncoderQueue.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -85,6 +86,9 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     /* SLHEncoder */
     _encoder = [[SLHEncoder alloc] init];
+    
+    /* SLHEncoderQueue */
+    _queue = [[SLHEncoderQueue alloc] init];
     
     /* SLHEncoderSettings */
     _encoderSettings = [[SLHEncoderSettings alloc] init];
@@ -396,15 +400,39 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)addSelectionToQueue:(id)sender {
+    NSEventModifierFlags flags = NSApp.currentEvent.modifierFlags;
+    [self.window endEditingFor:nil];
     
+    _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
+    [_queue addEncoderItems:@[_currentEncoderItem]];
+    
+    if (flags & NSEventModifierFlagOption) {
+        [self removeEncoderItem:sender];
+    }
 }
 
 - (IBAction)addAllToQueue:(id)sender {
+    NSEventModifierFlags flags = NSApp.currentEvent.modifierFlags;
+    [self.window endEditingFor:nil];
     
+    NSArray *items = _itemsArrayController.arrangedObjects;
+    NSArray *formats = _formatsArrayController.arrangedObjects;
+    
+    for (SLHEncoderItem *i in items) {
+        SLHEncoderBaseFormat *fmt = formats[i.tag];
+        fmt.encoderItem = i;
+        i.encoderArguments = fmt.arguments;
+    }
+    [_queue addEncoderItems:items];
+    
+    if (flags & NSEventModifierFlagOption) {
+        [_itemsArrayController removeObjects:items];
+        [self resetWindow];
+    }
 }
 
 - (IBAction)showQueue:(id)sender {
-    
+    [_queue.window makeKeyAndOrderFront:nil];
 }
 
 - (IBAction)showPresetsWindow:(id)sender {
