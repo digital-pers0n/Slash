@@ -50,7 +50,7 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderVideoVP9FrameParallelKey,
                 *const SLHEncoderVideoVP9RowMTKey;
 
-extern NSString *const SLHMainWinodwEncoderFormatDidChange;
+extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 @interface SLHEncoderVP9Format ()
 
@@ -78,7 +78,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
         _vpxFmt.cpuUsedMinValue = -8;
         _vpxFmt.cpuUsedMaxValue = 8;
         [self.view setNeedsDisplay:YES];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formatDidChange:) name:SLHMainWinodwEncoderFormatDidChange object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formatDidChange:) name:SLHEncoderFormatDidChangeNotification object:nil];
     }
     return self;
 }

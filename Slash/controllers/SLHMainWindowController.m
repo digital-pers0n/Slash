@@ -30,7 +30,7 @@
 #import "SLHPresetManager.h"
 #import "SLHTextEditor.h"
 
-extern NSString *const SLHMainWinodwEncoderFormatDidChange;
+extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 @interface SLHMainWindowController () <SLHDragViewDelegate, SLHPlayerDelegate, SLHPresetManagerDelegate, NSTableViewDelegate, NSWindowDelegate, NSMenuDelegate> {
     SLHDragView *_dragView;
@@ -440,7 +440,7 @@ extern NSString *const SLHMainWinodwEncoderFormatDidChange;
     item.tag = tag;
     fmt.encoderItem = item;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:SLHMainWinodwEncoderFormatDidChange object:fmt];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SLHEncoderFormatDidChangeNotification object:fmt];
     [self updateSummary:nil];
 }
 
