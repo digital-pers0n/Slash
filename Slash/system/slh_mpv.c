@@ -87,8 +87,11 @@ void plr_set_exit_cb(Player *p, exit_f func) {
 #pragma mark - Destroy
 
 void plr_destroy(Player *p) {
-    
-    soc_shutdown(p->soc);
+    if (plr_is_connected(p)) {
+        const char cmd[] = "{ \"command\": [\"quit\"] }\n";
+        plr_msg_send(p, cmd, sizeof(cmd) - 1);
+        soc_shutdown(p->soc);
+    }
     free(p->soc);
     remove(p->socket_path);
     free(p->socket_path);
