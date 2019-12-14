@@ -147,8 +147,9 @@ int plr_launch(Player *p) {
         });
         
         plr_read_output(prc_stdout(p->proc), p->cb);
-        prc_close(p->proc);
-        
+        if (prc_pid(p->proc) > 0) {
+            prc_close(p->proc);
+        }
         dispatch_group_leave(p->gr);
         dispatch_release(gq);
         p->cb->exit(p, p->cb->context);
