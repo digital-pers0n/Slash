@@ -55,7 +55,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <subviews>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
-                                                        <rect key="frame" x="341" y="3" width="90" height="22"/>
+                                                        <rect key="frame" x="345" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lyi-GL-UQr">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -70,7 +70,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="Idt-of-EEP">
-                                                        <rect key="frame" x="7" y="3" width="90" height="22"/>
+                                                        <rect key="frame" x="5" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Qe-WC-173">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -82,7 +82,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
-                                                        <rect key="frame" x="101" y="3" width="90" height="22"/>
+                                                        <rect key="frame" x="97" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32l-D9-SdJ">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -94,7 +94,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
-                                                        <rect key="frame" x="195" y="3" width="90" height="22"/>
+                                                        <rect key="frame" x="189" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="71C-wZ-lMD">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -116,7 +116,7 @@
                                             <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="RsO-qP-T7T">
                                                 <rect key="frame" x="0.0" y="0.0" width="440" height="112"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <clipView key="contentView" id="ukH-Ua-slV">
+                                                <clipView key="contentView" drawsBackground="NO" id="ukH-Ua-slV">
                                                     <rect key="frame" x="0.0" y="0.0" width="440" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -224,8 +224,8 @@
                                                                                         <outlet property="delegate" destination="-2" id="noz-qO-mgr"/>
                                                                                     </connections>
                                                                                 </customView>
-                                                                                <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="J15-AF-dCH">
-                                                                                    <rect key="frame" x="3" y="3" width="263" height="14"/>
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="J15-AF-dCH">
+                                                                                    <rect key="frame" x="3" y="3" width="268" height="14"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Sample Text" id="7XL-sX-z5V">
                                                                                         <font key="font" metaFont="smallSystem"/>
@@ -234,7 +234,7 @@
                                                                                     </textFieldCell>
                                                                                 </textField>
                                                                                 <button verticalHuggingPriority="750" misplaced="YES" id="U1r-fU-wB1">
-                                                                                    <rect key="frame" x="267" y="2" width="19" height="17"/>
+                                                                                    <rect key="frame" x="275" y="3" width="16" height="16"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="QDK-fb-OKI">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -245,7 +245,7 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" misplaced="YES" id="JMs-Ka-ajZ">
-                                                                                    <rect key="frame" x="290" y="2" width="19" height="17"/>
+                                                                                    <rect key="frame" x="293" y="3" width="16" height="16"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameFolderTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="0KI-82-9EL">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -294,7 +294,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" misplaced="YES" id="xEo-sl-w0b">
-                                                <rect key="frame" x="35" y="117" width="21" height="21"/>
+                                                <rect key="frame" x="37" y="117" width="21" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="O1g-xC-bPi">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -306,7 +306,7 @@
                                                 </connections>
                                             </button>
                                             <popUpButton toolTip="Load Preset" misplaced="YES" id="QS8-0O-UhT">
-                                                <rect key="frame" x="397" y="118" width="38" height="18"/>
+                                                <rect key="frame" x="394" y="118" width="38" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="vK3-kx-OJd">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -338,6 +338,43 @@
                                                 <connections>
                                                     <action selector="startEncoding:" target="-2" id="Hcj-Iv-q3d"/>
                                                     <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="hKe-Hx-Xee">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </button>
+                                            <button toolTip="Add All Items to Queue" verticalHuggingPriority="750" misplaced="YES" id="Rdx-xW-Iqm">
+                                                <rect key="frame" x="95" y="117" width="21" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameAddToQueueTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="76k-qQ-6fb">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="addAllToQueue:" target="-2" id="cOM-gs-xQQ"/>
+                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="RX8-is-TDW">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </button>
+                                            <button toolTip="Preview Output File" verticalHuggingPriority="750" misplaced="YES" id="uxE-C5-KgH">
+                                                <rect key="frame" x="124" y="117" width="21" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNamePreviewTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="d89-wa-GbT">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="previewOutputFile:" target="-2" id="p4A-4b-b3l"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="1gd-uY-RQW">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" previousBinding="1gd-uY-RQW" id="L9D-b1-qOr">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
@@ -418,14 +455,13 @@
         </arrayController>
     </objects>
     <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSIconViewTemplate" width="10" height="10"/>
-        <image name="NSLockLockedTemplate" width="10" height="14"/>
-        <image name="NSLockUnlockedTemplate" width="10" height="14"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
-        <image name="NSShareTemplate" width="11" height="16"/>
+        <image name="SLHImageNameAddToQueueTemplate" width="15" height="15"/>
         <image name="SLHImageNameEditTemplate" width="15" height="15"/>
         <image name="SLHImageNameFolderTemplate" width="15" height="15"/>
-        <image name="SLHImageNameStartEncodingTemplate" width="19" height="19"/>
+        <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
+        <image name="SLHImageNameStartEncodingTemplate" width="15" height="15"/>
     </resources>
 </document>
