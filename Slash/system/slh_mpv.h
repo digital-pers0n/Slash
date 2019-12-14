@@ -82,6 +82,13 @@ int plr_connect(Player *p);
 int plr_disconnect(Player *p);
 
 /**
+ * Check if the IPC connection is alive
+ *
+ * @return 1 if the conneciton is alive, 0 otherwise.
+ */
+int plr_is_connected(Player *p);
+
+/**
  * Destroy and deinitialize the player.
  */ 
 

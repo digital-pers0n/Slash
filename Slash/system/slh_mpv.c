@@ -173,6 +173,15 @@ int plr_disconnect(Player *p) {
     return 0;
 }
 
+int plr_is_connected(Player *p) {
+    const char data[] = "{}\n";
+    ssize_t result = soc_send(p->soc, data, sizeof(data) - 1);
+    if (result == -1) {
+        return 0;
+    }
+    return 1;
+}
+
 ssize_t plr_msg_send(Player *p, const char *msg, size_t len) {
     return soc_send(p->soc, msg, len);
 }
