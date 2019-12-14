@@ -499,7 +499,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         switch (state)  {
                 
             case SLHEncoderStateSuccess: {
-                _lastEncodedMediaFilePath = _currentEncoderItem.outputPath;
+                self.lastEncodedMediaFilePath = _currentEncoderItem.outputPath;
                 if (SLHPreferences.preferences.updateFileName) {
                     [self updateOutputFileName:sender];
                 }
