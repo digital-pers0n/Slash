@@ -20,6 +20,7 @@
 #import "SLHTrimView.h"
 #import "SLHPresetManager.h"
 #import "SLHEncoderQueue.h"
+#import "SLHExternalPlayer.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -47,6 +48,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSPopUpButton *_subtitlesStreamPopUp;
     IBOutlet NSPopUpButton *_formatsPopUp;
     
+    SLHExternalPlayer *_externalPlayer;
     SLHPresetManager *_presetManager;
     NSArray <NSMenuItem *> *_defaultPresetMenuItems;
     SLHEncoderSettings *_encoderSettings;
@@ -131,6 +133,12 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
+    
+    /* SLHExternalPlayer */
+    NSURL *mpvURL = [NSURL fileURLWithPath: SLHPreferences.preferences.mpvPath];
+    NSURL *mpvConfURL = [NSURL fileURLWithPath:SLHPreferences.preferences.mpvConfigPath];
+    [SLHExternalPlayer setDefaultPlayerURL:mpvURL];
+    [SLHExternalPlayer setDefaultPlayerConfigURL:mpvConfURL];
 
 }
 
@@ -266,6 +274,19 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _defaultPresetMenuItems =  @[separator, savePreset, managePresets];
 }
 
+- (BOOL)createExternalPlayerWithMedia:(NSURL *)url {
+    _externalPlayer = [SLHExternalPlayer playerWithMediaURL:url];
+    if (_externalPlayer.error) {
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = [NSString stringWithFormat:@"Cannot launch %@", SLHPreferences.preferences.mpvPath];
+        alert.informativeText = _externalPlayer.error.localizedDescription;
+        _externalPlayer = nil;
+        [alert runModal];
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - PopUp Menus
 
 - (void)populatePopUpMenus:(MPVPlayerItem *)playerItem {
@@ -336,8 +357,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [_subtitlesStreamPopUp.menu addItem:item.copy];
 }
 
-
-
 - (void)updatePopUpMenus:(SLHEncoderItem *)item {
     [_videoStreamPopUp selectItemWithTag:item.videoStreamIndex];
     [_audioStreamPopUp selectItemWithTag:item.audioStreamIndex];
@@ -384,11 +403,17 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _encoderSettings.selectedTab = SLHEncoderSettingsVideoTab;
 }
 
-
 // TODO: to be implemented...
 
 - (IBAction)previewSourceFile:(id)sender {
-    
+    if (!_externalPlayer) {
+        if (![self createExternalPlayerWithMedia:_currentEncoderItem.playerItem.url]) {
+            return;
+        }
+    } else {
+        _externalPlayer.url = _currentEncoderItem.playerItem.url;
+    }
+    [_externalPlayer play];
 }
 
 - (IBAction)previewSegment:(id)sender {
@@ -396,7 +421,14 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)previewOutputFile:(id)sender {
-    
+    if (!_externalPlayer) {
+        if (![self createExternalPlayerWithMedia:[NSURL fileURLWithPath:_lastEncodedMediaFilePath]]) {
+            return;
+        }
+    } else {
+        _externalPlayer.url = [NSURL fileURLWithPath:_lastEncodedMediaFilePath];
+    }
+    [_externalPlayer play];
 }
 
 - (IBAction)addSelectionToQueue:(id)sender {
