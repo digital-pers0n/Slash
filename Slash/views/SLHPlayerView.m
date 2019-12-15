@@ -14,7 +14,7 @@
 @interface SLHPlayerView () {
     MPVPlayer *_player;
     MPVOpenGLView *_videoView;
-    SLHPlayerViewController *_controls;
+    SLHPlayerViewController *_viewController;
 }
 
 @end
@@ -43,8 +43,8 @@
 
 - (void)setUp {
     
-    _controls = [[SLHPlayerViewController alloc] init];
-    NSView *controlsView = _controls.view;
+    _viewController = [[SLHPlayerViewController alloc] init];
+    NSView *controlsView = _viewController.view;
     controlsView.frame = self.bounds;
     controlsView.autoresizingMask =   NSViewWidthSizable | NSViewHeightSizable;
     [self addSubview:controlsView];
@@ -83,11 +83,11 @@
             _videoView.player = player;
         }
         _player = player;
-        _controls.player = player;
+        _viewController.player = player;
     } else {
         [nc removeObserver:self name:MPVPlayerWillShutdownNotification object:_player];
         _videoView.player = nil;
-        _controls.player = nil;
+        _viewController.player = nil;
         _player = nil;
     }
     
@@ -97,8 +97,8 @@
     _videoView = [[MPVOpenGLView alloc] initWithPlayer:player];
     assert(_videoView != nil);
     _videoView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-    _videoView.frame = _controls.videoView.bounds;
-    [_controls.videoView addSubview:_videoView];
+    _videoView.frame = _viewController.videoView.bounds;
+    [_viewController.videoView addSubview:_videoView];
 }
 
 #pragma mark - Overrides
@@ -123,9 +123,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_videoView removeFromSuperview];
-    [_controls.view removeFromSuperview];
+    [_viewController.view removeFromSuperview];
     _videoView.player = nil;
-    _controls.player = nil;
+    _viewController.player = nil;
     _player = nil;
 }
 
