@@ -10,12 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MPVPlayer;
+@class MPVPlayer, SLHPlayerViewController;
 
 @interface SLHPlayerView : NSView
 
 @property (nullable) MPVPlayer *player;
 @property (getter=isReadyForDisplay, readonly) BOOL readyForDisplay;
+@property (nonatomic, readonly) SLHPlayerViewController *viewController;
 
 @end
 
