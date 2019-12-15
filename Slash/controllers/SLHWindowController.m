@@ -48,10 +48,12 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSPopUpButton *_subtitlesStreamPopUp;
     IBOutlet NSPopUpButton *_formatsPopUp;
     
+    MPVPlayer *_player;
     SLHExternalPlayer *_externalPlayer;
     SLHPresetManager *_presetManager;
     NSArray <NSMenuItem *> *_defaultPresetMenuItems;
     SLHEncoderSettings *_encoderSettings;
+    NSView *_encoderSettingsView;
     SLHEncoder *_encoder;
     SLHTextEditor *_textEditor;
     NSPopover *_popover;
@@ -94,14 +96,16 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     /* SLHEncoderSettings */
     _encoderSettings = [[SLHEncoderSettings alloc] init];
-    _encoderSettings.view.autoresizingMask = _sbView.autoresizingMask;
-    _encoderSettings.view.frame = _sbView.frame;
+    NSView *view = _encoderSettings.view;
+    _encoderSettingsView = view;
+    view.autoresizingMask = _sbView.autoresizingMask;
+    view.frame = _sbView.frame;
     
     if ([_inspectorSplitView isSubviewCollapsed:_sbView]) {
-        _encoderSettings.view.hidden = YES;
+        view.hidden = YES;
     }
     
-    [_sbView.superview replaceSubview:_sbView with:_encoderSettings.view];
+    [_sbView.superview replaceSubview:_sbView with:view];
     _videoSplitView.delegate = self;
     _inspectorSplitView.delegate = self;
     
@@ -130,6 +134,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     /* MPVPlayer */
     MPVPlayer *player = [[MPVPlayer alloc] init];
     _playerView.player = player;
+    _player = player;
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
@@ -147,7 +152,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 - (void)resetWindow {
     
     self.currentEncoderItem = nil;
-    _playerView.player.currentItem = nil;
+    _player.currentItem = nil;
     [_formatsArrayController.selection setValue:nil forKey:@"encoderItem"];
     NSWindow *window = self.window;
     window.representedURL = nil;
@@ -161,7 +166,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (void)showSideBarIfNeeded {
     
-    NSView *v = _encoderSettings.view;
+    NSView *v = _encoderSettingsView;
     
     if ([_inspectorSplitView isSubviewCollapsed:v]) {
         [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - _sideBarWidth ofDividerAtIndex:0];
@@ -169,7 +174,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (BOOL)isSideBarHidden {
-    return [_inspectorSplitView isSubviewCollapsed:_encoderSettings.view];
+    return [_inspectorSplitView isSubviewCollapsed:_encoderSettingsView];
 }
 
 - (BOOL)loadFileURL:(NSURL *)url {
@@ -188,7 +193,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 
 - (void)createEncoderItemWith:(MPVPlayerItem *)playerItem {
-    _playerView.player.currentItem = playerItem;
+    _player.currentItem = playerItem;
     SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
     NSString *outputName = encoderItem.outputFileName;
     encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
@@ -234,7 +239,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (void)matchVideoStreamsToEncoderItem:(SLHEncoderItem *)encoderItem {
     
-    MPVPlayer *player = _playerView.player;
+    MPVPlayer *player = _player;
     
     NSInteger streamIdx = encoderItem.videoStreamIndex;
     if (streamIdx == -1) {
@@ -366,7 +371,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 #pragma mark - IBActions
 
 - (IBAction)toggleSideBar:(id)sender {
-    CGFloat width = [_inspectorSplitView isSubviewCollapsed:_encoderSettings.view] ? _sideBarWidth : 0;
+    CGFloat width = [_inspectorSplitView isSubviewCollapsed:_encoderSettingsView] ? _sideBarWidth : 0;
     [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - width ofDividerAtIndex:0];
 }
 
@@ -576,10 +581,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _currentEncoderItem.videoStreamIndex = tag;
     
     if (tag == -1) {
-        [_playerView.player setBool:NO
+        [_player setBool:NO
                           forProperty:MPVPlayerPropertyVideoID];
     } else {
-        [_playerView.player setInteger:[sender.menu indexOfItem:sender] + 1
+        [_player setInteger:[sender.menu indexOfItem:sender] + 1
                            forProperty:MPVPlayerPropertyVideoID];
     }
 }
@@ -589,10 +594,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _currentEncoderItem.audioStreamIndex = tag;
     
     if (tag == -1) {
-        [_playerView.player setBool:NO
+        [_player setBool:NO
                           forProperty:MPVPlayerPropertyAudioID];
     } else {
-        [_playerView.player setInteger:[sender.menu indexOfItem:sender] + 1
+        [_player setInteger:[sender.menu indexOfItem:sender] + 1
                            forProperty:MPVPlayerPropertyAudioID];
     }
 }
@@ -602,10 +607,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _currentEncoderItem.subtitlesStreamIndex = tag;
     
     if (tag == -1) {
-        [_playerView.player setBool:NO
+        [_player setBool:NO
                           forProperty:MPVPlayerPropertySubtitleID];
     } else {
-        [_playerView.player setInteger:[sender.menu indexOfItem:sender] + 1
+        [_player setInteger:[sender.menu indexOfItem:sender] + 1
                            forProperty:MPVPlayerPropertySubtitleID];
     }
 }
@@ -687,16 +692,16 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 #pragma mark - MPVPlayer Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {
-    _playerView.player.timePosition = _currentEncoderItem.interval.start;
+    _player.timePosition = _currentEncoderItem.interval.start;
    [self matchVideoStreamsToEncoderItem:_currentEncoderItem];
 }
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
     if (_TVFlags.isSeeking) {
         if (_TVFlags.needsUpdateStartValue) {
-            _currentEncoderItem.intervalStart = _playerView.player.timePosition;
+            _currentEncoderItem.intervalStart = _player.timePosition;
         } else {
-            _currentEncoderItem.intervalEnd = _playerView.player.timePosition;
+            _currentEncoderItem.intervalEnd = _player.timePosition;
         }
     }
     _TVFlags.isSeeking = 0;
@@ -772,7 +777,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     fmt.encoderItem = encoderItem;
     _encoderSettings.delegate = fmt;
     
-    MPVPlayer *player = _playerView.player;
+    MPVPlayer *player = _player;
     MPVPlayerItem *playerItem = encoderItem.playerItem;
     if (playerItem != _currentEncoderItem.playerItem) {
         
@@ -800,37 +805,37 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         [_itemsArrayController setSelectedObjects:@[encoderItem]];
         _savedTimePosition = encoderItem.interval.start;
     } else {
-        _savedTimePosition = _playerView.player.timePosition;
+        _savedTimePosition = _player.timePosition;
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:_playerView.player];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:_player];
     
 }
 
 - (void)trimViewMouseDownStartPosition:(SLHTrimView *)trimView {
-    _playerView.player.timePosition = trimView.startValue;
+    _player.timePosition = trimView.startValue;
 }
 
 - (void)trimViewMouseDownEndPosition:(SLHTrimView *)trimView {
-    _playerView.player.timePosition = trimView.endValue;
+    _player.timePosition = trimView.endValue;
 }
 
 - (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView {
-    [_playerView.player seekExactTo:trimView.startValue];
+    [_player seekExactTo:trimView.startValue];
     _TVFlags.needsUpdateStartValue = 1;
     _TVFlags.isSeeking = 1;
 }
 
 - (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView {
-    [_playerView.player seekExactTo:trimView.endValue];
+    [_player seekExactTo:trimView.endValue];
     _TVFlags.needsUpdateStartValue = 0;
     _TVFlags.isSeeking = 1;
 }
 
 - (void)trimViewMouseUp:(SLHTrimView *)trimView {
 
-    _playerView.player.timePosition = _savedTimePosition;
+    _player.timePosition = _savedTimePosition;
     _TVFlags.isSeeking = 0;
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPVPlayerDidRestartPlaybackNotification object:_playerView.player];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPVPlayerDidRestartPlaybackNotification object:_player];
 }
 
 #pragma mark - NSMenuDelegate
@@ -877,17 +882,17 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (void)windowWillStartLiveResize:(NSNotification *)notification {
-    _sideBarWidth = NSWidth(_encoderSettings.view.frame);
+    _sideBarWidth = NSWidth(_encoderSettingsView.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
 }
 
 - (void)windowWillEnterFullScreen:(NSNotification *)notification {
-    _sideBarWidth = NSWidth(_encoderSettings.view.frame);
+    _sideBarWidth = NSWidth(_encoderSettingsView.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
 }
 
 - (void)windowWillExitFullScreen:(NSNotification *)notification {
-    _sideBarWidth = NSWidth(_encoderSettings.view.frame);
+    _sideBarWidth = NSWidth(_encoderSettingsView.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
 }
 
