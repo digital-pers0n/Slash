@@ -19,8 +19,8 @@ extern NSString * const SLHPlayerViewControllerDidChangeOutMarkNotification;
 
 @property (nullable) MPVPlayer *player;
 @property (nullable) IBOutlet NSView *videoView;
-@property (readonly) double inMark;
-@property (readonly) double outMark;
+@property (nonatomic) double inMark;
+@property (nonatomic) double outMark;
 
 @end
 
