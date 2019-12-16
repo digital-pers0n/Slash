@@ -23,6 +23,7 @@
     IBOutlet NSSlider *_seekBar;
     
     BOOL _canSeek;
+    BOOL _hasABLoop;
     
     dispatch_queue_t _seek_queue;
     dispatch_queue_t _timer_queue;
@@ -32,6 +33,7 @@
 @property (nonatomic) double duration;
 @property (nonatomic) double currentPosition;
 @property (nonatomic) BOOL seekable;
+@property (nonatomic) BOOL hasABLoop;
 @property (nonatomic) NSNotificationCenter *notificationCenter;
 
 @end
@@ -164,7 +166,7 @@
 }
 
 - (IBAction)loopPlayback:(id)sender {
-    if ([sender state] == NSOnState) {
+    if (_hasABLoop) {
         [_player setDouble:_inMark forProperty:MPVPlayerPropertyABLoopA];
         [_player setDouble:_outMark forProperty:MPVPlayerPropertyABLoopB];
         _player.timePosition = _inMark;
@@ -198,6 +200,12 @@
         self.seekable = NO;
     }
     self.duration = duration;
+    self.inMark = 0;
+    self.outMark = 0;
+    if (_hasABLoop) {
+         [_player setString:@"no" forProperty:MPVPlayerPropertyABLoopA];
+         self.hasABLoop = NO;
+    }
 }
 
 - (void)playerDidEndPlayback:(NSNotification *)n {

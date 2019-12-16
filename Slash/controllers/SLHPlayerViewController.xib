@@ -171,6 +171,7 @@ IA
                                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                                             </dictionary>
                                         </binding>
+                                        <binding destination="-2" name="value" keyPath="self.hasABLoop" id="q3S-ab-99b"/>
                                     </connections>
                                 </button>
                             </subviews>
