@@ -76,6 +76,13 @@
     _player = player;
 }
 
+- (void)dealloc {
+    SLHSliderCell *cell = _seekBar.cell;
+    [cell unbind:@"inMark"];
+    [cell unbind:@"outMark"];
+    cell.delegate = nil;
+}
+
 #pragma mark - Methods
 
 - (void)removeObserverForPlayer:(MPVPlayer *)player {
@@ -115,7 +122,11 @@
     bindObject(_textField, enabled, self.seekable);
     bindObject(_seekBar, enabled, self.seekable);
     SLHSliderCell *sliderCell = _seekBar.cell;
+    
     sliderCell.delegate = self;
+    bindObject(sliderCell, inMark, self.inMark);
+    bindObject(sliderCell, outMark, self.outMark);
+    [self.view.window makeFirstResponder:self.view];
 }
 
 #pragma mark - IBActions
@@ -130,25 +141,26 @@
 
 - (IBAction)inMark:(id)sender {
     
-    _inMark = _player.timePosition;
+    self.inMark = _player.timePosition;
     [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeInMarkNotification object:self userInfo:nil];
     
     if (_inMark > _outMark) {
-        _outMark = _player.currentItem.duration;
+        self.outMark = _player.currentItem.duration;
         [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeOutMarkNotification object:self userInfo:nil];
     }
+    _seekBar.needsDisplay = YES;
 }
 
 - (IBAction)outMark:(id)sender {
     
-    _outMark = _player.timePosition;
+    self.outMark = _player.timePosition;
     [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeOutMarkNotification object:self userInfo:nil];
     
     if (_outMark < _inMark) {
-        _inMark = 0;
+        self.inMark = 0;
         [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeInMarkNotification object:self userInfo:nil];
     }
-
+    _seekBar.needsDisplay = YES;
 }
 
 - (IBAction)loopPlayback:(id)sender {
