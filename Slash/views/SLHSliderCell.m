@@ -8,6 +8,12 @@
 
 #import "SLHSliderCell.h"
 
+@interface SLHSliderCell () {
+    NSMutableDictionary <NSString *, NSDictionary *> *_bindingInfo;
+}
+
+@end
+
 @implementation SLHSliderCell
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -16,9 +22,101 @@
     if (self) {
         _markColor = [NSColor whiteColor];
         _selectionColor = [NSColor selectedControlColor];
+        _bindingInfo = [NSMutableDictionary new];
     }
     return self;
 }
+
+#pragma mark - KVB
+
++ (void)initialize {
+    if (self == [SLHSliderCell class]) {
+        [self exposeBinding:@"inMark"];
+        [self exposeBinding:@"outMark"];
+    }
+}
+
+static char inMarkKVOContext;
+static char outMarkKVOContext;
+
+- (void)bind:(NSString *)binding
+    toObject:(id)observable
+ withKeyPath:(NSString *)keyPath
+     options:(NSDictionary<NSString *,id> *)options {
+    
+    void *context = nil;
+    if ([binding isEqualToString:@"inMark"]) {
+        context = &inMarkKVOContext;
+    } else if ([binding isEqualToString:@"outMark"]) {
+        context = &outMarkKVOContext;
+    }
+    if (context) {
+        if (_bindingInfo[binding]) {
+            [self unbind:binding];
+        }
+        [observable addObserver:self
+                     forKeyPath:keyPath
+                        options:NSKeyValueObservingOptionNew
+                        context:context];
+        NSDictionary *bindingsData = @{ NSObservedObjectKey: observable,
+                                        NSObservedKeyPathKey: keyPath.copy,
+                                        NSOptionsKey: options ? options.copy : [NSNull null] };
+        [_bindingInfo setObject:bindingsData forKey:binding];
+    } else {
+        [super bind:binding toObject:observable withKeyPath:keyPath options:options];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    NSString *binding = nil;
+    if (context == &inMarkKVOContext) {
+        binding = @"inMark";
+    } else if (context == &outMarkKVOContext) {
+        binding = @"outMark";
+    }
+    if (binding) {
+        id value = change[NSKeyValueChangeNewKey];
+        if (value) {
+            [self setValue:value forKey:binding];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
+    }
+    
+}
+
+- (void)unbind:(NSString *)binding {
+    NSDictionary *info = _bindingInfo[binding];
+    if (info) {
+        [info[NSObservedObjectKey] removeObserver:self
+                                       forKeyPath:info[NSObservedKeyPathKey]];
+    } else {
+        [super unbind:binding];
+    }
+}
+
+- (NSDictionary<NSString *,id> *)infoForBinding:(NSString *)binding {
+    NSDictionary *info = _bindingInfo[binding];
+    if (info) {
+        return info;
+    }
+    return [super infoForBinding:binding];
+}
+
+- (Class)valueClassForBinding:(NSString *)binding {
+    if (_bindingInfo[binding]) {
+        return [NSNumber class];
+    }
+    return [super valueClassForBinding:binding];
+}
+
+#pragma mark - Overrides
 
 - (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
     
