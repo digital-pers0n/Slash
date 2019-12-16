@@ -10,6 +10,15 @@
 
 @implementation SLHSliderCell
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _markColor = [NSColor whiteColor];
+        _selectionColor = [NSColor selectedControlColor];
+    }
+    return self;
+}
 
 - (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
     
@@ -29,6 +38,30 @@
     
     [super stopTracking:lastPoint at:stopPoint inView:controlView mouseIsUp:flag];
     [_delegate sliderCellMouseUp:self];
+}
+
+- (void)drawBarInside:(NSRect)rect flipped:(BOOL)flipped {
+    [super drawBarInside:rect flipped:flipped];
+    double maxValue = self.maxValue;
+    if ( _outMark == 0 || maxValue == 0) { return; }
+    CGFloat inX = round(_inMark / maxValue * NSWidth(rect));
+    CGFloat outX = round(_outMark / maxValue * NSWidth(rect));
+    
+    rect.origin.y += 1;
+    rect.size.height -= 2;
+    
+    rect.size.width = outX - inX;
+    rect.origin.x = inX;
+    
+    [_selectionColor set];
+    NSRectFill(rect);
+    
+    rect.size.width = 1;
+    [_markColor set];
+    NSRectFill(rect);
+    
+    rect.origin.x = outX;
+    NSRectFill(rect);
 }
 
 @end

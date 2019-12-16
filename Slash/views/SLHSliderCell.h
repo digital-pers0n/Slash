@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, weak) id <SLHSliderCellMouseTrackingDelegate> delegate;
 
+@property (nonatomic, nonnull) NSColor *markColor;
+@property (nonatomic, nonnull) NSColor *selectionColor;
+@property (nonatomic) double inMark;
+@property (nonatomic) double outMark;
+
 @end
 
 @protocol SLHSliderCellMouseTrackingDelegate <NSObject>
