@@ -191,7 +191,7 @@
 #pragma mark - Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {
-    double duration = [_player doubleForProperty:MPVPlayerPropertyDuration];
+    double duration = _player.currentItem.duration;
     if (duration > 0) {
         [self createTimerWithInterval:1];
         dispatch_resume(_timer);
