@@ -9,7 +9,7 @@
 #import "SLHExternalPlayer.h"
 #import "slh_mpv.h"
 
-#define ENABLE_SOCKET_MONITOR 1
+#define ENABLE_SOCKET_MONITOR 0
 
 static NSURL * defaultPlayerURL;
 static NSURL * defaultPlayerConfigURL;
