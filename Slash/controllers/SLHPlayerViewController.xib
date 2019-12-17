@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="_seekBar" destination="piQ-K1-tlf" id="KZs-3b-c9x"/>
                 <outlet property="_textField" destination="gqT-I7-i3V" id="bg7-al-Uh3"/>
+                <outlet property="_volumePopover" destination="UgH-1Y-pcj" id="JAJ-mf-X1o"/>
                 <outlet property="videoView" destination="Uj3-cZ-2Ao" id="JrX-9s-s9g"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -166,12 +167,12 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="loopPlayback:" target="-2" id="ZiK-pG-Zro"/>
+                                        <binding destination="-2" name="value" keyPath="self.hasABLoop" id="q3S-ab-99b"/>
                                         <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="pkq-AG-Vnt">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="-2" name="value" keyPath="self.hasABLoop" id="q3S-ab-99b"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -209,10 +210,96 @@ IA
                                 <outlet property="nextKeyView" destination="t7O-Wg-wbw" id="57H-kF-8UC"/>
                             </connections>
                         </textField>
+                        <button toolTip="Volume Level" verticalHuggingPriority="750" misplaced="YES" id="D0z-ul-2VY">
+                            <rect key="frame" x="377" y="8" width="24" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameVolumeMaxTemplate" imagePosition="overlaps" alignment="left" alternateImage="SLHImageNameVolumeMuteTemplate" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aq8-nK-MAp">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
+                                <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="iLf-cS-IFO"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showVolumePopover:" target="-2" id="Mo0-EW-oOk"/>
+                                <binding destination="-2" name="enabled2" keyPath="self.hasAudio" previousBinding="H2l-Nc-42q" id="nIJ-Ke-9Lh">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="H2l-Nc-42q">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="-2" name="image" keyPath="self.volumeButtonIcon" id="bNu-1g-SjC"/>
+                            </connections>
+                        </button>
                     </subviews>
                 </customView>
             </subviews>
             <point key="canvasLocation" x="195.5" y="62"/>
+        </customView>
+        <viewController id="qtg-Nk-mFW" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="IvY-DW-nCL" id="gjh-uj-3oR"/>
+            </connections>
+        </viewController>
+        <popover behavior="t" id="UgH-1Y-pcj">
+            <connections>
+                <outlet property="contentViewController" destination="qtg-Nk-mFW" id="CRT-Z0-54v"/>
+            </connections>
+        </popover>
+        <customView misplaced="YES" id="IvY-DW-nCL">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <slider wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="Pr1-i4-dkU" customClass="SLHVolumeSlider">
+                    <rect key="frame" x="44" y="20" width="152" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="110" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="bKg-3K-yax"/>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.volume" id="mgY-bA-sbP"/>
+                    </connections>
+                </slider>
+                <button toolTip="Reset Volume Level" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="jfu-0c-Fnk">
+                    <rect key="frame" x="204" y="20" width="16" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameVolumeMaxTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="Pdk-di-kuo">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="resetVolumeLevel:" target="-2" id="rES-ks-nz3"/>
+                    </connections>
+                </button>
+                <button toolTip="Mute" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="dBQ-aL-TzY">
+                    <rect key="frame" x="20" y="20" width="16" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameVolumeMuteTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="bai-2c-wa2">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="muted:" target="-2" id="ImR-ol-cBe"/>
+                    </connections>
+                </button>
+                <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="bPd-Xp-gV9">
+                    <rect key="frame" x="101" y="37" width="37" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="mFd-G2-vXC">
+                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="cQC-aG-RVS"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.volume" id="IG3-m9-GbW"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="291" y="314"/>
         </customView>
     </objects>
     <resources>
@@ -224,5 +311,7 @@ IA
         <image name="SLHImageNameLeftFacingBracketTemplate" width="15" height="15"/>
         <image name="SLHImageNameRightFacingBracketTemplate" width="15" height="15"/>
         <image name="SLHImageNameStartTemplate" width="32" height="32"/>
+        <image name="SLHImageNameVolumeMaxTemplate" width="15" height="15"/>
+        <image name="SLHImageNameVolumeMuteTemplate" width="15" height="15"/>
     </resources>
 </document>

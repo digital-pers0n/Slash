@@ -11,19 +11,32 @@
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
 
 #define bindObject(obj, value, keyPath) [obj bind:@#value toObject:self withKeyPath:@#keyPath options:nil]
+
+typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
+    SLHVolumeIconMax,
+    SLHVolumeIconMid,
+    SLHVolumeIconMin,
+    SLHVolumeIconMute
+};
 
 @interface SLHPlayerViewController () <MPVPropertyObserving, NSControlTextEditingDelegate, SLHSliderCellMouseTrackingDelegate> {
     MPVPlayer *_player;
     double _currentPosition;
     IBOutlet NSTextField *_textField;
     IBOutlet NSSlider *_seekBar;
+    IBOutlet NSPopover *_volumePopover;
     
     BOOL _canSeek;
     BOOL _hasABLoop;
+    BOOL _isAudioMuted;
+    
+    NSArray *_volumeButtonIcons;
+    SLHVolumeIcon _currentVolumeIcon;
     
     dispatch_queue_t _seek_queue;
     dispatch_queue_t _timer_queue;
@@ -34,6 +47,9 @@
 @property (nonatomic) double currentPosition;
 @property (nonatomic) BOOL seekable;
 @property (nonatomic) BOOL hasABLoop;
+@property (nonatomic) BOOL hasAudio;
+@property (nonatomic) NSImage *volumeButtonIcon;
+@property (nonatomic) NSInteger volume;
 @property (nonatomic) NSNotificationCenter *notificationCenter;
 
 @end
@@ -74,8 +90,40 @@
             _timer = nil;
         }
     }
+    [self willChangeValueForKey:@"volume"];
     
     _player = player;
+    
+    [self didChangeValueForKey:@"volume"];
+}
+
+- (void)setVolume:(NSInteger)volume {
+    if (!_isAudioMuted) {
+        if (volume >= 75 &&
+            _currentVolumeIcon != SLHVolumeIconMax) {
+            
+            self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMax];
+            _currentVolumeIcon = SLHVolumeIconMax;
+            
+        } else if (volume < 75 &&
+                   volume >= 25 &&
+                   _currentVolumeIcon != SLHVolumeIconMid) {
+            
+            self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMid];
+            _currentVolumeIcon = SLHVolumeIconMid;
+            
+        } else if (volume < 25 &&
+                   _currentVolumeIcon != SLHVolumeIconMin) {
+            
+            self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMin];
+            _currentVolumeIcon = SLHVolumeIconMin;
+        }
+    }
+    _player.volume = volume;
+}
+
+- (NSInteger)volume {
+    return _player.volume;
 }
 
 - (void)dealloc {
@@ -86,6 +134,15 @@
 }
 
 #pragma mark - Methods
+
+- (BOOL)hasAudioStreams {
+    for (MPVPlayerItemTrack *track in _player.currentItem.tracks) {
+        if (track.mediaType == MPVMediaTypeAudio) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 - (void)removeObserverForPlayer:(MPVPlayer *)player {
     [_notificationCenter removeObserver:self name:nil object:player];
@@ -129,6 +186,14 @@
     bindObject(sliderCell, inMark, self.inMark);
     bindObject(sliderCell, outMark, self.outMark);
     [self.view.window makeFirstResponder:self.view];
+    
+    NSImage *volumeMax = [NSImage imageNamed:@"SLHImageNameVolumeMaxTemplate"];
+    NSImage *volumeMute = [NSImage imageNamed:@"SLHImageNameVolumeMuteTemplate"];
+    NSImage *volumeMin = [NSImage imageNamed:@"SLHImageNameVolumeMinTemplate"];
+    NSImage *volumeMid = [NSImage imageNamed:@"SLHImageNameVolumeMidTemplate"];
+    _volumeButtonIcons = @[ volumeMax, volumeMid, volumeMin, volumeMute ];
+    self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMax];
+    
 }
 
 #pragma mark - IBActions
@@ -188,6 +253,42 @@
     [_player seekTo:[sender doubleValue]];
 }
 
+- (IBAction)showVolumePopover:(NSButton *)sender {
+    [_volumePopover showRelativeToRect:sender.frame ofView:sender.superview preferredEdge:NSMinYEdge];
+}
+
+- (IBAction)muted:(id)sender {
+    if (_player.muted) {
+        [self unmute];
+    } else {
+        [self mute];
+    }
+}
+
+- (void)unmute {
+    _player.muted = NO;
+    _isAudioMuted = NO;
+    self.volume = _player.volume;
+}
+
+- (void)mute {
+    _player.muted = YES;
+    _isAudioMuted = YES;
+    self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMute];
+    _currentVolumeIcon = SLHVolumeIconMute;
+}
+
+- (IBAction)resetVolumeLevel:(id)sender {
+    if (_player.muted) {
+        [self unmute];
+    }
+    [self willChangeValueForKey:@"volume"];
+    _player.volume = 100;
+    [self didChangeValueForKey:@"volume"];
+    self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMax];
+    _currentVolumeIcon = SLHVolumeIconMax;
+}
+
 #pragma mark - Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {
@@ -206,6 +307,7 @@
          [_player setString:@"no" forProperty:MPVPlayerPropertyABLoopA];
          self.hasABLoop = NO;
     }
+    self.hasAudio = [self hasAudioStreams];
 }
 
 - (void)playerDidEndPlayback:(NSNotification *)n {
