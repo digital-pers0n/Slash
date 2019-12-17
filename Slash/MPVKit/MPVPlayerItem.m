@@ -155,6 +155,20 @@ bail:
     for (int i = 0; i < _av_format->nb_streams; i++) {
         MPVPlayerItemTrack *track = [[MPVPlayerItemTrack alloc] initWithFormat:_av_format stream:_av_format->streams[i]];
         [result addObject:track];
+        
+        switch (_av_format->streams[i]->codecpar->codec_type) {
+                
+            case AVMEDIA_TYPE_VIDEO:
+                _hasVideoStreams = YES;
+                break;
+                
+            case AVMEDIA_TYPE_AUDIO:
+                _hasAudioStreams = YES;
+                break;
+                
+            default:
+                break;
+        }
     }
     
     _tracks = result;

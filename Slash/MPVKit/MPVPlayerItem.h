@@ -132,6 +132,17 @@ typedef NS_ENUM(NSInteger, MPVPlayerItemStatus) {
  */
 @property (readonly, nonatomic) double duration;
 
+/**
+ * Indicate that the player item contains at least one video stream.
+ * @note Cover images inside audio files are also considered as video streams.
+ */
+@property (readonly, nonatomic) BOOL hasVideoStreams;
+
+/**
+ * Indicate that the player item contains at least one audio stream.
+ */
+@property (readonly, nonatomic) BOOL hasAudioStreams;
+
 @end
 
 NS_ASSUME_NONNULL_END
