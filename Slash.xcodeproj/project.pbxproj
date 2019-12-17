@@ -94,6 +94,7 @@
 		CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CBCD4228C68A4001A8E37 /* SLHModalWindowController.m */; };
 		CE9CBCD7228C68A4001A8E37 /* SLHModalWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */; };
 		CE9E3346238ABFDC00356342 /* SLHTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9E3345238ABFDC00356342 /* SLHTimeFormatter.m */; };
+		CE9E7BD723A91C9100614D56 /* SLHVolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9E7BD623A91C9100614D56 /* SLHVolumeSlider.m */; };
 		CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */; };
 		CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA35A29224B866D008583AF /* SLHImageView.m */; };
 		CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA552722A7FFA90079CD27 /* SLHEncoderVP9Format.m */; };
@@ -261,6 +262,8 @@
 		CE9CBCD5228C68A4001A8E37 /* SLHModalWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHModalWindowController.xib; path = controllers/SLHModalWindowController.xib; sourceTree = "<group>"; };
 		CE9E3344238ABFDC00356342 /* SLHTimeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTimeFormatter.h; path = utils/SLHTimeFormatter.h; sourceTree = "<group>"; };
 		CE9E3345238ABFDC00356342 /* SLHTimeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTimeFormatter.m; path = utils/SLHTimeFormatter.m; sourceTree = "<group>"; };
+		CE9E7BD523A91C9100614D56 /* SLHVolumeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHVolumeSlider.h; sourceTree = "<group>"; };
+		CE9E7BD623A91C9100614D56 /* SLHVolumeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHVolumeSlider.m; sourceTree = "<group>"; };
 		CEA1563D2194AF5A00B54F56 /* SLHTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTabBarView.h; sourceTree = "<group>"; };
 		CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTabBarView.m; sourceTree = "<group>"; };
 		CEA35A28224B866D008583AF /* SLHImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHImageView.h; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 		CE9C0D1A2193583D0089C084 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CE9E7BD523A91C9100614D56 /* SLHVolumeSlider.h */,
+				CE9E7BD623A91C9100614D56 /* SLHVolumeSlider.m */,
 				CE2085262396796D00CB5049 /* SLHEmptyView.h */,
 				CE2085272396796D00CB5049 /* SLHEmptyView.m */,
 				CEDD22EA23887EB50049E4C4 /* SLHCropView.h */,
@@ -755,6 +760,7 @@
 				CE120455229C260A00C2A145 /* SLHEncoderVPXFormat.m in Sources */,
 				CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */,
 				CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */,
+				CE9E7BD723A91C9100614D56 /* SLHVolumeSlider.m in Sources */,
 				CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */,
 				CE9CA40123787FE4005CF368 /* SLHDisclosureView.m in Sources */,
 				CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */,
