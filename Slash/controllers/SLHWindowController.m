@@ -692,7 +692,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 #pragma mark - MPVPlayer Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {
-    _player.timePosition = _currentEncoderItem.interval.start;
+    [_player seekExactTo:_currentEncoderItem.interval.start];
    [self matchVideoStreamsToEncoderItem:_currentEncoderItem];
 }
 
