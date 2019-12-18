@@ -207,22 +207,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (BOOL)hasMediaStreams:(MPVPlayerItem *)playerItem {
-    for (MPVPlayerItemTrack * track in playerItem.tracks) {
-        switch (track.mediaType) {
-                
-            case MPVMediaTypeVideo:
-            case MPVMediaTypeAudio:
-                
-                return YES;
-                
-                break;
-                
-            default:
-                break;
-        }
-    }
-    
-    return NO;
+    return (playerItem.hasVideoStreams || playerItem.hasAudioStreams);
 }
 
 - (NSString *)outputPathForSourcePath:(NSString *)sourcePath {
