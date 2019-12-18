@@ -296,6 +296,14 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     _currentVolumeIcon = SLHVolumeIconMax;
 }
 
+- (IBAction)jumpToInMark:(id)sender {
+    [_player seekExactTo:_inMark];
+}
+
+- (IBAction)jumpToOutMark:(id)sender {
+    [_player seekExactTo:_outMark];
+}
+
 #pragma mark - Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {

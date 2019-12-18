@@ -236,16 +236,16 @@ IA
                                         </binding>
                                     </connections>
                                 </button>
-                                <button toolTip="Mark end segment (O)" verticalHuggingPriority="750" misplaced="YES" id="9yp-6j-NUp">
+                                <button toolTip="Jump to Out Mark (Shift+O)" verticalHuggingPriority="750" misplaced="YES" id="9yp-6j-NUp">
                                     <rect key="frame" x="177" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameJumpToEndTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X2T-1Y-jdp">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">o</string>
+                                        <string key="keyEquivalent">O</string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="outMark:" target="-2" id="fk0-xk-OC9"/>
+                                        <action selector="jumpToOutMark:" target="-2" id="vmG-XG-uES"/>
                                         <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="9eO-9J-hsx">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSIsNotNil</string>
@@ -254,16 +254,16 @@ IA
                                         <outlet property="nextKeyView" destination="D6e-1S-wd4" id="ENE-oE-tsa"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Mark start segment (I)" verticalHuggingPriority="750" misplaced="YES" id="3iH-mz-uqe">
+                                <button toolTip="Jump to In Mark (Shift+I)" verticalHuggingPriority="750" misplaced="YES" id="3iH-mz-uqe">
                                     <rect key="frame" x="69" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameJumpToStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D5z-4X-RLn">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">i</string>
+                                        <string key="keyEquivalent">I</string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="inMark:" target="-2" id="lFC-Da-sFT"/>
+                                        <action selector="jumpToInMark:" target="-2" id="x1H-cK-ggW"/>
                                         <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="A2Y-Xk-oq3">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSIsNotNil</string>
