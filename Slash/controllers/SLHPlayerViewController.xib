@@ -3,11 +3,13 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHPlayerViewController">
             <connections>
+                <outlet property="_noVideoView" destination="XTg-vc-98l" id="QAF-Jo-hm2"/>
                 <outlet property="_seekBar" destination="piQ-K1-tlf" id="KZs-3b-c9x"/>
                 <outlet property="_textField" destination="gqT-I7-i3V" id="bg7-al-Uh3"/>
                 <outlet property="_volumePopover" destination="UgH-1Y-pcj" id="JAJ-mf-X1o"/>
@@ -52,131 +54,6 @@
                                 </binding>
                             </connections>
                         </button>
-                        <customView misplaced="YES" id="gPO-Z5-oCu">
-                            <rect key="frame" x="122" y="6" width="210" height="26"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button toolTip="Mark end segment (O)" verticalHuggingPriority="750" misplaced="YES" id="qFW-gk-UEe">
-                                    <rect key="frame" x="34" y="3" width="24" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameRightFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jwz-0n-Czb">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">o</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="outMark:" target="-2" id="zWB-RQ-iAK"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="94W-nB-stN">
-                                            <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                                            </dictionary>
-                                        </binding>
-                                        <outlet property="nextKeyView" destination="D6e-1S-wd4" id="oRZ-3z-UnT"/>
-                                    </connections>
-                                </button>
-                                <button toolTip="Mark start segment (I)" verticalHuggingPriority="750" misplaced="YES" id="t7O-Wg-wbw">
-                                    <rect key="frame" x="7" y="3" width="24" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameLeftFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uRQ-7D-gkU">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">i</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="inMark:" target="-2" id="iu7-9V-ppR"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="mXd-d7-Nlq">
-                                            <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                                            </dictionary>
-                                        </binding>
-                                        <outlet property="nextKeyView" destination="qFW-gk-UEe" id="pWW-Nx-Dol"/>
-                                    </connections>
-                                </button>
-                                <button verticalHuggingPriority="750" misplaced="YES" id="g39-ft-GFi">
-                                    <rect key="frame" x="152" y="3" width="24" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IZT-2h-8we">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">;</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="tV6-UT-kEH">
-                                            <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                                            </dictionary>
-                                        </binding>
-                                        <outlet property="nextKeyView" destination="QNh-Fr-sDt" id="OZr-Cz-4KN"/>
-                                    </connections>
-                                </button>
-                                <button toolTip="Step forward (.)" verticalHuggingPriority="750" misplaced="YES" id="pjg-hu-H80">
-                                    <rect key="frame" x="120" y="3" width="24" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">.</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="stepForward:" target="-2" id="HSq-DI-44p"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.seekable" id="odF-Gr-bG5"/>
-                                        <outlet property="nextKeyView" destination="g39-ft-GFi" id="gG9-zg-Fk2"/>
-                                    </connections>
-                                </button>
-                                <button verticalHuggingPriority="750" misplaced="YES" id="Se5-3n-x8u">
-                                    <rect key="frame" x="93" y="3" width="24" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bxL-MM-b49">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent" base64-UTF8="YES">
-IA
-</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="play:" target="-2" id="bQ0-Kh-GGL"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="CZR-4p-kcW">
-                                            <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                                            </dictionary>
-                                        </binding>
-                                        <outlet property="nextKeyView" destination="pjg-hu-H80" id="283-dY-FQt"/>
-                                    </connections>
-                                </button>
-                                <button toolTip="Step back (,)" verticalHuggingPriority="750" misplaced="YES" id="D6e-1S-wd4">
-                                    <rect key="frame" x="66" y="3" width="24" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">,</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="stepBack:" target="-2" id="EYk-ZJ-L7Q"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.seekable" id="exD-Lg-Uer"/>
-                                        <outlet property="nextKeyView" destination="Se5-3n-x8u" id="iHE-xX-dY6"/>
-                                    </connections>
-                                </button>
-                                <button toolTip="Loop Selection" verticalHuggingPriority="750" misplaced="YES" id="QNh-Fr-sDt">
-                                    <rect key="frame" x="179" y="3" width="24" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LQU-BE-q6L">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">'</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="loopPlayback:" target="-2" id="ZiK-pG-Zro"/>
-                                        <binding destination="-2" name="value" keyPath="self.hasABLoop" id="q3S-ab-99b"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="pkq-AG-Vnt">
-                                            <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                                            </dictionary>
-                                        </binding>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </customView>
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">
                             <rect key="frame" x="18" y="48" width="104" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -236,6 +113,167 @@ IA
                                 <binding destination="-2" name="image" keyPath="self.volumeButtonIcon" id="bNu-1g-SjC"/>
                             </connections>
                         </button>
+                        <customView misplaced="YES" id="gPO-Z5-oCu">
+                            <rect key="frame" x="91" y="6" width="270" height="26"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button toolTip="Mark end segment (O)" verticalHuggingPriority="750" misplaced="YES" id="qFW-gk-UEe">
+                                    <rect key="frame" x="34" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameRightFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jwz-0n-Czb">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">o</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="outMark:" target="-2" id="zWB-RQ-iAK"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="94W-nB-stN">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
+                                        <outlet property="nextKeyView" destination="D6e-1S-wd4" id="oRZ-3z-UnT"/>
+                                    </connections>
+                                </button>
+                                <button toolTip="Mark start segment (I)" verticalHuggingPriority="750" misplaced="YES" id="t7O-Wg-wbw">
+                                    <rect key="frame" x="7" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameLeftFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uRQ-7D-gkU">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">i</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="inMark:" target="-2" id="iu7-9V-ppR"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="mXd-d7-Nlq">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
+                                        <outlet property="nextKeyView" destination="qFW-gk-UEe" id="pWW-Nx-Dol"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="g39-ft-GFi">
+                                    <rect key="frame" x="211" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IZT-2h-8we">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">;</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="tV6-UT-kEH">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
+                                        <outlet property="nextKeyView" destination="QNh-Fr-sDt" id="OZr-Cz-4KN"/>
+                                    </connections>
+                                </button>
+                                <button toolTip="Step forward (.)" verticalHuggingPriority="750" misplaced="YES" id="pjg-hu-H80">
+                                    <rect key="frame" x="150" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">.</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="stepForward:" target="-2" id="HSq-DI-44p"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.seekable" id="odF-Gr-bG5"/>
+                                        <outlet property="nextKeyView" destination="g39-ft-GFi" id="gG9-zg-Fk2"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="Se5-3n-x8u">
+                                    <rect key="frame" x="123" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bxL-MM-b49">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent" base64-UTF8="YES">
+IA
+</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="play:" target="-2" id="bQ0-Kh-GGL"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="CZR-4p-kcW">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
+                                        <outlet property="nextKeyView" destination="pjg-hu-H80" id="283-dY-FQt"/>
+                                    </connections>
+                                </button>
+                                <button toolTip="Step back (,)" verticalHuggingPriority="750" misplaced="YES" id="D6e-1S-wd4">
+                                    <rect key="frame" x="96" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">,</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="stepBack:" target="-2" id="EYk-ZJ-L7Q"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.seekable" id="exD-Lg-Uer"/>
+                                        <outlet property="nextKeyView" destination="Se5-3n-x8u" id="iHE-xX-dY6"/>
+                                    </connections>
+                                </button>
+                                <button toolTip="Loop Selection" verticalHuggingPriority="750" misplaced="YES" id="QNh-Fr-sDt">
+                                    <rect key="frame" x="238" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LQU-BE-q6L">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">'</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="loopPlayback:" target="-2" id="ZiK-pG-Zro"/>
+                                        <binding destination="-2" name="value" keyPath="self.hasABLoop" id="q3S-ab-99b"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="pkq-AG-Vnt">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
+                                </button>
+                                <button toolTip="Mark end segment (O)" verticalHuggingPriority="750" misplaced="YES" id="9yp-6j-NUp">
+                                    <rect key="frame" x="177" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameJumpToEndTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X2T-1Y-jdp">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">o</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="outMark:" target="-2" id="fk0-xk-OC9"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="9eO-9J-hsx">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
+                                        <outlet property="nextKeyView" destination="D6e-1S-wd4" id="ENE-oE-tsa"/>
+                                    </connections>
+                                </button>
+                                <button toolTip="Mark start segment (I)" verticalHuggingPriority="750" misplaced="YES" id="3iH-mz-uqe">
+                                    <rect key="frame" x="69" y="3" width="24" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameJumpToStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D5z-4X-RLn">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="keyEquivalent">i</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="inMark:" target="-2" id="lFC-Da-sFT"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="A2Y-Xk-oq3">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
+                                        <outlet property="nextKeyView" destination="qFW-gk-UEe" id="4iT-NV-DdI"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </customView>
                     </subviews>
                 </customView>
             </subviews>
@@ -301,6 +339,29 @@ IA
             </subviews>
             <point key="canvasLocation" x="291" y="314"/>
         </customView>
+        <box wantsLayer="YES" misplaced="YES" boxType="secondary" borderType="bezel" title="Box" titlePosition="noTitle" id="XTg-vc-98l">
+            <rect key="frame" x="0.0" y="0.0" width="305" height="199"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <view key="contentView" id="dGg-tI-Yn4">
+                <rect key="frame" x="3" y="3" width="299" height="193"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="mjy-cS-ibk">
+                        <rect key="frame" x="-2" y="82" width="303" height="30"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No Video" id="YIZ-uG-pEy">
+                            <font key="font" metaFont="system" size="25"/>
+                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="self.noVideoMessage" id="xla-d9-8FB"/>
+                        </connections>
+                    </textField>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="419.5" y="523.5"/>
+        </box>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
@@ -308,6 +369,8 @@ IA
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
+        <image name="SLHImageNameJumpToEndTemplate" width="15" height="15"/>
+        <image name="SLHImageNameJumpToStartTemplate" width="15" height="15"/>
         <image name="SLHImageNameLeftFacingBracketTemplate" width="15" height="15"/>
         <image name="SLHImageNameRightFacingBracketTemplate" width="15" height="15"/>
         <image name="SLHImageNameStartTemplate" width="32" height="32"/>

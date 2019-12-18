@@ -15,6 +15,8 @@
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
 
+#define ENABLE_NO_SELECTED_STREAMS_FIX 1
+
 #define bindObject(obj, value, keyPath) [obj bind:@#value toObject:self withKeyPath:@#keyPath options:nil]
 
 typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
@@ -30,6 +32,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     IBOutlet NSTextField *_textField;
     IBOutlet NSSlider *_seekBar;
     IBOutlet NSPopover *_volumePopover;
+    IBOutlet NSView *_noVideoView;
     
     BOOL _canSeek;
     BOOL _hasABLoop;
@@ -51,6 +54,8 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 @property (nonatomic) NSImage *volumeButtonIcon;
 @property (nonatomic) NSInteger volume;
 @property (nonatomic) NSNotificationCenter *notificationCenter;
+
+@property (nonatomic) NSString *noVideoMessage;
 
 @end
 
@@ -154,6 +159,8 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     [nc addObserver:self selector:@selector(playerDidEndPlayback:) name:MPVPlayerDidEndPlaybackNotification object:player];
    [nc addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:player];
     [nc addObserver:self selector:@selector(playerDidStartSeek:) name:MPVPlayerDidStartSeekNotification object:player];
+    [nc addObserver:self selector:@selector(playerVideoDidChange:) name:MPVPlayerVideoDidChangeNotification object:player];
+    [nc addObserver:self selector:@selector(playerDidEnterIdleMode:) name:MPVPlayerDidEnterIdleModeNotification object:player];
 }
 
 - (void)createTimerWithInterval:(NSUInteger)seconds {
@@ -307,7 +314,22 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
          [_player setString:@"no" forProperty:MPVPlayerPropertyABLoopA];
          self.hasABLoop = NO;
     }
-    self.hasAudio = [self hasAudioStreams];
+    MPVPlayerItem *item = _player.currentItem;
+    BOOL hasAudio = item.hasAudioStreams, hasVideo = item.hasVideoStreams;
+
+    self.hasAudio = hasAudio;
+    if (!hasVideo) {
+        if (!_noVideoView.superview) {
+            
+            _videoView.hidden = YES;
+            [self.view addSubview:_noVideoView];
+            _noVideoView.frame = _videoView.frame;
+        }
+         self.noVideoMessage = @"No Video";
+    } else if (_noVideoView.superview) {
+        [_noVideoView removeFromSuperview];
+        _videoView.hidden = NO;
+    }
 }
 
 - (void)playerDidEndPlayback:(NSNotification *)n {
@@ -329,6 +351,61 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 - (void)playerDidStartSeek:(NSNotification *)n {
     self.currentPosition = _player.timePosition;
+}
+
+- (void)playerDidEnterIdleMode:(NSNotification *)n {
+    
+#if ENABLE_NO_SELECTED_STREAMS_FIX
+    if (_player.currentItem) {
+        
+        /* 
+           There is a weird bug in the mpv 0.30.0, or maybe it is just my fault.
+           Sometimes, after executing the loadfile command, libmpv posts the MPV_EVENT_START_FILE notification, 
+           then it prints a strange error that there are no selected video or audio streams and
+           immediately enters into the idle-mode without even posting the MPV_EVENT_FILE_LOADED notification. 
+           So if the MPVPlayer.currentItem property is not nil, then it can be the bug. 
+           Unfortunately, this will break the stop command, if the .currentItem is not nil. 
+           Should wait for new mpv releases and recheck.
+         */
+        
+        // reset streams IDs
+        [_player setString:@"auto" forProperty:@"vid"];
+        [_player setString:@"auto" forProperty:@"aid"];
+        [_player setString:@"auto" forProperty:@"sid"];
+        
+        // reload file
+        _player.currentItem = _player.currentItem;
+        return;
+    }
+#endif
+    
+    if (!_noVideoView.superview) {
+       
+        _videoView.hidden = YES;
+        [self.view addSubview:_noVideoView];
+         _noVideoView.frame = _videoView.frame;
+    
+    }
+    self.noVideoMessage = @"Drop a Video File Here";
+}
+
+- (void)playerVideoDidChange:(NSNotification *)n {
+    NSInteger hasVideo = [_player integerForProperty:MPVPlayerPropertyVideoID];
+    if (!hasVideo) {
+        if (!_noVideoView.superview) {
+            
+            _videoView.hidden = YES;
+            [self.view addSubview:_noVideoView];
+            _noVideoView.frame = _videoView.frame;
+
+        }
+        self.noVideoMessage = @"No Video";
+    } else {
+        if (_noVideoView.superview) {
+            [_noVideoView removeFromSuperview];
+            _videoView.hidden = NO;
+        }
+    }
 }
 
 #pragma mark - NSControlTextEditingDelegate
