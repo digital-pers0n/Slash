@@ -193,7 +193,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 
 - (void)createEncoderItemWith:(MPVPlayerItem *)playerItem {
-    _player.currentItem = playerItem;
     SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
     NSString *outputName = encoderItem.outputFileName;
     encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
