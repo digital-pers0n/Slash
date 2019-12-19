@@ -27,35 +27,35 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="AppMainWindow" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="645" height="407"/>
+            <rect key="contentRect" x="196" y="240" width="680" height="407"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
-            <value key="minSize" type="size" width="645" height="400"/>
+            <value key="minSize" type="size" width="680" height="400"/>
             <view key="contentView" misplaced="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="645" height="407"/>
+                <rect key="frame" x="0.0" y="0.0" width="680" height="407"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView misplaced="YES" autosaveName="SideBarSplitView" dividerStyle="thin" vertical="YES" id="BIl-fZ-zC3">
-                        <rect key="frame" x="0.0" y="20" width="645" height="387"/>
+                        <rect key="frame" x="0.0" y="20" width="680" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <splitView autosaveName="BottomBarSplitView" dividerStyle="thin" id="EJK-LS-Elf">
-                                <rect key="frame" x="0.0" y="0.0" width="440" height="387"/>
+                                <rect key="frame" x="0.0" y="0.0" width="464" height="387"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <customView id="kAu-KQ-tDc">
-                                        <rect key="frame" x="0.0" y="0.0" width="440" height="245"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="464" height="245"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <customView misplaced="YES" id="peP-sy-Dhj" customClass="SLHPlayerView">
-                                                <rect key="frame" x="0.0" y="0.0" width="440" height="216"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="464" height="216"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </customView>
                                             <customView misplaced="YES" id="iyB-28-pmc">
-                                                <rect key="frame" x="0.0" y="215" width="440" height="30"/>
+                                                <rect key="frame" x="0.0" y="215" width="464" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <subviews>
                                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
-                                                        <rect key="frame" x="345" y="3" width="90" height="22"/>
+                                                        <rect key="frame" x="369" y="3" width="90" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lyi-GL-UQr">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -110,18 +110,18 @@
                                         </subviews>
                                     </customView>
                                     <customView id="BWC-U0-lVs">
-                                        <rect key="frame" x="0.0" y="246" width="440" height="141"/>
+                                        <rect key="frame" x="0.0" y="246" width="464" height="141"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="RsO-qP-T7T">
-                                                <rect key="frame" x="0.0" y="0.0" width="440" height="112"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="464" height="112"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <clipView key="contentView" drawsBackground="NO" id="ukH-Ua-slV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="440" height="112"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="464" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" id="VbH-0O-BlS">
-                                                            <rect key="frame" x="0.0" y="0.0" width="440" height="112"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="464" height="112"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -200,7 +200,7 @@
                                                                         </tableCellView>
                                                                     </prototypeCellViews>
                                                                 </tableColumn>
-                                                                <tableColumn identifier="" width="314" minWidth="10" maxWidth="3.4028234663852886e+38" id="veo-Bq-9Zl">
+                                                                <tableColumn identifier="" width="338" minWidth="10" maxWidth="3.4028234663852886e+38" id="veo-Bq-9Zl">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -214,18 +214,18 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView misplaced="YES" id="nBK-Vf-O9n" customClass="SLHTrimTableCellView">
-                                                                            <rect key="frame" x="124" y="1" width="314" height="50"/>
+                                                                            <rect key="frame" x="124" y="1" width="338" height="50"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <customView wantsLayer="YES" misplaced="YES" id="mUl-BP-3j7" customClass="SLHTrimView">
-                                                                                    <rect key="frame" x="3" y="20" width="306" height="28"/>
+                                                                                    <rect key="frame" x="3" y="20" width="330" height="28"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                     <connections>
                                                                                         <outlet property="delegate" destination="-2" id="noz-qO-mgr"/>
                                                                                     </connections>
                                                                                 </customView>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="J15-AF-dCH">
-                                                                                    <rect key="frame" x="3" y="3" width="268" height="14"/>
+                                                                                    <rect key="frame" x="3" y="3" width="292" height="14"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Sample Text" id="7XL-sX-z5V">
                                                                                         <font key="font" metaFont="smallSystem"/>
@@ -234,7 +234,7 @@
                                                                                     </textFieldCell>
                                                                                 </textField>
                                                                                 <button verticalHuggingPriority="750" misplaced="YES" id="U1r-fU-wB1">
-                                                                                    <rect key="frame" x="275" y="3" width="16" height="16"/>
+                                                                                    <rect key="frame" x="299" y="3" width="16" height="16"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="QDK-fb-OKI">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -245,7 +245,7 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" misplaced="YES" id="JMs-Ka-ajZ">
-                                                                                    <rect key="frame" x="293" y="3" width="16" height="16"/>
+                                                                                    <rect key="frame" x="317" y="3" width="16" height="16"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameFolderTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="0KI-82-9EL">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -305,29 +305,6 @@
                                                     <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="Xfx-TG-ocN"/>
                                                 </connections>
                                             </button>
-                                            <popUpButton toolTip="Load Preset" misplaced="YES" id="QS8-0O-UhT">
-                                                <rect key="frame" x="394" y="118" width="38" height="18"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="vK3-kx-OJd">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                    <menu key="menu" id="QwP-Ld-pTH">
-                                                        <items>
-                                                            <menuItem state="on" image="NSActionTemplate" hidden="YES" id="OQq-V8-D6Z"/>
-                                                        </items>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="-2" id="S3q-Dj-ZFK"/>
-                                                        </connections>
-                                                    </menu>
-                                                </popUpButtonCell>
-                                                <connections>
-                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="YrJ-sF-ZPO">
-                                                        <dictionary key="options">
-                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                        </dictionary>
-                                                    </binding>
-                                                </connections>
-                                            </popUpButton>
                                             <button toolTip="Encode Selection" verticalHuggingPriority="750" misplaced="YES" id="hcj-0V-OZI">
                                                 <rect key="frame" x="66" y="117" width="21" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -369,18 +346,41 @@
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="previewOutputFile:" target="-2" id="p4A-4b-b3l"/>
-                                                    <binding destination="-2" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="1gd-uY-RQW">
-                                                        <dictionary key="options">
-                                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                                        </dictionary>
-                                                    </binding>
                                                     <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" previousBinding="1gd-uY-RQW" id="L9D-b1-qOr">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
                                                     </binding>
+                                                    <binding destination="-2" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="1gd-uY-RQW">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                        </dictionary>
+                                                    </binding>
                                                 </connections>
                                             </button>
+                                            <popUpButton toolTip="Load Preset" misplaced="YES" id="QS8-0O-UhT">
+                                                <rect key="frame" x="419" y="118" width="39" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="vK3-kx-OJd">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <menu key="menu" id="QwP-Ld-pTH">
+                                                        <items>
+                                                            <menuItem state="on" image="SLHImageNamePresetsTemplate" hidden="YES" id="OQq-V8-D6Z"/>
+                                                        </items>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="-2" id="S3q-Dj-ZFK"/>
+                                                        </connections>
+                                                    </menu>
+                                                </popUpButtonCell>
+                                                <connections>
+                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="YrJ-sF-ZPO">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </popUpButton>
                                         </subviews>
                                     </customView>
                                 </subviews>
@@ -390,7 +390,7 @@
                                 </holdingPriorities>
                             </splitView>
                             <customView id="qd1-2b-8Uz">
-                                <rect key="frame" x="441" y="0.0" width="204" height="387"/>
+                                <rect key="frame" x="465" y="0.0" width="215" height="387"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </customView>
                         </subviews>
@@ -455,12 +455,12 @@
         </arrayController>
     </objects>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="SLHImageNameAddToQueueTemplate" width="15" height="15"/>
         <image name="SLHImageNameEditTemplate" width="15" height="15"/>
         <image name="SLHImageNameFolderTemplate" width="15" height="15"/>
+        <image name="SLHImageNamePresetsTemplate" width="15" height="15"/>
         <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
         <image name="SLHImageNameStartEncodingTemplate" width="15" height="15"/>
     </resources>
