@@ -546,7 +546,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     encoderItem.outputFileName = outputName;
 }
 
-// TODO: allow to open files from disk
 - (IBAction)addEncoderItem:(id)sender {
     if (_currentEncoderItem) {
         SLHEncoderItem *encoderItem = _currentEncoderItem.copy;
@@ -560,10 +559,18 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         encoderItem.intervalStart = _currentEncoderItem.interval.start;
         
     } else {
-        NSBeep();
-        /*
-        [NSApp.delegate performSelector:@selector(openDocument:) withObject:nil];
-         */
+        NSOpenPanel *panel = [NSOpenPanel openPanel];
+        panel.allowsMultipleSelection = NO;
+        
+        if ([panel runModal] == NSModalResponseOK) {
+            
+            NSURL *url = panel.URL;
+            if ([self loadFileURL:url]) {
+                [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:url];
+            } else {
+                NSBeep();
+            }
+        }
     }
 }
 
