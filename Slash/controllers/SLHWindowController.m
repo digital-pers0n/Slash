@@ -355,6 +355,19 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 #pragma mark - IBActions
 
+- (IBAction)resetSelection:(id)sender {
+    _currentEncoderItem.intervalStart = 0;
+    _currentEncoderItem.intervalEnd = _currentEncoderItem.playerItem.duration;
+}
+
+- (IBAction)jumpToStartPosition:(id)sender {
+    _player.timePosition = _currentEncoderItem.interval.start;
+}
+
+- (IBAction)jumpToEndPosition:(id)sender {
+    _player.timePosition = _currentEncoderItem.interval.end;
+}
+
 - (IBAction)toggleSideBar:(id)sender {
     CGFloat width = [_inspectorSplitView isSubviewCollapsed:_encoderSettingsView] ? _sideBarWidth : 0;
     [_inspectorSplitView setPosition:NSWidth(_inspectorSplitView.frame) - width ofDividerAtIndex:0];
