@@ -219,7 +219,8 @@ static inline void check_error(int status) {
 - (void)readEvents {
     
     NSString *notification = nil;
-    SEL postNotification = @selector(postNotification:);
+   // SEL postNotification = @selector(postNotification:);
+    CFRunLoopRef main_rl = CFRunLoopGetMain();
     
     while (!_eventThread.cancelled) {
         mpv_event *event = mpv_wait_event(self->_mpv_handle, -1);
@@ -281,7 +282,18 @@ static inline void check_error(int status) {
 #ifdef DEBUG
             NSLog(@"%@: Post '%@' notification.", self, notification);
 #endif
-            [self performSelectorOnMainThread:postNotification withObject:notification waitUntilDone:NO];
+          
+
+            __unsafe_unretained typeof(self) obj = self;
+            NSNotification *n = [NSNotification notificationWithName:notification object:obj userInfo:nil];
+            
+            /* On my low-end hardware this is about x2 faster than the performSelectorOnMainThread: method
+             and almost x5 faster than the dispatch_async() function. */
+            CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
+                [obj->_notificationCenter postNotification:n];
+            });
+            
+             // [self performSelectorOnMainThread:postNotification withObject:notification waitUntilDone:NO];
             
             notification = nil;
         }
