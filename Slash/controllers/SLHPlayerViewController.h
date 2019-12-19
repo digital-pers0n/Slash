@@ -22,6 +22,8 @@ extern NSString * const SLHPlayerViewControllerDidChangeOutMarkNotification;
 @property (nonatomic) double inMark;
 @property (nonatomic) double outMark;
 
+- (void)loopPlaybackWithStart:(double)inMark end:(double)outMark;
+
 @end
 
 NS_ASSUME_NONNULL_END

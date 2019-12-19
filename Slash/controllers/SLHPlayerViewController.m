@@ -140,13 +140,14 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 #pragma mark - Methods
 
-- (BOOL)hasAudioStreams {
-    for (MPVPlayerItemTrack *track in _player.currentItem.tracks) {
-        if (track.mediaType == MPVMediaTypeAudio) {
-            return YES;
-        }
-    }
-    return NO;
+- (void)loopPlaybackWithStart:(double)inMark end:(double)outMark {
+    self.inMark = inMark;
+    self.outMark = outMark;
+    [_player setDouble:_inMark forProperty:MPVPlayerPropertyABLoopA];
+    [_player setDouble:_outMark forProperty:MPVPlayerPropertyABLoopB];
+    _player.timePosition = inMark;
+    self.hasABLoop = YES;
+    
 }
 
 - (void)removeObserverForPlayer:(MPVPlayer *)player {

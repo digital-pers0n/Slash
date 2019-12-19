@@ -21,6 +21,7 @@
 #import "SLHPresetManager.h"
 #import "SLHEncoderQueue.h"
 #import "SLHExternalPlayer.h"
+#import "SLHPlayerViewController.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -392,8 +393,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _encoderSettings.selectedTab = SLHEncoderSettingsVideoTab;
 }
 
-// TODO: to be implemented...
-
 - (IBAction)previewSourceFile:(id)sender {
     if (!_externalPlayer) {
         if (![self createExternalPlayerWithMedia:_currentEncoderItem.playerItem.url]) {
@@ -406,7 +405,9 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)previewSegment:(id)sender {
-    
+    SLHPlayerViewController *playerController = _playerView.viewController;
+    TimeInterval interval = _currentEncoderItem.interval;
+    [playerController loopPlaybackWithStart:interval.start end:interval.end];
 }
 
 - (IBAction)previewOutputFile:(id)sender {
