@@ -233,10 +233,10 @@
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
-                                                                                <button verticalHuggingPriority="750" misplaced="YES" id="U1r-fU-wB1">
+                                                                                <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="U1r-fU-wB1">
                                                                                     <rect key="frame" x="299" y="3" width="16" height="16"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="QDK-fb-OKI">
+                                                                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="QDK-fb-OKI">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" metaFont="smallSystem"/>
                                                                                     </buttonCell>
@@ -244,10 +244,10 @@
                                                                                         <action selector="showTextEditor:" target="-2" id="jA2-bz-aH1"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <button verticalHuggingPriority="750" misplaced="YES" id="JMs-Ka-ajZ">
+                                                                                <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="JMs-Ka-ajZ">
                                                                                     <rect key="frame" x="317" y="3" width="16" height="16"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameFolderTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="0KI-82-9EL">
+                                                                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameFolderTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="0KI-82-9EL">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" metaFont="smallSystem"/>
                                                                                     </buttonCell>
