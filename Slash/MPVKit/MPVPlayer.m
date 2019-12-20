@@ -445,15 +445,50 @@ exit:
 }
 
 - (void)seekTo:(double)time {
-    char buffer[16];
-    snprintf(buffer, 16, "%f", time);
-    mpv_command_async( _mpv_handle, 1, (const char * []) { "seek", buffer, "absolute+keyframes", NULL } );
+    
+    mpv_node nodes[] = {
+        
+        { .u.string  = "seek",               .format = MPV_FORMAT_STRING },
+        { .u.double_ = time,                 .format = MPV_FORMAT_DOUBLE },
+        { .u.string  = "absolute+keyframes", .format = MPV_FORMAT_STRING }
+        
+    };
+    
+    mpv_node_list array = {
+        .num    = 3,
+        .values = nodes,
+        .keys   = NULL
+    };
+    
+    mpv_node arg = {
+        .u.list = &array,
+        .format = MPV_FORMAT_NODE_ARRAY
+    };
+    
+    mpv_command_node_async(_mpv_handle, 1, &arg);
 }
 
 - (void)seekExactTo:(double)time {
-    char buffer[16];
-    snprintf(buffer, 16, "%f", time);
-    mpv_command_async( _mpv_handle, 1, (const char * []) { "seek", buffer, "absolute+exact", NULL } );
+    mpv_node nodes[] = {
+        
+        { .u.string  = "seek",              .format = MPV_FORMAT_STRING },
+        { .u.double_ = time,                .format = MPV_FORMAT_DOUBLE },
+        { .u.string  = "absolute+exact",    .format = MPV_FORMAT_STRING }
+        
+    };
+    
+    mpv_node_list array = {
+        .num    = 3,
+        .values = nodes,
+        .keys   = NULL
+    };
+    
+    mpv_node arg = {
+        .u.list = &array,
+        .format = MPV_FORMAT_NODE_ARRAY
+    };
+    
+    mpv_command_node_async(_mpv_handle, 1, &arg);
 }
 
 - (void)setBool:(BOOL)value forProperty:(NSString *)property {
