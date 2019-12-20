@@ -150,6 +150,14 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 #pragma mark - Methods
 
+- (SLHEncoderItem *)duplicateEncoderItem:(SLHEncoderItem *)sourceItem {
+    SLHEncoderItem *encoderItem = _currentEncoderItem.copy;
+    NSString *extension = encoderItem.outputPath.pathExtension;
+    NSString *fileName = encoderItem.playerItem.url.lastPathComponent.stringByDeletingPathExtension;
+    encoderItem.outputFileName = [fileName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
+    return encoderItem;
+}
+
 - (void)resetWindow {
     
     self.currentEncoderItem = nil;
@@ -548,10 +556,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (IBAction)addEncoderItem:(id)sender {
     if (_currentEncoderItem) {
-        SLHEncoderItem *encoderItem = _currentEncoderItem.copy;
-        NSString *extension = encoderItem.outputPath.pathExtension;
-        NSString *fileName = encoderItem.playerItem.url.lastPathComponent.stringByDeletingPathExtension;
-        encoderItem.outputFileName = [fileName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
+        SLHEncoderItem *encoderItem = [self duplicateEncoderItem:_currentEncoderItem];
         [_itemsArrayController insertObject:encoderItem
                       atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:_currentEncoderItem] + 1];
         
