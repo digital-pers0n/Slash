@@ -384,6 +384,18 @@
                                                 <action selector="jumpToEndPosition:" target="lKY-o8-vkq" id="NHr-3T-dtw"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Match to Selected Range" keyEquivalent="P" id="H5X-ux-9um">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="matchToSelectedRange:" target="lKY-o8-vkq" id="O3I-7W-BIc"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Duplicate and Match to Selected Range" alternate="YES" keyEquivalent="P" id="mmG-cb-CUm">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                            <connections>
+                                                <action selector="duplicateAndMatchToSelectedRange:" target="lKY-o8-vkq" id="v3V-Cv-7bn"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="msi-w1-1QS"/>
                                         <menuItem title="Reset" id="Tdz-9D-nQK">
                                             <string key="keyEquivalent" base64-UTF8="YES">
