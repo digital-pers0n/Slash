@@ -331,9 +331,9 @@ static char minValueKVOContext;
     } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
         [_delegate trimViewMouseDown:self];
         if (_hitTestResult & SLHCellHitLeftKnob) {
-            [_delegate trimViewMouseDraggedStartPosition:self];
+            [_delegate trimViewMouseDownStartPosition:self];
         } else {
-            [_delegate trimViewMouseDraggedEndPosition:self];
+            [_delegate trimViewMouseDownEndPosition:self];
         }
     }
 }
