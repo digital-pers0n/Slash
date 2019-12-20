@@ -363,6 +363,23 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 #pragma mark - IBActions
 
+- (IBAction)matchToSelectedRange:(id)sender {
+    SLHPlayerViewController * playerController = _playerView.viewController;
+    double start = playerController.inMark;
+    _currentEncoderItem.intervalStart = start;
+    _currentEncoderItem.intervalEnd = playerController.outMark;
+    [_player seekExactTo:start];
+}
+
+- (IBAction)duplicateAndMatchToSelectedRange:(id)sender {
+    SLHEncoderItem *duplicate = [self duplicateEncoderItem:_currentEncoderItem];
+    SLHPlayerViewController * playerController = _playerView.viewController;
+    double start = playerController.inMark;
+    duplicate.intervalStart = start;
+    duplicate.intervalEnd = playerController.outMark;
+    [_player seekExactTo:start];
+}
+
 - (IBAction)resetSelection:(id)sender {
     _currentEncoderItem.intervalStart = 0;
     _currentEncoderItem.intervalEnd = _currentEncoderItem.playerItem.duration;
