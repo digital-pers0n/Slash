@@ -65,8 +65,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     double _savedTimePosition;
 
     struct _trimViewFlags {
-        unsigned int isSeeking:1;
         unsigned int needsUpdateStartValue:1;
+        unsigned int shouldStop:1;
     } _TVFlags;
 }
 
@@ -724,14 +724,28 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
-    if (_TVFlags.isSeeking) {
+    
+    if (_TVFlags.shouldStop) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:MPVPlayerDidStartSeekNotification object:_player];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:MPVPlayerDidRestartPlaybackNotification object:_player];
         if (_TVFlags.needsUpdateStartValue) {
             _currentEncoderItem.intervalStart = _player.timePosition;
+            
         } else {
             _currentEncoderItem.intervalEnd = _player.timePosition;
         }
+        _player.timePosition = _savedTimePosition;
+        _TVFlags.shouldStop = 0;
+        return;
     }
-    _TVFlags.isSeeking = 0;
+    
+    double time = 0;
+    if (_TVFlags.needsUpdateStartValue) {
+        time = _currentEncoderItem.interval.start;
+    } else {
+        time = _currentEncoderItem.interval.end;
+    }
+    _player.timePosition = time;
 }
 
 #pragma mark - NSDraggingDestination
@@ -826,6 +840,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 #pragma mark - SLHTrimViewDelegate
 
 - (void)trimViewMouseDown:(SLHTrimView *)trimView {
+
     NSTableCellView *tcv = (id)trimView.superview;
     SLHEncoderItem *encoderItem = tcv.objectValue;
     if (encoderItem != _currentEncoderItem) {
@@ -834,35 +849,42 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     } else {
         _savedTimePosition = _player.timePosition;
     }
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:_player];
     
+    [trimView unbind:@"startValue"];
+    [trimView unbind:@"endValue"];
+
 }
 
 - (void)trimViewMouseDownStartPosition:(SLHTrimView *)trimView {
+    _TVFlags.needsUpdateStartValue = 1;
     _player.timePosition = trimView.startValue;
 }
 
 - (void)trimViewMouseDownEndPosition:(SLHTrimView *)trimView {
+    _TVFlags.needsUpdateStartValue = 0;
     _player.timePosition = trimView.endValue;
 }
 
 - (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView {
-    [_player seekExactTo:trimView.startValue];
-    _TVFlags.needsUpdateStartValue = 1;
-    _TVFlags.isSeeking = 1;
+    _currentEncoderItem.intervalStart = trimView.startValue;
 }
 
 - (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView {
-    [_player seekExactTo:trimView.endValue];
-    _TVFlags.needsUpdateStartValue = 0;
-    _TVFlags.isSeeking = 1;
+   _currentEncoderItem.intervalEnd = trimView.endValue;
 }
 
 - (void)trimViewMouseUp:(SLHTrimView *)trimView {
-
-    _player.timePosition = _savedTimePosition;
-    _TVFlags.isSeeking = 0;
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPVPlayerDidRestartPlaybackNotification object:_player];
+    if (_TVFlags.needsUpdateStartValue) {
+        _player.timePosition = trimView.startValue;
+    } else {
+        _player.timePosition = trimView.endValue;
+    }
+    _TVFlags.shouldStop = 1;
+    
+    [trimView bind:@"startValue" toObject:_currentEncoderItem withKeyPath:@"intervalStart" options:nil];
+    [trimView bind:@"endValue" toObject:_currentEncoderItem withKeyPath:@"intervalEnd" options:nil];
 }
 
 #pragma mark - NSMenuDelegate
