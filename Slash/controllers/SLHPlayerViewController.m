@@ -352,10 +352,9 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 }
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
-    if (!_canSeek) {
-        [_player seekExactTo:_seekBar.doubleValue];
-        _canSeek = YES;
-    }
+    if (_canSeek) {
+        _player.timePosition = _seekBar.doubleValue;
+   }
 }
 
 - (void)playerDidStartSeek:(NSNotification *)n {
@@ -443,26 +442,18 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     self.currentPosition = cell.doubleValue;
     dispatch_resume(_timer);
     bindObject(_seekBar, doubleValue, self.currentPosition);
+    _canSeek = NO;
 }
 
 - (void)sliderCellMouseDown:(SLHSliderCell *)cell {
+    _canSeek = YES;
     dispatch_suspend(_timer);
     [_seekBar unbind:@"doubleValue"];
+    _player.timePosition = cell.doubleValue;
 }
 
 - (void)sliderCellMouseDragged:(SLHSliderCell *)cell {
-
-    if (_canSeek) {
-        
-        __unsafe_unretained typeof(self) obj = self;
-        double value = cell.doubleValue;
-        
-        dispatch_async(_seek_queue, ^{
-            obj->_player.timePosition = value;
-        });
-        
-        _canSeek = NO;
-    }
+    self.currentPosition = cell.doubleValue;
 }
 
 #pragma mark - dispatch source timer handler
