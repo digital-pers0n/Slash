@@ -11,18 +11,26 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class MPVPlayer;
+@protocol SLHPlayerViewControllerDelegate;
 
 extern NSString * const SLHPlayerViewControllerDidChangeInMarkNotification;
 extern NSString * const SLHPlayerViewControllerDidChangeOutMarkNotification;
 
 @interface SLHPlayerViewController : NSViewController
 
+@property (nonatomic, weak) id <SLHPlayerViewControllerDelegate> delegate;
 @property (nullable) MPVPlayer *player;
 @property (nullable) IBOutlet NSView *videoView;
 @property (nonatomic) double inMark;
 @property (nonatomic) double outMark;
 
 - (void)loopPlaybackWithStart:(double)inMark end:(double)outMark;
+
+@end
+
+@protocol SLHPlayerViewControllerDelegate <NSObject>
+
+- (void)playerViewController:(SLHPlayerViewController *)controller commitInMark:(double)inMark outMark:(double)outMark;
 
 @end
 

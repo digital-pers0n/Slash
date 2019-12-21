@@ -299,6 +299,10 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     [_player seekExactTo:_outMark];
 }
 
+- (IBAction)commitSelection:(id)sender {
+    [_delegate playerViewController:self commitInMark:_inMark outMark:_outMark];
+}
+
 #pragma mark - Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {

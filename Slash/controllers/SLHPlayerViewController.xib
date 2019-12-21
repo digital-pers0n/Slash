@@ -162,6 +162,15 @@
                                         <string key="keyEquivalent">;</string>
                                     </buttonCell>
                                     <connections>
+                                        <action selector="commitSelection:" target="-2" id="dUJ-DQ-ZSo"/>
+                                        <binding destination="-2" name="enabled2" keyPath="self.outMark" previousBinding="tV6-UT-kEH" id="MAA-6B-OPd">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="tV6-UT-kEH">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSIsNotNil</string>
