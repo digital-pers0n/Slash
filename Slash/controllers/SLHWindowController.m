@@ -365,18 +365,37 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (IBAction)matchToSelectedRange:(id)sender {
     SLHPlayerViewController * playerController = _playerView.viewController;
+    double end = playerController.outMark;
+    
+    if (end == 0) {
+        NSBeep();
+        return;
+    }
+    
     double start = playerController.inMark;
+    
     _currentEncoderItem.intervalStart = start;
-    _currentEncoderItem.intervalEnd = playerController.outMark;
+    _currentEncoderItem.intervalEnd = end;
     [_player seekExactTo:start];
 }
 
 - (IBAction)duplicateAndMatchToSelectedRange:(id)sender {
-    SLHEncoderItem *duplicate = [self duplicateEncoderItem:_currentEncoderItem];
+
     SLHPlayerViewController * playerController = _playerView.viewController;
+    
+    double end = playerController.outMark;
+    
+    if (end == 0) {
+        NSBeep();
+        return;
+    }
+    
     double start = playerController.inMark;
+    
+    SLHEncoderItem *duplicate = [self duplicateEncoderItem:_currentEncoderItem];
+    
     duplicate.intervalStart = start;
-    duplicate.intervalEnd = playerController.outMark;
+    duplicate.intervalEnd = end;
     [_player seekExactTo:start];
 }
 
