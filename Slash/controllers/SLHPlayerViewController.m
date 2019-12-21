@@ -41,7 +41,6 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     NSArray *_volumeButtonIcons;
     SLHVolumeIcon _currentVolumeIcon;
     
-    dispatch_queue_t _seek_queue;
     dispatch_queue_t _timer_queue;
     dispatch_source_t _timer;
 }
@@ -178,11 +177,6 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     [super viewDidLoad];
     
     _timer_queue = dispatch_get_main_queue();
-    
-    dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(
-                                                                         DISPATCH_QUEUE_SERIAL,
-                                                                         QOS_CLASS_USER_INTERACTIVE, 0);
-    _seek_queue = dispatch_queue_create("com.home.SLHPlayerViewController.seek-queue", attr);
 
     bindObject(_textField, doubleValue, self.currentPosition);
     bindObject(_seekBar, doubleValue, self.currentPosition);
