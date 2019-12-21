@@ -117,7 +117,7 @@
                             <rect key="frame" x="91" y="6" width="270" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button toolTip="Mark end segment (O)" verticalHuggingPriority="750" misplaced="YES" id="qFW-gk-UEe">
+                                <button toolTip="Mark Out (O)" verticalHuggingPriority="750" misplaced="YES" id="qFW-gk-UEe">
                                     <rect key="frame" x="34" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameRightFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jwz-0n-Czb">
@@ -135,7 +135,7 @@
                                         <outlet property="nextKeyView" destination="D6e-1S-wd4" id="oRZ-3z-UnT"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Mark start segment (I)" verticalHuggingPriority="750" misplaced="YES" id="t7O-Wg-wbw">
+                                <button toolTip="Mark In (I)" verticalHuggingPriority="750" misplaced="YES" id="t7O-Wg-wbw">
                                     <rect key="frame" x="7" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameLeftFacingBracketTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uRQ-7D-gkU">
@@ -153,7 +153,7 @@
                                         <outlet property="nextKeyView" destination="qFW-gk-UEe" id="pWW-Nx-Dol"/>
                                     </connections>
                                 </button>
-                                <button verticalHuggingPriority="750" misplaced="YES" id="g39-ft-GFi">
+                                <button toolTip="Commit Selection (;)" verticalHuggingPriority="750" misplaced="YES" id="g39-ft-GFi">
                                     <rect key="frame" x="211" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IZT-2h-8we">
@@ -170,7 +170,7 @@
                                         <outlet property="nextKeyView" destination="QNh-Fr-sDt" id="OZr-Cz-4KN"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Step forward (.)" verticalHuggingPriority="750" misplaced="YES" id="pjg-hu-H80">
+                                <button toolTip="Step Forward (.)" verticalHuggingPriority="750" misplaced="YES" id="pjg-hu-H80">
                                     <rect key="frame" x="150" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
@@ -184,7 +184,7 @@
                                         <outlet property="nextKeyView" destination="g39-ft-GFi" id="gG9-zg-Fk2"/>
                                     </connections>
                                 </button>
-                                <button verticalHuggingPriority="750" misplaced="YES" id="Se5-3n-x8u">
+                                <button toolTip="Play/Pause (Space)" verticalHuggingPriority="750" misplaced="YES" id="Se5-3n-x8u">
                                     <rect key="frame" x="123" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bxL-MM-b49">
@@ -204,7 +204,7 @@ IA
                                         <outlet property="nextKeyView" destination="pjg-hu-H80" id="283-dY-FQt"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Step back (,)" verticalHuggingPriority="750" misplaced="YES" id="D6e-1S-wd4">
+                                <button toolTip="Step Back (,)" verticalHuggingPriority="750" misplaced="YES" id="D6e-1S-wd4">
                                     <rect key="frame" x="96" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
