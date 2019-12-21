@@ -396,6 +396,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     duplicate.intervalStart = start;
     duplicate.intervalEnd = end;
+    
+    [_itemsArrayController insertObject:duplicate
+                  atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:_currentEncoderItem] + 1];
+    
     [_player seekExactTo:start];
 }
 
