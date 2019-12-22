@@ -309,7 +309,12 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 }
 
 - (IBAction)commitSelection:(id)sender {
-    [_delegate playerViewController:self commitInMark:_inMark outMark:_outMark];
+    if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
+        [self resetInOutMarks];
+        _seekBar.needsDisplay = YES;
+    } else {
+        [_delegate playerViewController:self commitInMark:_inMark outMark:_outMark];
+    }
 }
 
 #pragma mark - Notifications
