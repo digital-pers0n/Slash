@@ -140,6 +140,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
     
+    SLHPlayerViewController *playerController = _playerView.viewController;
+    [nc addObserver:self selector:@selector(playerViewControllerDidChangeInMark:) name:SLHPlayerViewControllerDidChangeInMarkNotification object:playerController];
+    [nc addObserver:self selector:@selector(playerViewControllerDidChangeOutMark:) name:SLHPlayerViewControllerDidChangeOutMarkNotification object:playerController];
+    
     /* SLHExternalPlayer */
     NSURL *mpvURL = [NSURL fileURLWithPath: SLHPreferences.preferences.mpvPath];
     NSURL *mpvConfURL = [NSURL fileURLWithPath:SLHPreferences.preferences.mpvConfigPath];
@@ -737,6 +741,18 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         NSString *outname = encoderItem.outputPath.lastPathComponent;
         encoderItem.outputPath = [NSString stringWithFormat:@"%@/%@", path, outname];
     }
+}
+
+#pragma mark - SLHPlayerViewController Notificaitons
+
+- (void)playerViewControllerDidChangeInMark:(NSNotification *)n {
+    SLHPlayerViewController *playerController = n.object;
+    _currentEncoderItem.intervalStart = playerController.inMark;
+}
+
+- (void)playerViewControllerDidChangeOutMark:(NSNotification *)n {
+    SLHPlayerViewController *playerController = n.object;
+    _currentEncoderItem.intervalEnd = playerController.outMark;
 }
 
 #pragma mark - MPVPlayer Notifications
