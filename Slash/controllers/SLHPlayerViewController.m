@@ -139,6 +139,15 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 #pragma mark - Methods
 
+- (void)resetInOutMarks {
+    self.inMark = 0;
+    self.outMark = 0;
+    if (_hasABLoop) {
+        [_player setString:@"no" forProperty:MPVPlayerPropertyABLoopA];
+        self.hasABLoop = NO;
+    }
+}
+
 - (void)loopPlaybackWithStart:(double)inMark end:(double)outMark {
     self.inMark = inMark;
     self.outMark = outMark;
@@ -315,12 +324,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
         self.seekable = NO;
     }
     self.duration = duration;
-    self.inMark = 0;
-    self.outMark = 0;
-    if (_hasABLoop) {
-         [_player setString:@"no" forProperty:MPVPlayerPropertyABLoopA];
-         self.hasABLoop = NO;
-    }
+    [self resetInOutMarks];
     MPVPlayerItem *item = _player.currentItem;
     BOOL hasAudio = item.hasAudioStreams, hasVideo = item.hasVideoStreams;
 
