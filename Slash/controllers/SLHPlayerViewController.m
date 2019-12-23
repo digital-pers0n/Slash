@@ -219,25 +219,32 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 - (IBAction)inMark:(id)sender {
     
-    self.inMark = _player.timePosition;
-    [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeInMarkNotification object:self userInfo:nil];
+    double inMark =  _player.timePosition;
     
-    if (_inMark > _outMark) {
+    if (inMark > _outMark) {
         self.outMark = _player.currentItem.duration;
         [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeOutMarkNotification object:self userInfo:nil];
     }
+    
+    self.inMark = inMark;
+    [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeInMarkNotification object:self userInfo:nil];
+    
     _seekBar.needsDisplay = YES;
 }
 
 - (IBAction)outMark:(id)sender {
     
-    self.outMark = _player.timePosition;
-    [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeOutMarkNotification object:self userInfo:nil];
+    double outMark = _player.timePosition;
     
-    if (_outMark < _inMark) {
+    if (outMark < _inMark) {
         self.inMark = 0;
         [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeInMarkNotification object:self userInfo:nil];
     }
+    
+    self.outMark = outMark;
+    [_notificationCenter postNotificationName:SLHPlayerViewControllerDidChangeOutMarkNotification object:self userInfo:nil];
+    
+
     _seekBar.needsDisplay = YES;
 }
 
