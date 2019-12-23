@@ -370,18 +370,24 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (IBAction)matchToSelectedRange:(id)sender {
     SLHPlayerViewController * playerController = _playerView.viewController;
-    double end = playerController.outMark;
+    double outMark = playerController.outMark;
     
-    if (end == 0) {
+    if (outMark == 0) {
         NSBeep();
         return;
     }
     
-    double start = playerController.inMark;
+    double inMark = playerController.inMark;
+    TimeInterval interval = _currentEncoderItem.interval;
+    if (inMark > interval.end) {
+        _currentEncoderItem.intervalEnd = outMark;
+        _currentEncoderItem.intervalStart = inMark;
+    } else {
+        _currentEncoderItem.intervalStart = inMark;
+        _currentEncoderItem.intervalEnd = outMark;
+    }
     
-    _currentEncoderItem.intervalStart = start;
-    _currentEncoderItem.intervalEnd = end;
-    [_player seekExactTo:start];
+    [_player seekExactTo:inMark];
 }
 
 - (IBAction)duplicateAndMatchToSelectedRange:(id)sender {
@@ -399,8 +405,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     SLHEncoderItem *duplicate = [self duplicateEncoderItem:_currentEncoderItem];
     
-    duplicate.intervalStart = start;
     duplicate.intervalEnd = end;
+    duplicate.intervalStart = start;
     
     [_itemsArrayController insertObject:duplicate
                   atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:_currentEncoderItem] + 1];
