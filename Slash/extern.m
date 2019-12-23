@@ -116,5 +116,6 @@ NSString *const SLHEncoderFormatDidChangeNotification = @"encoderFormatDidChange
 
 #pragma mark - SLHPlayerViewController Notifications
 
-NSString * const SLHPlayerViewControllerDidChangeInMarkNotification = @"playerViewControllerDidChangeInMark";
-NSString * const SLHPlayerViewControllerDidChangeOutMarkNotification = @"playerViewControllerDidChangeOutMark";
+NSString * const SLHPlayerViewControllerDidChangeInMarkNotification         = @"playerViewControllerDidChangeInMark";
+NSString * const SLHPlayerViewControllerDidChangeOutMarkNotification        = @"playerViewControllerDidChangeOutMark";
+NSString * const SLHPlayerViewControllerDidCommitInOutMarksNotification     = @"playerViewControllerDidCommitInOutMarks";

@@ -320,7 +320,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
         [self resetInOutMarks];
         _seekBar.needsDisplay = YES;
     } else {
-        [_delegate playerViewController:self commitInMark:_inMark outMark:_outMark];
+        [_notificationCenter postNotificationName:SLHPlayerViewControllerDidCommitInOutMarksNotification object:self userInfo:nil];
     }
 }
 
