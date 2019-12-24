@@ -36,4 +36,8 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 
 @property NSString *lastUsedFormatName;
 
+@property NSString *screenshotPath;
+@property NSString *screenshotTemplate;
+@property NSString *screenshotFormat;
+
 @end

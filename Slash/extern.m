@@ -23,6 +23,14 @@ NSString *const SLHPreferencesDefaultFFMpegPath     = @"/usr/local/bin/ffmpeg";
 NSString *const SLHPreferencesDefaultFFProbePath    = @"/usr/local/bin/ffprobe";
 NSString *const SLHPreferencesDefaultMPVPath        = @"/usr/local/bin/mpv";
 
+NSString * const SLHPreferencesDefaultScreenshotPath        = @"~/Pictures/";
+NSString * const SLHPreferencesDefaultScreenshotFormat      = @"png";
+NSString * const SLHPreferencesDefaultScreenshotTemplate    = @"%F-%P";
+NSString * const SLHPreferencesScreenshotPathKey            = @"screenshotPath";
+NSString * const SLHPreferencesScreenshotFormatKey          = @"screenshotFormat";
+NSString * const SLHPreferencesScreenshotTemplateKey        = @"screenshotTemplate";
+
+
 
 #pragma mark - SLHMetadataItem
 

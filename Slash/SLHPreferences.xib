@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SLHPreferences">
             <connections>
                 <outlet property="_outputPathPopUp" destination="KNu-EU-WGB" id="11P-J0-2DI"/>
+                <outlet property="_screenshotFormatPopUp" destination="st0-gf-vhn" id="Xfy-04-GFo"/>
                 <outlet property="ffmpegPathTextField" destination="bc1-Jf-tBj" id="JKd-wI-idg"/>
                 <outlet property="ffprobePathTextField" destination="sW3-3z-ISn" id="rO5-dm-SLJ"/>
                 <outlet property="mpvPathTextField" destination="XpS-hB-PMx" id="5rs-wv-HxE"/>
@@ -17,16 +18,16 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="SLHPreferencesWindow" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="1036" y="666" width="477" height="221"/>
+            <rect key="contentRect" x="1036" y="666" width="477" height="309"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" misplaced="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="477" height="221"/>
+                <rect key="frame" x="0.0" y="0.0" width="477" height="309"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button identifier="ffmpegBinary" misplaced="YES" tag="1" id="DgZ-Km-3ef">
-                        <rect key="frame" x="438" y="187" width="16" height="16"/>
+                        <rect key="frame" x="438" y="275" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="J2K-Ay-4Yd">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -37,7 +38,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="C8l-Zi-4hx">
-                        <rect key="frame" x="131" y="160" width="37" height="14"/>
+                        <rect key="frame" x="131" y="248" width="37" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="mpv:" id="tCV-7Q-ooP">
                             <font key="font" metaFont="smallSystem"/>
@@ -46,7 +47,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="wvO-eK-bA2">
-                        <rect key="frame" x="123" y="188" width="45" height="14"/>
+                        <rect key="frame" x="123" y="276" width="45" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ffmpeg:" id="h4f-Jd-0Qn">
                             <font key="font" metaFont="smallSystem"/>
@@ -55,7 +56,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" misplaced="YES" id="bc1-Jf-tBj">
-                        <rect key="frame" x="173" y="185" width="260" height="19"/>
+                        <rect key="frame" x="173" y="273" width="260" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="hQs-gx-m1D">
                             <font key="font" metaFont="smallSystem"/>
@@ -71,7 +72,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" misplaced="YES" id="XpS-hB-PMx">
-                        <rect key="frame" x="173" y="158" width="260" height="19"/>
+                        <rect key="frame" x="173" y="246" width="260" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0dW-L9-D2o">
                             <font key="font" metaFont="smallSystem"/>
@@ -87,7 +88,7 @@
                         </connections>
                     </textField>
                     <button identifier="mpvBinary" misplaced="YES" tag="3" id="cmR-9g-nNH">
-                        <rect key="frame" x="438" y="160" width="16" height="16"/>
+                        <rect key="frame" x="438" y="248" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="qI4-wv-Yrv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -98,7 +99,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Z1t-jf-YAH">
-                        <rect key="frame" x="98" y="98" width="69" height="14"/>
+                        <rect key="frame" x="98" y="186" width="69" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Output Path:" id="1Xg-Te-joV">
                             <font key="font" metaFont="smallSystem"/>
@@ -107,7 +108,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" misplaced="YES" id="KNu-EU-WGB">
-                        <rect key="frame" x="170" y="93" width="136" height="22"/>
+                        <rect key="frame" x="170" y="181" width="136" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="a2R-mX-czf">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -123,7 +124,7 @@
                         </connections>
                     </popUpButton>
                     <button misplaced="YES" id="Vxx-w7-nQ3">
-                        <rect key="frame" x="170" y="71" width="117" height="20"/>
+                        <rect key="frame" x="170" y="159" width="117" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Same as input file" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="lR4-Ii-iHr">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -134,7 +135,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" misplaced="YES" id="sW3-3z-ISn">
-                        <rect key="frame" x="173" y="131" width="260" height="19"/>
+                        <rect key="frame" x="173" y="219" width="260" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sXE-fj-6wD">
                             <font key="font" metaFont="smallSystem"/>
@@ -150,7 +151,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="6jw-jI-jdx">
-                        <rect key="frame" x="120" y="133" width="47" height="14"/>
+                        <rect key="frame" x="120" y="221" width="47" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ffprobe:" id="6Si-57-lPy">
                             <font key="font" metaFont="smallSystem"/>
@@ -159,7 +160,7 @@
                         </textFieldCell>
                     </textField>
                     <button identifier="ffprobeBinary" misplaced="YES" tag="2" id="yBb-rb-XAV">
-                        <rect key="frame" x="438" y="132" width="16" height="16"/>
+                        <rect key="frame" x="438" y="220" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="kdc-Wz-Iue">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -170,7 +171,7 @@
                         </connections>
                     </button>
                     <button misplaced="YES" id="0vA-U6-WDn">
-                        <rect key="frame" x="170" y="51" width="219" height="20"/>
+                        <rect key="frame" x="170" y="139" width="219" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Update output filename automatically" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="KxX-q5-o8D">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -181,8 +182,92 @@
                             <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.updateOutputName" id="3H7-T1-ia3"/>
                         </connections>
                     </button>
+                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="reA-pM-PM2">
+                        <rect key="frame" x="12" y="208" width="453" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
+                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="Pmw-7C-RSU">
+                        <rect key="frame" x="12" y="131" width="453" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="cAp-MM-hhU">
+                        <rect key="frame" x="94" y="109" width="73" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Screenshots:" id="oNr-PD-XrT">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton toolTip="Screenshot format" verticalHuggingPriority="750" misplaced="YES" id="st0-gf-vhn">
+                        <rect key="frame" x="170" y="104" width="136" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="jpg" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="brm-S6-Ttk" id="Efc-Jk-9ak">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" id="ArA-f3-Aop">
+                                <items>
+                                    <menuItem title="jpg" state="on" toolTip="jpg" id="brm-S6-Ttk"/>
+                                    <menuItem title="png" toolTip="png" id="y4d-9E-11D"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="updateScreenshotFormat:" target="-2" id="je8-2N-5o6"/>
+                        </connections>
+                    </popUpButton>
+                    <textField toolTip="Screenshot output path" verticalHuggingPriority="750" misplaced="YES" id="NzP-mZ-GkC">
+                        <rect key="frame" x="173" y="80" width="260" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="cKA-Fi-uH6">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.screenshotPath" id="A0f-Bb-ojH"/>
+                        </connections>
+                    </textField>
+                    <textField toolTip="Screenshot template name. (See description of the --screenshot-template option in the mpv manual for more info.)" verticalHuggingPriority="750" misplaced="YES" id="ww5-12-8QP">
+                        <rect key="frame" x="173" y="53" width="260" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="CwS-UZ-wa9">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.screenshotTemplate" id="dEn-TS-V09"/>
+                        </connections>
+                    </textField>
+                    <button misplaced="YES" tag="2" id="pff-me-QBw">
+                        <rect key="frame" x="438" y="82" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="oaR-1t-D3u">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="selectScreenshotSavePath:" target="-2" id="Sar-87-5Ki"/>
+                        </connections>
+                    </button>
+                    <button misplaced="YES" tag="2" id="g7X-cG-WJa">
+                        <rect key="frame" x="438" y="55" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="3Os-TG-40X">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="resetoreDefaultScreenshotTemplate:" target="-2" id="TUB-xR-803"/>
+                        </connections>
+                    </button>
+                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="D1E-q1-SsE">
+                        <rect key="frame" x="12" y="42" width="453" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="reH-4v-S8S">
-                        <rect key="frame" x="61" y="23" width="106" height="14"/>
+                        <rect key="frame" x="60" y="20" width="106" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Number of threads:" id="J4l-LE-1dU">
                             <font key="font" metaFont="smallSystem"/>
@@ -190,16 +275,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="reA-pM-PM2">
-                        <rect key="frame" x="12" y="120" width="453" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
-                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="Pmw-7C-RSU">
-                        <rect key="frame" x="12" y="43" width="453" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
                     <textField toolTip="Set number of threads. Set to 0 to autodetect." verticalHuggingPriority="750" misplaced="YES" id="Eml-aG-1Rp">
-                        <rect key="frame" x="174" y="20" width="130" height="19"/>
+                        <rect key="frame" x="173" y="17" width="130" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="UNJ-Y7-dPw">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="vYc-YF-nAd">
@@ -221,7 +298,7 @@
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="p3O-Ld-mvx"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Yi2-hh-Ih8"/>
-                    <toolbarItem implicitItemIdentifier="27C202D0-DD11-47BE-9492-CC606B070C93" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" id="eks-1i-W3v">
+                    <toolbarItem implicitItemIdentifier="27C202D0-DD11-47BE-9492-CC606B070C93" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" autovalidates="NO" selectable="YES" id="eks-1i-W3v">
                         <nil key="toolTip"/>
                     </toolbarItem>
                 </allowedToolbarItems>
@@ -233,12 +310,13 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="295.5" y="71.5"/>
+            <point key="canvasLocation" x="295.5" y="115.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="Wrw-dJ-vzm"/>
     </objects>
     <resources>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="SLHImageNameFolderTemplate" width="15" height="15"/>
     </resources>
 </document>

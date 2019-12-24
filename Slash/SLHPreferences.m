@@ -16,9 +16,17 @@ extern NSString *const SLHPreferencesDefaultFFMpegPath;
 extern NSString *const SLHPreferencesDefaultFFProbePath;
 extern NSString *const SLHPreferencesDefaultMPVPath;
 
+extern NSString * const SLHPreferencesDefaultScreenshotPath;
+extern NSString * const SLHPreferencesDefaultScreenshotFormat;
+extern NSString * const SLHPreferencesDefaultScreenshotTemplate;
+extern NSString * const SLHPreferencesScreenshotPathKey;
+extern NSString * const SLHPreferencesScreenshotFormatKey;
+extern NSString * const SLHPreferencesScreenshotTemplateKey;
+
 @interface SLHPreferences () <NSWindowDelegate> {
     
     IBOutlet NSPopUpButton *_outputPathPopUp;
+    IBOutlet NSPopUpButton *_screenshotFormatPopUp;
     
     NSMutableArray <NSString *> *_recentOutputPaths;
     NSString *_currentOutputPath;
@@ -98,8 +106,20 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
         if (!self.mpvPath) {
             self.mpvPath = SLHPreferencesDefaultMPVPath;
         }
-        _userDefaults = userDefaults;
-
+        
+        if (!self.screenshotPath) {
+            self.screenshotPath = SLHPreferencesDefaultScreenshotPath;
+        }
+        
+        if (!self.screenshotFormat) {
+            self.screenshotFormat = SLHPreferencesDefaultScreenshotFormat;
+        }
+        
+        if (!self.screenshotTemplate) {
+            self.screenshotTemplate = SLHPreferencesDefaultScreenshotTemplate;
+        }
+        
+        
     }
     return self;
 }
@@ -180,6 +200,9 @@ fatal_error:
         }
         [_outputPathPopUp selectItemAtIndex:[menu indexOfItemWithTag:203] + 1];
     }
+    
+    [_screenshotFormatPopUp selectItemWithTitle:self.screenshotFormat];
+    
 }
 
 - (BOOL)outputPathSameAsInput {
@@ -221,6 +244,30 @@ fatal_error:
 
 - (NSString *)lastUsedFormatName {
     return [_userDefaults objectForKey:SLHPreferencesLastUsedFormatKey];
+}
+
+- (void)setScreenshotPath:(NSString *)screenshotPath {
+    [_userDefaults setObject:screenshotPath forKey:SLHPreferencesScreenshotPathKey];
+}
+
+- (NSString *)screenshotPath {
+   return [_userDefaults stringForKey:SLHPreferencesScreenshotPathKey];
+}
+
+- (void)setScreenshotFormat:(NSString *)screenshotFormat {
+    [_userDefaults setObject:screenshotFormat forKey:SLHPreferencesScreenshotFormatKey];
+}
+
+- (NSString *)screenshotFormat {
+    return [_userDefaults stringForKey:SLHPreferencesScreenshotFormatKey];
+}
+
+- (void)setScreenshotTemplate:(NSString *)screenshotTemplate {
+    [_userDefaults setObject:screenshotTemplate forKey:SLHPreferencesScreenshotTemplateKey];
+}
+
+- (NSString *)screenshotTemplate {
+    return [_userDefaults stringForKey:SLHPreferencesScreenshotTemplateKey];
 }
 
 #pragma mark - IBActions
@@ -313,6 +360,26 @@ fatal_error:
 
 - (IBAction)updateFileNameDidChange:(NSButton *)sender {
     _updateFileName = (sender.state);
+}
+
+- (IBAction)selectScreenshotSavePath:(id)sender {
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowsMultipleSelection = NO;
+    panel.canChooseFiles = NO;
+    panel.canChooseDirectories = YES;
+    panel.canCreateDirectories = YES;
+    
+    if ([panel runModal] == NSModalResponseOK) {
+        self.screenshotPath = panel.URL.path;
+    }
+}
+
+- (IBAction)resetoreDefaultScreenshotTemplate:(id)sender {
+    self.screenshotTemplate = SLHPreferencesDefaultScreenshotTemplate;
+}
+
+- (IBAction)updateScreenshotFormat:(id)sender {
+    self.screenshotFormat = _screenshotFormatPopUp.selectedItem.title;
 }
 
 #pragma mark - NSWindowDelegate 
