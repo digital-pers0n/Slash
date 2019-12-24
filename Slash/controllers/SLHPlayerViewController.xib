@@ -283,6 +283,33 @@ IA
                                 </button>
                             </subviews>
                         </customView>
+                        <button toolTip="Take a Screenshot" verticalHuggingPriority="750" misplaced="YES" id="TBy-hi-UB0">
+                            <rect key="frame" x="20" y="8" width="24" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameScreenshotTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Thd-TA-qsS">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
+                                <string key="keyEquivalent">S</string>
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="takeScreenShot:" target="-2" id="Eqj-73-AAs"/>
+                                <binding destination="-2" name="enabled2" keyPath="videoView.hidden" previousBinding="BdV-zA-do0" id="ie9-FV-YQJ">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="BdV-zA-do0">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </button>
                     </subviews>
                 </customView>
             </subviews>
@@ -348,7 +375,7 @@ IA
             </subviews>
             <point key="canvasLocation" x="291" y="314"/>
         </customView>
-        <box wantsLayer="YES" misplaced="YES" boxType="secondary" borderType="bezel" title="Box" titlePosition="noTitle" id="XTg-vc-98l">
+        <box misplaced="YES" boxType="secondary" borderType="bezel" title="Box" titlePosition="noTitle" id="XTg-vc-98l">
             <rect key="frame" x="0.0" y="0.0" width="305" height="199"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <view key="contentView" id="dGg-tI-Yn4">
@@ -382,6 +409,7 @@ IA
         <image name="SLHImageNameJumpToStartTemplate" width="15" height="15"/>
         <image name="SLHImageNameLeftFacingBracketTemplate" width="15" height="15"/>
         <image name="SLHImageNameRightFacingBracketTemplate" width="15" height="15"/>
+        <image name="SLHImageNameScreenshotTemplate" width="15" height="15"/>
         <image name="SLHImageNameStartTemplate" width="32" height="32"/>
         <image name="SLHImageNameVolumeMaxTemplate" width="15" height="15"/>
         <image name="SLHImageNameVolumeMuteTemplate" width="15" height="15"/>

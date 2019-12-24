@@ -324,6 +324,19 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     }
 }
 
+- (IBAction)takeScreenShot:(id)sender {
+    if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
+        NSSavePanel *panel = [NSSavePanel savePanel];
+        panel.nameFieldStringValue = [_player.currentItem.url.lastPathComponent.stringByDeletingPathExtension stringByAppendingPathExtension:@"png"];
+        if ([panel runModal] == NSModalResponseOK) {
+            NSURL *url = panel.URL;
+            [_player performCommand:MPVPlayerCommandScreenshotToFile withArgument:url.path];
+        }
+    } else {
+        [_player performCommand:MPVPlayerCommandScreenshot];
+    }
+}
+
 #pragma mark - Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {
