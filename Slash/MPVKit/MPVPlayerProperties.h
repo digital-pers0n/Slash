@@ -50,4 +50,13 @@ extern NSString * const MPVPlayerPropertyAudioID;
 /** sid */
 extern NSString * const MPVPlayerPropertySubtitleID;
 
+/** screenshot-directory */
+extern NSString * const MPVPlayerPropertyScreenshotDirectory;
+
+/** screenshot-format */
+extern NSString * const MPVPlayerPropertyScreenshotFormat;
+
+/** screenshot-template */
+extern NSString * const MPVPlayerPropertyScreenshotTemplate;
+
 #endif /* MPVPlayerProperties_h */

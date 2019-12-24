@@ -10,10 +10,12 @@
 
 #pragma mark - Commands
 
-NSString * const MPVPlayerCommandLoadFile       = @"loadfile";
-NSString * const MPVPlayerCommandStop           = @"stop";
-NSString * const MPVPlayerCommandFrameBackStep  = @"frame-back-step";
-NSString * const MPVPlayerCommandFrameStep      = @"frame-step";
+NSString * const MPVPlayerCommandLoadFile           = @"loadfile";
+NSString * const MPVPlayerCommandStop               = @"stop";
+NSString * const MPVPlayerCommandFrameBackStep      = @"frame-back-step";
+NSString * const MPVPlayerCommandFrameStep          = @"frame-step";
+NSString * const MPVPlayerCommandScreenshot         = @"screenshot";
+NSString * const MPVPlayerCommandScreenshotToFile   = @"screenshot-to-file";
 
 #pragma mark - Properties
 
@@ -30,6 +32,9 @@ NSString * const MPVPlayerPropertyABLoopB               = @"ab-loop-b";
 NSString * const MPVPlayerPropertyVideoID               = @"vid";
 NSString * const MPVPlayerPropertyAudioID               = @"aid";
 NSString * const MPVPlayerPropertySubtitleID            = @"sid";
+NSString * const MPVPlayerPropertyScreenshotDirectory   = @"screenshot-directory";
+NSString * const MPVPlayerPropertyScreenshotFormat      = @"screenshot-format";
+NSString * const MPVPlayerPropertyScreenshotTemplate    = @"screenshot-template";
 
 #pragma mark - Notifications
 

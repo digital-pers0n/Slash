@@ -23,4 +23,10 @@ extern NSString * const MPVPlayerCommandFrameBackStep;
 /** frame-step */
 extern NSString * const MPVPlayerCommandFrameStep;
 
+/** screenshot */
+extern NSString * const MPVPlayerCommandScreenshot;
+
+/** screenshot-to-file */
+extern NSString * const MPVPlayerCommandScreenshotToFile;
+
 #endif /* MPVPlayerCommands_h */
