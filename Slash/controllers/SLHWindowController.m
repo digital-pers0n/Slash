@@ -978,6 +978,9 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 - (void)windowWillClose:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
+    if (_presetManager.hasChanges) {
+        [_presetManager savePresets];
+    }
 }
 
 - (void)windowWillStartLiveResize:(NSNotification *)notification {
