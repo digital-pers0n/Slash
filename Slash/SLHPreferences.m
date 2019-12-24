@@ -61,6 +61,9 @@ extern NSString *const SLHPreferencesDefaultMPVPath;
         [self setUpPaths];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        _userDefaults = userDefaults;
+        
         id obj = [userDefaults objectForKey:SLHPreferencesNumberOfThreadsKey];
         if (obj) {
            _numberOfThreads = ((NSNumber *)obj).unsignedIntegerValue;
