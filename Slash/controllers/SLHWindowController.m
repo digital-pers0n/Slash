@@ -134,6 +134,18 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     /* MPVPlayer */
     MPVPlayer *player = [[MPVPlayer alloc] init];
+    SLHPreferences *appPrefs = SLHPreferences.preferences;
+    
+    [player setString:appPrefs.screenshotTemplate
+          forProperty:MPVPlayerPropertyScreenshotTemplate];
+    
+    [player setString:appPrefs.screenshotPath
+          forProperty:MPVPlayerPropertyScreenshotDirectory];
+    
+    [player setString:appPrefs.screenshotFormat
+          forProperty:MPVPlayerPropertyScreenshotFormat];
+    
+    [player pause];
     _playerView.player = player;
     _player = player;
     
