@@ -8,6 +8,7 @@
 
 #import "SLHPlayerViewController.h"
 #import "SLHSliderCell.h"
+#import "SLHPreferences.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -327,7 +328,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 - (IBAction)takeScreenShot:(id)sender {
     if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
         NSSavePanel *panel = [NSSavePanel savePanel];
-        panel.nameFieldStringValue = [_player.currentItem.url.lastPathComponent.stringByDeletingPathExtension stringByAppendingPathExtension:@"png"];
+        panel.nameFieldStringValue = [_player.currentItem.url.lastPathComponent.stringByDeletingPathExtension stringByAppendingPathExtension:SLHPreferences.preferences.screenshotFormat];
         if ([panel runModal] == NSModalResponseOK) {
             NSURL *url = panel.URL;
             [_player performCommand:MPVPlayerCommandScreenshotToFile withArgument:url.path];
