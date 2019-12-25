@@ -274,26 +274,24 @@ fatal_error:
 
 - (IBAction)selectFile:(NSButton *)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    [panel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSFileHandlingPanelOKButton) {
-            NSString *value = panel.URLs.firstObject.path;
-            [_userDefaults setValue:value forKey:sender.identifier];
-            switch (sender.tag) {
-                case 1:
-                    _ffmpegPathTextField.stringValue = value;
-                    break;
-                case 2:
-                    _ffprobePathTextField.stringValue = value;
-                    break;
-                case 3:
-                    _mpvPathTextField.stringValue = value;
-                    break;
-                    
-                default:
-                    break;
-            }
+    if ([panel runModal] == NSModalResponseOK) {
+        NSString *value = panel.URLs.firstObject.path;
+        [_userDefaults setValue:value forKey:sender.identifier];
+        switch (sender.tag) {
+            case 1:
+                _ffmpegPathTextField.stringValue = value;
+                break;
+            case 2:
+                _ffprobePathTextField.stringValue = value;
+                break;
+            case 3:
+                _mpvPathTextField.stringValue = value;
+                break;
+                
+            default:
+                break;
         }
-    }];
+    }
     
 }
 
@@ -304,23 +302,20 @@ fatal_error:
     panel.canChooseDirectories = YES;
     panel.canCreateDirectories = YES;
     
-    [panel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSFileHandlingPanelOKButton) {
-            NSMenu *menu = sender.menu;
-            NSString *path = panel.URL.path;
-            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[path lastPathComponent] action:@selector(setOutputPath:) keyEquivalent:@""];
-            item.tag = 100;
-            item.target = self;
-            item.representedObject = path;
-            item.toolTip = path;
-            [menu insertItem:item atIndex:[menu indexOfItemWithTag:203] + 1];
-            [_outputPathPopUp selectItem:item];
-            [_recentOutputPaths insertObject:path atIndex:0];
-            _currentOutputPath = path;
-            
-        }
-    }];
-    
+    if ([panel runModal] == NSModalResponseOK) {
+        NSMenu *menu = sender.menu;
+        NSString *path = panel.URL.path;
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[path lastPathComponent] action:@selector(setOutputPath:) keyEquivalent:@""];
+        item.tag = 100;
+        item.target = self;
+        item.representedObject = path;
+        item.toolTip = path;
+        [menu insertItem:item atIndex:[menu indexOfItemWithTag:203] + 1];
+        [_outputPathPopUp selectItem:item];
+        [_recentOutputPaths insertObject:path atIndex:0];
+        _currentOutputPath = path;
+        
+    }
 }
 
 - (IBAction)setOutputPath:(NSMenuItem *)sender {
