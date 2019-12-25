@@ -34,8 +34,20 @@ static inline void check_error(int status) {
     }
 }
 
+typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
+    MPVPlayerEventStartFile,
+    MPVPlayerEventEndFile,
+    MPVPlayerEventFileLoaded,
+    MPVPlayerEventIdle,
+    MPVPlayerEventVideoReconfig,
+    MPVPlayerEventSeek,
+    MPVPlayerEventPlaybackRestart,
+    MPVPlayerEventNone
+};
+
 @interface MPVPlayer () {
     MPVPlayerItem *_currentItem;
+    NSNotification *_notifications[MPVPlayerEventNone];
 }
 
 @property NSThread *eventThread;
@@ -205,7 +217,47 @@ static inline void check_error(int status) {
 - (void)postInit {
     _observed = [NSMutableDictionary new];
     _notificationCenter = [NSNotificationCenter defaultCenter];
+    [self setUpNotifcations];
     [self startEventListener];
+}
+
+- (void)setUpNotifcations {
+    
+    NSNotification *n = [NSNotification notificationWithName:MPVPlayerWillStartPlaybackNotification
+                                                      object:self
+                                                    userInfo:nil];
+    _notifications[MPVPlayerEventStartFile] = n;
+    
+    n = [NSNotification notificationWithName:MPVPlayerDidEndPlaybackNotification
+                                      object:self
+                                    userInfo:nil];
+    _notifications[MPVPlayerEventEndFile] = n;
+    
+    n = [NSNotification notificationWithName:MPVPlayerDidLoadFileNotification
+                                      object:self
+                                    userInfo:nil];
+    _notifications[MPVPlayerEventFileLoaded] = n;
+    
+    n = [NSNotification notificationWithName:MPVPlayerDidEnterIdleModeNotification
+                                      object:self
+                                    userInfo:nil];
+    _notifications[MPVPlayerEventIdle] = n;
+
+    n = [NSNotification notificationWithName:MPVPlayerVideoDidChangeNotification
+                                      object:self
+                                    userInfo:nil];
+    _notifications[MPVPlayerEventVideoReconfig] = n;
+    
+    n = [NSNotification notificationWithName:MPVPlayerDidStartSeekNotification
+                                      object:self
+                                    userInfo:nil];
+    _notifications[MPVPlayerEventSeek] = n;
+
+    n = [NSNotification notificationWithName:MPVPlayerDidRestartPlaybackNotification
+                                      object:self
+                                    userInfo:nil];
+    _notifications[MPVPlayerEventPlaybackRestart] = n;
+    
 }
 
 
@@ -217,10 +269,9 @@ static inline void check_error(int status) {
 }
 
 - (void)readEvents {
-    
-    NSString *notification = nil;
-   // SEL postNotification = @selector(postNotification:);
+
     CFRunLoopRef main_rl = CFRunLoopGetMain();
+    MPVPlayerEvent playerEvent = MPVPlayerEventNone;
     
     while (!_eventThread.cancelled) {
         mpv_event *event = mpv_wait_event(self->_mpv_handle, -1);
@@ -242,31 +293,31 @@ static inline void check_error(int status) {
                 break;
                 
             case MPV_EVENT_START_FILE:
-                notification = MPVPlayerWillStartPlaybackNotification;
+                playerEvent = MPVPlayerEventStartFile;
                 break;
                 
             case MPV_EVENT_END_FILE:
-                notification = MPVPlayerDidEndPlaybackNotification;
+                playerEvent = MPVPlayerEventEndFile;
                 break;
                 
             case MPV_EVENT_FILE_LOADED:
-                notification = MPVPlayerDidLoadFileNotification;
+                playerEvent = MPVPlayerEventFileLoaded;
                 break;
                 
             case MPV_EVENT_IDLE:
-                notification = MPVPlayerDidEnterIdleModeNotification;
+                playerEvent = MPVPlayerEventIdle;
                 break;
                 
             case MPV_EVENT_VIDEO_RECONFIG:
-                notification = MPVPlayerVideoDidChangeNotification;
+                playerEvent = MPVPlayerEventVideoReconfig;
                 break;
                 
             case MPV_EVENT_SEEK:
-                notification = MPVPlayerDidStartSeekNotification;
+                playerEvent = MPVPlayerEventSeek;
                 break;
                 
             case MPV_EVENT_PLAYBACK_RESTART:
-                notification = MPVPlayerDidRestartPlaybackNotification;
+                playerEvent = MPVPlayerEventPlaybackRestart;
                 break;
                 
             case MPV_EVENT_PROPERTY_CHANGE:
@@ -278,24 +329,17 @@ static inline void check_error(int status) {
                 break;
         }
         
-        if (notification) {
-#ifdef DEBUG
-            NSLog(@"%@: Post '%@' notification.", self, notification);
-#endif
-          
-
-            __unsafe_unretained typeof(self) obj = self;
-            NSNotification *n = [NSNotification notificationWithName:notification object:obj userInfo:nil];
+        if (playerEvent != MPVPlayerEventNone) {
             
-            /* On my low-end hardware this is about x2 faster than the performSelectorOnMainThread: method
-             and almost x5 faster than the dispatch_async() function. */
+#ifdef DEBUG
+            NSLog(@"%@: Post '%@'.", self, _notifications[playerEvent].name);
+#endif
+            __unsafe_unretained typeof(self) obj = self;
             CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
-                [obj->_notificationCenter postNotification:n];
+                [obj->_notificationCenter postNotification:obj->_notifications[playerEvent]];
             });
             
-             // [self performSelectorOnMainThread:postNotification withObject:notification waitUntilDone:NO];
-            
-            notification = nil;
+            playerEvent = MPVPlayerEventNone;
         }
         
     }
