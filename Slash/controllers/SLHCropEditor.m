@@ -149,16 +149,17 @@
 
 - (IBAction)detectCropArea:(NSButton *)sender {
     sender.enabled = NO;
+     __unsafe_unretained typeof(self) obj = self;
     dispatch_async(_bg_queue, ^{
-        NSRect rect = [self cropArea];
-        SLHFilterOptions *options = _encoderItem.filters;
+        NSRect rect = [obj cropArea];
+        SLHFilterOptions *options = obj->_encoderItem.filters;
         options.videoCropX = rect.origin.x;
         options.videoCropY = rect.origin.y;
         options.videoCropWidth = rect.size.width;
         options.videoCropHeight = rect.size.height;
-        dispatch_async(_main_queue, ^{
+        dispatch_async(obj->_main_queue, ^{
             sender.enabled = YES;
-            _imageView.selectionRect = rect;
+            obj->_imageView.selectionRect = rect;
         });
     });
 }
@@ -208,8 +209,9 @@
     NSRect rect = _imageView.selectionRect;
     _imageView.currentToolMode = IKToolModeNone;
     [self _extractFrame];
+    __unsafe_unretained typeof(self) obj = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), _main_queue, ^{
-        _imageView.selectionRect = rect;
+        obj->_imageView.selectionRect = rect;
 
     });
     
@@ -224,9 +226,10 @@
     SLHFilterOptions *options = encoderItem.filters;
     _zoomed = NO;
     [self _extractFrame];
+     __unsafe_unretained typeof(self) obj = self;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), _main_queue, ^{
         NSRect rect = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);
-        _imageView.selectionRect = rect;
+        obj->_imageView.selectionRect = rect;
 
     });
 
@@ -291,11 +294,12 @@ static inline void _safeCFRelease(CFTypeRef ref) {
 }
 
 - (void)_extractFrame {
+     __unsafe_unretained typeof(self) obj = self;
     dispatch_async(_bg_queue, ^{
         char *cmd;
         asprintf(&cmd, "%s -loglevel 0 -ss %.3f -i \"%s\""
                   " -vframes 1 -q:v 2 -f image2pipe -",
-                 _ffmpegPath.UTF8String, _startTime, _encoderItem.playerItem.url.fileSystemRepresentation);
+                 obj->_ffmpegPath.UTF8String, obj->_startTime, obj->_encoderItem.playerItem.url.fileSystemRepresentation);
         FILE *pipe = popen(cmd, "r");
         const size_t block_length = 4096;
         size_t bytes_total = 0;
@@ -314,12 +318,12 @@ static inline void _safeCFRelease(CFTypeRef ref) {
         CGImageRef cfimage_ref = CGImageSourceCreateImageAtIndex(cfimage_source_ref, 0, NULL);
         if (cfimage_ref) {
            
-            dispatch_async(_main_queue, ^{
+            dispatch_async(obj->_main_queue, ^{
                 // Hide the view to disable its annoying animtion
-                 _imageView.hidden = YES;
-                [_imageView setImage:cfimage_ref imageProperties:0];
-                _imageView.autoresizes = YES;
-                _imageView.hidden = NO;
+                 obj->_imageView.hidden = YES;
+                [obj->_imageView setImage:cfimage_ref imageProperties:0];
+                obj->_imageView.autoresizes = YES;
+                obj->_imageView.hidden = NO;
                 CFRelease(cfimage_ref);
             });
 
