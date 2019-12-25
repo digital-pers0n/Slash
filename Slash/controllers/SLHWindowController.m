@@ -12,6 +12,7 @@
 #import "SLHEncoderItemOptions.h"
 #import "SLHEncoderSettings.h"
 #import "SLHPreferences.h"
+#import "SLHPreferencesKeys.h"
 #import "SLHTextEditor.h"
 #import "SLHEncoder.h"
 #import "SLHModalWindowController.h"
@@ -134,6 +135,20 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     /* MPVPlayer */
     MPVPlayer *player = [[MPVPlayer alloc] init];
+    
+    [player pause];
+    _playerView.player = player;
+    _player = player;
+
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
+    
+    SLHPlayerViewController *playerController = _playerView.viewController;
+    [nc addObserver:self selector:@selector(playerViewControllerDidChangeInMark:) name:SLHPlayerViewControllerDidChangeInMarkNotification object:playerController];
+    [nc addObserver:self selector:@selector(playerViewControllerDidChangeOutMark:) name:SLHPlayerViewControllerDidChangeOutMarkNotification object:playerController];
+    [nc addObserver:self selector:@selector(playerViewControllerDidCommitInOutMarks:) name:SLHPlayerViewControllerDidCommitInOutMarksNotification object:playerController];
+    
+    /* SLHPreferences */
     SLHPreferences *appPrefs = SLHPreferences.preferences;
     
     [player setString:appPrefs.screenshotTemplate
@@ -144,22 +159,11 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     [player setString:appPrefs.screenshotFormat
           forProperty:MPVPlayerPropertyScreenshotFormat];
-    
-    [player pause];
-    _playerView.player = player;
-    _player = player;
-    
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
-    
-    SLHPlayerViewController *playerController = _playerView.viewController;
-    [nc addObserver:self selector:@selector(playerViewControllerDidChangeInMark:) name:SLHPlayerViewControllerDidChangeInMarkNotification object:playerController];
-    [nc addObserver:self selector:@selector(playerViewControllerDidChangeOutMark:) name:SLHPlayerViewControllerDidChangeOutMarkNotification object:playerController];
-    [nc addObserver:self selector:@selector(playerViewControllerDidCommitInOutMarks:) name:SLHPlayerViewControllerDidCommitInOutMarksNotification object:playerController];
+    [self observePreferences:appPrefs];
     
     /* SLHExternalPlayer */
-    NSURL *mpvURL = [NSURL fileURLWithPath: SLHPreferences.preferences.mpvPath];
-    NSURL *mpvConfURL = [NSURL fileURLWithPath:SLHPreferences.preferences.mpvConfigPath];
+    NSURL *mpvURL = [NSURL fileURLWithPath:appPrefs.mpvPath];
+    NSURL *mpvConfURL = [NSURL fileURLWithPath:appPrefs.mpvConfigPath];
     [SLHExternalPlayer setDefaultPlayerURL:mpvURL];
     [SLHExternalPlayer setDefaultPlayerConfigURL:mpvConfURL];
 
@@ -300,6 +304,70 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         return NO;
     }
     return YES;
+}
+
+#pragma mark - KVO
+
+static char SLHScreenshotTemplateKVO;
+static char SLHScreenshotFormatKVO;
+static char SLHScreenshotPathKVO;
+
+- (void)observePreferences:(SLHPreferences *)appPrefs {
+    [appPrefs addObserver:self
+               forKeyPath:SLHPreferencesScreenshotFormatKey
+                  options:NSKeyValueObservingOptionNew
+                  context:&SLHScreenshotFormatKVO];
+    
+    [appPrefs addObserver:self
+               forKeyPath:SLHPreferencesScreenshotPathKey
+                  options:NSKeyValueObservingOptionNew
+                  context:&SLHScreenshotPathKVO];
+    
+    [appPrefs addObserver:self
+               forKeyPath:SLHPreferencesScreenshotTemplateKey
+                  options:NSKeyValueObservingOptionNew
+                  context:&SLHScreenshotTemplateKVO];
+}
+
+- (void)unobservePreferences:(SLHPreferences *)appPrefs {
+    [appPrefs removeObserver:self
+               forKeyPath:SLHPreferencesScreenshotFormatKey
+                  context:&SLHScreenshotFormatKVO];
+    
+    [appPrefs removeObserver:self
+               forKeyPath:SLHPreferencesScreenshotPathKey
+                  context:&SLHScreenshotPathKVO];
+    
+    [appPrefs removeObserver:self
+               forKeyPath:SLHPreferencesScreenshotTemplateKey
+                  context:&SLHScreenshotTemplateKVO];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    id value = change[NSKeyValueChangeNewKey];
+    if (value) {
+        if (context == &SLHScreenshotTemplateKVO) {
+            
+            [_player setString:value
+                   forProperty:MPVPlayerPropertyScreenshotTemplate];
+            
+        } else if (context == &SLHScreenshotPathKVO) {
+            
+            [_player setString:value
+                   forProperty:MPVPlayerPropertyScreenshotDirectory];
+            
+        } else if (context == &SLHScreenshotFormatKVO) {
+            
+            [_player setString:value
+                   forProperty:MPVPlayerPropertyScreenshotFormat];
+            
+        } else {
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        }
+    }
 }
 
 #pragma mark - PopUp Menus
@@ -993,6 +1061,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     if (_presetManager.hasChanges) {
         [_presetManager savePresets];
     }
+    [self unobservePreferences:SLHPreferences.preferences];
 }
 
 - (void)windowWillStartLiveResize:(NSNotification *)notification {
