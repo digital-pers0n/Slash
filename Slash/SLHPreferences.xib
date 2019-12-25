@@ -225,7 +225,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.screenshotPath" id="A0f-Bb-ojH"/>
+                            <binding destination="-2" name="value" keyPath="self.screenshotPath" id="5oR-ch-UXs"/>
                         </connections>
                     </textField>
                     <textField toolTip="Screenshot template name. (See description of the --screenshot-template option in the mpv manual for more info.)" verticalHuggingPriority="750" misplaced="YES" id="ww5-12-8QP">
@@ -237,7 +237,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.screenshotTemplate" id="dEn-TS-V09"/>
+                            <binding destination="-2" name="value" keyPath="self.screenshotTemplate" id="BSK-De-PQC"/>
                         </connections>
                     </textField>
                     <button misplaced="YES" tag="2" id="pff-me-QBw">
