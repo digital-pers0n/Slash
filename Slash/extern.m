@@ -25,7 +25,7 @@ NSString *const SLHPreferencesDefaultMPVPath        = @"/usr/local/bin/mpv";
 
 NSString * const SLHPreferencesDefaultScreenshotPath        = @"~/Pictures/";
 NSString * const SLHPreferencesDefaultScreenshotFormat      = @"png";
-NSString * const SLHPreferencesDefaultScreenshotTemplate    = @"%F-%P";
+NSString * const SLHPreferencesDefaultScreenshotTemplate    = @"%F-%wH-%wM-%wS.%wT";
 NSString * const SLHPreferencesScreenshotPathKey            = @"screenshotPath";
 NSString * const SLHPreferencesScreenshotFormatKey          = @"screenshotFormat";
 NSString * const SLHPreferencesScreenshotTemplateKey        = @"screenshotTemplate";
