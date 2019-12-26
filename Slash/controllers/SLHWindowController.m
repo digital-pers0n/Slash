@@ -448,6 +448,52 @@ static char SLHScreenshotPathKVO;
 
 #pragma mark - IBActions
 
+- (IBAction)toggleOSDFractions:(id)sender {
+    BOOL flag = [_player boolForProperty:MPVPlayerPropertyOSDFractions];
+    if (flag) {
+        flag = NO;
+    } else {
+        flag = YES;
+    }
+    [_player setBool:flag forProperty:MPVPlayerPropertyOSDFractions];
+}
+
+- (IBAction)toggleOSD:(id)sender {
+    NSInteger level = [_player integerForProperty:MPVPlayerPropertyOSDLevel];
+    if (level == 3) {
+        level = 0;
+    } else {
+        level++;
+    }
+     [_player setInteger:level forProperty:MPVPlayerPropertyOSDLevel];
+}
+
+- (IBAction)increasePlaybackSpeed:(id)sender {
+    double speed = _player.speed;
+    if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
+        speed += 0.5;
+    } else {
+        speed += 0.1;
+    }
+    _player.speed = speed;
+}
+
+- (IBAction)decreasePlaybackSpeed:(id)sender {
+    double speed = _player.speed;
+    if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
+        speed -= 0.5;
+    } else {
+        speed -= 0.1;
+    }
+    if (speed >= 0.1) {
+        _player.speed = speed;
+    }
+}
+
+- (IBAction)resetPlaybackSpeed:(id)sender {
+    _player.speed = 1.0;
+}
+
 - (IBAction)matchToSelectedRange:(id)sender {
     SLHPlayerViewController * playerController = _playerView.viewController;
     double outMark = playerController.outMark;

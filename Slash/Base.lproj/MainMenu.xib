@@ -621,6 +621,89 @@ CA
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Playback" id="3Mr-t2-GOd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Playback" id="K85-WW-cRJ">
+                        <items>
+                            <menuItem title="Increase Playback Speed" keyEquivalent="]" id="U7V-c8-Ewc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="increasePlaybackSpeed:" target="lKY-o8-vkq" id="Wu6-wf-FXc"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="pKi-6q-Ddg">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Increase Playback Speed" alternate="YES" keyEquivalent="]" id="MsS-cV-nwN">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="increasePlaybackSpeed:" target="lKY-o8-vkq" id="Od6-nA-3Mr"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="SMn-EG-8zN">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Decrease Playback Speed" keyEquivalent="[" id="Ipv-u6-Mob">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="decreasePlaybackSpeed:" target="lKY-o8-vkq" id="nYQ-Rg-UON"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="Kpo-lF-pAw">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Decrease Playback Speed" alternate="YES" keyEquivalent="[" id="DkL-eh-YwZ">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="decreasePlaybackSpeed:" target="lKY-o8-vkq" id="OoC-XX-sfo"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="Dr0-ix-ubS">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Reset Playback Speed" id="N8x-qs-fGp">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="resetPlaybackSpeed:" target="lKY-o8-vkq" id="2hb-jO-wze"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="Gfj-Iv-7cE">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="TQC-5o-uoR"/>
+                            <menuItem title="Toggle OSD" keyEquivalent="u" id="s66-ht-PBX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleOSD:" target="lKY-o8-vkq" id="sqB-UG-Ckc"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="gff-lf-W15">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show OSD Fractions" keyEquivalent="y" id="6e4-MK-pdA">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleOSDFractions:" target="lKY-o8-vkq" id="5d4-0B-0Jt"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="View" id="dtg-LZ-T8I">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="View" id="v8g-ue-CTd">
