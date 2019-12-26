@@ -152,12 +152,12 @@
      __unsafe_unretained typeof(self) obj = self;
     dispatch_async(_bg_queue, ^{
         NSRect rect = [obj cropArea];
-        SLHFilterOptions *options = obj->_encoderItem.filters;
-        options.videoCropX = rect.origin.x;
-        options.videoCropY = rect.origin.y;
-        options.videoCropWidth = rect.size.width;
-        options.videoCropHeight = rect.size.height;
         dispatch_async(obj->_main_queue, ^{
+            SLHFilterOptions *options = obj->_encoderItem.filters;
+            options.videoCropX = rect.origin.x;
+            options.videoCropY = rect.origin.y;
+            options.videoCropWidth = rect.size.width;
+            options.videoCropHeight = rect.size.height;
             sender.enabled = YES;
             obj->_imageView.selectionRect = rect;
         });
