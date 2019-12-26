@@ -35,6 +35,8 @@ NSString * const MPVPlayerPropertySubtitleID            = @"sid";
 NSString * const MPVPlayerPropertyScreenshotDirectory   = @"screenshot-directory";
 NSString * const MPVPlayerPropertyScreenshotFormat      = @"screenshot-format";
 NSString * const MPVPlayerPropertyScreenshotTemplate    = @"screenshot-template";
+NSString * const MPVPlayerPropertyOSDLevel              = @"osd-level";
+NSString * const MPVPlayerPropertyOSDFractions          = @"osd-fractions";
 
 #pragma mark - Notifications
 

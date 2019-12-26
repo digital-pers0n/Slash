@@ -59,4 +59,10 @@ extern NSString * const MPVPlayerPropertyScreenshotFormat;
 /** screenshot-template */
 extern NSString * const MPVPlayerPropertyScreenshotTemplate;
 
+/** osd-level */
+extern NSString * const MPVPlayerPropertyOSDLevel;
+
+/** osd-fractions */
+extern NSString * const MPVPlayerPropertyOSDFractions;
+
 #endif /* MPVPlayerProperties_h */
