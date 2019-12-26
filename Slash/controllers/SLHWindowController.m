@@ -634,6 +634,7 @@ static char SLHScreenshotPathKVO;
         win.title = @"Encoding Arguments";
         win.contentView = argsView.view;
         argsView.encoderItem = _currentEncoderItem;
+        [win.window setFrame:NSMakeRect(0, 0, 360, 640) display:NO];
         [win runModal];
     }
     
