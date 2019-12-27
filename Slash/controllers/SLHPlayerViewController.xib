@@ -284,7 +284,7 @@ IA
                             </subviews>
                         </customView>
                         <button toolTip="Take a Screenshot" verticalHuggingPriority="750" misplaced="YES" id="TBy-hi-UB0">
-                            <rect key="frame" x="20" y="8" width="24" height="21"/>
+                            <rect key="frame" x="20" y="9" width="24" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameScreenshotTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Thd-TA-qsS">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -294,6 +294,11 @@ IA
                             </buttonCell>
                             <connections>
                                 <action selector="takeScreenShot:" target="-2" id="Eqj-73-AAs"/>
+                                <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="BdV-zA-do0">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                    </dictionary>
+                                </binding>
                                 <binding destination="-2" name="enabled2" keyPath="videoView.hidden" previousBinding="BdV-zA-do0" id="ie9-FV-YQJ">
                                     <dictionary key="options">
                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -301,11 +306,6 @@ IA
                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                         <integer key="NSNullPlaceholder" value="-1"/>
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                    </dictionary>
-                                </binding>
-                                <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="BdV-zA-do0">
-                                    <dictionary key="options">
-                                        <string key="NSValueTransformerName">NSIsNotNil</string>
                                     </dictionary>
                                 </binding>
                             </connections>
