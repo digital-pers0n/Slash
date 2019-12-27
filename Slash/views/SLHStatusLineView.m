@@ -39,7 +39,10 @@
 - (void)_setUp {
     _string = @"";
     NSFont *font =  [NSFont monospacedDigitSystemFontOfSize:11 weight:NSFontWeightRegular];
-    _textAttributes =  @{ NSFontAttributeName : font };
+    _textAttributes =  @{
+                         NSFontAttributeName              : font,
+                         NSForegroundColorAttributeName   : [NSColor controlTextColor]
+                          };
 }
 
 #pragma mark - Drawing
