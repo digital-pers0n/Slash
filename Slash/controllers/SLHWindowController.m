@@ -1142,14 +1142,14 @@ static char SLHScreenshotPathKVO;
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition ofSubviewAt:(NSInteger)dividerIndex {
     if (splitView == _inspectorSplitView) {
-        return NSWidth(splitView.frame) - 200;
+        return NSWidth(splitView.frame) - 235;
     }
     return NSHeight(splitView.frame) - 100;
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
     if (splitView == _inspectorSplitView) {
-        return NSWidth(splitView.frame) - 260;
+        return NSWidth(splitView.frame) - 280;
     }
     return NSHeight(splitView.frame) - 220;
 }
