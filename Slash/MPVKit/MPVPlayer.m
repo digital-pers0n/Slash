@@ -456,6 +456,35 @@ exit:
 
 #pragma mark - Methods
 
+- (void)printOSDMessage:(NSString *)text {
+    [self printOSDMessage:text duration:3 level:0];
+}
+
+- (void)printOSDMessage:(NSString *)text duration:(double)seconds level:(int)osdLevel {
+    
+    mpv_node nodes[] = {
+        
+        { .u.string  = "show-text",                 .format = MPV_FORMAT_STRING },
+        { .u.string  = (char *)text.UTF8String,     .format = MPV_FORMAT_STRING },
+        { .u.int64   = seconds * NSEC_PER_USEC,     .format = MPV_FORMAT_INT64  },
+        { .u.int64   = osdLevel,                    .format = MPV_FORMAT_INT64  },
+        
+    };
+    
+    mpv_node_list array = {
+        .num    = sizeof(nodes) / sizeof(mpv_node),
+        .values = nodes,
+        .keys   = NULL
+    };
+    
+    mpv_node arg = {
+        .u.list = &array,
+        .format = MPV_FORMAT_NODE_ARRAY
+    };
+    
+    mpv_command_node(_mpv_handle, &arg, NULL);
+}
+
 - (void)openURL:(NSURL *)url {
     [self performCommand:MPVPlayerCommandLoadFile withArgument:url.absoluteString withArgument:nil];
     _url = url;

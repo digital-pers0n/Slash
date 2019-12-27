@@ -87,6 +87,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)performCommand:(NSString *)command withArgument:(nullable NSString *)arg1;
 - (void)performCommand:(NSString *)command;
 
+#pragma mark - OSD
+
+/** 
+ Print a message to the OSD.
+ */
+- (void)printOSDMessage:(NSString *)text duration:(double)seconds level:(int)osdLevel;
+
+/**
+ Same as @c printOSDMessage:duration:level with 3 seconds duration and osd level 0
+ */
+- (void)printOSDMessage:(NSString *)text;
+
 #pragma mark - Add/Remove Property Observers
 
 /**
