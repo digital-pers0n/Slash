@@ -462,8 +462,10 @@ static char SLHScreenshotPathKVO;
     NSInteger level = [_player integerForProperty:MPVPlayerPropertyOSDLevel];
     if (level == 3) {
         level = 0;
+         [_player printOSDMessage:@"OSD: off"];
     } else {
         level++;
+         [_player printOSDMessage:[NSString stringWithFormat:@"OSD: %li", level]];
     }
      [_player setInteger:level forProperty:MPVPlayerPropertyOSDLevel];
 }
@@ -476,6 +478,7 @@ static char SLHScreenshotPathKVO;
         speed += 0.1;
     }
     _player.speed = speed;
+    [_player printOSDMessage:[NSString stringWithFormat:@"Speed: x%.1f", speed]];
 }
 
 - (IBAction)decreasePlaybackSpeed:(id)sender {
@@ -485,13 +488,17 @@ static char SLHScreenshotPathKVO;
     } else {
         speed -= 0.1;
     }
-    if (speed >= 0.1) {
-        _player.speed = speed;
+    
+    if (speed < 0.1) {
+        speed = 0.1;
     }
+     _player.speed = speed;
+    [_player printOSDMessage:[NSString stringWithFormat:@"Speed: x%.1f", speed]];
 }
 
 - (IBAction)resetPlaybackSpeed:(id)sender {
     _player.speed = 1.0;
+    [_player printOSDMessage:@"Speed: x1.0"];
 }
 
 - (IBAction)matchToSelectedRange:(id)sender {
