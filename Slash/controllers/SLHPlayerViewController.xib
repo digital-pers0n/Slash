@@ -289,8 +289,7 @@ IA
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameScreenshotTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Thd-TA-qsS">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
-                                <string key="keyEquivalent">S</string>
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                <string key="keyEquivalent">s</string>
                             </buttonCell>
                             <connections>
                                 <action selector="takeScreenShot:" target="-2" id="Eqj-73-AAs"/>
