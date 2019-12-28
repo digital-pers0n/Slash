@@ -1153,14 +1153,14 @@ static char SLHScreenshotPathKVO;
     if (splitView == _inspectorSplitView) {
         return NSWidth(splitView.frame) - 235;
     }
-    return NSHeight(splitView.frame) - 100;
+    return NSHeight(splitView.frame) - 100; // minimum bottomBar height
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
     if (splitView == _inspectorSplitView) {
         return NSWidth(splitView.frame) - 280;
     }
-    return NSHeight(splitView.frame) - 220;
+    return 280; // minimum videoView height
 }
 
 - (void)splitView:(NSSplitView*)splitView resizeSubviewsWithOldSize:(NSSize)oldSize {
