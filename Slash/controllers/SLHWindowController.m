@@ -1116,6 +1116,8 @@ static char SLHScreenshotPathKVO;
         [_presetManager savePresets];
     }
     [self unobservePreferences:SLHPreferences.preferences];
+    [_player shutdown];
+    _player = nil;
 }
 
 - (void)windowWillStartLiveResize:(NSNotification *)notification {
