@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHSliderCell : NSSliderCell
 
-@property (nullable, weak) id <SLHSliderCellMouseTrackingDelegate> delegate;
+@property (nullable, weak) IBOutlet id <SLHSliderCellMouseTrackingDelegate> delegate;
 
 @property (nonatomic, nonnull) NSColor *markColor;
 @property (nonatomic, nonnull) NSColor *selectionColor;
