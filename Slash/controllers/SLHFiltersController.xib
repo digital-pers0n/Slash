@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="5100" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHFiltersController">
@@ -50,15 +50,15 @@
                                         <action selector="managePresets:" target="-2" id="leR-XD-GHV"/>
                                     </connections>
                                 </button>
-                                <popUpButton id="mHH-s0-NLl">
-                                    <rect key="frame" x="2" y="5" width="92" height="18"/>
+                                <popUpButton misplaced="YES" id="mHH-s0-NLl">
+                                    <rect key="frame" x="2" y="5" width="39" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="roundTextured" title="Load Preset" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="TLJ-Q8-C5O" id="u1v-jl-v2Y">
+                                    <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="TLJ-Q8-C5O" id="u1v-jl-v2Y">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                         <menu key="menu" id="SMk-zs-BDM">
                                             <items>
-                                                <menuItem title="Load Preset" state="on" hidden="YES" id="TLJ-Q8-C5O"/>
+                                                <menuItem state="on" image="SLHImageNameFiltersPresetsTemplate" hidden="YES" id="TLJ-Q8-C5O"/>
                                             </items>
                                             <connections>
                                                 <outlet property="delegate" destination="-2" id="yd7-IM-b7y"/>
@@ -127,6 +127,14 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="cropEditorButtonAction:" target="-2" id="f84-Ud-A6C"/>
+                                        <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="xb3-1E-9vT" id="zAK-lk-ooN">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="xb3-1E-9vT"/>
                                     </connections>
                                 </button>
@@ -139,6 +147,14 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="previewCropArea:" target="-2" id="c72-tr-4DU"/>
+                                        <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="XhG-es-Msf" id="3vJ-Ja-hNK">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="XhG-es-Msf"/>
                                     </connections>
                                 </button>
@@ -282,6 +298,14 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="detectCropArea:" target="-2" id="UA0-5V-Bgj"/>
+                                        <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="C8m-YK-nwG" id="a8e-Be-7Wu">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="C8m-YK-nwG"/>
                                     </connections>
                                 </button>
@@ -410,19 +434,13 @@
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="QDU-8T-BEn"/>
                                     </connections>
                                 </textField>
-                                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="bB5-cQ-oBm">
+                                <box verticalHuggingPriority="750" boxType="separator" id="bB5-cQ-oBm">
                                     <rect key="frame" x="8" y="146" width="255" height="5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <font key="titleFont" metaFont="system"/>
                                 </box>
-                                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="Shv-ye-fUT">
+                                <box verticalHuggingPriority="750" boxType="separator" id="Shv-ye-fUT">
                                     <rect key="frame" x="8" y="58" width="255" height="5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <font key="titleFont" metaFont="system"/>
                                 </box>
                                 <textField verticalHuggingPriority="750" id="EuF-mH-Xne">
                                     <rect key="frame" x="94" y="178" width="157" height="19"/>
@@ -701,6 +719,7 @@
         <image name="SLHImageNameCancelTemplate" width="15" height="15"/>
         <image name="SLHImageNameCropDetectTemplate" width="15" height="15"/>
         <image name="SLHImageNameEditTemplate" width="15" height="15"/>
+        <image name="SLHImageNameFiltersPresetsTemplate" width="15" height="15"/>
         <image name="SLHImageNameFolderTemplate" width="15" height="15"/>
         <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
     </resources>

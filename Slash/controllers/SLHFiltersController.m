@@ -265,7 +265,7 @@ static inline NSString *_preampString(NSInteger val) {
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
     _encoderItem = encoderItem;
-    if (_cropEditor.hasWindow && _encoderItem) {
+    if (_cropEditor.hasWindow && _encoderItem && _encoderItem.playerItem.hasVideoStreams) {
         _cropEditor.encoderItem = encoderItem;
     }
     
