@@ -456,6 +456,75 @@ exit:
 
 #pragma mark - Methods
 
+- (BOOL)takeScreenshotTo:(NSURL *)url includeSubtitles:(BOOL)flag error:(NSError *__autoreleasing  _Nullable *)error {
+    
+    mpv_node nodes[] = {
+      
+        { .u.string = "screenshot-to-file",                    .format = MPV_FORMAT_STRING },
+        { .u.string = (char *)url.fileSystemRepresentation,    .format = MPV_FORMAT_STRING },
+        { .u.string = (flag) ? "subtitles" : "video",          .format = MPV_FORMAT_STRING }
+    };
+    
+    mpv_node_list array = {
+        .num    = sizeof(nodes) / sizeof(mpv_node),
+        .values = nodes,
+        .keys   = NULL
+    };
+    
+    mpv_node arg = {
+        .u.list = &array,
+        .format = MPV_FORMAT_NODE_ARRAY
+    };
+    
+    int ret = mpv_command_node(_mpv_handle, &arg, NULL);
+    
+    if (ret != MPV_ERROR_SUCCESS) {
+        if (error) {
+            *error = [[NSError alloc]
+                      initWithDomain:MPVPlayerErrorDomain
+                      code:ret
+                      userInfo:@{ NSLocalizedDescriptionKey : @( mpv_error_string(ret) ) }];
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)takeScreenshotError:(NSError *__autoreleasing  _Nullable *)error {
+    
+    mpv_node nodes[] = {
+        
+        { .u.string = "screenshot",     .format = MPV_FORMAT_STRING },
+        { .u.string = "video",          .format = MPV_FORMAT_STRING }
+    };
+    
+    mpv_node_list array = {
+        .num    = sizeof(nodes) / sizeof(mpv_node),
+        .values = nodes,
+        .keys   = NULL
+    };
+    
+    mpv_node arg = {
+        .u.list = &array,
+        .format = MPV_FORMAT_NODE_ARRAY
+    };
+    
+    int ret = mpv_command_node(_mpv_handle, &arg, NULL);
+    
+    if (ret != MPV_ERROR_SUCCESS) {
+        if (error) {
+            *error = [[NSError alloc]
+                      initWithDomain:MPVPlayerErrorDomain
+                      code:ret
+                      userInfo:@{ NSLocalizedDescriptionKey : @( mpv_error_string(ret) ) }];
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (void)printOSDMessage:(NSString *)text {
     [self printOSDMessage:text duration:3 level:0];
 }

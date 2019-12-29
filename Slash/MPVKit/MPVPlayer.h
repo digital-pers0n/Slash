@@ -99,6 +99,26 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)printOSDMessage:(NSString *)text;
 
+#pragma mark - Screenshot
+
+/** 
+ Take a screenshot.
+ @param screenshotURL A full path where to write the screenshot. The screenshot format is guessed from the file extenstion.
+ @param error A pointer to an NSError object. On return, identifies errors and other problems.
+ @param includeSubs @c YES to take the screenshot with subtitles, @c NO to ignore them.
+ @return YES if the screenshot is saved successfully, or NO if an error occurs.
+ */
+- (BOOL)takeScreenshotTo:(NSURL *)screenshotURL includeSubtitles:(BOOL)includeSubs error:(NSError * _Nullable *)error;
+
+/**
+ Take a screenshot. 
+ An output filename is constructed using values of the @c --screenshot-format
+ @c --screenshot-template and @c --screenshot-directory options.
+ @param error A pointer to an NSError object. On return, identifies errors and other problems.
+ @return YES if the screenshot is saved successfully, or NO if an error occurs.
+ */
+- (BOOL)takeScreenshotError:(NSError * _Nullable *)error;
+
 #pragma mark - Add/Remove Property Observers
 
 /**
