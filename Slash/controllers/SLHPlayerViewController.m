@@ -326,15 +326,38 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 }
 
 - (IBAction)takeScreenShot:(id)sender {
+    
+    NSError *error = nil;
+    
     if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
         NSSavePanel *panel = [NSSavePanel savePanel];
         panel.nameFieldStringValue = [_player.currentItem.url.lastPathComponent.stringByDeletingPathExtension stringByAppendingPathExtension:SLHPreferences.preferences.screenshotFormat];
         if ([panel runModal] == NSModalResponseOK) {
             NSURL *url = panel.URL;
-            [_player performCommand:MPVPlayerCommandScreenshotToFile withArgument:url.path];
+  
+            if (![_player takeScreenshotTo:url includeSubtitles:NO error:&error]) {
+                
+                NSAlert *alert = [NSAlert new];
+                alert.informativeText = error.localizedDescription;
+                alert.messageText = [NSString stringWithFormat:@"Failed to write %@", url.path];
+                [alert runModal];
+                
+            } else {
+                [_player printOSDMessage:[NSString stringWithFormat:@"Saved to %@", url]];
+            }
+        
         }
     } else {
-        [_player performCommand:MPVPlayerCommandScreenshot];
+        if (![_player takeScreenshotError:&error]) {
+            
+            NSAlert *alert = [NSAlert new];
+            alert.informativeText = error.localizedDescription;
+            alert.messageText = @"Failed to save screenshot.";
+            [alert runModal];
+            
+        } else {
+            [_player printOSDMessage:@"Screenshot Saved"];
+        }
     }
 }
 
