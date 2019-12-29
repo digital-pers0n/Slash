@@ -903,8 +903,10 @@ static char SLHScreenshotPathKVO;
 #pragma mark - MPVPlayer Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {
+    
     [_player seekExactTo:_currentEncoderItem.interval.start];
-   [self matchVideoStreamsToEncoderItem:_currentEncoderItem];
+    [self matchVideoStreamsToEncoderItem:_currentEncoderItem];
+    [_player pause];
 }
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
