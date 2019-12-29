@@ -167,24 +167,28 @@
                         </connections>
                     </stepper>
                     <textField toolTip="Start time" verticalHuggingPriority="750" misplaced="YES" id="r7b-8A-uiJ">
-                        <rect key="frame" x="515" y="364" width="70" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="wL0-1A-0gf">
-                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="halfDown" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Ash-2D-aLH"/>
-                            <font key="font" metaFont="smallSystem"/>
+                        <rect key="frame" x="520" y="10" width="98" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="00:00:00.000" drawsBackground="YES" id="wL0-1A-0gf">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" roundingMode="halfDown" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Ash-2D-aLH" customClass="SLHTimeFormatter"/>
+                            <font key="font" size="10" name="Monaco"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="self.startTime" id="C7w-kH-Gof"/>
+                            <action selector="reloadFrame:" target="-2" id="qx0-dd-nIO"/>
+                            <binding destination="-2" name="maxValue" keyPath="self.encoderItem.playerItem.duration" id="MP4-Yb-qCi"/>
+                            <binding destination="-2" name="value" keyPath="self.startTime" previousBinding="MP4-Yb-qCi" id="g43-DG-Ry0"/>
                         </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="cB2-SN-gNL">
-                        <rect key="frame" x="584" y="362" width="15" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="1000000" id="Smg-hn-tlF"/>
+                        <rect key="frame" x="617" y="8" width="15" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <stepperCell key="cell" controlSize="small" alignment="left" increment="0.10000000000000001" maxValue="1000000" valueWraps="YES" id="Smg-hn-tlF"/>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="self.startTime" id="GLf-b9-nLV"/>
+                            <action selector="reloadFrame:" target="-2" id="nwP-c1-Kta"/>
+                            <binding destination="-2" name="maxValue" keyPath="self.encoderItem.playerItem.duration" id="p2C-hN-MKV"/>
+                            <binding destination="-2" name="value" keyPath="self.startTime" previousBinding="p2C-hN-MKV" id="FbV-vM-8Ed"/>
                         </connections>
                     </stepper>
                     <button toolTip="Reload frame" verticalHuggingPriority="750" misplaced="YES" id="rMt-u1-eMI">
@@ -210,14 +214,14 @@
                         </connections>
                     </button>
                     <scrollView misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="0jg-eb-dah">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="358"/>
+                        <rect key="frame" x="0.0" y="37" width="640" height="321"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" copiesOnScroll="NO" id="Onb-pA-Z7v">
-                            <rect key="frame" x="1" y="1" width="638" height="356"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Onb-pA-Z7v">
+                            <rect key="frame" x="1" y="1" width="638" height="319"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <ikImageView wantsLayer="YES" zoomFactor="0.0" doubleClickOpensImageEditPanel="NO" id="xsi-Lz-siz" customClass="SLHImageView">
-                                    <rect key="frame" x="0.0" y="0.0" width="638" height="356"/>
+                                <ikImageView wantsLayer="YES" zoomFactor="0.0" editable="YES" doubleClickOpensImageEditPanel="NO" id="xsi-Lz-siz" customClass="SLHImageView">
+                                    <rect key="frame" x="0.0" y="0.0" width="638" height="319"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" red="0.92500000000000004" green="0.92500000000000004" blue="0.92500000000000004" alpha="1" colorSpace="deviceRGB"/>
                                     <connections>
@@ -225,14 +229,13 @@
                                     </connections>
                                 </ikImageView>
                             </subviews>
-                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="GTn-TS-Rm6">
-                            <rect key="frame" x="1" y="341" width="638" height="16"/>
+                            <rect key="frame" x="1" y="304" width="638" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zKp-Sj-7Ka">
-                            <rect key="frame" x="623" y="1" width="16" height="356"/>
+                            <rect key="frame" x="624" y="1" width="15" height="319"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -245,6 +248,19 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <slider verticalHuggingPriority="750" misplaced="YES" id="ogQ-Yj-i7l">
+                        <rect key="frame" x="10" y="11" width="500" height="17"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ynz-Fz-Pcx" customClass="SLHSliderCell">
+                            <connections>
+                                <outlet property="delegate" destination="-2" id="eMV-BH-hEI"/>
+                            </connections>
+                        </sliderCell>
+                        <connections>
+                            <binding destination="-2" name="maxValue" keyPath="self.encoderItem.playerItem.duration" id="DRe-xV-BO1"/>
+                            <binding destination="-2" name="value" keyPath="self.startTime" previousBinding="DRe-xV-BO1" id="WcC-Vd-rmJ"/>
+                        </connections>
+                    </slider>
                 </subviews>
             </view>
             <connections>

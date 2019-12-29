@@ -13,11 +13,12 @@
 #import "SLHMediaItemTrack.h"
 #import "SLHFilterOptions.h"
 #import "SLHPreferences.h"
+#import "SLHSliderCell.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 
-@interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate> {
+@interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate, SLHSliderCellMouseTrackingDelegate> {
     
     IBOutlet SLHImageView *_imageView;
     SLHEncoderItem *_encoderItem;
@@ -91,6 +92,17 @@
     _main_queue = dispatch_get_main_queue();
     _imageView.currentToolMode = IKToolModeSelect;
 }
+
+#pragma mark - SLHSliderCellMouseTrackingDelegate 
+
+- (void)sliderCellMouseUp:(SLHSliderCell *)cell {
+
+    [self reloadFrame:nil];
+}
+
+- (void)sliderCellMouseDown:(SLHSliderCell *)cell { }
+
+- (void)sliderCellMouseDragged:(SLHSliderCell *)cell { }
 
 #pragma mark - IBActions
 
