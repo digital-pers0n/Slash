@@ -157,7 +157,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 
 - (void)startEventListener {
     _eventThread = [[NSThread alloc] initWithTarget:self selector:@selector(readEvents) object:nil];
-    _eventThread.qualityOfService = QOS_CLASS_UTILITY;
+    _eventThread.qualityOfService = NSQualityOfServiceUserInteractive;
     _eventThread.name = @"com.home.mpvPlayer.EventThread";
     [_eventThread start];
 }
