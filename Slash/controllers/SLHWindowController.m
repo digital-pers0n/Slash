@@ -23,6 +23,7 @@
 #import "SLHEncoderQueue.h"
 #import "SLHExternalPlayer.h"
 #import "SLHPlayerViewController.h"
+#import "SLHMethodAddress.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -59,6 +60,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     SLHEncoder *_encoder;
     SLHTextEditor *_textEditor;
     NSPopover *_popover;
+    NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
@@ -308,65 +310,63 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 #pragma mark - KVO
 
-static char SLHScreenshotTemplateKVO;
-static char SLHScreenshotFormatKVO;
-static char SLHScreenshotPathKVO;
+static char SLHPreferencesKVOContext;
+
+- (void)screenshotFormatDidChange:(NSString *)newValue {
+    [_player setString:newValue
+           forProperty:MPVPlayerPropertyScreenshotFormat];
+}
+
+- (void)screenshotTemplateDidChange:(NSString *)newValue {
+    [_player setString:newValue
+           forProperty:MPVPlayerPropertyScreenshotTemplate];
+}
+
+- (void)screenshotPathDidChange:(NSString *)newValue {
+    [_player setString:newValue
+           forProperty:MPVPlayerPropertyScreenshotDirectory];
+}
+
+static inline SLHMethodAddress *addressOf(id target, SEL action) {
+    return [SLHMethodAddress methodAddressWithTarget:target selector:action];
+}
 
 - (void)observePreferences:(SLHPreferences *)appPrefs {
-    [appPrefs addObserver:self
-               forKeyPath:SLHPreferencesScreenshotFormatKey
-                  options:NSKeyValueObservingOptionNew
-                  context:&SLHScreenshotFormatKVO];
+    _observedPrefs = @{
+                       SLHPreferencesScreenshotPathKey     : addressOf(self, @selector(screenshotPathDidChange:)),
+                       SLHPreferencesScreenshotFormatKey   : addressOf(self, @selector(screenshotFormatDidChange:)),
+                       SLHPreferencesScreenshotTemplateKey : addressOf(self, @selector(screenshotTemplateDidChange:))
+                       };
     
-    [appPrefs addObserver:self
-               forKeyPath:SLHPreferencesScreenshotPathKey
-                  options:NSKeyValueObservingOptionNew
-                  context:&SLHScreenshotPathKVO];
-    
-    [appPrefs addObserver:self
-               forKeyPath:SLHPreferencesScreenshotTemplateKey
-                  options:NSKeyValueObservingOptionNew
-                  context:&SLHScreenshotTemplateKVO];
+    for (NSString *key in _observedPrefs) {
+        [appPrefs addObserver:self
+                   forKeyPath:key
+                      options:NSKeyValueObservingOptionNew
+                      context:&SLHPreferencesKVOContext];
+    }
 }
 
 - (void)unobservePreferences:(SLHPreferences *)appPrefs {
-    [appPrefs removeObserver:self
-               forKeyPath:SLHPreferencesScreenshotFormatKey
-                  context:&SLHScreenshotFormatKVO];
-    
-    [appPrefs removeObserver:self
-               forKeyPath:SLHPreferencesScreenshotPathKey
-                  context:&SLHScreenshotPathKVO];
-    
-    [appPrefs removeObserver:self
-               forKeyPath:SLHPreferencesScreenshotTemplateKey
-                  context:&SLHScreenshotTemplateKVO];
+    for (NSString *key in _observedPrefs) {
+        [appPrefs removeObserver:self
+                      forKeyPath:key
+                         context:&SLHPreferencesKVOContext];
+    }
 }
+
+typedef void (*basic_imp)(id, SEL, id);
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context {
-    id value = change[NSKeyValueChangeNewKey];
-    if (value) {
-        if (context == &SLHScreenshotTemplateKVO) {
-            
-            [_player setString:value
-                   forProperty:MPVPlayerPropertyScreenshotTemplate];
-            
-        } else if (context == &SLHScreenshotPathKVO) {
-            
-            [_player setString:value
-                   forProperty:MPVPlayerPropertyScreenshotDirectory];
-            
-        } else if (context == &SLHScreenshotFormatKVO) {
-            
-            [_player setString:value
-                   forProperty:MPVPlayerPropertyScreenshotFormat];
-            
-        } else {
-            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    if (context == &SLHPreferencesKVOContext) {
+        SLHMethodAddress *method = _observedPrefs[keyPath];
+        if (method) {
+            ((basic_imp)method->_impl)(self, method->_selector, change[NSKeyValueChangeNewKey]);
         }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
