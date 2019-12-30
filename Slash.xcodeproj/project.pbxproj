@@ -108,6 +108,7 @@
 		CEDD22EC23887EB50049E4C4 /* SLHCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDD22EB23887EB50049E4C4 /* SLHCropView.m */; };
 		CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */; };
 		CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */; };
+		CEE0D24123B8FCF70017418E /* SLHMethodAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */; };
 		CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */; };
 /* End PBXBuildFile section */
 
@@ -288,6 +289,8 @@
 		CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SLHFiltersController.m; path = controllers/SLHFiltersController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHFiltersController.xib; path = controllers/SLHFiltersController.xib; sourceTree = "<group>"; };
 		CEE0D23E23B3B9510017418E /* SLHPreferencesKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHPreferencesKeys.h; sourceTree = "<group>"; };
+		CEE0D23F23B8FCF70017418E /* SLHMethodAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMethodAddress.h; path = utils/SLHMethodAddress.h; sourceTree = "<group>"; };
+		CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMethodAddress.m; path = utils/SLHMethodAddress.m; sourceTree = "<group>"; };
 		CEEE0A01219F34B200B9BB11 /* SLHEncoderBaseFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderBaseFormat.h; path = controllers/SLHEncoderBaseFormat.h; sourceTree = "<group>"; };
 		CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderBaseFormat.m; path = controllers/SLHEncoderBaseFormat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -570,6 +573,8 @@
 				CE88B9B3238C5ED500227111 /* SLHBitrateFormatter.m */,
 				CE9E3344238ABFDC00356342 /* SLHTimeFormatter.h */,
 				CE9E3345238ABFDC00356342 /* SLHTimeFormatter.m */,
+				CEE0D23F23B8FCF70017418E /* SLHMethodAddress.h */,
+				CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -710,6 +715,7 @@
 				CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */,
 				CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */,
 				CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */,
+				CEE0D24123B8FCF70017418E /* SLHMethodAddress.m in Sources */,
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
 				CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */,
