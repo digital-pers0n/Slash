@@ -938,12 +938,9 @@ typedef void (*basic_imp)(id, SEL, id);
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard;
-    NSDragOperation sourceDragMask;
-    
-    sourceDragMask = [sender draggingSourceOperationMask];
     pboard = [sender draggingPasteboard];
     
-    if ([pboard.types containsObject:NSFilenamesPboardType] && sourceDragMask & NSDragOperationGeneric) {
+    if ([pboard.types containsObject:NSFilenamesPboardType]) {
         return NSDragOperationGeneric;
     }
     return NSDragOperationNone;
@@ -951,13 +948,10 @@ typedef void (*basic_imp)(id, SEL, id);
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard;
-    NSDragOperation sourceDragMask;
     BOOL result = NO;
-    
-    sourceDragMask = [sender draggingSourceOperationMask];
     pboard = [sender draggingPasteboard];
-    
-    if ([pboard.types containsObject:NSFilenamesPboardType] && sourceDragMask & NSDragOperationGeneric) {
+
+    if ([pboard.types containsObject:NSFilenamesPboardType]) {
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSString * path = files.firstObject;
         MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithPath:path];
