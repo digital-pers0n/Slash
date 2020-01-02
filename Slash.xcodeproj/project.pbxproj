@@ -28,7 +28,6 @@
 		CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */; };
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
 		CE1414C7210D32CC00C02B2D /* script.lua in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C3210D31D900C02B2D /* script.lua */; };
-		CE166C5C2351F9FD001AF0CB /* libmpv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE166C5B2351F9FD001AF0CB /* libmpv.dylib */; };
 		CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE166C602351FDD9001AF0CB /* MPVPlayer.m */; };
 		CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */; };
 		CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1DC4162285B09F0086A895 /* SLHLogController.m */; };
@@ -43,6 +42,10 @@
 		CE239376219CA86F00C21AA7 /* SLHMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */; };
 		CE256B99222D8AC8007B520E /* SLHMetadataEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */; };
 		CE256B9A222D8AC8007B520E /* SLHMetadataEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */; };
+		CE299C5C23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */; };
+		CE299C5E23BE0DC200F1C9BF /* libavformat.58.35.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5D23BE0DC200F1C9BF /* libavformat.58.35.101.dylib */; };
+		CE299C6023BE0DD100F1C9BF /* libavcodec.58.65.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5F23BE0DD100F1C9BF /* libavcodec.58.65.100.dylib */; };
+		CE299C6223BE0DEB00F1C9BF /* libavutil.56.38.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C6123BE0DEB00F1C9BF /* libavutil.56.38.100.dylib */; };
 		CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2CC11F21235334008C8345 /* SLHPlayer.m */; };
 		CE2CC12321235447008C8345 /* SLHMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2CC12221235447008C8345 /* SLHMediaItem.m */; };
 		CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */; };
@@ -64,9 +67,6 @@
 		CE58008F231C13DD000F5384 /* SLHWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE58008D231C13DD000F5384 /* SLHWindowController.xib */; };
 		CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */; };
 		CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */; };
-		CE60C53F235E0B7A003DB25F /* libavcodec.58.59.102.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C53E235E0B7A003DB25F /* libavcodec.58.59.102.dylib */; };
-		CE60C541235E0BFA003DB25F /* libavformat.58.33.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C540235E0BFA003DB25F /* libavformat.58.33.100.dylib */; };
-		CE60C543235E0C10003DB25F /* libavutil.56.35.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60C542235E0C10003DB25F /* libavutil.56.35.101.dylib */; };
 		CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C545235E0C47003DB25F /* MPVPlayerItem.m */; };
 		CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */; };
 		CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */; };
@@ -172,6 +172,10 @@
 		CE256B96222D8AC8007B520E /* SLHMetadataEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMetadataEditor.h; path = controllers/SLHMetadataEditor.h; sourceTree = "<group>"; };
 		CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMetadataEditor.m; path = controllers/SLHMetadataEditor.m; sourceTree = "<group>"; };
 		CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHMetadataEditor.xib; path = controllers/SLHMetadataEditor.xib; sourceTree = "<group>"; };
+		CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpv.1.107.0.dylib; path = ../../../../../../Developer/opt/lib/libmpv.1.107.0.dylib; sourceTree = "<group>"; };
+		CE299C5D23BE0DC200F1C9BF /* libavformat.58.35.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.35.101.dylib; path = ../../../../../../Developer/opt/lib/libavformat.58.35.101.dylib; sourceTree = "<group>"; };
+		CE299C5F23BE0DD100F1C9BF /* libavcodec.58.65.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.65.100.dylib; path = ../../../../../../Developer/opt/lib/libavcodec.58.65.100.dylib; sourceTree = "<group>"; };
+		CE299C6123BE0DEB00F1C9BF /* libavutil.56.38.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.38.100.dylib; path = ../../../../../../Developer/opt/lib/libavutil.56.38.100.dylib; sourceTree = "<group>"; };
 		CE2CC11E21235334008C8345 /* SLHPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHPlayer.h; sourceTree = "<group>"; };
 		CE2CC11F21235334008C8345 /* SLHPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHPlayer.m; sourceTree = "<group>"; };
 		CE2CC12121235447008C8345 /* SLHMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItem.h; sourceTree = "<group>"; };
@@ -300,10 +304,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE60C543235E0C10003DB25F /* libavutil.56.35.101.dylib in Frameworks */,
-				CE60C541235E0BFA003DB25F /* libavformat.58.33.100.dylib in Frameworks */,
-				CE60C53F235E0B7A003DB25F /* libavcodec.58.59.102.dylib in Frameworks */,
-				CE166C5C2351F9FD001AF0CB /* libmpv.dylib in Frameworks */,
+				CE299C6223BE0DEB00F1C9BF /* libavutil.56.38.100.dylib in Frameworks */,
+				CE299C6023BE0DD100F1C9BF /* libavcodec.58.65.100.dylib in Frameworks */,
+				CE299C5E23BE0DC200F1C9BF /* libavformat.58.35.101.dylib in Frameworks */,
+				CE299C5C23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib in Frameworks */,
 				CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,10 +328,10 @@
 		CE0B4E1C224A5BE400D61D72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE60C542235E0C10003DB25F /* libavutil.56.35.101.dylib */,
-				CE60C540235E0BFA003DB25F /* libavformat.58.33.100.dylib */,
-				CE60C53E235E0B7A003DB25F /* libavcodec.58.59.102.dylib */,
-				CE166C5B2351F9FD001AF0CB /* libmpv.dylib */,
+				CE299C6123BE0DEB00F1C9BF /* libavutil.56.38.100.dylib */,
+				CE299C5F23BE0DD100F1C9BF /* libavcodec.58.65.100.dylib */,
+				CE299C5D23BE0DC200F1C9BF /* libavformat.58.35.101.dylib */,
+				CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */,
 				CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */,
 			);
 			name = Frameworks;
@@ -830,8 +834,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/include;
-				LIBRARY_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/lib;
+				HEADER_SEARCH_PATHS = /Developer/opt/include;
+				LIBRARY_SEARCH_PATHS = /Developer/opt/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -870,8 +874,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/include;
-				LIBRARY_SEARCH_PATHS = /Volumes/MacHD/Developer/opt/lib;
+				HEADER_SEARCH_PATHS = /Developer/opt/include;
+				LIBRARY_SEARCH_PATHS = /Developer/opt/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
