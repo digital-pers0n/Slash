@@ -145,7 +145,6 @@
 		CE1414C2210D31D900C02B2D /* mpv.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mpv.conf; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		CE1414C3210D31D900C02B2D /* script.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		CE14612F21654E27006FB241 /* SLHMetadataIdentifiers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHMetadataIdentifiers.h; sourceTree = "<group>"; };
-		CE166C5B2351F9FD001AF0CB /* libmpv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpv.dylib; path = ../../../opt/lib/libmpv.dylib; sourceTree = "<group>"; };
 		CE166C5D2351FCC3001AF0CB /* MPVBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVBase.h; path = MPVKit/MPVBase.h; sourceTree = "<group>"; };
 		CE166C5F2351FDD9001AF0CB /* MPVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayer.h; path = MPVKit/MPVPlayer.h; sourceTree = "<group>"; };
 		CE166C602351FDD9001AF0CB /* MPVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayer.m; path = MPVKit/MPVPlayer.m; sourceTree = "<group>"; };
@@ -215,9 +214,6 @@
 		CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItem.m; path = model/SLHEncoderItem.m; sourceTree = "<group>"; };
 		CE5EBC3422905511009BBAF7 /* SLHEncoderQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderQueueItem.h; path = model/SLHEncoderQueueItem.h; sourceTree = "<group>"; };
 		CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderQueueItem.m; path = model/SLHEncoderQueueItem.m; sourceTree = "<group>"; };
-		CE60C53E235E0B7A003DB25F /* libavcodec.58.59.102.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.59.102.dylib; path = ../../../opt/lib/libavcodec.58.59.102.dylib; sourceTree = "<group>"; };
-		CE60C540235E0BFA003DB25F /* libavformat.58.33.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.33.100.dylib; path = ../../../opt/lib/libavformat.58.33.100.dylib; sourceTree = "<group>"; };
-		CE60C542235E0C10003DB25F /* libavutil.56.35.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.35.101.dylib; path = ../../../opt/lib/libavutil.56.35.101.dylib; sourceTree = "<group>"; };
 		CE60C544235E0C47003DB25F /* MPVPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItem.h; path = MPVKit/MPVPlayerItem.h; sourceTree = "<group>"; };
 		CE60C545235E0C47003DB25F /* MPVPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayerItem.m; path = MPVKit/MPVPlayerItem.m; sourceTree = "<group>"; };
 		CE60C547235E4E2D003DB25F /* MPVPlayerItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItemTrack.h; path = MPVKit/MPVPlayerItemTrack.h; sourceTree = "<group>"; };
@@ -352,18 +348,12 @@
 				CE12EF12219B3BAC00F97637 /* SLHEncoderSettings.h */,
 				CE12EF13219B3BAC00F97637 /* SLHEncoderSettings.m */,
 				CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */,
-				CE239372219CA86F00C21AA7 /* SLHMainWindowController.h */,
-				CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */,
-				CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */,
 				CEDDDB8421A7363B006EDDD9 /* SLHFiltersController.h */,
 				CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */,
 				CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */,
 				CE0B4E15224A563E00D61D72 /* SLHCropEditor.h */,
 				CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */,
 				CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */,
-				CE256B96222D8AC8007B520E /* SLHMetadataEditor.h */,
-				CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */,
-				CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */,
 				CE23655C2254C80A00B324E4 /* SLHEncoderQueue.h */,
 				CE23655D2254C80A00B324E4 /* SLHEncoderQueue.m */,
 				CE23655E2254C80A00B324E4 /* SLHEncoderQueue.xib */,
@@ -423,6 +413,27 @@
 			name = MPVKit;
 			sourceTree = "<group>";
 		};
+		CE299C6323BE435A00F1C9BF /* legacy */ = {
+			isa = PBXGroup;
+			children = (
+				CE239372219CA86F00C21AA7 /* SLHMainWindowController.h */,
+				CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */,
+				CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */,
+				CE256B96222D8AC8007B520E /* SLHMetadataEditor.h */,
+				CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */,
+				CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */,
+				CE2CC11E21235334008C8345 /* SLHPlayer.h */,
+				CE2CC11F21235334008C8345 /* SLHPlayer.m */,
+				CE81461021287D9B00DFFDA6 /* SLHMetadataItem.h */,
+				CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */,
+				CE2CC12121235447008C8345 /* SLHMediaItem.h */,
+				CE2CC12221235447008C8345 /* SLHMediaItem.m */,
+				CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */,
+				CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */,
+			);
+			name = legacy;
+			sourceTree = "<group>";
+		};
 		CE4D40EB20FE8B9E0066ACE2 = {
 			isa = PBXGroup;
 			children = (
@@ -449,17 +460,10 @@
 				CE9C0D1A2193583D0089C084 /* views */,
 				CE9E3347238AC8C600356342 /* utils */,
 				CE65BB0F21066B1100D2CBAA /* system */,
+				CE299C6323BE435A00F1C9BF /* legacy */,
 				CE4D40F720FE8B9E0066ACE2 /* AppDelegate.h */,
 				CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */,
-				CE2CC11E21235334008C8345 /* SLHPlayer.h */,
-				CE2CC11F21235334008C8345 /* SLHPlayer.m */,
 				CE14612F21654E27006FB241 /* SLHMetadataIdentifiers.h */,
-				CE81461021287D9B00DFFDA6 /* SLHMetadataItem.h */,
-				CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */,
-				CE2CC12121235447008C8345 /* SLHMediaItem.h */,
-				CE2CC12221235447008C8345 /* SLHMediaItem.m */,
-				CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */,
-				CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */,
 				CE566A79215EB849004E974F /* SLHPreferences.h */,
 				CE566A7A215EB849004E974F /* SLHPreferences.m */,
 				CEE0D23E23B3B9510017418E /* SLHPreferencesKeys.h */,
