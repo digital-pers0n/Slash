@@ -235,6 +235,13 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [self updateWindowTitle:playerItem.url];
     encoderItem.tag =  _formatsPopUp.indexOfSelectedItem;
     
+    if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
+        NSArray *objects = _itemsArrayController.arrangedObjects;
+        if (objects.count) {
+            [_itemsArrayController removeObjects:objects];
+        }
+    }
+    
     [_itemsArrayController addObject:encoderItem];
 }
 
