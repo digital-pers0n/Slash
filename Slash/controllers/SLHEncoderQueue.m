@@ -9,14 +9,15 @@
 #import "SLHEncoderQueue.h"
 #import "SLHArgumentsViewController.h"
 #import "SLHEncoderItem.h"
-#import "SLHMediaItem.h"
-#import "SLHMediaItemTrack.h"
 #import "SLHEncoderQueueItem.h"
 #import "SLHPreferences.h"
-#import "SLHPlayer.h"
+#import "SLHExternalPlayer.h"
 #import "slh_encoder.h"
 #import "slh_util.h"
 #import "slh_list.h"
+
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
 
 @interface SLHEncoderQueue () <NSTableViewDelegate, NSSplitViewDelegate, NSWindowDelegate, NSMenuDelegate> {
     
@@ -28,7 +29,7 @@
     IBOutlet NSTextView *_logView;
     IBOutlet NSScrollView *_logViewContainer;
     
-    SLHPlayer *_player;
+    SLHExternalPlayer *_player;
     
     /* Encoder */
     Encoder *_encoder;
@@ -176,21 +177,16 @@
     if (idx > -1) {
         SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
         if (queueItem.encoded) {
-            SLHMediaItem *mediaItem = [SLHMediaItem mediaItemWithPath:queueItem.name];
-            if (mediaItem.error) {
-                NSLog(@"%s: %@", __PRETTY_FUNCTION__, mediaItem.error.localizedDescription);
-                return;
-            }
             if (!_player) {
-                _player = [SLHPlayer playerWithMediaItem:mediaItem];
-
-            } else {
-                [_player replaceCurrentItemWithMediaItem:mediaItem];
+                _player = [SLHExternalPlayer defaultPlayer];
+                if (_player.error) {
+                    NSLog(@"%s: Playback error: %@", __PRETTY_FUNCTION__, _player.error.localizedDescription);
+                    _player = nil;
+                    return;
+                }
             }
-            if (_player.error) {
-                NSLog(@"%s: Playback error: %@", __PRETTY_FUNCTION__, _player.error.localizedDescription);
-                return;
-            }
+            _player.url = [NSURL fileURLWithPath:queueItem.name isDirectory:NO];
+            
             [_player play];
         }
     }
