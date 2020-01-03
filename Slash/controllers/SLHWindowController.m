@@ -303,7 +303,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (BOOL)createExternalPlayerWithMedia:(NSURL *)url {
-    _externalPlayer = [SLHExternalPlayer playerWithMediaURL:url];
+    _externalPlayer = [SLHExternalPlayer defaultPlayer];
     if (_externalPlayer.error) {
         NSAlert *alert = [NSAlert new];
         alert.messageText = [NSString stringWithFormat:@"Cannot launch %@", SLHPreferences.preferences.mpvPath];
@@ -311,6 +311,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         _externalPlayer = nil;
         [alert runModal];
         return NO;
+    } else {
+        _externalPlayer.url = url;
     }
     return YES;
 }
