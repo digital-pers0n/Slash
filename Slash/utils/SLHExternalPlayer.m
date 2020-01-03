@@ -56,6 +56,15 @@ typedef Player * PlayerRef;
     defaultPlayerConfigURL = url;
 }
 
++ (instancetype)defaultPlayer {
+    static dispatch_once_t onceToken;
+    static SLHExternalPlayer *player;
+    dispatch_once(&onceToken, ^{
+        player = [[SLHExternalPlayer alloc] init];
+    });
+    return player;
+}
+
 + (instancetype)playerWithURL:(NSURL *)url configurationFile:(NSURL *)config mediaFileURL:(NSURL *)mediaURL {
     return [[SLHExternalPlayer alloc] initWithURL:url configurationFile:config mediaFileURL:mediaURL];
 }

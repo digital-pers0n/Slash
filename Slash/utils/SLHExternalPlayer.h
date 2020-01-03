@@ -22,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setDefaultPlayerConfigURL:(nullable NSURL *)url;
 
 /**
+ Shared player instance
+ */
++ (instancetype)defaultPlayer;
+
+/**
  Create an instance of SLHExternalPlayer.
  @param url A valid url to the mpv's binary. If nil, will try to load @c defaultPlayerURL
  @param config A valid url to a custom mpv.conf file or nil
