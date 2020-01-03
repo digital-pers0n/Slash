@@ -63,6 +63,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)pause;
 - (void)quit;
 
+/**
+ Send a remote command to the player.
+ @note Command and arguments must be inside double quotes
+ and separated by commas: @"\"command_name\", \"arg1\", \"arg2\", \"etc\""
+ @param commandString A string that contains a name of a command and optional arguments.
+*/
+- (void)performCommand:(NSString *)commandString;
+
 @end
 
 NS_ASSUME_NONNULL_END

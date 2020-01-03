@@ -240,6 +240,18 @@ typedef Player * PlayerRef;
     });
 }
 
+- (void)performCommand:(NSString *)args {
+    
+     __unsafe_unretained typeof(self) obj = self;
+    dispatch_async(_queue, ^{
+        char *cmd = nil;
+        size_t len = asprintf(&cmd, "{ \"command\": [%s] }\n", args.UTF8String);
+        plr_msg_send(obj->_playerRef, cmd, len);
+        free(cmd);
+    });
+    
+}
+
 #if ENABLE_SOCKET_MONITOR
 - (void)playerMonitor:(id)context {
     const size_t buffer_size = 256;
