@@ -143,7 +143,14 @@
 
 - (IBAction)startEncoding:(id)sender {
     [self prepareGlobalQueue];
+    
+    if (queue_size(_global_queue) == 0) {   // Check if the global queue is not empty
+        NSBeep();
+        return;
+    }
+    
     [self prepareEncoderQueue];
+    
     if ([self encode] == 0) {
         self.inProgress = YES;
         if (!_logViewContainer.superview) {
