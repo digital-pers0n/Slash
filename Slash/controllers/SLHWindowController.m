@@ -1029,7 +1029,9 @@ typedef void (*basic_imp)(id, SEL, id);
 #pragma mark - SLHTrimViewDelegate
 
 - (void)trimViewMouseDown:(SLHTrimView *)trimView {
-
+    [trimView unbind:@"startValue"];
+    [trimView unbind:@"endValue"];
+    
     NSTableCellView *tcv = (id)trimView.superview;
     SLHEncoderItem *encoderItem = tcv.objectValue;
     if (encoderItem != _currentEncoderItem) {
