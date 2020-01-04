@@ -384,19 +384,6 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
     return 0;
 }
 
-#pragma mark - NSSplitViewDelegate
-
-- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-    if (subview == _argumentsViewController.view) {
-        return YES;
-    }
-    return NO;
-}
-
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition ofSubviewAt:(NSInteger)dividerIndex {
-    return NSWidth(splitView.frame) - 285;
-}
-
 #pragma mark - NSTableView Delegate
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {

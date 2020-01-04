@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,251 +11,110 @@
             <connections>
                 <outlet property="_argumentsViewController" destination="yXI-gd-xPR" id="6ym-lc-lGx"/>
                 <outlet property="_arrayController" destination="y12-MD-jyl" id="3dG-0o-sYA"/>
-                <outlet property="_customView" destination="EvA-Pg-a3X" id="VXm-2b-4Gd"/>
                 <outlet property="_logView" destination="SAd-HT-drT" id="Qhf-EZ-68V"/>
-                <outlet property="_logViewContainer" destination="AgO-Df-2hd" id="Jvw-KV-PTz"/>
-                <outlet property="_splitView" destination="Ca6-9N-tMW" id="sS9-Ml-jM3"/>
-                <outlet property="_tableView" destination="GJa-Iv-BAq" id="Fcw-nq-UB3"/>
-                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+                <outlet property="_logViewContainer" destination="thB-7S-S98" id="LCK-bd-71V"/>
+                <outlet property="_popover" destination="33V-wD-Ai8" id="2ir-ZQ-7hQ"/>
+                <outlet property="_popoverContentView" destination="mCp-81-xap" id="Kec-mO-FO5"/>
+                <outlet property="_tableView" destination="b7g-OW-rJg" id="rJ2-1b-4Nj"/>
+                <outlet property="window" destination="taV-CD-UKq" id="GkZ-pQ-p7W"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="yXI-gd-xPR" customClass="SLHArgumentsViewController"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Queue" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="utilityWindow" id="F0z-JX-Cv5">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="640" height="480"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
-            <value key="minSize" type="size" width="400" height="320"/>
-            <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <splitView dividerStyle="thin" vertical="YES" id="Ca6-9N-tMW">
-                        <rect key="frame" x="-1" y="37" width="641" height="444"/>
+        <customView misplaced="YES" id="thB-7S-S98">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="464"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box misplaced="YES" boxType="secondary" borderType="line" title="Box" titlePosition="noTitle" id="f7U-Yf-gmN">
+                    <rect key="frame" x="7" y="6" width="301" height="450"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <view key="contentView" id="kgM-vC-47M">
+                        <rect key="frame" x="1" y="1" width="299" height="448"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="pD3-x3-RGt">
-                                <rect key="frame" x="0.0" y="0.0" width="297" height="444"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="gUJ-KI-vyS">
-                                    <rect key="frame" x="1" y="1" width="295" height="442"/>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AgO-Df-2hd">
+                                <rect key="frame" x="10" y="10" width="279" height="428"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <clipView key="contentView" id="nRm-89-EPv">
+                                    <rect key="frame" x="1" y="1" width="277" height="426"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="42" rowSizeStyle="automatic" viewBased="YES" id="GJa-Iv-BAq">
-                                            <rect key="frame" x="0.0" y="0.0" width="295" height="442"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
-                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                            <tableColumns>
-                                                <tableColumn width="292" minWidth="40" maxWidth="1000" id="f8V-CQ-oGm">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="ExR-dR-KtA">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                    <prototypeCellViews>
-                                                        <tableCellView id="3S5-K5-rEs">
-                                                            <rect key="frame" x="1" y="1" width="292" height="42"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <progressIndicator wantsLayer="YES" maxValue="100" style="bar" id="fUl-b4-rT7">
-                                                                    <rect key="frame" x="3" y="2" width="286" height="20"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <connections>
-                                                                        <binding destination="3S5-K5-rEs" name="value" keyPath="objectValue.currentFrameNumber" previousBinding="FMK-0I-QSb" id="9VH-gV-4Qg"/>
-                                                                        <binding destination="3S5-K5-rEs" name="maxValue" keyPath="objectValue.numberOfFrames" id="FMK-0I-QSb"/>
-                                                                    </connections>
-                                                                </progressIndicator>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" id="nmr-7F-cVo">
-                                                                    <rect key="frame" x="1" y="22" width="267" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Table View Cell" id="Bzj-00-naY">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="3S5-K5-rEs" name="value" keyPath="objectValue.name.lastPathComponent" id="M6q-wh-joj"/>
-                                                                    </connections>
-                                                                </textField>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LCQ-Ay-jUs">
-                                                                    <rect key="frame" x="274" y="22" width="16" height="16"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="ovE-MO-KCm"/>
-                                                                    <connections>
-                                                                        <binding destination="3S5-K5-rEs" name="hidden" keyPath="objectValue.encoded" id="Ox8-fd-0wf">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                                            </dictionary>
-                                                                        </binding>
-                                                                    </connections>
-                                                                </imageView>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CWo-Ck-O70">
-                                                                    <rect key="frame" x="274" y="22" width="16" height="16"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusUnavailable" id="I3V-P2-xT1"/>
-                                                                    <connections>
-                                                                        <binding destination="3S5-K5-rEs" name="hidden" keyPath="objectValue.failed" id="RrE-rb-bFx">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                                            </dictionary>
-                                                                        </binding>
-                                                                    </connections>
-                                                                </imageView>
-                                                            </subviews>
-                                                            <connections>
-                                                                <outlet property="textField" destination="nmr-7F-cVo" id="vQh-Ob-1uT"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                    </prototypeCellViews>
-                                                </tableColumn>
-                                            </tableColumns>
+                                        <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" allowsNonContiguousLayout="YES" id="SAd-HT-drT">
+                                            <rect key="frame" x="0.0" y="0.0" width="277" height="426"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="277" height="426"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment content="sample text">
+                                                    <attributes>
+                                                        <font key="NSFont" size="11" name="Menlo-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
-                                                <binding destination="y12-MD-jyl" name="content" keyPath="arrangedObjects" id="MMr-wC-dyu"/>
-                                                <binding destination="y12-MD-jyl" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="MMr-wC-dyu" id="usE-si-FEJ"/>
-                                                <outlet property="delegate" destination="-2" id="Irw-b7-7rw"/>
-                                                <outlet property="menu" destination="G4K-fV-FNB" id="6wa-iL-n5j"/>
+                                                <binding destination="y12-MD-jyl" name="value" keyPath="selection.log" id="CjW-f7-GxG">
+                                                    <dictionary key="options">
+                                                        <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
-                                        </tableView>
+                                        </textView>
                                     </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="17O-Uw-jcf">
-                                    <rect key="frame" x="1" y="255" width="259" height="16"/>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="QbJ-SE-Kr1">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="lV7-ip-g9t">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="lWZ-ch-8c6">
+                                    <rect key="frame" x="262" y="1" width="16" height="426"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView id="EvA-Pg-a3X">
-                                <rect key="frame" x="298" y="0.0" width="343" height="444"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </customView>
                         </subviews>
-                        <holdingPriorities>
-                            <real value="250"/>
-                            <real value="250"/>
-                        </holdingPriorities>
-                        <connections>
-                            <outlet property="delegate" destination="-2" id="Lzd-EQ-pL9"/>
-                        </connections>
-                    </splitView>
-                    <button verticalHuggingPriority="750" id="gk8-HC-IiX">
-                        <rect key="frame" x="552" y="6" width="80" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Start" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dEh-OJ-ML0">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="startEncoding:" target="-2" id="BC6-0I-o9g"/>
-                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="Emj-1W-ypr" id="zZf-oK-mrr">
-                                <dictionary key="options">
-                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                    <integer key="NSNullPlaceholder" value="-1"/>
-                                </dictionary>
-                            </binding>
-                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="Emj-1W-ypr">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="nDi-Gk-OFH">
-                        <rect key="frame" x="8" y="6" width="80" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Clear" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ef6-wx-hoG">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="removeAll:" target="-2" id="iYU-F6-ncA"/>
-                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="lyY-eG-KkS" id="xr3-DW-cow">
-                                <dictionary key="options">
-                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                    <integer key="NSNullPlaceholder" value="-1"/>
-                                </dictionary>
-                            </binding>
-                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="lyY-eG-KkS">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="GVZ-QY-lQc">
-                        <rect key="frame" x="464" y="6" width="80" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Pause" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vfT-vB-yPk">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="pauseEncoding:" target="-2" id="Jat-Hy-038"/>
-                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="vFM-UP-aTc"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="ygW-cV-Zxa">
-                        <rect key="frame" x="376" y="6" width="80" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Stop" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aHb-6t-h9b">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="stopEncoding:" target="-2" id="Nck-j0-4Xs"/>
-                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="3uY-SG-1ge"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="1e0-wv-0jo">
-                        <rect key="frame" x="96" y="6" width="80" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Show Log" alternateTitle="Hide Log" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f6N-5k-YwG">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="toggleLogView:" target="-2" id="Zgr-HV-JKE"/>
-                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="0xs-xU-lua" id="W68-Ot-y39">
-                                <dictionary key="options">
-                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                    <integer key="NSNullPlaceholder" value="-1"/>
-                                </dictionary>
-                            </binding>
-                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="0xs-xU-lua">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                            <binding destination="-2" name="value" keyPath="self.logViewState" id="vya-gv-4fA"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
-            </connections>
-            <point key="canvasLocation" x="151" y="413"/>
-        </window>
+                    </view>
+                </box>
+            </subviews>
+            <point key="canvasLocation" x="759.5" y="607"/>
+        </customView>
+        <customObject id="yXI-gd-xPR" customClass="SLHArgumentsViewController"/>
+        <customView misplaced="YES" id="a1y-It-1Zh">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="595"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" misplaced="YES" id="avT-Kx-IND">
+                    <rect key="frame" x="320" y="9" width="60" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="roundRect" title="OK" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AfZ-5P-gdk">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="cellTitle"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="closePopover:" target="-2" id="AUg-cK-usP"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" misplaced="YES" id="RFo-D5-zwc">
+                    <rect key="frame" x="10" y="9" width="70" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="roundRect" title="Show Log" alternateTitle="Hide Log" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IHl-p8-1Tz">
+                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="cellTitle"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleLogView:" target="-2" id="sX6-jw-EYY"/>
+                        <binding destination="-2" name="value" keyPath="self.logViewState" id="EAl-X7-a1I"/>
+                    </connections>
+                </button>
+                <customView misplaced="YES" id="mCp-81-xap">
+                    <rect key="frame" x="0.0" y="34" width="390" height="561"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </customView>
+            </subviews>
+            <point key="canvasLocation" x="381" y="-126.5"/>
+        </customView>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <arrayController objectClassName="SLHEncoderQueueItem" selectsInsertedObjects="NO" id="y12-MD-jyl" userLabel="Encoder Items">
             <declaredKeys>
                 <string>name</string>
@@ -264,49 +124,16 @@
                 <string>tag</string>
             </declaredKeys>
         </arrayController>
-        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-Df-2hd">
-            <rect key="frame" x="0.0" y="0.0" width="293" height="420"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <clipView key="contentView" id="nRm-89-EPv">
-                <rect key="frame" x="1" y="1" width="291" height="418"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" allowsNonContiguousLayout="YES" id="SAd-HT-drT">
-                        <rect key="frame" x="0.0" y="0.0" width="291" height="418"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <size key="minSize" width="291" height="418"/>
-                        <size key="maxSize" width="463" height="10000000"/>
-                        <attributedString key="textStorage">
-                            <fragment content="sample text">
-                                <attributes>
-                                    <font key="NSFont" size="11" name="Menlo-Regular"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <connections>
-                            <binding destination="y12-MD-jyl" name="value" keyPath="selection.log" id="CjW-f7-GxG">
-                                <dictionary key="options">
-                                    <bool key="NSConditionallySetsEditable" value="NO"/>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </textView>
-                </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            </clipView>
-            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="QbJ-SE-Kr1">
-                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </scroller>
-            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="lWZ-ch-8c6">
-                <rect key="frame" x="276" y="1" width="16" height="418"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </scroller>
-            <point key="canvasLocation" x="680.5" y="486"/>
-        </scrollView>
+        <viewController id="wLI-Od-NVa" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="a1y-It-1Zh" id="AMI-F7-7Zm"/>
+            </connections>
+        </viewController>
+        <popover behavior="semitransient" id="33V-wD-Ai8">
+            <connections>
+                <outlet property="contentViewController" destination="wLI-Od-NVa" id="oVk-O5-ic7"/>
+            </connections>
+        </popover>
         <menu autoenablesItems="NO" id="G4K-fV-FNB">
             <items>
                 <menuItem title="Reveal In Finder" tag="100" id="7NM-Nk-gVT">
@@ -331,11 +158,238 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="7fg-aH-AVM"/>
             </connections>
-            <point key="canvasLocation" x="611.5" y="182.5"/>
+            <point key="canvasLocation" x="590" y="122"/>
         </menu>
+        <window title="Queue" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="utilityWindow" frameAutosaveName="queueWindow" id="taV-CD-UKq" userLabel="Queue Window">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="130" y="63" width="276" height="378"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <value key="minSize" type="size" width="200" height="200"/>
+            <view key="contentView" id="21W-zL-kb1">
+                <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="mUU-Rz-02a">
+                        <rect key="frame" x="0.0" y="30" width="278" height="350"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <clipView key="contentView" id="gYl-Mf-HRV">
+                            <rect key="frame" x="0.0" y="0.0" width="278" height="350"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="b7g-OW-rJg">
+                                    <rect key="frame" x="0.0" y="0.0" width="278" height="350"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn width="275" minWidth="40" maxWidth="1000" id="xEY-PG-8Xj">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="Onc-BX-BCR">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView misplaced="YES" id="DY1-qc-DcZ">
+                                                    <rect key="frame" x="1" y="1" width="275" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" id="a92-jQ-j4g">
+                                                            <rect key="frame" x="0.0" y="28" width="250" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="QZ9-YB-t4C">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="DY1-qc-DcZ" name="value" keyPath="objectValue.name.lastPathComponent" id="rqh-d5-88C"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <progressIndicator wantsLayer="YES" misplaced="YES" maxValue="100" controlSize="small" style="bar" id="rnd-hI-nUn">
+                                                            <rect key="frame" x="3" y="7" width="269" height="12"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <connections>
+                                                                <binding destination="DY1-qc-DcZ" name="hidden" keyPath="objectValue.encoded" id="d7o-pM-hc1"/>
+                                                                <binding destination="DY1-qc-DcZ" name="maxValue" keyPath="objectValue.numberOfFrames" id="5mW-CE-NaV"/>
+                                                                <binding destination="DY1-qc-DcZ" name="value" keyPath="objectValue.currentFrameNumber" previousBinding="5mW-CE-NaV" id="13I-f0-bNK"/>
+                                                            </connections>
+                                                        </progressIndicator>
+                                                        <imageView misplaced="YES" id="Bht-pa-yCP">
+                                                            <rect key="frame" x="256" y="27" width="16" height="16"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSStatusUnavailable" id="3lh-Hu-UHR"/>
+                                                            <connections>
+                                                                <binding destination="DY1-qc-DcZ" name="hidden" keyPath="objectValue.failed" id="cPk-hw-g9a">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="textField" destination="a92-jQ-j4g" id="lec-l2-Mhj"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                        </tableColumn>
+                                    </tableColumns>
+                                    <connections>
+                                        <binding destination="y12-MD-jyl" name="content" keyPath="arrangedObjects" id="KbI-Lf-3PG"/>
+                                        <binding destination="y12-MD-jyl" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="KbI-Lf-3PG" id="wT3-Jc-dUK"/>
+                                        <binding destination="y12-MD-jyl" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="wT3-Jc-dUK" id="lWC-Eh-I9W"/>
+                                        <outlet property="delegate" destination="-2" id="Dpl-7Y-ov4"/>
+                                        <outlet property="menu" destination="G4K-fV-FNB" id="HOu-li-6Ps"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="efY-4d-YjZ">
+                            <rect key="frame" x="1" y="119" width="223" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="SOo-yi-bb1">
+                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="Gya-Rn-7dS">
+                        <rect key="frame" x="6" y="5" width="50" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Clear" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="syh-Gl-Ear">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="removeAll:" target="-2" id="dSe-Za-3OV"/>
+                            <binding destination="y12-MD-jyl" name="enabled" keyPath="canRemove" id="ygU-ke-uW4"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="7C6F6C52-4239-4E23-A445-968946197947" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="small" id="Tms-zd-D3R">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ocf-Hv-HOE"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="HFO-XU-Z2R"/>
+                    <toolbarItem implicitItemIdentifier="DDA7884B-FF8A-4E24-B4E6-7415376DF77E" label="Start Encoding" paletteLabel="Start Encoding" toolTip="Start Encoding" image="SLHImageNameQueueStartEncodingTemplate" id="VZp-iG-pq0">
+                        <size key="minSize" width="21" height="21"/>
+                        <size key="maxSize" width="40" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" misplaced="YES" id="93K-gm-afC">
+                            <rect key="frame" x="23" y="14" width="40" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SLHImageNameQueueStartEncodingTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="rfo-Ve-gLn">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="startEncoding:" target="-2" id="LSI-HZ-tcl"/>
+                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="Zu2-Wd-Ip8" id="pDL-G6-t23">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="Zu2-Wd-Ip8">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="4C9B87D8-C8E1-441D-B1B3-51B79F7088D2" label="Pause Encoding" paletteLabel="Pause Encoding" toolTip="Pause Encoding" image="SLHImageNameQueuePauseEncodingTemplate" id="iS4-K5-xwq">
+                        <size key="minSize" width="21" height="21"/>
+                        <size key="maxSize" width="40" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" misplaced="YES" id="eG7-Dx-2n3">
+                            <rect key="frame" x="26" y="14" width="40" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SLHImageNameQueuePauseEncodingTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="WUX-nX-hoo">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="pauseEncoding:" target="-2" id="x7t-HB-0zp"/>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="Tjd-fQ-Akm"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="1C95F3D7-701F-4DEF-99D9-F157F18869A0" label="Stop Encoding" paletteLabel="Stop Encoding" toolTip="Stop Encoding" image="SLHImageNameQueueStopEncodingTemplate" id="QuG-qW-bPL">
+                        <size key="minSize" width="21" height="21"/>
+                        <size key="maxSize" width="41" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" misplaced="YES" id="GhL-cI-7Fa">
+                            <rect key="frame" x="22" y="14" width="40" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SLHImageNameQueueStopEncodingTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="T6a-tB-C1q">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="stopEncoding:" target="-2" id="91e-Pz-Hly"/>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="usa-82-bYV"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="2DB8CB57-B000-450C-A637-A4CC56C2B46F" label="Info" paletteLabel="Info" toolTip="Show Info" image="SLHImageNameInfoTemplate" id="px4-Io-6um">
+                        <size key="minSize" width="21" height="21"/>
+                        <size key="maxSize" width="41" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="ys3-vv-Sjl">
+                            <rect key="frame" x="0.0" y="14" width="40" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SLHImageNameInfoTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UZD-se-gVp">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showPopover:" target="-2" id="m0P-fB-xm2"/>
+                            </connections>
+                        </button>
+                        <connections>
+                            <binding destination="y12-MD-jyl" name="enabled2" keyPath="canRemove" previousBinding="0Bi-9q-HlB" id="dsa-9u-DHg">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="enabled" keyPath="self.inProgress" id="0Bi-9q-HlB">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="VZp-iG-pq0"/>
+                    <toolbarItem reference="iS4-K5-xwq"/>
+                    <toolbarItem reference="QuG-qW-bPL"/>
+                    <toolbarItem reference="HFO-XU-Z2R"/>
+                    <toolbarItem reference="px4-Io-6um"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <connections>
+                <outlet property="delegate" destination="-2" id="qYI-fl-d63"/>
+            </connections>
+            <point key="canvasLocation" x="27" y="-17"/>
+        </window>
     </objects>
     <resources>
-        <image name="NSStatusAvailable" width="16" height="16"/>
         <image name="NSStatusUnavailable" width="16" height="16"/>
+        <image name="SLHImageNameInfoTemplate" width="15" height="15"/>
+        <image name="SLHImageNameQueuePauseEncodingTemplate" width="19" height="19"/>
+        <image name="SLHImageNameQueueStartEncodingTemplate" width="19" height="19"/>
+        <image name="SLHImageNameQueueStopEncodingTemplate" width="19" height="19"/>
     </resources>
 </document>
