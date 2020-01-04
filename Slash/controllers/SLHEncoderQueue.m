@@ -25,9 +25,10 @@
     IBOutlet SLHArgumentsViewController *_argumentsViewController;
     IBOutlet NSTableView *_tableView;
     IBOutlet NSArrayController *_arrayController;
-    IBOutlet NSSplitView *_splitView;
     IBOutlet NSTextView *_logView;
-    IBOutlet NSScrollView *_logViewContainer;
+    IBOutlet NSView *_logViewContainer;
+    IBOutlet NSPopover *_popover;
+    IBOutlet NSView *_popoverContentView;
     
     SLHExternalPlayer *_player;
     
@@ -94,10 +95,11 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    NSRect rect = _customView.frame;
+    NSRect rect = _popoverContentView.frame;
+    rect.origin = NSZeroPoint;
     NSView *view =  _argumentsViewController.view;
     view.frame = rect;
-    [_splitView replaceSubview:_customView with:view];
+    [_popoverContentView addSubview:view];
 }
 
 - (void)addEncoderItems:(NSArray<SLHEncoderItem *> *)array {
@@ -112,8 +114,8 @@
         NSInteger streamIdx = i.videoStreamIndex;
         if (streamIdx > -1) {
             TimeInterval interval = i.interval;
-            SLHMediaItemTrack *t = i.mediaItem.tracks[streamIdx];
-            obj.numberOfFrames = (interval.end - interval.start) * t.frameRate;
+            MPVPlayerItemTrack *t = i.playerItem.tracks[streamIdx];
+            obj.numberOfFrames = (interval.end - interval.start) * t.averageFrameRate;
         }
         [objects addObject:obj];
     }
@@ -121,6 +123,23 @@
 }
 
 #pragma mark - IBActions
+
+- (IBAction)showPopover:(NSButton *)sender {
+    if (_popover.shown) {
+        [_popover close];
+        return;
+    }
+
+    [_popover showRelativeToRect:sender.bounds ofView:sender preferredEdge:NSRectEdgeMinY];
+
+    if (_logViewContainer.superview) {
+        [_logView scrollToEndOfDocument:nil];
+    }
+}
+
+- (IBAction)closePopover:(id)sender {
+    [_popover close];
+}
 
 - (IBAction)startEncoding:(id)sender {
     [self prepareGlobalQueue];
@@ -155,7 +174,7 @@
     if (_logViewContainer.superview) {
         NSView *view = _argumentsViewController.view;
         view.frame = _logViewContainer.frame;
-        [_splitView replaceSubview:_logViewContainer with:view];
+        [_popoverContentView replaceSubview:_logViewContainer with:view];
     } else {
         _showLog(self);
     }
@@ -202,8 +221,8 @@
 
 static inline void _showLog(SLHEncoderQueue *obj) {
     NSView *view = obj->_argumentsViewController.view;
-    obj->_logViewContainer.frame = view.frame;
-    [obj->_splitView replaceSubview:view with:obj->_logViewContainer];
+    obj->_logViewContainer.frame = view.frame;;
+    [obj->_popoverContentView replaceSubview:view with:obj->_logViewContainer];
     [obj->_logView scrollToEndOfDocument:nil];
 }
 
