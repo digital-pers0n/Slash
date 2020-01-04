@@ -351,13 +351,17 @@ static void _encoder_exit_callback(void *ctx, int exit_code) {
         
         // Check if the queue is not empty and encoding wasn't stopped
         if (queue_size(obj->_global_queue) && exit_code != SIGKILL) {
-            [obj prepareEncoderQueue];
-            [obj encode];
+            dispatch_async(obj->_main_thread, ^{
+                [obj prepareEncoderQueue];
+                [obj encode];
+            });
             return;
         }
     }
     if (exit_code == SIGKILL || queue_size(obj->_global_queue) == 0) {
-        obj.inProgress = NO;
+        dispatch_async(obj->_main_thread, ^{
+            obj.inProgress = NO;
+        });
     }
 }
 
