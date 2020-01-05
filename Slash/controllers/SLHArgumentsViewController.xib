@@ -21,27 +21,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <box misplaced="YES" borderType="bezel" title="Box" titlePosition="noTitle" id="nmG-Mh-5NY">
-                    <rect key="frame" x="6" y="6" width="346" height="436"/>
+                    <rect key="frame" x="7" y="6" width="345" height="436"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <view key="contentView" id="US4-jC-PUm">
-                        <rect key="frame" x="3" y="3" width="340" height="430"/>
+                        <rect key="frame" x="3" y="3" width="339" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="HXp-9f-lmZ">
-                                <rect key="frame" x="10" y="37" width="320" height="356"/>
+                                <rect key="frame" x="10" y="37" width="319" height="356"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="2Jt-5k-m9f">
-                                    <rect key="frame" x="1" y="1" width="318" height="354"/>
+                                    <rect key="frame" x="1" y="1" width="317" height="354"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="CX0-fk-fJI">
-                                            <rect key="frame" x="0.0" y="0.0" width="318" height="354"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="317" height="354"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="315" minWidth="40" maxWidth="1000" id="KXO-Kc-HQT">
+                                                <tableColumn width="314" minWidth="40" maxWidth="1000" id="KXO-Kc-HQT">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -72,7 +72,7 @@
                                 </scroller>
                             </scrollView>
                             <button misplaced="YES" id="VOU-vX-KBd">
-                                <rect key="frame" x="11" y="402" width="18" height="18"/>
+                                <rect key="frame" x="10" y="402" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="j0L-Nc-7al">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -83,7 +83,7 @@
                                 </connections>
                             </button>
                             <button misplaced="YES" id="9gK-G1-N31">
-                                <rect key="frame" x="39" y="402" width="18" height="18"/>
+                                <rect key="frame" x="38" y="402" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="sKv-mz-Qpx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -97,7 +97,7 @@ CA
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" misplaced="YES" id="fKh-gC-G1q">
-                                <rect key="frame" x="246" y="399" width="87" height="22"/>
+                                <rect key="frame" x="245" y="399" width="87" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="F7D-1b-TOd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -109,7 +109,7 @@ CA
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" misplaced="YES" id="X2G-fh-rg7">
-                                <rect key="frame" x="195" y="4" width="68" height="28"/>
+                                <rect key="frame" x="196" y="4" width="68" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="Revert" bezelStyle="rounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WBs-do-fCX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
