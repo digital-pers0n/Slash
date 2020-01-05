@@ -8,8 +8,6 @@
 
 #import "SLHEncoder.h"
 #import "SLHEncoderItem.h"
-#import "SLHMediaItem.h"
-#import "SLHMediaItemTrack.h"
 #import "SLHStatusLineView.h"
 #import "slh_encoder.h"
 #import "slh_util.h"

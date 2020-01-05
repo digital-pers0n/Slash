@@ -9,8 +9,6 @@
 #import "SLHCropEditor.h"
 #import "SLHImageView.h"
 #import "SLHEncoderItem.h"
-#import "SLHMediaItem.h"
-#import "SLHMediaItemTrack.h"
 #import "SLHFilterOptions.h"
 #import "SLHPreferences.h"
 #import "SLHSliderCell.h"
