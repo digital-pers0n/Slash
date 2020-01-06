@@ -12,8 +12,6 @@
 
 @interface SLHEncoderItemMetadata : NSObject <NSCopying>
 
-/** @deprecated Use MPVPlayerItem instead */
-- (instancetype)initWithMediaItem:(SLHMediaItem *)item;
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item;
 
 @property NSString *artist;

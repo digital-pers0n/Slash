@@ -10,8 +10,6 @@
 #import "SLHEncoderItem.h"
 #import "SLHFilterOptions.h"
 #import "SLHCropEditor.h"
-#import "SLHMediaItem.h"
-#import "SLHMediaItemTrack.h"
 #import "SLHPresetManager.h"
 #import "SLHPreferences.h"
 #import "SLHTextEditor.h"
@@ -166,7 +164,7 @@ static inline NSString *_preampString(NSInteger val) {
             
                 NSInteger subtitlesIdx = -1;
                 for (MPVPlayerItemTrack *t in _encoderItem.playerItem.tracks) {
-                    if (t.mediaType == SLHMediaTypeText) {
+                    if (t.mediaType == MPVMediaTypeText) {
                         subtitlesIdx++;
                         if (t.trackIndex == streamIdx) {
                             break;

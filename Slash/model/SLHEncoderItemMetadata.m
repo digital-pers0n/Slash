@@ -7,8 +7,6 @@
 //
 
 #import "SLHEncoderItemMetadata.h"
-#import "SLHMediaItem.h"
-#import "SLHMetadataItem.h"
 #import "SLHMetadataIdentifiers.h"
 #import "MPVPlayerItem.h"
 #import "MPVMetadataItem.h"
@@ -57,39 +55,6 @@
             if (!value) {
                 value = @"";
             }
-        }
-        _title = value;
-        
-        value = mdata[SLHMetadataIdentifierDate];
-        if (value) {
-            _date = value;
-        }
-        
-        value = mdata[SLHMetadataIdentifierComment];
-        if (value) {
-            _comment = value;
-        }
-    }
-    return self;
-}
-
-- (instancetype)initWithMediaItem:(SLHMediaItem *)item {
-    self = [self init];
-    if (self) {
-        NSArray *array = item.metadata;
-        NSMutableDictionary *mdata = [NSMutableDictionary new];
-        for (SLHMetadataItem *m in array) {
-            mdata[m.identifier] = m.value;
-        }
-        
-        NSString *value = mdata[SLHMetadataIdentifierArtist];
-        if (value) {
-            _artist = value;
-        }
-        
-        value = mdata[SLHMetadataIdentifierTitle];
-        if (!value) {
-            value = item.filePath.lastPathComponent.stringByDeletingPathExtension;
         }
         _title = value;
         

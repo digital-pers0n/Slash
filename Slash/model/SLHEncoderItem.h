@@ -18,18 +18,7 @@ typedef struct time_interval {
     double end;
 } TimeInterval;
 
-@class SLHMediaItem;
-
 @interface SLHEncoderItem : NSObject <NSCopying>
-
-/** @deprecated Use MPVPlayerItem instead */
-- (instancetype)initWithMediaItem:(SLHMediaItem *)item __attribute__((deprecated));
-
-/** @deprecated Use MPVPlayerItem instead */
-- (instancetype)initWithMediaItem:(SLHMediaItem *) item outputPath:(NSString *)outputMediaPath __attribute__((deprecated));
-
-/** @deprecated Use MPVPlayerItem instead */
-@property SLHMediaItem *mediaItem __attribute__((deprecated));
 
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item;
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item outputPath:(NSString *)outputMediaPath;
@@ -56,8 +45,6 @@ typedef struct time_interval {
 @property BOOL twoPassEncoding;
 
 @property SLHEncoderItemMetadata *metadata;
-
-@property (readonly) NSString * summary;
 
 @property NSInteger tag;
 
