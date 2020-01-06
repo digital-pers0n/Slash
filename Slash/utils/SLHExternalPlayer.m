@@ -252,6 +252,31 @@ typedef Player * PlayerRef;
     
 }
 
+- (void)setStayOnTop:(BOOL)value {
+    
+     __unsafe_unretained typeof(self) obj = self;
+    
+    dispatch_async(_queue, ^{
+        size_t len = 0;
+        const char *cmd = nil;
+        if (value) {
+            const char buf[] = "{ \"command\": [ \"set_property\", \"ontop\", \"yes\" ] }\n";
+            len = sizeof(buf) - 1;
+            cmd = buf;
+        } else {
+            const char buf[] = "{ \"command\": [ \"set_property\", \"ontop\", \"no\" ] }\n";
+            len = sizeof(buf) - 1;
+            cmd = buf;
+        }
+        plr_msg_send(obj->_playerRef, cmd, len);
+    });
+}
+
+- (void)orderFront {
+    [self setStayOnTop:YES];
+    [self setStayOnTop:NO];
+}
+
 #if ENABLE_SOCKET_MONITOR
 - (void)playerMonitor:(id)context {
     const size_t buffer_size = 256;

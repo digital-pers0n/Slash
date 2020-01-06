@@ -64,6 +64,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)quit;
 
 /**
+ Make the player to stay on top of other windows.
+ Can be useful for moving the player window back to the front if it is covered by other windows. 
+ */
+- (void)setStayOnTop:(BOOL)value;
+
+/**
+ Same as calling [player setStayOnTop:YES] and then [player setStayOnTop:NO]
+ */
+- (void)orderFront;
+
+/**
  Send a remote command to the player.
  @note Command and arguments must be inside double quotes
  and separated by commas: @"\"command_name\", \"arg1\", \"arg2\", \"etc\""

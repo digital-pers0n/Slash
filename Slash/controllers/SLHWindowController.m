@@ -614,6 +614,7 @@ typedef void (*basic_imp)(id, SEL, id);
         }
     } else {
         _externalPlayer.url = _currentEncoderItem.playerItem.url;
+        [_externalPlayer orderFront];
     }
     [_externalPlayer play];
 }
@@ -631,6 +632,7 @@ typedef void (*basic_imp)(id, SEL, id);
         }
     } else {
         _externalPlayer.url = [NSURL fileURLWithPath:_lastEncodedMediaFilePath];
+        [_externalPlayer orderFront];
     }
     [_externalPlayer play];
 }
