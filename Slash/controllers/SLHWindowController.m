@@ -1033,7 +1033,7 @@ typedef void (*basic_imp)(id, SEL, id);
 - (void)trimViewMouseDown:(SLHTrimView *)trimView {
     [trimView unbind:@"startValue"];
     [trimView unbind:@"endValue"];
-    
+
     NSTableCellView *tcv = (id)trimView.superview;
     SLHEncoderItem *encoderItem = tcv.objectValue;
     if (encoderItem != _currentEncoderItem) {
@@ -1044,9 +1044,6 @@ typedef void (*basic_imp)(id, SEL, id);
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:_player];
-    
-    [trimView unbind:@"startValue"];
-    [trimView unbind:@"endValue"];
 
 }
 
