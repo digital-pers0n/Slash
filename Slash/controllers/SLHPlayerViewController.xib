@@ -39,21 +39,6 @@
                                 <binding destination="-2" name="maxValue" keyPath="self.duration" id="TnN-gO-KN5"/>
                             </connections>
                         </slider>
-                        <button verticalHuggingPriority="750" misplaced="YES" id="CYF-ZT-sOm">
-                            <rect key="frame" x="409" y="9" width="24" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSEnterFullScreenTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H4c-WF-eBx">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="smallSystem"/>
-                            </buttonCell>
-                            <connections>
-                                <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="OmJ-tg-i6Q">
-                                    <dictionary key="options">
-                                        <string key="NSValueTransformerName">NSIsNotNil</string>
-                                    </dictionary>
-                                </binding>
-                            </connections>
-                        </button>
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">
                             <rect key="frame" x="18" y="48" width="104" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -88,7 +73,7 @@
                             </connections>
                         </textField>
                         <button toolTip="Volume Level" verticalHuggingPriority="750" misplaced="YES" id="D0z-ul-2VY">
-                            <rect key="frame" x="382" y="9" width="24" height="21"/>
+                            <rect key="frame" x="409" y="9" width="24" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameVolumeMaxTemplate" imagePosition="overlaps" alignment="left" alternateImage="SLHImageNameVolumeMuteTemplate" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aq8-nK-MAp">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -400,7 +385,6 @@ IA
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSEnterFullScreenTemplate" width="15" height="15"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
