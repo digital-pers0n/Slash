@@ -38,16 +38,10 @@
 		CE2365602254C80A00B324E4 /* SLHEncoderQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE23655E2254C80A00B324E4 /* SLHEncoderQueue.xib */; };
 		CE2365642254C9CC00B324E4 /* SLHEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2365622254C9CC00B324E4 /* SLHEncoder.m */; };
 		CE2365652254C9CC00B324E4 /* SLHEncoder.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2365632254C9CC00B324E4 /* SLHEncoder.xib */; };
-		CE239375219CA86F00C21AA7 /* SLHMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */; };
-		CE239376219CA86F00C21AA7 /* SLHMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */; };
-		CE256B99222D8AC8007B520E /* SLHMetadataEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */; };
-		CE256B9A222D8AC8007B520E /* SLHMetadataEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */; };
 		CE299C5C23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */; };
 		CE299C5E23BE0DC200F1C9BF /* libavformat.58.35.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5D23BE0DC200F1C9BF /* libavformat.58.35.101.dylib */; };
 		CE299C6023BE0DD100F1C9BF /* libavcodec.58.65.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5F23BE0DD100F1C9BF /* libavcodec.58.65.100.dylib */; };
 		CE299C6223BE0DEB00F1C9BF /* libavutil.56.38.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C6123BE0DEB00F1C9BF /* libavutil.56.38.100.dylib */; };
-		CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2CC11F21235334008C8345 /* SLHPlayer.m */; };
-		CE2CC12321235447008C8345 /* SLHMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2CC12221235447008C8345 /* SLHMediaItem.m */; };
 		CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */; };
 		CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */; };
 		CE40B09D2107DE2900969371 /* slh_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE40B09B2107DE2900969371 /* slh_socket.c */; };
@@ -77,7 +71,6 @@
 		CE80A8AC2380560300CC4C7A /* SLHFileInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80A8AA2380560300CC4C7A /* SLHFileInfo.xib */; };
 		CE80A8B22381B24400CC4C7A /* SLHMetadataInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80A8B02381B24400CC4C7A /* SLHMetadataInspector.m */; };
 		CE80A8B32381B24400CC4C7A /* SLHMetadataInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80A8B12381B24400CC4C7A /* SLHMetadataInspector.xib */; };
-		CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */; };
 		CE85A0F622C651830027F742 /* SLHEncoderUniversalFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85A0F422C651830027F742 /* SLHEncoderUniversalFormat.m */; };
 		CE85A0F722C651830027F742 /* SLHEncoderUniversalFormat.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE85A0F522C651830027F742 /* SLHEncoderUniversalFormat.xib */; };
 		CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85A0F922C657E40027F742 /* SLHEncoderUniversalOptions.m */; };
@@ -100,7 +93,6 @@
 		CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA552722A7FFA90079CD27 /* SLHEncoderVP9Format.m */; };
 		CEAA552A22A7FFA90079CD27 /* SLHEncoderVP9Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAA552822A7FFA90079CD27 /* SLHEncoderVP9Format.xib */; };
 		CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA552C22A801690079CD27 /* SLHEncoderVP9Options.m */; };
-		CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */; };
 		CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBFF3E22190BDA000F54C7E /* slh_encoder.c */; };
 		CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2245E23A11332000A7489 /* SLHExternalPlayer.m */; };
 		CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */; };
@@ -680,7 +672,6 @@
 				CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */,
 				CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */,
 				CE120451229995E300C2A145 /* SLHPresetManager.xib in Resources */,
-				CE256B9A222D8AC8007B520E /* SLHMetadataEditor.xib in Resources */,
 				CE0B15F523571EA100AE606E /* SLHPlayerViewController.xib in Resources */,
 				CE1414C7210D32CC00C02B2D /* script.lua in Resources */,
 				CE85A0F722C651830027F742 /* SLHEncoderUniversalFormat.xib in Resources */,
@@ -689,7 +680,6 @@
 				CE1DC4192285B09F0086A895 /* SLHLogController.xib in Resources */,
 				CE0A5B3322B924D400198163 /* SLHPresetNameDialog.xib in Resources */,
 				CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */,
-				CE239376219CA86F00C21AA7 /* SLHMainWindowController.xib in Resources */,
 				CE2365652254C9CC00B324E4 /* SLHEncoder.xib in Resources */,
 				CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */,
 				CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */,
@@ -713,13 +703,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0B4E18224A563E00D61D72 /* SLHCropEditor.m in Sources */,
-				CE2CC12321235447008C8345 /* SLHMediaItem.m in Sources */,
 				CE22B5FB210BBD2500EE17A4 /* slh_mpv.c in Sources */,
 				CE4B6E402372C900006561AE /* SLHTrimTableCellView.m in Sources */,
 				CE5461D3211A314E00C2B774 /* slh_util.c in Sources */,
 				CE0B4E14224A40AD00D61D72 /* SLHFilterOptions.m in Sources */,
 				CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */,
-				CE2CC12021235334008C8345 /* SLHPlayer.m in Sources */,
 				CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */,
 				CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */,
 				CE9CBCAF228B037A001A8E37 /* SLHArgumentsViewController.m in Sources */,
@@ -738,7 +726,6 @@
 				CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */,
 				CE0B15F023561AD600AE606E /* SLHPlayerView.m in Sources */,
 				CE80A8B22381B24400CC4C7A /* SLHMetadataInspector.m in Sources */,
-				CE256B99222D8AC8007B520E /* SLHMetadataEditor.m in Sources */,
 				CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */,
 				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
 				CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */,
@@ -753,12 +740,10 @@
 				CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */,
 				CE8806C42158267900827977 /* slh_media.c in Sources */,
 				CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */,
-				CEB673332125EE960052F3E0 /* SLHMediaItemTrack.m in Sources */,
 				CEDD22EC23887EB50049E4C4 /* SLHCropView.m in Sources */,
 				CE0813E522CB79B60048D27B /* SLHTextEditor.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */,
-				CE81461221287D9B00DFFDA6 /* SLHMetadataItem.m in Sources */,
 				CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */,
 				CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */,
 				CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */,
@@ -768,7 +753,6 @@
 				CE9CA40423788350005CF368 /* SLHStackView.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
-				CE239375219CA86F00C21AA7 /* SLHMainWindowController.m in Sources */,
 				CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */,
 				CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */,
 				CE566A77215AAC16004E974F /* slh_extern.c in Sources */,
