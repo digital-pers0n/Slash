@@ -212,6 +212,7 @@
                 }
             }
             _player.url = [NSURL fileURLWithPath:queueItem.name isDirectory:NO];
+            [_player orderFront];
             
             [_player play];
         }
