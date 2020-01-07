@@ -284,20 +284,10 @@ typedef Player * PlayerRef;
     while (_playerRef && !_playerThread.cancelled) {
         ssize_t len = plr_msg_recv(_playerRef, buffer, buffer_size);
         if (len > 0) {
-
             buffer[len] = '\0';
-            NSData *data = [NSData dataWithBytesNoCopy:buffer length:len freeWhenDone:NO];
-            if (data) {
-                NSError *error = nil;
-                id obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-                if (error) {
-                    NSLog(@"error parsing JSON data %@", error.localizedDescription);
-                }
-                if (obj) {
-                    NSLog(@"%@, %@", [obj className], obj);
-                }
-            }
-            //fputs(buffer, stdout);
+            fputs(buffer, stdout);
+        } else {
+            break;
         }
     }
     [NSThread exit];
