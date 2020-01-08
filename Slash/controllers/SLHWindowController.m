@@ -24,6 +24,7 @@
 #import "SLHExternalPlayer.h"
 #import "SLHPlayerViewController.h"
 #import "SLHMethodAddress.h"
+#import "SLHEncoderHistory.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -61,6 +62,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     SLHTextEditor *_textEditor;
     NSPopover *_popover;
     NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
+    SLHEncoderHistory *_encoderHistory;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
@@ -168,7 +170,9 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     NSURL *mpvConfURL = [NSURL fileURLWithPath:appPrefs.mpvConfigPath];
     [SLHExternalPlayer setDefaultPlayerURL:mpvURL];
     [SLHExternalPlayer setDefaultPlayerConfigURL:mpvConfURL];
-
+    
+    /* SLHEncoderHistory */
+    _encoderHistory = [[SLHEncoderHistory alloc] init];
 }
 
 #pragma mark - Methods
@@ -457,6 +461,10 @@ typedef void (*basic_imp)(id, SEL, id);
 
 #pragma mark - IBActions
 
+- (IBAction)showEncoderHistroy:(id)sender {
+    [_encoderHistory showWindow:nil];
+}
+
 - (IBAction)toggleOSDFractions:(id)sender {
     BOOL flag = [_player boolForProperty:MPVPlayerPropertyOSDFractions];
     if (flag) {
@@ -710,6 +718,10 @@ typedef void (*basic_imp)(id, SEL, id);
                 if (SLHPreferences.preferences.updateFileName) {
                     [self updateOutputFileName:sender];
                 }
+                
+                NSString *log = obj->_encoder.encodingLog;
+                [obj->_encoderHistory addItemWithPath:obj->_lastEncodedMediaFilePath log: log ? log : @""];
+                
                 break;
             }
                 
