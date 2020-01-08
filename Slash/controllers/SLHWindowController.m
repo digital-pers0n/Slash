@@ -701,12 +701,12 @@ typedef void (*basic_imp)(id, SEL, id);
         [win.window setFrame:NSMakeRect(0, 0, 360, 640) display:NO];
         [win runModal];
     }
-    
+     __unsafe_unretained typeof(self) obj = self;
     [_encoder encodeItem:_currentEncoderItem usingBlock:^(SLHEncoderState state) {
         switch (state)  {
                 
             case SLHEncoderStateSuccess: {
-                self.lastEncodedMediaFilePath = _currentEncoderItem.outputPath;
+                self.lastEncodedMediaFilePath = obj->_currentEncoderItem.outputPath;
                 if (SLHPreferences.preferences.updateFileName) {
                     [self updateOutputFileName:sender];
                 }
@@ -714,7 +714,7 @@ typedef void (*basic_imp)(id, SEL, id);
             }
                 
             case SLHEncoderStateFailed: {
-                NSString *log = _encoder.encodingLog;
+                NSString *log = obj->_encoder.encodingLog;
                 if (log) {
                     SLHLogController * logWindow = [[SLHLogController alloc] init];
                     logWindow.log = log;
@@ -730,7 +730,7 @@ typedef void (*basic_imp)(id, SEL, id);
             default:
                 break;
         }
-        [_encoder.window performClose:nil];
+        [obj->_encoder.window performClose:nil];
     }];
 }
 
