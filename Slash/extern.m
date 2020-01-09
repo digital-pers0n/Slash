@@ -11,7 +11,6 @@
 #pragma mark - SLHPreferences
 
 NSString *const SLHPreferencesFFMpegFilePathKey     = @"ffmpegBinary";
-NSString *const SLHPreferencesFFProbeFilePathKey    = @"ffprobeBinary";
 NSString *const SLHPreferencesMPVFilePathKey        = @"mpvBinary";
 NSString *const SLHPreferencesNumberOfThreadsKey    = @"numberOfThreads";
 NSString *const SLHPreferencesUpdateOutputNameKey   = @"updateOutputName";

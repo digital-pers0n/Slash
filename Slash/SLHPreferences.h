@@ -10,7 +10,6 @@
 
 /* User-defaults keys */
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
-extern NSString *const SLHPreferencesFFProbeFilePathKey;
 extern NSString *const SLHPreferencesMPVFilePathKey;
 extern NSString *const SLHPreferencesRecentOutputPaths;
 extern NSString *const SLHPreferencesOutputPathSameAsInput;
@@ -31,7 +30,6 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property (readonly) BOOL updateFileName;
 
 @property NSString *ffmpegPath;
-@property NSString *ffprobePath;
 @property NSString *mpvPath;
 
 @property NSString *lastUsedFormatName;

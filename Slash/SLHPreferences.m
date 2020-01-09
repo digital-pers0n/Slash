@@ -13,7 +13,6 @@ extern NSString *const SLHPreferencesNumberOfThreadsKey;
 extern NSString *const SLHPreferencesUpdateOutputNameKey;
 extern NSString *const SLHPreferencesLastUsedFormatKey;
 extern NSString *const SLHPreferencesDefaultFFMpegPath;
-extern NSString *const SLHPreferencesDefaultFFProbePath;
 extern NSString *const SLHPreferencesDefaultMPVPath;
 
 extern NSString * const SLHPreferencesDefaultScreenshotPath;
@@ -41,7 +40,6 @@ extern NSString * const SLHPreferencesScreenshotTemplateKey;
 @property  NSUserDefaults *userDefaults;
 
 @property IBOutlet NSTextField *ffmpegPathTextField;
-@property IBOutlet NSTextField *ffprobePathTextField;
 @property IBOutlet NSTextField *mpvPathTextField;
 
 @end
@@ -100,9 +98,7 @@ extern NSString * const SLHPreferencesScreenshotTemplateKey;
         if (!self.ffmpegPath) {
             self.ffmpegPath = SLHPreferencesDefaultFFMpegPath;
         }
-        if (!self.ffprobePath) {
-            self.ffprobePath = SLHPreferencesDefaultFFProbePath;
-        }
+
         if (!self.mpvPath) {
             self.mpvPath = SLHPreferencesDefaultMPVPath;
         }
@@ -221,15 +217,6 @@ fatal_error:
     [_userDefaults setObject:ffmpegPath forKey:SLHPreferencesFFMpegFilePathKey];
 }
 
-
-- (NSString *)ffprobePath {
-    return [_userDefaults objectForKey:SLHPreferencesFFProbeFilePathKey];
-}
-
-- (void)setFfprobePath:(NSString *)ffprobePath {
-    [_userDefaults setObject:ffprobePath forKey:SLHPreferencesFFProbeFilePathKey];
-}
-
 - (NSString *)mpvPath {
     return [_userDefaults objectForKey:SLHPreferencesMPVFilePathKey];
 }
@@ -280,9 +267,6 @@ fatal_error:
         switch (sender.tag) {
             case 1:
                 _ffmpegPathTextField.stringValue = value;
-                break;
-            case 2:
-                _ffprobePathTextField.stringValue = value;
                 break;
             case 3:
                 _mpvPathTextField.stringValue = value;
