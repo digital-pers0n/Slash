@@ -177,6 +177,16 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 #pragma mark - Methods
 
+- (void)updatePlayerTimePositionWithDelta:(double)seconds {
+    double newPosition = _player.timePosition + seconds;
+    if (newPosition < 0.0) {
+        newPosition = 0.0;
+    } else if (newPosition > _player.currentItem.duration) {
+        newPosition = _player.currentItem.duration;
+    }
+    _player.timePosition = newPosition;
+}
+
 - (SLHEncoderItem *)duplicateEncoderItem:(SLHEncoderItem *)sourceItem {
     SLHEncoderItem *encoderItem = _currentEncoderItem.copy;
     NSString *extension = encoderItem.outputPath.pathExtension;
@@ -460,6 +470,38 @@ typedef void (*basic_imp)(id, SEL, id);
 }
 
 #pragma mark - IBActions
+
+- (IBAction)jumpForwardFine:(id)sender {
+    [self updatePlayerTimePositionWithDelta:30.0];
+}
+
+- (IBAction)jumpBackFine:(id)sender {
+    [self updatePlayerTimePositionWithDelta:-30.0];
+}
+
+- (IBAction)jumpForward:(id)sender {
+    [self updatePlayerTimePositionWithDelta:60.0];
+}
+
+- (IBAction)jumpBack:(id)sender {
+    [self updatePlayerTimePositionWithDelta:-60.0];
+}
+
+- (IBAction)stepForwardFine:(id)sender {
+    [self updatePlayerTimePositionWithDelta:1.0];
+}
+
+- (IBAction)stepBackFine:(id)sender {
+    [self updatePlayerTimePositionWithDelta:-1.0];
+}
+
+- (IBAction)stepForward:(id)sender {
+    [self updatePlayerTimePositionWithDelta:5.0];
+}
+
+- (IBAction)stepBack:(id)sender {
+    [self updatePlayerTimePositionWithDelta:-5.0];
+}
 
 - (IBAction)showEncoderHistroy:(id)sender {
     [_encoderHistory showWindow:nil];

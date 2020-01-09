@@ -684,6 +684,95 @@ CA
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="TQC-5o-uoR"/>
+                            <menuItem title="Step Forward" keyEquivalent="" id="1p7-5K-pjH">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                <connections>
+                                    <action selector="stepForward:" target="lKY-o8-vkq" id="VX8-0c-3s3"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="QKj-xi-nQk">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Step Forward 1 Second" alternate="YES" keyEquivalent="" id="O85-H8-WzZ">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="stepForwardFine:" target="lKY-o8-vkq" id="jJ8-v7-D5T"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="NZZ-Y6-FMB">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Step Back" keyEquivalent="" id="BZb-X7-s7O">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                <connections>
+                                    <action selector="stepBack:" target="lKY-o8-vkq" id="jWB-3G-vTa"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="u3z-cS-4pL">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Step Back 1 Second" alternate="YES" keyEquivalent="" id="9DB-tw-2rB">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="stepBackFine:" target="lKY-o8-vkq" id="FVx-st-d6y"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="90e-N9-qhV">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Jump Forward" keyEquivalent="" id="OPr-St-zfE">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                <connections>
+                                    <action selector="jumpForward:" target="lKY-o8-vkq" id="dMO-7e-zqD"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="U68-y0-jZo">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Jump Forward 30 Seconds" alternate="YES" keyEquivalent="" id="sRi-f1-Xf6">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="jumpForwardFine:" target="lKY-o8-vkq" id="TzO-z1-YBJ"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="zTd-d1-S1r">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Jump Back" keyEquivalent="" id="fmC-c2-BKZ">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                <connections>
+                                    <action selector="jumpBack:" target="lKY-o8-vkq" id="IVh-N7-e46"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="lso-kw-4ZA">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Jump Back 30 Seconds" alternate="YES" keyEquivalent="" id="bwL-WR-RNW">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="jumpBackFine:" target="lKY-o8-vkq" id="b6o-Cb-YmQ"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="ucm-2M-HLf">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="xFe-dT-WyY"/>
                             <menuItem title="Toggle OSD" keyEquivalent="u" id="s66-ht-PBX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
