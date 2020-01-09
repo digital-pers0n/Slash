@@ -788,6 +788,11 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="toggleOSDFractions:" target="lKY-o8-vkq" id="5d4-0B-0Jt"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="IlU-KO-bqr">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </menuItem>
                         </items>
