@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="5100" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHWindowController">
@@ -189,7 +189,7 @@
                                                 </connections>
                                             </button>
                                             <popUpButton toolTip="Load Preset" misplaced="YES" id="QS8-0O-UhT">
-                                                <rect key="frame" x="419" y="118" width="39" height="18"/>
+                                                <rect key="frame" x="416" y="118" width="39" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="vK3-kx-OJd">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -211,14 +211,14 @@
                                                     </binding>
                                                 </connections>
                                             </popUpButton>
-                                            <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="RsO-qP-T7T">
+                                            <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="68" horizontalPageScroll="10" verticalLineScroll="68" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="RsO-qP-T7T">
                                                 <rect key="frame" x="0.0" y="0.0" width="464" height="112"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <clipView key="contentView" drawsBackground="NO" id="ukH-Ua-slV">
                                                     <rect key="frame" x="0.0" y="0.0" width="464" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="VbH-0O-BlS">
+                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="66" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="VbH-0O-BlS">
                                                             <rect key="frame" x="0.0" y="0.0" width="464" height="112"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -226,61 +226,7 @@
                                                             <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                             <tableColumns>
-                                                                <tableColumn width="100" minWidth="100" maxWidth="100" id="5KK-Mx-as8">
-                                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="smallSystem"/>
-                                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                                    </tableHeaderCell>
-                                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="LI6-TQ-EkD">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                                    <prototypeCellViews>
-                                                                        <tableCellView misplaced="YES" id="P3u-7i-pcK">
-                                                                            <rect key="frame" x="1" y="1" width="100" height="50"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                            <subviews>
-                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="lkV-h3-GDV">
-                                                                                    <rect key="frame" x="3" y="28" width="96" height="15"/>
-                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" title="00:00:00.000" id="Zlr-ts-mZH">
-                                                                                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="9ue-ZR-cau" customClass="SLHTimeFormatter"/>
-                                                                                        <font key="font" size="10" name="Monaco"/>
-                                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                                    </textFieldCell>
-                                                                                    <connections>
-                                                                                        <binding destination="P3u-7i-pcK" name="maxValue" keyPath="objectValue.intervalEnd" id="YrC-ce-0lE"/>
-                                                                                        <binding destination="P3u-7i-pcK" name="value" keyPath="objectValue.intervalStart" previousBinding="YrC-ce-0lE" id="KFf-dQ-2o8">
-                                                                                            <dictionary key="options">
-                                                                                                <bool key="NSConditionallySetsEditable" value="YES"/>
-                                                                                            </dictionary>
-                                                                                        </binding>
-                                                                                    </connections>
-                                                                                </textField>
-                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="MkW-jL-d3y">
-                                                                                    <rect key="frame" x="3" y="7" width="96" height="15"/>
-                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" title="00:00:00.000" id="aBF-5K-iAA">
-                                                                                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="MZQ-v1-yF4" customClass="SLHTimeFormatter"/>
-                                                                                        <font key="font" size="10" name="Monaco"/>
-                                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                                    </textFieldCell>
-                                                                                    <connections>
-                                                                                        <binding destination="P3u-7i-pcK" name="value" keyPath="objectValue.intervalEnd" previousBinding="UC8-W6-LiV" id="ahu-qR-RzT"/>
-                                                                                        <binding destination="P3u-7i-pcK" name="minValue" keyPath="objectValue.intervalStart" previousBinding="S3K-HJ-0Sx" id="UC8-W6-LiV"/>
-                                                                                        <binding destination="P3u-7i-pcK" name="maxValue" keyPath="objectValue.playerItem.duration" id="S3K-HJ-0Sx"/>
-                                                                                    </connections>
-                                                                                </textField>
-                                                                            </subviews>
-                                                                        </tableCellView>
-                                                                    </prototypeCellViews>
-                                                                </tableColumn>
-                                                                <tableColumn identifier="" width="357" minWidth="10" maxWidth="3.4028234663852886e+38" id="veo-Bq-9Zl">
+                                                                <tableColumn identifier="" width="461" minWidth="10" maxWidth="3.4028234663852886e+38" id="veo-Bq-9Zl">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -294,18 +240,11 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView misplaced="YES" id="nBK-Vf-O9n" customClass="SLHTrimTableCellView">
-                                                                            <rect key="frame" x="104" y="1" width="357" height="50"/>
+                                                                            <rect key="frame" x="1" y="1" width="461" height="66"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
-                                                                                <customView wantsLayer="YES" misplaced="YES" id="mUl-BP-3j7" customClass="SLHTrimView">
-                                                                                    <rect key="frame" x="3" y="20" width="349" height="28"/>
-                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                                    <connections>
-                                                                                        <outlet property="delegate" destination="-2" id="noz-qO-mgr"/>
-                                                                                    </connections>
-                                                                                </customView>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="J15-AF-dCH">
-                                                                                    <rect key="frame" x="3" y="3" width="311" height="14"/>
+                                                                                    <rect key="frame" x="5" y="48" width="415" height="14"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Sample Text" id="7XL-sX-z5V">
                                                                                         <font key="font" metaFont="smallSystem"/>
@@ -314,7 +253,7 @@
                                                                                     </textFieldCell>
                                                                                 </textField>
                                                                                 <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="U1r-fU-wB1">
-                                                                                    <rect key="frame" x="318" y="3" width="16" height="16"/>
+                                                                                    <rect key="frame" x="420" y="48" width="16" height="15"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="QDK-fb-OKI">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -325,7 +264,7 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="JMs-Ka-ajZ">
-                                                                                    <rect key="frame" x="336" y="3" width="16" height="16"/>
+                                                                                    <rect key="frame" x="438" y="48" width="16" height="15"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameFolderTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="0KI-82-9EL">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -335,6 +274,44 @@
                                                                                         <action selector="selectOutputPath:" target="-2" id="rmc-yI-Mqs"/>
                                                                                     </connections>
                                                                                 </button>
+                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="MkW-jL-d3y">
+                                                                                    <rect key="frame" x="362" y="3" width="94" height="14"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="right" title="00:00:00.000" id="aBF-5K-iAA">
+                                                                                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="MZQ-v1-yF4" customClass="SLHTimeFormatter"/>
+                                                                                        <font key="font" size="10" name="Menlo-Regular"/>
+                                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                    <connections>
+                                                                                        <binding destination="nBK-Vf-O9n" name="maxValue" keyPath="objectValue.playerItem.duration" id="wDh-hd-M01"/>
+                                                                                        <binding destination="nBK-Vf-O9n" name="minValue" keyPath="objectValue.intervalStart" previousBinding="wDh-hd-M01" id="tvX-fy-VnG"/>
+                                                                                        <binding destination="nBK-Vf-O9n" name="value" keyPath="objectValue.intervalEnd" previousBinding="tvX-fy-VnG" id="Y0l-eU-Dmh"/>
+                                                                                    </connections>
+                                                                                </textField>
+                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="lkV-h3-GDV">
+                                                                                    <rect key="frame" x="5" y="3" width="94" height="14"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="00:00:00.000" id="Zlr-ts-mZH">
+                                                                                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="9ue-ZR-cau" customClass="SLHTimeFormatter">
+                                                                                            <real key="minimum" value="0.0"/>
+                                                                                        </numberFormatter>
+                                                                                        <font key="font" size="10" name="Menlo-Regular"/>
+                                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                    <connections>
+                                                                                        <binding destination="nBK-Vf-O9n" name="maxValue" keyPath="objectValue.intervalEnd" id="KVo-yq-TyO"/>
+                                                                                        <binding destination="nBK-Vf-O9n" name="value" keyPath="objectValue.intervalStart" previousBinding="KVo-yq-TyO" id="PEX-ov-grc"/>
+                                                                                    </connections>
+                                                                                </textField>
+                                                                                <customView wantsLayer="YES" misplaced="YES" id="mUl-BP-3j7" customClass="SLHTrimView">
+                                                                                    <rect key="frame" x="7" y="19" width="447" height="27"/>
+                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                                    <connections>
+                                                                                        <outlet property="delegate" destination="-2" id="noz-qO-mgr"/>
+                                                                                    </connections>
+                                                                                </customView>
                                                                             </subviews>
                                                                             <connections>
                                                                                 <outlet property="outNameTextField" destination="J15-AF-dCH" id="ykG-EH-uOO"/>
@@ -426,7 +403,7 @@
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="0" y="0"/>
+            <point key="canvasLocation" x="0.0" y="-0.5"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="3cJ-e5-Y82" userLabel="Items Array Controller" colorLabel="IBBuiltInLabel-Yellow"/>
         <arrayController objectClassName="SLHEncoderBaseFormat" editable="NO" id="FId-6h-ocY">
