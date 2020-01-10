@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="5100" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHEncoderSettings">
@@ -15,41 +15,41 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="356" height="270"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="273"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="2p1-Gx-1oI">
-                    <rect key="frame" x="0.0" y="0.0" width="356" height="247"/>
+                <scrollView misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="2p1-Gx-1oI">
+                    <rect key="frame" x="0.0" y="0.0" width="230" height="243"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <clipView key="contentView" drawsBackground="NO" id="74D-qh-eaI" customClass="SLHClipView">
-                        <rect key="frame" x="1" y="1" width="354" height="245"/>
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="74D-qh-eaI" customClass="SLHClipView">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="243"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view id="lVK-fC-R8d">
-                                <rect key="frame" x="0.0" y="0.0" width="354" height="245"/>
+                                <rect key="frame" x="0.0" y="0.0" width="230" height="243"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </subviews>
                     </clipView>
                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="g4S-sT-oKA">
-                        <rect key="frame" x="1" y="230" width="354" height="16"/>
+                        <rect key="frame" x="0.0" y="227" width="230" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RvP-T1-jOL">
-                        <rect key="frame" x="339" y="1" width="16" height="245"/>
+                        <rect key="frame" x="215" y="0.0" width="15" height="243"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <customView id="UF1-sZ-idM" customClass="SLHTabBarView">
-                    <rect key="frame" x="0.0" y="246" width="356" height="24"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                <customView misplaced="YES" id="UF1-sZ-idM" customClass="SLHTabBarView">
+                    <rect key="frame" x="20" y="243" width="190" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-2" id="drb-9T-vu9"/>
                     </connections>
                 </customView>
             </subviews>
-            <point key="canvasLocation" x="-84" y="203"/>
+            <point key="canvasLocation" x="-279" y="215.5"/>
         </customView>
     </objects>
 </document>
