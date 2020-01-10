@@ -313,10 +313,11 @@ static void resize(void *ctx) {
         CGLSetCurrentContext(obj->cgl_context);
         mpv_opengl_fbo fbo = obj->opengl_fbo;
         int flag = 1;
-        
+        int block_time = 0;
         mpv_render_param params[] = {
             { .type = MPV_RENDER_PARAM_OPENGL_FBO, .data = &fbo },
             { .type = MPV_RENDER_PARAM_FLIP_Y,     .data = &flag },
+            { .type = MPV_RENDER_PARAM_BLOCK_FOR_TARGET_TIME, .data = &block_time },
             { 0 } };
         
         mpv_render_context_render(obj->render_context, params);
