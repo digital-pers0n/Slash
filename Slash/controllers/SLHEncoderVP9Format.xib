@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="5100" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHEncoderVP9Format">
@@ -14,19 +14,19 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView autoresizesSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY" customClass="SLHDisclosureView">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="147"/>
+        <customView autoresizesSubviews="NO" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY" customClass="SLHDisclosureView">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView id="k9D-mo-JMv">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="127"/>
+                <customView misplaced="YES" id="k9D-mo-JMv">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="130"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <userGuides>
                         <userLayoutGuide location="12" affinity="minY"/>
                     </userGuides>
                     <subviews>
                         <slider verticalHuggingPriority="750" id="Una-aQ-de5">
-                            <rect key="frame" x="81" y="70" width="160" height="17"/>
+                            <rect key="frame" x="81" y="73" width="160" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-1" maxValue="6" doubleValue="6" tickMarkPosition="above" sliderType="linear" id="eBh-2l-PZW"/>
                             <connections>
@@ -34,7 +34,7 @@
                             </connections>
                         </slider>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="umd-GV-oru">
-                            <rect key="frame" x="40" y="112" width="39" height="13"/>
+                            <rect key="frame" x="40" y="115" width="39" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="row-mt" id="HLF-fq-2ZZ">
                                 <font key="font" metaFont="system" size="10"/>
@@ -43,7 +43,7 @@
                             </textFieldCell>
                         </textField>
                         <button id="SHi-Cg-Y88">
-                            <rect key="frame" x="78" y="109" width="100" height="18"/>
+                            <rect key="frame" x="78" y="112" width="100" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="check" title="Row Based MT" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="eQl-Ac-sor">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -54,7 +54,7 @@
                             </connections>
                         </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XXi-6o-duZ">
-                            <rect key="frame" x="7" y="93" width="72" height="13"/>
+                            <rect key="frame" x="7" y="96" width="72" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="frame-parallel" id="Cjj-Bw-tUf">
                                 <font key="font" metaFont="system" size="10"/>
@@ -62,8 +62,8 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2wn-PB-e1a">
-                            <rect key="frame" x="31" y="35" width="48" height="13"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="2wn-PB-e1a">
+                            <rect key="frame" x="31" y="36" width="48" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="tile rows" id="5hC-aK-H45">
                                 <font key="font" metaFont="system" size="10"/>
@@ -71,16 +71,16 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="x2y-v5-sNb">
-                            <rect key="frame" x="228" y="11" width="15" height="22"/>
+                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="x2y-v5-sNb">
+                            <rect key="frame" x="228" y="10" width="15" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-1" maxValue="2" id="SRr-gH-zBY"/>
                             <connections>
                                 <binding destination="-2" name="value" keyPath="self.videoOptions.tile_rows" id="ukM-vB-RBG"/>
                             </connections>
                         </stepper>
-                        <textField verticalHuggingPriority="750" id="1IK-8c-saz">
-                            <rect key="frame" x="81" y="51" width="148" height="19"/>
+                        <textField verticalHuggingPriority="750" misplaced="YES" id="1IK-8c-saz">
+                            <rect key="frame" x="81" y="52" width="148" height="19"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="xe3-wI-akd">
                                 <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="5AH-aH-bs6">
@@ -95,8 +95,8 @@
                                 <binding destination="-2" name="value" keyPath="self.videoOptions.tile_columns" id="W0u-fE-n81"/>
                             </connections>
                         </textField>
-                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="UfZ-Gp-0EH">
-                            <rect key="frame" x="228" y="49" width="15" height="22"/>
+                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="UfZ-Gp-0EH">
+                            <rect key="frame" x="228" y="50" width="15" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-1" maxValue="6" doubleValue="4" id="88e-Xt-mpv"/>
                             <connections>
@@ -104,7 +104,7 @@
                             </connections>
                         </stepper>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="PWo-cw-TZZ">
-                            <rect key="frame" x="13" y="73" width="66" height="13"/>
+                            <rect key="frame" x="13" y="76" width="66" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="tile columns" id="hK7-NT-Wcl">
                                 <font key="font" metaFont="system" size="10"/>
@@ -112,16 +112,16 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <slider verticalHuggingPriority="750" id="KDY-rl-ccA">
-                            <rect key="frame" x="81" y="32" width="160" height="17"/>
+                        <slider verticalHuggingPriority="750" misplaced="YES" id="KDY-rl-ccA">
+                            <rect key="frame" x="81" y="33" width="160" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-1" maxValue="2" doubleValue="2" tickMarkPosition="above" sliderType="linear" id="Xyj-vq-q0M"/>
+                            <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-1" maxValue="2" doubleValue="-0.74735991379310351" tickMarkPosition="above" sliderType="linear" id="Xyj-vq-q0M"/>
                             <connections>
                                 <binding destination="-2" name="value" keyPath="self.videoOptions.tile_rows" id="8nh-Aj-qli"/>
                             </connections>
                         </slider>
                         <button id="ac1-xG-i9x">
-                            <rect key="frame" x="78" y="89" width="165" height="20"/>
+                            <rect key="frame" x="78" y="92" width="165" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="check" title="Frame Parallel Features" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="FaF-Ms-y4o">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -131,8 +131,8 @@
                                 <binding destination="-2" name="value" keyPath="self.videoOptions.frame_parallel" id="5GH-3k-ELa"/>
                             </connections>
                         </button>
-                        <textField verticalHuggingPriority="750" id="uzN-U1-Znk">
-                            <rect key="frame" x="81" y="13" width="148" height="19"/>
+                        <textField verticalHuggingPriority="750" misplaced="YES" id="uzN-U1-Znk">
+                            <rect key="frame" x="81" y="12" width="148" height="19"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="5gJ-Wy-yC4">
                                 <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="0Me-if-D0E">
@@ -156,7 +156,7 @@
             <connections>
                 <outlet property="contentView" destination="k9D-mo-JMv" id="E64-nA-Dsx"/>
             </connections>
-            <point key="canvasLocation" x="172" y="260.5"/>
+            <point key="canvasLocation" x="172" y="277.5"/>
         </customView>
     </objects>
 </document>
