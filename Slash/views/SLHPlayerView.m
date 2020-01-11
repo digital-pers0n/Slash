@@ -101,24 +101,6 @@
     [_viewController.videoView addSubview:_videoView];
 }
 
-#pragma mark - Overrides
-
-- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
-    [super viewWillMoveToWindow:newWindow];
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    if (newWindow) {
-        [nc addObserver:self selector:@selector(cleanUp:) name:NSWindowWillCloseNotification object:newWindow];
-    } else {
-        [nc removeObserver:self name:NSWindowWillCloseNotification object:nil];
-    }
-}
-
-//- (void)drawRect:(NSRect)dirtyRect {
-//    [super drawRect:dirtyRect];
-//    
-//    // Drawing code here.
-//}
-
 - (void)shutdown {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
