@@ -173,6 +173,9 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     /* SLHEncoderHistory */
     _encoderHistory = [[SLHEncoderHistory alloc] init];
+    
+    /* NSApplication */
+    [nc addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:NSApp];
 }
 
 #pragma mark - Methods
@@ -999,6 +1002,21 @@ typedef void (*basic_imp)(id, SEL, id);
     _player.timePosition = time;
 }
 
+#pragma mark - NSApplication Notifications
+
+- (void)applicationWillTerminate:(NSNotification *)n {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
+    if (_presetManager.hasChanges) {
+        [_presetManager savePresets];
+    }
+    [self unobservePreferences:SLHPreferences.preferences];
+    [_player shutdown];
+    _player = nil;
+    self.currentEncoderItem = nil;
+    [_itemsArrayController removeObjects:_itemsArrayController.arrangedObjects];
+}
+
 #pragma mark - NSDraggingDestination
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
@@ -1169,17 +1187,6 @@ typedef void (*basic_imp)(id, SEL, id);
 }
 
 #pragma mark - NSWindowDelegate
-
-- (void)windowWillClose:(NSNotification *)notification {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
-    if (_presetManager.hasChanges) {
-        [_presetManager savePresets];
-    }
-    [self unobservePreferences:SLHPreferences.preferences];
-    [_player shutdown];
-    _player = nil;
-}
 
 - (void)windowWillStartLiveResize:(NSNotification *)notification {
     _sideBarWidth = NSWidth(_encoderSettingsView.frame);
