@@ -1066,14 +1066,15 @@ typedef void (*basic_imp)(id, SEL, id);
     MPVPlayer *player = _player;
     MPVPlayerItem *playerItem = encoderItem.playerItem;
     if (playerItem != _currentEncoderItem.playerItem) {
-        
-        self.currentEncoderItem = encoderItem;
-        player.currentItem = playerItem;
         [player pause];
+        self.currentEncoderItem = encoderItem;
+        
         [self populatePopUpMenus:playerItem];
         [self updateWindowTitle:playerItem.url];
         [self updatePopUpMenus:encoderItem];
-    
+
+        player.currentItem = playerItem;
+ 
     } else {
         
         self.currentEncoderItem = encoderItem;
