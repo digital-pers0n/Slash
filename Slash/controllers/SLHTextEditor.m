@@ -8,7 +8,9 @@
 
 #import "SLHTextEditor.h"
 
-@interface SLHTextEditor ()
+@interface SLHTextEditor () {
+    IBOutlet NSTextView *_textView;
+}
 
 @end
 
@@ -20,7 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    _textView.smartInsertDeleteEnabled = NO;
+    _textView.automaticDataDetectionEnabled = NO;
+    _textView.automaticTextReplacementEnabled = NO;
+    _textView.automaticQuoteSubstitutionEnabled = NO;
+    _textView.automaticDashSubstitutionEnabled = NO;
+    _textView.automaticSpellingCorrectionEnabled = NO;
 }
 
 @end
