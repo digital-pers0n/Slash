@@ -350,7 +350,22 @@ static int player_relaunch(Player *p) {
     const struct timespec s = { .tv_sec = 1, .tv_nsec = 0 };
     nanosleep(&s, NULL);
     
-    return plr_connect(p);
+    result = plr_connect(p);
+    if (result != 0) {
+        return result;
+    }
+    
+    // Disable all events except "file-loaded"
+    {
+        const char cmd[] = "{ \"command\": [ \"disable_event\", \"all\" ] }\n";
+        plr_msg_send(p, cmd, sizeof(cmd) - 1);
+    }
+    {
+        const char cmd[] = "{ \"command\": [ \"enable_event\", \"file-loaded\" ] }\n";
+        plr_msg_send(p, cmd, sizeof(cmd) - 1);
+    }
+    
+    return result;
 }
 
 #pragma mark - Callbacks
