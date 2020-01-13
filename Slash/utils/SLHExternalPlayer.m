@@ -134,13 +134,7 @@ typedef Player * PlayerRef;
         _url = mediaURL;
         _fileLoaded = NO;
         _hasWindow = YES;
-        
-#if  ENABLE_SOCKET_MONITOR
-        _playerThread.name = @"com.home.SLHExternalPlayer.player-monitor";
-        _playerThread.qualityOfService = NSQualityOfServiceBackground;
-        _playerThread = [[NSThread alloc] initWithTarget:self selector:@selector(playerMonitor:) object:nil];
-        [_playerThread start];
-#endif
+        [self startEventThread];
     }
     return self;
 }
@@ -164,6 +158,17 @@ typedef Player * PlayerRef;
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationWillTerminateNotification object:nil];
 }
+
+- (void)startEventThread {
+    if (!_playerThread.executing) {
+        [_playerThread cancel];
+    }
+    _playerThread = [[NSThread alloc] initWithTarget:self selector:@selector(playerMonitor:) object:nil];
+    _playerThread.name = @"com.home.SLHExternalPlayer.player-monitor";
+    _playerThread.qualityOfService = NSQualityOfServiceBackground;
+    [_playerThread start];
+}
+
 
 #pragma mark - Properties
 
