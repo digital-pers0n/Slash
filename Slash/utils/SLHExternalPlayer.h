@@ -64,6 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)quit;
 
 /**
+ Set a video filter.
+ */
+- (void)setVideoFilter:(NSString *)string;
+
+/**
  Make the player to stay on top of other windows.
  Can be useful for moving the player window back to the front if it is covered by other windows. 
  */

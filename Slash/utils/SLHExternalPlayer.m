@@ -277,7 +277,29 @@ typedef Player * PlayerRef;
     [self setStayOnTop:NO];
 }
 
-#if ENABLE_SOCKET_MONITOR
+- (void)setVideoFilter:(NSString *)string {
+    __unsafe_unretained typeof(self) obj = self;
+    dispatch_async(_queue, ^{
+        char *cmd = nil;
+        size_t len = asprintf(&cmd, "{ \"command\": [ \"set_property\", \"vf\", \"%s\" ] }\n", string.UTF8String);
+        plr_msg_send(obj->_playerRef, cmd, len);
+        free(cmd);
+    });
+}
+
+- (void)didLoadFile {
+    _fileLoaded = YES;
+     Player *player = _playerRef;
+    while (queue_size(&_cmdQueue) > 0) {
+        void *data = nil;
+        queue_dequeue(&_cmdQueue, &data);
+        NSString *str = CFBridgingRelease(data);
+        dispatch_async(_queue, ^{
+            player_send_command(player, str.UTF8String);
+        });
+    }
+}
+
 - (void)playerMonitor:(id)context {
     const size_t buffer_size = 256;
     char buffer[buffer_size + 1];
