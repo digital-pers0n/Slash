@@ -187,6 +187,8 @@ typedef Player * PlayerRef;
                     return;
                 }
                 s->_hasWindow = YES;
+                
+                [s startEventThread];
             }
             player_load_file(s->_playerRef, s->_url.absoluteString.UTF8String);
             s->_fileLoaded = YES;
