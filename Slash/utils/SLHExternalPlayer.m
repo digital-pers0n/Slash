@@ -240,12 +240,9 @@ typedef Player * PlayerRef;
 
 - (void)performCommand:(NSString *)args {
     
-     __unsafe_unretained typeof(self) obj = self;
+    Player *player = _playerRef;
     dispatch_async(_queue, ^{
-        char *cmd = nil;
-        size_t len = asprintf(&cmd, "{ \"command\": [%s] }\n", args.UTF8String);
-        plr_msg_send(obj->_playerRef, cmd, len);
-        free(cmd);
+        player_send_command(player, args.UTF8String);
     });
     
 }
@@ -322,6 +319,13 @@ typedef Player * PlayerRef;
 }
 
 #pragma mark - Functions
+
+static void player_send_command(Player *player, const char *args) {
+    char *cmd = nil;
+    size_t len = asprintf(&cmd, "{ \"command\": [%s] }\n", args);
+    plr_msg_send(player, cmd, len);
+    free(cmd);
+}
 
 static void player_load_file(Player *p, const char *path) {
     char *cmd;
