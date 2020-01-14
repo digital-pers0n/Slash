@@ -114,23 +114,14 @@ typedef Player * PlayerRef;
         
         plr_set_callback(player, (__bridge void *)self, &mpv_callback);
         plr_set_exit_cb(player, &mpv_exit_callback);
-        if (plr_launch(player) != 0) {
+        
+        if (player_relaunch(player) != 0) {
             _error = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
                                                 code:errno
                                             userInfo:@{ NSLocalizedDescriptionKey: @(strerror(errno)) }];
             return self;
         }
 
-        const struct timespec s = { .tv_sec = 1, .tv_nsec = 0 };
-        nanosleep(&s, NULL);
-
-            if (plr_connect(player) != 0) {
-                _error = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
-                                                    code:errno
-                                                     userInfo:@{ NSLocalizedDescriptionKey: @(strerror(errno)) }];
-                return self;
-            }
-        
         _url = mediaURL;
         _fileLoaded = NO;
         _hasWindow = YES;
