@@ -6,10 +6,10 @@
 //  Copyright © 2019年 digital-pers0n. All rights reserved.
 //
 
+#import "slh_list.h"
 #import "SLHExternalPlayer.h"
 #import "slh_mpv.h"
 
-#define ENABLE_SOCKET_MONITOR 0
 
 static NSURL * defaultPlayerURL;
 static NSURL * defaultPlayerConfigURL;
@@ -23,9 +23,9 @@ typedef Player * PlayerRef;
     BOOL _hasWindow;
     dispatch_queue_t _queue;
     
-#if  ENABLE_SOCKET_MONITOR
     NSThread *_playerThread;
-#endif
+    
+    Queue _commandQueue;
 }
 
 @end
@@ -76,7 +76,7 @@ typedef Player * PlayerRef;
 - (instancetype)initWithURL:(NSURL *)url configurationFile:(NSURL *)config mediaFileURL:(NSURL *)mediaURL {
     self = [super init];
     if (self) {
-        
+        queue_init(&_commandQueue, &free);
         _queue = dispatch_get_main_queue();
         if (!url) {
             if (defaultPlayerURL) {
@@ -139,11 +139,11 @@ typedef Player * PlayerRef;
 }
 
 - (void)cleanUp {
+    queue_destroy(&_commandQueue);
     if (_playerRef) {
         
-#if  ENABLE_SOCKET_MONITOR
         [_playerThread cancel];
-#endif
+        
         plr_destroy(_playerRef);
         _playerRef = NULL;
     }
@@ -181,8 +181,9 @@ typedef Player * PlayerRef;
                 
                 [s startEventThread];
             }
+            s->_fileLoaded = NO;
             player_load_file(s->_playerRef, s->_url.absoluteString.UTF8String);
-            s->_fileLoaded = YES;
+            
         });
     }
 }
@@ -205,7 +206,6 @@ typedef Player * PlayerRef;
         
         if (!s->_fileLoaded && s->_url) {
             player_load_file(s->_playerRef, s->_url.absoluteString.UTF8String);
-            s->_fileLoaded = YES;
         }
         
         const char cmd[] = "{ \"command\": [\"set_property\", \"pause\", \"no\"] }\n";
@@ -239,6 +239,10 @@ typedef Player * PlayerRef;
 }
 
 - (void)performCommand:(NSString *)args {
+    if (!_fileLoaded) {
+        queue_enqueue(&_commandQueue, strdup(args.UTF8String));
+        return;
+    }
     
     Player *player = _playerRef;
     dispatch_async(_queue, ^{
@@ -285,23 +289,32 @@ typedef Player * PlayerRef;
 - (void)didLoadFile {
     _fileLoaded = YES;
      Player *player = _playerRef;
-    while (queue_size(&_cmdQueue) > 0) {
+    while (queue_size(&_commandQueue) > 0) {
         void *data = nil;
-        queue_dequeue(&_cmdQueue, &data);
-        NSString *str = CFBridgingRelease(data);
+        queue_dequeue(&_commandQueue, &data);
         dispatch_async(_queue, ^{
-            player_send_command(player, str.UTF8String);
+            player_send_command(player, data);
+            free(data);
         });
     }
 }
 
 - (void)playerMonitor:(id)context {
+    CFRunLoopRef rl = CFRunLoopGetMain();
     const size_t buffer_size = 256;
     char buffer[buffer_size + 1];
     while (_playerRef && !_playerThread.cancelled) {
         ssize_t len = plr_msg_recv(_playerRef, buffer, buffer_size);
         if (len > 0) {
             buffer[len] = '\0';
+    
+            if (strnstr(buffer, "file-loaded", len)) {
+                 __unsafe_unretained typeof(self) obj = self;
+                CFRunLoopPerformBlock(rl, kCFRunLoopCommonModes, ^{
+                    [obj didLoadFile];
+                });
+            }
+
             fputs(buffer, stdout);
         } else {
             break;
@@ -310,7 +323,6 @@ typedef Player * PlayerRef;
     [NSThread exit];
 }
 
-#endif
 
 #pragma mark - Notifications
 
