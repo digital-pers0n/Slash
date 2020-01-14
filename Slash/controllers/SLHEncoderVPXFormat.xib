@@ -479,6 +479,9 @@
                             <rect key="frame" x="82" y="33" width="160" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="16" maxValue="510" doubleValue="128" tickMarkPosition="above" sliderType="linear" id="RNw-IP-Zvj"/>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="uze-1u-9xh"/>
+                            </connections>
                         </slider>
                         <popUpButton verticalHuggingPriority="750" id="Rad-de-613">
                             <rect key="frame" x="79" y="52" width="166" height="22"/>
