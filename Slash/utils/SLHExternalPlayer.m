@@ -165,6 +165,7 @@ typedef Player * PlayerRef;
 
 - (void)setUrl:(NSURL *)url {
     _url = url;
+    _fileLoaded = NO;
     if (url == nil) {
         [self quit];
     } else {
@@ -181,7 +182,7 @@ typedef Player * PlayerRef;
                 
                 [s startEventThread];
             }
-            s->_fileLoaded = NO;
+            
             player_load_file(s->_playerRef, s->_url.absoluteString.UTF8String);
             
         });
