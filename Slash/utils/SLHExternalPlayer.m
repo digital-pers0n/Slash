@@ -239,6 +239,25 @@ typedef Player * PlayerRef;
     });
 }
 
+- (void)seekTo:(double)seconds {
+    if (!_fileLoaded) {
+        char *cmd = nil;
+        asprintf(&cmd, "\"seek\", %f, \"absolute+exact\"", seconds);
+        queue_enqueue(&_commandQueue, cmd);
+        return;
+    }
+    
+    Player *player = _playerRef;
+    dispatch_async(_queue, ^{
+       
+        char *cmd = nil;
+        size_t len = asprintf(&cmd, "{ \"command\": [ \"seek\", %f, \"absolute+exact\" ] }\n", seconds);
+        plr_msg_send(player, cmd, len);
+        free(cmd);
+        
+    });
+}
+
 - (void)performCommand:(NSString *)args {
     if (!_fileLoaded) {
         queue_enqueue(&_commandQueue, strdup(args.UTF8String));

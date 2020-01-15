@@ -64,6 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)quit;
 
 /**
+ Seek to a given time in seconds
+ */
+- (void)seekTo:(double)seconds;
+
+/**
  Set a video filter.
  */
 - (void)setVideoFilter:(NSString *)string;
