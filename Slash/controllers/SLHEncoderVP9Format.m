@@ -90,7 +90,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     if (![videoOptions isKindOfClass:[SLHEncoderVP9Options class]]) {
         videoOptions = [[SLHEncoderVP9Options alloc] initWithOptions:videoOptions];
         videoOptions.speed = 0;
-        videoOptions.quality = SLHVPXQualityAuto;
+        videoOptions.vpxQuality = SLHVPXQualityAuto;
         videoOptions.twoPass = NO;
         videoOptions.enableCRF = NO;
         videoOptions.lagInFrames = 25;

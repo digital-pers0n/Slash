@@ -14,7 +14,7 @@
     SLHEncoderVPXOptions *obj = [super copyWithZone:zone];
     obj->_twoPass = _twoPass;
     obj->_enableCRF = _enableCRF;
-    obj->_quality = _quality;
+    obj->_vpxQuality = _vpxQuality;
     obj->_speed = _speed;
     obj->_lagInFrames = _lagInFrames;
     obj->_enableAltRef = _enableAltRef;

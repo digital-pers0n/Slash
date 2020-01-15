@@ -105,7 +105,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     if (![videoOptions isKindOfClass:[SLHEncoderVPXOptions class]]) {
         videoOptions = [[SLHEncoderVPXOptions alloc] initWithOptions:videoOptions];
         videoOptions.speed = 0;
-        videoOptions.quality = SLHVPXQualityAuto;
+        videoOptions.vpxQuality = SLHVPXQualityAuto;
         videoOptions.twoPass = NO;
         videoOptions.enableCRF = NO;
         videoOptions.lagInFrames = 25;
@@ -222,7 +222,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     value = dict[SLHEncoderVideoVPXQualityKey];
     if (value) {
         SLHVPXQualityType quality = value.unsignedIntegerValue;
-        opts.quality = quality;
+        opts.vpxQuality = quality;
         [_qualityPopUp selectItemWithTag:quality];
     }
     
@@ -248,7 +248,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     SLHEncoderVPXOptions *opts = (id)_encoderItem.videoOptions;
     dict[SLHEncoderVideoVPXEnableTwoPassKey] = @(opts.twoPass);
     dict[SLHEncoderVideoVPXEnableCRFKey] = @(opts.enableCRF);
-    dict[SLHEncoderVideoVPXQualityKey] = @(opts.quality);
+    dict[SLHEncoderVideoVPXQualityKey] = @(opts.vpxQuality);
     dict[SLHEncoderVideoVPXSpeedKey] = @(opts.speed);
     dict[SLHEncoderVideoVPXLagInFramesKey] = @(opts.lagInFrames);
     dict[SLHEncoderVideoVPXAutoAltRefKey] = @(opts.enableAltRef);
@@ -258,7 +258,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 #pragma mark - IBActions
 
 - (IBAction)qualityDidChange:(NSPopUpButton *)sender {
-    ((SLHEncoderVPXOptions *)_encoderItem.videoOptions).quality = sender.selectedTag;
+    ((SLHEncoderVPXOptions *)_encoderItem.videoOptions).vpxQuality = sender.selectedTag;
 }
 
 - (IBAction)channelsDidChange:(NSPopUpButton *)sender {
@@ -435,11 +435,11 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     [args addObject:SLHEncoderVideoVPXLagInFramesKey];
     [args addObject:@(options.lagInFrames).stringValue];
     
-    SLHVPXQualityType quality = options.quality;
+    SLHVPXQualityType quality = options.vpxQuality;
     if (quality != SLHVPXQualityAuto) {
         
         [args addObject:SLHEncoderVideoVPXQualityKey];
-        switch (options.quality) {
+        switch (quality) {
             case SLHVPXQualityBest:
                 [args addObject:@"best"];
                 break;

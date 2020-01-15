@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXQualityType) {
 
 @property BOOL twoPass;
 @property BOOL enableCRF;
-@property SLHVPXQualityType quality;
+@property SLHVPXQualityType vpxQuality;
 @property NSInteger speed;
 @property NSUInteger lagInFrames; //0 - 25
 @property BOOL enableAltRef;
