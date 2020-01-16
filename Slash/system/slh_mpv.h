@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "slh_socket.h"
 #include "slh_process.h"
+#include <pthread/pthread.h>
 
 typedef void (*callback_f)(char *data, void *context);
 typedef void (*exit_f)(void *player, void *context);
@@ -27,6 +28,7 @@ typedef struct _Player {
     Process *proc;
     PCallback *cb;
     void *gr;               // dispatch_group_t
+    pthread_mutex_t lock;
 } Player;
 
 /**

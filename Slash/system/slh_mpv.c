@@ -11,6 +11,7 @@
 #include <string.h>
 #include <time.h>
 #include <dispatch/dispatch.h>
+#include <pthread/pthread_spis.h>
 
 #include "slh_mpv.h"
 #include "slh_util.h"
@@ -64,6 +65,11 @@ int plr_init(Player *p, char *const *args) {
     p->cb->exit = _dummy_exit_cb;
     p->gr = dispatch_group_create();
     
+    pthread_mutexattr_t mattr;
+    pthread_mutexattr_init(&mattr);
+    pthread_mutexattr_setpolicy_np(&mattr, _PTHREAD_MUTEX_POLICY_FIRSTFIT);
+    pthread_mutex_init(&p->lock, &mattr);
+    
     free(cmd);
     free(tmp);
     args_free(ac);
@@ -96,14 +102,18 @@ void plr_destroy(Player *p) {
     remove(p->socket_path);
     free(p->socket_path);
     
+    pthread_mutex_lock(&p->lock);
     if (prc_pid(p->proc) > 0) {
         prc_kill(p->proc);
     }
+    pthread_mutex_unlock(&p->lock);
+    
     dispatch_group_wait(p->gr, DISPATCH_TIME_FOREVER);
     dispatch_release(p->gr);
     prc_destroy(p->proc);
     free(p->proc);
     free(p->cb);
+    pthread_mutex_destroy(&p->lock);
 }
 
 #pragma mark - Launch
@@ -147,9 +157,13 @@ int plr_launch(Player *p) {
         });
         
         plr_read_output(prc_stdout(p->proc), p->cb);
+        
+        pthread_mutex_lock(&p->lock);
         if (prc_pid(p->proc) > 0) {
             prc_close(p->proc);
         }
+        pthread_mutex_unlock(&p->lock);
+        
         dispatch_group_leave(p->gr);
         dispatch_release(gq);
         p->cb->exit(p, p->cb->context);
