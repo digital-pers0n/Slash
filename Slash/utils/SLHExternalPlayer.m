@@ -191,25 +191,16 @@ typedef Player * PlayerRef;
 #pragma mark - Playback Control
 
 - (void)play {
-     __unsafe_unretained typeof(self) s = self;
     
+        if (!_fileLoaded && _url) {
+            // try to load the file again
+            self.url = _url;
+        }
+    
+    Player *player = _playerRef;
     dispatch_async(_queue, ^{
-        
-        if (!s->_hasWindow) {
-            if (player_relaunch(s->_playerRef) != 0) {
-                NSLog(@"%s Cannot launch mpv.", __PRETTY_FUNCTION__);
-                return;
-            }
-            s->_fileLoaded = NO;
-            s->_hasWindow = YES;
-        }
-        
-        if (!s->_fileLoaded && s->_url) {
-            player_load_file(s->_playerRef, s->_url.absoluteString.UTF8String);
-        }
-        
         const char cmd[] = "{ \"command\": [\"set_property\", \"pause\", \"no\"] }\n";
-        plr_msg_send(s->_playerRef, cmd, sizeof(cmd) - 1);
+        plr_msg_send(player, cmd, sizeof(cmd) - 1);
         
     });
 }
