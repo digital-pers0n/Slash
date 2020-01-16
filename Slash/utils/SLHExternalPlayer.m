@@ -169,22 +169,21 @@ typedef Player * PlayerRef;
     if (url == nil) {
         [self quit];
     } else {
-        __unsafe_unretained typeof(self) s = self;
+
+        if (!_hasWindow) {
+            if (player_relaunch(_playerRef) != 0) {
+                NSLog(@"%s Cannot launch mpv.", __PRETTY_FUNCTION__);
+                return;
+            }
+            _hasWindow = YES;
+            
+            [self startEventThread];
+        }
+        
+        Player *player = _playerRef;
         
         dispatch_async(_queue, ^{
-            
-            if (!s->_hasWindow) {
-                if (player_relaunch(s->_playerRef) != 0) {
-                    NSLog(@"%s Cannot launch mpv.", __PRETTY_FUNCTION__);
-                    return;
-                }
-                s->_hasWindow = YES;
-                
-                [s startEventThread];
-            }
-            
-            player_load_file(s->_playerRef, s->_url.absoluteString.UTF8String);
-            
+            player_load_file(player, url.absoluteString.UTF8String);
         });
     }
 }
