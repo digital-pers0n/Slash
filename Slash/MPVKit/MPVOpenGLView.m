@@ -109,7 +109,7 @@ typedef struct mpv_data_ {
     _mpv.cgl_context = _glContext.CGLContextObj;
     
     NSRect frame = self.bounds;
-    _mpv.opengl_fbo = (mpv_opengl_fbo) { .fbo = 1, .w = NSWidth(frame), .h = NSHeight(frame) };
+    _mpv.opengl_fbo = (mpv_opengl_fbo) { .fbo = 0, .w = NSWidth(frame), .h = NSHeight(frame) };
 }
 
 - (NSOpenGLPixelFormat *)createOpenGLPixelFormat {
