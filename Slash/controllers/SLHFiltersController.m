@@ -13,6 +13,7 @@
 #import "SLHPresetManager.h"
 #import "SLHPreferences.h"
 #import "SLHTextEditor.h"
+#import "SLHExternalPlayer.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
@@ -366,27 +367,30 @@ static inline NSString *_preampString(NSInteger val) {
     SLHFilterOptions *options = _encoderItem.filters;
     NSRect r = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);
 ;
-    if ((r.size.height <= 0) || (r.size.width <= 0)) {
+    NSInteger idx = _encoderItem.videoStreamIndex;
+    if ((r.size.height <= 0) || (r.size.width <= 0 || idx == -1)) {
         NSBeep();
         return;
     }
-    NSString *path = SLHPreferences.preferences.mpvPath;
-    if (!path) {
-        path = @"/usr/local/bin/mpv";
-    }
-    char *cmd;
-    NSInteger idx = _encoderItem.videoStreamIndex;
-    //SLHMediaItem *playerItem = _encoderItem.mediaItem;
+    
     MPVPlayerItem *playerItem = _encoderItem.playerItem;
-    if (idx > -1) {
-        r.origin.y = playerItem.tracks[idx].videoSize.height - r.size.height - r.origin.y;
+    r.origin.y = playerItem.tracks[idx].videoSize.height - NSHeight(r) - NSMinY(r);
+
+    SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+    if (player.error) {
+        NSBeep();
+        [self presentError:player.error];
+        return;
     }
-    asprintf(&cmd,
-             "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
-             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=%.3f \"%s\" &",
-             path.UTF8String, r.size.width, r.size.height, r.origin.x, r.origin.y, _encoderItem.interval.start, playerItem.url.fileSystemRepresentation);
-    system(cmd);
-    free(cmd);
+    
+    player.url = playerItem.url;
+    
+    [player setVideoFilter:[NSString stringWithFormat:@"lavfi=[crop=w=%.0f:h=%.0f:x=%.0f:y=%.0f]",
+                            NSWidth(r), NSHeight(r), NSMinX(r), NSMinY(r)]];
+    [player seekTo:_encoderItem.interval.start];
+    [player play];
+    [player orderFront];
+    
 }
 
 - (IBAction)detectCropArea:(id)sender {

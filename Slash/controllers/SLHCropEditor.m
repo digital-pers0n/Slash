@@ -12,6 +12,7 @@
 #import "SLHFilterOptions.h"
 #import "SLHPreferences.h"
 #import "SLHSliderCell.h"
+#import "SLHExternalPlayer.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
@@ -195,13 +196,22 @@
         NSBeep();
         return;
     }
-    char *cmd;
-    asprintf(&cmd,
-             "%s --no-terminal --loop=yes --osd-fractions --osd-level=3 "
-             " -vf=lavfi=[crop=%.0f:%.0f:%.0f:%.0f] --start=%.3f \"%s\" &",
-             _mpvPath.UTF8String, r.size.width, r.size.height, r.origin.x, _imageView.imageSize.height - r.size.height - r.origin.y, _startTime, _encoderItem.playerItem.url.fileSystemRepresentation);
-    system(cmd);
-    free(cmd);
+    
+    SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+    if (player.error) {
+        NSBeep();
+        [self presentError:player.error];
+        return;
+    }
+    
+    player.url = _encoderItem.playerItem.url;
+
+    [player setVideoFilter:[NSString stringWithFormat:@"lavfi=[crop=w=%.0f:h=%.0f:x=%.0f:y=%.0f]",
+                            NSWidth(r), NSHeight(r), NSMinX(r), _imageView.imageSize.height - NSHeight(r) - NSMinY(r)]];
+    [player seekTo:_startTime];
+    [player play];
+    [player orderFront];
+ 
 }
 
 // Problems (Tested under macOS 10.11)
