@@ -105,6 +105,7 @@ NSString *const SLHEncoderVideoH264ContainerTypeKey = @"containerType";
 
 NSString *const SLHEncoderVideoVPXEnableTwoPassKey = @"enableTwoPass";
 NSString *const SLHEncoderVideoVPXEnableCRFKey     = @"enableCRF";
+NSString *const SLHEncoderVideoVPXUseVorbisAudioKey = @"useVorbisAudio";
 
 NSString *const SLHEncoderUniversalVideoArgumentsKey = @"videoArguments";
 NSString *const SLHEncoderUniversalAudioArgumentsKey = @"audioArguments";

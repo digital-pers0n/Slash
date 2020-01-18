@@ -18,6 +18,7 @@
     obj->_speed = _speed;
     obj->_lagInFrames = _lagInFrames;
     obj->_enableAltRef = _enableAltRef;
+    obj->_useVorbisAudio = _useVorbisAudio;
     return obj;
 }
 

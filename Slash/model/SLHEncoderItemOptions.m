@@ -22,6 +22,7 @@
         _maxBitrate = options.maxBitrate;
         _crf = options.crf;
         _maxGopSize = options.maxGopSize;
+        _quality = options.quality;
         _sampleRate = options.sampleRate;
         _numberOfChannels = options.numberOfChannels;
     }
@@ -38,6 +39,7 @@
     item->_maxBitrate = _maxBitrate;
     item->_crf = _crf;
     item->_maxGopSize = _maxGopSize;
+    item->_quality = _quality;
     item->_sampleRate = _sampleRate;
     item->_numberOfChannels = _numberOfChannels;
     return item;

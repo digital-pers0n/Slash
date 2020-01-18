@@ -27,6 +27,7 @@ extern NSString *const SLHEncoderAudioCodecKey;
 extern NSString *const SLHEncoderAudioBitrateKey;
 extern NSString *const SLHEncoderAudioSampleRateKey;
 extern NSString *const SLHEncoderAudioChannelsKey;
+extern NSString *const SLHEncoderAudioQualityKey;
 
 @interface SLHEncoderBaseFormat () {
     SLHFileInfo *_fileInfo;
@@ -126,6 +127,11 @@ extern NSString *const SLHEncoderAudioChannelsKey;
     if (val) {
         opts.numberOfChannels = val.unsignedIntegerValue;
     }
+    
+    val = dict[SLHEncoderAudioQualityKey];
+    if (val) {
+        opts.quality = val.unsignedIntegerValue;
+    }
 }
 
 - (NSDictionary *)dictionaryRepresentation {
@@ -172,6 +178,7 @@ extern NSString *const SLHEncoderAudioChannelsKey;
     dict[SLHEncoderAudioBitrateKey] = @(opts.bitRate);
     dict[SLHEncoderAudioSampleRateKey] = @(opts.sampleRate);
     dict[SLHEncoderAudioChannelsKey] = @(opts.numberOfChannels);
+    dict[SLHEncoderAudioQualityKey] = @(opts.quality);
     
     str = opts.codecName;
     if (str) {

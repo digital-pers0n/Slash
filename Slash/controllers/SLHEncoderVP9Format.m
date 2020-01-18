@@ -113,6 +113,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         NSUInteger aBitRate = audioOptions.bitRate;
         audioOptions.bitRate = (aBitRate) ? aBitRate : 128;
         audioOptions.numberOfChannels = 2;
+        audioOptions.quality = 3;
     }
     self.videoOptions = videoOptions;
     _vpxFmt.encoderItem = encoderItem;

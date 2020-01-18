@@ -34,6 +34,7 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderAudioBitrateKey,
                 *const SLHEncoderAudioSampleRateKey,
                 *const SLHEncoderAudioChannelsKey,
+                *const SLHEncoderAudioQualityKey,
                 *const SLHEncoderVideoCodecKey,
                 *const SLHEncoderVideoBitrateKey,
                 *const SLHEncoderVideoMaxBitrateKey,
@@ -48,12 +49,18 @@ extern NSString *const SLHEncoderMediaMapKey,
                 *const SLHEncoderVideoVPXQualityKey,
                 *const SLHEncoderVideoVPXAutoAltRefKey,
                 *const SLHEncoderVideoVPXEnableTwoPassKey,
-                *const SLHEncoderVideoVPXEnableCRFKey;
+                *const SLHEncoderVideoVPXEnableCRFKey,
+                *const SLHEncoderVideoVPXUseVorbisAudioKey;
 
 typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     SLHVPXAudioChannels1 = 1,
     SLHVPXAudioChannels2,
     SLHVPXAudioChannels51 = 6,
+};
+
+typedef NS_ENUM(NSUInteger, SLHVPXAudioCodecType) {
+    SLHVPXAudioCodecOpus = 0,
+    SLHVPXAudioCodecVorbis = 1
 };
 
 @interface SLHEncoderVPXFormat () {
@@ -64,7 +71,7 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     IBOutlet NSView *_audioView;
     IBOutlet NSPopUpButton *_qualityPopUp;
     IBOutlet NSPopUpButton *_channelsPopUp;
-    
+    IBOutlet NSPopUpButton *_audioCodecPopUp;
 }
 
 @property SLHEncoderVPXOptions *options;
@@ -124,13 +131,14 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         NSUInteger aBitRate = audioOptions.bitRate;
         audioOptions.bitRate = (aBitRate) ? aBitRate : 128;
         audioOptions.numberOfChannels = SLHVPXAudioChannels2;
+        audioOptions.quality = 3;
     }
     
     self.options = videoOptions;
     if (self.view) {
-        [_qualityPopUp selectItemWithTag:videoOptions.quality];
+        [_qualityPopUp selectItemWithTag:videoOptions.vpxQuality];
         [_channelsPopUp selectItemWithTag:audioOptions.numberOfChannels];
-        
+        [_audioCodecPopUp selectItemWithTag:(_options.useVorbisAudio) ? SLHVPXAudioCodecVorbis : SLHVPXAudioCodecOpus];
         _filters.encoderItem = _encoderItem;
     }
 }
@@ -241,6 +249,17 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         opts.enableAltRef = value.boolValue;
     }
     
+    value = dict[SLHEncoderVideoVPXUseVorbisAudioKey];
+    if (value) {
+        BOOL useVorbis = value.boolValue;
+        opts.useVorbisAudio = useVorbis;
+        SLHVPXAudioCodecType codecTag = (useVorbis) ? SLHVPXAudioCodecVorbis : SLHVPXAudioCodecOpus;
+        [_audioCodecPopUp selectItemWithTag:codecTag];
+    } else {
+        opts.useVorbisAudio = NO;
+        [_audioCodecPopUp selectItemWithTag:SLHVPXAudioCodecOpus];
+    }
+    
 }
 
 - (NSDictionary *)dictionaryRepresentation {
@@ -252,10 +271,21 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
     dict[SLHEncoderVideoVPXSpeedKey] = @(opts.speed);
     dict[SLHEncoderVideoVPXLagInFramesKey] = @(opts.lagInFrames);
     dict[SLHEncoderVideoVPXAutoAltRefKey] = @(opts.enableAltRef);
+    dict[SLHEncoderVideoVPXUseVorbisAudioKey] = @(opts.useVorbisAudio);
     return dict;
 }
 
 #pragma mark - IBActions
+
+- (IBAction)audioCodecDidChange:(NSPopUpButton *)sender {
+    if (sender.selectedTag == SLHVPXAudioCodecOpus) {
+        _options.useVorbisAudio = NO;
+        _encoderItem.audioOptions.codecName = @"libopus";
+    } else {
+        _options.useVorbisAudio = YES;
+        _encoderItem.audioOptions.codecName = @"libvorbis";
+    }
+}
 
 - (IBAction)qualityDidChange:(NSPopUpButton *)sender {
     ((SLHEncoderVPXOptions *)_encoderItem.videoOptions).vpxQuality = sender.selectedTag;
@@ -330,6 +360,18 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
         menuItem = [[NSMenuItem alloc] initWithTitle:@"5.1" action:nil keyEquivalent:@""];
         menuItem.tag = SLHVPXAudioChannels51;
         [menu addItem:menuItem];
+    
+    }
+    {   // audioCodecPopUp
+        menu = _audioCodecPopUp.menu;
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Opus" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHVPXAudioCodecOpus;
+        [menu addItem:menuItem];
+        
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"Vorbis" action:nil keyEquivalent:@""];
+        menuItem.tag = SLHVPXAudioCodecVorbis;
+        [menu addItem:menuItem];
         
     }
 
@@ -337,9 +379,18 @@ typedef NS_ENUM(NSUInteger, SLHVPXAudioChannelsType) {
 
 - (NSArray *)audioArguments {
     SLHEncoderItemOptions *audioOpts = _encoderItem.audioOptions;
+    NSString *bitrateTypeKey;
+    NSString *bitrateValue;
+    if (_options.useVorbisAudio) {
+        bitrateTypeKey = SLHEncoderAudioQualityKey;
+        bitrateValue = @(audioOpts.quality).stringValue;
+    } else {
+        bitrateTypeKey = SLHEncoderAudioBitrateKey;
+        bitrateValue = @(audioOpts.bitRate * 1000).stringValue;
+    }
     NSArray *args = @[
                       SLHEncoderAudioCodecKey, audioOpts.codecName,
-                      SLHEncoderAudioBitrateKey, @(audioOpts.bitRate * 1000).stringValue,
+                      bitrateTypeKey, bitrateValue,
                       SLHEncoderAudioChannelsKey, @(audioOpts.numberOfChannels).stringValue
                       ];
     return args;

@@ -23,5 +23,6 @@ typedef NS_ENUM(NSUInteger, SLHVPXQualityType) {
 @property NSInteger speed;
 @property NSUInteger lagInFrames; //0 - 25
 @property BOOL enableAltRef;
+@property (nonatomic) BOOL useVorbisAudio;
 
 @end
