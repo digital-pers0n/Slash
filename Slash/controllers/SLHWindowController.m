@@ -667,9 +667,10 @@ typedef void (*basic_imp)(id, SEL, id);
         }
     } else {
         _externalPlayer.url = _currentEncoderItem.playerItem.url;
-        [_externalPlayer orderFront];
     }
     [_externalPlayer play];
+    [_externalPlayer orderFront];
+
 }
 
 - (IBAction)previewSegment:(id)sender {
@@ -685,9 +686,9 @@ typedef void (*basic_imp)(id, SEL, id);
         }
     } else {
         _externalPlayer.url = [NSURL fileURLWithPath:_lastEncodedMediaFilePath];
-        [_externalPlayer orderFront];
     }
     [_externalPlayer play];
+    [_externalPlayer orderFront];
 }
 
 - (IBAction)addSelectionToQueue:(id)sender {
