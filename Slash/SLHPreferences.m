@@ -26,6 +26,11 @@ extern NSString * const SLHPreferencesScreenshotTemplateKey;
     
     IBOutlet NSPopUpButton *_outputPathPopUp;
     IBOutlet NSPopUpButton *_screenshotFormatPopUp;
+    IBOutlet NSToolbar *_toolbar;
+    IBOutlet NSView *_generalPrefsView;
+    IBOutlet NSView *_mpvPrefsView;
+    
+    __weak NSView *_currentPrefsView;
     
     NSMutableArray <NSString *> *_recentOutputPaths;
     NSString *_currentOutputPath;
@@ -198,7 +203,8 @@ fatal_error:
     }
     
     [_screenshotFormatPopUp selectItemWithTitle:self.screenshotFormat];
-    
+    [self showPrefsView:_generalPrefsView];
+    _toolbar.selectedItemIdentifier = _toolbar.visibleItems.firstObject.itemIdentifier;
 }
 
 - (BOOL)outputPathSameAsInput {
@@ -257,7 +263,41 @@ fatal_error:
     return [_userDefaults stringForKey:SLHPreferencesScreenshotTemplateKey];
 }
 
+- (void)showPrefsView:(NSView *)view {
+    if (view == _currentPrefsView) {
+        return;
+    }
+    
+    NSWindow *window = self.window;
+    if (![window makeFirstResponder:window]) {
+        NSBeep();
+        return;
+    }
+    NSSize currentSize = window.contentView.frame.size;
+    
+    NSSize newSize = view.frame.size;
+    NSRect windowFrame = window.frame;
+    CGFloat deltaH = newSize.height - currentSize.height;
+    CGFloat deltaW = newSize.width - currentSize.width;
+    windowFrame.size.height += deltaH;
+    windowFrame.size.width += deltaW;
+    windowFrame.origin.y -= deltaH;
+    
+    [_currentPrefsView removeFromSuperview];
+    [window setFrame:windowFrame display:YES animate:YES];
+    [window.contentView addSubview:view];
+    _currentPrefsView = view;
+}
+
 #pragma mark - IBActions
+
+- (IBAction)showGeneralPrefs:(id)sender {
+    [self showPrefsView:_generalPrefsView];
+}
+
+- (IBAction)showMPVPrefs:(id)sender {
+    [self showPrefsView:_mpvPrefsView];
+}
 
 - (IBAction)selectFile:(NSButton *)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
