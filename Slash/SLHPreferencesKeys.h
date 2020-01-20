@@ -12,5 +12,7 @@
 extern NSString * const SLHPreferencesScreenshotPathKey;
 extern NSString * const SLHPreferencesScreenshotFormatKey;
 extern NSString * const SLHPreferencesScreenshotTemplateKey;
+extern NSString * const SLHPreferencesScreenshotJPGQualityKey;
+extern NSString * const SLHPreferencesScreenshotPNGCompressionKey;
 
 #endif /* SLHPreferencesKeys_h */

@@ -59,6 +59,12 @@ extern NSString * const MPVPlayerPropertyScreenshotFormat;
 /** screenshot-template */
 extern NSString * const MPVPlayerPropertyScreenshotTemplate;
 
+/** screenshot-jpeg-quality */
+extern NSString * const MPVPlayerPropertyScreenshotJPGQuality;
+
+/** screenshot-png-compression */
+extern NSString * const MPVPlayerPropertyScreenshotPNGCompression;
+
 /** osd-level */
 extern NSString * const MPVPlayerPropertyOSDLevel;
 

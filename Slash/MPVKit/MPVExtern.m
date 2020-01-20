@@ -19,24 +19,27 @@ NSString * const MPVPlayerCommandScreenshotToFile   = @"screenshot-to-file";
 
 #pragma mark - Properties
 
-NSString * const MPVPlayerPropertyMute                  = @"mute";
-NSString * const MPVPlayerPropertySpeed                 = @"speed";
-NSString * const MPVPlayerPropertyTimePosition          = @"time-pos";
-NSString * const MPVPlayerPropertyPercentPosition       = @"percent-pos";
-NSString * const MPVPlayerPropertyVolume                = @"volume";
-NSString * const MPVPlayerPropertyPause                 = @"pause";
-NSString * const MPVPlayerPropertyFilename              = @"filename";
-NSString * const MPVPlayerPropertyDuration              = @"duration";
-NSString * const MPVPlayerPropertyABLoopA               = @"ab-loop-a";
-NSString * const MPVPlayerPropertyABLoopB               = @"ab-loop-b";
-NSString * const MPVPlayerPropertyVideoID               = @"vid";
-NSString * const MPVPlayerPropertyAudioID               = @"aid";
-NSString * const MPVPlayerPropertySubtitleID            = @"sid";
-NSString * const MPVPlayerPropertyScreenshotDirectory   = @"screenshot-directory";
-NSString * const MPVPlayerPropertyScreenshotFormat      = @"screenshot-format";
-NSString * const MPVPlayerPropertyScreenshotTemplate    = @"screenshot-template";
-NSString * const MPVPlayerPropertyOSDLevel              = @"osd-level";
-NSString * const MPVPlayerPropertyOSDFractions          = @"osd-fractions";
+NSString * const MPVPlayerPropertyMute                      = @"mute";
+NSString * const MPVPlayerPropertySpeed                     = @"speed";
+NSString * const MPVPlayerPropertyTimePosition              = @"time-pos";
+NSString * const MPVPlayerPropertyPercentPosition           = @"percent-pos";
+NSString * const MPVPlayerPropertyVolume                    = @"volume";
+NSString * const MPVPlayerPropertyPause                     = @"pause";
+NSString * const MPVPlayerPropertyFilename                  = @"filename";
+NSString * const MPVPlayerPropertyDuration                  = @"duration";
+NSString * const MPVPlayerPropertyABLoopA                   = @"ab-loop-a";
+NSString * const MPVPlayerPropertyABLoopB                   = @"ab-loop-b";
+NSString * const MPVPlayerPropertyVideoID                   = @"vid";
+NSString * const MPVPlayerPropertyAudioID                   = @"aid";
+NSString * const MPVPlayerPropertySubtitleID                = @"sid";
+NSString * const MPVPlayerPropertyScreenshotDirectory       = @"screenshot-directory";
+NSString * const MPVPlayerPropertyScreenshotFormat          = @"screenshot-format";
+NSString * const MPVPlayerPropertyScreenshotTemplate        = @"screenshot-template";
+NSString * const MPVPlayerPropertyScreenshotJPGQuality      = @"screenshot-jpeg-quality";
+NSString * const MPVPlayerPropertyScreenshotPNGCompression  = @"screenshot-png-compression";
+NSString * const MPVPlayerPropertyOSDLevel                  = @"osd-level";
+NSString * const MPVPlayerPropertyOSDFractions              = @"osd-fractions";
+
 
 #pragma mark - Notifications
 

@@ -7,6 +7,7 @@
 //
 
 #import "SLHPreferences.h"
+#import "SLHPreferencesKeys.h"
 
 extern NSString *const SLHPreferencesDefaultOutputPath;
 extern NSString *const SLHPreferencesNumberOfThreadsKey;
@@ -21,6 +22,9 @@ extern NSString * const SLHPreferencesDefaultScreenshotTemplate;
 extern NSString * const SLHPreferencesScreenshotPathKey;
 extern NSString * const SLHPreferencesScreenshotFormatKey;
 extern NSString * const SLHPreferencesScreenshotTemplateKey;
+
+#define SLHPreferencesDefaultPNGCompression     7
+#define SLHPreferencesDefaultJPGQuality         90
 
 @interface SLHPreferences () <NSWindowDelegate> {
     
@@ -120,6 +124,13 @@ extern NSString * const SLHPreferencesScreenshotTemplateKey;
             self.screenshotTemplate = SLHPreferencesDefaultScreenshotTemplate;
         }
         
+        if (![_userDefaults valueForKey:SLHPreferencesScreenshotJPGQualityKey]) {
+            self.screenshotJPGQuality = SLHPreferencesDefaultJPGQuality;
+        }
+        
+        if (![_userDefaults valueForKey:SLHPreferencesScreenshotPNGCompressionKey]) {
+            self.screenshotPNGCompression = SLHPreferencesDefaultPNGCompression;
+        }
         
     }
     return self;
@@ -261,6 +272,22 @@ fatal_error:
 
 - (NSString *)screenshotTemplate {
     return [_userDefaults stringForKey:SLHPreferencesScreenshotTemplateKey];
+}
+
+- (void)setScreenshotJPGQuality:(NSInteger)screenshotJPGQuality {
+    [_userDefaults setInteger:screenshotJPGQuality forKey:SLHPreferencesScreenshotJPGQualityKey];
+}
+
+- (NSInteger)screenshotJPGQuality {
+    return [_userDefaults integerForKey:SLHPreferencesScreenshotJPGQualityKey];
+}
+
+- (void)setScreenshotPNGCompression:(NSInteger)screenshotPNGCompression {
+    [_userDefaults setInteger:screenshotPNGCompression forKey:SLHPreferencesScreenshotPNGCompressionKey];
+}
+
+- (NSInteger)screenshotPNGCompression {
+    return [_userDefaults integerForKey:SLHPreferencesScreenshotPNGCompressionKey];
 }
 
 - (void)showPrefsView:(NSView *)view {

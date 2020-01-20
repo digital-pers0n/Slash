@@ -28,7 +28,8 @@ NSString * const SLHPreferencesDefaultScreenshotTemplate    = @"%F-%wH-%wM-%wS.%
 NSString * const SLHPreferencesScreenshotPathKey            = @"screenshotPath";
 NSString * const SLHPreferencesScreenshotFormatKey          = @"screenshotFormat";
 NSString * const SLHPreferencesScreenshotTemplateKey        = @"screenshotTemplate";
-
+NSString * const SLHPreferencesScreenshotJPGQualityKey      = @"screenshotJPGQuality";
+NSString * const SLHPreferencesScreenshotPNGCompressionKey  = @"screenshotPNGCompression";
 
 
 #pragma mark - SLHMetadataItem

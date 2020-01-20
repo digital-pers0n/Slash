@@ -220,18 +220,18 @@
             <point key="canvasLocation" x="378.5" y="417"/>
         </customView>
         <customView misplaced="YES" id="sIA-6R-rcS">
-            <rect key="frame" x="0.0" y="0.0" width="466" height="154"/>
+            <rect key="frame" x="0.0" y="0.0" width="466" height="234"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Screenshots" id="ZN2-Ce-B1c">
-                    <rect key="frame" x="17" y="16" width="432" height="128"/>
+                    <rect key="frame" x="17" y="16" width="432" height="208"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="D7W-sv-c7J">
-                        <rect key="frame" x="1" y="1" width="430" height="112"/>
+                        <rect key="frame" x="1" y="1" width="430" height="192"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <popUpButton toolTip="Screenshot format" verticalHuggingPriority="750" misplaced="YES" id="st0-gf-vhn">
-                                <rect key="frame" x="126" y="17" width="86" height="22"/>
+                                <rect key="frame" x="126" y="97" width="86" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="jpg" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="brm-S6-Ttk" id="Efc-Jk-9ak">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -248,7 +248,7 @@
                                 </connections>
                             </popUpButton>
                             <button misplaced="YES" tag="2" id="g7X-cG-WJa">
-                                <rect key="frame" x="394" y="48" width="16" height="16"/>
+                                <rect key="frame" x="394" y="128" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="3Os-TG-40X">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -259,7 +259,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="cAp-MM-hhU">
-                                <rect key="frame" x="56" y="22" width="67" height="14"/>
+                                <rect key="frame" x="56" y="102" width="67" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Format:" id="oNr-PD-XrT">
                                     <font key="font" metaFont="smallSystem"/>
@@ -268,7 +268,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Screenshot template name. (See description of the --screenshot-template option in the mpv manual for more info.)" verticalHuggingPriority="750" misplaced="YES" id="ww5-12-8QP">
-                                <rect key="frame" x="129" y="46" width="260" height="19"/>
+                                <rect key="frame" x="129" y="126" width="260" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="CwS-UZ-wa9">
                                     <font key="font" metaFont="smallSystem"/>
@@ -280,7 +280,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="YYy-hT-XXP">
-                                <rect key="frame" x="29" y="48" width="94" height="14"/>
+                                <rect key="frame" x="29" y="128" width="94" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Template name:" id="MzD-4u-GIb">
                                     <font key="font" metaFont="smallSystem"/>
@@ -289,7 +289,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Screenshot output path" verticalHuggingPriority="750" misplaced="YES" id="NzP-mZ-GkC">
-                                <rect key="frame" x="129" y="73" width="260" height="19"/>
+                                <rect key="frame" x="129" y="153" width="260" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="cKA-Fi-uH6">
                                     <font key="font" metaFont="smallSystem"/>
@@ -301,7 +301,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="GLK-eQ-6kY">
-                                <rect key="frame" x="18" y="75" width="105" height="14"/>
+                                <rect key="frame" x="18" y="155" width="105" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Output directory:" id="r1U-rI-Ao8">
                                     <font key="font" metaFont="smallSystem"/>
@@ -310,7 +310,7 @@
                                 </textFieldCell>
                             </textField>
                             <button misplaced="YES" tag="2" id="pff-me-QBw">
-                                <rect key="frame" x="394" y="75" width="16" height="16"/>
+                                <rect key="frame" x="394" y="155" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="oaR-1t-D3u">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -320,11 +320,129 @@
                                     <action selector="selectScreenshotSavePath:" target="-2" id="Sar-87-5Ki"/>
                                 </connections>
                             </button>
+                            <slider verticalHuggingPriority="750" misplaced="YES" id="Cbl-FH-cIM">
+                                <rect key="frame" x="129" y="72" width="170" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" numberOfTickMarks="10" sliderType="linear" id="Wym-58-puJ"/>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.screenshotJPGQuality" id="7qa-d5-3YT"/>
+                                </connections>
+                            </slider>
+                            <slider verticalHuggingPriority="750" misplaced="YES" id="E4z-AF-pi3">
+                                <rect key="frame" x="129" y="32" width="170" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9" doubleValue="9" tickMarkPosition="above" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="linear" id="liU-b2-O0C"/>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.screenshotPNGCompression" id="6eU-4j-GDI"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="HEs-G8-6AA">
+                                <rect key="frame" x="54" y="75" width="69" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="JPG Quality:" id="ob5-s0-Jl6">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="gBU-kD-KeL">
+                                <rect key="frame" x="20" y="35" width="103" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="PNG Compression:" id="1cH-KN-BMb">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="rI3-e1-sGg">
+                                <rect key="frame" x="376" y="71" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" id="fZP-Eu-mGF"/>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.screenshotJPGQuality" id="XGN-Kq-wxN"/>
+                                </connections>
+                            </stepper>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="p9s-rB-YKq">
+                                <rect key="frame" x="376" y="31" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="9" id="VI7-Ee-kF9"/>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.screenshotPNGCompression" id="O8D-4L-eJm"/>
+                                </connections>
+                            </stepper>
+                            <textField verticalHuggingPriority="750" misplaced="YES" id="27O-4x-vX5">
+                                <rect key="frame" x="307" y="73" width="70" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="xbI-Rg-BVl">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="JQz-4D-2Ao">
+                                        <real key="minimum" value="0.0"/>
+                                        <real key="maximum" value="100"/>
+                                    </numberFormatter>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.screenshotJPGQuality" id="OkN-eD-IFw"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" misplaced="YES" id="Zj4-qC-vQU">
+                                <rect key="frame" x="307" y="33" width="70" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="d5m-9W-lUi">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="WHq-t3-acb">
+                                        <real key="minimum" value="0.0"/>
+                                        <real key="maximum" value="9"/>
+                                    </numberFormatter>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.screenshotPNGCompression" id="rgf-PS-p3Z"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="9mO-Dw-7Vk">
+                                <rect key="frame" x="127" y="60" width="37" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Worst" id="mKP-3W-x82">
+                                    <font key="font" metaFont="miniSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="5Pe-ze-NWF">
+                                <rect key="frame" x="264" y="60" width="37" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Best" id="b1o-AP-GyU">
+                                    <font key="font" metaFont="miniSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Idj-hR-bW0">
+                                <rect key="frame" x="127" y="20" width="48" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Fastest" id="2mr-kv-Uf0">
+                                    <font key="font" metaFont="miniSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="7Sz-XC-lic">
+                                <rect key="frame" x="251" y="20" width="50" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Slowest" id="nvO-gM-EkK">
+                                    <font key="font" metaFont="miniSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                 </box>
             </subviews>
-            <point key="canvasLocation" x="317" y="630"/>
+            <point key="canvasLocation" x="317" y="670"/>
         </customView>
     </objects>
     <resources>

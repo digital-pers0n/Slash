@@ -163,6 +163,13 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     [player setString:appPrefs.screenshotFormat
           forProperty:MPVPlayerPropertyScreenshotFormat];
+    
+    [player setInteger:appPrefs.screenshotJPGQuality
+           forProperty:MPVPlayerPropertyScreenshotJPGQuality];
+    
+    [player setInteger:appPrefs.screenshotPNGCompression
+           forProperty:MPVPlayerPropertyScreenshotPNGCompression];
+    
     [self observePreferences:appPrefs];
     
     /* SLHExternalPlayer */
@@ -353,15 +360,27 @@ static char SLHPreferencesKVOContext;
            forProperty:MPVPlayerPropertyScreenshotDirectory];
 }
 
+- (void)screenshotJPGQualityDidChange:(NSNumber *)newValue {
+    [_player setInteger:newValue.integerValue
+            forProperty:MPVPlayerPropertyScreenshotJPGQuality];
+}
+
+- (void)screenshotPNGCompressionDidChange:(NSNumber *)newValue {
+    [_player setInteger:newValue.integerValue
+            forProperty:MPVPlayerPropertyScreenshotPNGCompression];
+}
+
 static inline SLHMethodAddress *addressOf(id target, SEL action) {
     return [SLHMethodAddress methodAddressWithTarget:target selector:action];
 }
 
 - (void)observePreferences:(SLHPreferences *)appPrefs {
     _observedPrefs = @{
-                       SLHPreferencesScreenshotPathKey     : addressOf(self, @selector(screenshotPathDidChange:)),
-                       SLHPreferencesScreenshotFormatKey   : addressOf(self, @selector(screenshotFormatDidChange:)),
-                       SLHPreferencesScreenshotTemplateKey : addressOf(self, @selector(screenshotTemplateDidChange:))
+                       SLHPreferencesScreenshotPathKey           : addressOf(self, @selector(screenshotPathDidChange:)),
+                       SLHPreferencesScreenshotFormatKey         : addressOf(self, @selector(screenshotFormatDidChange:)),
+                       SLHPreferencesScreenshotTemplateKey       : addressOf(self, @selector(screenshotTemplateDidChange:)),
+                       SLHPreferencesScreenshotJPGQualityKey     : addressOf(self, @selector(screenshotJPGQualityDidChange:)),
+                       SLHPreferencesScreenshotPNGCompressionKey : addressOf(self, @selector(screenshotPNGCompressionDidChange:))
                        };
     
     for (NSString *key in _observedPrefs) {

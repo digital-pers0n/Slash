@@ -37,5 +37,7 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property NSString *screenshotPath;
 @property NSString *screenshotTemplate;
 @property NSString *screenshotFormat;
+@property NSInteger screenshotJPGQuality;
+@property NSInteger screenshotPNGCompression;
 
 @end
