@@ -42,8 +42,11 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     NSArray *_volumeButtonIcons;
     SLHVolumeIcon _currentVolumeIcon;
     
+    dispatch_queue_t _bg_queue;
     dispatch_queue_t _timer_queue;
     dispatch_source_t _timer;
+    
+    CFRunLoopRef _main_runloop;
 }
 
 @property (nonatomic) double duration;
@@ -185,8 +188,13 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _main_runloop = CFRunLoopGetMain();
     _timer_queue = dispatch_get_main_queue();
+    
+    dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(
+                                                                         DISPATCH_QUEUE_SERIAL,
+                                                                         QOS_CLASS_USER_INTERACTIVE, 0);
+    _bg_queue = dispatch_queue_create("com.home.MPVOpenGLView.render-queue", attr);
 
     bindObject(_textField, doubleValue, self.currentPosition);
     bindObject(_seekBar, doubleValue, self.currentPosition);
@@ -325,39 +333,56 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     }
 }
 
-- (IBAction)takeScreenShot:(id)sender {
+- (IBAction)takeScreenShot:(NSButton *)sender {
     
-    NSError *error = nil;
-    
+    sender.enabled = NO;
+    __weak MPVPlayer *player = _player;
+    CFRunLoopRef main_rl = _main_runloop;
     if (NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption) {
         NSSavePanel *panel = [NSSavePanel savePanel];
         panel.nameFieldStringValue = [_player.currentItem.url.lastPathComponent.stringByDeletingPathExtension stringByAppendingPathExtension:SLHPreferences.preferences.screenshotFormat];
         if ([panel runModal] == NSModalResponseOK) {
             NSURL *url = panel.URL;
-  
-            if (![_player takeScreenshotTo:url includeSubtitles:NO error:&error]) {
-                
-                NSAlert *alert = [NSAlert new];
-                alert.informativeText = error.localizedDescription;
-                alert.messageText = [NSString stringWithFormat:@"Failed to write %@", url.path];
-                [alert runModal];
-                
-            } else {
-                [_player printOSDMessage:[NSString stringWithFormat:@"Saved to %@", url]];
-            }
-        
+            
+            dispatch_async(_bg_queue, ^{
+                NSError *error = nil;
+                if (![player takeScreenshotTo:url includeSubtitles:NO error:&error]) {
+                    
+                    CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
+                     NSAlert *alert = [NSAlert new];
+                     alert.informativeText = error.localizedDescription;
+                     alert.messageText = [NSString stringWithFormat:@"Failed to write %@", url.path];
+                     [alert runModal];
+                 });
+
+                } else {
+                    [player printOSDMessage:[NSString stringWithFormat:@"Saved to %@", url]];
+                }
+                CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
+                    sender.enabled = YES;
+                });
+            });
         }
     } else {
-        if (![_player takeScreenshotError:&error]) {
-            
-            NSAlert *alert = [NSAlert new];
-            alert.informativeText = error.localizedDescription;
-            alert.messageText = @"Failed to save screenshot.";
-            [alert runModal];
-            
-        } else {
-            [_player printOSDMessage:@"Screenshot Saved"];
-        }
+        
+        dispatch_async(_bg_queue, ^{
+            NSError *error = nil;
+            if (![player takeScreenshotError:&error]) {
+                
+                CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
+                    NSAlert *alert = [NSAlert new];
+                    alert.informativeText = error.localizedDescription;
+                    alert.messageText = @"Failed to save screenshot.";
+                    [alert runModal];
+                });
+                
+            } else {
+                [player printOSDMessage:@"Screenshot Saved"];
+            }
+            CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
+                sender.enabled = YES;
+            });
+        });
     }
 }
 
