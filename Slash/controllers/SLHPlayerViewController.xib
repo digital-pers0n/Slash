@@ -46,7 +46,7 @@
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt" customClass="SLHTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
-                                <font key="font" metaFont="smallSystem"/>
+                                <font key="font" size="10" name="Osaka"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -63,7 +63,7 @@
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="ttY-7K-ldI" customClass="SLHTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
-                                <font key="font" metaFont="smallSystem"/>
+                                <font key="font" size="10" name="Osaka"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -348,7 +348,7 @@ IA
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="mFd-G2-vXC">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="cQC-aG-RVS"/>
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" size="10" name="Osaka"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
