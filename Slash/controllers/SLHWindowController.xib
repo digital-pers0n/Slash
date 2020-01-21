@@ -279,14 +279,14 @@
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="right" title="00:00:00.000" id="aBF-5K-iAA">
                                                                                         <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="MZQ-v1-yF4" customClass="SLHTimeFormatter"/>
-                                                                                        <font key="font" size="10" name="Menlo-Regular"/>
+                                                                                        <font key="font" size="10" name="Osaka"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                     <connections>
-                                                                                        <binding destination="nBK-Vf-O9n" name="maxValue" keyPath="objectValue.playerItem.duration" id="wDh-hd-M01"/>
-                                                                                        <binding destination="nBK-Vf-O9n" name="minValue" keyPath="objectValue.intervalStart" previousBinding="wDh-hd-M01" id="tvX-fy-VnG"/>
                                                                                         <binding destination="nBK-Vf-O9n" name="value" keyPath="objectValue.intervalEnd" previousBinding="tvX-fy-VnG" id="Y0l-eU-Dmh"/>
+                                                                                        <binding destination="nBK-Vf-O9n" name="minValue" keyPath="objectValue.intervalStart" previousBinding="wDh-hd-M01" id="tvX-fy-VnG"/>
+                                                                                        <binding destination="nBK-Vf-O9n" name="maxValue" keyPath="objectValue.playerItem.duration" id="wDh-hd-M01"/>
                                                                                     </connections>
                                                                                 </textField>
                                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="lkV-h3-GDV">
@@ -296,7 +296,7 @@
                                                                                         <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="9ue-ZR-cau" customClass="SLHTimeFormatter">
                                                                                             <real key="minimum" value="0.0"/>
                                                                                         </numberFormatter>
-                                                                                        <font key="font" size="10" name="Menlo-Regular"/>
+                                                                                        <font key="font" size="10" name="Osaka"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
@@ -360,7 +360,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="EbO-kY-RJo">
                         <rect key="frame" x="5" y="4" width="30" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Size:" id="l4g-6H-CWz">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Size:" id="l4g-6H-CWz">
                             <font key="font" metaFont="system" size="10"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -369,7 +369,7 @@
                     <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="aek-Jv-6wT">
                         <rect key="frame" x="35" y="4" width="70" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="szR-eL-jHw">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" id="szR-eL-jHw">
                             <byteCountFormatter key="formatter" countStyle="binary" allowsNonnumericFormatting="NO" id="R9O-K6-aQn"/>
                             <font key="font" metaFont="system" size="10"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -382,7 +382,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Qu6-Na-gai">
                         <rect key="frame" x="109" y="4" width="53" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration:" id="bqV-uz-K8Z">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Duration:" id="bqV-uz-K8Z">
                             <font key="font" metaFont="system" size="10"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
