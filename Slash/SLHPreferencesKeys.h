@@ -15,4 +15,11 @@ extern NSString * const SLHPreferencesScreenshotTemplateKey;
 extern NSString * const SLHPreferencesScreenshotJPGQualityKey;
 extern NSString * const SLHPreferencesScreenshotPNGCompressionKey;
 
+extern NSString * const SLHPreferencesOSDFontNameKey;
+extern NSString * const SLHPreferencesOSDFontSizeKey;
+extern NSString * const SLHPreferencesOSDFontScaleByWindowKey;
+extern NSString * const SLHPreferencesSubtitlesFontNameKey;
+extern NSString * const SLHPreferencesSubtitlesFontSizeKey;
+extern NSString * const SLHPreferencesSubtitlesFontScaleByWindowKey;
+
 #endif /* SLHPreferencesKeys_h */

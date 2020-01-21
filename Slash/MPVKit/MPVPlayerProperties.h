@@ -71,4 +71,22 @@ extern NSString * const MPVPlayerPropertyOSDLevel;
 /** osd-fractions */
 extern NSString * const MPVPlayerPropertyOSDFractions;
 
+/** osd-font */
+extern NSString * const MPVPlayerPropertyOSDFontName;
+
+/** osd-font-name */
+extern NSString * const MPVPlayerPropertyOSDFontSize;
+
+/** osd-scale-by-window */
+extern NSString * const MPVPlayerPropertyOSDFontScaleByWindow;
+
+/** sub-font */
+extern NSString * const MPVPlayerPropertySubsFontName;
+
+/** sub-font-size */
+extern NSString * const MPVPlayerPropertySubsFontSize;
+
+/** sub-scale-by-window */
+extern NSString * const MPVPlayerPropertySubsFontScaleByWindow;
+
 #endif /* MPVPlayerProperties_h */

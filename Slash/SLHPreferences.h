@@ -40,4 +40,11 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property NSInteger screenshotJPGQuality;
 @property NSInteger screenshotPNGCompression;
 
+@property (nonatomic) NSString *osdFontName;
+@property (nonatomic) NSInteger osdFontSize;
+@property (nonatomic) BOOL osdFontScaleByWindow;
+@property (nonatomic) NSString *subtitlesFontName;
+@property (nonatomic) NSInteger subtitlesFontSize;
+@property (nonatomic) BOOL subtitlesFontScaleByWindow;
+
 @end

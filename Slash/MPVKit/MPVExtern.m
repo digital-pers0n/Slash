@@ -39,6 +39,12 @@ NSString * const MPVPlayerPropertyScreenshotJPGQuality      = @"screenshot-jpeg-
 NSString * const MPVPlayerPropertyScreenshotPNGCompression  = @"screenshot-png-compression";
 NSString * const MPVPlayerPropertyOSDLevel                  = @"osd-level";
 NSString * const MPVPlayerPropertyOSDFractions              = @"osd-fractions";
+NSString * const MPVPlayerPropertyOSDFontName               = @"osd-font";
+NSString * const MPVPlayerPropertyOSDFontSize               = @"osd-font-size";
+NSString * const MPVPlayerPropertyOSDFontScaleByWindow      = @"osd-scale-by-window";
+NSString * const MPVPlayerPropertySubsFontName              = @"sub-font";
+NSString * const MPVPlayerPropertySubsFontSize              = @"sub-font-size";
+NSString * const MPVPlayerPropertySubsFontScaleByWindow     = @"sub-scale-by-window";
 
 
 #pragma mark - Notifications

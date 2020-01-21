@@ -23,6 +23,8 @@ extern NSString * const SLHPreferencesScreenshotPathKey;
 extern NSString * const SLHPreferencesScreenshotFormatKey;
 extern NSString * const SLHPreferencesScreenshotTemplateKey;
 
+static NSString * const  SLHPreferencesDefaultFontName  =  @"Helvetica";
+
 #define SLHPreferencesDefaultPNGCompression     7
 #define SLHPreferencesDefaultJPGQuality         90
 
@@ -130,6 +132,18 @@ extern NSString * const SLHPreferencesScreenshotTemplateKey;
         
         if (![_userDefaults valueForKey:SLHPreferencesScreenshotPNGCompressionKey]) {
             self.screenshotPNGCompression = SLHPreferencesDefaultPNGCompression;
+        }
+        
+        if (!self.osdFontName) {
+            self.osdFontName = SLHPreferencesDefaultFontName;
+            self.osdFontSize = 40;
+            self.osdFontScaleByWindow = NO;
+        }
+        
+        if (!self.subtitlesFontName) {
+            self.subtitlesFontName = SLHPreferencesDefaultFontName;
+            self.subtitlesFontSize = 40;
+            self.subtitlesFontScaleByWindow = NO;
         }
         
     }
@@ -289,6 +303,61 @@ fatal_error:
 - (NSInteger)screenshotPNGCompression {
     return [_userDefaults integerForKey:SLHPreferencesScreenshotPNGCompressionKey];
 }
+
+- (void)setOsdFontName:(NSString *)osdFontName {
+    if (!osdFontName) {
+        osdFontName = SLHPreferencesDefaultFontName;
+    }
+    [_userDefaults setObject:osdFontName forKey:SLHPreferencesOSDFontNameKey];
+}
+
+- (NSString *)osdFontName {
+    return [_userDefaults objectForKey:SLHPreferencesOSDFontNameKey];
+}
+
+- (void)setOsdFontSize:(NSInteger)osdFontSize {
+    [_userDefaults setInteger:osdFontSize forKey:SLHPreferencesOSDFontSizeKey];
+}
+
+- (NSInteger)osdFontSize {
+    return [_userDefaults integerForKey:SLHPreferencesOSDFontSizeKey];
+}
+
+- (void)setOsdFontScaleWithWindow:(BOOL)osdFontScaleWithWindow {
+    [_userDefaults setBool:osdFontScaleWithWindow forKey:SLHPreferencesOSDFontScaleByWindowKey];
+}
+
+- (BOOL)osdFontScaleWithWindow {
+    return [_userDefaults boolForKey:SLHPreferencesOSDFontScaleByWindowKey];
+}
+
+- (void)setSubtitlesFontName:(NSString *)subtitlesFontName {
+    if (!subtitlesFontName) {
+        subtitlesFontName = SLHPreferencesDefaultFontName;
+    }
+    [_userDefaults setObject:subtitlesFontName forKey:SLHPreferencesSubtitlesFontNameKey];
+}
+
+- (NSString *)subtitlesFontName {
+    return [_userDefaults objectForKey:SLHPreferencesSubtitlesFontNameKey];
+}
+
+- (void)setSubtitlesFontSize:(NSInteger)subtitlesFontSize {
+     [_userDefaults setInteger:subtitlesFontSize forKey:SLHPreferencesSubtitlesFontSizeKey];
+}
+
+- (NSInteger)subtitlesFontSize {
+    return [_userDefaults integerForKey:SLHPreferencesSubtitlesFontSizeKey];
+}
+
+- (void)setSubtitlesFontScaleWithWindow:(BOOL)subtitlesFontScaleWithWindow {
+    [_userDefaults setBool:subtitlesFontScaleWithWindow forKey:SLHPreferencesSubtitlesFontScaleByWindowKey];
+}
+
+- (BOOL)subtitlesFontScaleWithWindow {
+    return [_userDefaults boolForKey:SLHPreferencesSubtitlesFontScaleByWindowKey];
+}
+
 
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {

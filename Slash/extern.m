@@ -31,6 +31,13 @@ NSString * const SLHPreferencesScreenshotTemplateKey        = @"screenshotTempla
 NSString * const SLHPreferencesScreenshotJPGQualityKey      = @"screenshotJPGQuality";
 NSString * const SLHPreferencesScreenshotPNGCompressionKey  = @"screenshotPNGCompression";
 
+NSString * const SLHPreferencesOSDFontNameKey                   = @"osdFontName";
+NSString * const SLHPreferencesOSDFontSizeKey                   = @"osdFontSize";
+NSString * const SLHPreferencesOSDFontScaleByWindowKey          = @"osdFontScaleByWindow";
+NSString * const SLHPreferencesSubtitlesFontNameKey             = @"subtitlesFontName";
+NSString * const SLHPreferencesSubtitlesFontSizeKey             = @"subtitlesFontSize";
+NSString * const SLHPreferencesSubtitlesFontScaleByWindowKey    = @"subtitlesFontScaleByWindow";
+
 
 #pragma mark - SLHMetadataItem
 
