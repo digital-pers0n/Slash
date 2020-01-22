@@ -24,6 +24,12 @@ extern NSString * const SLHPreferencesScreenshotFormatKey;
 extern NSString * const SLHPreferencesScreenshotTemplateKey;
 
 static NSString * const  SLHPreferencesDefaultFontName  =  @"Helvetica";
+static NSString * const  SLHPreferencesLastSelectedPrefTagKey = @"lastSelectedPrefTag";
+
+typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
+    SLHPreferencesGeneralToolbarItem = 0,
+    SLHPreferencesMPVToolbarItem
+};
 
 #define SLHPreferencesDefaultPNGCompression     7
 #define SLHPreferencesDefaultJPGQuality         90
@@ -228,8 +234,23 @@ fatal_error:
     }
     
     [_screenshotFormatPopUp selectItemWithTitle:self.screenshotFormat];
-    [self showPrefsView:_generalPrefsView];
-    _toolbar.selectedItemIdentifier = _toolbar.visibleItems.firstObject.itemIdentifier;
+    
+    SLHPreferencesToolbarItemTag tag = [_userDefaults integerForKey:SLHPreferencesLastSelectedPrefTagKey];
+    switch (tag) {
+    
+        case SLHPreferencesMPVToolbarItem:
+            [self.window setContentSize:_mpvPrefsView.frame.size];
+            [self showPrefsView:_mpvPrefsView];
+            _toolbar.selectedItemIdentifier = _toolbar.visibleItems[1].itemIdentifier;
+            break;
+            
+        case SLHPreferencesGeneralToolbarItem:
+        default:
+            [self showPrefsView:_generalPrefsView];
+            _toolbar.selectedItemIdentifier = _toolbar.visibleItems.firstObject.itemIdentifier;
+            break;
+    }
+    
 }
 
 - (BOOL)outputPathSameAsInput {
@@ -501,6 +522,12 @@ fatal_error:
 
 - (void)windowWillClose:(NSNotification *)notification {
     [_userDefaults setObject:_recentOutputPaths forKey:SLHPreferencesRecentOutputPaths];
+    
+    SLHPreferencesToolbarItemTag tag = SLHPreferencesGeneralToolbarItem;
+    if (_currentPrefsView == _mpvPrefsView) {
+        tag = SLHPreferencesMPVToolbarItem;
+    }
+    [_userDefaults setInteger:tag forKey:SLHPreferencesLastSelectedPrefTagKey];
 }
 
 @end
