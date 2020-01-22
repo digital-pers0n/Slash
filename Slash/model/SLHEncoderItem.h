@@ -37,8 +37,8 @@ typedef struct time_interval {
 @property NSInteger audioStreamIndex;
 @property NSInteger subtitlesStreamIndex;
 
-@property SLHEncoderItemOptions *videoOptions;
-@property SLHEncoderItemOptions *audioOptions;
+@property (nonatomic) SLHEncoderItemOptions *videoOptions;
+@property (nonatomic) SLHEncoderItemOptions *audioOptions;
 
 @property SLHFilterOptions *filters;
 

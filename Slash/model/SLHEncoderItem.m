@@ -40,8 +40,8 @@
     item->_audioStreamIndex = _audioStreamIndex;
     item->_subtitlesStreamIndex = _subtitlesStreamIndex;
     
-    item->_videoOptions = _videoOptions.copy;
-    item->_audioOptions = _audioOptions.copy;
+    item.videoOptions = _videoOptions.copy;
+    item.audioOptions = _audioOptions.copy;
     item->_filters = _filters.copy;
     
     item->_twoPassEncoding = _twoPassEncoding;
@@ -49,6 +49,10 @@
     item->_metadata = _metadata.copy;
     item->_tag = _tag;
 
+    
+    [item addObserver:item forKeyPath:@"intervalStart" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+    [item addObserver:item forKeyPath:@"intervalEnd" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+    
     return item;
 }
 
@@ -63,13 +67,16 @@
         _videoStreamIndex = -1;
         _audioStreamIndex = -1;
         _twoPassEncoding = NO;
-        _videoOptions = [SLHEncoderItemOptions new];
-        _audioOptions = [SLHEncoderItemOptions new];
+        self.videoOptions = [SLHEncoderItemOptions new];
+        self.audioOptions = [SLHEncoderItemOptions new];
         _filters = [SLHFilterOptions new];
         _filters.subtitlesStyle = @"FontName=Helvetica,FontSize=14,PrimaryColour=&H00000000,BackColour=&H40FFFFFF,BorderStyle=4,Shadow=2,Outline=0";
         _filters.additionalVideoFiltersString = @"";
         _filters.additionalAudioFiltersString = @"";
         _metadata = [[SLHEncoderItemMetadata alloc] initWithPlayerItem:item];
+
+        [self addObserver:self forKeyPath:@"intervalStart" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+        [self addObserver:self forKeyPath:@"intervalEnd" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
     }
     return self;
 }
@@ -135,7 +142,46 @@
     return [self initWithPlayerItem:item outputPath:path];
 }
 
+- (void)dealloc {
+    [_videoOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
+    [_audioOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
+    [self removeObserver:self forKeyPath:@"intervalStart" context:&SLHEncoderItemKVOContext];
+    [self removeObserver:self forKeyPath:@"intervalEnd" context:&SLHEncoderItemKVOContext];
+}
+
+#pragma mark - KVO
+
+static char SLHEncoderItemKVOContext;
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (context == &SLHEncoderItemKVOContext) {
+        NSUInteger videoBitrate = 0, audioBitrate = 0;
+        if (_videoStreamIndex > -1) {
+            videoBitrate = _videoOptions.bitRate;
+        }
+        if (_audioStreamIndex > -1) {
+            audioBitrate = _audioOptions.bitRate;
+        }
+        double duration = _interval.end - _interval.start;
+        self.estimatedSize = ((videoBitrate + audioBitrate) * duration / 8192) * (1 << 20);
+        self.duration = duration;
+    }
+}
+
 #pragma mark - Bindings
+
+
+- (void)setVideoOptions:(SLHEncoderItemOptions *)videoOptions {
+    [_videoOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
+    _videoOptions = videoOptions;
+    [_videoOptions addObserver:self forKeyPath:@"bitRate" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+}
+
+- (void)setAudioOptions:(SLHEncoderItemOptions *)audioOptions {
+    [_audioOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
+    _audioOptions = audioOptions;
+    [_audioOptions addObserver:self forKeyPath:@"bitRate" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+}
 
 - (double)intervalStart {
     return _interval.start;
@@ -143,9 +189,6 @@
 
 - (void)setIntervalStart:(double)val {
     _interval.start = val;
-    
-    self.estimatedSize = ((_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192) * (1 << 20);
-    self.duration = _interval.end - _interval.start;
 }
 
 - (double)intervalEnd {
@@ -154,9 +197,6 @@
 
 - (void)setIntervalEnd:(double)val {
     _interval.end = val;
-    
-    self.estimatedSize = ((_videoOptions.bitRate + _audioOptions.bitRate) * (_interval.end - _interval.start) / 8192) * (1 << 20);
-    self.duration = _interval.end - _interval.start;
 }
 
 - (NSString *)outputFileName {
