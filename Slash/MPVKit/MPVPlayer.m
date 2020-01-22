@@ -459,7 +459,7 @@ exit:
 - (BOOL)takeScreenshotTo:(NSURL *)url includeSubtitles:(BOOL)flag error:(NSError *__autoreleasing  _Nullable *)error {
     
     mpv_node nodes[] = {
-      
+        { .u.string = "osd-msg",                               .format = MPV_FORMAT_STRING },
         { .u.string = "screenshot-to-file",                    .format = MPV_FORMAT_STRING },
         { .u.string = (char *)url.fileSystemRepresentation,    .format = MPV_FORMAT_STRING },
         { .u.string = (flag) ? "subtitles" : "video",          .format = MPV_FORMAT_STRING }
@@ -494,7 +494,7 @@ exit:
 - (BOOL)takeScreenshotError:(NSError *__autoreleasing  _Nullable *)error {
     
     mpv_node nodes[] = {
-        
+        { .u.string = "osd-msg",        .format = MPV_FORMAT_STRING },
         { .u.string = "screenshot",     .format = MPV_FORMAT_STRING },
         { .u.string = "video",          .format = MPV_FORMAT_STRING }
     };

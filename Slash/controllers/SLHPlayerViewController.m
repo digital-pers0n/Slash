@@ -355,9 +355,8 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
                      [alert runModal];
                  });
 
-                } else {
-                    [player printOSDMessage:[NSString stringWithFormat:@"Saved to %@", url]];
                 }
+                
                 CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
                     sender.enabled = YES;
                 });
@@ -376,9 +375,8 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
                     [alert runModal];
                 });
                 
-            } else {
-                [player printOSDMessage:@"Screenshot Saved"];
             }
+            
             CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
                 sender.enabled = YES;
             });
