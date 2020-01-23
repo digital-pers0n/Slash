@@ -49,9 +49,7 @@
     item->_metadata = _metadata.copy;
     item->_tag = _tag;
 
-    
-    [item addObserver:item forKeyPath:@"intervalStart" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
-    [item addObserver:item forKeyPath:@"intervalEnd" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+    [item addObservers];
     
     return item;
 }
@@ -74,11 +72,16 @@
         _filters.additionalVideoFiltersString = @"";
         _filters.additionalAudioFiltersString = @"";
         _metadata = [[SLHEncoderItemMetadata alloc] initWithPlayerItem:item];
+        
+        [self addObservers];
 
-        [self addObserver:self forKeyPath:@"intervalStart" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
-        [self addObserver:self forKeyPath:@"intervalEnd" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
     }
     return self;
+}
+
+- (void)addObservers {
+    [self addObserver:self forKeyPath:@"intervalStart" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+    [self addObserver:self forKeyPath:@"intervalEnd" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
 }
 
 - (void)matchSource {
