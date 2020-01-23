@@ -82,6 +82,8 @@
 - (void)addObservers {
     [self addObserver:self forKeyPath:@"intervalStart" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
     [self addObserver:self forKeyPath:@"intervalEnd" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+    [self addObserver:self forKeyPath:@"videoStreamIndex" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+    [self addObserver:self forKeyPath:@"audioStreamIndex" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
 }
 
 - (void)matchSource {
