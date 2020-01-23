@@ -546,7 +546,9 @@ typedef void (*basic_imp)(id, SEL, id);
          [_player printOSDMessage:@"OSD: off"];
     } else {
         level++;
-         [_player printOSDMessage:[NSString stringWithFormat:@"OSD: %li", level]];
+        if (level == 1) {
+            [_player printOSDMessage:@"OSD: 1"];
+        }
     }
      [_player setInteger:level forProperty:MPVPlayerPropertyOSDLevel];
 }
