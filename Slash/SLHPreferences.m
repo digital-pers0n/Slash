@@ -236,18 +236,17 @@ fatal_error:
     [_screenshotFormatPopUp selectItemWithTitle:self.screenshotFormat];
     
     SLHPreferencesToolbarItemTag tag = [_userDefaults integerForKey:SLHPreferencesLastSelectedPrefTagKey];
+    _toolbar.selectedItemIdentifier = _toolbar.visibleItems[tag].itemIdentifier;
     switch (tag) {
     
         case SLHPreferencesMPVToolbarItem:
             [self.window setContentSize:_mpvPrefsView.frame.size];
             [self showPrefsView:_mpvPrefsView];
-            _toolbar.selectedItemIdentifier = _toolbar.visibleItems[1].itemIdentifier;
             break;
             
         case SLHPreferencesGeneralToolbarItem:
         default:
             [self showPrefsView:_generalPrefsView];
-            _toolbar.selectedItemIdentifier = _toolbar.visibleItems.firstObject.itemIdentifier;
             break;
     }
     
@@ -404,6 +403,7 @@ fatal_error:
     [window setFrame:windowFrame display:YES animate:YES];
     [window.contentView addSubview:view];
     _currentPrefsView = view;
+    self.window.title = _toolbar.selectedItemIdentifier;
 }
 
 #pragma mark - IBActions

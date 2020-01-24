@@ -31,13 +31,13 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="EF23635C-01AD-4B2E-B4A5-59FB6F735B87" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="1Or-hS-Qec">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="62A5F03D-3E56-4FD3-8F11-A1755D4FD0C3" explicitItemIdentifier="GeneralPrefs" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" autovalidates="NO" selectable="YES" id="OsB-mA-1Im">
+                    <toolbarItem implicitItemIdentifier="62A5F03D-3E56-4FD3-8F11-A1755D4FD0C3" explicitItemIdentifier="General" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" autovalidates="NO" selectable="YES" id="OsB-mA-1Im">
                         <nil key="toolTip"/>
                         <connections>
                             <action selector="showGeneralPrefs:" target="-2" id="now-Ly-UPA"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="D1FBEC33-2901-4099-8C1C-736DA49BA5B2" explicitItemIdentifier="MPVPrefs" label="Video" paletteLabel="Video" tag="-1" image="NSFolderSmart" autovalidates="NO" selectable="YES" id="goz-bv-LDv">
+                    <toolbarItem implicitItemIdentifier="D1FBEC33-2901-4099-8C1C-736DA49BA5B2" explicitItemIdentifier="Video" label="Video" paletteLabel="Video" tag="-1" image="NSFolderSmart" autovalidates="NO" selectable="YES" id="goz-bv-LDv">
                         <nil key="toolTip"/>
                         <connections>
                             <action selector="showMPVPrefs:" target="-2" id="Zx2-Qn-dR9"/>
