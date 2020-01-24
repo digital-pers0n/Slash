@@ -152,6 +152,8 @@
     [_audioOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
     [self removeObserver:self forKeyPath:@"intervalStart" context:&SLHEncoderItemKVOContext];
     [self removeObserver:self forKeyPath:@"intervalEnd" context:&SLHEncoderItemKVOContext];
+    [self removeObserver:self forKeyPath:@"videoStreamIndex" context:&SLHEncoderItemKVOContext];
+    [self removeObserver:self forKeyPath:@"audioStreamIndex" context:&SLHEncoderItemKVOContext];
 }
 
 #pragma mark - KVO
