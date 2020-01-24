@@ -170,6 +170,25 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [player setInteger:appPrefs.screenshotPNGCompression
            forProperty:MPVPlayerPropertyScreenshotPNGCompression];
     
+    [player setString:appPrefs.osdFontName
+          forProperty:MPVPlayerPropertyOSDFontName];
+    
+    [player setInteger:appPrefs.osdFontSize
+           forProperty:MPVPlayerPropertyOSDFontSize];
+    
+    [player setBool:appPrefs.osdFontScaleByWindow
+        forProperty:MPVPlayerPropertyOSDFontScaleByWindow];
+    
+    [player setString:appPrefs.subtitlesFontName
+          forProperty:MPVPlayerPropertySubsFontName];
+    
+    [player setInteger:appPrefs.subtitlesFontSize
+           forProperty:MPVPlayerPropertySubsFontSize];
+    
+    [player setBool:appPrefs.subtitlesFontScaleByWindow
+        forProperty:MPVPlayerPropertySubsFontScaleByWindow];
+    
+    
     [self observePreferences:appPrefs];
     
     /* SLHExternalPlayer */
@@ -370,6 +389,31 @@ static char SLHPreferencesKVOContext;
             forProperty:MPVPlayerPropertyScreenshotPNGCompression];
 }
 
+- (void)osdFontNameDidChange:(NSString *)newValue {
+    [_player setString:newValue forProperty:MPVPlayerPropertyOSDFontName];
+}
+
+- (void)osdFontSizeDidChange:(NSNumber *)newValue {
+    [_player setInteger:newValue.integerValue forProperty:MPVPlayerPropertyOSDFontSize];
+}
+
+- (void)osdFontScaleByWindowDidChange:(NSNumber *)newValue {
+    [_player setBool:newValue.boolValue forProperty:MPVPlayerPropertyOSDFontScaleByWindow];
+}
+
+- (void)subsFontNameDidChange:(NSString *)newValue {
+    [_player setString:newValue forProperty:MPVPlayerPropertySubsFontName];
+}
+
+- (void)subsFontSizeDidChange:(NSNumber *)newValue {
+    [_player setInteger:newValue.integerValue forProperty:MPVPlayerPropertySubsFontSize];
+}
+
+- (void)subsFontScaleByWindowDidChange:(NSNumber *)newValue {
+    [_player setBool:newValue.boolValue forProperty:MPVPlayerPropertySubsFontScaleByWindow];
+}
+
+
 static inline SLHMethodAddress *addressOf(id target, SEL action) {
     return [SLHMethodAddress methodAddressWithTarget:target selector:action];
 }
@@ -380,7 +424,13 @@ static inline SLHMethodAddress *addressOf(id target, SEL action) {
                        SLHPreferencesScreenshotFormatKey         : addressOf(self, @selector(screenshotFormatDidChange:)),
                        SLHPreferencesScreenshotTemplateKey       : addressOf(self, @selector(screenshotTemplateDidChange:)),
                        SLHPreferencesScreenshotJPGQualityKey     : addressOf(self, @selector(screenshotJPGQualityDidChange:)),
-                       SLHPreferencesScreenshotPNGCompressionKey : addressOf(self, @selector(screenshotPNGCompressionDidChange:))
+                       SLHPreferencesScreenshotPNGCompressionKey : addressOf(self, @selector(screenshotPNGCompressionDidChange:)),
+                       SLHPreferencesOSDFontNameKey              : addressOf(self, @selector(osdFontNameDidChange:)),
+                       SLHPreferencesOSDFontSizeKey              : addressOf(self, @selector(osdFontSizeDidChange:)),
+                       SLHPreferencesOSDFontScaleByWindowKey     : addressOf(self, @selector(osdFontScaleByWindowDidChange:)),
+                       SLHPreferencesSubtitlesFontNameKey              : addressOf(self, @selector(subsFontNameDidChange:)),
+                       SLHPreferencesSubtitlesFontSizeKey              : addressOf(self, @selector(subsFontSizeDidChange:)),
+                       SLHPreferencesSubtitlesFontScaleByWindowKey     : addressOf(self, @selector(subsFontScaleByWindowDidChange:)),
                        };
     
     for (NSString *key in _observedPrefs) {
