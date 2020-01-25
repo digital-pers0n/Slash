@@ -10,6 +10,8 @@
 #import "MPVPlayer.h"
 #import <mpv/render_gl.h>
 #import <dlfcn.h>
+#import <pthread/pthread.h>
+#import <pthread/pthread_spis.h>
 
 #import <OpenGL/gl.h>
 #import <OpenGL/gl3.h>
@@ -27,6 +29,7 @@ typedef struct mpv_data_ {
     CGLContextObj           cgl_context;
     mpv_opengl_fbo          opengl_fbo;
     mpv_render_param        render_params[3];
+    pthread_mutex_t         gl_lock;
 } mpv_data;
 
 @interface MPVOpenGLView () {
@@ -89,6 +92,11 @@ typedef struct mpv_data_ {
 }
 
 - (void)setUp {
+    
+    pthread_mutexattr_t mattr;
+    pthread_mutexattr_init(&mattr);
+    pthread_mutexattr_setpolicy_np(&mattr, _PTHREAD_MUTEX_POLICY_FIRSTFIT);
+    pthread_mutex_init(&_mpv.gl_lock, &mattr);
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
@@ -185,6 +193,7 @@ typedef struct mpv_data_ {
     mpv_render_context_set_update_callback(_mpv.render_context, NULL, NULL);
     mpv_render_context_free(_mpv.render_context);
     _mpv.render_context = NULL;
+    pthread_mutex_destroy(&_mpv.gl_lock);
 }
 
 - (void)dealloc {
@@ -197,22 +206,51 @@ typedef struct mpv_data_ {
 #pragma mark - Overrides
 
 - (void)reshape {
-
+    
+    if (!self.inLiveResize) {
+        
+        NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
+        
+        pthread_mutex_lock(&_mpv.gl_lock);
+        
+        _mpv.opengl_fbo.w = surfaceSize.width;
+        _mpv.opengl_fbo.h = surfaceSize.height;
+        
 #ifdef MAC_OS_X_VERSION_10_14
-    [super reshape];
+        
+        [super reshape];
+        
+#endif
+        
+        pthread_mutex_unlock(&_mpv.gl_lock);
+    }
+    
+#ifdef MAC_OS_X_VERSION_10_14
+    else {
+        pthread_mutex_lock(&_mpv.gl_lock);
+        
+        [super reshape];
+        
+        pthread_mutex_unlock(&_mpv.gl_lock);
+    }
 #endif
     
-    NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
-    _mpv.opengl_fbo.w = surfaceSize.width;
-    _mpv.opengl_fbo.h = surfaceSize.height;
 }
 
 - (void)update {
     
 #ifdef MAC_OS_X_VERSION_10_14
+    
+    pthread_mutex_lock(&_mpv.gl_lock);
+    
     [super update];
+    
+    pthread_mutex_unlock(&_mpv.gl_lock);
+    
+#else
+    CGLUpdateContext(_mpv.cgl_context);
 #endif
-    [_glContext update];
+    
 }
 
 - (void)viewWillStartLiveResize {
@@ -238,9 +276,27 @@ typedef struct mpv_data_ {
     
     if (_mpv.render_context) {
         if (self.inLiveResize) {
-            resize_sync(self);
+            NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
+            
+            pthread_mutex_lock(&_mpv.gl_lock);
+            
+            _mpv.opengl_fbo.w = surfaceSize.width;
+            _mpv.opengl_fbo.h = surfaceSize.height;
+            resize(&_mpv);
+            
+            pthread_mutex_unlock(&_mpv.gl_lock);
+
+        } else {
+            fillBlack(self.bounds);
         }
+    } else {
+        fillBlack(self.bounds);
     }
+}
+
+static void fillBlack(NSRect rect) {
+    [[NSColor blackColor] set];
+    NSRectFill(rect);
 }
 
 - (void)viewDidMoveToWindow {
@@ -307,10 +363,9 @@ static inline void resize_sync(__unsafe_unretained MPVOpenGLView *obj) {
 
 static void resize(void *ctx) {
     mpv_data *obj = ctx;
-    
-    CGLLockContext(obj->cgl_context);
     {
         CGLSetCurrentContext(obj->cgl_context);
+        CGLUpdateContext(obj->cgl_context);
         mpv_opengl_fbo fbo = obj->opengl_fbo;
         int flag = 1;
         int block_time = 0;
@@ -321,7 +376,7 @@ static void resize(void *ctx) {
             { 0 } };
         
         mpv_render_context_render(obj->render_context, params);
-
+        
 #ifdef ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT
         CGLFlushDrawable(obj->cgl_context);
 #else
@@ -329,16 +384,22 @@ static void resize(void *ctx) {
 #endif
         
     }
-    CGLUnlockContext(obj->cgl_context);
 }
 
-static void live_resize( __unsafe_unretained MPVOpenGLView *obj) {
-    resize_sync(obj);
+static void live_resize(void *ctx) {
+    mpv_data *mpv = ctx;
+    pthread_mutex_lock(&mpv->gl_lock);
+    
+    if (mpv_render_context_update(mpv->render_context) & MPV_RENDER_UPDATE_FRAME) {
+        resize(mpv);
+    }
+    
+    pthread_mutex_unlock(&mpv->gl_lock);
 }
 
 static void render_live_resize_callback(void *ctx) {
-    MPVOpenGLView *obj = (__bridge id)ctx;
-    dispatch_async_f(obj->_render_queue, ctx, (void *)live_resize);
+    __unsafe_unretained MPVOpenGLView *obj = (__bridge id)ctx;
+    dispatch_async_f(obj->_render_queue, &obj->_mpv, (void *)live_resize);
 }
 
 @end
