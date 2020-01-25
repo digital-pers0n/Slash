@@ -36,7 +36,6 @@ typedef struct mpv_data_ {
     NSOpenGLContext *_glContext;
     dispatch_queue_t _render_queue;
     dispatch_queue_t _main_queue;
-    dispatch_queue_t _resize_queue;
     mpv_data _mpv;
 }
 
@@ -108,10 +107,7 @@ typedef struct mpv_data_ {
                                                                          DISPATCH_QUEUE_SERIAL,
                                                                          QOS_CLASS_USER_INTERACTIVE, 0);
     _render_queue = dispatch_queue_create("com.home.MPVOpenGLView.render-queue", attr);
-    attr = dispatch_queue_attr_make_with_qos_class(
-                                                   DISPATCH_QUEUE_CONCURRENT,
-                                                   QOS_CLASS_USER_INTERACTIVE, 0);
-    _resize_queue = dispatch_queue_create("com.home.MPVOpenGLView.resize-queue", attr);
+
     _main_queue = dispatch_get_main_queue();
     _glContext = self.openGLContext;
     _mpv.cgl_context = _glContext.CGLContextObj;
@@ -351,15 +347,6 @@ static void render_context_callback(void *ctx) {
 }
 
 #pragma mark live resize
-
-__unused
-static inline void resize_async(__unsafe_unretained MPVOpenGLView *obj) {
-    dispatch_async_f(obj->_render_queue, &obj->_mpv, &resize);
-}
-
-static inline void resize_sync(__unsafe_unretained MPVOpenGLView *obj) {
-    dispatch_sync_f(obj->_render_queue, &obj->_mpv, &resize);
-}
 
 static void resize(void *ctx) {
     mpv_data *obj = ctx;
