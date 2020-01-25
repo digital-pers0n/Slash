@@ -338,7 +338,7 @@ static void live_resize( __unsafe_unretained MPVOpenGLView *obj) {
 
 static void render_live_resize_callback(void *ctx) {
     MPVOpenGLView *obj = (__bridge id)ctx;
-    dispatch_async_f(obj->_resize_queue, ctx, (void *)live_resize);
+    dispatch_async_f(obj->_render_queue, ctx, (void *)live_resize);
 }
 
 @end
