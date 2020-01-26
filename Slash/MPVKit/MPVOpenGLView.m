@@ -262,9 +262,11 @@ typedef struct mpv_data_ {
     
     if (_mpv.render_context) {
         self.canDrawConcurrently = NO;
-        mpv_render_context_set_update_callback(_mpv.render_context, &render_context_callback, (__bridge void *)self );
+        
         [self reshape];
-        [_glContext update];
+        [self update];
+        
+        mpv_render_context_set_update_callback(_mpv.render_context, &render_context_callback, (__bridge void *)self );
     }
 }
 
