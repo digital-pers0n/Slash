@@ -11,10 +11,11 @@
 
 static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 
-@interface SLHEncoderHistory () {
+@interface SLHEncoderHistory () <NSMenuDelegate> {
     IBOutlet NSArrayController *_arrayController;
     IBOutlet NSPopover *_popover;
     IBOutlet NSTextView *_logTextView;
+    IBOutlet NSTableView *_tableView;
     
     NSMutableDictionary *_items;
     NSMutableArray *_paths;
@@ -56,7 +57,28 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
     _items[path] = log;
 }
 
+#pragma mark - NSMenuDelegate
+
+- (void)menuNeedsUpdate:(NSMenu*)menu {
+    NSInteger row = _tableView.clickedRow;
+    if (row >= 0 && ![_tableView isRowSelected:row]) {
+        [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    }
+}
+
 #pragma mark - IBActions
+
+- (IBAction)copySelected:(id)sender {
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard writeObjects:_arrayController.selectedObjects];
+}
+
+- (IBAction)copySelectedFile:(id)sender {
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard writeObjects:@[[NSURL fileURLWithPath:_arrayController.selectedObjects.firstObject isDirectory:NO]]];
+}
 
 - (IBAction)removeSelected:(id)sender {
     NSFileManager *fm = [NSFileManager defaultManager];

@@ -11,6 +11,7 @@
                 <outlet property="_arrayController" destination="UlE-nU-09r" id="ZH2-hN-mLY"/>
                 <outlet property="_logTextView" destination="8QB-2V-9xn" id="1KY-Lk-9zj"/>
                 <outlet property="_popover" destination="aSP-Fz-Ue3" id="Y0o-KF-kaY"/>
+                <outlet property="_tableView" destination="W06-7X-hmO" id="B2T-nU-dZ9"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -103,6 +104,7 @@
                                         <binding destination="UlE-nU-09r" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="bcE-am-wqD" id="pAr-3P-dui"/>
                                         <binding destination="UlE-nU-09r" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="pAr-3P-dui" id="Psl-aV-PiO"/>
                                         <outlet property="delegate" destination="-2" id="Ef5-Is-6sI"/>
+                                        <outlet property="menu" destination="kCH-6c-zrx" id="E4z-J3-OhJ"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -221,6 +223,42 @@ IA
             </subviews>
             <point key="canvasLocation" x="378.5" y="172.5"/>
         </customView>
+        <menu id="kCH-6c-zrx">
+            <items>
+                <menuItem title="Copy Selection" id="xLJ-Ru-2H0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="copySelected:" target="-2" id="C2d-ee-ig4"/>
+                        <binding destination="UlE-nU-09r" name="enabled" keyPath="canRemove" id="G5H-oP-nBI"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Copy Selected File" alternate="YES" id="7aF-8h-Axb">
+                    <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                    <connections>
+                        <action selector="copySelectedFile:" target="-2" id="Gv2-oi-Ox4"/>
+                        <binding destination="UlE-nU-09r" name="enabled" keyPath="canRemove" id="aeP-IN-e8P"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Move Selection to Trash" id="8xT-F9-bBu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="removeSelected:" target="-2" id="QL4-gg-q0C"/>
+                        <binding destination="UlE-nU-09r" name="enabled" keyPath="canRemove" id="eXL-fU-hye"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Remove Selection From Disk" alternate="YES" id="gjy-fe-yfn">
+                    <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                    <connections>
+                        <action selector="removeSelected:" target="-2" id="0qe-jV-3kn"/>
+                        <binding destination="UlE-nU-09r" name="enabled" keyPath="canRemove" id="FkX-wn-SAG"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="hQK-SR-OtB"/>
+            </connections>
+            <point key="canvasLocation" x="-206" y="132"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
