@@ -522,8 +522,19 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 - (void)sliderCellMouseDown:(SLHSliderCell *)cell {
     _canSeek = YES;
     dispatch_suspend(_timer);
+    
+    /* At this stage the NSSlider.doubleValue property is always 0 even though NSSlider.objectValue may not be.
+       [NSSlider unbind:NSValueBinding] resets the NSSlider.objectValue property to 0,
+       but if we bind the self.currentPosition property to @"doubleValue" instead of NSValueBinding,
+       then [NSSlider unbind:@"doubleValue"] doesn't reset anything. Maybe it's just a bug.  */
+    
+    double value = [cell.objectValue doubleValue];
+    _player.timePosition = value;
+
     [_seekBar unbind:NSValueBinding];
-    _player.timePosition = cell.doubleValue;
+    _seekBar.doubleValue = value;
+    
+    self.currentPosition = value;
 }
 
 - (void)sliderCellMouseDragged:(SLHSliderCell *)cell {
