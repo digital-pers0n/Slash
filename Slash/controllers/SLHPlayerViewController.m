@@ -18,7 +18,7 @@
 
 #define ENABLE_NO_SELECTED_STREAMS_FIX 1
 
-#define bindObject(obj, value, keyPath) [obj bind:@#value toObject:self withKeyPath:@#keyPath options:nil]
+#define bindObject(obj, value, keyPath) [obj bind:value toObject:self withKeyPath:@#keyPath options:nil]
 
 typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     SLHVolumeIconMax,
@@ -196,15 +196,15 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
                                                                          QOS_CLASS_USER_INTERACTIVE, 0);
     _bg_queue = dispatch_queue_create("com.home.MPVOpenGLView.render-queue", attr);
 
-    bindObject(_textField, doubleValue, self.currentPosition);
-    bindObject(_seekBar, doubleValue, self.currentPosition);
-    bindObject(_textField, enabled, self.seekable);
-    bindObject(_seekBar, enabled, self.seekable);
+    bindObject(_textField, NSValueBinding, self.currentPosition);
+    bindObject(_seekBar, NSValueBinding, self.currentPosition);
+    bindObject(_textField, NSEnabledBinding, self.seekable);
+    bindObject(_seekBar, NSEnabledBinding, self.seekable);
     SLHSliderCell *sliderCell = _seekBar.cell;
     
     sliderCell.delegate = self;
-    bindObject(sliderCell, inMark, self.inMark);
-    bindObject(sliderCell, outMark, self.outMark);
+    bindObject(sliderCell, @"inMark", self.inMark);
+    bindObject(sliderCell, @"outMark", self.outMark);
     [self.view.window makeFirstResponder:self.view];
     
     NSImage *volumeMax = [NSImage imageNamed:@"SLHImageNameVolumeMaxTemplate"];
@@ -493,13 +493,13 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 #pragma mark - NSControlTextEditingDelegate
 
 - (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
-    [control unbind:@"doubleValue"];
+    [control unbind:NSValueBinding];
     return YES;
 }
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
     _player.timePosition = control.doubleValue;
-    bindObject(control, doubleValue, self.currentPosition);
+    bindObject(control, NSValueBinding, self.currentPosition);
     return YES;
 }
 
@@ -515,14 +515,14 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
    _player.timePosition = cell.doubleValue;
     self.currentPosition = cell.doubleValue;
     dispatch_resume(_timer);
-    bindObject(_seekBar, doubleValue, self.currentPosition);
+    bindObject(_seekBar, NSValueBinding, self.currentPosition);
     _canSeek = NO;
 }
 
 - (void)sliderCellMouseDown:(SLHSliderCell *)cell {
     _canSeek = YES;
     dispatch_suspend(_timer);
-    [_seekBar unbind:@"doubleValue"];
+    [_seekBar unbind:NSValueBinding];
     _player.timePosition = cell.doubleValue;
 }
 
