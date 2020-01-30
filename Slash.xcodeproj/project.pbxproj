@@ -42,6 +42,7 @@
 		CE299C5E23BE0DC200F1C9BF /* libavformat.58.35.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5D23BE0DC200F1C9BF /* libavformat.58.35.101.dylib */; };
 		CE299C6023BE0DD100F1C9BF /* libavcodec.58.65.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5F23BE0DD100F1C9BF /* libavcodec.58.65.100.dylib */; };
 		CE299C6223BE0DEB00F1C9BF /* libavutil.56.38.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C6123BE0DEB00F1C9BF /* libavutil.56.38.100.dylib */; };
+		CE2B44B623DF30FB006E2094 /* SLHVideoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2B44B523DF30FB006E2094 /* SLHVideoSlider.m */; };
 		CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */; };
 		CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */; };
 		CE40B09D2107DE2900969371 /* slh_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE40B09B2107DE2900969371 /* slh_socket.c */; };
@@ -170,6 +171,8 @@
 		CE299C5D23BE0DC200F1C9BF /* libavformat.58.35.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.35.101.dylib; path = ../../../../../../Developer/opt/lib/libavformat.58.35.101.dylib; sourceTree = "<group>"; };
 		CE299C5F23BE0DD100F1C9BF /* libavcodec.58.65.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.65.100.dylib; path = ../../../../../../Developer/opt/lib/libavcodec.58.65.100.dylib; sourceTree = "<group>"; };
 		CE299C6123BE0DEB00F1C9BF /* libavutil.56.38.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.38.100.dylib; path = ../../../../../../Developer/opt/lib/libavutil.56.38.100.dylib; sourceTree = "<group>"; };
+		CE2B44B423DF30FB006E2094 /* SLHVideoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHVideoSlider.h; sourceTree = "<group>"; };
+		CE2B44B523DF30FB006E2094 /* SLHVideoSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHVideoSlider.m; sourceTree = "<group>"; };
 		CE2CC11E21235334008C8345 /* SLHPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHPlayer.h; sourceTree = "<group>"; };
 		CE2CC11F21235334008C8345 /* SLHPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHPlayer.m; sourceTree = "<group>"; };
 		CE2CC12121235447008C8345 /* SLHMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItem.h; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 		CE9C0D1A2193583D0089C084 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CE2B44B423DF30FB006E2094 /* SLHVideoSlider.h */,
+				CE2B44B523DF30FB006E2094 /* SLHVideoSlider.m */,
 				CE9E7BD523A91C9100614D56 /* SLHVolumeSlider.h */,
 				CE9E7BD623A91C9100614D56 /* SLHVolumeSlider.m */,
 				CE2085262396796D00CB5049 /* SLHEmptyView.h */,
@@ -727,6 +732,7 @@
 				CEE0D24123B8FCF70017418E /* SLHMethodAddress.m in Sources */,
 				CE40B09D2107DE2900969371 /* slh_socket.c in Sources */,
 				CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */,
+				CE2B44B623DF30FB006E2094 /* SLHVideoSlider.m in Sources */,
 				CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */,
 				CE6467212368865D0048162D /* SLHSliderCell.m in Sources */,
 				CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */,
