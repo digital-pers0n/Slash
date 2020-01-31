@@ -9,6 +9,7 @@
 #import "SLHPlayerViewController.h"
 #import "SLHSliderCell.h"
 #import "SLHPreferences.h"
+#import "SLHVideoSlider.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     SLHVolumeIconMute
 };
 
-@interface SLHPlayerViewController () <MPVPropertyObserving, NSControlTextEditingDelegate, SLHSliderCellMouseTrackingDelegate> {
+@interface SLHPlayerViewController () <MPVPropertyObserving, NSControlTextEditingDelegate, SLHSliderCellMouseTrackingDelegate, SLHVideoSliderDelegate> {
     MPVPlayer *_player;
     double _currentPosition;
     IBOutlet NSTextField *_textField;
@@ -487,6 +488,16 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
             [_noVideoView removeFromSuperview];
             _videoView.hidden = NO;
         }
+    }
+}
+
+#pragma mark - SLHVideoSliderDelegate 
+
+- (void)videoSlider:(SLHVideoSlider *)slider scrollWheelDeltaY:(double)deltaY {
+    double candidate = _currentPosition + (-deltaY);
+    if (candidate >= 0 && candidate <= _duration) {
+        self.currentPosition = candidate;
+        _player.timePosition = candidate;
     }
 }
 

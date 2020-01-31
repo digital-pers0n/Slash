@@ -13,11 +13,12 @@
 #import "SLHPreferences.h"
 #import "SLHSliderCell.h"
 #import "SLHExternalPlayer.h"
+#import "SLHVideoSlider.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 
-@interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate, SLHSliderCellMouseTrackingDelegate> {
+@interface SLHCropEditor () <SLHImageViewDelegate, NSWindowDelegate, SLHSliderCellMouseTrackingDelegate, SLHVideoSliderDelegate> {
     
     IBOutlet SLHImageView *_imageView;
     SLHEncoderItem *_encoderItem;
@@ -90,6 +91,16 @@
     _bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     _main_queue = dispatch_get_main_queue();
     _imageView.currentToolMode = IKToolModeSelect;
+}
+
+#pragma mark - SLHVideoSliderDelegate
+
+- (void)videoSlider:(SLHVideoSlider *)slider scrollWheelDeltaY:(double)deltaY {
+    double candidate = _startTime + (-deltaY);
+    if (candidate >= 0 && candidate <= _encoderItem.playerItem.duration) {
+        self.startTime = candidate;
+        [self reloadFrame:nil];
+    }
 }
 
 #pragma mark - SLHSliderCellMouseTrackingDelegate 

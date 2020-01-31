@@ -31,12 +31,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="453" height="67"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <slider wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="piQ-K1-tlf">
-                            <rect key="frame" x="20" y="32" width="413" height="17"/>
+                        <slider wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="piQ-K1-tlf" customClass="SLHVideoSlider">
+                            <rect key="frame" x="20" y="30" width="413" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8nu-Bh-cfm" customClass="SLHSliderCell"/>
                             <connections>
                                 <binding destination="-2" name="maxValue" keyPath="self.duration" id="TnN-gO-KN5"/>
+                                <outlet property="delegate" destination="-2" id="eo9-Oh-TIt"/>
                             </connections>
                         </slider>
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">

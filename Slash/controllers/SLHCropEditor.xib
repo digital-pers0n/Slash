@@ -235,7 +235,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zKp-Sj-7Ka">
-                            <rect key="frame" x="624" y="1" width="15" height="319"/>
+                            <rect key="frame" x="623" y="1" width="16" height="319"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -259,6 +259,7 @@
                         <connections>
                             <binding destination="-2" name="maxValue" keyPath="self.encoderItem.playerItem.duration" id="DRe-xV-BO1"/>
                             <binding destination="-2" name="value" keyPath="self.startTime" previousBinding="DRe-xV-BO1" id="WcC-Vd-rmJ"/>
+                            <outlet property="delegate" destination="-2" id="Wu6-N8-d4A"/>
                         </connections>
                     </slider>
                 </subviews>
