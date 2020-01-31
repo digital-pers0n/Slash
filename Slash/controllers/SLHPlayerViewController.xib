@@ -171,7 +171,6 @@
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">.</string>
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepForward:" target="-2" id="HSq-DI-44p"/>
@@ -205,7 +204,6 @@ IA
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">,</string>
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepBack:" target="-2" id="EYk-ZJ-L7Q"/>

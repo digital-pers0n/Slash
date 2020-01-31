@@ -30,6 +30,7 @@
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 #import "MPVPlayerProperties.h"
+#import "MPVPlayerCommands.h"
 
 #import "SLHEncoderVP9Format.h"
 #import "SLHEncoderVPXFormat.h"
@@ -542,6 +543,14 @@ typedef void (*basic_imp)(id, SEL, id);
 }
 
 #pragma mark - IBActions
+
+- (IBAction)frameStep:(id)sender {
+    [_player performCommand:MPVPlayerCommandFrameStep];
+}
+
+- (IBAction)frameBackStep:(id)sender {
+    [_player performCommand:MPVPlayerCommandFrameBackStep];
+}
 
 - (IBAction)jumpForwardFine:(id)sender {
     [self updatePlayerTimePositionWithDelta:30.0];

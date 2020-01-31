@@ -772,6 +772,28 @@ CA
                                     </binding>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Select Next Frame" keyEquivalent="." id="mpb-Vu-roh">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="frameStep:" target="lKY-o8-vkq" id="QCu-SI-KIT"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="ZUb-iM-xnp">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Select Previous Frame" keyEquivalent="," id="e8K-cJ-ZnX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="frameBackStep:" target="lKY-o8-vkq" id="ipg-jR-5pP"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="zFb-Kk-Uo8">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="xFe-dT-WyY"/>
                             <menuItem title="Toggle OSD" keyEquivalent="u" id="s66-ht-PBX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
