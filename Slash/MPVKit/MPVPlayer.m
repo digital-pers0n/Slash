@@ -661,6 +661,23 @@ exit:
     }
 }
 
+- (BOOL)setString:(NSString *)value forProperty:(NSString *)property error:(NSError * _Nullable __autoreleasing *)error {
+    int result = mpv_set_value_for_key(_mpv_handle, value.UTF8String, property.UTF8String);
+    if (result != MPV_ERROR_SUCCESS) {
+        if (error) {
+            NSString *description = [NSString stringWithFormat:@"Failed to set '%@' value for '%@' property\n"
+                                     "%s\n", value, property, mpv_error_string(result)];
+            *error = [NSError errorWithDomain:MPVPlayerErrorDomain
+                                         code:result
+                                     userInfo:@{ NSLocalizedDescriptionKey : description }];
+        } else {
+            mpv_print_error_set_property(result, property, "%@", value);
+        }
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)boolForProperty:(NSString *)property {
     int result = 0;
     int error = mpv_get_value_for_key(_mpv_handle, &result, property.UTF8String);

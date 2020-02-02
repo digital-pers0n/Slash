@@ -80,6 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)integerForProperty:(NSString *)property;
 - (double)doubleForProperty:(NSString *)property;
 
+- (BOOL)setString:(NSString *)value forProperty:(NSString *)property error:(NSError **)error;
+
 #pragma mark - Commands
 
 - (void)performCommand:(NSString *)command withArgument:(nullable NSString *)arg1 withArgument:(nullable NSString *)arg2 withArgument:(nullable NSString *)arg3;
