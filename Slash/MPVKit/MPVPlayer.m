@@ -65,6 +65,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
     if (self) {
         __weak id ref = self;
         int error = [self setUpUsingBlock:^{
+            [ref loadDefaultOptions];
             [ref loadOptions:options];
         }];
         
@@ -84,10 +85,10 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
     if (self) {
         __weak id ref = self;
         int error = [self setUpUsingBlock:^{
+            [ref loadDefaultOptions];
             int error = [ref loadConfig:path];
             if (error != MPV_ERROR_SUCCESS) {
-                NSLog(@"Loading default options.");
-                [ref loadDefaultOptions];
+                NSLog(@"Failed to read '%@' config file.", path);
             }
         }];
         
