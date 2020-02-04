@@ -28,7 +28,8 @@ static NSString * const  SLHPreferencesLastSelectedPrefTagKey = @"lastSelectedPr
 
 typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     SLHPreferencesGeneralToolbarItem = 0,
-    SLHPreferencesMPVToolbarItem
+    SLHPreferencesMPVToolbarItem,
+    SLHPreferencesAdvancedToolbarItem
 };
 
 #define SLHPreferencesDefaultPNGCompression     7
@@ -41,6 +42,8 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     IBOutlet NSToolbar *_toolbar;
     IBOutlet NSView *_generalPrefsView;
     IBOutlet NSView *_mpvPrefsView;
+    IBOutlet NSView *_advancedPrefsView;
+    IBOutlet NSDictionaryController *_dictionaryController;
     
     __weak NSView *_currentPrefsView;
     
@@ -51,13 +54,13 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     NSString *_mpvLuaScriptPath;
     
     NSString *_appSupportPath;
-
 }
 
 @property  NSUserDefaults *userDefaults;
 
 @property IBOutlet NSTextField *ffmpegPathTextField;
 @property IBOutlet NSTextField *mpvPathTextField;
+@property (nonatomic) id lastEditedAdvancedOption;
 
 @end
 
@@ -152,6 +155,10 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
             self.subtitlesFontScaleByWindow = NO;
         }
         
+        if (!self.advancedOptions) {
+            [_userDefaults setObject:@{} forKey:SLHPreferencesAdvancedOptionsKey];
+        }
+        
     }
     return self;
 }
@@ -243,7 +250,9 @@ fatal_error:
             [self.window setContentSize:_mpvPrefsView.frame.size];
             [self showPrefsView:_mpvPrefsView];
             break;
-            
+        case SLHPreferencesAdvancedToolbarItem:
+            [self showPrefsView:_advancedPrefsView];
+            break;
         case SLHPreferencesGeneralToolbarItem:
         default:
             [self showPrefsView:_generalPrefsView];
@@ -378,6 +387,17 @@ fatal_error:
     return [_userDefaults boolForKey:SLHPreferencesSubtitlesFontScaleByWindowKey];
 }
 
+- (void)setEnableAdvancedOptions:(BOOL)enableAdvancedOptions {
+    [_userDefaults setBool:enableAdvancedOptions forKey:SLHPreferencesAdvancedOptionsEnabledKey];
+}
+
+- (BOOL)enableAdvancedOptions {
+    return [_userDefaults boolForKey:SLHPreferencesAdvancedOptionsEnabledKey];
+}
+
+- (NSDictionary *)advancedOptions {
+    return [_userDefaults objectForKey:SLHPreferencesAdvancedOptionsKey];
+}
 
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {
@@ -408,12 +428,20 @@ fatal_error:
 
 #pragma mark - IBActions
 
+- (IBAction)didEndEditingValue:(id)sender {
+    self.lastEditedAdvancedOption  = _dictionaryController.selection;
+}
+
 - (IBAction)showGeneralPrefs:(id)sender {
     [self showPrefsView:_generalPrefsView];
 }
 
 - (IBAction)showMPVPrefs:(id)sender {
     [self showPrefsView:_mpvPrefsView];
+}
+
+- (IBAction)showAdvancedPrefs:(id)sender {
+    [self showPrefsView:_advancedPrefsView];
 }
 
 - (IBAction)selectFile:(NSButton *)sender {

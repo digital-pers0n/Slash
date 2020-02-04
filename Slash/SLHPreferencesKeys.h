@@ -22,4 +22,10 @@ extern NSString * const SLHPreferencesSubtitlesFontNameKey;
 extern NSString * const SLHPreferencesSubtitlesFontSizeKey;
 extern NSString * const SLHPreferencesSubtitlesFontScaleByWindowKey;
 
+extern NSString * const SLHPreferencesAdvancedOptionNameKey;
+extern NSString * const SLHPreferencesAdvancedOptionValueKey;
+extern NSString * const SLHPreferencesAdvancedOptionsKey;
+extern NSString * const SLHPreferencesAdvancedOptionsEnabledKey;
+extern NSString * const SLHPreferencesAdvancedOptionsLastEditedKey;
+
 #endif /* SLHPreferencesKeys_h */

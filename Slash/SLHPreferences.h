@@ -47,4 +47,9 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property (nonatomic) NSInteger subtitlesFontSize;
 @property (nonatomic) BOOL subtitlesFontScaleByWindow;
 
+@property (readonly) NSDictionary *advancedOptions;
+@property (nonatomic) BOOL enableAdvancedOptions;
+/** Use the valueForKey: method with the @"key" or @"value" argument to access underlying data */
+@property (nonatomic, readonly) id lastEditedAdvancedOption;
+
 @end

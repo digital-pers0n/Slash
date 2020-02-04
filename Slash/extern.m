@@ -38,6 +38,12 @@ NSString * const SLHPreferencesSubtitlesFontNameKey             = @"subtitlesFon
 NSString * const SLHPreferencesSubtitlesFontSizeKey             = @"subtitlesFontSize";
 NSString * const SLHPreferencesSubtitlesFontScaleByWindowKey    = @"subtitlesFontScaleByWindow";
 
+NSString * const SLHPreferencesAdvancedOptionNameKey        = @"key";
+NSString * const SLHPreferencesAdvancedOptionValueKey       = @"value";
+NSString * const SLHPreferencesAdvancedOptionsKey           = @"advancedOptions";
+NSString * const SLHPreferencesAdvancedOptionsEnabledKey    = @"enableAdvancedOptions";
+NSString * const SLHPreferencesAdvancedOptionsLastEditedKey = @"lastEditedAdvancedOption";
+
 
 #pragma mark - SLHMetadataItem
 
