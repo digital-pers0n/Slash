@@ -290,7 +290,7 @@
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="cZQ-hF-QZX">
                                     <rect key="frame" x="229" y="153" width="15" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="50000" id="FFD-pw-Ooa"/>
+                                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="100" maxValue="50000" id="FFD-pw-Ooa"/>
                                     <connections>
                                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.bitRate" id="hMY-9t-jLp"/>
                                     </connections>
@@ -532,12 +532,12 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="16" maxValue="510" doubleValue="128" tickMarkPosition="above" sliderType="linear" id="RNw-IP-Zvj"/>
                             <connections>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="uze-1u-9xh"/>
                                 <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="b8t-Wq-OFW">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="uze-1u-9xh"/>
                             </connections>
                         </slider>
                         <textField autoresizesSubviews="NO" verticalHuggingPriority="750" id="cF6-T8-9o1">
@@ -553,12 +553,12 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="KfS-G7-dHI"/>
                                 <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="MeP-cy-nGx">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="KfS-G7-dHI"/>
                             </connections>
                         </textField>
                         <stepper autoresizesSubviews="NO" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="6es-QH-7Fa">
@@ -566,12 +566,12 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="16" maxValue="510" doubleValue="16" id="mZX-Bb-dXT"/>
                             <connections>
+                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="sk5-fi-j2f"/>
                                 <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="G71-tl-ag5">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.bitRate" id="sk5-fi-j2f"/>
                             </connections>
                         </stepper>
                         <textField autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="n5T-aG-8gZ">
@@ -588,8 +588,8 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="10" doubleValue="3" tickMarkPosition="above" sliderType="linear" id="9Wz-6N-vw1"/>
                             <connections>
-                                <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="pbk-wz-vVO"/>
                                 <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.quality" id="4gP-RN-S2x"/>
+                                <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="pbk-wz-vVO"/>
                             </connections>
                         </slider>
                         <textField autoresizesSubviews="NO" verticalHuggingPriority="750" misplaced="YES" id="LUo-lZ-b0e">
@@ -605,8 +605,8 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
-                                <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="x4w-44-z5z"/>
                                 <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.quality" id="e2x-D9-kAY"/>
+                                <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="x4w-44-z5z"/>
                             </connections>
                         </textField>
                         <stepper autoresizesSubviews="NO" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="vCS-JA-iKd">
@@ -614,8 +614,8 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10" doubleValue="10" id="qhl-Na-iPT"/>
                             <connections>
-                                <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="GPZ-xv-fCA"/>
                                 <binding destination="-2" name="value" keyPath="self.encoderItem.audioOptions.quality" id="7ba-0y-SmF"/>
+                                <binding destination="-2" name="enabled" keyPath="self.options.useVorbisAudio" id="GPZ-xv-fCA"/>
                             </connections>
                         </stepper>
                     </subviews>
