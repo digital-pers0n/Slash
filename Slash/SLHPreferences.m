@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     IBOutlet NSView *_mpvPrefsView;
     IBOutlet NSView *_advancedPrefsView;
     IBOutlet NSDictionaryController *_dictionaryController;
+    IBOutlet NSSlider *_numberOfThreadsSlider;
     
     __weak NSView *_currentPrefsView;
     
@@ -61,6 +62,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
 @property IBOutlet NSTextField *ffmpegPathTextField;
 @property IBOutlet NSTextField *mpvPathTextField;
 @property (nonatomic) id lastEditedAdvancedOption;
+@property (nonatomic) NSUInteger maxThreads;
 
 @end
 
@@ -89,15 +91,12 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
         _userDefaults = userDefaults;
-        
-        id obj = [userDefaults objectForKey:SLHPreferencesNumberOfThreadsKey];
-        if (obj) {
-           _numberOfThreads = ((NSNumber *)obj).unsignedIntegerValue;
-        } else {
-            _numberOfThreads = NSProcessInfo.processInfo.processorCount;
-            [userDefaults setInteger:_numberOfThreads forKey:SLHPreferencesNumberOfThreadsKey];
+        self.maxThreads = NSProcessInfo.processInfo.processorCount;
+        if (![userDefaults objectForKey:SLHPreferencesNumberOfThreadsKey]) {
+            [userDefaults setInteger:_maxThreads forKey:SLHPreferencesNumberOfThreadsKey];
         }
-        obj = [userDefaults objectForKey:SLHPreferencesUpdateOutputNameKey];
+        
+        id obj = [userDefaults objectForKey:SLHPreferencesUpdateOutputNameKey];
         if (obj) {
             _updateFileName = ((NSNumber *)obj).boolValue;
         } else {
@@ -258,7 +257,13 @@ fatal_error:
             [self showPrefsView:_generalPrefsView];
             break;
     }
+
+    _numberOfThreadsSlider.numberOfTickMarks = _maxThreads + 1;
     
+}
+
+- (NSUInteger)numberOfThreads {
+    return [[_userDefaults valueForKey:SLHPreferencesNumberOfThreadsKey] unsignedIntegerValue];
 }
 
 - (BOOL)outputPathSameAsInput {
@@ -515,11 +520,6 @@ fatal_error:
 - (IBAction)restoreDefaultOutputPath:(id)sender {
     _currentOutputPath = [SLHPreferencesDefaultOutputPath stringByExpandingTildeInPath];
     [_outputPathPopUp selectItemAtIndex:0];
-}
-
-- (IBAction)updateNumberOfThreads:(NSTextField *)sender {
-    
-    _numberOfThreads = sender.integerValue;
 }
 
 - (IBAction)updateFileNameDidChange:(NSButton *)sender {
