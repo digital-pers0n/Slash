@@ -666,11 +666,14 @@ exit:
     int result = mpv_set_value_for_key(_mpv_handle, value.UTF8String, property.UTF8String);
     if (result != MPV_ERROR_SUCCESS) {
         if (error) {
-            NSString *description = [NSString stringWithFormat:@"Failed to set '%@' value for '%@' property\n"
-                                     "%s\n", value, property, mpv_error_string(result)];
+            NSString *description = [NSString stringWithFormat:@"Failed to set '%@=%@' option\n"
+                                     "(%i) %s", property, value, result, mpv_error_string(result)];
+            NSString *recoverySuggestion = @"Please, correct or remove it from the preferences";
+            
             *error = [NSError errorWithDomain:MPVPlayerErrorDomain
                                          code:result
-                                     userInfo:@{ NSLocalizedDescriptionKey : description }];
+                                     userInfo:@{ NSLocalizedDescriptionKey              : description,
+                                                 NSLocalizedRecoverySuggestionErrorKey  : recoverySuggestion }];
         } else {
             mpv_print_error_set_property(result, property, "%@", value);
         }
