@@ -60,6 +60,25 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 
 @implementation MPVPlayer
 
+- (instancetype)initWithBlock:(void (^)(__weak MPVPlayer *))block {
+    self = [super init];
+    if (self) {
+        __weak id wSelf = self;
+        int error = [self setUpUsingBlock:^{
+            [wSelf loadDefaultOptions];
+            block(wSelf);
+        }];
+        
+        if (error != MPV_ERROR_SUCCESS) {
+            _status = MPVPlayerStatusFailed;
+        } else {
+            _status = MPVPlayerStatusReadyToPlay;
+            [self postInit];
+        }
+    }
+    return self;
+}
+
 - (instancetype)initWithOptions:(NSDictionary<NSString *,NSString *> *)options {
     self = [super init];
     if (self) {

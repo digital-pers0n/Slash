@@ -22,6 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPVPlayer : NSObject
 
+/** 
+ Initialize the player using a user-defined block.
+ The @c block will be called before the mpv_handle is initialized.
+ Can be used to tweak mpv options that will become inaccessble after initialization is over.
+ */
+- (instancetype)initWithBlock:(void (^)(__weak MPVPlayer *p))block;
+
 - (instancetype)initWithOptions:(NSDictionary <NSString *, NSString *> *)options;
 
 /**
