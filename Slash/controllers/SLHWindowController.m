@@ -139,8 +139,32 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [self.window registerForDraggedTypes:@[NSFilenamesPboardType]];
     
     /* MPVPlayer */
-    MPVPlayer *player = [[MPVPlayer alloc] init];
     
+    SLHPreferences *appPrefs = SLHPreferences.preferences;
+    
+    MPVPlayer *player;
+    if (appPrefs.enableAdvancedOptions) {
+            NSDictionary *options = appPrefs.advancedOptions;
+            __unsafe_unretained typeof(self) uSelf = self;
+
+            player = [[MPVPlayer alloc] initWithBlock:^(__weak MPVPlayer *p){
+                
+                [options enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key,
+                                                             id  _Nonnull obj,
+                                                             BOOL * _Nonnull stop) {
+                    NSError *error = nil;
+                    if (![p setString:obj
+                          forProperty:key
+                                error:&error]) {
+                        
+                        [uSelf presentError:error];
+                    }
+                }];
+                
+            }];
+    } else {
+        player = [[MPVPlayer alloc] init];
+    }
     [player pause];
     _playerView.player = player;
     _player = player;
@@ -154,7 +178,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [nc addObserver:self selector:@selector(playerViewControllerDidCommitInOutMarks:) name:SLHPlayerViewControllerDidCommitInOutMarksNotification object:playerController];
     
     /* SLHPreferences */
-    SLHPreferences *appPrefs = SLHPreferences.preferences;
+    
     
     [player setString:appPrefs.screenshotTemplate
           forProperty:MPVPlayerPropertyScreenshotTemplate];
@@ -414,6 +438,32 @@ static char SLHPreferencesKVOContext;
     [_player setBool:newValue.boolValue forProperty:MPVPlayerPropertySubsFontScaleByWindow];
 }
 
+- (void)advancedOptionDidChange:(id)option {
+    NSError *error = nil;
+    if (![_player setString:[option valueForKey:SLHPreferencesAdvancedOptionValueKey]
+                forProperty:[option valueForKey:SLHPreferencesAdvancedOptionNameKey]
+                      error:&error]) {
+        [self presentError:error];
+    }
+}
+
+- (void)enableAdvancedOptionsDidChange:(NSNumber *)newValue {
+    if (newValue.boolValue) {
+        NSDictionary *advancedOptions = SLHPreferences.preferences.advancedOptions;
+        if (advancedOptions.count) {
+            __unsafe_unretained typeof(self) uself = self;
+            __unsafe_unretained typeof(_player) player = _player;
+            
+            [advancedOptions enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                NSError *error = nil;
+                if (![player setString:obj forProperty:key error:&error]) {
+                    [uself presentError:error];
+                }
+            }];
+        }
+    }
+}
+
 
 static inline SLHMethodAddress *addressOf(id target, SEL action) {
     return [SLHMethodAddress methodAddressWithTarget:target selector:action];
@@ -432,6 +482,8 @@ static inline SLHMethodAddress *addressOf(id target, SEL action) {
                        SLHPreferencesSubtitlesFontNameKey              : addressOf(self, @selector(subsFontNameDidChange:)),
                        SLHPreferencesSubtitlesFontSizeKey              : addressOf(self, @selector(subsFontSizeDidChange:)),
                        SLHPreferencesSubtitlesFontScaleByWindowKey     : addressOf(self, @selector(subsFontScaleByWindowDidChange:)),
+                       SLHPreferencesAdvancedOptionsLastEditedKey   : addressOf(self, @selector(advancedOptionDidChange:)),
+                       SLHPreferencesAdvancedOptionsEnabledKey      : addressOf(self, @selector(enableAdvancedOptionsDidChange:)),
                        };
     
     for (NSString *key in _observedPrefs) {
