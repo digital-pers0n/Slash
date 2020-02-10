@@ -96,6 +96,7 @@ static char outMarkKVOContext;
     if (info) {
         [info[NSObservedObjectKey] removeObserver:self
                                        forKeyPath:info[NSObservedKeyPathKey]];
+        [_bindingInfo removeObjectForKey:binding];
     } else {
         [super unbind:binding];
     }
