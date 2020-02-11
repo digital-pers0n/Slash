@@ -43,6 +43,8 @@
 		CE35264A23F081FC00B28193 /* libavcodec.58.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35264723F081FC00B28193 /* libavcodec.58.dylib */; };
 		CE35264B23F081FC00B28193 /* libavformat.58.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35264823F081FC00B28193 /* libavformat.58.dylib */; };
 		CE35264C23F081FC00B28193 /* libavutil.56.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35264923F081FC00B28193 /* libavutil.56.dylib */; };
+		CE35266623F1C7C900B28193 /* SLHVolumeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35266523F1C7C900B28193 /* SLHVolumeButton.m */; };
+		CE35266923F2F63600B28193 /* SLHNumberToStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35266823F2F63600B28193 /* SLHNumberToStringTransformer.m */; };
 		CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */; };
 		CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */; };
 		CE40B09D2107DE2900969371 /* slh_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE40B09B2107DE2900969371 /* slh_socket.c */; };
@@ -177,6 +179,10 @@
 		CE35264723F081FC00B28193 /* libavcodec.58.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.dylib; path = ../../../../../../Developer/opt/lib/libavcodec.58.dylib; sourceTree = "<group>"; };
 		CE35264823F081FC00B28193 /* libavformat.58.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.dylib; path = ../../../../../../Developer/opt/lib/libavformat.58.dylib; sourceTree = "<group>"; };
 		CE35264923F081FC00B28193 /* libavutil.56.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.dylib; path = ../../../../../../Developer/opt/lib/libavutil.56.dylib; sourceTree = "<group>"; };
+		CE35266423F1C7C900B28193 /* SLHVolumeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHVolumeButton.h; sourceTree = "<group>"; };
+		CE35266523F1C7C900B28193 /* SLHVolumeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHVolumeButton.m; sourceTree = "<group>"; };
+		CE35266723F2F63600B28193 /* SLHNumberToStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHNumberToStringTransformer.h; path = utils/SLHNumberToStringTransformer.h; sourceTree = "<group>"; };
+		CE35266823F2F63600B28193 /* SLHNumberToStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHNumberToStringTransformer.m; path = utils/SLHNumberToStringTransformer.m; sourceTree = "<group>"; };
 		CE3893C3227886BF004BC3A2 /* SLHEncoderItemMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderItemMetadata.h; path = model/SLHEncoderItemMetadata.h; sourceTree = "<group>"; };
 		CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItemMetadata.m; path = model/SLHEncoderItemMetadata.m; sourceTree = "<group>"; };
 		CE3893EB227B3D4A004BC3A2 /* SLHStatusLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHStatusLineView.h; sourceTree = "<group>"; };
@@ -546,6 +552,8 @@
 		CE9C0D1A2193583D0089C084 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CE35266423F1C7C900B28193 /* SLHVolumeButton.h */,
+				CE35266523F1C7C900B28193 /* SLHVolumeButton.m */,
 				CE2B44B423DF30FB006E2094 /* SLHVideoSlider.h */,
 				CE2B44B523DF30FB006E2094 /* SLHVideoSlider.m */,
 				CE9E7BD523A91C9100614D56 /* SLHVolumeSlider.h */,
@@ -583,6 +591,8 @@
 		CE9E3347238AC8C600356342 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				CE35266723F2F63600B28193 /* SLHNumberToStringTransformer.h */,
+				CE35266823F2F63600B28193 /* SLHNumberToStringTransformer.m */,
 				CED2245D23A11332000A7489 /* SLHExternalPlayer.h */,
 				CED2245E23A11332000A7489 /* SLHExternalPlayer.m */,
 				CE88B9B2238C5ED500227111 /* SLHBitrateFormatter.h */,
@@ -749,6 +759,7 @@
 				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
 				CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */,
 				CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */,
+				CE35266623F1C7C900B28193 /* SLHVolumeButton.m in Sources */,
 				CE80A8AB2380560300CC4C7A /* SLHFileInfo.m in Sources */,
 				CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */,
 				CE9E3346238ABFDC00356342 /* SLHTimeFormatter.m in Sources */,
@@ -787,6 +798,7 @@
 				CE120459229C2AEE00C2A145 /* SLHEncoderVPXOptions.m in Sources */,
 				CE8628242371B0A700E0909F /* SLHTrimView.m in Sources */,
 				CE88B9B4238C5ED500227111 /* SLHBitrateFormatter.m in Sources */,
+				CE35266923F2F63600B28193 /* SLHNumberToStringTransformer.m in Sources */,
 				CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

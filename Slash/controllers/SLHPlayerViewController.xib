@@ -12,6 +12,7 @@
                 <outlet property="_noVideoView" destination="XTg-vc-98l" id="QAF-Jo-hm2"/>
                 <outlet property="_seekBar" destination="piQ-K1-tlf" id="KZs-3b-c9x"/>
                 <outlet property="_textField" destination="gqT-I7-i3V" id="bg7-al-Uh3"/>
+                <outlet property="_volumeButton" destination="D0z-ul-2VY" id="fGS-wl-jb3"/>
                 <outlet property="_volumePopover" destination="UgH-1Y-pcj" id="JAJ-mf-X1o"/>
                 <outlet property="videoView" destination="Uj3-cZ-2Ao" id="JrX-9s-s9g"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -73,7 +74,7 @@
                                 <outlet property="nextKeyView" destination="t7O-Wg-wbw" id="57H-kF-8UC"/>
                             </connections>
                         </textField>
-                        <button toolTip="Volume Level" verticalHuggingPriority="750" misplaced="YES" id="D0z-ul-2VY">
+                        <button toolTip="Volume Level" verticalHuggingPriority="750" misplaced="YES" id="D0z-ul-2VY" customClass="SLHVolumeButton">
                             <rect key="frame" x="409" y="9" width="24" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameVolumeMaxTemplate" imagePosition="overlaps" alignment="left" alternateImage="SLHImageNameVolumeMuteTemplate" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aq8-nK-MAp">
@@ -81,6 +82,14 @@
                                 <font key="font" metaFont="smallSystem"/>
                                 <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="iLf-cS-IFO"/>
                             </buttonCell>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                    <real key="value" value="110"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="showVolumePopover:" target="-2" id="Mo0-EW-oOk"/>
                                 <binding destination="-2" name="enabled2" keyPath="self.hasAudio" previousBinding="H2l-Nc-42q" id="nIJ-Ke-9Lh">
@@ -97,6 +106,11 @@
                                     </dictionary>
                                 </binding>
                                 <binding destination="-2" name="image" keyPath="self.volumeButtonIcon" id="bNu-1g-SjC"/>
+                                <binding destination="-2" name="toolTip" keyPath="self.volume" previousBinding="bNu-1g-SjC" id="zYv-x9-AS4">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">SLHNumberToStringTransformer</string>
+                                    </dictionary>
+                                </binding>
                             </connections>
                         </button>
                         <customView misplaced="YES" id="gPO-Z5-oCu">

@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     IBOutlet NSSlider *_seekBar;
     IBOutlet NSPopover *_volumePopover;
     IBOutlet NSView *_noVideoView;
+    IBOutlet NSButton *_volumeButton;
     
     BOOL _canSeek;
     BOOL _hasABLoop;
@@ -140,6 +141,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     [cell unbind:@"inMark"];
     [cell unbind:@"outMark"];
     cell.delegate = nil;
+    [_volumeButton unbind:NSValueBinding];
 }
 
 #pragma mark - Methods
@@ -201,6 +203,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     bindObject(_seekBar, NSValueBinding, self.currentPosition);
     bindObject(_textField, NSEnabledBinding, self.seekable);
     bindObject(_seekBar, NSEnabledBinding, self.seekable);
+    bindObject(_volumeButton, NSValueBinding, self.volume);
     SLHSliderCell *sliderCell = _seekBar.cell;
     
     sliderCell.delegate = self;

@@ -13,6 +13,7 @@
 #import "SLHWindowController.h"
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
+#import "SLHNumberToStringTransformer.h"
 
 char *g_temp_dir;
 
@@ -24,6 +25,11 @@ char *g_temp_dir;
 @end
 
 @implementation AppDelegate
+
++ (void)initialize {
+    [NSValueTransformer setValueTransformer:[SLHNumberToStringTransformer new]
+                                    forName:NSStringFromClass([SLHNumberToStringTransformer class])];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSString *tmpDir = NSTemporaryDirectory();
