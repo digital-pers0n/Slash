@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     BOOL _isAudioMuted;
     
     NSArray *_volumeButtonIcons;
-    SLHVolumeIcon _currentVolumeIcon;
+    SLHVolumeIcon _currentVolumeIconID;
     
     dispatch_queue_t _bg_queue;
     dispatch_queue_t _timer_queue;
@@ -110,23 +110,23 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 - (void)setVolume:(NSInteger)volume {
     if (!_isAudioMuted) {
         if (volume >= 75 &&
-            _currentVolumeIcon != SLHVolumeIconMax) {
+            _currentVolumeIconID != SLHVolumeIconMax) {
             
             self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMax];
-            _currentVolumeIcon = SLHVolumeIconMax;
+            _currentVolumeIconID = SLHVolumeIconMax;
             
         } else if (volume < 75 &&
                    volume >= 25 &&
-                   _currentVolumeIcon != SLHVolumeIconMid) {
+                   _currentVolumeIconID != SLHVolumeIconMid) {
             
             self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMid];
-            _currentVolumeIcon = SLHVolumeIconMid;
+            _currentVolumeIconID = SLHVolumeIconMid;
             
         } else if (volume < 25 &&
-                   _currentVolumeIcon != SLHVolumeIconMin) {
+                   _currentVolumeIconID != SLHVolumeIconMin) {
             
             self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMin];
-            _currentVolumeIcon = SLHVolumeIconMin;
+            _currentVolumeIconID = SLHVolumeIconMin;
         }
     }
     _player.volume = volume;
@@ -306,7 +306,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     _player.muted = YES;
     _isAudioMuted = YES;
     self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMute];
-    _currentVolumeIcon = SLHVolumeIconMute;
+    _currentVolumeIconID = SLHVolumeIconMute;
 }
 
 - (IBAction)resetVolumeLevel:(id)sender {
@@ -317,7 +317,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     _player.volume = 100;
     [self didChangeValueForKey:@"volume"];
     self.volumeButtonIcon = _volumeButtonIcons[SLHVolumeIconMax];
-    _currentVolumeIcon = SLHVolumeIconMax;
+    _currentVolumeIconID = SLHVolumeIconMax;
 }
 
 - (IBAction)jumpToInMark:(id)sender {
