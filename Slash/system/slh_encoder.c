@@ -42,10 +42,9 @@ void encoder_destroy(Encoder *enc) {
 #pragma mark - Start / stop encoding
 
 static void encoder_read_output(FILE *fp, encoder_callback_f func, void *ctx) {
-    static const size_t kLen = ENCODER_BUFFER_SIZE;
-    char *buffer = malloc(kLen * sizeof(char));
-    
-    while (fgets(buffer, kLen, fp)) {
+    size_t len = ENCODER_BUFFER_SIZE;
+    char *buffer = malloc(len * sizeof(char));
+    while(getdelim(&buffer, &len, '\r', fp) > 0) {
         func(buffer, ctx);
     }
     free(buffer);
