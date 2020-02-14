@@ -37,7 +37,7 @@
     Queue *_global_queue;
     Queue *_encoder_queue;
     char *_log;
-    size_t _log_size;
+    ssize_t _log_size;
     dispatch_queue_t _main_thread;
 }
 
@@ -288,7 +288,7 @@ static inline uint64_t _get_frame_number(const char *str) {
     return 0;
 }
 
-static void _encoder_callback(char *data, void *ctx) {
+static void _encoder_callback(char *data, void *ctx, ssize_t data_len) {
     uint64_t frame_number = 0;
     SLHEncoderQueue *obj = (__bridge id)ctx;
     if ((frame_number = _get_frame_number(data))) {
@@ -297,7 +297,7 @@ static void _encoder_callback(char *data, void *ctx) {
             item.currentFrameNumber = frame_number;
         });
     } else {
-        size_t data_len = ENCODER_BUFFER_SIZE;
+
         obj->_log_size += data_len;
         char *tmp = realloc(obj->_log, (obj->_log_size * sizeof(char)) + 1);
         if (tmp) {

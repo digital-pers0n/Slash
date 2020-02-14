@@ -43,9 +43,10 @@ void encoder_destroy(Encoder *enc) {
 
 static void encoder_read_output(FILE *fp, encoder_callback_f func, void *ctx) {
     size_t len = ENCODER_BUFFER_SIZE;
+    ssize_t data_len = 0;
     char *buffer = malloc(len * sizeof(char));
-    while(getdelim(&buffer, &len, '\r', fp) > 0) {
-        func(buffer, ctx);
+    while((data_len = getdelim(&buffer, &len, '\r', fp)) > 0) {
+        func(buffer, ctx, data_len);
     }
     free(buffer);
 }
@@ -149,3 +150,4 @@ int encoder_pause(Encoder *enc, bool value) {
     }
     return -1;
 }
+

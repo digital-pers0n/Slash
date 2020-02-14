@@ -14,7 +14,7 @@
 
 #define ENCODER_BUFFER_SIZE 128
 
-typedef void (*encoder_callback_f)(char *data, void *context);
+typedef void (*encoder_callback_f)(char *data, void *context, ssize_t data_len);
 typedef void (*encoder_exit_f)(void *context, int exit_code);
 
 typedef struct _Encoder {
