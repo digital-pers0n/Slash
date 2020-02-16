@@ -45,6 +45,7 @@
 		CE35264C23F081FC00B28193 /* libavutil.56.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35264923F081FC00B28193 /* libavutil.56.dylib */; };
 		CE35266623F1C7C900B28193 /* SLHVolumeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35266523F1C7C900B28193 /* SLHVolumeButton.m */; };
 		CE35266923F2F63600B28193 /* SLHNumberToStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35266823F2F63600B28193 /* SLHNumberToStringTransformer.m */; };
+		CE35266C23F987C900B28193 /* SLHFadingTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35266B23F987C900B28193 /* SLHFadingTableCellView.m */; };
 		CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */; };
 		CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */; };
 		CE40B09D2107DE2900969371 /* slh_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE40B09B2107DE2900969371 /* slh_socket.c */; };
@@ -183,6 +184,8 @@
 		CE35266523F1C7C900B28193 /* SLHVolumeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHVolumeButton.m; sourceTree = "<group>"; };
 		CE35266723F2F63600B28193 /* SLHNumberToStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHNumberToStringTransformer.h; path = utils/SLHNumberToStringTransformer.h; sourceTree = "<group>"; };
 		CE35266823F2F63600B28193 /* SLHNumberToStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHNumberToStringTransformer.m; path = utils/SLHNumberToStringTransformer.m; sourceTree = "<group>"; };
+		CE35266A23F987C900B28193 /* SLHFadingTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHFadingTableCellView.h; sourceTree = "<group>"; };
+		CE35266B23F987C900B28193 /* SLHFadingTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHFadingTableCellView.m; sourceTree = "<group>"; };
 		CE3893C3227886BF004BC3A2 /* SLHEncoderItemMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderItemMetadata.h; path = model/SLHEncoderItemMetadata.h; sourceTree = "<group>"; };
 		CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItemMetadata.m; path = model/SLHEncoderItemMetadata.m; sourceTree = "<group>"; };
 		CE3893EB227B3D4A004BC3A2 /* SLHStatusLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHStatusLineView.h; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 		CE9C0D1A2193583D0089C084 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CE35266A23F987C900B28193 /* SLHFadingTableCellView.h */,
+				CE35266B23F987C900B28193 /* SLHFadingTableCellView.m */,
 				CE35266423F1C7C900B28193 /* SLHVolumeButton.h */,
 				CE35266523F1C7C900B28193 /* SLHVolumeButton.m */,
 				CE2B44B423DF30FB006E2094 /* SLHVideoSlider.h */,
@@ -773,6 +778,7 @@
 				CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */,
 				CEDD22EC23887EB50049E4C4 /* SLHCropView.m in Sources */,
 				CE0813E522CB79B60048D27B /* SLHTextEditor.m in Sources */,
+				CE35266C23F987C900B28193 /* SLHFadingTableCellView.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */,
 				CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */,

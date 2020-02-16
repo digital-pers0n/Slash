@@ -64,7 +64,7 @@
                                             <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="self"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView misplaced="YES" id="cQM-bc-lia">
+                                                <tableCellView misplaced="YES" id="cQM-bc-lia" customClass="SLHFadingTableCellView">
                                                     <rect key="frame" x="1" y="1" width="303" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -93,6 +93,7 @@
                                                         </textField>
                                                     </subviews>
                                                     <connections>
+                                                        <outlet property="fadingButton" destination="IJN-5x-hCx" id="j0C-0W-MIH"/>
                                                         <outlet property="textField" destination="V5D-PA-Yyr" id="D0f-lG-Bn6"/>
                                                     </connections>
                                                 </tableCellView>
