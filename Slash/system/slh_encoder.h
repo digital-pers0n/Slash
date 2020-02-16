@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "slh_process.h"
 
-#define ENCODER_BUFFER_SIZE 128
+#define ENCODER_BUFFER_SIZE 4096
 
 typedef void (*encoder_callback_f)(char *data, void *context, ssize_t data_len);
 typedef void (*encoder_exit_f)(void *context, int exit_code);
