@@ -8,15 +8,15 @@
 
 #import "SLHVideoSlider.h"
 #import "SLHTimeFormatter.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define SLHToolTipWidth 120
 
 @interface SLHVideoSlider () {
     NSTrackingArea *_trackingArea;
-    SLHTimeFormatter *_timeFormatter;
     NSWindow *_toolTipWindow;
-    NSTextField *_toolTipTextField;
     dispatch_source_t _timer;
+    CATextLayer *_textLayer;
 }
 
 @end
@@ -27,22 +27,20 @@
 
 - (void)awakeFromNib {
     _trackingArea = [NSTrackingArea new];
-    _timeFormatter = [SLHTimeFormatter sharedFormatter];
     NSRect toolTipFrame = NSMakeRect(0, 0, SLHToolTipWidth, 15);
     _toolTipWindow = [[NSWindow alloc] initWithContentRect: toolTipFrame
                                            styleMask: NSWindowStyleMaskBorderless
                                              backing: NSBackingStoreBuffered
                                                defer: YES];
-
-    NSTextField *tf = [[NSTextField alloc] initWithFrame:toolTipFrame];
-    tf.bezeled = YES;
-    tf.bordered = NO;
-    tf.editable = NO;
-    tf.alignment = NSTextAlignmentCenter;
-    tf.font = [NSFont fontWithName:@"Osaka" size:10];
-    _toolTipTextField = tf;
     
-    _toolTipWindow.contentView = tf;
+    _textLayer = [CATextLayer new];
+    _textLayer.font = (__bridge CFTypeRef _Nullable)([NSFont fontWithName:@"Osaka" size:10]);
+    _textLayer.fontSize = 11;
+    _textLayer.alignmentMode = kCAAlignmentCenter;
+    _textLayer.foregroundColor = [NSColor controlTextColor].CGColor;
+    _textLayer.backgroundColor = [NSColor windowBackgroundColor].CGColor;
+    _toolTipWindow.contentView.layer = _textLayer;
+    _toolTipWindow.contentView.wantsLayer = YES;
     _toolTipWindow.hasShadow = YES;
     _toolTipWindow.collectionBehavior =  NSWindowCollectionBehaviorFullScreenAuxiliary | NSWindowCollectionBehaviorTransient;
     _toolTipWindow.level = kCGMaximumWindowLevelKey;
@@ -84,7 +82,7 @@ static void timer_handler(void *ctx) {
         NSPoint event_location = event.locationInWindow;
         NSPoint local_point = [self convertPoint:event_location fromView:nil];
         double value = (local_point.x / (NSWidth(viewFrame)) * maxValue);
-        _toolTipTextField.stringValue = [_timeFormatter stringForObjectValue:@(value)];
+        _textLayer.string = SLHTimeFormatterStringForDoubleValue(value);
         NSWindow *w = _toolTipWindow;
         NSPoint global_point = [NSEvent mouseLocation];
 
