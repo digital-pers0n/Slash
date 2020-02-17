@@ -21,16 +21,26 @@
     return obj;
 }
 
-- (NSString *)stringForObjectValue:(id)obj {
+static inline CFStringRef _stringForDoubleValue(double value) {
     
-    double value = [obj doubleValue];
     int64_t time = (int64_t)value;
     int64_t seconds = (time % 60);
     time = (time - seconds) / 60;
     int64_t minutes = time % 60;
     int64_t hours = (time - minutes) / 60;
-    return [NSString stringWithFormat:@"%02lli:%02lli:%06.3f", hours, minutes, (double)seconds + (value - floor(value))];
-    
+    char buffer[32];
+    snprintf(buffer, sizeof(buffer), "%02lli:%02lli:%06.3f", hours, minutes, (double)seconds + (value - floor(value)));
+    CFStringRef result = CFStringCreateWithCString(kCFAllocatorDefault, buffer, kCFStringEncodingUTF8);
+    return result;
+}
+
+NSString *SLHTimeFormatterStringForDoubleValue(double value) {
+    return CFBridgingRelease(_stringForDoubleValue(value));
+}
+
+- (NSString *)stringForObjectValue:(id)obj {
+    double value = [obj doubleValue];
+    return CFBridgingRelease(_stringForDoubleValue(value));
 }
 
 - (BOOL)getObjectValue:(out id  _Nullable __autoreleasing *)obj

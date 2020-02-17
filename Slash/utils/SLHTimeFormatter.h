@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+NSString *SLHTimeFormatterStringForDoubleValue(double value);
+
 @interface SLHTimeFormatter : NSNumberFormatter
 
 + (instancetype)sharedFormatter;
