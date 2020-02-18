@@ -218,9 +218,9 @@
                                                             <rect key="frame" x="3" y="7" width="269" height="12"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <connections>
+                                                                <binding destination="DY1-qc-DcZ" name="value" keyPath="objectValue.currentFrameNumber" previousBinding="5mW-CE-NaV" id="13I-f0-bNK"/>
                                                                 <binding destination="DY1-qc-DcZ" name="hidden" keyPath="objectValue.encoded" id="d7o-pM-hc1"/>
                                                                 <binding destination="DY1-qc-DcZ" name="maxValue" keyPath="objectValue.numberOfFrames" id="5mW-CE-NaV"/>
-                                                                <binding destination="DY1-qc-DcZ" name="value" keyPath="objectValue.currentFrameNumber" previousBinding="5mW-CE-NaV" id="13I-f0-bNK"/>
                                                             </connections>
                                                         </progressIndicator>
                                                         <imageView misplaced="YES" id="Bht-pa-yCP">
@@ -272,6 +272,15 @@
                         <connections>
                             <action selector="removeAll:" target="-2" id="dSe-Za-3OV"/>
                             <binding destination="y12-MD-jyl" name="enabled" keyPath="canRemove" id="ygU-ke-uW4"/>
+                            <binding destination="-2" name="enabled2" keyPath="self.inProgress" previousBinding="ygU-ke-uW4" id="DhN-K5-w7l">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                 </subviews>
