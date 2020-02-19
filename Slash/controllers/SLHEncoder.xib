@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="5100" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SLHEncoder">
@@ -19,14 +19,14 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="487" height="83"/>
+            <rect key="contentRect" x="196" y="240" width="550" height="96"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
-            <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="487" height="83"/>
+            <view key="contentView" misplaced="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="550" height="96"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="2i5-Ff-tPf">
-                        <rect key="frame" x="399" y="47" width="16" height="16"/>
+                        <rect key="frame" x="462" y="60" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameStopTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="A6w-Wb-fle">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -38,14 +38,14 @@
                         </connections>
                     </button>
                     <progressIndicator wantsLayer="YES" maxValue="100" style="bar" id="aXy-ad-O8R">
-                        <rect key="frame" x="20" y="45" width="367" height="20"/>
+                        <rect key="frame" x="20" y="58" width="430" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <connections>
                             <binding destination="-2" name="maxValue" keyPath="self.progressBarMaxValue" id="u2T-NB-5a0"/>
                         </connections>
                     </progressIndicator>
                     <button id="Ken-iO-Rr8">
-                        <rect key="frame" x="425" y="47" width="16" height="16"/>
+                        <rect key="frame" x="488" y="60" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNamePauseTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tyn-UC-BR3">
                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -57,7 +57,7 @@
                         </connections>
                     </button>
                     <button id="UfV-kT-Qkk">
-                        <rect key="frame" x="451" y="47" width="16" height="16"/>
+                        <rect key="frame" x="514" y="60" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameStartTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="EFN-am-TQz">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -72,16 +72,16 @@
                             </binding>
                         </connections>
                     </button>
-                    <customView id="1Ne-M1-IfE" customClass="SLHStatusLineView">
-                        <rect key="frame" x="20" y="22" width="447" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <customView misplaced="YES" id="1Ne-M1-IfE" customClass="SLHStatusLineView">
+                        <rect key="frame" x="20" y="16" width="510" height="35"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </customView>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="97.5" y="163.5"/>
+            <point key="canvasLocation" x="154" y="142"/>
         </window>
     </objects>
     <resources>

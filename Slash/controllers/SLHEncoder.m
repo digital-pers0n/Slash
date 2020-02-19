@@ -34,6 +34,7 @@ typedef void (^respond_block)(SLHEncoderState);
     char *_log;
     ssize_t _log_size;
     dispatch_queue_t _main_thread;
+    CFRunLoopRef _main_rl;
 }
 
 @property BOOL inProgress;
@@ -59,6 +60,7 @@ typedef void (^respond_block)(SLHEncoderState);
         queue_init(_queue, (void *)args_free);
         
         _main_thread = dispatch_get_main_queue();
+        _main_rl = CFRunLoopGetMain();
     }
     return self;
 }
@@ -165,11 +167,19 @@ typedef void (^respond_block)(SLHEncoderState);
 
 #pragma mark - Private
 
-static inline uint64_t _get_frames(const char *str) {
-    
-    char *s = strstr(str, "frame=");
-    if (s) {
-        return strtoul(s + 6, 0, 10);
+/** 
+ Get the number of already encoded frames.
+ Set @c s to a location inside @c data, that is ready to be displayed in the statusLine view
+ 
+ @note If @c data cannot be parsed, then @c s is left untouched
+ */
+static inline uint64_t _get_frames(const char *data, char **s) {
+
+    const char frame[] = "frame=";
+    char *found = strstr(data, frame);
+    if (found) {
+        *s = found;
+        return strtoul(found + (sizeof(frame) - 1), 0, 10);
     }
     
     return 0;
@@ -187,14 +197,19 @@ static inline char **_nsarray2carray(NSArray <NSString *> *array) {
 }
 
 static void _encoder_cb(char *data, void *ctx, ssize_t data_len) {
-    uint64_t frames = 0;
-    SLHEncoder *obj = (__bridge id)ctx;
-    if ((frames = _get_frames(data))) {
-        NSString *value = [NSString stringWithFormat:@"%llu of %.0f frames", frames, obj->_progressBarMaxValue];
-        dispatch_sync(obj->_main_thread, ^{
+    __unsafe_unretained SLHEncoder *obj = (__bridge id)ctx;
+    
+    if (data_len < 256) {
+        char *string = data;
+        uint64_t frames = _get_frames(data, &string);
+        CFStringRef st = CFStringCreateWithCString(kCFAllocatorDefault,
+                                                   string,
+                                                   kCFStringEncodingUTF8);
+        CFRunLoopPerformBlock(obj->_main_rl, kCFRunLoopCommonModes, ^{
             obj->_progressBar.doubleValue = frames;
-            obj->_statusLineView.string = value;
+            obj->_statusLineView.string = CFBridgingRelease(st);
         });
+    
     } else {
 
         obj->_log_size += data_len;
