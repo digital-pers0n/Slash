@@ -280,18 +280,20 @@ static inline char **_nsarray2carray(NSArray <NSString *> *array) {
 
 static inline uint64_t _get_frame_number(const char *str) {
     
-    char *s = strstr(str, "frame=");
+    const char frame[] = "frame=";
+
+    char *s = strstr(str, frame);
     if (s) {
-        return strtoul(s + 6, 0, 10);
+        return strtoul(s + (sizeof(frame) - 1), 0, 10);
     }
     
     return 0;
 }
 
 static void _encoder_callback(char *data, void *ctx, ssize_t data_len) {
-    uint64_t frame_number = 0;
-    SLHEncoderQueue *obj = (__bridge id)ctx;
-    if ((frame_number = _get_frame_number(data))) {
+    __unsafe_unretained SLHEncoderQueue *obj = (__bridge id)ctx;
+    if (data_len < 256) {
+        uint64_t frame_number = _get_frame_number(data);
         dispatch_async(obj->_main_thread, ^{
             SLHEncoderQueueItem *item = (__bridge id)queue_peek(obj->_global_queue);
             item.currentFrameNumber = frame_number;
