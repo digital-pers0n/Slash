@@ -887,8 +887,8 @@ CA
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
-                            <menuItem title="Recently Encoded" id="dcQ-0f-44B">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Recently Encoded" keyEquivalent="0" id="dcQ-0f-44B">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
                                     <action selector="showEncoderHistroy:" target="lKY-o8-vkq" id="phb-bl-xWh"/>
                                 </connections>
