@@ -158,8 +158,60 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
             [_userDefaults setObject:@{} forKey:SLHPreferencesAdvancedOptionsKey];
         }
         
+        [self checkFFmpeg:self.ffmpegPath];
+        [self checkMPV:self.mpvPath];
+        
     }
     return self;
+}
+
+- (void)checkFFmpeg:(NSString *)ffmpegPath {
+    NSFileManager *fm = NSFileManager.defaultManager;
+    if (![fm fileExistsAtPath:ffmpegPath isDirectory:NO] &&
+        ![fm isExecutableFileAtPath:ffmpegPath]) {
+        self.hasFFmpeg = NO;
+
+        NSString *msgText = [NSString stringWithFormat:
+                         @"'%@' is invalid ffmpeg path.", ffmpegPath];
+        NSString *infoText = @"Please provide a correct one in the Preferences.";
+        [self showAlertWithMessageText:msgText
+                       informativeText:infoText];
+        
+        [self showWindow:nil];
+        [self showGeneralPrefs:nil];
+        [self.window makeFirstResponder:_ffmpegPathTextField];
+        [self.window makeKeyAndOrderFront:nil];
+
+    } else {
+        self.hasFFmpeg = YES;
+    }
+}
+
+- (void)checkMPV:(NSString *)mpvPath {
+    NSFileManager *fm = NSFileManager.defaultManager;
+    if (![fm fileExistsAtPath:mpvPath isDirectory:NO] &&
+        ![fm isExecutableFileAtPath:mpvPath]) {
+        self.hasMPV = NO;
+        NSString *msgText = [NSString stringWithFormat:
+                             @"'%@' is invalid MPV path.", mpvPath];
+        NSString *infoText = @"Please provide a correct one in the Preferences.";
+        [self showAlertWithMessageText:msgText
+                       informativeText:infoText];
+        [self showWindow:nil];
+        [self showGeneralPrefs:nil];
+        [self.window makeFirstResponder:_mpvPathTextField];
+        [self.window makeKeyAndOrderFront:nil];
+    } else {
+        self.hasMPV = YES;
+    }
+}
+
+- (void)showAlertWithMessageText:(NSString *)msgText
+                 informativeText:(NSString *)infoText {
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = msgText;
+    alert.informativeText = infoText;
+    [alert runModal];
 }
 
 - (void)setUpPaths {
@@ -433,6 +485,16 @@ fatal_error:
 
 #pragma mark - IBActions
 
+- (IBAction)updateFFmpegPath:(id)sender {
+    NSString *value = _ffmpegPathTextField.stringValue;
+    [self checkFFmpeg:value];
+}
+
+- (IBAction)updateMPVPath:(id)sender {
+    NSString *value = _mpvPathTextField.stringValue;
+    [self checkMPV:value];
+}
+
 - (IBAction)didEndEditingValue:(id)sender {
     self.lastEditedAdvancedOption  = _dictionaryController.selection;
 }
@@ -457,9 +519,11 @@ fatal_error:
         switch (sender.tag) {
             case 1:
                 _ffmpegPathTextField.stringValue = value;
+                [self checkFFmpeg:value];
                 break;
             case 3:
                 _mpvPathTextField.stringValue = value;
+                [self checkMPV:value];
                 break;
                 
             default:
