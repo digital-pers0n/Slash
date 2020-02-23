@@ -768,9 +768,9 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" misplaced="YES" id="YPt-32-Xjf">
-                    <rect key="frame" x="20" y="20" width="19" height="19"/>
+                    <rect key="frame" x="20" y="18" width="24" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="7Ut-pe-2Um">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7Ut-pe-2Um">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <string key="keyEquivalent">n</string>
@@ -782,9 +782,9 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" misplaced="YES" id="u5g-L4-Ld7">
-                    <rect key="frame" x="49" y="20" width="19" height="19"/>
+                    <rect key="frame" x="44" y="18" width="24" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="UJC-jT-ajk">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UJC-jT-ajk">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <string key="keyEquivalent" base64-UTF8="YES">
@@ -805,10 +805,10 @@ CA
                     </connections>
                 </button>
                 <searchField wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" id="JZP-9U-iE6">
-                    <rect key="frame" x="217" y="20" width="139" height="19"/>
+                    <rect key="frame" x="217" y="18" width="139" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" maximumRecents="10" id="fQo-sF-hEw">
-                        <font key="font" metaFont="smallSystem"/>
+                    <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" maximumRecents="10" id="fQo-sF-hEw">
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </searchFieldCell>
