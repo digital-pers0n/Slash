@@ -78,6 +78,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 @property (nonatomic) SLHEncoderItem *currentEncoderItem;
 @property (nonatomic, nullable) NSString *lastEncodedMediaFilePath;
+@property (nonatomic, nullable) SLHPreferences *preferences;
 
 @end
 
@@ -141,6 +142,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     /* MPVPlayer */
     
     SLHPreferences *appPrefs = SLHPreferences.preferences;
+    self.preferences = appPrefs;
     
     MPVPlayer *player;
     if (appPrefs.enableAdvancedOptions) {

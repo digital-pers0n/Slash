@@ -32,6 +32,9 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 @property NSString *ffmpegPath;
 @property NSString *mpvPath;
 
+@property (nonatomic) BOOL hasFFmpeg;
+@property (nonatomic) BOOL hasMPV;
+
 @property NSString *lastUsedFormatName;
 
 @property NSString *screenshotPath;
