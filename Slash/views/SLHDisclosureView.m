@@ -220,7 +220,7 @@ static IMP get_method_address(id target, SEL selector) {
     [self addSubview:_headerView];
     _savedSize = headerFrame.size;
     
-    _separatorColor = [NSColor controlShadowColor];
+    _separatorColor = [NSColor gridColor];
 
 }
 

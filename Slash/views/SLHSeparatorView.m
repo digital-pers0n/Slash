@@ -14,7 +14,7 @@
 
 - (void)awakeFromNib {
     if (!_color) {
-        _color = [NSColor windowFrameColor];
+        _color = [NSColor gridColor];
     }
 }
 
