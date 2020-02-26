@@ -127,6 +127,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="cropEditorButtonAction:" target="-2" id="f84-Ud-A6C"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="xb3-1E-9vT"/>
                                         <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="xb3-1E-9vT" id="zAK-lk-ooN">
                                             <dictionary key="options">
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -135,7 +136,6 @@
                                                 <integer key="NSNullPlaceholder" value="-1"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="xb3-1E-9vT"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Preview" misplaced="YES" id="0I8-Df-iRd">
@@ -147,6 +147,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="previewCropArea:" target="-2" id="c72-tr-4DU"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="XhG-es-Msf"/>
                                         <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="XhG-es-Msf" id="3vJ-Ja-hNK">
                                             <dictionary key="options">
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -155,7 +156,6 @@
                                                 <integer key="NSNullPlaceholder" value="-1"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="XhG-es-Msf"/>
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="a8Y-mO-hcv">
@@ -298,6 +298,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="detectCropArea:" target="-2" id="UA0-5V-Bgj"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="C8m-YK-nwG"/>
                                         <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="C8m-YK-nwG" id="a8e-Be-7Wu">
                                             <dictionary key="options">
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -306,7 +307,6 @@
                                                 <integer key="NSNullPlaceholder" value="-1"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="C8m-YK-nwG"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Open Editor" id="KRq-8b-hP8">
@@ -434,14 +434,6 @@
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="QDU-8T-BEn"/>
                                     </connections>
                                 </textField>
-                                <box verticalHuggingPriority="750" boxType="separator" id="bB5-cQ-oBm">
-                                    <rect key="frame" x="8" y="146" width="255" height="5"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                </box>
-                                <box verticalHuggingPriority="750" boxType="separator" id="Shv-ye-fUT">
-                                    <rect key="frame" x="8" y="58" width="255" height="5"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                </box>
                                 <textField verticalHuggingPriority="750" id="EuF-mH-Xne">
                                     <rect key="frame" x="94" y="178" width="157" height="19"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -527,6 +519,14 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <customView misplaced="YES" id="7c1-93-m3V" customClass="SLHSeparatorView">
+                                    <rect key="frame" x="8" y="61" width="256" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                </customView>
+                                <customView misplaced="YES" id="D1i-5v-258" customClass="SLHSeparatorView">
+                                    <rect key="frame" x="8" y="149" width="256" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                </customView>
                             </subviews>
                         </customView>
                     </subviews>

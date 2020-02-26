@@ -19,7 +19,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY" customClass="SLHStackView">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="425"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="432"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <userGuides>
                 <userLayoutGuide location="82" affinity="minX"/>
@@ -27,7 +27,7 @@
             </userGuides>
             <subviews>
                 <customView id="UA6-B1-ZFW" customClass="SLHDisclosureView">
-                    <rect key="frame" x="0.0" y="287" width="250" height="138"/>
+                    <rect key="frame" x="0.0" y="294" width="250" height="138"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
                         <customView id="Ffm-9f-mmT">
@@ -136,10 +136,6 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <box verticalHuggingPriority="750" boxType="separator" id="3rR-mb-GPc">
-                                    <rect key="frame" x="8" y="91" width="234" height="5"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                </box>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ELa-fe-FbT">
                                     <rect key="frame" x="25" y="74" width="55" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -166,6 +162,10 @@
                                         <binding destination="-2" name="value" keyPath="self.encoderItem.videoOptions.videoHeight" id="ad5-pZ-BRe"/>
                                     </connections>
                                 </textField>
+                                <customView misplaced="YES" id="Qdx-80-XKb" customClass="SLHSeparatorView">
+                                    <rect key="frame" x="8" y="93" width="234" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                </customView>
                             </subviews>
                         </customView>
                     </subviews>
@@ -178,18 +178,18 @@
                     </connections>
                 </customView>
                 <customView misplaced="YES" id="eYw-LA-aD5" customClass="SLHDisclosureView">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="287"/>
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="294"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <userGuides>
                         <userLayoutGuide location="12" affinity="minY"/>
                     </userGuides>
                     <subviews>
                         <customView misplaced="YES" id="hGL-3j-1uu">
-                            <rect key="frame" x="0.0" y="0.0" width="250" height="267"/>
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="274"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" misplaced="YES" id="0Yp-zl-GbR">
-                                    <rect key="frame" x="82" y="196" width="148" height="19"/>
+                                    <rect key="frame" x="82" y="203" width="148" height="19"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="zNg-1G-y6k">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="20J-hA-yBF">
@@ -206,7 +206,7 @@
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" misplaced="YES" id="7rC-i0-S57">
-                                    <rect key="frame" x="82" y="51" width="148" height="19"/>
+                                    <rect key="frame" x="82" y="54" width="148" height="19"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="HDd-B0-Vhl">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="era-Qg-09E">
@@ -222,7 +222,7 @@
                                     </connections>
                                 </textField>
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="cqm-Wk-jhc">
-                                    <rect key="frame" x="229" y="194" width="15" height="22"/>
+                                    <rect key="frame" x="229" y="201" width="15" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="63" doubleValue="4" id="7iO-aW-dTA"/>
                                     <connections>
@@ -231,7 +231,7 @@
                                     </connections>
                                 </stepper>
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="tlc-NT-LBn">
-                                    <rect key="frame" x="229" y="49" width="15" height="22"/>
+                                    <rect key="frame" x="229" y="52" width="15" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="25" id="zZu-Fp-TG7"/>
                                     <connections>
@@ -239,7 +239,7 @@
                                     </connections>
                                 </stepper>
                                 <textField verticalHuggingPriority="750" misplaced="YES" id="ZGc-Dv-3kM">
-                                    <rect key="frame" x="82" y="10" width="148" height="19"/>
+                                    <rect key="frame" x="82" y="12" width="148" height="19"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="nUE-lV-yXq">
                                         <numberFormatter key="formatter" formatterBehavior="custom10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="tam-Ef-SX9">
@@ -254,7 +254,7 @@
                                     </connections>
                                 </textField>
                                 <slider verticalHuggingPriority="750" misplaced="YES" id="5Jl-pC-BQE">
-                                    <rect key="frame" x="82" y="135" width="160" height="17"/>
+                                    <rect key="frame" x="82" y="142" width="160" height="17"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" doubleValue="-7.5210000000000008" tickMarkPosition="above" sliderType="linear" id="OxG-Al-GDj"/>
                                     <connections>
@@ -264,7 +264,7 @@
                                     </connections>
                                 </slider>
                                 <textField verticalHuggingPriority="750" misplaced="YES" id="HLc-cq-vO2">
-                                    <rect key="frame" x="82" y="155" width="148" height="19"/>
+                                    <rect key="frame" x="82" y="162" width="148" height="19"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="9YR-7G-Dvt">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="wmC-JQ-O2a">
@@ -279,7 +279,7 @@
                                     </connections>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="6Pr-jy-J1n">
-                                    <rect key="frame" x="40" y="178" width="40" height="13"/>
+                                    <rect key="frame" x="40" y="185" width="40" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bitrate" id="UxB-st-YvI">
                                         <font key="font" metaFont="system" size="10"/>
@@ -288,7 +288,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="cZQ-hF-QZX">
-                                    <rect key="frame" x="229" y="153" width="15" height="22"/>
+                                    <rect key="frame" x="229" y="160" width="15" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="100" maxValue="50000" id="FFD-pw-Ooa"/>
                                     <connections>
@@ -296,7 +296,7 @@
                                     </connections>
                                 </stepper>
                                 <slider verticalHuggingPriority="750" misplaced="YES" id="Keq-01-Lak">
-                                    <rect key="frame" x="82" y="31" width="160" height="17"/>
+                                    <rect key="frame" x="82" y="33" width="160" height="17"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="10000" doubleValue="250" tickMarkPosition="above" sliderType="linear" id="rwI-k0-pWe"/>
                                     <connections>
@@ -304,7 +304,7 @@
                                     </connections>
                                 </slider>
                                 <button misplaced="YES" id="hi4-ej-Vb4">
-                                    <rect key="frame" x="79" y="234" width="82" height="18"/>
+                                    <rect key="frame" x="79" y="241" width="82" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="CRF-Based" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="31j-rp-iY2">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -314,8 +314,12 @@
                                         <binding destination="-2" name="value" keyPath="self.options.enableCRF" id="eKS-7t-2Hn"/>
                                     </connections>
                                 </button>
+                                <customView misplaced="YES" id="kJa-KH-Ys5" customClass="SLHSeparatorView">
+                                    <rect key="frame" x="8" y="116" width="234" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                </customView>
                                 <button misplaced="YES" id="fm1-Cj-8VP">
-                                    <rect key="frame" x="79" y="89" width="136" height="18"/>
+                                    <rect key="frame" x="79" y="93" width="136" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Alternate Ref. Frames" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="gHv-EN-yMo">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -326,7 +330,7 @@
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="AgI-wD-chr">
-                                    <rect key="frame" x="7" y="74" width="73" height="13"/>
+                                    <rect key="frame" x="7" y="77" width="73" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Lag In Frames" id="rIi-2h-ycs">
                                         <font key="font" metaFont="system" size="10"/>
@@ -335,7 +339,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <slider verticalHuggingPriority="750" misplaced="YES" id="poz-74-G0R">
-                                    <rect key="frame" x="82" y="72" width="160" height="17"/>
+                                    <rect key="frame" x="82" y="75" width="160" height="17"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="25" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="hqW-tl-gsU"/>
                                     <connections>
@@ -343,7 +347,7 @@
                                     </connections>
                                 </slider>
                                 <slider verticalHuggingPriority="750" misplaced="YES" id="wgY-ka-FqC">
-                                    <rect key="frame" x="82" y="176" width="160" height="17"/>
+                                    <rect key="frame" x="82" y="183" width="160" height="17"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="20000" doubleValue="2500" tickMarkPosition="above" sliderType="linear" id="SKf-oH-fny"/>
                                     <connections>
@@ -351,7 +355,7 @@
                                     </connections>
                                 </slider>
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="2aK-mm-2yJ">
-                                    <rect key="frame" x="229" y="112" width="15" height="22"/>
+                                    <rect key="frame" x="229" y="119" width="15" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-16" maxValue="16" id="SFe-jS-4fS"/>
                                     <connections>
@@ -361,7 +365,7 @@
                                     </connections>
                                 </stepper>
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="yYM-zb-Acf">
-                                    <rect key="frame" x="229" y="8" width="15" height="22"/>
+                                    <rect key="frame" x="229" y="10" width="15" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="HV9-l7-wgk"/>
                                     <connections>
@@ -369,7 +373,7 @@
                                     </connections>
                                 </stepper>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="wjh-b1-BUa">
-                                    <rect key="frame" x="8" y="33" width="72" height="13"/>
+                                    <rect key="frame" x="8" y="35" width="72" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Max GOP Size" id="UAq-5J-m4f">
                                         <font key="font" metaFont="system" size="10"/>
@@ -378,7 +382,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button id="xjB-vb-qjI">
-                                    <rect key="frame" x="79" y="250" width="71" height="18"/>
+                                    <rect key="frame" x="79" y="257" width="71" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Two Pass" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="hF4-3y-dV4">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -389,7 +393,7 @@
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Dpp-2J-5ef">
-                                    <rect key="frame" x="19" y="92" width="61" height="13"/>
+                                    <rect key="frame" x="19" y="96" width="61" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="auto-alt-ref" id="7ae-DN-624">
                                         <font key="font" metaFont="system" size="10"/>
@@ -398,7 +402,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" misplaced="YES" id="Cb5-yS-vuO">
-                                    <rect key="frame" x="82" y="114" width="148" height="19"/>
+                                    <rect key="frame" x="82" y="121" width="148" height="19"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="xQr-Uw-0qh">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="ZaO-CU-nZf">
@@ -416,7 +420,7 @@
                                     </connections>
                                 </textField>
                                 <slider verticalHuggingPriority="750" misplaced="YES" id="vla-gH-lA8">
-                                    <rect key="frame" x="82" y="217" width="160" height="17"/>
+                                    <rect key="frame" x="82" y="224" width="160" height="17"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="63" doubleValue="25" tickMarkPosition="above" sliderType="linear" id="rkz-Ul-lGx"/>
                                     <connections>
@@ -425,7 +429,7 @@
                                     </connections>
                                 </slider>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="O4u-hS-GT5">
-                                    <rect key="frame" x="42" y="137" width="38" height="13"/>
+                                    <rect key="frame" x="42" y="144" width="38" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Speed" id="cmb-gy-0oe">
                                         <font key="font" metaFont="system" size="10"/>
@@ -434,7 +438,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="yhv-UB-et3">
-                                    <rect key="frame" x="53" y="218" width="27" height="13"/>
+                                    <rect key="frame" x="53" y="225" width="27" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="CRF" id="iGj-q5-zMc">
                                         <font key="font" metaFont="system" size="10"/>
@@ -443,7 +447,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="EV1-bl-2de">
-                                    <rect key="frame" x="31" y="253" width="49" height="13"/>
+                                    <rect key="frame" x="31" y="260" width="49" height="13"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Encoding" id="a8x-FW-uCD">
                                         <font key="font" metaFont="system" size="10"/>
@@ -463,7 +467,7 @@
                     </connections>
                 </customView>
             </subviews>
-            <point key="canvasLocation" x="164" y="200.5"/>
+            <point key="canvasLocation" x="164" y="203"/>
         </customView>
         <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQz-5C-ErZ" customClass="SLHDisclosureView">
             <rect key="frame" x="0.0" y="0.0" width="250" height="158"/>
