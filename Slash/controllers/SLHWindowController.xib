@@ -46,7 +46,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <customView misplaced="YES" id="peP-sy-Dhj" customClass="SLHPlayerView">
-                                                <rect key="frame" x="0.0" y="0.0" width="464" height="216"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="464" height="215"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </customView>
                                             <customView misplaced="YES" id="iyB-28-pmc">
@@ -144,12 +144,12 @@
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="startEncoding:" target="-2" id="Hcj-Iv-q3d"/>
-                                                    <binding destination="-2" name="enabled" keyPath="self.preferences.hasFFmpeg" id="Mz6-Si-xGu"/>
                                                     <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" previousBinding="Mz6-Si-xGu" id="4ry-ab-Pjv">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
                                                     </binding>
+                                                    <binding destination="-2" name="enabled" keyPath="self.preferences.hasFFmpeg" id="Mz6-Si-xGu"/>
                                                 </connections>
                                             </button>
                                             <button toolTip="Add All Items to Queue" verticalHuggingPriority="750" misplaced="YES" id="Rdx-xW-Iqm">
@@ -161,12 +161,12 @@
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="addAllToQueue:" target="-2" id="cOM-gs-xQQ"/>
-                                                    <binding destination="-2" name="enabled" keyPath="self.preferences.hasFFmpeg" id="YiV-A4-OIO"/>
                                                     <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" previousBinding="YiV-A4-OIO" id="81d-9r-DB7">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                         </dictionary>
                                                     </binding>
+                                                    <binding destination="-2" name="enabled" keyPath="self.preferences.hasFFmpeg" id="YiV-A4-OIO"/>
                                                 </connections>
                                             </button>
                                             <button toolTip="Preview Output File" verticalHuggingPriority="750" misplaced="YES" id="uxE-C5-KgH">
@@ -178,14 +178,6 @@
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="previewOutputFile:" target="-2" id="p4A-4b-b3l"/>
-                                                    <binding destination="-2" name="enabled2" keyPath="self.preferences.hasMPV" previousBinding="1gd-uY-RQW" id="b9c-Yp-jDX">
-                                                        <dictionary key="options">
-                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                                        </dictionary>
-                                                    </binding>
                                                     <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" previousBinding="b9c-Yp-jDX" id="z7r-Gh-RDq">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -194,6 +186,14 @@
                                                     <binding destination="-2" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="1gd-uY-RQW">
                                                         <dictionary key="options">
                                                             <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                    <binding destination="-2" name="enabled2" keyPath="self.preferences.hasMPV" previousBinding="1gd-uY-RQW" id="b9c-Yp-jDX">
+                                                        <dictionary key="options">
+                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
                                                         </dictionary>
                                                     </binding>
                                                 </connections>
@@ -411,9 +411,18 @@
                             <binding destination="3cJ-e5-Y82" name="value" keyPath="selection.duration" id="Sa5-ap-S3g"/>
                         </connections>
                     </textField>
+                    <customView misplaced="YES" id="rZW-iE-xjK" customClass="SLHSeparatorView">
+                        <rect key="frame" x="0.0" y="19" width="680" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="0.0" y="-0.5"/>
+            <point key="canvasLocation" x="38" y="-6"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="3cJ-e5-Y82" userLabel="Items Array Controller" colorLabel="IBBuiltInLabel-Yellow"/>
         <arrayController objectClassName="SLHEncoderBaseFormat" editable="NO" id="FId-6h-ocY">
