@@ -279,6 +279,22 @@
                         <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.numberOfThreads" id="RR1-Aq-fUJ"/>
                     </connections>
                 </stepper>
+                <imageView toolTip="ffmpeg path is invalid. Please Enter a correct one." horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="rtQ-oM-5OX">
+                    <rect key="frame" x="469" y="177" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="j4x-Nd-vtj"/>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="self.hasFFmpeg" id="5xH-YM-bYr"/>
+                    </connections>
+                </imageView>
+                <imageView toolTip="mpv path is invalid. Please Enter a correct one." horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="048-SO-mMR">
+                    <rect key="frame" x="469" y="150" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="xY0-BJ-pjM"/>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="self.hasMPV" id="qDE-ai-R05"/>
+                    </connections>
+                </imageView>
             </subviews>
             <point key="canvasLocation" x="378.5" y="426"/>
         </customView>
@@ -831,6 +847,7 @@ CA
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSCaution" width="32" height="32"/>
         <image name="NSFolderSmart" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
