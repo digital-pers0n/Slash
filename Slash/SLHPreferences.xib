@@ -116,10 +116,6 @@
                         </binding>
                     </connections>
                 </popUpButton>
-                <box verticalHuggingPriority="750" boxType="separator" id="reA-pM-PM2">
-                    <rect key="frame" x="20" y="137" width="453" height="5"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </box>
                 <textField verticalHuggingPriority="750" id="bc1-Jf-tBj">
                     <rect key="frame" x="181" y="175" width="260" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -181,10 +177,6 @@
                         <binding destination="Wrw-dJ-vzm" name="value" keyPath="values.updateOutputName" id="3H7-T1-ia3"/>
                     </connections>
                 </button>
-                <box verticalHuggingPriority="750" boxType="separator" id="Pmw-7C-RSU">
-                    <rect key="frame" x="20" y="60" width="453" height="5"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Z1t-jf-YAH">
                     <rect key="frame" x="96" y="115" width="79" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -295,6 +287,14 @@
                         <binding destination="-2" name="hidden" keyPath="self.hasMPV" id="qDE-ai-R05"/>
                     </connections>
                 </imageView>
+                <customView misplaced="YES" id="IKN-yU-SxJ" customClass="SLHSeparatorView">
+                    <rect key="frame" x="20" y="139" width="453" height="1"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
+                <customView misplaced="YES" id="AMu-zw-PWO" customClass="SLHSeparatorView">
+                    <rect key="frame" x="20" y="62" width="453" height="1"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
             </subviews>
             <point key="canvasLocation" x="378.5" y="426"/>
         </customView>
