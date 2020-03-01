@@ -99,6 +99,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 }
 
 @property BOOL keepAspectRatio;
+@property BOOL enableCRF;
 @property SLHEncoderX264Options *videoOptions;
 
 @end
@@ -113,13 +114,6 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     [super viewDidLoad];
     _filters = [SLHFiltersController filtersController];
     [self _initializePopUps];
-    
-    // Set up _crfView
-
-    _crfView.hidden = YES;
-    _crfView.frame = _bitrateView.frame;
-    _crfView.autoresizingMask = _bitrateView.autoresizingMask;
-    [_bitrateView.superview addSubview:_crfView];
 
 }
 
@@ -457,22 +451,12 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     SLHEncoderX264Options *options = (SLHEncoderX264Options *)_encoderItem.videoOptions;
     switch (options.encodingType) {
         case SLHX264EncodingSinglePass:
-            _crfView.hidden = YES;
-            _bitrateView.hidden = NO;
-            
-            break;
-            
         case SLHX264EncodingTwoPass:
-            _crfView.hidden = YES;
-            _bitrateView.hidden = NO;
-            _maxBitrateView.hidden = NO;
-
+            self.enableCRF = NO;
             break;
             
         case SLHX264EncodingCRFSinglePass:
-            _crfView.hidden = NO;
-            _bitrateView.hidden = YES;
-            
+            self.enableCRF = YES;
         default:
             break;
     }
@@ -752,20 +736,14 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
     [args addObject:SLHEncoderVideoCodecKey];
     [args addObject:options.codecName];
     
-    switch (options.encodingType) {
-        case SLHX264EncodingSinglePass:
-        case SLHX264EncodingTwoPass:
-            [args addObject:SLHEncoderVideoBitrateKey];
-            [args addObject:@(options.bitRate * 1000).stringValue];
-            break;
-        case SLHX264EncodingCRFSinglePass:
-            [args addObject:SLHEncoderVideoCRFBitrateKey];
-            [args addObject:@(options.crf).stringValue];
-            break;
-            
-        default:
-            break;
+    if (_enableCRF) {
+        [args addObject:SLHEncoderVideoCRFBitrateKey];
+        [args addObject:@(options.crf).stringValue];
     }
+    
+    [args addObject:SLHEncoderVideoBitrateKey];
+    [args addObject:@(options.bitRate * 1000).stringValue];
+
     NSUInteger maxrate = options.maxBitrate;
     if (maxrate > 0) {
         [args addObject:SLHEncoderVideoMaxBitrateKey];
