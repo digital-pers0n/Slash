@@ -149,6 +149,7 @@
 
 - (void)dealloc {
     [_videoOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
+    [_videoOptions removeObserver:self forKeyPath:@"maxBitrate" context:&SLHEncoderItemKVOContext];
     [_audioOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
     [self removeObserver:self forKeyPath:@"intervalStart" context:&SLHEncoderItemKVOContext];
     [self removeObserver:self forKeyPath:@"intervalEnd" context:&SLHEncoderItemKVOContext];
@@ -165,6 +166,15 @@ static char SLHEncoderItemKVOContext;
         NSUInteger videoBitrate = 0, audioBitrate = 0;
         if (_videoStreamIndex > -1) {
             videoBitrate = _videoOptions.bitRate;
+            
+            if (videoBitrate == 0) {
+                videoBitrate = _videoOptions.maxBitrate;
+                
+                if (videoBitrate == 0) {
+                    videoBitrate = _playerItem.bitRate;
+                }
+            }
+
         }
         if (_audioStreamIndex > -1) {
             audioBitrate = _audioOptions.bitRate;
@@ -180,8 +190,10 @@ static char SLHEncoderItemKVOContext;
 
 - (void)setVideoOptions:(SLHEncoderItemOptions *)videoOptions {
     [_videoOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
+    [_videoOptions removeObserver:self forKeyPath:@"maxBitrate" context:&SLHEncoderItemKVOContext];
     _videoOptions = videoOptions;
     [_videoOptions addObserver:self forKeyPath:@"bitRate" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
+    [_videoOptions addObserver:self forKeyPath:@"maxBitrate" options:NSKeyValueObservingOptionNew context:&SLHEncoderItemKVOContext];
 }
 
 - (void)setAudioOptions:(SLHEncoderItemOptions *)audioOptions {
