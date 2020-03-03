@@ -71,31 +71,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button misplaced="YES" id="VOU-vX-KBd">
-                                <rect key="frame" x="10" y="402" width="18" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="j0L-Nc-7al">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="insertItem:" target="-2" id="Uka-DD-hEs"/>
-                                </connections>
-                            </button>
-                            <button misplaced="YES" id="9gK-G1-N31">
-                                <rect key="frame" x="38" y="402" width="18" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="sKv-mz-Qpx">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="removeItem:" target="-2" id="jvU-FP-VJe"/>
-                                </connections>
-                            </button>
                             <popUpButton verticalHuggingPriority="750" misplaced="YES" id="fKh-gC-G1q">
                                 <rect key="frame" x="245" y="399" width="87" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -128,6 +103,31 @@ CA
                                 </buttonCell>
                                 <connections>
                                     <action selector="applyChanges:" target="-2" id="e3g-E1-cTm"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" misplaced="YES" id="VOU-vX-KBd">
+                                <rect key="frame" x="11" y="9" width="22" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j0L-Nc-7al">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="insertItem:" target="-2" id="Uka-DD-hEs"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" misplaced="YES" id="9gK-G1-N31">
+                                <rect key="frame" x="32" y="9" width="22" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sKv-mz-Qpx">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="removeItem:" target="-2" id="jvU-FP-VJe"/>
                                 </connections>
                             </button>
                         </subviews>
