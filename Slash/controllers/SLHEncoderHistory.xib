@@ -32,6 +32,7 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="307" height="447"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <value key="minSize" type="size" width="200" height="200"/>
             <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="307" height="447"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -104,6 +105,7 @@
                                         <binding destination="UlE-nU-09r" name="content" keyPath="arrangedObjects" id="bcE-am-wqD"/>
                                         <binding destination="UlE-nU-09r" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="bcE-am-wqD" id="pAr-3P-dui"/>
                                         <binding destination="UlE-nU-09r" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="pAr-3P-dui" id="Psl-aV-PiO"/>
+                                        <outlet property="dataSource" destination="-2" id="V7i-xp-vH9"/>
                                         <outlet property="delegate" destination="-2" id="Ef5-Is-6sI"/>
                                         <outlet property="menu" destination="kCH-6c-zrx" id="E4z-J3-OhJ"/>
                                     </connections>
@@ -124,9 +126,9 @@
                         </tableHeaderView>
                     </scrollView>
                     <button toolTip="Move selected to Trash" verticalHuggingPriority="750" misplaced="YES" id="6ER-Ix-je9">
-                        <rect key="frame" x="279" y="10" width="18" height="16"/>
+                        <rect key="frame" x="279" y="10" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameTrashcanTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="rgO-nR-t5t">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameTrashcanTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="rgO-nR-t5t">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -139,9 +141,9 @@ CA
                         </connections>
                     </button>
                     <button toolTip="Preview Selected" verticalHuggingPriority="750" misplaced="YES" id="uNE-eL-8ck">
-                        <rect key="frame" x="10" y="10" width="18" height="15"/>
+                        <rect key="frame" x="10" y="10" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNamePreviewTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="eME-L1-S1E">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNamePreviewTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="eME-L1-S1E">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -154,9 +156,9 @@ IA
                         </connections>
                     </button>
                     <button toolTip="Reveal in Finder" verticalHuggingPriority="750" misplaced="YES" id="b63-lg-EjI">
-                        <rect key="frame" x="36" y="10" width="18" height="16"/>
+                        <rect key="frame" x="36" y="10" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="o6l-pL-Chr">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="o6l-pL-Chr">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
