@@ -11,7 +11,7 @@
 
 static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 
-@interface SLHEncoderHistory () <NSMenuDelegate> {
+@interface SLHEncoderHistory () <NSMenuDelegate, NSTableViewDataSource> {
     IBOutlet NSArrayController *_arrayController;
     IBOutlet NSPopover *_popover;
     IBOutlet NSTextView *_logTextView;
@@ -46,6 +46,8 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 - (void)windowDidLoad {
     [super windowDidLoad];
     _popover.contentSize = NSMakeSize(480, 640);
+    [_tableView registerForDraggedTypes:@[NSURLPboardType]];
+    [_tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
 
 - (void)addItemWithPath:(NSString *)path log:(NSString *)log {
@@ -64,6 +66,17 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
     if (row >= 0 && ![_tableView isRowSelected:row]) {
         [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     }
+}
+
+#pragma mark - NSTableViewDataSource
+
+- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView
+              pasteboardWriterForRow:(NSInteger)row {
+    NSString *path = _paths[row];
+    path = [@"file://" stringByAppendingString:path];
+    NSPasteboardItem *pbItem = [NSPasteboardItem new];
+    [pbItem setString:path forType:(__bridge id)kUTTypeFileURL];
+    return pbItem;
 }
 
 #pragma mark - IBActions
