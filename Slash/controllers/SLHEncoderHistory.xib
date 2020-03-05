@@ -158,7 +158,7 @@ IA
                     <button toolTip="Reveal in Finder" verticalHuggingPriority="750" misplaced="YES" id="b63-lg-EjI">
                         <rect key="frame" x="36" y="10" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="o6l-pL-Chr">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameRevealFileTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="o6l-pL-Chr">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -264,9 +264,9 @@ IA
         </menu>
     </objects>
     <resources>
-        <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
         <image name="SLHImageNameMoreActionsTemplate" width="15" height="15"/>
         <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
+        <image name="SLHImageNameRevealFileTemplate" width="15" height="15"/>
         <image name="SLHImageNameTrashcanTemplate" width="15" height="15"/>
     </resources>
 </document>
