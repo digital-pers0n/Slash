@@ -171,7 +171,7 @@ static char SLHEncoderItemKVOContext;
                 videoBitrate = _videoOptions.maxBitrate;
                 
                 if (videoBitrate == 0) {
-                    videoBitrate = _playerItem.bitRate;
+                    videoBitrate = _playerItem.bitRate / 1024;
                 }
             }
 
