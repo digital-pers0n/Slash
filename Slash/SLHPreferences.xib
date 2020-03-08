@@ -236,11 +236,15 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Cda-20-DLK">
                     <rect key="frame" x="376" y="19" width="32" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Max" id="orA-fn-yz2">
+                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="999" id="orA-fn-yz2">
+                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="hqv-8H-Q0C"/>
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.maxThreads" id="YsK-T5-Skw"/>
+                    </connections>
                 </textField>
                 <textField toolTip="Set number of threads. Set to 0 to autodetect." verticalHuggingPriority="750" misplaced="YES" id="Eml-aG-1Rp">
                     <rect key="frame" x="414" y="33" width="36" height="19"/>
