@@ -15,9 +15,7 @@
 #define MBIT   1e6
 #define GBIT   1e9
 
-- (NSString *)stringForObjectValue:(id)obj {
-    
-    double value = [obj doubleValue];
+static inline CFStringRef _stringForDoubleValue(double value) {
     double div;
     const char *suffix;
     
@@ -34,9 +32,22 @@
         div = BIT;
         suffix = "bit/s";
     }
-    
-    NSString *result = [NSString stringWithFormat:@"%.2f %s", value / div, suffix];
+    char buffer[32];
+    snprintf(buffer, sizeof(buffer), "%.2f %s", value / div, suffix);
+    CFStringRef result;
+    result = CFStringCreateWithCString(kCFAllocatorDefault,
+                                       buffer,
+                                       kCFStringEncodingUTF8);
     return result;
+}
+
+NSString *SLHBitrateFormatterStringForDoubleValue(double value) {
+    return CFBridgingRelease(_stringForDoubleValue(value));
+}
+
+- (NSString *)stringForObjectValue:(id)obj {
+    double value = [obj doubleValue];
+    return CFBridgingRelease(_stringForDoubleValue(value));
 }
 
 /* Even if a text field is not editable but selectable, it can still send this message to the formatter */

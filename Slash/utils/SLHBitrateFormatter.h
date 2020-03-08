@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+NSString *SLHBitrateFormatterStringForDoubleValue(double value);
+
 @interface SLHBitrateFormatter : NSFormatter
 
 @end
