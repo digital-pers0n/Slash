@@ -12,6 +12,7 @@
                 <outlet property="_bottomBarView" destination="BWC-U0-lVs" id="4tU-c9-orL"/>
                 <outlet property="_formatsArrayController" destination="FId-6h-ocY" id="EeK-Lo-NxF"/>
                 <outlet property="_formatsPopUp" destination="MkH-gC-ZGa" id="Q82-Pl-Mpo"/>
+                <outlet property="_inputFileInfoTextField" destination="p25-EN-7Hg" id="Y2H-pN-mgp"/>
                 <outlet property="_inspectorSplitView" destination="BIl-fZ-zC3" id="SFs-cL-7tK"/>
                 <outlet property="_itemsArrayController" destination="3cJ-e5-Y82" id="wso-Rg-jtB"/>
                 <outlet property="_playerView" destination="peP-sy-Dhj" id="7ha-od-DbM"/>
@@ -53,57 +54,22 @@
                                                 <rect key="frame" x="0.0" y="215" width="464" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <subviews>
-                                                    <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
-                                                        <rect key="frame" x="370" y="3" width="90" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lyi-GL-UQr">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="p25-EN-7Hg">
+                                                        <rect key="frame" x="6" y="8" width="452" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="qja-bA-hce">
                                                             <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="dZg-Ed-3Yi"/>
-                                                        </popUpButtonCell>
+                                                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
                                                         <connections>
-                                                            <action selector="formatsPopUpAction:" target="-2" id="Mf0-4t-h4K"/>
-                                                            <binding destination="FId-6h-ocY" name="content" keyPath="arrangedObjects.formatName" id="JC5-55-McN"/>
-                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="NZW-9G-O5I"/>
-                                                            <binding destination="FId-6h-ocY" name="selectedIndex" keyPath="selectionIndex" previousBinding="JC5-55-McN" id="UPE-6W-Ik4"/>
+                                                            <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="LkM-MV-PAL">
+                                                                <dictionary key="options">
+                                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                </dictionary>
+                                                            </binding>
                                                         </connections>
-                                                    </popUpButton>
-                                                    <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="Idt-of-EEP">
-                                                        <rect key="frame" x="5" y="3" width="90" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Qe-WC-173">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="ZHb-sB-f0T"/>
-                                                        </popUpButtonCell>
-                                                        <connections>
-                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="A2V-ov-dJY"/>
-                                                        </connections>
-                                                    </popUpButton>
-                                                    <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
-                                                        <rect key="frame" x="97" y="3" width="90" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32l-D9-SdJ">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="Xzr-1Y-15U"/>
-                                                        </popUpButtonCell>
-                                                        <connections>
-                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="zS4-gb-11x"/>
-                                                        </connections>
-                                                    </popUpButton>
-                                                    <popUpButton verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
-                                                        <rect key="frame" x="189" y="3" width="90" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="71C-wZ-lMD">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                            <menu key="menu" id="p7p-Yx-HNc"/>
-                                                        </popUpButtonCell>
-                                                        <connections>
-                                                            <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="dUL-ze-oes"/>
-                                                        </connections>
-                                                    </popUpButton>
+                                                    </textField>
                                                 </subviews>
                                             </customView>
                                         </subviews>
@@ -199,7 +165,7 @@
                                                 </connections>
                                             </button>
                                             <popUpButton toolTip="Load Preset" misplaced="YES" id="QS8-0O-UhT">
-                                                <rect key="frame" x="417" y="118" width="39" height="18"/>
+                                                <rect key="frame" x="420" y="118" width="36" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="vK3-kx-OJd">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -422,7 +388,87 @@
                     </customView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="38" y="-6"/>
+            <toolbar key="toolbar" implicitIdentifier="58B1DAE0-DC47-40C6-93D7-A3A61DD90A49" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="B8D-hm-GI4">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="9CAB7D46-BD2D-4DD7-A044-8776F4488744" label="Output Format" paletteLabel="Output Format" toolTip="Output Format" id="dVx-sP-jLD">
+                        <size key="minSize" width="80" height="22"/>
+                        <size key="maxSize" width="80" height="25"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
+                            <rect key="frame" x="2" y="14" width="80" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lyi-GL-UQr">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" id="dZg-Ed-3Yi"/>
+                            </popUpButtonCell>
+                            <connections>
+                                <action selector="formatsPopUpAction:" target="-2" id="Mf0-4t-h4K"/>
+                                <binding destination="FId-6h-ocY" name="content" keyPath="arrangedObjects.formatName" id="JC5-55-McN"/>
+                                <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="NZW-9G-O5I"/>
+                                <binding destination="FId-6h-ocY" name="selectedIndex" keyPath="selectionIndex" previousBinding="JC5-55-McN" id="UPE-6W-Ik4"/>
+                            </connections>
+                        </popUpButton>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="BF29C947-D302-46B7-A1DF-4C8BBF82C6BB" label="Video Stream" paletteLabel="Video Stream" toolTip="Video Stream" id="rT0-X5-nkl">
+                        <size key="minSize" width="80" height="22"/>
+                        <size key="maxSize" width="80" height="25"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="Idt-of-EEP">
+                            <rect key="frame" x="0.0" y="14" width="80" height="25"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Qe-WC-173">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" id="ZHb-sB-f0T"/>
+                            </popUpButtonCell>
+                            <connections>
+                                <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="A2V-ov-dJY"/>
+                            </connections>
+                        </popUpButton>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="956DBAFD-06BD-43CE-B4C6-DA901E57650B" label="Audio Stream" paletteLabel="Audio Stream" toolTip="Audio Stream" id="cUg-AL-Lit">
+                        <size key="minSize" width="80" height="22"/>
+                        <size key="maxSize" width="80" height="25"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
+                            <rect key="frame" x="0.0" y="14" width="80" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32l-D9-SdJ">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" id="Xzr-1Y-15U"/>
+                            </popUpButtonCell>
+                            <connections>
+                                <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="zS4-gb-11x"/>
+                            </connections>
+                        </popUpButton>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="36DEBC92-6FBC-4F2C-9A32-7D3FA4F55112" label="Subtitles Stream" paletteLabel="Subtitles Stream" toolTip="Subtitles Stream" id="OP6-6T-fIL">
+                        <size key="minSize" width="80" height="22"/>
+                        <size key="maxSize" width="80" height="25"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
+                            <rect key="frame" x="7" y="14" width="80" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="71C-wZ-lMD">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" id="p7p-Yx-HNc"/>
+                            </popUpButtonCell>
+                            <connections>
+                                <binding destination="3cJ-e5-Y82" name="enabled" keyPath="canRemove" id="dUL-ze-oes"/>
+                            </connections>
+                        </popUpButton>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="KmJ-GG-c7e"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ZbH-6g-hEd"/>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="rT0-X5-nkl"/>
+                    <toolbarItem reference="cUg-AL-Lit"/>
+                    <toolbarItem reference="OP6-6T-fIL"/>
+                    <toolbarItem reference="ZbH-6g-hEd"/>
+                    <toolbarItem reference="dVx-sP-jLD"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <point key="canvasLocation" x="38" y="-6.5"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="3cJ-e5-Y82" userLabel="Items Array Controller" colorLabel="IBBuiltInLabel-Yellow"/>
         <arrayController objectClassName="SLHEncoderBaseFormat" editable="NO" id="FId-6h-ocY">
