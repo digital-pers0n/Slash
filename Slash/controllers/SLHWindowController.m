@@ -25,6 +25,7 @@
 #import "SLHPlayerViewController.h"
 #import "SLHMethodAddress.h"
 #import "SLHEncoderHistory.h"
+#import "SLHBitrateFormatter.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -52,6 +53,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSPopUpButton *_audioStreamPopUp;
     IBOutlet NSPopUpButton *_subtitlesStreamPopUp;
     IBOutlet NSPopUpButton *_formatsPopUp;
+    
+    IBOutlet NSTextField *_inputFileInfoTextField;
     
     MPVPlayer *_player;
     SLHExternalPlayer *_externalPlayer;
@@ -317,6 +320,60 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (BOOL)hasMediaStreams:(MPVPlayerItem *)playerItem {
     return (playerItem.hasVideoStreams || playerItem.hasAudioStreams);
+}
+
+- (void)updateInputFileInfo:(MPVPlayerItem *)playerItem {
+    
+    MPVPlayerItemTrack *track = playerItem.bestVideoTrack;
+    NSMutableString *result = nil;
+    
+    if (track) {
+        result = [NSMutableString new];
+        
+        NSSize size = track.videoSize;
+        [result appendFormat:@"%.0fx%.0f", size.width, size.height];
+        [result appendFormat:@", %@", track.codecName];
+        
+        double fps = track.averageFrameRate;
+        if (fps > 0) {
+            [result appendFormat:@", %g fps", track.averageFrameRate];
+        }
+        
+        [result appendFormat:@", %@", track.pixFormatName];
+
+    }
+    
+    track = playerItem.bestAudioTrack;
+    if (track) {
+        if (result) {
+            [result appendString:@" :: "];
+        } else {
+            result = [NSMutableString new];
+        }
+        
+        [result appendString:track.language];
+        [result appendFormat:@", %@", track.codecName];
+        [result appendFormat:@", %@", track.channelLayout];
+        [result appendFormat:@", %@", track.sampleFormatName];
+        [result appendFormat:@", %luHz", track.sampleRate];
+    }
+    
+    if (!result) {
+        result = [@"Unknown :: " mutableCopy];
+    } else {
+        [result appendString:@" :: "];
+    }
+
+    
+    NSString *tmp;
+    tmp =  SLHBitrateFormatterStringForDoubleValue(playerItem.bitRate);
+    [result appendFormat:@"%@", tmp];
+    
+    tmp = [NSByteCountFormatter stringFromByteCount:playerItem.fileSize
+                                         countStyle:NSByteCountFormatterCountStyleBinary];
+    [result appendFormat:@", %@", tmp];
+    
+    _inputFileInfoTextField.stringValue = result;
 }
 
 - (NSString *)outputPathForSourcePath:(NSString *)sourcePath {
@@ -1227,6 +1284,7 @@ typedef void (*basic_imp)(id, SEL, id);
         [self updatePopUpMenus:encoderItem];
 
         player.currentItem = playerItem;
+        [self updateInputFileInfo:playerItem];
  
     } else {
         
