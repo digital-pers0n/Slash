@@ -170,6 +170,22 @@ bail:
                 break;
         }
     }
+    if (_hasVideoStreams) {
+        int idx = av_find_best_stream(_av_format, AVMEDIA_TYPE_VIDEO,
+                                      -1, -1, NULL, 0);
+        if (idx >= 0) {
+            _bestVideoTrack = result[idx];
+        }
+    }
+    
+    
+    if (_hasAudioStreams) {
+        int idx = av_find_best_stream(_av_format, AVMEDIA_TYPE_AUDIO,
+                                      -1, -1, NULL, 0);
+        if (idx >= 0) {
+            _bestAudioTrack = result[idx];
+        }
+    }
     
     _tracks = result;
 }

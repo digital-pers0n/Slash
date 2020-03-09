@@ -95,6 +95,12 @@ typedef NS_ENUM(NSInteger, MPVPlayerItemStatus) {
  */
 @property (readonly, nonatomic) NSArray <MPVPlayerItemTrack *> *tracks;
 
+/** Access the best video track. */
+@property (readonly, nullable, nonatomic) MPVPlayerItemTrack *bestVideoTrack;
+
+/** Access the best audio track. */
+@property (readonly, nullable, nonatomic) MPVPlayerItemTrack *bestAudioTrack;
+
 /**
  * Metadata stored by the media file.
  * @return An array of MPVMetadataItem objects.
