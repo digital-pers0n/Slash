@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface SLHSeparatorView : NSView
 
 @property (nonatomic) IBInspectable NSColor *color;
