@@ -606,6 +606,10 @@ exit:
     [self performCommand:MPVPlayerCommandStop];
 }
 
+- (BOOL)isPaused {
+    return [self boolForProperty:MPVPlayerPropertyPause];
+}
+
 - (void)seekTo:(double)time {
     
     mpv_node nodes[] = {

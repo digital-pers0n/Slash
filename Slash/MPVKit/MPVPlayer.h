@@ -60,6 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)play;
 - (void)pause;
 - (void)stop;
+- (BOOL)isPaused;
 
 @property (nonatomic) double speed;
 @property (nonatomic) double timePosition;
