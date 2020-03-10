@@ -16,6 +16,8 @@ NSString * const MPVPlayerItemErrorDomain = @"com.home.mpvPlayerItem.ErrorDomain
 
 @interface MPVPlayerItem () {
     AVFormatContext *_av_format;
+    __weak MPVPlayerItemTrack *_bestVideoTrack;
+    __weak MPVPlayerItemTrack *_bestAudioTrack;
 }
 
 
