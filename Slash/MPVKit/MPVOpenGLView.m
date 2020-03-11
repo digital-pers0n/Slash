@@ -285,7 +285,9 @@ typedef struct mpv_data_ {
             pthread_mutex_unlock(&_mpv.gl_lock);
 
         } else {
-            fillBlack(self.bounds);
+            if ([_player isPaused]) { // force redraw
+               dispatch_async_f(_render_queue, &_mpv, &render_frame);
+            }
         }
     } else {
         fillBlack(self.bounds);
