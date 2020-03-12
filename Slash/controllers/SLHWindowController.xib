@@ -25,8 +25,8 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="AppMainWindow" animationBehavior="default" id="F0z-JX-Cv5">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="AppMainWindow" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <rect key="contentRect" x="196" y="240" width="680" height="407"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
             <value key="minSize" type="size" width="680" height="400"/>
@@ -459,8 +459,7 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="KmJ-GG-c7e"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ZbH-6g-hEd"/>
-                    <toolbarItem implicitItemIdentifier="45A2C735-6945-46C5-BABA-0678C2CADFF4" label="Encoder History" paletteLabel="Encoder History" image="SLHImageNameEncoderHistoryTemplate" id="agX-ni-Kmk">
-                        <nil key="toolTip"/>
+                    <toolbarItem implicitItemIdentifier="45A2C735-6945-46C5-BABA-0678C2CADFF4" label="Encoder History" paletteLabel="Encoder History" toolTip="Recently Encoded" image="SLHImageNameEncoderHistoryTemplate" id="agX-ni-Kmk">
                         <size key="minSize" width="21" height="19"/>
                         <size key="maxSize" width="40" height="25"/>
                         <button key="view" verticalHuggingPriority="750" misplaced="YES" id="OUk-Ot-fJS">
@@ -475,8 +474,7 @@
                             <action selector="showEncoderHistroy:" target="-2" id="uar-Al-Jpo"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="51C9B11D-5C54-4D0D-9462-DCF3FBB0C626" label="Sidebar" paletteLabel="Sidebar" image="SLHImageNameToggleSideBarTemplate" id="dVH-iG-1hv">
-                        <nil key="toolTip"/>
+                    <toolbarItem implicitItemIdentifier="51C9B11D-5C54-4D0D-9462-DCF3FBB0C626" label="Sidebar" paletteLabel="Sidebar" toolTip="Toggle Sidebar" image="SLHImageNameToggleSideBarTemplate" id="dVH-iG-1hv">
                         <size key="minSize" width="21" height="19"/>
                         <size key="maxSize" width="40" height="25"/>
                         <button key="view" verticalHuggingPriority="750" misplaced="YES" id="yNB-sr-QYg">
