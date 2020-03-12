@@ -28,4 +28,6 @@ extern NSString * const SLHPreferencesAdvancedOptionsKey;
 extern NSString * const SLHPreferencesAdvancedOptionsEnabledKey;
 extern NSString * const SLHPreferencesAdvancedOptionsLastEditedKey;
 
+extern NSString * const SLHPreferencesWindowTitleStyleKey;
+
 #endif /* SLHPreferencesKeys_h */

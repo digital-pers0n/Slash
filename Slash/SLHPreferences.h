@@ -55,4 +55,6 @@ extern NSString *const SLHPreferencesOutputPathSameAsInput;
 /** Use the valueForKey: method with the @"key" or @"value" argument to access underlying data */
 @property (nonatomic, readonly) id lastEditedAdvancedOption;
 
+@property (nonatomic) NSWindowTitleVisibility windowTitleStyle;
+
 @end

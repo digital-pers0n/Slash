@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     IBOutlet NSView *_advancedPrefsView;
     IBOutlet NSDictionaryController *_dictionaryController;
     IBOutlet NSSlider *_numberOfThreadsSlider;
+    IBOutlet NSPopUpButton *_titleStylePopUp;
     
     __weak NSView *_currentPrefsView;
     
@@ -312,6 +313,7 @@ fatal_error:
 
     _numberOfThreadsSlider.numberOfTickMarks = _maxThreads + 1;
     
+    [_titleStylePopUp selectItemWithTag:self.windowTitleStyle];
 }
 
 - (NSUInteger)numberOfThreads {
@@ -456,6 +458,15 @@ fatal_error:
     return [_userDefaults objectForKey:SLHPreferencesAdvancedOptionsKey];
 }
 
+- (void)setWindowTitleStyle:(NSWindowTitleVisibility)windowTitleStyle {
+    [_userDefaults setInteger:windowTitleStyle
+                       forKey:SLHPreferencesWindowTitleStyleKey];
+}
+
+- (NSWindowTitleVisibility)windowTitleStyle {
+    return [_userDefaults integerForKey:SLHPreferencesWindowTitleStyleKey];
+}
+
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {
         return;
@@ -484,6 +495,10 @@ fatal_error:
 }
 
 #pragma mark - IBActions
+
+- (IBAction)updateTitleStyle:(id)sender {
+    self.windowTitleStyle = _titleStylePopUp.selectedTag;
+}
 
 - (IBAction)updateFFmpegPath:(id)sender {
     NSString *value = _ffmpegPathTextField.stringValue;
