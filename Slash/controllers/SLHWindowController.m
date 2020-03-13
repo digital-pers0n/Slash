@@ -218,6 +218,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [player setBool:appPrefs.subtitlesFontScaleByWindow
         forProperty:MPVPlayerPropertySubsFontScaleByWindow];
     
+    self.window.titleVisibility = appPrefs.windowTitleStyle;
     
     [self observePreferences:appPrefs];
     
@@ -523,6 +524,24 @@ static char SLHPreferencesKVOContext;
     }
 }
 
+- (void)updateWindowTitleStyle:(NSNumber *)obj {
+    NSWindowTitleVisibility value = obj.integerValue;
+    NSWindow *window = self.window;
+    window.titleVisibility = value;
+    if (_currentEncoderItem) {
+        NSURL *url;
+        NSString *title;
+        if (value == NSWindowTitleVisible) {
+            url = _currentEncoderItem.playerItem.url;
+            title = url.lastPathComponent;
+        } else {
+            title = @"";
+            url = nil;
+        }
+        window.representedURL = url;
+        window.title = title;
+    }
+}
 
 static inline SLHMethodAddress *addressOf(id target, SEL action) {
     return [SLHMethodAddress methodAddressWithTarget:target selector:action];
@@ -543,6 +562,7 @@ static inline SLHMethodAddress *addressOf(id target, SEL action) {
                        SLHPreferencesSubtitlesFontScaleByWindowKey     : addressOf(self, @selector(subsFontScaleByWindowDidChange:)),
                        SLHPreferencesAdvancedOptionsLastEditedKey   : addressOf(self, @selector(advancedOptionDidChange:)),
                        SLHPreferencesAdvancedOptionsEnabledKey      : addressOf(self, @selector(enableAdvancedOptionsDidChange:)),
+                       SLHPreferencesWindowTitleStyleKey : addressOf(self, @selector(updateWindowTitleStyle:)),
                        };
     
     for (NSString *key in _observedPrefs) {
