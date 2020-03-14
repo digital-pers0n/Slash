@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +16,7 @@
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
-        <arrayController objectClassName="NSString" editable="NO" alwaysUsesMultipleValuesMarker="YES" automaticallyRearrangesObjects="YES" id="UlE-nU-09r">
+        <arrayController objectClassName="SLHEncodedItem" editable="NO" alwaysUsesMultipleValuesMarker="YES" automaticallyRearrangesObjects="YES" id="UlE-nU-09r">
             <connections>
                 <binding destination="-2" name="contentArray" keyPath="self.paths" id="N8J-Gf-nct">
                     <dictionary key="options">
@@ -37,21 +38,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="307" height="447"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="9x3-oR-mdS">
-                        <rect key="frame" x="0.0" y="34" width="308" height="414"/>
+                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="9x3-oR-mdS">
+                        <rect key="frame" x="0.0" y="33" width="307" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="pVo-sa-17N">
-                            <rect key="frame" x="1" y="0.0" width="306" height="413"/>
+                            <rect key="frame" x="1" y="0.0" width="305" height="413"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="8p2-Nt-x2x" viewBased="YES" floatsGroupRows="NO" id="W06-7X-hmO">
-                                    <rect key="frame" x="0.0" y="0.0" width="306" height="390"/>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" rowHeight="42" rowSizeStyle="automatic" headerView="8p2-Nt-x2x" viewBased="YES" floatsGroupRows="NO" id="W06-7X-hmO">
+                                    <rect key="frame" x="0.0" y="0.0" width="305" height="390"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn editable="NO" width="303" minWidth="40" maxWidth="5000" id="Mqj-tK-RbE">
+                                        <tableColumn editable="NO" width="302" minWidth="40" maxWidth="5000" id="Mqj-tK-RbE">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="File Name">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,15 +63,15 @@
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
-                                            <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="self"/>
+                                            <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="filePath.lastPathComponent"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView misplaced="YES" id="cQM-bc-lia" customClass="SLHFadingTableCellView">
-                                                    <rect key="frame" x="1" y="1" width="303" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="302" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <button toolTip="Show encoding log" verticalHuggingPriority="750" misplaced="YES" id="IJN-5x-hCx">
-                                                            <rect key="frame" x="283" y="3" width="17" height="14"/>
+                                                            <rect key="frame" x="282" y="15" width="17" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameMoreActionsTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="ecD-dz-CKu">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -81,7 +82,7 @@
                                                             </connections>
                                                         </button>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" id="V5D-PA-Yyr">
-                                                            <rect key="frame" x="-1" y="1" width="284" height="15"/>
+                                                            <rect key="frame" x="71" y="24" width="211" height="15"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Table View Cell" id="h2N-V1-OWV">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -89,12 +90,45 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="cQM-bc-lia" name="value" keyPath="objectValue.lastPathComponent" id="b16-0p-YKH"/>
+                                                                <binding destination="cQM-bc-lia" name="value" keyPath="objectValue.filePath.lastPathComponent" id="PkX-Eq-DgE"/>
                                                             </connections>
                                                         </textField>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" id="snw-sP-bju">
+                                                            <rect key="frame" x="71" y="5" width="211" height="15"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" enabled="NO" sendsActionOnEndEditing="YES" title="Table View Cell" id="IE4-zS-buS">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="cQM-bc-lia" name="value" keyPath="objectValue.fileInfo" id="I5U-xR-Eyc"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <box autoresizesSubviews="NO" misplaced="YES" boxType="custom" borderType="line" title="Box" titlePosition="noTitle" id="lP5-pj-Nwv">
+                                                            <rect key="frame" x="3" y="4" width="66" height="36"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <view key="contentView" id="5FN-90-9QB">
+                                                                <rect key="frame" x="1" y="1" width="64" height="34"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <subviews>
+                                                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="CWz-jP-lss">
+                                                                        <rect key="frame" x="2" y="2" width="60" height="30"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SLHImageNameVideoTemplate" id="IrN-Rq-Sz6"/>
+                                                                        <connections>
+                                                                            <binding destination="cQM-bc-lia" name="value" keyPath="objectValue.previewImage" id="ccf-yY-Fd9"/>
+                                                                        </connections>
+                                                                    </imageView>
+                                                                </subviews>
+                                                            </view>
+                                                            <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="fillColor" name="shadowColor" catalog="System" colorSpace="catalog"/>
+                                                        </box>
                                                     </subviews>
                                                     <connections>
                                                         <outlet property="fadingButton" destination="IJN-5x-hCx" id="j0C-0W-MIH"/>
+                                                        <outlet property="imageView" destination="CWz-jP-lss" id="awD-e1-ozq"/>
                                                         <outlet property="textField" destination="V5D-PA-Yyr" id="D0f-lG-Bn6"/>
                                                     </connections>
                                                 </tableCellView>
@@ -121,7 +155,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="8p2-Nt-x2x">
-                            <rect key="frame" x="0.0" y="0.0" width="306" height="23"/>
+                            <rect key="frame" x="0.0" y="0.0" width="305" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
@@ -210,6 +244,9 @@ IA
                                     </fragment>
                                 </attributedString>
                                 <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <binding destination="UlE-nU-09r" name="value" keyPath="selection.log" id="QCu-Ze-O8B"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -268,5 +305,6 @@ IA
         <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
         <image name="SLHImageNameRevealFileTemplate" width="15" height="15"/>
         <image name="SLHImageNameTrashcanTemplate" width="15" height="15"/>
+        <image name="SLHImageNameVideoTemplate" width="15" height="15"/>
     </resources>
 </document>
