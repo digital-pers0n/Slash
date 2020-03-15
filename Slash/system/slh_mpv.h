@@ -13,19 +13,23 @@
 #include "slh_socket.h"
 #include "slh_process.h"
 #include <pthread/pthread.h>
+#include <stdatomic.h>
 
+typedef void (*ipc_read_f)(ssize_t size, void *context);
 typedef void (*callback_f)(char *data, void *context);
 typedef void (*exit_f)(void *player, void *context);
 typedef struct _PCallback {
     void *context;
     callback_f func;
     exit_f exit;
+    ipc_read_f ipc_read;
 } PCallback;
 
 typedef struct _Player {
     Socket *soc;
     char *socket_path;
     Process *proc;
+    atomic_int kq;          // kqueue
     PCallback *cb;
     void *gr;               // dispatch_group_t
     pthread_mutex_t lock;
@@ -58,6 +62,19 @@ void plr_set_callback(Player *p, void *context, callback_f func);
  */
 
 void plr_set_exit_cb(Player *p, exit_f func);
+
+
+/**
+ * Set a user-defined IPC function. 
+ * The function is called when data can be read via @c plr_msg_recv().
+ * 
+ * @note This function is not thread-safe. It's unsafe to call it if the
+ * @c plr_is_connected() returns 1. It should be called before @c plr_connect()
+ *
+ * @param func a pointer to a user-defined function or NULL.
+ */
+
+void plr_set_ipc_cb(Player *p, ipc_read_f func);
 
 /**
  * Launch the player.

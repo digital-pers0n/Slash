@@ -12,11 +12,13 @@
 #include <time.h>
 #include <dispatch/dispatch.h>
 #include <pthread/pthread_spis.h>
+#include <sys/event.h>
 
 #include "slh_mpv.h"
 #include "slh_util.h"
 
 static void _dummy_exit_cb(void *p, void *ctx) { return; }
+static void _dummy_ipc_cb(ssize_t size, void *ctx) { return; }
 
 static inline void plr_error(const char *s1, const char *s2) {
     fprintf(stderr, "%s : %s\n", s1, s2);
@@ -25,6 +27,14 @@ static inline void plr_error(const char *s1, const char *s2) {
 static inline char *_get_tmp_dir() {
     extern char *g_temp_dir;
     return (g_temp_dir) ? g_temp_dir : "/tmp";
+}
+
+static inline int plr_kqueue(Player *p) {
+    return atomic_load(&p->kq);
+}
+
+static inline void plr_set_kqueue(Player *p, int kq) {
+    atomic_store(&p->kq, kq);
 }
 
 #pragma mark - Initialize
@@ -63,12 +73,15 @@ int plr_init(Player *p, char *const *args) {
     p->cb->func = (callback_f)fputs;
     p->cb->context = stdout;
     p->cb->exit = _dummy_exit_cb;
+    p->cb->ipc_read = _dummy_ipc_cb;
     p->gr = dispatch_group_create();
     
     pthread_mutexattr_t mattr;
     pthread_mutexattr_init(&mattr);
     pthread_mutexattr_setpolicy_np(&mattr, _PTHREAD_MUTEX_POLICY_FIRSTFIT);
     pthread_mutex_init(&p->lock, &mattr);
+    
+    p->kq = -1;
     
     free(cmd);
     free(tmp);
@@ -88,6 +101,10 @@ void plr_set_callback(Player *p, void *ctx, callback_f func) {
 
 void plr_set_exit_cb(Player *p, exit_f func) {
     p->cb->exit = (func) ? func : _dummy_exit_cb;
+}
+
+void plr_set_ipc_cb(Player *p, ipc_read_f func) {
+    p->cb->ipc_read = (func) ? func : _dummy_ipc_cb;
 }
 
 #pragma mark - Destroy
@@ -176,10 +193,62 @@ int plr_launch(Player *p) {
 #pragma mark - IPC
 
 int plr_connect(Player *p) {
+    
+    int kq = plr_kqueue(p);
+    if (kq > -1) {
+        plr_error(__func__, "Already connected");
+        return -1;
+    }
     if (soc_connect(p->soc, p->socket_path) != 0) {
         plr_error(__func__, "Connection failed");
         return -1;
     }
+
+    if (fcntl(*p->soc, F_SETFL, O_NONBLOCK)) {
+        plr_error("Cannot set socket to non-blocking mode", strerror(errno));
+    }
+    kq = kqueue();
+    if (kq == -1) {
+        plr_error("Cannot open kqueue", strerror(errno));
+        return -1;
+    }
+    plr_set_kqueue(p, kq);
+    
+    dispatch_queue_t q = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0);
+    dispatch_async(q, ^{
+        
+        struct kevent ke;
+        EV_SET(&ke,
+               *p->soc,
+               EVFILT_READ,
+               EV_ADD | EV_ENABLE | EV_CLEAR, 0, 0, NULL);
+        
+        if (kevent(kq, &ke, 1, NULL, 0, NULL) == -1) {
+            plr_error("Cannot create kevent", strerror(errno));
+            goto done;
+        };
+        
+        while (1) {
+            
+            if (kevent(kq, NULL, 0, &ke, 1, NULL) == -1) {
+                plr_error("Cannot get kevent data", strerror(errno));
+                goto done;
+            }
+            
+            if (ke.flags & EV_EOF) {
+                goto done;
+            }
+
+            p->cb->ipc_read(data, p->cb->context);
+        }
+        
+    done:
+        
+        close(kq);
+        plr_set_kqueue(p, -1);
+        
+    });
+    dispatch_release(q);
     return 0;
 }
 
@@ -192,9 +261,7 @@ int plr_disconnect(Player *p) {
 }
 
 int plr_is_connected(Player *p) {
-    const char data[] = "{}\n";
-    ssize_t result = soc_send(p->soc, data, sizeof(data) - 1);
-    if (result == -1) {
+    if (plr_kqueue(p) == -1) {
         return 0;
     }
     return 1;
