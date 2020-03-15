@@ -23,8 +23,6 @@ typedef Player * PlayerRef;
     BOOL _hasWindow;
     dispatch_queue_t _queue;
     
-    NSThread *_playerThread;
-    
     Queue _commandQueue;
 }
 
@@ -114,6 +112,7 @@ typedef Player * PlayerRef;
         
         plr_set_callback(player, (__bridge void *)self, &mpv_callback);
         plr_set_exit_cb(player, &mpv_exit_callback);
+        plr_set_ipc_cb(player, &mpv_ipc_callback);
         
         if (player_relaunch(player) != 0) {
             _error = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
@@ -125,7 +124,6 @@ typedef Player * PlayerRef;
         _url = mediaURL;
         _fileLoaded = NO;
         _hasWindow = YES;
-        [self startEventThread];
     }
     return self;
 }
@@ -141,25 +139,11 @@ typedef Player * PlayerRef;
 - (void)cleanUp {
     queue_destroy(&_commandQueue);
     if (_playerRef) {
-        
-        [_playerThread cancel];
-        
         plr_destroy(_playerRef);
         _playerRef = NULL;
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationWillTerminateNotification object:nil];
 }
-
-- (void)startEventThread {
-    if (!_playerThread.executing) {
-        [_playerThread cancel];
-    }
-    _playerThread = [[NSThread alloc] initWithTarget:self selector:@selector(playerMonitor:) object:nil];
-    _playerThread.name = @"com.home.SLHExternalPlayer.player-monitor";
-    _playerThread.qualityOfService = NSQualityOfServiceBackground;
-    [_playerThread start];
-}
-
 
 #pragma mark - Properties
 
@@ -176,8 +160,6 @@ typedef Player * PlayerRef;
                 return;
             }
             _hasWindow = YES;
-            
-            [self startEventThread];
         }
         
         Player *player = _playerRef;
@@ -309,31 +291,6 @@ typedef Player * PlayerRef;
     }
 }
 
-- (void)playerMonitor:(id)context {
-    CFRunLoopRef rl = CFRunLoopGetMain();
-    const size_t buffer_size = 256;
-    char buffer[buffer_size + 1];
-    while (_playerRef && !_playerThread.cancelled) {
-        ssize_t len = plr_msg_recv(_playerRef, buffer, buffer_size);
-        if (len > 0) {
-            buffer[len] = '\0';
-    
-            if (strnstr(buffer, "file-loaded", len)) {
-                 __unsafe_unretained typeof(self) obj = self;
-                CFRunLoopPerformBlock(rl, kCFRunLoopCommonModes, ^{
-                    [obj didLoadFile];
-                });
-            }
-
-            fputs(buffer, stdout);
-        } else {
-            break;
-        }
-    }
-    [NSThread exit];
-}
-
-
 #pragma mark - Notifications
 
 - (void)applicationWillTerminate:(NSNotification *)n {
@@ -386,6 +343,33 @@ static int player_relaunch(Player *p) {
 }
 
 #pragma mark - Callbacks
+
+static void mpv_ipc_callback(ssize_t size, void *ctx) {
+    
+     __unsafe_unretained SLHExternalPlayer * obj = (__bridge id)ctx;
+    char data[256];
+    ssize_t nRead = 0;
+    
+    while (size > nRead) {
+        nRead = plr_msg_recv(obj->_playerRef, data, sizeof(data) - 1);
+    
+        if (nRead > 0) {
+            data[nRead] = '\0';
+            
+            if (strnstr(data, "file-loaded", nRead)) {
+                CFRunLoopRef rl = CFRunLoopGetMain();
+                CFRunLoopPerformBlock(rl, kCFRunLoopCommonModes, ^{
+                    [obj didLoadFile];
+                });
+            }
+#if DEBUG
+            fputs(data, stdout);
+#endif
+        } else {
+            break;
+        }
+    }
+}
 
 static void mpv_callback(char *output, void *ctx) {
     //fputs(output, stdout);
