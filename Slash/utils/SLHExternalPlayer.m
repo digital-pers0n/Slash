@@ -11,8 +11,9 @@
 #import "slh_mpv.h"
 
 
-static NSURL * defaultPlayerURL;
-static NSURL * defaultPlayerConfigURL;
+static NSURL * defaultPlayerURL = nil;
+static NSURL * defaultPlayerConfigURL = nil;
+static SLHExternalPlayer *defaultPlayerInstance = nil;
 
 typedef Player * PlayerRef;
 
@@ -56,11 +57,15 @@ typedef Player * PlayerRef;
 
 + (instancetype)defaultPlayer {
     static dispatch_once_t onceToken;
-    static SLHExternalPlayer *player;
+    
     dispatch_once(&onceToken, ^{
-        player = [[SLHExternalPlayer alloc] init];
+        defaultPlayerInstance = [[SLHExternalPlayer alloc] init];
     });
-    return player;
+    return defaultPlayerInstance;
+}
+
++ (void)reinitializeDefaultPlayer {
+    defaultPlayerInstance = [[SLHExternalPlayer alloc] init];
 }
 
 + (instancetype)playerWithURL:(NSURL *)url configurationFile:(NSURL *)config mediaFileURL:(NSURL *)mediaURL {
