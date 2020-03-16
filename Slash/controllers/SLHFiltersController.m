@@ -18,8 +18,6 @@
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 
-extern NSString *const SLHPreferencesMPVFilePathKey;
-
 extern NSString *const SLHEncoderVideoFiltersKey;
 extern NSString *const SLHEncoderAudioFiltersKey;
 
