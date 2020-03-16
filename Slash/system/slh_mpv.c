@@ -238,8 +238,8 @@ int plr_connect(Player *p) {
             if (ke.flags & EV_EOF) {
                 goto done;
             }
-
-            p->cb->ipc_read(data, p->cb->context);
+            ssize_t size = ke.data;
+            p->cb->ipc_read(size, p->cb->context);
         }
         
     done:
