@@ -249,8 +249,9 @@ fatal_error:
         if (error) {
             alert = [NSAlert alertWithError:error];
         } else {
-            alert = [NSAlert alertWithMessageText:@"Initialization Failed." defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Aborting..."];
-            
+            alert = [NSAlert new];
+            alert.messageText = @"Initialization Failed. Cannot load resources";
+            alert.informativeText = @"Aborting...";
         }
         [alert runModal];
         exit(EXIT_FAILURE);
