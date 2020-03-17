@@ -62,6 +62,11 @@ static void timer_handler(void *ctx) {
     [obj closeToolTip];
 }
 
+- (void)viewDidChangeBackingProperties {
+    [super viewDidChangeBackingProperties];
+    _textLayer.contentsScale = self.window.backingScaleFactor;
+}
+
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
     [self removeTrackingArea:_trackingArea];
