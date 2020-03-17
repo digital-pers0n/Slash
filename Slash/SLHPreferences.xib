@@ -135,7 +135,7 @@
                         </binding>
                     </connections>
                 </textField>
-                <button identifier="mpvBinary" tag="3" id="cmR-9g-nNH">
+                <button tag="3" id="cmR-9g-nNH">
                     <rect key="frame" x="446" y="186" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="qI4-wv-Yrv">
@@ -143,10 +143,10 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <action selector="selectFile:" target="-2" id="fvo-CU-QUz"/>
+                        <action selector="selectMPV:" target="-2" id="3V9-iJ-GVC"/>
                     </connections>
                 </button>
-                <button identifier="ffmpegBinary" tag="1" id="DgZ-Km-3ef">
+                <button tag="1" id="DgZ-Km-3ef">
                     <rect key="frame" x="446" y="213" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="J2K-Ay-4Yd">
@@ -154,7 +154,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <action selector="selectFile:" target="-2" id="i14-Ie-e4y"/>
+                        <action selector="selectFFmpeg:" target="-2" id="XuY-kz-mhs"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wvO-eK-bA2">

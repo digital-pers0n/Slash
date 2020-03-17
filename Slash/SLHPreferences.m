@@ -9,6 +9,12 @@
 #import "SLHPreferences.h"
 #import "SLHPreferencesKeys.h"
 
+/* User-defaults keys */
+extern NSString *const SLHPreferencesFFMpegFilePathKey;
+extern NSString *const SLHPreferencesMPVFilePathKey;
+extern NSString *const SLHPreferencesRecentOutputPaths;
+extern NSString *const SLHPreferencesOutputPathSameAsInput;
+
 extern NSString *const SLHPreferencesDefaultOutputPath;
 extern NSString *const SLHPreferencesNumberOfThreadsKey;
 extern NSString *const SLHPreferencesUpdateOutputNameKey;
@@ -116,11 +122,25 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
         }
         
         if (!self.ffmpegPath) {
-            self.ffmpegPath = SLHPreferencesDefaultFFMpegPath;
+            NSString *fallbackKey = SLHPreferencesFFMpegFilePathKey;
+            NSString *path = [_userDefaults valueForKey:fallbackKey];
+            if (path) {
+                self.ffmpegPath = path;
+                [_userDefaults setValue:nil forKey:fallbackKey];
+            } else {
+                self.ffmpegPath = SLHPreferencesDefaultFFMpegPath;
+            }
         }
 
         if (!self.mpvPath) {
-            self.mpvPath = SLHPreferencesDefaultMPVPath;
+            NSString *fallbackKey = SLHPreferencesMPVFilePathKey;
+            NSString *path = [_userDefaults valueForKey:fallbackKey];
+            if (path) {
+                self.mpvPath = path;
+                [_userDefaults setValue:nil forKey:fallbackKey];
+            } else {
+                self.mpvPath = SLHPreferencesDefaultMPVPath;
+            }
         }
         
         if (!self.screenshotPath) {
@@ -330,19 +350,19 @@ fatal_error:
 }
 
 - (NSString *)ffmpegPath {
-    return [_userDefaults objectForKey:SLHPreferencesFFMpegFilePathKey];
+    return [_userDefaults objectForKey:SLHPreferencesFFMpegPathKey];
 }
 
 - (void)setFfmpegPath:(NSString *)ffmpegPath {
-    [_userDefaults setObject:ffmpegPath forKey:SLHPreferencesFFMpegFilePathKey];
+    [_userDefaults setObject:ffmpegPath forKey:SLHPreferencesFFMpegPathKey];
 }
 
 - (NSString *)mpvPath {
-    return [_userDefaults objectForKey:SLHPreferencesMPVFilePathKey];
+    return [_userDefaults objectForKey:SLHPreferencesMPVPathKey];
 }
 
 - (void)setMpvPath:(NSString *)mpvPath {
-    [_userDefaults setObject:mpvPath forKey:SLHPreferencesMPVFilePathKey];
+    [_userDefaults setObject:mpvPath forKey:SLHPreferencesMPVPathKey];
 }
 
 - (void)setLastUsedFormatName:(NSString *)lastUsedFormatName {
@@ -527,26 +547,32 @@ fatal_error:
     [self showPrefsView:_advancedPrefsView];
 }
 
-- (IBAction)selectFile:(NSButton *)sender {
+- (NSString *)runFileSelectionPanel {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     if ([panel runModal] == NSModalResponseOK) {
-        NSString *value = panel.URLs.firstObject.path;
-        [_userDefaults setValue:value forKey:sender.identifier];
-        switch (sender.tag) {
-            case 1:
-                _ffmpegPathTextField.stringValue = value;
-                [self checkFFmpeg:value];
-                break;
-            case 3:
-                _mpvPathTextField.stringValue = value;
-                [self checkMPV:value];
-                break;
-                
-            default:
-                break;
-        }
+        return panel.URLs.firstObject.path;
     }
-    
+    return nil;
+}
+
+- (IBAction)selectMPV:(id)sender {
+    NSString *path = [self runFileSelectionPanel];
+    if (path) {
+        self.mpvPath = path;
+        [self checkMPV:path];
+    } else {
+        NSBeep();
+    }
+}
+
+- (IBAction)selectFFmpeg:(id)sender {
+    NSString *path = [self runFileSelectionPanel];
+    if (path) {
+        self.ffmpegPath = path;
+        [self checkFFmpeg:path];
+    } else {
+        NSBeep();
+    }
 }
 
 - (IBAction)selectOutputPath:(NSMenuItem *)sender {

@@ -9,6 +9,9 @@
 #ifndef SLHPreferencesKeys_h
 #define SLHPreferencesKeys_h
 
+extern NSString * const SLHPreferencesFFMpegPathKey;
+extern NSString * const SLHPreferencesMPVPathKey;
+
 extern NSString * const SLHPreferencesScreenshotPathKey;
 extern NSString * const SLHPreferencesScreenshotFormatKey;
 extern NSString * const SLHPreferencesScreenshotTemplateKey;
