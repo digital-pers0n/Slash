@@ -225,9 +225,6 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
     
     NSMutableDictionary <NSString *, SLHEncodedItem *> *_items;
     NSMutableArray <SLHEncodedItem *> *_paths;
-    
-    SLHExternalPlayer *_player;
-    id _obj;
 }
 
 @property (nonatomic, readonly) NSMutableArray <SLHEncodedItem *> *paths;
@@ -340,17 +337,14 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 - (IBAction)previewSelected:(id)sender {
     NSString *path = [_arrayController.selectedObjects.firstObject filePath];
     if (path) {
-        if (!_player) {
-            _player = [SLHExternalPlayer defaultPlayer];
-            if (_player.error) {
-                [self presentError:_player.error];
-                _player = nil;
-                return;
-            }
+        SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+        if (player.error) {
+            [self presentError:player.error];
+            return;
         }
-        _player.url = [NSURL fileURLWithPath:path isDirectory:NO];
-        [_player play];
-        [_player orderFront];
+        player.url = [NSURL fileURLWithPath:path isDirectory:NO];
+        [player play];
+        [player orderFront];
     }
 }
 

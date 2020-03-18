@@ -30,8 +30,6 @@
     IBOutlet NSPopover *_popover;
     IBOutlet NSView *_popoverContentView;
     
-    SLHExternalPlayer *_player;
-    
     /* Encoder */
     Encoder *_encoder;
     Queue *_global_queue;
@@ -203,18 +201,15 @@
     if (idx > -1) {
         SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
         if (queueItem.encoded) {
-            if (!_player) {
-                _player = [SLHExternalPlayer defaultPlayer];
-                if (_player.error) {
-                    NSLog(@"%s: Playback error: %@", __PRETTY_FUNCTION__, _player.error.localizedDescription);
-                    _player = nil;
-                    return;
-                }
+            SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+            if (player.error) {
+                [self presentError:player.error];
+                NSLog(@"%s: Playback error: %@", __PRETTY_FUNCTION__, player.error.localizedDescription);
+                return;
             }
-            _player.url = [NSURL fileURLWithPath:queueItem.name isDirectory:NO];
-            [_player orderFront];
-            
-            [_player play];
+            player.url = [NSURL fileURLWithPath:queueItem.name isDirectory:NO];
+            [player play];
+            [player orderFront];
         }
     }
 }
