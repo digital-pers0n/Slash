@@ -7,6 +7,7 @@
 //
 
 #import "SLHTrimView.h"
+@import QuartzCore.CAShapeLayer;
 
 //#define DEBUG_TRIMVIEW_DRAWING 1
 //#define ENABLE_TRIMVIEW_SCROLL_WHEEL 1
@@ -20,12 +21,13 @@
 #define SLHCellHitRightKnob    NSCellHitTrackableArea
 
 @interface SLHTrimSelectionCell : NSCell {
-    NSColor *_strokeColor;
-    NSColor *_backgroundColor;
-    NSColor *_foregroundColor;
+    CAShapeLayer *_controlLayer;
+    CAShapeLayer *_backgroundLayer;
 }
 
 @property (nonatomic) NSRect cellFrame;
+@property (nonatomic) CAShapeLayer *layer;
+@property (nonatomic) CAShapeLayer *backgroundLayer;
 
 @end
 
@@ -35,34 +37,44 @@
 {
     self = [super init];
     if (self) {
-        _strokeColor = [NSColor controlShadowColor];
-        _backgroundColor = [[NSColor controlBackgroundColor] highlightWithLevel:0.2];
-        _foregroundColor = [NSColor selectedControlColor];
+        _controlLayer = [CAShapeLayer new];
+        _controlLayer.fillColor = [[NSColor systemYellowColor] CGColor];
+        _controlLayer.fillRule = kCAFillRuleEvenOdd;
+        _controlLayer.lineWidth = 1;
+        _controlLayer.shadowColor = [[NSColor shadowColor] CGColor];
+        _controlLayer.shadowOpacity = 0.5;
+        _controlLayer.shadowOffset = NSMakeSize(0, -1);
+        _controlLayer.shadowRadius = 0.5;
+        
+        _backgroundLayer = [CAShapeLayer new];
+        _backgroundLayer.fillRule = kCAFillRuleEvenOdd;
+        _backgroundLayer.fillColor = [[NSColor colorWithWhite:0.0
+                                                        alpha:0.5] CGColor];
+        [_backgroundLayer addSublayer:_controlLayer];
+        
     }
     return self;
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     
-    /* Draw frame */
-    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(cellFrame, 1, 1) xRadius:3 yRadius:3];
+    NSRect hole = NSInsetRect(cellFrame, SLHKnobWidth, 4);
     
-    [_strokeColor setStroke];
-    [path stroke];
-    
-    /* Draw body */
-    path = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(cellFrame, 2, 2) xRadius:3 yRadius:3];
+    CGMutablePathRef ref = CGPathCreateMutable();
 
-    [_backgroundColor setFill];
-    [path fill];
-    
-    
-    /* Draw interior */
-    NSRect activeArea = NSInsetRect(cellFrame, SLHKnobWidth, 4);
-    path = [NSBezierPath bezierPathWithRoundedRect:activeArea xRadius:2 yRadius:2];
+    CGPathAddRoundedRect(ref, nil, NSInsetRect(cellFrame, 1, 1), 2, 2);
+    CGPathAddRect(ref, nil, hole);
 
-    [_foregroundColor set];
-    [path fill];
+    _controlLayer.path = ref;
+    
+    CGPathRelease(ref);
+    
+    ref = CGPathCreateMutable();
+    CGPathAddRoundedRect(ref, nil, controlView.bounds, 2, 2);
+    CGPathAddRect(ref, nil, hole);
+    _backgroundLayer.path = ref;
+    
+    CGPathRelease(ref);
 
 }
 
@@ -104,7 +116,6 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     double _endValue;
     NSTrackingArea *_trackingArea;
     CGFloat _mouseX;
-    NSColor *_strokeColor;
 }
 
 @property SLHTrimSelectionCell *selectionCell;
@@ -134,8 +145,6 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     self.minValue = 0;
     _bindingInfo = [NSMutableDictionary new];
     _trackingArea = [NSTrackingArea new];
-    
-    _strokeColor = [NSColor controlShadowColor];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -433,6 +442,14 @@ static char minValueKVOContext;
 
 #endif
 
+- (void)viewDidMoveToWindow {
+    [super viewDidMoveToWindow];
+    if (!self.layer.sublayers) {
+        self.wantsLayer = YES;
+        [self.layer addSublayer:_selectionCell.backgroundLayer];
+    }
+}
+
 #pragma mark Frame
 
 - (void)setFrame:(NSRect)frame {
@@ -459,11 +476,6 @@ static char minValueKVOContext;
 
 - (void)drawRect:(NSRect)dirtyRect {
 
-    [_strokeColor set];
-    NSBezierPath *path;
-    path = [NSBezierPath bezierPathWithRoundedRect:_oldFrame xRadius:3 yRadius:3];
-    [path stroke];
-    
     CGFloat startMark = (_startValue) / _maxValue * NSWidth(_maxSelectionFrame);
     CGFloat endMark = _endValue / _maxValue * NSWidth(_maxSelectionFrame);
     _cellFrame.origin.x = round(startMark);
