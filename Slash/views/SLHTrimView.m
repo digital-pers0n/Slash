@@ -310,8 +310,11 @@ static char minValueKVOContext;
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
     [self removeTrackingArea:_trackingArea];
+    NSTrackingAreaOptions trackingOptions =
+    NSTrackingInVisibleRect | NSTrackingActiveInKeyWindow | NSTrackingMouseMoved;
+    
     _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
-                                                 options:NSTrackingInVisibleRect | NSTrackingActiveInKeyWindow | NSTrackingMouseMoved
+                                                 options:trackingOptions
                                                    owner:self
                                                 userInfo:nil];
     [self addTrackingArea:_trackingArea];
@@ -332,11 +335,14 @@ static char minValueKVOContext;
 }
 
 - (void)mouseDown:(NSEvent *)event {
-    _hitTestResult = [_selectionCell hitTestForEvent:event inRect:_cellFrame ofView:self];
+    _hitTestResult = [_selectionCell hitTestForEvent:event
+                                              inRect:_cellFrame
+                                              ofView:self];
     _mouseX = event.locationInWindow.x;
 
     if (_hitTestResult == SLHCellHitNone && event.clickCount < 2) {
-        [super mouseDown:event];
+       [super mouseDown:event];
+        return;
     } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
         [_delegate trimViewMouseDown:self];
         if (_hitTestResult & SLHCellHitLeftKnob) {
@@ -344,6 +350,30 @@ static char minValueKVOContext;
         } else {
             [_delegate trimViewMouseDownEndPosition:self];
         }
+    }
+    
+    NSApplication *app = [NSApplication sharedApplication];
+    NSEventMask eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged;
+    
+    while (1) {
+        event = [app nextEventMatchingMask:eventMask
+                                 untilDate:[NSDate distantFuture]
+                                    inMode:NSEventTrackingRunLoopMode
+                                   dequeue:YES];
+
+        switch ([event type]) {
+                
+            case NSEventTypeLeftMouseDragged:
+                [self mouseDragged:event];
+                break;
+            case NSEventTypeLeftMouseUp:
+                [self mouseUp:event];
+                _hitTestResult = SLHCellHitNone;
+                return;
+            default:
+                break;
+        }
+        
     }
 }
 
@@ -389,7 +419,6 @@ static char minValueKVOContext;
         }
         
     }
-    [super mouseUp:event];
 }
 
 - (void)mouseDragged:(NSEvent *)event {
