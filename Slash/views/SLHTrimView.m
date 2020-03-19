@@ -427,6 +427,12 @@ static char minValueKVOContext;
         CGFloat newMouseX = event.locationInWindow.x;
         CGFloat deltaX = ((newMouseX - _mouseX) / (NSWidth(_maxSelectionFrame)) * _maxValue);
         double candidate = _startValue + deltaX;
+
+        if (candidate <= _minValue) {
+            _startValue = _minValue;
+            self.needsDisplay = YES;
+            return;
+        }
         self.startValue = candidate;
         [self updateValue:@(_startValue) forBinding:@"startValue"];
         
@@ -439,6 +445,12 @@ static char minValueKVOContext;
         CGFloat newMouseX = event.locationInWindow.x;
         CGFloat deltaX = ((newMouseX - _mouseX) / NSWidth(_maxSelectionFrame) * _maxValue);
         double candidate = _endValue + deltaX;
+
+        if (candidate >= _maxValue) {
+            _endValue = _maxValue;
+            self.needsDisplay = YES;
+            return;
+        }
         self.endValue = candidate;
         [self updateValue:@(_endValue) forBinding:@"endValue"];
         _mouseX = newMouseX;
