@@ -80,6 +80,7 @@ int plr_init(Player *p, char *const *args) {
     pthread_mutexattr_init(&mattr);
     pthread_mutexattr_setpolicy_np(&mattr, _PTHREAD_MUTEX_POLICY_FIRSTFIT);
     pthread_mutex_init(&p->lock, &mattr);
+    pthread_mutexattr_destroy(&mattr);
     
     p->kq = -1;
     

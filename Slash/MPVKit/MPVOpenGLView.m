@@ -96,6 +96,7 @@ typedef struct mpv_data_ {
     pthread_mutexattr_init(&mattr);
     pthread_mutexattr_setpolicy_np(&mattr, _PTHREAD_MUTEX_POLICY_FIRSTFIT);
     pthread_mutex_init(&_mpv.gl_lock, &mattr);
+    pthread_mutexattr_destroy(&mattr);
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
