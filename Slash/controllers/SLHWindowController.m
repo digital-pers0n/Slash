@@ -70,8 +70,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
-    
-    double _savedTimePosition;
 
     struct _trimViewFlags {
         unsigned int needsUpdateStartValue:1;
@@ -1217,7 +1215,6 @@ typedef void (*basic_imp)(id, SEL, id);
         } else {
             _currentEncoderItem.intervalEnd = _player.timePosition;
         }
-        _player.timePosition = _savedTimePosition;
         _TVFlags.shouldStop = 0;
         return;
     }
@@ -1341,9 +1338,6 @@ typedef void (*basic_imp)(id, SEL, id);
     SLHEncoderItem *encoderItem = tcv.objectValue;
     if (encoderItem != _currentEncoderItem) {
         [_itemsArrayController setSelectedObjects:@[encoderItem]];
-        _savedTimePosition = encoderItem.interval.start;
-    } else {
-        _savedTimePosition = _player.timePosition;
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidRestartPlayback:) name:MPVPlayerDidRestartPlaybackNotification object:_player];
