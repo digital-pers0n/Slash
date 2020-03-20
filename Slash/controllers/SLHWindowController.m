@@ -543,6 +543,22 @@ static char SLHPreferencesKVOContext;
     }
 }
 
+- (void)reloadExternalPlayer:(NSString *)obj {
+    [SLHExternalPlayer setDefaultPlayerURL:[NSURL fileURLWithPath:obj
+                                                      isDirectory:NO]];
+    if (_externalPlayer) {
+        [SLHExternalPlayer reinitializeDefaultPlayer];
+        NSURL *url;
+        if (_externalPlayer.hasWindow &&
+            (( url = _externalPlayer.url) != nil ))
+        {
+            [self createExternalPlayerWithMedia:url];
+        } else {
+            _externalPlayer = nil;
+        }
+    }
+}
+
 static inline SLHMethodAddress *addressOf(id target, SEL action) {
     return [SLHMethodAddress methodAddressWithTarget:target selector:action];
 }
@@ -562,7 +578,8 @@ static inline SLHMethodAddress *addressOf(id target, SEL action) {
                        SLHPreferencesSubtitlesFontScaleByWindowKey     : addressOf(self, @selector(subsFontScaleByWindowDidChange:)),
                        SLHPreferencesAdvancedOptionsLastEditedKey   : addressOf(self, @selector(advancedOptionDidChange:)),
                        SLHPreferencesAdvancedOptionsEnabledKey      : addressOf(self, @selector(enableAdvancedOptionsDidChange:)),
-                       SLHPreferencesWindowTitleStyleKey : addressOf(self, @selector(updateWindowTitleStyle:)),
+                       SLHPreferencesWindowTitleStyleKey    : addressOf(self, @selector(updateWindowTitleStyle:)),
+                       SLHPreferencesMPVPathKey             : addressOf(self, @selector(reloadExternalPlayer:)),
                        };
     
     for (NSString *key in _observedPrefs) {
