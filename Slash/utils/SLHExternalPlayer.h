@@ -97,6 +97,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 - (void)performCommand:(NSString *)commandString;
 
+/**
+ Indicate if the player window is shown.
+ */
+@property (nonatomic, readonly) BOOL hasWindow;
+
 @end
 
 NS_ASSUME_NONNULL_END
