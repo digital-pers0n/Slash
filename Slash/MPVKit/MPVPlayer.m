@@ -292,6 +292,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 
     CFRunLoopRef main_rl = CFRunLoopGetMain();
     MPVPlayerEvent playerEvent = MPVPlayerEventNone;
+    __unsafe_unretained typeof(self) uSelf = self;
     
     while (!_eventThread.cancelled) {
         mpv_event *event = mpv_wait_event(self->_mpv_handle, -1);
@@ -303,7 +304,9 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
             case MPV_EVENT_SHUTDOWN:
             {
                 if (self->_status == MPVPlayerStatusReadyToPlay) {
-                    [self performSelectorOnMainThread:@selector(shutdown) withObject:nil waitUntilDone:NO];
+                    CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
+                        [uSelf shutdown];
+                    });
                 }
             }
                 goto exit;
