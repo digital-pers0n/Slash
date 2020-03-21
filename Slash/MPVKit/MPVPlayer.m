@@ -382,10 +382,6 @@ exit:
     _mpv_handle = NULL;
 }
 
-- (void)postNotification:(NSString *)notification {
-    [_notificationCenter postNotificationName:notification object:self userInfo:nil];
-}
-
 - (void)notifyObservers:(mpv_event_property *) event_property {
     
 #ifdef DEBUG
