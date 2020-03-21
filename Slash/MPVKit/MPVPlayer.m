@@ -357,9 +357,9 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 #ifdef DEBUG
             NSLog(@"%@: Post '%@'.", self, _notifications[playerEvent].name);
 #endif
-            __unsafe_unretained typeof(self) obj = self;
             CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
-                [obj->_notificationCenter postNotification:obj->_notifications[playerEvent]];
+                NSNotification *n = uSelf->_notifications[playerEvent];
+                [uSelf->_notificationCenter postNotification:n];
             });
             
             playerEvent = MPVPlayerEventNone;
