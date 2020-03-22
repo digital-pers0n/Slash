@@ -13,7 +13,7 @@
 #import "SLHPreferences.h"
 #import "SLHTimeFormatter.h"
 #import "SLHBitrateFormatter.h"
-#import "slh_process.h"
+#import "slh_video_frame_extractor.h"
 
 
 @interface SLHEncodedItem : NSObject <NSPasteboardWriting> {
@@ -119,87 +119,6 @@ static NSSize iconSizeForSourceSize(NSSize sourceSize) {
     return NSMakeSize(iconWidth, iconHeight);
 }
 
-static void generatePreview(__unsafe_unretained SLHEncodedItem *uSelf,
-                             NSString *ffmpegPath) {
-    NSSize size = iconSizeForSourceSize(uSelf->_videoSize);
-    char sizeStr[16];
-    snprintf(sizeStr, sizeof(sizeStr), "%.0fx%.0f", size.width, size.height);
-    Process ffmpeg;
-    const char *const args[] = {
-        ffmpegPath.UTF8String,
-        "-loglevel",    "0",
-        "-ss",          @(uSelf->_duration * 0.5).stringValue.UTF8String,
-        "-i",           uSelf->_filePath.UTF8String,
-        "-s",           sizeStr,
-        "-vframes",     "1",
-        "-q:v",         "3",
-        "-f",           "image2pipe",
-        "-",            NULL
-    };
-    prc_init(&ffmpeg, (char **)args);
-    if (prc_launch(&ffmpeg) != 0) {
-        prc_destroy(&ffmpeg);
-        NSLog(@"%@ Cannot extract preview image from '%@'",
-              uSelf, uSelf->_filePath);
-        return;
-    }
-    
-    const size_t block_length = 4096;
-    size_t bytes_total = 0;
-    size_t bytes_read = 0;
-    uint8_t *frame = malloc(block_length * sizeof(uint8_t));
-    
-    while ((bytes_read = fread(frame + bytes_total,
-                               sizeof(uint8_t),
-                               block_length,
-                               prc_stdout(&ffmpeg))) > 0) {
-        
-        bytes_total += bytes_read;
-        uint8_t *tmp = realloc(frame,
-                               bytes_total * sizeof(uint8_t) + block_length);
-        if (!tmp) {
-            NSLog(@"%@ Fatal error %s", uSelf, strerror(errno));
-            prc_destroy(&ffmpeg);
-            free(frame);
-            return;
-        }
-        
-        frame = tmp;
-    }
-    
-    CFDataRef cfData = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault,
-                                                   frame,
-                                                   bytes_total,
-                                                   kCFAllocatorMalloc);
-    
-    CGImageSourceRef imageSource = CGImageSourceCreateWithData(cfData, nil);
-    CGImageRef cgImage = CGImageSourceCreateImageAtIndex(imageSource,
-                                                         0, nil);
-    if (cgImage) {
-        NSImage *image = [[NSImage alloc] initWithCGImage:cgImage
-                                                     size:NSZeroSize];
-        CFRelease(cgImage);
-        
-        CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
-            uSelf.previewImage = image;
-        });
-        
-    } else {
-        NSLog(@"%@ Cannot create preview image. Invalid data.", uSelf);
-    }
-    prc_destroy(&ffmpeg);
-    
-    if (imageSource) {
-        CFRelease(imageSource);
-    }
-    
-    if (cfData) {
-        CFRelease(cfData);
-    } else if (frame) {
-        free(frame);
-    }
-}
-
 - (void)generatePreview {
     SLHPreferences *prefs = [SLHPreferences preferences];
     if (prefs.hasFFmpeg) {
@@ -208,7 +127,23 @@ static void generatePreview(__unsafe_unretained SLHEncodedItem *uSelf,
         dispatch_queue_t queue = dispatch_get_global_queue(qos, 0);
         NSString *ffmpegPath = prefs.ffmpegPath;
         dispatch_async(queue, ^{
-            generatePreview(uSelf, ffmpegPath);
+            CGImageRef cgImage = nil;
+            vfe_get_image(ffmpegPath.fileSystemRepresentation,
+                            uSelf->_duration * 0.5,
+                            iconSizeForSourceSize(uSelf->_videoSize),
+                            uSelf->_filePath.fileSystemRepresentation,
+                            &cgImage);
+            if (cgImage) {
+                CFRunLoopRef rl = CFRunLoopGetMain();
+                NSImage *image = [[NSImage alloc] initWithCGImage:cgImage
+                                                             size:NSZeroSize];
+                CFRunLoopPerformBlock(rl, kCFRunLoopCommonModes, ^{
+                    uSelf.previewImage = image;
+                });
+                CFRelease(cgImage);
+            } else {
+                NSLog(@"%@ Cannot create preview image. Invalid data.", uSelf);
+            }
         });
     }
 }
