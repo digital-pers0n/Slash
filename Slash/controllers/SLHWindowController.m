@@ -1331,9 +1331,6 @@ typedef void (*basic_imp)(id, SEL, id);
 #pragma mark - SLHTrimViewDelegate
 
 - (void)trimViewMouseDown:(SLHTrimView *)trimView {
-    [trimView unbind:@"startValue"];
-    [trimView unbind:@"endValue"];
-
     NSTableCellView *tcv = (id)trimView.superview;
     SLHEncoderItem *encoderItem = tcv.objectValue;
     if (encoderItem != _currentEncoderItem) {
@@ -1355,11 +1352,9 @@ typedef void (*basic_imp)(id, SEL, id);
 }
 
 - (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView {
-    _currentEncoderItem.intervalStart = trimView.startValue;
 }
 
 - (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView {
-   _currentEncoderItem.intervalEnd = trimView.endValue;
 }
 
 - (void)trimViewMouseUp:(SLHTrimView *)trimView {
@@ -1369,9 +1364,6 @@ typedef void (*basic_imp)(id, SEL, id);
         _player.timePosition = trimView.endValue;
     }
     _TVFlags.shouldStop = 1;
-    
-    [trimView bind:@"startValue" toObject:_currentEncoderItem withKeyPath:@"intervalStart" options:nil];
-    [trimView bind:@"endValue" toObject:_currentEncoderItem withKeyPath:@"intervalEnd" options:nil];
 }
 
 #pragma mark - NSMenuDelegate
