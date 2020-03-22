@@ -108,6 +108,7 @@
 		CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */; };
 		CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */; };
 		CEE0D24123B8FCF70017418E /* SLHMethodAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */; };
+		CEED67DB24277B8B003B4CC3 /* slh_video_frame_extractor.c in Sources */ = {isa = PBXBuildFile; fileRef = CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */; };
 		CEEDC2182404380200AAFC18 /* SLHSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEDC2172404380200AAFC18 /* SLHSeparatorView.m */; };
 		CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */; };
 /* End PBXBuildFile section */
@@ -303,6 +304,8 @@
 		CEE0D23E23B3B9510017418E /* SLHPreferencesKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHPreferencesKeys.h; sourceTree = "<group>"; };
 		CEE0D23F23B8FCF70017418E /* SLHMethodAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMethodAddress.h; path = utils/SLHMethodAddress.h; sourceTree = "<group>"; };
 		CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMethodAddress.m; path = utils/SLHMethodAddress.m; sourceTree = "<group>"; };
+		CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_video_frame_extractor.c; path = system/slh_video_frame_extractor.c; sourceTree = "<group>"; };
+		CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_video_frame_extractor.h; path = system/slh_video_frame_extractor.h; sourceTree = "<group>"; };
 		CEEDC2162404380200AAFC18 /* SLHSeparatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHSeparatorView.h; sourceTree = "<group>"; };
 		CEEDC2172404380200AAFC18 /* SLHSeparatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHSeparatorView.m; sourceTree = "<group>"; };
 		CEEE0A01219F34B200B9BB11 /* SLHEncoderBaseFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderBaseFormat.h; path = controllers/SLHEncoderBaseFormat.h; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 			isa = PBXGroup;
 			children = (
 				CE1414C1210D31D900C02B2D /* mpv */,
+				CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */,
+				CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */,
 				CEBFF3E32190BDA000F54C7E /* slh_encoder.h */,
 				CEBFF3E22190BDA000F54C7E /* slh_encoder.c */,
 				CE65BB0D21066B0500D2CBAA /* slh_process.h */,
@@ -758,6 +763,7 @@
 				CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */,
 				CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */,
 				CE566A7F215EC93B004E974F /* extern.m in Sources */,
+				CEED67DB24277B8B003B4CC3 /* slh_video_frame_extractor.c in Sources */,
 				CE85A0F622C651830027F742 /* SLHEncoderUniversalFormat.m in Sources */,
 				CE2085282396796D00CB5049 /* SLHEmptyView.m in Sources */,
 				CE58008E231C13DD000F5384 /* SLHWindowController.m in Sources */,
