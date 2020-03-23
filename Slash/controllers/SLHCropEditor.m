@@ -245,7 +245,12 @@
         obj->_imageView.selectionRect = rect;
 
     });
-    
+}
+
+- (IBAction)reselect:(id)sender {
+    NSRect rect = _imageView.selectionRect;
+    _imageView.currentToolMode = IKToolModeNone;
+    _imageView.selectionRect = rect;
 }
 
 #pragma mark - Properties

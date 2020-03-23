@@ -235,7 +235,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zKp-Sj-7Ka">
-                            <rect key="frame" x="623" y="1" width="16" height="319"/>
+                            <rect key="frame" x="624" y="1" width="15" height="319"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -262,6 +262,17 @@
                             <outlet property="delegate" destination="-2" id="Wu6-N8-d4A"/>
                         </connections>
                     </slider>
+                    <button toolTip="Reselect" verticalHuggingPriority="750" misplaced="YES" id="eIH-Vh-9Ij">
+                        <rect key="frame" x="485" y="363" width="32" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSFlowViewTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="s21-1I-ZCZ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="reselect:" target="-2" id="byK-Qa-ard"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
@@ -272,6 +283,7 @@
     </objects>
     <resources>
         <image name="NSEnterFullScreenTemplate" width="15" height="15"/>
+        <image name="NSFlowViewTemplate" width="18" height="10"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="SLHImageNameCropDetectTemplate" width="15" height="15"/>
         <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
