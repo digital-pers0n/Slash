@@ -14,6 +14,7 @@
 #import "SLHSliderCell.h"
 #import "SLHExternalPlayer.h"
 #import "SLHVideoSlider.h"
+#import "slh_video_frame_extractor.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
@@ -28,6 +29,7 @@
     dispatch_queue_t _main_queue;
     
     BOOL _zoomed;
+    BOOL _busy;
 }
 
 @property double startTime;
@@ -323,54 +325,27 @@ static void _get_coordinates(char *start, char *end, int n, long *result) {
     _get_coordinates(start, end, n, result);
 }
 
-static inline void _safeCFRelease(CFTypeRef ref) {
-    if (ref) {
-        CFRelease(ref);
-    }
-}
-
 - (void)_extractFrame {
-     __unsafe_unretained typeof(self) obj = self;
+    if (_busy) { return; }
+    _busy = YES;
+    __unsafe_unretained typeof(self) uSelf = self;
+    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
+    MPVPlayerItem *playerItem = _encoderItem.playerItem;
+    NSURL *url = playerItem.url;
+    double timePos = _startTime;
+    NSSize size = playerItem.bestVideoTrack.videoSize;
     dispatch_async(_bg_queue, ^{
-        char *cmd;
-        asprintf(&cmd, "%s -loglevel 0 -ss %.3f -i \"%s\""
-                  " -vframes 1 -q:v 2 -f image2pipe -",
-                 obj->_ffmpegPath.UTF8String, obj->_startTime, obj->_encoderItem.playerItem.url.fileSystemRepresentation);
-        FILE *pipe = popen(cmd, "r");
-        const size_t block_length = 4096;
-        size_t bytes_total = 0;
-        size_t bytes_read = 0;
-        char *output = malloc(block_length * sizeof(char));
-        while ((bytes_read = fread(output + bytes_total, sizeof(char), block_length, pipe)) > 0) {
-            bytes_total += bytes_read;
-            char *tmp = realloc(output, bytes_total * sizeof(char) + block_length);
-            if (!tmp) {
-                exit(EXIT_FAILURE);
-            }
-            output = tmp;
-        }
-        CFDataRef cfdata_ref = CFDataCreate(NULL, (UInt8 *)output, bytes_total);
-        CGImageSourceRef cfimage_source_ref = CGImageSourceCreateWithData(cfdata_ref, NULL);
-        CGImageRef cfimage_ref = CGImageSourceCreateImageAtIndex(cfimage_source_ref, 0, NULL);
-        if (cfimage_ref) {
-           
-            dispatch_async(obj->_main_queue, ^{
-                // Hide the view to disable its annoying animtion
-                 obj->_imageView.hidden = YES;
-                [obj->_imageView setImage:cfimage_ref imageProperties:0];
-                obj->_imageView.autoresizes = YES;
-                obj->_imageView.hidden = NO;
-                CFRelease(cfimage_ref);
+        CGImageRef image = nil;
+        vfe_get_image(ffmpegPath.fileSystemRepresentation,
+                      timePos, size, url.fileSystemRepresentation, &image);
+        if (image) {
+            CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
+                [uSelf->_imageView setImage:image imageProperties:0];
+                uSelf->_imageView.autoresizes = YES;
+                CFRelease(image);
+                _busy = NO;
             });
-
-        } else {
-            NSLog(@"%s Error: invalid data", __PRETTY_FUNCTION__);
         }
-        free(cmd);
-        pclose(pipe);
-        free(output);
-        _safeCFRelease(cfimage_source_ref);
-        _safeCFRelease(cfdata_ref);
     });
 }
 
