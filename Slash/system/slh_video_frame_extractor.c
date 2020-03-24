@@ -35,9 +35,9 @@ int vfe_get_image(const char * const ffmpegPath,
         "-",            NULL
     };
     
-    prc_init(&ffmpeg, (char **)args);
+    prc_init_no_copy(&ffmpeg, (char **)args);
     if (prc_launch(&ffmpeg) != 0) {
-        prc_destroy(&ffmpeg);
+        prc_destroy_no_copy(&ffmpeg);
         fprintf(stderr, "%s Cannot extract preview image from '%s'",
               __PRETTY_FUNCTION__, filePath);
         return -1;
@@ -59,7 +59,7 @@ int vfe_get_image(const char * const ffmpegPath,
         if (!tmp) {
             fprintf(stderr, "%s Fatal error %s",
                     __PRETTY_FUNCTION__, strerror(errno));
-            prc_destroy(&ffmpeg);
+            prc_destroy_no_copy(&ffmpeg);
             free(frame);
             return -1;
         }
@@ -76,7 +76,7 @@ int vfe_get_image(const char * const ffmpegPath,
                                                          0, nil);
     *outImage = cgImage;
     
-    prc_destroy(&ffmpeg);
+    prc_destroy_no_copy(&ffmpeg);
     
     if (imageSource) {
         CFRelease(imageSource);
