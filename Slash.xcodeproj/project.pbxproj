@@ -84,7 +84,6 @@
 		CE8BD79C23C371F4004A7C1A /* SLHEncoderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8BD79A23C371F4004A7C1A /* SLHEncoderHistory.m */; };
 		CE8BD79D23C371F4004A7C1A /* SLHEncoderHistory.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8BD79B23C371F4004A7C1A /* SLHEncoderHistory.xib */; };
 		CE8BD7FA23CA0AFE004A7C1A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CE8BD7F923CA0AFE004A7C1A /* LICENSE */; };
-		CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1C2193583D0089C084 /* SLHDragView.m */; };
 		CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C0D1F219358A40089C084 /* SLHClipView.m */; };
 		CE9C9BD42354B898002A5169 /* MPVOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */; };
 		CE9CA40123787FE4005CF368 /* SLHDisclosureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA40023787FE4005CF368 /* SLHDisclosureView.m */; };
@@ -258,8 +257,8 @@
 		CE8BD79A23C371F4004A7C1A /* SLHEncoderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderHistory.m; path = controllers/SLHEncoderHistory.m; sourceTree = "<group>"; };
 		CE8BD79B23C371F4004A7C1A /* SLHEncoderHistory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderHistory.xib; path = controllers/SLHEncoderHistory.xib; sourceTree = "<group>"; };
 		CE8BD7F923CA0AFE004A7C1A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		CE9C0D1B2193583D0089C084 /* SLHDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHDragView.h; sourceTree = "<group>"; };
-		CE9C0D1C2193583D0089C084 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHDragView.m; sourceTree = "<group>"; };
+		CE9C0D1B2193583D0089C084 /* SLHDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHDragView.h; path = views/SLHDragView.h; sourceTree = "<group>"; };
+		CE9C0D1C2193583D0089C084 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHDragView.m; path = views/SLHDragView.m; sourceTree = "<group>"; };
 		CE9C0D1E219358A40089C084 /* SLHClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHClipView.h; sourceTree = "<group>"; };
 		CE9C0D1F219358A40089C084 /* SLHClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHClipView.m; sourceTree = "<group>"; };
 		CE9C9BD22354B898002A5169 /* MPVOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVOpenGLView.h; path = MPVKit/MPVOpenGLView.h; sourceTree = "<group>"; };
@@ -436,6 +435,8 @@
 		CE299C6323BE435A00F1C9BF /* legacy */ = {
 			isa = PBXGroup;
 			children = (
+				CE9C0D1B2193583D0089C084 /* SLHDragView.h */,
+				CE9C0D1C2193583D0089C084 /* SLHDragView.m */,
 				CE239372219CA86F00C21AA7 /* SLHMainWindowController.h */,
 				CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */,
 				CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */,
@@ -589,8 +590,6 @@
 				CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */,
 				CEA35A28224B866D008583AF /* SLHImageView.h */,
 				CEA35A29224B866D008583AF /* SLHImageView.m */,
-				CE9C0D1B2193583D0089C084 /* SLHDragView.h */,
-				CE9C0D1C2193583D0089C084 /* SLHDragView.m */,
 				CE9C0D1E219358A40089C084 /* SLHClipView.h */,
 				CE9C0D1F219358A40089C084 /* SLHClipView.m */,
 				CEA1563D2194AF5A00B54F56 /* SLHTabBarView.h */,
@@ -803,7 +802,6 @@
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
 				CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */,
-				CE9C0D1D2193583D0089C084 /* SLHDragView.m in Sources */,
 				CE566A77215AAC16004E974F /* slh_extern.c in Sources */,
 				CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */,
 				CE120455229C260A00C2A145 /* SLHEncoderVPXFormat.m in Sources */,
