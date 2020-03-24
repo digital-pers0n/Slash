@@ -36,6 +36,19 @@ void prc_init(Process *p, char *const *args);
  */
 void prc_destroy(Process *p);
 
+/**
+ * Same as @c prc_init() but doesn't make a copy of @c args.
+ * You have to destroy the process with @c prc_destroy_no_copy() after.
+ */
+void prc_init_no_copy(Process *p, char *const *args);
+
+/**
+ * Destroy the process.
+ * Use this instead of @c prc_destroy() if you init the process
+ * with @c prc_init_no_copy()
+ */
+void prc_destroy_no_copy(Process *p);
+
 /** 
  * Launch the process and create stderr/stdout pipes. 
  *

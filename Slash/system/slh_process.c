@@ -36,6 +36,14 @@ void prc_init(Process *p, char *const *args) {
     p->fa = NULL;
 }
 
+void prc_init_no_copy(Process *p, char *const *args) {
+    p->args = (char **)args;
+    p->pid = -1;
+    p->std_err = NULL;
+    p->std_out = NULL;
+    p->fa = NULL;
+}
+
 #pragma mark - Destruction
 
 void prc_destroy(Process *p) {
@@ -43,6 +51,12 @@ void prc_destroy(Process *p) {
         prc_close(p);
     }
     args_free(p->args);
+}
+
+void prc_destroy_no_copy(Process *p) {
+    if (prc_pid(p) > 0) {
+        prc_close(p);
+    }
 }
 
 #pragma mark - Process launch
