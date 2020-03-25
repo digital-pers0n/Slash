@@ -250,8 +250,7 @@
 }
 
 - (IBAction)reselect:(id)sender {
-    NSRect rect = _imageView.selectionRect;
-    _imageView.currentToolMode = IKToolModeNone;
+    NSRect rect = _encoderItem.filters.videoCropRect;
     _imageView.selectionRect = rect;
 }
 
