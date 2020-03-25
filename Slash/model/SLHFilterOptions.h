@@ -16,6 +16,7 @@
 @property NSInteger videoCropY;
 @property NSInteger videoCropWidth;
 @property NSInteger videoCropHeight;
+@property (nonatomic) NSRect videoCropRect;
 @property BOOL videoDeinterlace;
 @property BOOL burnSubtitles;
 @property NSString *subtitlesPath;

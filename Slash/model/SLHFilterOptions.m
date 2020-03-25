@@ -34,4 +34,16 @@
     return copy;
 }
 
+- (NSRect)videoCropRect {
+    return NSMakeRect(_videoCropX, _videoCropY,
+                      _videoCropWidth, _videoCropHeight);
+}
+
+- (void)setVideoCropRect:(NSRect)videoCropRect {
+    self.videoCropX = NSMinX(videoCropRect);
+    self.videoCropY = NSMinY(videoCropRect);
+    self.videoCropWidth = NSWidth(videoCropRect);
+    self.videoCropHeight = NSHeight(videoCropRect);
+}
+
 @end
