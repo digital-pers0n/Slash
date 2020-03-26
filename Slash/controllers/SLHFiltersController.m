@@ -277,7 +277,7 @@ static inline NSString *_preampString(NSInteger val) {
     NSMutableDictionary *dict = NSMutableDictionary.new;
     SLHFilterOptions *opts = _encoderItem.filters;
     dict[SLHEncoderFiltersEnableVideoFiltersKey] = @(opts.enableVideoFilters);
-    NSRect rect = NSMakeRect(opts.videoCropX, opts.videoCropY, opts.videoCropWidth, opts.videoCropHeight);
+    NSRect rect = opts.videoCropRect;
     dict[SLHEncoderFiltersVideoCropKey] = NSStringFromRect(rect);
     dict[SLHEncoderFiltersVideoDeinterlaceKey] = @(opts.videoDeinterlace);
     dict[SLHEncoderFiltersBurnSubtitlesKey] = @(opts.burnSubtitles);
@@ -306,10 +306,7 @@ static inline NSString *_preampString(NSInteger val) {
     NSString *str = dict[SLHEncoderFiltersVideoCropKey];
     if (str) {
         NSRect rect = NSRectFromString(str);
-        opts.videoCropX = rect.origin.x;
-        opts.videoCropY = rect.origin.y;
-        opts.videoCropWidth = rect.size.width;
-        opts.videoCropHeight = rect.size.height;
+        opts.videoCropRect = rect;
     }
     
     val = dict[SLHEncoderFiltersVideoDeinterlaceKey];
@@ -355,15 +352,12 @@ static inline NSString *_preampString(NSInteger val) {
 
 - (IBAction)resetCropArea:(id)sender {
     SLHFilterOptions *options = _encoderItem.filters;
-    options.videoCropX = 0;
-    options.videoCropY = 0;
-    options.videoCropHeight = 0;
-    options.videoCropWidth = 0;
+    options.videoCropRect = NSZeroRect;
 }
 
 - (IBAction)previewCropArea:(id)sender {
     SLHFilterOptions *options = _encoderItem.filters;
-    NSRect r = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);
+    NSRect r = options.videoCropRect;
 ;
     NSInteger idx = _encoderItem.videoStreamIndex;
     if ((r.size.height <= 0) || (r.size.width <= 0 || idx == -1)) {
@@ -398,10 +392,7 @@ static inline NSString *_preampString(NSInteger val) {
     }
     NSRect rect = [SLHCropEditor cropRectForItem:_encoderItem];
     SLHFilterOptions *options = _encoderItem.filters;
-    options.videoCropX = rect.origin.x;
-    options.videoCropY = rect.origin.y;
-    options.videoCropWidth = rect.size.width;
-    options.videoCropHeight = rect.size.height;
+    options.videoCropRect = rect;
 }
 
 - (IBAction)cropEditorButtonAction:(id)sender {

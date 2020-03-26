@@ -178,10 +178,7 @@
         NSRect rect = [obj cropArea];
         dispatch_async(obj->_main_queue, ^{
             SLHFilterOptions *options = obj->_encoderItem.filters;
-            options.videoCropX = rect.origin.x;
-            options.videoCropY = rect.origin.y;
-            options.videoCropWidth = rect.size.width;
-            options.videoCropHeight = rect.size.height;
+            options.videoCropRect = rect;
             sender.enabled = YES;
             obj->_imageView.selectionRect = rect;
         });
@@ -265,9 +262,7 @@
     [self _extractFrame];
      __unsafe_unretained typeof(self) obj = self;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), _main_queue, ^{
-        NSRect rect = NSMakeRect(options.videoCropX, options.videoCropY, options.videoCropWidth, options.videoCropHeight);
-        obj->_imageView.selectionRect = rect;
-
+        obj->_imageView.selectionRect = options.videoCropRect;
     });
 
 }
@@ -290,10 +285,7 @@
 
 - (void)imageView:(SLHImageView *)view didUpdateSelection:(NSRect)rect {
     SLHFilterOptions *options = _encoderItem.filters;
-    options.videoCropX = rect.origin.x;
-    options.videoCropY = rect.origin.y;
-    options.videoCropWidth = rect.size.width;
-    options.videoCropHeight = rect.size.height;
+    options.videoCropRect = rect;
 }
 
 #pragma mark - Private
