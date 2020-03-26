@@ -38,7 +38,7 @@ int vfe_get_image(const char * const ffmpegPath,
     prc_init_no_copy(&ffmpeg, (char **)args);
     if (prc_launch(&ffmpeg) != 0) {
         prc_destroy_no_copy(&ffmpeg);
-        fprintf(stderr, "%s Cannot extract preview image from '%s'",
+        fprintf(stderr, "%s Cannot extract preview image from '%s'\n",
               __PRETTY_FUNCTION__, filePath);
         return -1;
     }
@@ -57,7 +57,7 @@ int vfe_get_image(const char * const ffmpegPath,
         uint8_t *tmp = realloc(frame,
                                bytes_total * sizeof(uint8_t) + block_length);
         if (!tmp) {
-            fprintf(stderr, "%s Fatal error %s",
+            fprintf(stderr, "%s Fatal error %s\n",
                     __PRETTY_FUNCTION__, strerror(errno));
             prc_destroy_no_copy(&ffmpeg);
             free(frame);
