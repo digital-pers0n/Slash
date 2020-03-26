@@ -21,7 +21,7 @@
  @param vSize size a desired size for upscaling or downscaling.
  @param filePath a path to a video file. Must not be NULL.
  @param outImage a pointer to CGImageRef to store exctracted image.
-        Release the @c outImage with @c CFRelase() after you don't 
+        Release the @c outImage with @c CFRelease() after you don't
         need it anymore. Must not be NULL.
  
  @return 0 on success or -1 on error. If an error occurs @c outImage is left uncahnged.
