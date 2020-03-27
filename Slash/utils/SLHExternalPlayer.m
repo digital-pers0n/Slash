@@ -14,6 +14,7 @@
 static NSURL * defaultPlayerURL = nil;
 static NSURL * defaultPlayerConfigURL = nil;
 static SLHExternalPlayer *defaultPlayerInstance = nil;
+static dispatch_once_t defaultPlayerOnceToken;
 
 typedef Player * PlayerRef;
 
@@ -56,16 +57,25 @@ typedef Player * PlayerRef;
 }
 
 + (instancetype)defaultPlayer {
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&defaultPlayerOnceToken, ^{
         defaultPlayerInstance = [[SLHExternalPlayer alloc] init];
     });
     return defaultPlayerInstance;
 }
 
 + (void)reinitializeDefaultPlayer {
-    defaultPlayerInstance = [[SLHExternalPlayer alloc] init];
+    NSURL *url = nil;
+    if (defaultPlayerInstance) {
+        if (defaultPlayerInstance.hasWindow) {
+            url = defaultPlayerInstance.url;
+        }
+    }
+    defaultPlayerOnceToken = 0;
+    if (url) {
+        SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+        player.url = url;
+        [player play];
+    }
 }
 
 + (instancetype)playerWithURL:(NSURL *)url configurationFile:(NSURL *)config mediaFileURL:(NSURL *)mediaURL {
