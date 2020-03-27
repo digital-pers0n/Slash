@@ -57,7 +57,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSTextField *_inputFileInfoTextField;
     
     MPVPlayer *_player;
-    SLHExternalPlayer *_externalPlayer;
+    __weak SLHExternalPlayer *_externalPlayer;
     SLHPresetManager *_presetManager;
     NSArray <NSMenuItem *> *_defaultPresetMenuItems;
     SLHEncoderSettings *_encoderSettings;
