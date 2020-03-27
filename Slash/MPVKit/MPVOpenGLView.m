@@ -16,7 +16,7 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/gl3.h>
 
-//#define ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT 1
+#define ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT 1
 
 static void *g_opengl_framework_handle;
 
