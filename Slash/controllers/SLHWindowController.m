@@ -544,17 +544,7 @@ static char SLHPreferencesKVOContext;
 - (void)reloadExternalPlayer:(NSString *)obj {
     [SLHExternalPlayer setDefaultPlayerURL:[NSURL fileURLWithPath:obj
                                                       isDirectory:NO]];
-    if (_externalPlayer) {
-        [SLHExternalPlayer reinitializeDefaultPlayer];
-        NSURL *url;
-        if (_externalPlayer.hasWindow &&
-            (( url = _externalPlayer.url) != nil ))
-        {
-            [self createExternalPlayerWithMedia:url];
-        } else {
-            _externalPlayer = nil;
-        }
-    }
+    [SLHExternalPlayer reinitializeDefaultPlayer];
 }
 
 static inline SLHMethodAddress *addressOf(id target, SEL action) {
