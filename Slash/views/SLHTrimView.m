@@ -171,6 +171,8 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
 
 - (void)setUp {
     _selectionCell = [[SLHTrimSelectionCell alloc] init];
+    self.wantsLayer = YES;
+    [self.layer addSublayer:_selectionCell.backgroundLayer];
     _oldFrame = self.bounds;
     _maxSelectionFrame = NSInsetRect(_oldFrame, SLHKnobWidth, 0);
     self.maxValue = 1;
@@ -532,14 +534,6 @@ static char minValueKVOContext;
 }
 
 #endif
-
-- (void)viewDidMoveToWindow {
-    [super viewDidMoveToWindow];
-    if (!self.layer.sublayers) {
-        self.wantsLayer = YES;
-        [self.layer addSublayer:_selectionCell.backgroundLayer];
-    }
-}
 
 #pragma mark Frame
 
