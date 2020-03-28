@@ -20,7 +20,12 @@
 #define SLHCellHitLeftKnob     NSCellHitEditableTextArea
 #define SLHCellHitRightKnob    NSCellHitTrackableArea
 
+
+#pragma mark -
+#pragma mark **** SLHTrimSelectionCell ****
+
 @interface SLHTrimSelectionCell : NSCell {
+    @package
     CAShapeLayer *_controlLayer;
     CAShapeLayer *_backgroundLayer;
 }
@@ -105,6 +110,36 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     return NSMakeRect(NSMaxX(cellFrame) - SLHKnobWidth, 0, SLHKnobWidth, NSHeight(cellFrame));
 }
 
+@end
+
+#pragma mark - 
+#pragma mark **** SLHTrimSelectionSimpleCell ****
+
+@interface SLHTrimSelectionSimpleCell : SLHTrimSelectionCell
+@end
+
+@implementation SLHTrimSelectionSimpleCell
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _controlLayer.fillRule = kCAFillRuleNonZero;
+        _backgroundLayer.fillRule = kCAFillRuleNonZero;
+    }
+    return self;
+}
+
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+    CGPathRef path;
+    path = CGPathCreateWithRoundedRect(NSInsetRect(cellFrame, 2, 2), 4, 4, nil);
+    _controlLayer.path = path;
+    CGPathRelease(path);
+    
+    path = CGPathCreateWithRoundedRect(controlView.bounds, 2, 2, nil);
+    _backgroundLayer.path = path;
+    CGPathRelease(path);
+}
 
 @end
 
@@ -116,6 +151,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     double _endValue;
     NSTrackingArea *_trackingArea;
     CGFloat _mouseX;
+    SLHTrimViewStyle _style;
 }
 
 @property SLHTrimSelectionCell *selectionCell;
@@ -128,8 +164,6 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
 @property (nonatomic) NSMutableDictionary <NSString *, NSDictionary *> *bindingInfo;
 
 @end
-
-
 
 @implementation SLHTrimView
 
@@ -277,6 +311,22 @@ static char minValueKVOContext;
 
 #pragma mark - Overrides
 #pragma mark Properties
+
+- (void)setStyle:(SLHTrimViewStyle)style {
+    if (_style == style) { return; }
+    [_selectionCell.backgroundLayer removeFromSuperlayer];
+    switch (style) {
+        case SLHTrimViewStyleSimple:
+            _selectionCell = [[SLHTrimSelectionSimpleCell alloc] init];
+            break;
+            
+        case SLHTrimViewStyleFrame:
+        default:
+            _selectionCell = [[SLHTrimSelectionCell alloc] init];;
+            break;
+    }
+    [self.layer addSublayer:_selectionCell.backgroundLayer];
+}
 
 - (void)setStartValue:(double)startValue {
     if (startValue <= _endValue) {

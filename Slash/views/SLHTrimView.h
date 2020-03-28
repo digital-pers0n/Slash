@@ -43,6 +43,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic) double endValue;
 
+/// Trim View drawing styles.
+typedef NS_ENUM(NSUInteger, SLHTrimViewStyle) {
+    
+    /// Draw as a frame-like rectangle with open space in the center
+    SLHTrimViewStyleFrame = 0,
+    
+    /// Draw as a solid rectangle
+    SLHTrimViewStyleSimple
+};
+
+/**
+ Access trimView drawing style.
+ Default is @c SLHTrimViewStyleFrame.
+ */
+@property (nonatomic) SLHTrimViewStyle style;
+
 @end
 
 @protocol SLHTrimViewDelegate <NSObject>
