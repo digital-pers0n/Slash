@@ -44,7 +44,11 @@ NSString * const SLHPreferencesAdvancedOptionValueKey       = @"value";
 NSString * const SLHPreferencesAdvancedOptionsKey           = @"advancedOptions";
 NSString * const SLHPreferencesAdvancedOptionsEnabledKey    = @"enableAdvancedOptions";
 NSString * const SLHPreferencesAdvancedOptionsLastEditedKey = @"lastEditedAdvancedOption";
+
 NSString * const SLHPreferencesWindowTitleStyleKey = @"windowTitleStyle";
+
+NSString * const SLHPreferencesUseHiResOpenGLSurfaceKey = @"useHiResOpenGLSurface";
+NSString * const SLHPreferencesPausePlaybackDuringWindowResizeKey = @"pausePlaybackDuringWindowResize";
 
 #pragma mark - SLHMetadataItem
 

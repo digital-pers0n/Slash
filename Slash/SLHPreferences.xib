@@ -334,11 +334,11 @@
             <point key="canvasLocation" x="378.5" y="444"/>
         </customView>
         <customView misplaced="YES" id="sIA-6R-rcS">
-            <rect key="frame" x="0.0" y="0.0" width="466" height="345"/>
+            <rect key="frame" x="0.0" y="0.0" width="466" height="449"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Screenshots" id="ZN2-Ce-B1c">
-                    <rect key="frame" x="17" y="127" width="432" height="208"/>
+                    <rect key="frame" x="17" y="221" width="432" height="208"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="D7W-sv-c7J">
                         <rect key="frame" x="1" y="1" width="430" height="192"/>
@@ -556,7 +556,7 @@
                     </view>
                 </box>
                 <box misplaced="YES" title="OSD/Subtitles" id="2sL-s3-DBY">
-                    <rect key="frame" x="17" y="16" width="432" height="107"/>
+                    <rect key="frame" x="17" y="110" width="432" height="107"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="Zdi-h8-2Nt">
                         <rect key="frame" x="2" y="2" width="428" height="90"/>
@@ -677,8 +677,41 @@
                         </subviews>
                     </view>
                 </box>
+                <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Tweaks" id="zCi-Ql-6lW">
+                    <rect key="frame" x="17" y="16" width="432" height="90"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" id="kIX-th-iBB">
+                        <rect key="frame" x="1" y="1" width="430" height="74"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button misplaced="YES" id="qAp-sI-ST8">
+                                <rect key="frame" x="17" y="37" width="172" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <string key="toolTip">Improve quality of video and OSD/Subtitles fonts on HiDPI displays, but this might affect performance and can cause glitches especially on macOS 10.14+</string>
+                                <buttonCell key="cell" type="check" title="Use Hi-res OpenGL surface" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Z5x-n8-KyV">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.useHiResOpenGLSurface" id="fzu-sl-q9r"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Might improve performance during the window live." misplaced="YES" id="j4m-EC-ZcH">
+                                <rect key="frame" x="17" y="17" width="223" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Pause playback during window resize" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="e1D-qX-0xv">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.pausePlaybackDuringWindowResize" id="BKa-58-FFg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                </box>
             </subviews>
-            <point key="canvasLocation" x="236" y="726.5"/>
+            <point key="canvasLocation" x="226" y="878.5"/>
         </customView>
         <customView misplaced="YES" id="ByA-wb-1Hd">
             <rect key="frame" x="0.0" y="0.0" width="376" height="397"/>

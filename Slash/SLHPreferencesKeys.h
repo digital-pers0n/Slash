@@ -33,4 +33,7 @@ extern NSString * const SLHPreferencesAdvancedOptionsLastEditedKey;
 
 extern NSString * const SLHPreferencesWindowTitleStyleKey;
 
+extern NSString * const SLHPreferencesUseHiResOpenGLSurfaceKey;
+extern NSString * const SLHPreferencesPausePlaybackDuringWindowResizeKey;
+
 #endif /* SLHPreferencesKeys_h */

@@ -51,4 +51,7 @@
 
 @property (nonatomic) NSWindowTitleVisibility windowTitleStyle;
 
+@property (nonatomic) BOOL useHiResOpenGLSurface;
+@property (nonatomic) BOOL pausePlaybackDuringWindowResize;
+
 @end

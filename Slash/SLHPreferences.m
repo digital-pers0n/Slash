@@ -488,6 +488,24 @@ fatal_error:
     return [_userDefaults integerForKey:SLHPreferencesWindowTitleStyleKey];
 }
 
+- (void)setUseHiResOpenGLSurface:(BOOL)useHiResOpenGLSurface {
+    [_userDefaults setBool:useHiResOpenGLSurface
+                    forKey:SLHPreferencesUseHiResOpenGLSurfaceKey];
+}
+
+- (BOOL)useHiResOpenGLSurface {
+    return [_userDefaults boolForKey:SLHPreferencesUseHiResOpenGLSurfaceKey];
+}
+
+- (void)setPausePlaybackDuringWindowResize:(BOOL)value {
+    [_userDefaults setBool:value
+                    forKey:SLHPreferencesPausePlaybackDuringWindowResizeKey];
+}
+
+- (BOOL)pausePlaybackDuringWindowResize {
+    return [_userDefaults boolForKey:SLHPreferencesPausePlaybackDuringWindowResizeKey];
+}
+
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {
         return;
