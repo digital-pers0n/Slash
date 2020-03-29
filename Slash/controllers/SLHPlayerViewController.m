@@ -528,8 +528,8 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 - (void)sliderCellMouseUp:(SLHSliderCell *)cell {
    _player.timePosition = cell.doubleValue;
     self.currentPosition = cell.doubleValue;
-    dispatch_resume(_timer);
     bindObject(_seekBar, NSValueBinding, self.currentPosition);
+    dispatch_resume(_timer);
     _canSeek = NO;
 }
 
