@@ -33,4 +33,41 @@ int vfe_get_image(const char * const ffmpegPath,
                   const char * const filePath,
                   CGImageRef * outImage);
 
+/**
+ @param ctx User-defined context.
+ @param ts Estimated timestamp of the current keyframe in seconds.
+ @param image Output image, pass it to @c CFRelease() or @c CGImageRelease()
+        after you don't need it anymore.
+ */
+typedef void (*vfe_callback_f)(void *ctx, double ts, CGImageRef image);
+
+/**
+ Extract keyframes from a video file and convert them into CGImages.
+ 
+ @discussion The funciton divides the duration of the video file into intervals. 
+ The number of intervals is equal to the @c nFrames parameter. Then from each 
+ interval one keyframe is extracted. If there are no keyframes inside the 
+ interval than it is discarded.
+ 
+ @param filePath Full path to a video file. Must not be NULL.
+ @param nFrames Number of keyframes to decode. If the video file doesn't contain
+                enough keyframes then total number will be less than @c nFrames.
+                This parameter must be greater than zero.
+ @param vSize Size for downscaling or upscaling an output image.
+ @param ctx Pointer to a user-defined context.
+ @param callback Pointer to a user-defined funciton. Called for each frame 
+                 index. The total number of calls is determinded by
+                 the @c nFrames parameter and might be lower if there aren't 
+                 enough keyframes in the video file. 
+                 This parameter must not be NULL.
+
+ @return 0 on success or non-zero if an error occurs.
+ */
+int vfe_get_keyframes(const char * const filePath,
+                      size_t nFrames,
+                      CGSize vSize,
+                      void * ctx,
+                      vfe_callback_f callback);
+
+
 #endif /* slh_video_frame_extractor_h */
