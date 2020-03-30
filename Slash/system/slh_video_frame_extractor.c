@@ -103,7 +103,15 @@ typedef struct VFEData_ {
     AVStream            * stream; ///< Stream to decode
     AVCodecContext      * decctx; ///< Decoder context
     struct SwsContext   * swsctx; ///< Scaler to convert a video frame to an image
+    AVFrame             * kframe; ///< Keyframe storage
+    uint8_t               * data; ///< Output data
+    int                 linesize; ///< Output data linesize
+    
 } VFEData;
+
+static inline int vfe_calculate_linesize(int width) {
+    return ((3 * width + 15) / 16) * 16; // align for efficient swscale
+}
 
 static int vfe_init(VFEData * ffmpeg,
                     const char * const filePath,
@@ -182,10 +190,27 @@ static int vfe_init(VFEData * ffmpeg,
         return error;
     }
     
+    uint8_t * data = NULL;
+    const int linesize = vfe_calculate_linesize((int)vSize.width);
+    const size_t outDataSize = linesize * (int)vSize.height;
+    if (!(data = malloc(outDataSize))) {
+        fprintf(stderr, "%s: Cannot allocate data: %s\n",
+                __func__, strerror(errno));
+        avcodec_free_context(&decctx);
+        avformat_close_input(&fmtctx);
+        error = -1;
+        return error;
+    }
+    
+    AVFrame * kframe = av_frame_alloc();
+    
     ffmpeg->fmtctx = fmtctx;
     ffmpeg->stream = stream;
     ffmpeg->decctx = decctx;
     ffmpeg->swsctx = swsctx;
+    ffmpeg->kframe = kframe;
+    ffmpeg->data = data;
+    ffmpeg->linesize = linesize;
 
     return error;
 }
@@ -194,10 +219,8 @@ static void vfe_destroy(VFEData * ffmpeg) {
     avcodec_free_context(&ffmpeg->decctx);
     sws_freeContext(ffmpeg->swsctx);
     avformat_close_input(&ffmpeg->fmtctx);
-}
-
-static inline int vfe_calculate_linesize(int width) {
-    return ((3 * width + 15) / 16) * 16; // align for efficient swscale
+    av_frame_free(&ffmpeg->kframe);
+    free(ffmpeg->data);
 }
 
 static inline CGImageRef vfe_get_cgimage(uint8_t * inData,
@@ -228,25 +251,19 @@ static int vfe_decode(VFEData * ffmpeg,
 {
     int error = 0;
     
-    uint8_t * outRGBData = NULL;
-    const int outLinesize = vfe_calculate_linesize((int)vSize.width);
-    const size_t outDataSize = outLinesize * (int)vSize.height;
-    if (!(outRGBData = malloc(outDataSize))) {
-        fprintf(stderr, "%s: Cannot allocate data: %s\n",
-                __func__, strerror(errno));
-        error = -1;
-        return error;
-    }
-    
-    uint8_t * const dst[4] = { outRGBData };
-    const int dstStride[4] = { outLinesize };
-    
     AVFormatContext     * video     = ffmpeg->fmtctx;
     AVStream            * stream    = ffmpeg->stream;
     AVCodecContext      * decoder   = ffmpeg->decctx;
     struct SwsContext   * scaler    = ffmpeg->swsctx;
-
-    AVFrame * frame = av_frame_alloc();
+    AVFrame             * frame     = ffmpeg->kframe;
+    
+    uint8_t * outRGBData = ffmpeg->data;
+    const int outLinesize = ffmpeg->linesize;
+    const size_t outDataSize = outLinesize * (int)vSize.height;
+    
+    uint8_t * const dst[4] = { outRGBData };
+    const int dstStride[4] = { outLinesize };
+    
     const int64_t duration = av_rescale_q(video->duration,
                                           AV_TIME_BASE_Q,
                                           stream->time_base);
@@ -310,7 +327,6 @@ static int vfe_decode(VFEData * ffmpeg,
                                                       vSize, rgbColorSpace);
                 cb(ctx, frame->best_effort_timestamp * timebase, outImage);
 
-                av_frame_unref(frame);
                 av_packet_unref(&pkt);
                 break;
             }
@@ -323,9 +339,6 @@ static int vfe_decode(VFEData * ffmpeg,
 done:
     
     CGColorSpaceRelease(rgbColorSpace);
-    av_free(frame);
-    free(outRGBData);
-
     return error;
 }
 
