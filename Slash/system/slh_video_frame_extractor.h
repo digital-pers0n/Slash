@@ -69,5 +69,25 @@ int vfe_get_keyframes(const char * const filePath,
                       void * ctx,
                       vfe_callback_f callback);
 
+/**
+ Same as the @c vfe_get_image() function, but extrats a single keyframe that is
+ closest to the time passed as the @c seconds parameter.
+ 
+ @param filePath Path to a video file. This parameter must not be NULL.
+ @param seconds Starting point for a keyframe look up.
+ @param vSize Size for upscaling or downscaling
+ @param Pointer to CGImageRef that will point to the output image upon return.
+        You should release @c outImage after you don't need it anymore.
+        If the video file doesn't contain any keyframes then @c outImage is
+        left untouched. This parameter must not be NULL.
+ 
+ @return 0 on success or non-zero if an error occurs.
+ */
+int vfe_get_keyframe(const char * const filePath,
+                     double seconds,
+                     CGSize vSize,
+                     CGImageRef * outImage);
+
+
 
 #endif /* slh_video_frame_extractor_h */

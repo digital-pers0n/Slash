@@ -359,3 +359,103 @@ int vfe_get_keyframes(const char * const filePath,
     
     return error;
 }
+
+static int vfe_decode_keyframe(VFEData * ffmpeg,
+                               double seconds,
+                               CGSize vSize,
+                               CGImageRef * outImage)
+{
+    int error = 0;
+    
+    AVFormatContext     * video     = ffmpeg->fmtctx;
+    AVStream            * stream    = ffmpeg->stream;
+    AVCodecContext      * decoder   = ffmpeg->decctx;
+    struct SwsContext   * scaler    = ffmpeg->swsctx;
+    AVFrame             * frame     = ffmpeg->kframe;
+    
+    uint8_t * outRGBData = ffmpeg->data;
+    const int outLinesize = ffmpeg->linesize;
+    const size_t outDataSize = outLinesize * (int)vSize.height;
+    
+    uint8_t * const dst[4] = { outRGBData };
+    const int dstStride[4] = { outLinesize };
+    
+    AVPacket pkt;
+    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    const int videoStreamIdx = stream->index;
+    const int64_t seek = av_rescale(seconds,
+                                    stream->time_base.den,
+                                    stream->time_base.num) + stream->start_time;
+    
+    avcodec_flush_buffers(decoder);
+    
+    if ((error = av_seek_frame(video, videoStreamIdx,
+                               seek, AVSEEK_FLAG_BACKWARD)) < 0)
+    {
+        fprintf(stderr, "%s: Cannot seek: %s\n",
+                __func__, av_err2str(error));
+        goto done;
+    }
+    
+    while (av_read_frame(video, &pkt) >= 0) {
+        
+        if (pkt.stream_index == videoStreamIdx) {
+            if ((error = avcodec_send_packet(decoder, &pkt)) < 0) {
+                fprintf(stderr, "%s: Cannot send packet: %s\n",
+                        __func__, av_err2str(error));
+                av_packet_unref(&pkt);
+                break;
+            }
+            
+            if ((error = avcodec_receive_frame(decoder, frame)) < 0) {
+                av_packet_unref(&pkt);
+                if (error == AVERROR(EAGAIN)) {
+                    continue;
+                } else {
+                    fprintf(stderr, "%s: Cannot receive frame: %s\n",
+                            __func__, av_err2str(error));
+                    break;
+                }
+            }
+            
+            sws_scale(scaler, (const uint8_t * const *)frame->data,
+                      frame->linesize, 0, decoder->height, dst, dstStride);
+            
+            CGImageRef image = vfe_get_cgimage(outRGBData,
+                                               outDataSize,
+                                               outLinesize,
+                                               vSize, rgbColorSpace);
+            *outImage = image;
+            
+            
+            av_packet_unref(&pkt);
+            break;
+        }
+        av_packet_unref(&pkt);
+    }
+    
+    av_packet_unref(&pkt);
+
+done:
+    
+    CGColorSpaceRelease(rgbColorSpace);
+    return error;
+}
+
+int vfe_get_keyframe(const char * const filePath,
+                     double seconds,
+                     CGSize vSize,
+                     CGImageRef * outImage)
+{
+    VFEData ffmpeg;
+    int error = vfe_init(&ffmpeg, filePath, vSize);
+    if (error < 0) {
+        return error;
+    }
+    
+    error = vfe_decode_keyframe(&ffmpeg, seconds, vSize, outImage);
+    vfe_destroy(&ffmpeg);
+    
+    return error;
+}
