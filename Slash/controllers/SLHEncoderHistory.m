@@ -120,32 +120,43 @@ static NSSize iconSizeForSourceSize(NSSize sourceSize) {
 }
 
 - (void)generatePreview {
-    SLHPreferences *prefs = [SLHPreferences preferences];
-    if (prefs.hasFFmpeg) {
-        __unsafe_unretained typeof(self) uSelf = self;
-        const qos_class_t qos = QOS_CLASS_USER_INTERACTIVE;
-        dispatch_queue_t queue = dispatch_get_global_queue(qos, 0);
-        NSString *ffmpegPath = prefs.ffmpegPath;
-        dispatch_async(queue, ^{
-            CGImageRef cgImage = nil;
-            vfe_get_image(ffmpegPath.fileSystemRepresentation,
-                            uSelf->_duration * 0.5,
-                            iconSizeForSourceSize(uSelf->_videoSize),
-                            uSelf->_filePath.fileSystemRepresentation,
-                            &cgImage);
-            if (cgImage) {
-                CFRunLoopRef rl = CFRunLoopGetMain();
-                NSImage *image = [[NSImage alloc] initWithCGImage:cgImage
-                                                             size:NSZeroSize];
-                CFRunLoopPerformBlock(rl, kCFRunLoopCommonModes, ^{
-                    uSelf.previewImage = image;
-                });
-                CFRelease(cgImage);
-            } else {
-                NSLog(@"%@ Cannot create preview image. Invalid data.", uSelf);
+
+    __unsafe_unretained typeof(self) uSelf = self;
+    const qos_class_t qos = QOS_CLASS_USER_INTERACTIVE;
+    dispatch_queue_t queue = dispatch_get_global_queue(qos, 0);
+
+    dispatch_async(queue, ^{
+        CGImageRef cgImage = nil;
+        
+        vfe_get_keyframe(uSelf->_filePath.fileSystemRepresentation,
+                         uSelf->_duration * 0.5,
+                         iconSizeForSourceSize(uSelf->_videoSize),
+                         &cgImage);
+        
+        if (!cgImage) { // Try the slower path
+            SLHPreferences *prefs = [SLHPreferences preferences];
+            if (prefs.hasFFmpeg) {
+                NSString *ffmpegPath = prefs.ffmpegPath;
+                
+                vfe_get_image(ffmpegPath.fileSystemRepresentation,
+                              uSelf->_duration * 0.5,
+                              iconSizeForSourceSize(uSelf->_videoSize),
+                              uSelf->_filePath.fileSystemRepresentation,
+                              &cgImage);
             }
-        });
-    }
+        }
+        if (cgImage) {
+            CFRunLoopRef rl = CFRunLoopGetMain();
+            NSImage *image = [[NSImage alloc] initWithCGImage:cgImage
+                                                         size:NSZeroSize];
+            CFRunLoopPerformBlock(rl, kCFRunLoopCommonModes, ^{
+                uSelf.previewImage = image;
+            });
+            CFRelease(cgImage);
+        } else {
+            NSLog(@"%@ Cannot create preview image. Invalid data.", uSelf);
+        }
+    });
 }
 
 @end
