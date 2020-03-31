@@ -75,6 +75,10 @@
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
+    if (_player) {
+        [nc removeObserver:self name:MPVPlayerWillShutdownNotification object:_player];
+    }
+    
     if (player) {
         [nc addObserver:self selector:@selector(cleanUp:) name:MPVPlayerWillShutdownNotification object:player];
         if (!_videoView) {
@@ -82,15 +86,12 @@
         } else {
             _videoView.player = player;
         }
-        _player = player;
         _viewController.player = player;
     } else {
-        [nc removeObserver:self name:MPVPlayerWillShutdownNotification object:_player];
         _videoView.player = nil;
         _viewController.player = nil;
-        _player = nil;
     }
-    
+    _player = player;
 }
 
 - (void)createVideoViewWithPlayer:(MPVPlayer *)player {
