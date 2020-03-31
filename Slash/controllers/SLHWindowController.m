@@ -547,10 +547,6 @@ static char SLHPreferencesKVOContext;
     [SLHExternalPlayer reinitializeDefaultPlayer];
 }
 
-static inline SLHMethodAddress *addressOf(id target, SEL action) {
-    return [SLHMethodAddress methodAddressWithTarget:target selector:action];
-}
-
 - (void)observePreferences:(SLHPreferences *)appPrefs {
     _observedPrefs = @{
                        SLHPreferencesScreenshotPathKey           : addressOf(self, @selector(screenshotPathDidChange:)),
@@ -586,8 +582,6 @@ static inline SLHMethodAddress *addressOf(id target, SEL action) {
     }
 }
 
-typedef void (*basic_imp)(id, SEL, id);
-
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
@@ -595,7 +589,7 @@ typedef void (*basic_imp)(id, SEL, id);
     if (context == &SLHPreferencesKVOContext) {
         SLHMethodAddress *method = _observedPrefs[keyPath];
         if (method) {
-            ((basic_imp)method->_impl)(self, method->_selector, change[NSKeyValueChangeNewKey]);
+            ((SLHSetterIMP)method->_impl)(self, method->_selector, change[NSKeyValueChangeNewKey]);
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

@@ -29,4 +29,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/** Function to make initializaiton shorter */
+static inline SLHMethodAddress *addressOf(id target, SEL action) {
+    return [SLHMethodAddress methodAddressWithTarget:target selector:action];
+}
+
+/** 
+ Generic type for a setter method or any other method
+ that has one parameter and return nothing.
+ */
+typedef void (*SLHSetterIMP)(id target, SEL selector, id parameter);
+
 NS_ASSUME_NONNULL_END
