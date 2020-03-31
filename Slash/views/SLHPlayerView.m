@@ -10,11 +10,20 @@
 #import "MPVPlayer.h"
 #import "MPVOpenGLView.h"
 #import "SLHPlayerViewController.h"
+#import "SLHMethodAddress.h"
+#import "SLHPreferences.h"
+#import "SLHPreferencesKeys.h"
 
 @interface SLHPlayerView () {
     MPVPlayer *_player;
     MPVOpenGLView *_videoView;
     SLHPlayerViewController *_viewController;
+    NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
+    
+    struct _playerViewFlags {
+        unsigned int shouldPauseDuringLiveResize:1;
+        unsigned int shouldResumePlayback:1;
+    } _PVFlags;
 }
 
 @end
@@ -51,6 +60,10 @@
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(cleanUp:) name:NSApplicationWillTerminateNotification object:NSApp];
+    SLHPreferences *prefs = [SLHPreferences preferences];
+    BOOL flag = prefs.pausePlaybackDuringWindowResize;
+    _PVFlags.shouldPauseDuringLiveResize = flag ? 1 : 0;
+    [self observePreferences:prefs];
 }
 
 - (void)dealloc {
@@ -100,10 +113,13 @@
     _videoView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     _videoView.frame = _viewController.videoView.bounds;
     [_viewController.videoView addSubview:_videoView];
+    BOOL flag = [[SLHPreferences preferences] useHiResOpenGLSurface];
+    _videoView.wantsBestResolutionOpenGLSurface = flag;
 }
 
 - (void)shutdown {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self unobservePreferences:[SLHPreferences preferences]];
     
     [_videoView removeFromSuperview];
     [_viewController.view removeFromSuperview];
@@ -116,6 +132,87 @@
 
 - (void)cleanUp:(NSNotification *)n {
     [self shutdown];
+}
+
+#pragma mark - Overrides
+
+- (void)viewWillStartLiveResize {
+    [super viewWillStartLiveResize];
+    if (_player && _PVFlags.shouldPauseDuringLiveResize) {
+        if ([_player isPaused]) {
+            _PVFlags.shouldResumePlayback = 0;
+        } else {
+            _PVFlags.shouldResumePlayback = 1;
+            [_player pause];
+        }
+    }
+}
+
+- (void)viewDidEndLiveResize {
+    [super viewDidEndLiveResize];
+    if (_player && _PVFlags.shouldPauseDuringLiveResize) {
+        if (_PVFlags.shouldResumePlayback) {
+            [_player play];
+        }
+    }
+}
+
+#pragma mark - KVO
+
+- (void)didChangePauseDuringLiveResize:(NSNumber *)value {
+    _PVFlags.shouldPauseDuringLiveResize = (value.boolValue) ? 1 : 0;
+}
+
+- (void)didChangeUseHiResOpenGLSurface:(NSNumber *)value {
+    if (_videoView) {
+        _videoView.wantsBestResolutionOpenGLSurface = value.boolValue;
+    }
+}
+
+static char SLHPlayerViewKVOContext;
+
+- (void)observePreferences:(SLHPreferences *)appPrefs {
+    _observedPrefs = @{
+                       SLHPreferencesPausePlaybackDuringWindowResizeKey :
+                           addressOf(self, @selector(didChangePauseDuringLiveResize:)),
+                       SLHPreferencesUseHiResOpenGLSurfaceKey :
+                           addressOf(self, @selector(didChangeUseHiResOpenGLSurface:))
+                       };
+    
+    for (NSString *key in _observedPrefs) {
+        [appPrefs addObserver:self
+                   forKeyPath:key
+                      options:NSKeyValueObservingOptionNew
+                      context:&SLHPlayerViewKVOContext];
+    }
+}
+
+- (void)unobservePreferences:(SLHPreferences *)appPrefs {
+    for (NSString *key in _observedPrefs) {
+        [appPrefs removeObserver:self
+                      forKeyPath:key
+                         context:&SLHPlayerViewKVOContext];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context
+{
+    if (context == &SLHPlayerViewKVOContext) {
+        SLHMethodAddress *method = _observedPrefs[keyPath];
+        if (method) {
+            ((SLHSetterIMP)method->_impl)(self,
+                                          method->_selector,
+                                          change[NSKeyValueChangeNewKey]);
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
+    }
 }
 
 @end
