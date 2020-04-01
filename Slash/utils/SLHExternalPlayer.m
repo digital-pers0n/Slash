@@ -387,7 +387,9 @@ static void mpv_ipc_callback(ssize_t size, void *ctx) {
 }
 
 static void mpv_callback(char *output, void *ctx) {
-    //fputs(output, stdout);
+#if DEBUG
+    fputs(output, stdout);
+#endif
 }
 
 static void mpv_exit_callback(void *player, void *ctx) {
