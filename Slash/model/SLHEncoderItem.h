@@ -60,6 +60,37 @@ typedef struct time_interval {
 /** Estimated output file size (bytes) */
 @property (readonly, nonatomic) uint64_t estimatedSize;
 
+
+#pragma mark - Preview Images
+/** 
+ Set how many preview images to generate.
+ This is only a hint. The actual number of preview images may be lower.
+ Default value is 50. Must be greater than zero.
+ */
+@property (class, nonatomic) NSUInteger defaultNumberOfPreviewImages;
+
+/** 
+ Set the maximum height of a preview image.
+ The width will be proportionally scaled to match the height.
+ Default value is 128. Must be greater than zero.
+ */
+@property (class, nonatomic) NSUInteger defaultPreviewImageHeight;
+
+/** 
+ Array that contains CGImageRef images for the video file.
+ Default is nil. Filled if the @c -generatePreviewImagesWithBlock: was successful. 
+ */
+@property (nonatomic, nullable, readonly) NSArray * previewImages;
+
+/** 
+ Asynchronously generate preview images. You should check that the @c playerItem
+ property is not nil and it has video tracks.
+ @param responseBlock Called from a backgorund thread when all background 
+                      operations are done. The BOOL parameter indicates if
+                      the operation was successful.
+ */
+- (void)generatePreviewImagesWithBlock:(void (^)(BOOL success))responseBlock;
+ 
 @end
 
 NS_ASSUME_NONNULL_END

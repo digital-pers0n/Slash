@@ -12,6 +12,7 @@
 #import "SLHEncoderItemOptions.h"
 #import "SLHFilterOptions.h"
 #import "SLHEncoderItemMetadata.h"
+#import "slh_video_frame_extractor.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
@@ -20,10 +21,30 @@
 
 @property (nonatomic) double duration;
 @property (nonatomic) uint64_t estimatedSize;
+@property (nonatomic, nullable) NSArray * previewImages;
 
 @end
 
 @implementation SLHEncoderItem
+
+static NSUInteger _defaultNumberOfPreviewImages = 50;
+static NSUInteger _defaultPreviewImageHeight = 128;
+
++ (void)setDefaultNumberOfPreviewImages:(NSUInteger)value {
+    _defaultNumberOfPreviewImages = value;
+}
+
++ (NSUInteger)defaultNumberOfPreviewImages {
+    return _defaultNumberOfPreviewImages;
+}
+
++ (void)setDefaultPreviewImageHeight:(NSUInteger)value {
+    _defaultPreviewImageHeight = value;
+}
+
++ (NSUInteger)defaultPreviewImageHeight {
+    return _defaultPreviewImageHeight;
+}
 
 #pragma mark - NSCopying
 
@@ -48,6 +69,9 @@
     
     item->_metadata = _metadata.copy;
     item->_tag = _tag;
+    
+    // Share preview images across copies 
+    item->_previewImages = _previewImages;
 
     [item addObservers];
     
@@ -211,7 +235,49 @@ static char SLHEncoderItemKVOContext;
     }
 
     [self setValue:value forKey:key];
+}
 
+#pragma mark - Preview Images
+
+static CGSize rescaleSizeWithHeight(CGSize sourceSize, CGFloat newHeight) {
+    CGFloat sourceHeight = sourceSize.height;
+    CGFloat sourceWidth = sourceSize.width;
+    CGFloat newWidth = sourceWidth * newHeight / sourceHeight;
+    return CGSizeMake(newWidth, newHeight);
+}
+
+- (void)generatePreviewImagesWithBlock:(void (^)(BOOL))responseBlock {
+    dispatch_queue_t queue;
+    queue = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0);
+    
+    dispatch_async(queue, ^{
+        CFMutableArrayRef images;
+        images = CFArrayCreateMutable(kCFAllocatorDefault,
+                                      _defaultNumberOfPreviewImages,
+                                      &kCFTypeArrayCallBacks);
+        MPVPlayerItem * playerItem = self->_playerItem;
+        const char * const path = playerItem.url.fileSystemRepresentation;
+        CGSize vSize = rescaleSizeWithHeight(playerItem.bestVideoTrack.videoSize,
+                                             _defaultPreviewImageHeight);
+        int error = 0;
+        error = vfe_get_keyframes(path, _defaultNumberOfPreviewImages,
+                                  vSize, (void *)images, &vfe_reader);
+        BOOL success = NO;
+        if (!error) {
+            self.previewImages = CFBridgingRelease(images);
+            success = YES;
+        }
+        responseBlock(success);
+    });
+}
+
+
+static void vfe_reader(void *ctx, double ts, CGImageRef image) {
+    if (image) {
+        CFMutableArrayRef images = (CFMutableArrayRef)ctx;
+        CFArrayAppendValue(images, image);
+        CFRelease(image);
+    }
 }
 
 @end
