@@ -31,7 +31,6 @@
 }
 
 @property (nonatomic) NSRect cellFrame;
-@property (nonatomic) CAShapeLayer *layer;
 @property (nonatomic) CAShapeLayer *backgroundLayer;
 
 @end
