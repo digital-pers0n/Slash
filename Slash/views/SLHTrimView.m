@@ -74,7 +74,7 @@
     CGPathRelease(ref);
     
     ref = CGPathCreateMutable();
-    CGPathAddRoundedRect(ref, nil, controlView.bounds, 2, 2);
+    CGPathAddRoundedRect(ref, nil, NSInsetRect(controlView.bounds, SLHKnobWidth, 1), 2, 2);
     CGPathAddRect(ref, nil, hole);
     _backgroundLayer.path = ref;
     
