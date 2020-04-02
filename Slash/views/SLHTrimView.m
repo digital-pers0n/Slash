@@ -327,6 +327,7 @@ static char minValueKVOContext;
             break;
     }
     [self.layer addSublayer:_selectionCell.backgroundLayer];
+    _style = style;
 }
 
 - (void)setStartValue:(double)startValue {
