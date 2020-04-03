@@ -153,7 +153,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     CGPathRef path;
-    path = CGPathCreateWithRoundedRect(NSInsetRect(cellFrame, 2, 2), 4, 4, nil);
+    path = CGPathCreateWithRoundedRect(NSInsetRect(cellFrame, 1, 1), 4, 4, nil);
     _controlLayer.path = path;
     CGPathRelease(path);
     
