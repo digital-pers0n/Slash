@@ -21,6 +21,28 @@
 #define SLHCellHitRightKnob    NSCellHitTrackableArea
 
 
+inline NSRect
+NSOffsetRect(NSRect aRect, CGFloat dx, CGFloat dy)
+{
+    NSRect rect = aRect;
+    
+    rect.origin.x += dx;
+    rect.origin.y += dy;
+    return rect;
+}
+
+inline NSRect
+NSInsetRect(NSRect aRect, CGFloat dX, CGFloat dY)
+{
+    NSRect rect;
+    
+    rect = NSOffsetRect(aRect, dX, dY);
+    rect.size.width -= (2 * dX);
+    rect.size.height -= (2 * dY);
+    return rect;
+}
+
+
 #pragma mark -
 #pragma mark **** SLHTrimSelectionCell ****
 
@@ -135,7 +157,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     _controlLayer.path = path;
     CGPathRelease(path);
     
-    path = CGPathCreateWithRoundedRect(controlView.bounds, 2, 2, nil);
+    path = CGPathCreateWithRoundedRect(controlView.bounds, 4, 4, nil);
     _backgroundLayer.path = path;
     CGPathRelease(path);
 }
@@ -323,7 +345,7 @@ static char minValueKVOContext;
             
         case SLHTrimViewStyleFrame:
         default:
-            _selectionCell = [[SLHTrimSelectionCell alloc] init];;
+            _selectionCell = [[SLHTrimSelectionCell alloc] init];
             break;
     }
     [self.layer addSublayer:_selectionCell.backgroundLayer];
@@ -474,7 +496,7 @@ static char minValueKVOContext;
 }
 
 - (void)mouseDragged:(NSEvent *)event {
-    
+   // puts(__PRETTY_FUNCTION__);
     if (_hitTestResult & SLHCellHitLeftKnob ) {
         CGFloat newMouseX = event.locationInWindow.x;
         CGFloat deltaX = ((newMouseX - _mouseX) / (NSWidth(_maxSelectionFrame)) * _maxValue);
@@ -509,7 +531,6 @@ static char minValueKVOContext;
         [_delegate trimViewMouseDraggedEndPosition:self];
         return;
     }
-    [self.superview mouseDragged:event];
 }
 
 #if ENABLE_TRIMVIEW_SCROLL_WHEEL
