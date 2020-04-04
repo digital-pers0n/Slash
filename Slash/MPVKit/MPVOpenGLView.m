@@ -206,10 +206,8 @@ typedef struct mpv_data_ {
     
     if (!self.inLiveResize) {
         
-        NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
-        
         pthread_mutex_lock(&_mpv.gl_lock);
-        
+        NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
         _mpv.opengl_fbo.w = surfaceSize.width;
         _mpv.opengl_fbo.h = surfaceSize.height;
         
@@ -275,10 +273,9 @@ typedef struct mpv_data_ {
     
     if (_mpv.render_context) {
         if (self.inLiveResize) {
-            NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
-            
             pthread_mutex_lock(&_mpv.gl_lock);
             
+            NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
             _mpv.opengl_fbo.w = surfaceSize.width;
             _mpv.opengl_fbo.h = surfaceSize.height;
             resize(&_mpv);
