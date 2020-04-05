@@ -414,7 +414,9 @@ static char minValueKVOContext;
                                               ofView:self];
     _mouseX = event.locationInWindow.x;
 
-    if (_hitTestResult == SLHCellHitNone && event.clickCount < 2) {
+    if (((_hitTestResult == SLHCellHitNone ||
+        _hitTestResult == SLHCellHitContentArea) &&
+         event.clickCount < 2)) {
        [super mouseDown:event];
         return;
     } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
