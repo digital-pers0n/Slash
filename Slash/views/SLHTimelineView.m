@@ -91,10 +91,13 @@
 
 - (void)mouseEntered:(NSEvent *)event {
     _mouseIn = YES;
+    [NSCursor pop];
+    [[NSCursor resizeLeftRightCursor] push];
 }
 
 - (void)mouseExited:(NSEvent *)event {
     _mouseIn = NO;
+    [NSCursor pop];
 }
 
 - (void)mouseDown:(NSEvent *)event {
