@@ -26,6 +26,7 @@
 #import "SLHMethodAddress.h"
 #import "SLHEncoderHistory.h"
 #import "SLHBitrateFormatter.h"
+#import "SLHTrimViewController.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -48,6 +49,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSArrayController *_formatsArrayController;
     IBOutlet NSSplitView *_inspectorSplitView;
     IBOutlet NSSplitView *_videoSplitView;
+    IBOutlet NSView *_trimView;
     
     IBOutlet NSPopUpButton *_videoStreamPopUp;
     IBOutlet NSPopUpButton *_audioStreamPopUp;
@@ -67,6 +69,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     NSPopover *_popover;
     NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
     SLHEncoderHistory *_encoderHistory;
+    SLHTrimViewController *_trimViewController;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
@@ -229,6 +232,16 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     /* SLHEncoderHistory */
     _encoderHistory = [[SLHEncoderHistory alloc] init];
     
+    /* SLHTrimViewController */
+    _trimViewController = [[SLHTrimViewController alloc] init];
+    NSView *tView = _trimViewController.view;
+    tView.frame = _trimView.frame;
+    tView.autoresizingMask = _trimView.autoresizingMask;
+    [_trimView.superview replaceSubview:_trimView
+                                   with:tView];
+    _trimView = tView;
+    _trimViewController.player = _player;
+    
     /* NSApplication */
     [nc addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:NSApp];
 }
@@ -265,7 +278,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [_videoStreamPopUp removeAllItems];
     [_audioStreamPopUp removeAllItems];
     [_subtitlesStreamPopUp removeAllItems];
-    
+    _trimViewController.encoderItem = nil;
 }
 
 - (void)showSideBarIfNeeded {
@@ -1310,6 +1323,7 @@ static char SLHPreferencesKVOContext;
         [self updatePopUpMenus:encoderItem];
         [self matchVideoStreamsToEncoderItem:encoderItem];
     }
+    _trimViewController.encoderItem = _currentEncoderItem;
 }
 
 #pragma mark - SLHTrimViewDelegate
