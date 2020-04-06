@@ -136,7 +136,9 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
 #pragma mark - 
 #pragma mark **** SLHTrimSelectionSimpleCell ****
 
-@interface SLHTrimSelectionSimpleCell : SLHTrimSelectionCell
+@interface SLHTrimSelectionSimpleCell : SLHTrimSelectionCell {
+    __weak CAShapeLayer *_frameLayer;
+}
 @end
 
 @implementation SLHTrimSelectionSimpleCell
@@ -147,11 +149,39 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     if (self) {
         _controlLayer.fillRule = kCAFillRuleNonZero;
         _backgroundLayer.fillRule = kCAFillRuleNonZero;
+        CAShapeLayer * frameLayer = [CAShapeLayer new];
+        frameLayer.fillRule = kCAFillRuleNonZero;
+        frameLayer.fillColor = _backgroundLayer.fillColor;
+        [_backgroundLayer addSublayer:frameLayer];
+        _frameLayer = frameLayer;
     }
     return self;
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+    
+    CGMutablePathRef mutablePath;
+    CGRect bar = CGRectMake(0, 0, 1, 12);
+    const CGFloat step = SLHKnobWidth * (CGFloat)0.5;
+    
+    mutablePath = CGPathCreateMutable();
+    
+    bar.origin.x = NSMinX(cellFrame) + step;
+    bar.origin.y = round((NSHeight(cellFrame) - NSHeight(bar)) * 0.5);
+    CGPathAddRect(mutablePath, nil, bar);
+    
+    bar.origin.x = NSMinX(cellFrame) + step + 3;
+    CGPathAddRect(mutablePath, nil, bar);
+    
+    bar.origin.x = NSMaxX(cellFrame) - NSWidth(bar) - (step + 3);
+    CGPathAddRect(mutablePath, nil, bar);
+    
+    bar.origin.x = NSMaxX(cellFrame) - NSWidth(bar) - step;
+    CGPathAddRect(mutablePath, nil, bar);
+
+    _frameLayer.path = mutablePath;
+    CGPathRelease(mutablePath);
+    
     CGPathRef path;
     path = CGPathCreateWithRoundedRect(NSInsetRect(cellFrame, 1, 1), 4, 4, nil);
     _controlLayer.path = path;
