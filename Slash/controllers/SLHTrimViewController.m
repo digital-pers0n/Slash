@@ -112,6 +112,7 @@
         _trimView.style = SLHTrimViewStyleSimple;
     }
     _shouldDisplayPreviewImages = value;
+    _trimView.needsDisplay = YES;
 }
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
