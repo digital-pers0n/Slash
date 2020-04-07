@@ -68,6 +68,8 @@
 		CE58008F231C13DD000F5384 /* SLHWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE58008D231C13DD000F5384 /* SLHWindowController.xib */; };
 		CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */; };
 		CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */; };
+		CE5F50CA243CEC6E0080E4A5 /* SLHTrimViewSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5F50C8243CEC6E0080E4A5 /* SLHTrimViewSettings.m */; };
+		CE5F50CB243CEC6E0080E4A5 /* SLHTrimViewSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5F50C9243CEC6E0080E4A5 /* SLHTrimViewSettings.xib */; };
 		CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C545235E0C47003DB25F /* MPVPlayerItem.m */; };
 		CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C548235E4E2D003DB25F /* MPVPlayerItemTrack.m */; };
 		CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */; };
@@ -232,6 +234,9 @@
 		CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItem.m; path = model/SLHEncoderItem.m; sourceTree = "<group>"; };
 		CE5EBC3422905511009BBAF7 /* SLHEncoderQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderQueueItem.h; path = model/SLHEncoderQueueItem.h; sourceTree = "<group>"; };
 		CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderQueueItem.m; path = model/SLHEncoderQueueItem.m; sourceTree = "<group>"; };
+		CE5F50C7243CEC6E0080E4A5 /* SLHTrimViewSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTrimViewSettings.h; sourceTree = "<group>"; };
+		CE5F50C8243CEC6E0080E4A5 /* SLHTrimViewSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTrimViewSettings.m; sourceTree = "<group>"; };
+		CE5F50C9243CEC6E0080E4A5 /* SLHTrimViewSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLHTrimViewSettings.xib; sourceTree = "<group>"; };
 		CE60C544235E0C47003DB25F /* MPVPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItem.h; path = MPVKit/MPVPlayerItem.h; sourceTree = "<group>"; };
 		CE60C545235E0C47003DB25F /* MPVPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayerItem.m; path = MPVKit/MPVPlayerItem.m; sourceTree = "<group>"; };
 		CE60C547235E4E2D003DB25F /* MPVPlayerItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItemTrack.h; path = MPVKit/MPVPlayerItemTrack.h; sourceTree = "<group>"; };
@@ -370,6 +375,9 @@
 				CED85AB621B85CFC00D01B36 /* formats */,
 				CE0B15F623571EA500AE606E /* player */,
 				CEC64095235A0D740009049C /* window */,
+				CE5F50C7243CEC6E0080E4A5 /* SLHTrimViewSettings.h */,
+				CE5F50C8243CEC6E0080E4A5 /* SLHTrimViewSettings.m */,
+				CE5F50C9243CEC6E0080E4A5 /* SLHTrimViewSettings.xib */,
 				CEF1D9212428FEBD0003D92F /* SLHTrimViewController.h */,
 				CEF1D9222428FEBD0003D92F /* SLHTrimViewController.m */,
 				CEF1D9232428FEBD0003D92F /* SLHTrimViewController.xib */,
@@ -753,6 +761,7 @@
 				CE120456229C260A00C2A145 /* SLHEncoderVPXFormat.xib in Resources */,
 				CE9CBCD7228C68A4001A8E37 /* SLHModalWindowController.xib in Resources */,
 				CEAA552A22A7FFA90079CD27 /* SLHEncoderVP9Format.xib in Resources */,
+				CE5F50CB243CEC6E0080E4A5 /* SLHTrimViewSettings.xib in Resources */,
 				CE58008F231C13DD000F5384 /* SLHWindowController.xib in Resources */,
 				CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */,
 				CE0B4E19224A563E00D61D72 /* SLHCropEditor.xib in Resources */,
@@ -826,6 +835,7 @@
 				CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */,
 				CE9CA40423788350005CF368 /* SLHStackView.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
+				CE5F50CA243CEC6E0080E4A5 /* SLHTrimViewSettings.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
 				CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */,
 				CE566A77215AAC16004E974F /* slh_extern.c in Sources */,
