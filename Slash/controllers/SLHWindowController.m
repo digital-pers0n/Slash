@@ -27,6 +27,7 @@
 #import "SLHEncoderHistory.h"
 #import "SLHBitrateFormatter.h"
 #import "SLHTrimViewController.h"
+#import "SLHTrimViewSettings.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -72,6 +73,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
     SLHEncoderHistory *_encoderHistory;
     SLHTrimViewController *_trimViewController;
+    NSPopover *_trimViewSettingsPopover;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
@@ -244,6 +246,13 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
                                    with:tView];
     _trimView = tView;
     _trimViewController.player = _player;
+    
+    /* SLHTrimViewSettings */
+    SLHTrimViewSettings * trimViewSettings = [[SLHTrimViewSettings alloc] init];
+    trimViewSettings.controller = _trimViewController;
+    _trimViewSettingsPopover = [[NSPopover alloc] init];
+    _trimViewSettingsPopover.contentViewController = trimViewSettings;
+    _trimViewSettingsPopover.behavior = NSPopoverBehaviorTransient;
     
     /* NSApplication */
     [nc addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:NSApp];
@@ -689,6 +698,16 @@ static char SLHPreferencesKVOContext;
 }
 
 #pragma mark - IBActions
+
+- (IBAction)showTrimViewSettings:(NSButton *)sender {
+    if (_trimViewSettingsPopover.shown) {
+        [_trimViewSettingsPopover close];
+    } else {
+        [_trimViewSettingsPopover showRelativeToRect:sender.frame
+                                              ofView:sender.superview
+                                       preferredEdge:NSMinYEdge];
+    }
+}
 
 - (IBAction)frameStep:(id)sender {
     [_player performCommand:MPVPlayerCommandFrameStep];
