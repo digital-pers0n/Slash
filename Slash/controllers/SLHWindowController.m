@@ -49,7 +49,9 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSArrayController *_formatsArrayController;
     IBOutlet NSSplitView *_inspectorSplitView;
     IBOutlet NSSplitView *_videoSplitView;
+    IBOutlet NSSplitView *_trimSplitView;
     IBOutlet NSView *_trimView;
+    IBOutlet NSView *_encoderItemsView;
     
     IBOutlet NSPopUpButton *_videoStreamPopUp;
     IBOutlet NSPopUpButton *_audioStreamPopUp;
@@ -73,6 +75,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
+    CGFloat _encoderItemsViewWidth;
 
     struct _trimViewFlags {
         unsigned int needsUpdateStartValue:1;
@@ -1405,22 +1408,28 @@ static char SLHPreferencesKVOContext;
 - (void)windowWillStartLiveResize:(NSNotification *)notification {
     _sideBarWidth = NSWidth(_encoderSettingsView.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
+    _encoderItemsViewWidth =  NSWidth(_encoderItemsView.frame);
 }
 
 - (void)windowWillEnterFullScreen:(NSNotification *)notification {
     _sideBarWidth = NSWidth(_encoderSettingsView.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
+    _encoderItemsViewWidth =  NSWidth(_encoderItemsView.frame);
 }
 
 - (void)windowWillExitFullScreen:(NSNotification *)notification {
     _sideBarWidth = NSWidth(_encoderSettingsView.frame);
     _bottomBarHeight = NSHeight(_bottomBarView.frame);
+    _encoderItemsViewWidth =  NSWidth(_encoderItemsView.frame);
 }
 
 #pragma mark - NSSplitViewDelegate
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
     if (subview == _encoderSettings.view) {
+        return YES;
+    }
+    if (subview == _encoderItemsView) {
         return YES;
     }
     return NO;
@@ -1434,6 +1443,8 @@ static char SLHPreferencesKVOContext;
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition ofSubviewAt:(NSInteger)dividerIndex {
     if (splitView == _inspectorSplitView) {
         return NSWidth(splitView.frame) - 235;
+    } else if (splitView == _trimSplitView) {
+        return 400; // maximum width of encoder items table
     }
     return NSHeight(splitView.frame) - 100; // minimum bottomBar height
 }
@@ -1441,6 +1452,8 @@ static char SLHPreferencesKVOContext;
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
     if (splitView == _inspectorSplitView) {
         return NSWidth(splitView.frame) - 280;
+    } else if (splitView == _trimSplitView) {
+        return 180; // minimum width of encoder items table
     }
     return 280; // minimum videoView height
 }
@@ -1451,6 +1464,13 @@ static char SLHPreferencesKVOContext;
         if (splitView == _inspectorSplitView) {
             if (![splitView isSubviewCollapsed:_encoderSettings.view]) {
                 [splitView setPosition:(NSWidth(splitView.frame) - _sideBarWidth) ofDividerAtIndex:0];
+            }
+            return;
+        }
+        else if (splitView == _trimSplitView) {
+            if (![splitView isSubviewCollapsed:_encoderItemsView]) {
+               [splitView setPosition:_encoderItemsViewWidth
+                     ofDividerAtIndex:0];
             }
             return;
         }
