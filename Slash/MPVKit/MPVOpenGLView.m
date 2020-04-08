@@ -115,6 +115,10 @@ typedef struct mpv_data_ {
     
     NSRect frame = self.bounds;
     _mpv.opengl_fbo = (mpv_opengl_fbo) { .fbo = 0, .w = NSWidth(frame), .h = NSHeight(frame) };
+    
+    GLint swapInt = 1;
+    [_glContext setValues:&swapInt
+             forParameter:NSOpenGLContextParameterSwapInterval];
 }
 
 - (NSOpenGLPixelFormat *)createOpenGLPixelFormat {
