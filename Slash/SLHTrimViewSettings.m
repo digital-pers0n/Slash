@@ -7,8 +7,16 @@
 //
 
 #import "SLHTrimViewSettings.h"
+#import "SLHTrimViewController.h"
 
-@interface SLHTrimViewSettings ()
+@interface SLHTrimViewSettings () {
+    __weak IBOutlet NSSlider * _verticalSlider;
+    __weak IBOutlet NSSlider * _horizontalSlider;
+    double _minHorizontalZoom;
+    double _maxHorizontalZoom;
+    double _minVerticalZoom;
+    double _maxVerticalZoom;
+}
 
 @end
 
@@ -16,7 +24,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    _minHorizontalZoom = _horizontalSlider.minValue;
+    _maxHorizontalZoom = _horizontalSlider.maxValue;
+    _minVerticalZoom = _verticalSlider.minValue;
+    _maxVerticalZoom = _verticalSlider.maxValue;
 }
+
+- (IBAction)increaseVerticalSize:(id)sender {
+    double value = _verticalSlider.doubleValue;
+    value *= 1.02;
+    if (value > _maxVerticalZoom) {
+        value = _maxVerticalZoom;
+    }
+    _controller.verticalZoom = value;
+}
+
+- (IBAction)decreaseVerticalSize:(id)sender {
+    double value = _verticalSlider.doubleValue;
+    value *= 0.98;
+    if (value < _minVerticalZoom) {
+        value = _minVerticalZoom;
+    }
+    _controller.verticalZoom = value;
+}
+
+- (IBAction)increaseHorizontalSize:(id)sender {
+    double value = _horizontalSlider.doubleValue;
+    value *= 1.05;
+    if (value > _maxHorizontalZoom) {
+        value = _maxHorizontalZoom;
+    }
+    _controller.horizontalZoom = value;
+}
+
+- (IBAction)decreaseHorizontalSize:(id)sender {
+    double value = _horizontalSlider.doubleValue;
+    value *= 0.95;
+    if (value < _minHorizontalZoom) {
+        value = _minHorizontalZoom;
+    }
+    _controller.horizontalZoom = value;
+}
+
 
 @end
