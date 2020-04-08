@@ -50,6 +50,10 @@ NSString * const SLHPreferencesWindowTitleStyleKey = @"windowTitleStyle";
 NSString * const SLHPreferencesUseHiResOpenGLSurfaceKey = @"useHiResOpenGLSurface";
 NSString * const SLHPreferencesPausePlaybackDuringWindowResizeKey = @"pausePlaybackDuringWindowResize";
 
+NSString * const SLHPreferencesTrimViewShouldGeneratePreviewImagesKey = @"trimViewShouldGeneratePreviewImages";
+NSString * const SLHPreferencesTrimViewVerticalZoomKey = @"trimViewVerticalZoom";
+NSString * const SLHPreferencesTrimViewHorizontalZoomKey = @"trimViewHorizontalZoom";
+
 #pragma mark - SLHMetadataItem
 
 NSString *const SLHMetadataIdentifierArtist         = @"artist";

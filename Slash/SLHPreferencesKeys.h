@@ -36,4 +36,8 @@ extern NSString * const SLHPreferencesWindowTitleStyleKey;
 extern NSString * const SLHPreferencesUseHiResOpenGLSurfaceKey;
 extern NSString * const SLHPreferencesPausePlaybackDuringWindowResizeKey;
 
+extern NSString * const SLHPreferencesTrimViewShouldGeneratePreviewImagesKey;
+extern NSString * const SLHPreferencesTrimViewVerticalZoomKey;
+extern NSString * const SLHPreferencesTrimViewHorizontalZoomKey;
+
 #endif /* SLHPreferencesKeys_h */

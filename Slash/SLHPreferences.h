@@ -54,4 +54,8 @@
 @property (nonatomic) BOOL useHiResOpenGLSurface;
 @property (nonatomic) BOOL pausePlaybackDuringWindowResize;
 
+@property (nonatomic) BOOL trimViewShouldGeneratePreviewImages;
+@property (nonatomic) double trimViewVerticalZoom;
+@property (nonatomic) double trimViewHorizontalZoom;
+
 @end

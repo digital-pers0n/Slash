@@ -506,6 +506,33 @@ fatal_error:
     return [_userDefaults boolForKey:SLHPreferencesPausePlaybackDuringWindowResizeKey];
 }
 
+- (void)setTrimViewShouldGeneratePreviewImages:(BOOL)value {
+    [_userDefaults setBool:value
+                    forKey:SLHPreferencesTrimViewShouldGeneratePreviewImagesKey];
+}
+
+- (BOOL)trimViewShouldGeneratePreviewImages {
+    return [_userDefaults boolForKey:SLHPreferencesTrimViewShouldGeneratePreviewImagesKey];
+}
+
+- (void)setTrimViewVerticalZoom:(double)value {
+    [_userDefaults setDouble:value
+                      forKey:SLHPreferencesTrimViewVerticalZoomKey];
+}
+
+- (double)trimViewVerticalZoom {
+    return [_userDefaults doubleForKey:SLHPreferencesTrimViewVerticalZoomKey];
+}
+
+- (void)setTrimViewHorizontalZoom:(double)value {
+    [_userDefaults setDouble:value
+                      forKey:SLHPreferencesTrimViewHorizontalZoomKey];
+}
+
+- (double)trimViewHorizontalZoom {
+    return [_userDefaults doubleForKey:SLHPreferencesTrimViewHorizontalZoomKey];
+}
+
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {
         return;
