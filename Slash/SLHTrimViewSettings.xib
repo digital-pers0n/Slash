@@ -19,15 +19,15 @@
             <rect key="frame" x="0.0" y="0.0" width="302" height="124"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <slider verticalHuggingPriority="750" misplaced="YES" id="7UQ-K7-r40">
+                <slider toolTip="Adjust width" verticalHuggingPriority="750" misplaced="YES" id="7UQ-K7-r40">
                     <rect key="frame" x="51" y="88" width="200" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="0.5" maxValue="30" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="yGb-ug-GS8"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="0.5" maxValue="30" doubleValue="22.981915118243244" tickMarkPosition="above" sliderType="linear" id="yGb-ug-GS8"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="controller.horizontalZoom" id="8tR-iy-LeF"/>
                     </connections>
                 </slider>
-                <slider verticalHuggingPriority="750" misplaced="YES" id="pOv-RA-58Z">
+                <slider toolTip="Adjust height" verticalHuggingPriority="750" misplaced="YES" id="pOv-RA-58Z">
                     <rect key="frame" x="51" y="53" width="200" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="0.5" maxValue="1.5" doubleValue="0.5" tickMarkPosition="above" sliderType="linear" id="awT-WN-mvJ"/>
@@ -46,7 +46,7 @@
                         <binding destination="-2" name="value" keyPath="controller.shouldDisplayPreviewImages" id="OsJ-sf-dqR"/>
                     </connections>
                 </button>
-                <button focusRingType="none" misplaced="YES" id="jbQ-og-UKJ">
+                <button toolTip="Decrease height" focusRingType="none" misplaced="YES" id="jbQ-og-UKJ">
                     <rect key="frame" x="20" y="51" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="gea-nN-Q6q">
@@ -57,7 +57,7 @@
                         <action selector="decreaseVerticalSize:" target="-2" id="OKI-0r-PEf"/>
                     </connections>
                 </button>
-                <button focusRingType="none" misplaced="YES" id="ame-L8-BIN">
+                <button toolTip="Increase height" focusRingType="none" misplaced="YES" id="ame-L8-BIN">
                     <rect key="frame" x="261" y="51" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="lmN-FH-Zt8">
@@ -68,7 +68,7 @@
                         <action selector="increaseVerticalSize:" target="-2" id="Ni6-6P-LEP"/>
                     </connections>
                 </button>
-                <button focusRingType="none" misplaced="YES" id="CvD-SM-qtZ">
+                <button toolTip="Decrease width" focusRingType="none" misplaced="YES" id="CvD-SM-qtZ">
                     <rect key="frame" x="20" y="86" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="Cae-G1-y57">
@@ -79,7 +79,7 @@
                         <action selector="decreaseHorizontalSize:" target="-2" id="Lvp-FH-iuO"/>
                     </connections>
                 </button>
-                <button focusRingType="none" misplaced="YES" id="H7F-Xy-2ro">
+                <button toolTip="Increase width" focusRingType="none" misplaced="YES" id="H7F-Xy-2ro">
                     <rect key="frame" x="261" y="86" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="tqX-Vz-Cc7">
