@@ -303,9 +303,9 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             </customView>
                                             <button toolTip="Preview Output File" verticalHuggingPriority="750" misplaced="YES" id="BXz-I7-MQG">
-                                                <rect key="frame" x="391" y="117" width="21" height="21"/>
+                                                <rect key="frame" x="397" y="117" width="21" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="rJ9-2H-KMB">
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameTrimViewSettingsTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="rJ9-2H-KMB">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -542,7 +542,6 @@
         </arrayController>
     </objects>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="SLHImageNameAddToQueueTemplate" width="15" height="15"/>
@@ -553,5 +552,6 @@
         <image name="SLHImageNamePreviewTemplate" width="15" height="15"/>
         <image name="SLHImageNameStartEncodingTemplate" width="15" height="15"/>
         <image name="SLHImageNameToggleSideBarTemplate" width="19" height="19"/>
+        <image name="SLHImageNameTrimViewSettingsTemplate" width="15" height="15"/>
     </resources>
 </document>
