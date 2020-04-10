@@ -29,13 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** Indicate if the generation of preview images is in progress. */
 @property (nonatomic, readonly) BOOL busy;
 
-/** 
- The name to use when autosaving to the user defaults, the values such as 
- vertical zoom, horizontal zoom and if preview images should be generated.
- If this value is nil or the string is empty no autosaving is done. 
- */
-@property (nonatomic, nullable) IBInspectable NSString *autosaveName;
-
 @end
 
 NS_ASSUME_NONNULL_END
