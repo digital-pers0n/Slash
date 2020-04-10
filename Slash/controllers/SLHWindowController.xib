@@ -418,6 +418,13 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </customView>
+                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="n1d-Am-VFV">
+                        <rect key="frame" x="659" y="2" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <connections>
+                            <binding destination="-2" name="animate" keyPath="trimViewController.busy" id="dCj-gx-oYM"/>
+                        </connections>
+                    </progressIndicator>
                 </subviews>
             </view>
             <toolbar key="toolbar" implicitIdentifier="58B1DAE0-DC47-40C6-93D7-A3A61DD90A49" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="B8D-hm-GI4">

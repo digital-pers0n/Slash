@@ -84,6 +84,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 @property (nonatomic) SLHEncoderItem *currentEncoderItem;
 @property (nonatomic, nullable) NSString *lastEncodedMediaFilePath;
 @property (nonatomic, nullable) SLHPreferences *preferences;
+@property (nonatomic) SLHTrimViewController * trimViewController;
 
 @end
 
@@ -234,7 +235,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _encoderHistory = [[SLHEncoderHistory alloc] init];
     
     /* SLHTrimViewController */
-    _trimViewController = [[SLHTrimViewController alloc] init];
+    self.trimViewController = [[SLHTrimViewController alloc] init];
     NSView *tView = _trimViewController.view;
     tView.frame = _trimView.frame;
     tView.autoresizingMask = _trimView.autoresizingMask;
