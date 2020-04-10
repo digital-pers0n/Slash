@@ -12,6 +12,7 @@
 #import "SLHTimeFormatter.h"
 #import "SLHVideoTrackView.h"
 #import "SLHTimelineView.h"
+#import "SLHPreferences.h"
 #import "slh_video_frame_extractor.h"
 
 #import "MPVPlayer.h"
@@ -46,14 +47,38 @@
 {
     self = [super init];
     if (self) {
-        _verticalZoom = 0.5;
-        _horizontalZoom = 3.0;
+        [self loadPreferences];
     }
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self savePreferences];
+}
+
 - (NSNibName)nibName {
     return self.className;
+}
+
+- (void)loadPreferences {
+    SLHPreferences * prefs = [SLHPreferences preferences];
+    _shouldDisplayPreviewImages = prefs.trimViewShouldGeneratePreviewImages;
+    
+    double value;
+    value = prefs.trimViewVerticalZoom;
+    _verticalZoom = (value) ? value : 0.5;
+    
+    value = prefs.trimViewHorizontalZoom;
+    _horizontalZoom = (value) ? value : 3.0;
+}
+
+- (void)savePreferences {
+    SLHPreferences * prefs = [SLHPreferences preferences];
+    prefs.trimViewShouldGeneratePreviewImages = _shouldDisplayPreviewImages;
+    prefs.trimViewVerticalZoom = _verticalZoom;
+    prefs.trimViewHorizontalZoom = _horizontalZoom;
 }
 
 - (void)viewDidLoad {
@@ -76,6 +101,11 @@
     // re-apply zoom mulitpliers
     self.verticalZoom = _verticalZoom;
     self.horizontalZoom = _horizontalZoom;
+    
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(applicationWillTerminate:)
+               name:NSApplicationWillTerminateNotification
+             object:NSApp];
 }
 
 #pragma mark - Properties
@@ -258,6 +288,13 @@
         _player.timePosition = trimView.endValue;
     }
     _TVFlags.shouldStop = 1;
+}
+
+#pragma mark - Notifications
+
+- (void)applicationWillTerminate:(NSNotification *)n {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self savePreferences];
 }
 
 @end
