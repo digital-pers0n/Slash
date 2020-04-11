@@ -19,10 +19,10 @@
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 
-@interface SLHTrimViewController () <SLHTrimViewDelegate> {
+@interface SLHTrimViewController () <SLHTrimViewDelegate, SLHTimelineViewDelegate> {
     CGFloat _trimViewWidth;
     __weak IBOutlet SLHTrimView *_trimView;
-    __weak IBOutlet NSView *_timelineView;
+    __weak IBOutlet SLHTimelineView *_timelineView;
     __weak IBOutlet NSTextField *_outNameTextField;
     __weak IBOutlet NSView *_trimViewContentView;
     
@@ -148,8 +148,9 @@
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
     if (encoderItem == _encoderItem) { return; }
     if (encoderItem) {
-        
-        _trimView.maxValue = encoderItem.playerItem.duration;
+        double maxValue = encoderItem.playerItem.duration;
+        _timelineView.maxValue = maxValue;
+        _trimView.maxValue = maxValue;
         _trimView.endValue = encoderItem.intervalEnd;
         _trimView.startValue = encoderItem.intervalStart;
         
@@ -254,6 +255,19 @@
     _player.timePosition = time;
 }
 
+- (void)updatePlayerTimePostion:(NSNotification *)n {
+    if (_TVFlags.shouldStop) {
+        NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+        
+        [nc removeObserver:self
+                      name:MPVPlayerDidRestartPlaybackNotification
+                    object:_player];
+        _TVFlags.shouldStop = 0;
+    } else {
+        _player.timePosition = _timelineView.doubleValue;
+    }
+}
+
 #pragma mark - SLHTrimViewDelegate
 
 - (void)trimViewMouseDown:(SLHTrimView *)trimView {
@@ -287,6 +301,23 @@
     } else {
         _player.timePosition = trimView.endValue;
     }
+    _TVFlags.shouldStop = 1;
+}
+
+#pragma mark - SLHTimelineViewDelegate
+
+- (void)timelineViewMouseDown:(SLHTimelineView *)timelineView {
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self
+           selector:@selector(updatePlayerTimePostion:)
+               name:MPVPlayerDidRestartPlaybackNotification
+             object:_player];
+    _player.timePosition = timelineView.doubleValue;
+}
+
+- (void)timelineViewMouseUp:(SLHTimelineView *)timelineView {
+    _player.timePosition = timelineView.doubleValue;
     _TVFlags.shouldStop = 1;
 }
 
