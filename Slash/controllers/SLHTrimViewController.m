@@ -88,6 +88,7 @@
     NSRect frame = NSInsetRect(_trimView.frame, 10, 2);
     _videoTrackView = [[SLHVideoTrackView alloc] initWithFrame:frame];
     _videoTrackView.autoresizingMask = _trimView.autoresizingMask;
+    _videoTrackView.wantsLayer = YES;
     
     [_trimView.superview addSubview:_videoTrackView
                positioned:NSWindowBelow
