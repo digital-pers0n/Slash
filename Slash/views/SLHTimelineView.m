@@ -104,6 +104,7 @@
     if (_mouseIn) {
         NSApplication *app = [NSApplication sharedApplication];
         NSEventMask eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged;
+        [_delegate timelineViewMouseDown:self];
         
         while (1) {
             event = [app nextEventMatchingMask:eventMask
@@ -118,7 +119,6 @@
                     break;
                 case NSEventTypeLeftMouseUp:
                     [self mouseUp:event];
-                    _mouseIn = NO;
                     [self updateTrackingAreas];
                     return;
                 default:
@@ -126,9 +126,18 @@
             }
         }
     } else if (event.clickCount > 1) {
+        _mouseIn = YES;
+        [_delegate timelineViewMouseDown:self];
         [self updateIndicatorPositionWithEvent:event];
         [self updateTrackingAreas];
+    }
+    [super mouseDown:event];
+}
 
+- (void)mouseUp:(NSEvent *)event {
+    if (_mouseIn) {
+        [_delegate timelineViewMouseUp:self];
+        _mouseIn = NO;
     }
 }
 
