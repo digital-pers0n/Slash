@@ -16,11 +16,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView misplaced="YES" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="302" height="124"/>
+            <rect key="frame" x="0.0" y="0.0" width="302" height="145"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <slider toolTip="Adjust width" verticalHuggingPriority="750" misplaced="YES" id="7UQ-K7-r40">
-                    <rect key="frame" x="51" y="88" width="200" height="17"/>
+                    <rect key="frame" x="51" y="109" width="200" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="0.5" maxValue="30" doubleValue="22.981915118243244" tickMarkPosition="above" sliderType="linear" id="yGb-ug-GS8"/>
                     <connections>
@@ -28,13 +28,61 @@
                     </connections>
                 </slider>
                 <slider toolTip="Adjust height" verticalHuggingPriority="750" misplaced="YES" id="pOv-RA-58Z">
-                    <rect key="frame" x="51" y="53" width="200" height="17"/>
+                    <rect key="frame" x="51" y="74" width="200" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="0.5" maxValue="1.5" doubleValue="0.5" tickMarkPosition="above" sliderType="linear" id="awT-WN-mvJ"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="controller.verticalZoom" id="WCJ-79-O5M"/>
                     </connections>
                 </slider>
+                <button toolTip="Decrease height" focusRingType="none" misplaced="YES" id="jbQ-og-UKJ">
+                    <rect key="frame" x="20" y="72" width="21" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="gea-nN-Q6q">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="decreaseVerticalSize:" target="-2" id="OKI-0r-PEf"/>
+                    </connections>
+                </button>
+                <button toolTip="Increase height" focusRingType="none" misplaced="YES" id="ame-L8-BIN">
+                    <rect key="frame" x="261" y="72" width="21" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="lmN-FH-Zt8">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="increaseVerticalSize:" target="-2" id="Ni6-6P-LEP"/>
+                    </connections>
+                </button>
+                <button toolTip="Decrease width" focusRingType="none" misplaced="YES" id="CvD-SM-qtZ">
+                    <rect key="frame" x="20" y="107" width="21" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="Cae-G1-y57">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="decreaseHorizontalSize:" target="-2" id="Lvp-FH-iuO"/>
+                    </connections>
+                </button>
+                <button toolTip="Increase width" focusRingType="none" misplaced="YES" id="H7F-Xy-2ro">
+                    <rect key="frame" x="261" y="107" width="21" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="tqX-Vz-Cc7">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="increaseHorizontalSize:" target="-2" id="a6O-7G-kVy"/>
+                    </connections>
+                </button>
+                <customView misplaced="YES" id="flE-dZ-vR9" customClass="SLHSeparatorView">
+                    <rect key="frame" x="0.0" y="54" width="302" height="1"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                </customView>
                 <button misplaced="YES" id="ZWj-3F-Jyh">
                     <rect key="frame" x="74" y="17" width="154" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -46,52 +94,8 @@
                         <binding destination="-2" name="value" keyPath="controller.shouldDisplayPreviewImages" id="OsJ-sf-dqR"/>
                     </connections>
                 </button>
-                <button toolTip="Decrease height" focusRingType="none" misplaced="YES" id="jbQ-og-UKJ">
-                    <rect key="frame" x="20" y="51" width="21" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="gea-nN-Q6q">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="decreaseVerticalSize:" target="-2" id="OKI-0r-PEf"/>
-                    </connections>
-                </button>
-                <button toolTip="Increase height" focusRingType="none" misplaced="YES" id="ame-L8-BIN">
-                    <rect key="frame" x="261" y="51" width="21" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="lmN-FH-Zt8">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="increaseVerticalSize:" target="-2" id="Ni6-6P-LEP"/>
-                    </connections>
-                </button>
-                <button toolTip="Decrease width" focusRingType="none" misplaced="YES" id="CvD-SM-qtZ">
-                    <rect key="frame" x="20" y="86" width="21" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="Cae-G1-y57">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="decreaseHorizontalSize:" target="-2" id="Lvp-FH-iuO"/>
-                    </connections>
-                </button>
-                <button toolTip="Increase width" focusRingType="none" misplaced="YES" id="H7F-Xy-2ro">
-                    <rect key="frame" x="261" y="86" width="21" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="tqX-Vz-Cc7">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="increaseHorizontalSize:" target="-2" id="a6O-7G-kVy"/>
-                    </connections>
-                </button>
             </subviews>
-            <point key="canvasLocation" x="28" y="94"/>
+            <point key="canvasLocation" x="28" y="104.5"/>
         </customView>
     </objects>
     <resources>
