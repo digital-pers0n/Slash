@@ -366,16 +366,16 @@
                         </holdingPriorities>
                     </splitView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="EbO-kY-RJo">
-                        <rect key="frame" x="6" y="4" width="30" height="12"/>
+                        <rect key="frame" x="6" y="4" width="99" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Size:" id="l4g-6H-CWz">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Estimated File Size:" id="l4g-6H-CWz">
                             <font key="font" metaFont="system" size="10"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="aek-Jv-6wT">
-                        <rect key="frame" x="36" y="4" width="70" height="12"/>
+                        <rect key="frame" x="105" y="4" width="70" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" id="szR-eL-jHw">
                             <byteCountFormatter key="formatter" countStyle="binary" allowsNonnumericFormatting="NO" id="R9O-K6-aQn"/>
@@ -388,7 +388,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="Qu6-Na-gai">
-                        <rect key="frame" x="110" y="4" width="53" height="12"/>
+                        <rect key="frame" x="179" y="4" width="53" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Duration:" id="bqV-uz-K8Z">
                             <font key="font" metaFont="system" size="10"/>
@@ -397,7 +397,7 @@
                         </textFieldCell>
                     </textField>
                     <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="6d0-TK-Hrr">
-                        <rect key="frame" x="163" y="4" width="76" height="12"/>
+                        <rect key="frame" x="232" y="4" width="76" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00:00:00.000" id="K2w-QV-O1y">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" minimumFractionDigits="3" maximumFractionDigits="3" id="Cz0-Tt-NyV" customClass="SLHTimeFormatter"/>
