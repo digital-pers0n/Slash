@@ -11,6 +11,7 @@
 
 //#define DEBUG_TRIMVIEW_DRAWING 1
 //#define ENABLE_TRIMVIEW_SCROLL_WHEEL 1
+#define ENABLE_TRIMVIEW_DOUBLE_CLICK 0
 
 #define SLHKnobWidth 10
 #define SLHMinWidth  SLHKnobWidth * 2
@@ -445,8 +446,12 @@ static char minValueKVOContext;
     _mouseX = event.locationInWindow.x;
 
     if (((_hitTestResult == SLHCellHitNone ||
-        _hitTestResult == SLHCellHitContentArea) &&
-         event.clickCount < 2)) {
+        _hitTestResult == SLHCellHitContentArea)
+#if ENABLE_TRIMVIEW_DOUBLE_CLICK
+         && event.clickCount < 2)) {
+#else
+        )) {
+#endif
        [super mouseDown:event];
         return;
     } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
@@ -489,6 +494,7 @@ static char minValueKVOContext;
         [_delegate trimViewMouseUp:self];
     }
     
+#if ENABLE_TRIMVIEW_DOUBLE_CLICK
     if (event.clickCount == 2) {
         NSPoint event_location = event.locationInWindow;
         NSPoint local_point = [self convertPoint:event_location fromView:nil];
@@ -523,8 +529,9 @@ static char minValueKVOContext;
             [self updateValue:@(_endValue) forBinding:@"endValue"];
             return;
         }
-        
     }
+#endif
+    
 }
 
 - (void)mouseDragged:(NSEvent *)event {
