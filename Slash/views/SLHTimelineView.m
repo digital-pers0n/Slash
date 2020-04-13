@@ -190,6 +190,7 @@ static double mousePointToDoubleValue(NSPoint point,
     self.doubleValue = mousePointToDoubleValue(local_point,
                                                _workingArea, _indicatorFrame,
                                                _maxValue, _minValue);
+    [self autoscroll:event];
     [self updateIndicatorPosition];
 
 }
