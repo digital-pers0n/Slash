@@ -22,7 +22,7 @@
                 <slider toolTip="Adjust width" verticalHuggingPriority="750" misplaced="YES" id="7UQ-K7-r40">
                     <rect key="frame" x="51" y="109" width="200" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="0.5" maxValue="30" doubleValue="22.981915118243244" tickMarkPosition="above" sliderType="linear" id="yGb-ug-GS8"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="1" maxValue="30" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="yGb-ug-GS8"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="controller.horizontalZoom" id="8tR-iy-LeF"/>
                     </connections>
