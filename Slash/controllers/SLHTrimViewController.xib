@@ -54,6 +54,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <outlet property="delegate" destination="-2" id="dXs-h4-c1R"/>
                                     <outlet property="documentView" destination="nt5-eZ-TW5" id="Vu2-Jy-B6N"/>
                                 </connections>
                             </customView>
