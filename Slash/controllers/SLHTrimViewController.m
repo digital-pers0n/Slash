@@ -229,9 +229,6 @@
     
     if (_TVFlags.shouldStop) {
         NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-        [nc removeObserver:self
-                      name:MPVPlayerDidStartSeekNotification
-                    object:_player];
         
         [nc removeObserver:self
                       name:MPVPlayerDidRestartPlaybackNotification
