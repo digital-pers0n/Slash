@@ -24,16 +24,16 @@
             <rect key="frame" x="0.0" y="0.0" width="453" height="346"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView id="Uj3-cZ-2Ao">
-                    <rect key="frame" x="0.0" y="67" width="453" height="279"/>
+                <customView misplaced="YES" id="Uj3-cZ-2Ao">
+                    <rect key="frame" x="0.0" y="53" width="453" height="293"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </customView>
-                <customView autoresizesSubviews="NO" id="RMo-h7-2Ig">
-                    <rect key="frame" x="0.0" y="0.0" width="453" height="67"/>
+                <customView misplaced="YES" id="RMo-h7-2Ig">
+                    <rect key="frame" x="0.0" y="0.0" width="453" height="54"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <slider wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="piQ-K1-tlf" customClass="SLHVideoSlider">
-                            <rect key="frame" x="20" y="32" width="413" height="17"/>
+                            <rect key="frame" x="89" y="32" width="275" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8nu-Bh-cfm" customClass="SLHSliderCell"/>
                             <connections>
@@ -42,9 +42,9 @@
                             </connections>
                         </slider>
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">
-                            <rect key="frame" x="18" y="49" width="104" height="14"/>
+                            <rect key="frame" x="8" y="33" width="84" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="00:00:00.000" placeholderString="" id="LEP-Fo-vke">
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="000:00:00.000" placeholderString="" id="LEP-Fo-vke">
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt" customClass="SLHTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
@@ -59,9 +59,9 @@
                             </connections>
                         </textField>
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="wmo-Gy-6D8">
-                            <rect key="frame" x="331" y="49" width="104" height="14"/>
+                            <rect key="frame" x="361" y="33" width="84" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="00:00:00.000" placeholderString="" id="txb-Wx-Pzk">
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="000:00:00.000" placeholderString="" id="txb-Wx-Pzk">
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="ttY-7K-ldI" customClass="SLHTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
@@ -75,7 +75,7 @@
                             </connections>
                         </textField>
                         <button toolTip="Volume Level" verticalHuggingPriority="750" misplaced="YES" id="D0z-ul-2VY" customClass="SLHVolumeButton">
-                            <rect key="frame" x="409" y="9" width="24" height="21"/>
+                            <rect key="frame" x="419" y="9" width="24" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameVolumeMaxTemplate" imagePosition="overlaps" alignment="left" alternateImage="SLHImageNameVolumeMuteTemplate" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aq8-nK-MAp">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -105,12 +105,12 @@
                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="-2" name="image" keyPath="self.volumeButtonIcon" id="bNu-1g-SjC"/>
                                 <binding destination="-2" name="toolTip" keyPath="self.volume" previousBinding="bNu-1g-SjC" id="zYv-x9-AS4">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">SLHNumberToStringTransformer</string>
                                     </dictionary>
                                 </binding>
+                                <binding destination="-2" name="image" keyPath="self.volumeButtonIcon" id="bNu-1g-SjC"/>
                             </connections>
                         </button>
                         <customView misplaced="YES" id="gPO-Z5-oCu">
@@ -282,8 +282,8 @@ IA
                             </subviews>
                         </customView>
                         <button toolTip="Take a Screenshot" verticalHuggingPriority="750" misplaced="YES" id="TBy-hi-UB0">
-                            <rect key="frame" x="20" y="9" width="24" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <rect key="frame" x="10" y="9" width="24" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameScreenshotTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Thd-TA-qsS">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
