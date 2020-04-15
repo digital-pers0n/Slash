@@ -128,24 +128,18 @@
                 case NSEventTypeLeftMouseUp:
                     [self mouseUp:event];
                     [self updateTrackingAreas];
+                    [_delegate timelineViewMouseUp:self];
+                    _mouseIn = NO;
                     return;
                 default:
                     break;
             }
         }
     } else if (event.clickCount > 1) {
-        _mouseIn = YES;
         [_delegate timelineViewMouseDown:self];
         [self updateIndicatorPositionWithEvent:event];
         [self updateTrackingAreas];
-    }
-    [super mouseDown:event];
-}
-
-- (void)mouseUp:(NSEvent *)event {
-    if (_mouseIn) {
         [_delegate timelineViewMouseUp:self];
-        _mouseIn = NO;
     }
     [self.window makeFirstResponder:self];
     [super mouseDown:event];
