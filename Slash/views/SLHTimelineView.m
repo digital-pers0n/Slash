@@ -89,6 +89,14 @@
     return NO;
 }
 
+- (BOOL)canBecomeKeyView {
+    return YES;
+}
+
+- (BOOL)acceptsFirstResponder {
+    return YES;
+}
+
 - (void)mouseEntered:(NSEvent *)event {
     _mouseIn = YES;
     [NSCursor pop];
@@ -139,6 +147,8 @@
         [_delegate timelineViewMouseUp:self];
         _mouseIn = NO;
     }
+    [self.window makeFirstResponder:self];
+    [super mouseDown:event];
 }
 
 #pragma mark - Methods
