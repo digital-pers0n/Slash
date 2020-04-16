@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 
  Same as SLHTimeFormatter, but returns an attributed string instead.
- It uses disabledControlTextColor for leading characters that are equal to '0'.
+ It draws leading zeros with tertiaryLabelColor.
 */
 
 @interface SLHAttributedTimeFormatter : SLHTimeFormatter {

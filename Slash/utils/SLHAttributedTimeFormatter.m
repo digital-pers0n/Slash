@@ -30,9 +30,12 @@
 }
 
 - (void)createAttributes {
+    
+    // For some reason disabledControlTextColor doesn't work properly on MacOS 10.11
     _attrs = @{ NSForegroundColorAttributeName :
                // [[NSColor disabledControlTextColor] colorWithAlphaComponent:0.9] };
-                [NSColor disabledControlTextColor] };
+               // [NSColor disabledControlTextColor]
+                [NSColor tertiaryLabelColor] };
 }
 
 static inline CFIndex indexOfFirstValidDigit(const char * cstr) {
