@@ -44,7 +44,7 @@
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="gqT-I7-i3V">
                             <rect key="frame" x="8" y="33" width="84" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" placeholderString="000:00:00.000" allowsEditingTextAttributes="YES" id="LEP-Fo-vke">
+                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" placeholderString="000:00:00.000" id="LEP-Fo-vke">
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="iWf-EN-DPt" customClass="SLHAttributedTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
@@ -61,7 +61,7 @@
                         <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="wmo-Gy-6D8">
                             <rect key="frame" x="361" y="33" width="84" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="000:00:00.000" placeholderString="" allowsEditingTextAttributes="YES" id="txb-Wx-Pzk">
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="right" title="000:00:00.000" placeholderString="" id="txb-Wx-Pzk">
                                 <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="3" maximumFractionDigits="3" id="ttY-7K-ldI" customClass="SLHAttributedTimeFormatter">
                                     <real key="minimum" value="0.0"/>
                                 </numberFormatter>
