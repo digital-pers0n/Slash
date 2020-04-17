@@ -7,7 +7,225 @@
 //
 
 #import "SLHTimelineView.h"
+#import "SLHTimeFormatter.h"
 @import QuartzCore.CAShapeLayer;
+@import QuartzCore.CATextLayer;
+@import QuartzCore.CATransaction;
+
+static const CGFloat kSLHTimelineRulerHeight = 14.0;
+static const CGFloat kSLHTimecodeFontSize = 9.0;
+static const CGFloat kSLHTimecodeLayerWidth = 85.0;
+static const int kSLHTimelineNumOfSecondaryMarks = 10;
+static const int kSLHTimelineMinPrimaryMarksDistance = 90;
+static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
+
+@interface SLHTimelineRulerView : NSView {
+    __weak SLHTimelineView *_timelineView;
+    CAShapeLayer * _marksLayer;
+    CAShapeLayer * _secondaryMarksLayer;
+    NSFont *_timecodeFont;
+    NSColor * _timecodeFontColor;
+    CGFloat _contentsScale;
+    CGFloat _margin;
+    CGFloat _currentWidth;
+    int _numberOfMarks;
+    NSColor *_primaryMarkColor;
+    NSColor *_backgroundColor;
+    NSColor *_secondaryMarkColor;
+}
+
+@end
+
+@implementation SLHTimelineRulerView
+
+- (instancetype)initWithFrame:(NSRect)frame
+                 timelineView:(SLHTimelineView *)tv
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _numberOfMarks = 2;
+        _timelineView = tv;
+        _primaryMarkColor = [NSColor secondaryLabelColor];
+        _backgroundColor = [[NSColor controlBackgroundColor]
+                            colorWithAlphaComponent:0.25];
+        _secondaryMarkColor = [NSColor quaternaryLabelColor];
+
+        _margin = tv.indicatorMargin;
+        _marksLayer = [CAShapeLayer new];
+        _marksLayer.fillColor = [_primaryMarkColor CGColor];
+        _marksLayer.backgroundColor = [_backgroundColor CGColor];
+        self.layer = _marksLayer;
+        self.wantsLayer = YES;
+        
+        _secondaryMarksLayer = [CAShapeLayer new];
+        _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
+        _secondaryMarksLayer.anchorPoint = CGPointZero;
+        _secondaryMarksLayer.position = _marksLayer.position;
+        _secondaryMarksLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+        [_marksLayer addSublayer:_secondaryMarksLayer];
+        
+        _timecodeFont = [NSFont fontWithName:@"Osaka" size:10];
+        _timecodeFontColor = [NSColor secondaryLabelColor];
+        
+        NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self
+               selector:@selector(timelineDidChangeFrame:)
+                   name:NSViewFrameDidChangeNotification
+                 object:tv];
+    }
+    return self;
+}
+
+
+
+
+
+#if MAC_OS_X_VERSION_10_14
+
+- (void)viewDidChangeEffectiveAppearance {
+    [super viewDidChangeEffectiveAppearance];
+    _marksLayer.fillColor = [_primaryMarkColor CGColor];
+    _marksLayer.backgroundColor = [_backgroundColor CGColor];
+    _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
+    [self drawMarks];
+}
+
+#else
+
+- (void)_viewDidChangeAppearance:(id)arg1 {
+    _marksLayer.fillColor = [_primaryMarkColor CGColor];
+    _marksLayer.backgroundColor = [_backgroundColor CGColor];
+    _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
+    [self drawMarks];
+}
+
+#endif
+
+- (void)viewDidChangeBackingProperties {
+    [super viewDidChangeBackingProperties];
+    _contentsScale = self.window.backingScaleFactor;
+    for (CALayer * layer in _secondaryMarksLayer.sublayers) {
+        layer.contentsScale = _contentsScale;
+    }
+}
+
+- (void)dealloc
+{
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
+}
+
+- (BOOL)isFlipped {
+    return YES;
+}
+
+- (void)viewDidUnhide {
+    [super viewDidUnhide];
+    [self drawMarks];
+}
+
+static void calcIntervalAndNumOfMarks(CGFloat w,
+                                      int * outInterval,
+                                      int * outMarks)
+{
+    int numOfMarks = 2;
+    
+    while (1) {
+        for (int i = kSLHTimelineMinPrimaryMarksDistance;
+             i < kSLHTimelineMaxPrimaryMarksDistance; ++i)
+        {
+            CGFloat guess = i * numOfMarks;
+            if (guess >= w) {
+                *outInterval = i;
+                *outMarks = numOfMarks;
+                return;
+            }
+        }
+        numOfMarks *= 2;
+    }
+}
+
+- (void)drawMarks {
+    if (!_currentWidth) { return; }
+    [self setFrameSize:NSMakeSize(_currentWidth, kSLHTimelineRulerHeight)];
+    
+    const double maxValue = _timelineView.maxValue;
+    const CGFloat margin = _timelineView.indicatorMargin;
+    const CGFloat width = _currentWidth - (margin * 2);
+    int numOfMarks = _numberOfMarks;
+    
+    CGFloat interval = round(width / numOfMarks);
+    if (interval > kSLHTimelineMaxPrimaryMarksDistance ||
+        interval < kSLHTimelineMinPrimaryMarksDistance)
+    {
+        int intr = 0;
+        calcIntervalAndNumOfMarks(width, &intr, &numOfMarks);
+        interval = intr;
+        _numberOfMarks = numOfMarks;
+        
+    }
+
+    CGMutablePathRef primaryPath = CGPathCreateMutable();
+    CGMutablePathRef secondaryPath = CGPathCreateMutable();
+    
+    CGRect primaryMark = CGRectMake(0, 0, 1,
+                            kSLHTimelineRulerHeight /* 0.75*/);
+    CGRect secondaryMark = primaryMark;
+    secondaryMark.size.height = kSLHTimelineRulerHeight - 2; /* 0.75*/;
+    
+    const CGFloat step = interval;
+    const CGFloat secondaryStep = (step / kSLHTimelineNumOfSecondaryMarks);
+    const CGFloat contentsScale = _contentsScale;
+    NSFont * const timecodeFont = _timecodeFont;
+    CGColorRef const timecodeFontColor = _timecodeFontColor.CGColor;
+    const double timecode = (step / width * maxValue);
+    CGRect timecodeFrame = CGRectMake(0, 1,
+                                      kSLHTimecodeLayerWidth,
+                                      kSLHTimelineRulerHeight);
+  
+    NSMutableArray * layers = [NSMutableArray new];
+
+    
+
+    for (int i = 0; i < numOfMarks; ++i) {
+        primaryMark.origin.x = step * i + margin;
+        CGPathAddRect(primaryPath, nil, primaryMark);
+        for (int j = 1; j < kSLHTimelineNumOfSecondaryMarks; ++j) {
+            secondaryMark.origin.x = secondaryStep * j + NSMinX(primaryMark);
+            CGPathAddRect(secondaryPath, nil, secondaryMark);
+        }
+        
+        CATextLayer *timecodeLayer = [CATextLayer new];
+   
+        timecodeLayer.anchorPoint = CGPointZero;
+        timecodeLayer.foregroundColor = timecodeFontColor;
+        timecodeLayer.font = (__bridge CFTypeRef)(timecodeFont);
+
+        timecodeLayer.fontSize = kSLHTimecodeFontSize;
+        timecodeLayer.contentsScale = contentsScale;
+
+        timecodeFrame.origin.x = NSMinX(primaryMark) + 5;
+        timecodeLayer.frame = timecodeFrame;
+        timecodeLayer.string = SLHTimeFormatterStringForDoubleValue((timecode * i));
+        [layers addObject:timecodeLayer];
+    }
+    
+    _marksLayer.path = primaryPath;
+    _secondaryMarksLayer.path = secondaryPath;
+    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+    _secondaryMarksLayer.sublayers = layers;
+    CGPathRelease(primaryPath);
+    CGPathRelease(secondaryPath);
+}
+
+- (void)timelineDidChangeFrame:(NSNotification *)n {
+    CGFloat width = NSWidth(_timelineView.frame);
+    if (width == _currentWidth) { return; }
+    _currentWidth = width;
+    [self drawMarks];
+}
+
+@end
 
 @interface SLHTimelineView () {
     CAShapeLayer *_indicatorLayer;
@@ -49,6 +267,28 @@
 
     self.wantsLayer = YES;
     [self.layer addSublayer:_indicatorLayer];
+}
+
+- (void)viewDidMoveToSuperview {
+    [super viewDidMoveToSuperview];
+    NSScrollView * sv = self.enclosingScrollView;
+    if (sv) {
+        NSRect frame = NSMakeRect(0, 0, NSWidth(_currentFrame),
+                                  kSLHTimelineRulerHeight);
+        SLHTimelineRulerView * ruler;
+        ruler = [[SLHTimelineRulerView alloc] initWithFrame:frame
+                                               timelineView:self];
+        // key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"
+        ruler.autoresizingMask = NSViewMaxXMargin | NSViewMinYMargin;
+        NSPoint pt;
+        pt = NSMakePoint(0, NSHeight(sv.frame) - kSLHTimelineRulerHeight);
+        [ruler setFrameOrigin:pt];
+        
+        [sv addFloatingSubview:ruler forAxis:NSEventGestureAxisVertical];
+
+        ruler.superview.autoresizesSubviews = YES;
+        
+    }
 }
 
 - (void)setFrame:(NSRect)frame {
