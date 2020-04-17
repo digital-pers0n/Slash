@@ -40,7 +40,12 @@
     _indicatorLayer = [CAShapeLayer new];
     _indicatorLayer.geometryFlipped = NO;
     _indicatorLayer.fillColor = [[NSColor systemRedColor] CGColor];
-    _indicatorLayer.frame = _currentFrame;
+    _indicatorLayer.bounds = CGRectMake(0, 0,
+                                        NSWidth(_currentFrame),
+                                        NSHeight(_currentFrame));
+    _indicatorLayer.position = CGPointZero;
+    _indicatorLayer.anchorPoint = CGPointZero;
+    _indicatorLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
 
     self.wantsLayer = YES;
     [self.layer addSublayer:_indicatorLayer];
