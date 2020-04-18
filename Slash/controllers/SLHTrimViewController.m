@@ -124,7 +124,7 @@
 - (void)setHorizontalZoom:(CGFloat)horizontalZoom {
     NSView *view = _timelineView;
     NSRect frame = view.frame;
-    frame.size.width = round(horizontalZoom * (CGFloat)200.0);
+    frame.size.width = round(horizontalZoom * (CGFloat)300.0);
     view.frame = frame;
     _horizontalZoom = horizontalZoom;
 }
