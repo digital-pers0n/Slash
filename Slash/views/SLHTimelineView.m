@@ -72,6 +72,12 @@ static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
                selector:@selector(timelineDidChangeFrame:)
                    name:NSViewFrameDidChangeNotification
                  object:tv];
+        
+        [tv addObserver:self
+             forKeyPath:@"maxValue"
+                options:NSKeyValueObservingOptionNew
+                context:&SLHTimelineMaxValueKVOContext];
+        [self updateTimecodeLayers];
     }
     return self;
 }
@@ -113,6 +119,9 @@ static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
 {
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
+    [_timelineView removeObserver:self
+                       forKeyPath:@"maxValue"
+                          context:&SLHTimelineMaxValueKVOContext];
 }
 
 - (BOOL)isFlipped {
@@ -123,6 +132,24 @@ static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
     [super viewDidUnhide];
     [self drawMarks];
 }
+
+#pragma mark - KVO
+
+static char SLHTimelineMaxValueKVOContext;
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if (context == &SLHTimelineMaxValueKVOContext) {
+        [self drawMarks];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+#pragma mark - Marks
 
 static void calcIntervalAndNumOfMarks(CGFloat w,
                                       int * outInterval,
