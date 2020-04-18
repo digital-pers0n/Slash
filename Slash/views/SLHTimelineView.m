@@ -15,20 +15,22 @@
 static const CGFloat kSLHTimelineRulerHeight = 14.0;
 static const CGFloat kSLHTimecodeFontSize = 9.0;
 static const CGFloat kSLHTimecodeLayerWidth = 85.0;
-static const int kSLHTimelineNumOfSecondaryMarks = 10;
-static const int kSLHTimelineMinPrimaryMarksDistance = 90;
-static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
+static const NSUInteger kSLHTimelineNumOfSecondaryMarks = 10;
+static const NSUInteger kSLHTimelineMinPrimaryMarksDistance = 90;
+static const NSUInteger kSLHTimelineMaxPrimaryMarksDistance = 180;
 
 @interface SLHTimelineRulerView : NSView {
     __weak SLHTimelineView *_timelineView;
     CAShapeLayer * _marksLayer;
     CAShapeLayer * _secondaryMarksLayer;
+    NSMutableArray <CATextLayer *> *_timecodeLayers;
+    CATextLayer * __unsafe_unretained *_timecodeLayersPtr;
     NSFont *_timecodeFont;
     NSColor * _timecodeFontColor;
     CGFloat _contentsScale;
     CGFloat _margin;
     CGFloat _currentWidth;
-    int _numberOfMarks;
+    NSUInteger _numberOfMarks;
     NSColor *_primaryMarkColor;
     NSColor *_backgroundColor;
     NSColor *_secondaryMarkColor;
@@ -43,26 +45,24 @@ static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _timecodeLayers = [NSMutableArray array];
         _numberOfMarks = 2;
         _timelineView = tv;
         _primaryMarkColor = [NSColor secondaryLabelColor];
-        _backgroundColor = [[NSColor controlBackgroundColor]
-                            colorWithAlphaComponent:0.25];
+        _backgroundColor = [NSColor controlBackgroundColor];
         _secondaryMarkColor = [NSColor quaternaryLabelColor];
 
         _margin = tv.indicatorMargin;
         _marksLayer = [CAShapeLayer new];
-        _marksLayer.fillColor = [_primaryMarkColor CGColor];
-        _marksLayer.backgroundColor = [_backgroundColor CGColor];
         self.layer = _marksLayer;
         self.wantsLayer = YES;
         
         _secondaryMarksLayer = [CAShapeLayer new];
-        _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
         _secondaryMarksLayer.anchorPoint = CGPointZero;
         _secondaryMarksLayer.position = _marksLayer.position;
         _secondaryMarksLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
         [_marksLayer addSublayer:_secondaryMarksLayer];
+        [self updateColors];
         
         _timecodeFont = [NSFont fontWithName:@"Osaka" size:10];
         _timecodeFontColor = [NSColor secondaryLabelColor];
@@ -82,26 +82,24 @@ static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
     return self;
 }
 
-
-
-
+- (void)updateColors {
+    _marksLayer.fillColor = [_primaryMarkColor CGColor];
+    _marksLayer.backgroundColor = [[_backgroundColor colorWithAlphaComponent:0.5] CGColor];
+    _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
+}
 
 #if MAC_OS_X_VERSION_10_14
 
 - (void)viewDidChangeEffectiveAppearance {
     [super viewDidChangeEffectiveAppearance];
-    _marksLayer.fillColor = [_primaryMarkColor CGColor];
-    _marksLayer.backgroundColor = [_backgroundColor CGColor];
-    _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
+    [self updateColors];
     [self drawMarks];
 }
 
 #else
 
 - (void)_viewDidChangeAppearance:(id)arg1 {
-    _marksLayer.fillColor = [_primaryMarkColor CGColor];
-    _marksLayer.backgroundColor = [_backgroundColor CGColor];
-    _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
+    [self updateColors];
     [self drawMarks];
 }
 
@@ -117,6 +115,9 @@ static const int kSLHTimelineMaxPrimaryMarksDistance = 180;
 
 - (void)dealloc
 {
+    if (_timecodeLayersPtr) {
+        free(_timecodeLayersPtr);
+    }
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
     [_timelineView removeObserver:self
@@ -152,13 +153,13 @@ static char SLHTimelineMaxValueKVOContext;
 #pragma mark - Marks
 
 static void calcIntervalAndNumOfMarks(CGFloat w,
-                                      int * outInterval,
-                                      int * outMarks)
+                                      NSUInteger * outInterval,
+                                      NSUInteger * outMarks)
 {
     int numOfMarks = 2;
     
     while (1) {
-        for (int i = kSLHTimelineMinPrimaryMarksDistance;
+        for (NSUInteger i = kSLHTimelineMinPrimaryMarksDistance;
              i < kSLHTimelineMaxPrimaryMarksDistance; ++i)
         {
             CGFloat guess = i * numOfMarks;
@@ -172,6 +173,50 @@ static void calcIntervalAndNumOfMarks(CGFloat w,
     }
 }
 
+static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
+                                         CGColorRef timecodeFontColor,
+                                         CGFloat contentsScale)
+{
+    CATextLayer *timecodeLayer = [CATextLayer new];
+    timecodeLayer.anchorPoint = CGPointZero;
+    timecodeLayer.font = (__bridge CFTypeRef)(timecodeFont);
+    timecodeLayer.foregroundColor = timecodeFontColor;
+    
+    timecodeLayer.fontSize = kSLHTimecodeFontSize;
+    timecodeLayer.contentsScale = contentsScale;
+    
+    return timecodeLayer;
+}
+
+- (void)updateTimecodeLayers {
+    NSUInteger count = _timecodeLayers.count;
+    if (count < _numberOfMarks) {
+        count = _numberOfMarks - count;
+        CGColorRef const timecodeFontColor = _timecodeFontColor.CGColor;
+        NSFont * const timecodeFont = _timecodeFont;
+        const CGFloat contentsScale = _contentsScale;
+        while (count) {
+            CATextLayer * tl = createTimecodeLayer(timecodeFont,
+                                                   timecodeFontColor,
+                                                   contentsScale);
+            [_timecodeLayers addObject:tl];
+            --count;
+        }
+    }
+    if (_timecodeLayersPtr) {
+        free(_timecodeLayersPtr);
+    }
+    NSRange range = NSMakeRange(0, _numberOfMarks);
+    _timecodeLayersPtr = (typeof(_timecodeLayersPtr))malloc(sizeof(CATextLayer *) * range.length);
+    
+    [_timecodeLayers getObjects:_timecodeLayersPtr range:range];
+    
+    [CATransaction begin];
+    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+    _secondaryMarksLayer.sublayers = [_timecodeLayers subarrayWithRange:range];
+    [CATransaction commit];
+}
+
 - (void)drawMarks {
     if (!_currentWidth) { return; }
     [self setFrameSize:NSMakeSize(_currentWidth, kSLHTimelineRulerHeight)];
@@ -179,17 +224,76 @@ static void calcIntervalAndNumOfMarks(CGFloat w,
     const double maxValue = _timelineView.maxValue;
     const CGFloat margin = _timelineView.indicatorMargin;
     const CGFloat width = _currentWidth - (margin * 2);
-    int numOfMarks = _numberOfMarks;
+    NSUInteger numOfMarks = _numberOfMarks;
+    
+    NSUInteger interval = round(width / numOfMarks);
+    if (interval > kSLHTimelineMaxPrimaryMarksDistance ||
+        interval < kSLHTimelineMinPrimaryMarksDistance)
+    {
+        calcIntervalAndNumOfMarks(width, &interval, &numOfMarks);
+        _numberOfMarks = numOfMarks;
+        [self updateTimecodeLayers];
+    }
+    
+    CGMutablePathRef primaryPath = CGPathCreateMutable();
+    CGMutablePathRef secondaryPath = CGPathCreateMutable();
+    
+    CGRect primaryMark = CGRectMake(0, 0, 1,
+                                    kSLHTimelineRulerHeight /* 0.75*/);
+    CGRect secondaryMark = primaryMark;
+    secondaryMark.size.height = kSLHTimelineRulerHeight - 2; /* 0.75*/;
+    
+    const CGFloat step = interval;
+    const CGFloat secondaryStep = (step / kSLHTimelineNumOfSecondaryMarks);
+    const double timecode = (step / width * maxValue);
+    CGRect timecodeFrame = CGRectMake(0, 1,
+                                      kSLHTimecodeLayerWidth,
+                                      kSLHTimelineRulerHeight);
+    
+    [CATransaction begin];
+    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+    for (NSUInteger i = 0; i < numOfMarks; ++i) {
+        primaryMark.origin.x = step * i + margin;
+        CGPathAddRect(primaryPath, nil, primaryMark);
+        for (NSUInteger j = 1; j < kSLHTimelineNumOfSecondaryMarks; ++j) {
+            secondaryMark.origin.x = secondaryStep * j + NSMinX(primaryMark);
+            CGPathAddRect(secondaryPath, nil, secondaryMark);
+        }
+        
+        CATextLayer *timecodeLayer = _timecodeLayersPtr[i];
+        timecodeFrame.origin.x = NSMinX(primaryMark) + 5;
+
+        timecodeLayer.frame = timecodeFrame;
+        timecodeLayer.string = SLHTimeFormatterStringForDoubleValue((timecode * i));
+        
+    }
+    [CATransaction commit];
+    
+    _marksLayer.path = primaryPath;
+    _secondaryMarksLayer.path = secondaryPath;
+    
+    CGPathRelease(primaryPath);
+    CGPathRelease(secondaryPath);
+}
+
+
+- (void)drawMarks2 {
+    if (!_currentWidth) { return; }
+    [self setFrameSize:NSMakeSize(_currentWidth, kSLHTimelineRulerHeight)];
+    
+    const double maxValue = _timelineView.maxValue;
+    const CGFloat margin = _timelineView.indicatorMargin;
+    const CGFloat width = _currentWidth - (margin * 2);
+    NSUInteger numOfMarks = _numberOfMarks;
     
     CGFloat interval = round(width / numOfMarks);
     if (interval > kSLHTimelineMaxPrimaryMarksDistance ||
         interval < kSLHTimelineMinPrimaryMarksDistance)
     {
-        int intr = 0;
+        NSUInteger intr = 0;
         calcIntervalAndNumOfMarks(width, &intr, &numOfMarks);
         interval = intr;
         _numberOfMarks = numOfMarks;
-        
     }
 
     CGMutablePathRef primaryPath = CGPathCreateMutable();
