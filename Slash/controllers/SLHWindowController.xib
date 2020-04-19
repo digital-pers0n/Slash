@@ -371,7 +371,7 @@
                         </holdingPriorities>
                     </splitView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="EbO-kY-RJo">
-                        <rect key="frame" x="6" y="4" width="99" height="13"/>
+                        <rect key="frame" x="6" y="3" width="99" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Estimated File Size:" id="l4g-6H-CWz">
                             <font key="font" metaFont="system" size="10"/>
