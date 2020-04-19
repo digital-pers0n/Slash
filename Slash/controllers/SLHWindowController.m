@@ -28,6 +28,7 @@
 #import "SLHBitrateFormatter.h"
 #import "SLHTrimViewController.h"
 #import "SLHTrimViewSettings.h"
+#import "SLHOutputNameController.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -53,6 +54,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSSplitView *_trimSplitView;
     IBOutlet NSView *_trimView;
     IBOutlet NSView *_encoderItemsView;
+    IBOutlet NSView *_outputNameView;
     
     IBOutlet NSPopUpButton *_videoStreamPopUp;
     IBOutlet NSPopUpButton *_audioStreamPopUp;
@@ -74,6 +76,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     SLHEncoderHistory *_encoderHistory;
     SLHTrimViewController *_trimViewController;
     NSPopover *_trimViewSettingsPopover;
+    SLHOutputNameController *_outputNameController;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
@@ -250,6 +253,15 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _trimViewSettingsPopover = [[NSPopover alloc] init];
     _trimViewSettingsPopover.contentViewController = trimViewSettings;
     _trimViewSettingsPopover.behavior = NSPopoverBehaviorTransient;
+    
+    /* SLHOutputNameController */
+    _outputNameController = [[SLHOutputNameController alloc] init];
+    NSView *onView = _outputNameController.view;
+    onView.frame = _outputNameView.frame;
+    onView.autoresizingMask = _outputNameView.autoresizingMask;
+    [_outputNameView.superview replaceSubview:_outputNameView with:onView];
+    _outputNameView = onView;
+    _outputNameController.encoderItemsArrayController = _itemsArrayController;
     
     /* NSApplication */
     [nc addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:NSApp];
