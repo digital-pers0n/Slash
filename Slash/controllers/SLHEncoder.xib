@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -75,20 +74,14 @@
                             </binding>
                         </connections>
                     </button>
-                    <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Box" titlePosition="noTitle" id="R11-og-HVn">
-                        <rect key="frame" x="17" y="16" width="406" height="79"/>
+                    <customView misplaced="YES" id="L2V-aX-C5x" customClass="SLHSeparatorView">
+                        <rect key="frame" x="20" y="98" width="400" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <customView misplaced="YES" id="1Ne-M1-IfE" customClass="SLHStatusLineView">
+                        <rect key="frame" x="20" y="20" width="400" height="66"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <view key="contentView" id="0Vb-Px-F4n">
-                            <rect key="frame" x="1" y="1" width="404" height="77"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <customView misplaced="YES" id="1Ne-M1-IfE" customClass="SLHStatusLineView">
-                                    <rect key="frame" x="13" y="13" width="377" height="51"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </customView>
-                            </subviews>
-                        </view>
-                    </box>
+                    </customView>
                 </subviews>
             </view>
             <connections>
