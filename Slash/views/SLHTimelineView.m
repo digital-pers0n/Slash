@@ -338,14 +338,13 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
                                                timelineView:self];
         // key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"
         ruler.autoresizingMask = NSViewMaxXMargin | NSViewMinYMargin;
-        NSPoint pt;
-        pt = NSMakePoint(0, NSHeight(sv.frame) - kSLHTimelineRulerHeight);
-        [ruler setFrameOrigin:pt];
-        
+
         [sv addFloatingSubview:ruler forAxis:NSEventGestureAxisVertical];
 
+        NSPoint pt;
+        pt = NSMakePoint(0, NSHeight(ruler.superview.frame) - kSLHTimelineRulerHeight);
+        [ruler setFrameOrigin:pt];
         ruler.superview.autoresizesSubviews = YES;
-        
     }
 }
 
