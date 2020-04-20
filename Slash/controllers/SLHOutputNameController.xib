@@ -21,7 +21,7 @@
                     <rect key="frame" x="94" y="4" width="1" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
-                <button misplaced="YES" id="Esc-9F-XLt">
+                <button toolTip="Previous Segment" misplaced="YES" id="Esc-9F-XLt">
                     <rect key="frame" x="1" y="2" width="15" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSLeftFacingTriangleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="SFD-R8-jaP">
@@ -33,7 +33,7 @@
                         <binding destination="-2" name="enabled" keyPath="encoderItemsArrayController.canSelectPrevious" id="cem-On-pQQ"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" misplaced="YES" id="xce-1v-gaO">
+                <textField toolTip="End Position" verticalHuggingPriority="750" misplaced="YES" id="xce-1v-gaO">
                     <rect key="frame" x="260" y="4" width="81" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" placeholderString="000:00:00.000" id="KH0-we-duE">
@@ -46,7 +46,7 @@
                         <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.intervalEnd" id="FnM-C2-5G0"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" misplaced="YES" id="mva-1q-5Xq">
+                <textField toolTip="Start Position" verticalHuggingPriority="750" misplaced="YES" id="mva-1q-5Xq">
                     <rect key="frame" x="16" y="4" width="81" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="000:00:00.000" id="MKn-JI-K95">
@@ -59,7 +59,7 @@
                         <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.intervalStart" id="y2V-ox-ux8"/>
                     </connections>
                 </textField>
-                <button misplaced="YES" id="itu-hD-Ibc">
+                <button toolTip="Next Segment" misplaced="YES" id="itu-hD-Ibc">
                     <rect key="frame" x="341" y="2" width="15" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Cor-Qz-1xd">
@@ -71,11 +71,11 @@
                         <binding destination="-2" name="enabled" keyPath="encoderItemsArrayController.canSelectNext" id="eF1-Va-7t7"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" misplaced="YES" id="CPg-Xw-q7A">
+                <textField verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="CPg-Xw-q7A">
                     <rect key="frame" x="96" y="4" width="165" height="14"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="Filename" id="lgg-Uk-UOE">
-                        <font key="font" metaFont="system" size="11"/>
+                        <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
