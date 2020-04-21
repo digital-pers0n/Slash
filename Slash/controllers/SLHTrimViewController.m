@@ -185,6 +185,8 @@
             playerItem.bestVideoTrack.averageFrameRate > 0)
         {
             [self generatePreviews:encoderItem];
+        } else {
+            [self updateVideoTrackView:nil];
         }
     }
 }
