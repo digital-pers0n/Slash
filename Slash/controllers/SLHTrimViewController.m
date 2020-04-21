@@ -23,7 +23,6 @@
     CGFloat _trimViewWidth;
     __weak IBOutlet SLHTrimView *_trimView;
     __weak IBOutlet SLHTimelineView *_timelineView;
-    __weak IBOutlet NSTextField *_outNameTextField;
     __weak IBOutlet NSView *_trimViewContentView;
     
     SLHVideoTrackView *_videoTrackView;
@@ -165,16 +164,6 @@
             withKeyPath:@"intervalStart"
                 options:nil];
         
-        [_outNameTextField bind:NSValueBinding
-                       toObject:encoderItem
-                    withKeyPath:@"outputFileName"
-                        options:nil];
-        
-        [_outNameTextField bind:NSToolTipBinding
-                       toObject:encoderItem
-                    withKeyPath:@"outputPath"
-                        options:nil];
-        
         if (_shouldDisplayPreviewImages) {
             [self displayPreviewsIfCan:encoderItem];
         } else {
@@ -183,8 +172,6 @@
     } else {
         [_trimView unbind:@"endValue"];
         [_trimView unbind:@"startValue"];
-        [_outNameTextField unbind:NSValueBinding];
-        [_outNameTextField unbind:NSToolTipBinding];
     }
     _encoderItem = encoderItem;
 }
