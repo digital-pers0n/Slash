@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,7 +73,7 @@
                                                             </binding>
                                                         </connections>
                                                     </textField>
-                                                    <popUpButton toolTip="Load Preset" misplaced="YES" id="QS8-0O-UhT">
+                                                    <popUpButton toolTip="Load an encoder preset" misplaced="YES" id="QS8-0O-UhT">
                                                         <rect key="frame" x="447" y="6" width="36" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="vK3-kx-OJd">
@@ -97,7 +96,7 @@
                                                             </binding>
                                                         </connections>
                                                     </popUpButton>
-                                                    <button verticalHuggingPriority="750" misplaced="YES" id="6CN-BW-Q4V">
+                                                    <button toolTip="Create a new item" verticalHuggingPriority="750" misplaced="YES" id="6CN-BW-Q4V">
                                                         <rect key="frame" x="8" y="6" width="21" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="5fe-wE-IhY">
@@ -108,7 +107,7 @@
                                                             <action selector="addEncoderItem:" target="-2" id="7lL-dd-ow3"/>
                                                         </connections>
                                                     </button>
-                                                    <button verticalHuggingPriority="750" misplaced="YES" id="xEo-sl-w0b">
+                                                    <button toolTip="Remove the current selection" verticalHuggingPriority="750" misplaced="YES" id="xEo-sl-w0b">
                                                         <rect key="frame" x="37" y="6" width="21" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="O1g-xC-bPi">
@@ -269,7 +268,7 @@
                                                 <rect key="frame" x="0.0" y="112" width="491" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             </customView>
-                                            <button toolTip="Preview Output File" verticalHuggingPriority="750" misplaced="YES" id="BXz-I7-MQG">
+                                            <button toolTip="Change the appearance of the timeline" verticalHuggingPriority="750" misplaced="YES" id="BXz-I7-MQG">
                                                 <rect key="frame" x="462" y="118" width="21" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameTrimViewSettingsTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="rJ9-2H-KMB">
@@ -285,7 +284,7 @@
                                                     </binding>
                                                 </connections>
                                             </button>
-                                            <button toolTip="Preview Output File" verticalHuggingPriority="750" misplaced="YES" id="uxE-C5-KgH">
+                                            <button toolTip="Preivew the last encoded item" verticalHuggingPriority="750" misplaced="YES" id="uxE-C5-KgH">
                                                 <rect key="frame" x="433" y="118" width="21" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNamePreviewTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="d89-wa-GbT">
@@ -314,7 +313,7 @@
                                                     </binding>
                                                 </connections>
                                             </button>
-                                            <button toolTip="Add All Items to Queue" verticalHuggingPriority="750" misplaced="YES" id="o4y-Au-55w">
+                                            <button toolTip="Add all tems to the Queue" verticalHuggingPriority="750" misplaced="YES" id="o4y-Au-55w">
                                                 <rect key="frame" x="37" y="118" width="21" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameAddToQueueTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="eCY-S5-f4b">
@@ -331,7 +330,7 @@
                                                     <binding destination="-2" name="enabled" keyPath="self.preferences.hasFFmpeg" id="7E9-qR-b4R"/>
                                                 </connections>
                                             </button>
-                                            <button toolTip="Encode Selection" verticalHuggingPriority="750" misplaced="YES" id="JMg-DG-F30">
+                                            <button toolTip="Encode the selected item" verticalHuggingPriority="750" misplaced="YES" id="JMg-DG-F30">
                                                 <rect key="frame" x="8" y="118" width="21" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameStartEncodingTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="xoo-dy-pS9">
@@ -434,7 +433,7 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="58B1DAE0-DC47-40C6-93D7-A3A61DD90A49" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="B8D-hm-GI4">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="9CAB7D46-BD2D-4DD7-A044-8776F4488744" label="Output Format" paletteLabel="Output Format" toolTip="Output Format" id="dVx-sP-jLD">
+                    <toolbarItem implicitItemIdentifier="9CAB7D46-BD2D-4DD7-A044-8776F4488744" label="Output Format" paletteLabel="Output Format" toolTip="Select output format" id="dVx-sP-jLD">
                         <size key="minSize" width="80" height="22"/>
                         <size key="maxSize" width="80" height="25"/>
                         <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
@@ -453,7 +452,7 @@
                             </connections>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="BF29C947-D302-46B7-A1DF-4C8BBF82C6BB" label="Video Stream" paletteLabel="Video Stream" toolTip="Video Stream" id="rT0-X5-nkl">
+                    <toolbarItem implicitItemIdentifier="BF29C947-D302-46B7-A1DF-4C8BBF82C6BB" label="Video Stream" paletteLabel="Video Stream" toolTip="Select video stream" id="rT0-X5-nkl">
                         <size key="minSize" width="80" height="22"/>
                         <size key="maxSize" width="80" height="25"/>
                         <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="Idt-of-EEP">
@@ -469,7 +468,7 @@
                             </connections>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="956DBAFD-06BD-43CE-B4C6-DA901E57650B" label="Audio Stream" paletteLabel="Audio Stream" toolTip="Audio Stream" id="cUg-AL-Lit">
+                    <toolbarItem implicitItemIdentifier="956DBAFD-06BD-43CE-B4C6-DA901E57650B" label="Audio Stream" paletteLabel="Audio Stream" toolTip="Select audio stream" id="cUg-AL-Lit">
                         <size key="minSize" width="80" height="22"/>
                         <size key="maxSize" width="80" height="25"/>
                         <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
@@ -485,7 +484,7 @@
                             </connections>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="36DEBC92-6FBC-4F2C-9A32-7D3FA4F55112" label="Subtitles Stream" paletteLabel="Subtitles Stream" toolTip="Subtitles Stream" id="OP6-6T-fIL">
+                    <toolbarItem implicitItemIdentifier="36DEBC92-6FBC-4F2C-9A32-7D3FA4F55112" label="Subtitles Stream" paletteLabel="Subtitles Stream" toolTip="Select subtites stream" id="OP6-6T-fIL">
                         <size key="minSize" width="80" height="22"/>
                         <size key="maxSize" width="80" height="25"/>
                         <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
@@ -503,7 +502,7 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="KmJ-GG-c7e"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ZbH-6g-hEd"/>
-                    <toolbarItem implicitItemIdentifier="45A2C735-6945-46C5-BABA-0678C2CADFF4" label="Encoder History" paletteLabel="Encoder History" toolTip="Recently Encoded" image="SLHImageNameEncoderHistoryTemplate" id="agX-ni-Kmk">
+                    <toolbarItem implicitItemIdentifier="45A2C735-6945-46C5-BABA-0678C2CADFF4" label="Encoder History" paletteLabel="Encoder History" toolTip="Show the Recently Encoded " image="SLHImageNameEncoderHistoryTemplate" id="agX-ni-Kmk">
                         <size key="minSize" width="21" height="19"/>
                         <size key="maxSize" width="45" height="25"/>
                         <button key="view" verticalHuggingPriority="750" misplaced="YES" id="OUk-Ot-fJS">
@@ -518,7 +517,7 @@
                             <action selector="showEncoderHistroy:" target="-2" id="uar-Al-Jpo"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="51C9B11D-5C54-4D0D-9462-DCF3FBB0C626" label="Sidebar" paletteLabel="Sidebar" toolTip="Toggle Sidebar" image="SLHImageNameToggleSideBarTemplate" id="dVH-iG-1hv">
+                    <toolbarItem implicitItemIdentifier="51C9B11D-5C54-4D0D-9462-DCF3FBB0C626" label="Sidebar" paletteLabel="Sidebar" toolTip="Toggle the Inspector" image="SLHImageNameToggleSideBarTemplate" id="dVH-iG-1hv">
                         <size key="minSize" width="21" height="19"/>
                         <size key="maxSize" width="45" height="25"/>
                         <button key="view" verticalHuggingPriority="750" misplaced="YES" id="yNB-sr-QYg">
