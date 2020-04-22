@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Trim View vertical zoom. 1.0 == 100px Default is 0.5 */
 @property (nonatomic) IBInspectable CGFloat verticalZoom;
 
-/** Trim View horizontal zoom. 1.0 == 200px Default is 3.0 */
+/** Trim View horizontal zoom. 1.0 == 300px Default is 3.0 */
 @property (nonatomic) IBInspectable CGFloat horizontalZoom;
 
 /** Indicate if preview images should be generated and displayed. Default is NO */
