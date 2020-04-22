@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** Indicate if the generation of preview images is in progress. */
 @property (nonatomic, readonly) BOOL busy;
 
+/** Go to start postion. */
+- (void)goToStart;
+
+/** Go to end postion. */
+- (void)goToEnd;
+
 @end
 
 NS_ASSUME_NONNULL_END

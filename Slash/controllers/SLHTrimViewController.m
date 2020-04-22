@@ -212,6 +212,31 @@
     vtView.needsDisplay = YES;
 }
 
+#pragma mark - Methods
+
+- (void)goToStart {
+    NSScrollView * scrollView = _timelineView.enclosingScrollView;
+    NSClipView * clipView = scrollView.contentView;
+    const CGFloat cvWidth = NSWidth(clipView.frame);
+    const CGFloat tvWidth = NSWidth(_timelineView.frame);
+    if (tvWidth > cvWidth) {
+        [clipView scrollToPoint:NSZeroPoint];
+        [scrollView reflectScrolledClipView:clipView];
+    }
+}
+
+- (void)goToEnd {
+    NSScrollView * scrollView = _timelineView.enclosingScrollView;
+    NSClipView * clipView = scrollView.contentView;
+    const CGFloat cvWidth = NSWidth(clipView.frame);
+    const CGFloat tvWidth = NSWidth(_timelineView.frame);
+    if (tvWidth > cvWidth) {
+        NSPoint pt = NSMakePoint(tvWidth - cvWidth, 0);
+        [clipView scrollToPoint:pt];
+        [scrollView reflectScrolledClipView:clipView];
+    }
+}
+
 #pragma mark - MPVPlayer Notifications
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
