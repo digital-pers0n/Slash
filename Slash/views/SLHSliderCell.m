@@ -21,7 +21,7 @@
     self = [super initWithCoder:coder];
     if (self) {
         _markColor = [NSColor whiteColor];
-        _selectionColor = [NSColor selectedControlColor];
+        _selectionColor = [NSColor systemYellowColor];
         _bindingInfo = [NSMutableDictionary new];
     }
     return self;
