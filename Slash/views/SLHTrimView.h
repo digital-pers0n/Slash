@@ -59,6 +59,10 @@ typedef NS_ENUM(NSUInteger, SLHTrimViewStyle) {
  */
 @property (nonatomic) SLHTrimViewStyle style;
 
+
+/** Access the area of the trimView that is currently selected. */
+ @property (nonatomic, readonly) NSRect selectionFrame;
+
 @end
 
 @protocol SLHTrimViewDelegate <NSObject>

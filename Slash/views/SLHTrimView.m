@@ -366,6 +366,10 @@ static char minValueKVOContext;
 #pragma mark - Overrides
 #pragma mark Properties
 
+- (NSRect)selectionFrame {
+    return NSInsetRect(_cellFrame, SLHKnobWidth, 0);
+}
+
 - (void)setStyle:(SLHTrimViewStyle)style {
     if (_style == style) { return; }
     [_selectionCell.backgroundLayer removeFromSuperlayer];
