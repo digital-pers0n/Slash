@@ -35,6 +35,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** Go to end postion. */
 - (void)goToEnd;
 
+/** Go to selection start. */
+- (void)goToSelectionStart;
+
+/** Go to selection end. */
+- (void)goToSelectionEnd;
+
 @end
 
 NS_ASSUME_NONNULL_END

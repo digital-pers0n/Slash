@@ -214,6 +214,28 @@
 
 #pragma mark - Methods
 
+- (void)goToSelectionStart {
+    NSScrollView * scrollView = _timelineView.enclosingScrollView;
+    NSClipView * clipView = scrollView.contentView;
+    const NSRect selection = _trimView.selectionFrame;
+    const CGFloat contentWidth = NSWidth(clipView.frame);
+    
+    NSPoint pt = NSMakePoint(NSMinX(selection) - contentWidth * 0.5, 0);
+    [clipView scrollToPoint:pt];
+    [scrollView reflectScrolledClipView:clipView];
+}
+
+- (void)goToSelectionEnd {
+    NSScrollView * scrollView = _timelineView.enclosingScrollView;
+    NSClipView * clipView = scrollView.contentView;
+    const NSRect selection = _trimView.selectionFrame;
+    const CGFloat contentWidth = NSWidth(clipView.frame);
+
+    NSPoint pt = NSMakePoint(NSMaxX(selection) - contentWidth * 0.5, 0);
+    [clipView scrollToPoint:pt];
+    [scrollView reflectScrolledClipView:clipView];
+}
+
 - (void)goToStart {
     NSScrollView * scrollView = _timelineView.enclosingScrollView;
     NSClipView * clipView = scrollView.contentView;
