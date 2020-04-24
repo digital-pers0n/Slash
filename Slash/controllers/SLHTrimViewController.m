@@ -220,7 +220,7 @@
     const NSRect selection = _trimView.selectionFrame;
     const CGFloat contentWidth = NSWidth(clipView.frame);
     
-    NSPoint pt = NSMakePoint(NSMinX(selection) - contentWidth * 0.5, 0);
+    NSPoint pt = NSMakePoint(floor(NSMinX(selection) - contentWidth * 0.5), 0);
     [clipView scrollToPoint:pt];
     [scrollView reflectScrolledClipView:clipView];
 }
@@ -231,7 +231,7 @@
     const NSRect selection = _trimView.selectionFrame;
     const CGFloat contentWidth = NSWidth(clipView.frame);
 
-    NSPoint pt = NSMakePoint(NSMaxX(selection) - contentWidth * 0.5, 0);
+    NSPoint pt = NSMakePoint(floor(NSMaxX(selection) - contentWidth * 0.5), 0);
     [clipView scrollToPoint:pt];
     [scrollView reflectScrolledClipView:clipView];
 }
