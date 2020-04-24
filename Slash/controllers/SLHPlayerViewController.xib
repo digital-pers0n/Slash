@@ -249,7 +249,6 @@ IA
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameJumpToEndTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X2T-1Y-jdp">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">O</string>
                                     </buttonCell>
                                     <connections>
                                         <action selector="jumpToOutMark:" target="-2" id="vmG-XG-uES"/>
@@ -267,7 +266,6 @@ IA
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameJumpToStartTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D5z-4X-RLn">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <string key="keyEquivalent">I</string>
                                     </buttonCell>
                                     <connections>
                                         <action selector="jumpToInMark:" target="-2" id="x1H-cK-ggW"/>
