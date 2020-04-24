@@ -100,6 +100,11 @@
                             <menuItem title="Preview File" keyEquivalent="j" id="byb-Hy-bBE">
                                 <connections>
                                     <action selector="previewSourceFile:" target="lKY-o8-vkq" id="wnz-Hj-Mak"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="Ftj-Sd-5zg">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="Voe-Tx-rLC" name="enabled2" keyPath="self.preferences.hasMPV" previousBinding="Ftj-Sd-5zg" id="rbS-te-Hkd">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -108,28 +113,23 @@
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="Ftj-Sd-5zg">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Preview Output File" alternate="YES" keyEquivalent="j" id="3Yq-VM-Ssx">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="previewOutputFile:" target="lKY-o8-vkq" id="YHw-fD-cIA"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="0VG-cG-5sF">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="Voe-Tx-rLC" name="enabled2" keyPath="self.preferences.hasMPV" previousBinding="0VG-cG-5sF" id="R36-Oj-nsA">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.lastEncodedMediaFilePath" id="0VG-cG-5sF">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -159,17 +159,17 @@
                             <menuItem title="Export Selected" keyEquivalent="e" id="9fy-Ng-PfI">
                                 <connections>
                                     <action selector="startEncoding:" target="lKY-o8-vkq" id="7Y5-Re-0Bq"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="koH-0e-0kS">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="Voe-Tx-rLC" name="enabled3" keyPath="self.preferences.hasFFmpeg" previousBinding="WlT-xO-a2A" id="TIF-7b-aG1">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="koH-0e-0kS">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="koH-0e-0kS" id="WlT-xO-a2A">
@@ -187,17 +187,17 @@
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="startEncoding:" target="lKY-o8-vkq" id="EgG-dZ-5zO"/>
+                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="0q1-ck-1co">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="Voe-Tx-rLC" name="enabled3" keyPath="self.preferences.hasFFmpeg" previousBinding="SUL-k3-bza" id="fbX-49-xGU">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="0q1-ck-1co">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
                                     <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="0q1-ck-1co" id="SUL-k3-bza">
@@ -218,17 +218,17 @@
                                         <menuItem title="Add All to Queue" keyEquivalent="t" id="hdL-72-S94">
                                             <connections>
                                                 <action selector="addAllToQueue:" target="lKY-o8-vkq" id="ZpE-J8-Qhy"/>
+                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="0vU-gY-5E0">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="Voe-Tx-rLC" name="enabled3" keyPath="self.preferences.hasFFmpeg" previousBinding="0zq-h5-wF0" id="2S6-nG-HHT">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNullPlaceholder" value="-1"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="0vU-gY-5E0">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
                                                 <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="0vU-gY-5E0" id="0zq-h5-wF0">
@@ -246,17 +246,17 @@
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="addAllToQueue:" target="lKY-o8-vkq" id="mrq-vg-tk6"/>
+                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="66c-rX-caH">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="Voe-Tx-rLC" name="enabled3" keyPath="self.preferences.hasFFmpeg" previousBinding="96O-XW-H4w" id="Tft-jU-dc4">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNullPlaceholder" value="-1"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="66c-rX-caH">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
                                                 <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="66c-rX-caH" id="96O-XW-H4w">
@@ -273,17 +273,17 @@
                                         <menuItem title="Add Selection to Queue" keyEquivalent="r" id="yVj-5F-BgB">
                                             <connections>
                                                 <action selector="addSelectionToQueue:" target="lKY-o8-vkq" id="a30-FO-mNz"/>
+                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="c0g-6g-BY6">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="Voe-Tx-rLC" name="enabled3" keyPath="self.preferences.hasFFmpeg" previousBinding="Poh-Su-2fK" id="VeE-Is-q0G">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNullPlaceholder" value="-1"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="c0g-6g-BY6">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
                                                 <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="c0g-6g-BY6" id="Poh-Su-2fK">
@@ -301,17 +301,17 @@
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="addSelectionToQueue:" target="lKY-o8-vkq" id="iOF-9K-3E3"/>
+                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="kSc-dg-bC1">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="Voe-Tx-rLC" name="enabled3" keyPath="self.preferences.hasFFmpeg" previousBinding="UHt-tp-5El" id="nwl-f6-4gR">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNullPlaceholder" value="-1"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="lKY-o8-vkq" name="enabled" keyPath="self.currentEncoderItem" id="kSc-dg-bC1">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
                                                 <binding destination="lKY-o8-vkq" name="enabled2" keyPath="self.queue.inProgress" previousBinding="kSc-dg-bC1" id="UHt-tp-5El">
@@ -432,55 +432,6 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
-                            <menuItem title="Selection" id="jcQ-ll-DwA">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Selection" id="QDI-0J-IuF">
-                                    <items>
-                                        <menuItem title="Jump to Start Position" keyEquivalent="i" id="3FV-Sj-Aat">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                            <connections>
-                                                <action selector="jumpToStartPosition:" target="lKY-o8-vkq" id="aFR-mM-Teq"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Jump to End Position" keyEquivalent="o" id="0MR-M5-aI0">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                            <connections>
-                                                <action selector="jumpToEndPosition:" target="lKY-o8-vkq" id="NHr-3T-dtw"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Match to Selected Range" keyEquivalent="P" id="H5X-ux-9um">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="matchToSelectedRange:" target="lKY-o8-vkq" id="O3I-7W-BIc"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Duplicate and Match to Selected Range" alternate="YES" keyEquivalent="P" id="mmG-cb-CUm">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                            <connections>
-                                                <action selector="duplicateAndMatchToSelectedRange:" target="lKY-o8-vkq" id="v3V-Cv-7bn"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="msi-w1-1QS"/>
-                                        <menuItem title="Reset" id="Tdz-9D-nQK">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="resetSelection:" target="lKY-o8-vkq" id="WUa-l7-aG4"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                                <connections>
-                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="vfL-XV-1IJ">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="ohT-hd-3rM"/>
                             <menuItem title="Cut" keyEquivalent="x" id="uRl-iY-unG">
                                 <connections>
                                     <action selector="cut:" target="-1" id="YJe-68-I9s"/>
@@ -879,6 +830,38 @@ CA
                                             <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Selection" id="aGQ-zL-BB9">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Selection" id="IcX-x6-zmX">
+                        <items>
+                            <menuItem title="Go to Start" keyEquivalent="I" id="3FV-Sj-Aat">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="jumpToStartPosition:" target="lKY-o8-vkq" id="aFR-mM-Teq"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Go to End" keyEquivalent="O" id="0MR-M5-aI0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="jumpToEndPosition:" target="lKY-o8-vkq" id="NHr-3T-dtw"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Duplicate" alternate="YES" keyEquivalent="P" id="mmG-cb-CUm">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="duplicateAndMatchToSelectedRange:" target="lKY-o8-vkq" id="v3V-Cv-7bn"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="msi-w1-1QS"/>
+                            <menuItem title="Clear" keyEquivalent="x" id="Tdz-9D-nQK">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="resetSelection:" target="lKY-o8-vkq" id="WUa-l7-aG4"/>
                                 </connections>
                             </menuItem>
                         </items>
