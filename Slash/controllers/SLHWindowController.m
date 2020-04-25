@@ -708,6 +708,16 @@ static char SLHPreferencesKVOContext;
 
 #pragma mark - IBActions
 
+- (IBAction)trimViewGoToStart:(id)sender {
+    _player.timePosition = 0.0;
+    [_trimViewController goToStart];
+}
+
+- (IBAction)trimViewGoToEnd:(id)sender {
+    _player.timePosition = _player.currentItem.duration;
+    [_trimViewController goToEnd];
+}
+
 - (IBAction)showTrimViewSettings:(NSButton *)sender {
     if (_trimViewSettingsPopover.shown) {
         [_trimViewSettingsPopover close];

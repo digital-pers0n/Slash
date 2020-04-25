@@ -787,6 +787,28 @@ CA
                                     </binding>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Jump to Start" keyEquivalent="" id="aNb-4k-lzB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="trimViewGoToStart:" target="lKY-o8-vkq" id="gF3-xq-dmC"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="ddA-e7-owc">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Jump to End" keyEquivalent="" id="t7M-XL-Emc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="trimViewGoToEnd:" target="lKY-o8-vkq" id="T49-Qd-SSF"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.mainWindowController.currentEncoderItem" id="yXb-13-anS">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Select Next Frame" keyEquivalent="." id="mpb-Vu-roh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
