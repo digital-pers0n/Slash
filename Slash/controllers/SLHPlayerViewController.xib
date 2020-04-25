@@ -188,6 +188,14 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepForward:" target="-2" id="HSq-DI-44p"/>
+                                        <binding destination="-2" name="enabled2" keyPath="self.player.currentItem.hasVideoStreams" previousBinding="odF-Gr-bG5" id="BdP-eT-b5g">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.seekable" id="odF-Gr-bG5"/>
                                         <outlet property="nextKeyView" destination="g39-ft-GFi" id="gG9-zg-Fk2"/>
                                     </connections>
@@ -221,6 +229,14 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="stepBack:" target="-2" id="EYk-ZJ-L7Q"/>
+                                        <binding destination="-2" name="enabled2" keyPath="self.player.currentItem.hasVideoStreams" previousBinding="exD-Lg-Uer" id="GRh-Yg-7Ft">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.seekable" id="exD-Lg-Uer"/>
                                         <outlet property="nextKeyView" destination="Se5-3n-x8u" id="iHE-xX-dY6"/>
                                     </connections>
