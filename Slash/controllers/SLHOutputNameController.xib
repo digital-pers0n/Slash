@@ -13,40 +13,23 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="Hz6-mo-xeY">
+        <customView id="Hz6-mo-xeY" customClass="SLHOutputNameContainerView">
             <rect key="frame" x="0.0" y="0.0" width="357" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView misplaced="YES" id="VWy-A4-0b2" customClass="SLHSeparatorView">
-                    <rect key="frame" x="94" y="4" width="1" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </customView>
-                <button toolTip="Previous Segment" misplaced="YES" id="Esc-9F-XLt">
-                    <rect key="frame" x="1" y="2" width="15" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSLeftFacingTriangleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="SFD-R8-jaP">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="selectPrevious:" target="-2" id="AW6-GY-l9f"/>
-                        <binding destination="-2" name="enabled" keyPath="encoderItemsArrayController.canSelectPrevious" id="cem-On-pQQ"/>
-                    </connections>
-                </button>
-                <textField toolTip="End Position" verticalHuggingPriority="750" misplaced="YES" id="xce-1v-gaO">
-                    <rect key="frame" x="260" y="4" width="81" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" placeholderString="000:00:00.000" id="KH0-we-duE">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="ng1-dT-sEA" customClass="SLHAttributedTimeFormatter"/>
-                        <font key="font" size="10" name="Osaka"/>
+                <textField verticalHuggingPriority="750" allowsExpansionToolTips="YES" id="CPg-Xw-q7A">
+                    <rect key="frame" x="96" y="4" width="165" height="14"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="Filename" id="lgg-Uk-UOE">
+                        <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.intervalEnd" id="FnM-C2-5G0"/>
+                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.outputFileName" id="yZ7-3U-wSb"/>
                     </connections>
                 </textField>
-                <textField toolTip="Start Position" verticalHuggingPriority="750" misplaced="YES" id="mva-1q-5Xq">
+                <textField toolTip="Start Position" verticalHuggingPriority="750" id="mva-1q-5Xq">
                     <rect key="frame" x="16" y="4" width="81" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="000:00:00.000" id="MKn-JI-K95">
@@ -59,7 +42,32 @@
                         <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.intervalStart" id="y2V-ox-ux8"/>
                     </connections>
                 </textField>
-                <button toolTip="Next Segment" misplaced="YES" id="itu-hD-Ibc">
+                <button toolTip="Previous Segment" id="Esc-9F-XLt">
+                    <rect key="frame" x="1" y="2" width="15" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSLeftFacingTriangleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="SFD-R8-jaP">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="selectPrevious:" target="-2" id="AW6-GY-l9f"/>
+                        <binding destination="-2" name="enabled" keyPath="encoderItemsArrayController.canSelectPrevious" id="cem-On-pQQ"/>
+                    </connections>
+                </button>
+                <textField toolTip="End Position" verticalHuggingPriority="750" id="xce-1v-gaO">
+                    <rect key="frame" x="260" y="4" width="81" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" placeholderString="000:00:00.000" id="KH0-we-duE">
+                        <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="ng1-dT-sEA" customClass="SLHAttributedTimeFormatter"/>
+                        <font key="font" size="10" name="Osaka"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.intervalEnd" id="FnM-C2-5G0"/>
+                    </connections>
+                </textField>
+                <button toolTip="Next Segment" id="itu-hD-Ibc">
                     <rect key="frame" x="341" y="2" width="15" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Cor-Qz-1xd">
@@ -71,22 +79,6 @@
                         <binding destination="-2" name="enabled" keyPath="encoderItemsArrayController.canSelectNext" id="eF1-Va-7t7"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="CPg-Xw-q7A">
-                    <rect key="frame" x="96" y="4" width="165" height="14"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="Filename" id="lgg-Uk-UOE">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.outputFileName" id="yZ7-3U-wSb"/>
-                    </connections>
-                </textField>
-                <customView misplaced="YES" id="aJc-hE-1uI" customClass="SLHSeparatorView">
-                    <rect key="frame" x="262" y="4" width="1" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                </customView>
             </subviews>
             <connections>
                 <binding destination="-2" name="hidden" keyPath="encoderItemsArrayController.canRemove" id="iLI-7c-MvX">
@@ -94,6 +86,11 @@
                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                     </dictionary>
                 </binding>
+                <outlet property="_leftButton" destination="Esc-9F-XLt" id="bxy-F9-EQc"/>
+                <outlet property="_leftTextField" destination="mva-1q-5Xq" id="0pM-zr-bXp"/>
+                <outlet property="_outputNameTextField" destination="CPg-Xw-q7A" id="QP4-fk-ewv"/>
+                <outlet property="_rightButton" destination="itu-hD-Ibc" id="dCX-ct-hRn"/>
+                <outlet property="_rightTextField" destination="xce-1v-gaO" id="Qux-GM-hrd"/>
             </connections>
             <point key="canvasLocation" x="77.5" y="46"/>
         </customView>
