@@ -180,14 +180,23 @@
     }
 }
 
+- (void)dispalyAlertWithText:(NSString *)messageText info:(NSString *)infoText {
+    NSAlert * alert = [[NSAlert alloc] init];
+    alert.messageText = messageText;
+    alert.informativeText = infoText;
+    [alert runModal];
+}
+
 - (IBAction)exportPresets:(id)sender {
     NSSavePanel *panel = [NSSavePanel savePanel];
     panel.allowedFileTypes = @[@"dict"];
-    if ([panel runModal] == NSFileHandlingPanelOKButton) {
+    if ([panel runModal] == NSModalResponseOK) {
         NSURL *url = panel.URL;
         if (![_presets writeToURL:url atomically:YES]) {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Cannot save preset file" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Error while writing %@", url];
-            [alert runModal];
+            NSString * info;
+            info = [NSString stringWithFormat:@"Error writing file '%@'", url];
+            [self dispalyAlertWithText:@"Cannot save presets."
+                                  info:info];
         }
     }
 }
@@ -195,12 +204,14 @@
 - (IBAction)importPresets:(id)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowedFileTypes = @[@"dict"];
-    if ([panel runModal] == NSFileHandlingPanelOKButton) {
+    if ([panel runModal] == NSModalResponseOK) {
         NSURL *url = panel.URL;
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:url];
         if (!dict) {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Cannot open preset file." defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Error while reading %@", url];
-            [alert runModal];
+            NSString * info;
+            info = [NSString stringWithFormat:@"Error reading file '%@'", url];
+            [self dispalyAlertWithText:@"Cannot open presets."
+                                  info:info];
             return;
         }
         NSArray *allKeys = dict.allKeys;
