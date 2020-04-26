@@ -241,9 +241,9 @@
 		CE5998CA219DF81C0009FE08 /* SLHEncoderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItem.m; path = model/SLHEncoderItem.m; sourceTree = "<group>"; };
 		CE5EBC3422905511009BBAF7 /* SLHEncoderQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderQueueItem.h; path = model/SLHEncoderQueueItem.h; sourceTree = "<group>"; };
 		CE5EBC3522905511009BBAF7 /* SLHEncoderQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderQueueItem.m; path = model/SLHEncoderQueueItem.m; sourceTree = "<group>"; };
-		CE5F50C7243CEC6E0080E4A5 /* SLHTrimViewSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTrimViewSettings.h; sourceTree = "<group>"; };
-		CE5F50C8243CEC6E0080E4A5 /* SLHTrimViewSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTrimViewSettings.m; sourceTree = "<group>"; };
-		CE5F50C9243CEC6E0080E4A5 /* SLHTrimViewSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLHTrimViewSettings.xib; sourceTree = "<group>"; };
+		CE5F50C7243CEC6E0080E4A5 /* SLHTrimViewSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTrimViewSettings.h; path = controllers/SLHTrimViewSettings.h; sourceTree = "<group>"; };
+		CE5F50C8243CEC6E0080E4A5 /* SLHTrimViewSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTrimViewSettings.m; path = controllers/SLHTrimViewSettings.m; sourceTree = "<group>"; };
+		CE5F50C9243CEC6E0080E4A5 /* SLHTrimViewSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHTrimViewSettings.xib; path = controllers/SLHTrimViewSettings.xib; sourceTree = "<group>"; };
 		CE60C544235E0C47003DB25F /* MPVPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItem.h; path = MPVKit/MPVPlayerItem.h; sourceTree = "<group>"; };
 		CE60C545235E0C47003DB25F /* MPVPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayerItem.m; path = MPVKit/MPVPlayerItem.m; sourceTree = "<group>"; };
 		CE60C547235E4E2D003DB25F /* MPVPlayerItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayerItemTrack.h; path = MPVKit/MPVPlayerItemTrack.h; sourceTree = "<group>"; };
@@ -978,7 +978,7 @@
 				INFOPLIST_FILE = Slash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LLVM_LTO = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "void.digital-person.Slash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.13;
@@ -997,7 +997,7 @@
 				INFOPLIST_FILE = Slash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "void.digital-person.Slash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.13;
