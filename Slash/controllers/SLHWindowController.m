@@ -880,10 +880,12 @@ static char SLHPreferencesKVOContext;
 
 - (IBAction)jumpToStartPosition:(id)sender {
     _player.timePosition = _currentEncoderItem.interval.start;
+    [_trimViewController goToSelectionStart];
 }
 
 - (IBAction)jumpToEndPosition:(id)sender {
     _player.timePosition = _currentEncoderItem.interval.end;
+    [_trimViewController goToSelectionEnd];
 }
 
 - (IBAction)toggleSideBar:(id)sender {
