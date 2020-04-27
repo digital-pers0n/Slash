@@ -64,15 +64,20 @@
 }
 
 - (void)didEndEditing:(NSNotification * )n {
-    _maxOutputNameTextSize = _outputNameTextField.cell.cellSize;
+    [self updateMaxOutputNameTextSize];
     [self adjustSubviews];
+}
+
+- (void)updateMaxOutputNameTextSize {
+    const NSSize size = _outputNameTextField.cell.cellSize;
+    _maxOutputNameTextSize = NSMakeSize(round(size.width), size.height);
 }
 
 #pragma mark - Overrides
 
 - (void)awakeFromNib {
     _containerWidth = NSWidth(self.frame);
-    _maxOutputNameTextSize = _outputNameTextField.cell.cellSize;
+    [self updateMaxOutputNameTextSize];
     
     CGFloat width = NSWidth(_leftTextField.frame);
     width += NSWidth(_leftButton.frame);
@@ -105,7 +110,7 @@
 
 - (void)viewDidUnhide {
     [super viewDidUnhide];
-    _maxOutputNameTextSize = _outputNameTextField.cell.cellSize;
+    [self updateMaxOutputNameTextSize];
     [self adjustSubviews];
 }
 
@@ -131,7 +136,7 @@ static char SLHOutputNameKVOContext;
                        context:(void *)context
 {
     if (context == &SLHOutputNameKVOContext) {
-        _maxOutputNameTextSize = _outputNameTextField.cell.cellSize;
+        [self updateMaxOutputNameTextSize];
         [self adjustSubviews];
     } else {
         [super observeValueForKeyPath:keyPath
