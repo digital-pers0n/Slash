@@ -20,7 +20,7 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        _markColor = [NSColor whiteColor];
+        _markColor = [NSColor blackColor];
         _selectionColor = [NSColor systemYellowColor];
         _bindingInfo = [NSMutableDictionary new];
     }
