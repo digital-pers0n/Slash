@@ -300,31 +300,49 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 
 @implementation SLHTimelineView
 
-#pragma mark - Overrides
-
-- (void)awakeFromNib {
-
+- (void)setUp {
     if (_maxValue == 0) {
         self.maxValue = 1;
     }
     _trackingArea = [NSTrackingArea new];
-
+    
     _currentFrame = self.frame;
     _indicatorFrame = NSMakeRect(_indicatorMargin, 0, 1, NSHeight(_currentFrame));
     _workingArea = NSInsetRect(_currentFrame, _indicatorMargin, 0);
+    _indicatorLayer = [self indicatorLayerWithSize:_currentFrame.size];
     
-    _indicatorLayer = [CAShapeLayer new];
-    _indicatorLayer.geometryFlipped = NO;
-    _indicatorLayer.fillColor = [[NSColor systemRedColor] CGColor];
-    _indicatorLayer.bounds = CGRectMake(0, 0,
-                                        NSWidth(_currentFrame),
-                                        NSHeight(_currentFrame));
-    _indicatorLayer.position = CGPointZero;
-    _indicatorLayer.anchorPoint = CGPointZero;
-    _indicatorLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
-
     self.wantsLayer = YES;
     [self.layer addSublayer:_indicatorLayer];
+}
+
+#pragma mark - Overrides
+
+- (instancetype)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setUp];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self setUp];
+    }
+    return self;
+}
+
+- (CAShapeLayer *)indicatorLayerWithSize:(CGSize)size {
+    CAShapeLayer * layer = [CAShapeLayer new];
+    layer.fillColor = [[NSColor systemRedColor] CGColor];
+    layer.bounds = CGRectMake(0, 0, size.width, size.height);
+    layer.position = CGPointZero;
+    layer.anchorPoint = CGPointZero;
+    layer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+    return layer;
 }
 
 - (void)viewDidMoveToSuperview {
