@@ -162,24 +162,18 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     
     CGMutablePathRef mutablePath;
-    CGRect bar = CGRectMake(0, 0, 1, 12);
-    const CGFloat step = SLHKnobWidth * (CGFloat)0.5;
+    const CGFloat cellHeight = NSHeight(cellFrame);
+    const CGFloat barWidth = 2.0;
+    const CGFloat barHeight = (cellHeight * 0.5);
     
+    CGRect bar = CGRectMake(NSMinX(cellFrame) + SLHKnobWidth - barWidth,
+                            ((cellHeight - barHeight) * 0.5),
+                            barWidth, barHeight);
     mutablePath = CGPathCreateMutable();
-    
-    bar.origin.x = NSMinX(cellFrame) + step;
-    bar.origin.y = round((NSHeight(cellFrame) - NSHeight(bar)) * 0.5);
     CGPathAddRect(mutablePath, nil, bar);
     
-    bar.origin.x = NSMinX(cellFrame) + step + 3;
+    bar.origin.x = NSMaxX(cellFrame) - SLHKnobWidth;
     CGPathAddRect(mutablePath, nil, bar);
-    
-    bar.origin.x = NSMaxX(cellFrame) - NSWidth(bar) - (step + 3);
-    CGPathAddRect(mutablePath, nil, bar);
-    
-    bar.origin.x = NSMaxX(cellFrame) - NSWidth(bar) - step;
-    CGPathAddRect(mutablePath, nil, bar);
-
     _frameLayer.path = mutablePath;
     CGPathRelease(mutablePath);
     
