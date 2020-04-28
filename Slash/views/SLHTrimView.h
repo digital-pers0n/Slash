@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+static const CGFloat SLHTrimViewHandleThickness =  10.0;
+
 @protocol SLHTrimViewDelegate;
 
 @interface SLHTrimView : NSView

@@ -13,7 +13,7 @@
 //#define ENABLE_TRIMVIEW_SCROLL_WHEEL 1
 #define ENABLE_TRIMVIEW_DOUBLE_CLICK 0
 
-#define SLHKnobWidth 10
+#define SLHKnobWidth SLHTrimViewHandleThickness
 #define SLHMinWidth  SLHKnobWidth * 2
 
 #define SLHCellHitNone         NSCellHitNone
