@@ -287,6 +287,7 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 
 @interface SLHTimelineView () {
     CAShapeLayer *_indicatorLayer;
+    __weak NSView *_overlay;
     CGFloat _indicatorMargin;
     NSRect _indicatorFrame;
     NSRect _currentFrame;
@@ -312,7 +313,6 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
     _indicatorLayer = [self indicatorLayerWithSize:_currentFrame.size];
     
     self.wantsLayer = YES;
-    [self.layer addSublayer:_indicatorLayer];
 }
 
 #pragma mark - Overrides
@@ -363,6 +363,13 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
         pt = NSMakePoint(0, NSHeight(ruler.superview.frame) - kSLHTimelineRulerHeight);
         [ruler setFrameOrigin:pt];
         ruler.superview.autoresizesSubviews = YES;
+        
+        frame.size = NSMakeSize(NSWidth(_currentFrame), NSHeight(sv.frame));
+        NSView *overlay = [[NSView alloc] initWithFrame:frame];
+        [sv addFloatingSubview:overlay forAxis:NSEventGestureAxisVertical];
+        overlay.layer = _indicatorLayer;
+        overlay.wantsLayer = YES;
+        _overlay = overlay;
     }
 }
 
@@ -388,6 +395,7 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
             frame.size.height = NSHeight(svFrame);
         }
     }
+    [_overlay setFrameSize:frame.size];
     [super setFrame:frame];
     [self updateIndicatorPosition];
 }
