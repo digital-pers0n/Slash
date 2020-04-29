@@ -226,7 +226,7 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
     const CGFloat width = _currentWidth - (margin * 2);
     NSUInteger numOfMarks = _numberOfMarks;
     
-    NSUInteger interval = round(width / numOfMarks);
+    NSUInteger interval = (width / numOfMarks);
     if (interval > kSLHTimelineMaxPrimaryMarksDistance ||
         interval < kSLHTimelineMinPrimaryMarksDistance)
     {
