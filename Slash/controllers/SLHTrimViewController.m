@@ -276,7 +276,7 @@
         } else {
             _encoderItem.intervalEnd = _player.timePosition;
         }
-        _TVFlags.shouldStop = 0;
+        
         return;
     }
     
@@ -296,7 +296,7 @@
         [nc removeObserver:self
                       name:MPVPlayerDidRestartPlaybackNotification
                     object:_player];
-        _TVFlags.shouldStop = 0;
+
     } else {
         _player.timePosition = _timelineView.doubleValue;
     }
@@ -305,6 +305,7 @@
 #pragma mark - SLHTrimViewDelegate
 
 - (void)trimViewMouseDown:(SLHTrimView *)trimView {
+    _TVFlags.shouldStop = 0;
     
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     
@@ -341,6 +342,8 @@
 #pragma mark - SLHTimelineViewDelegate
 
 - (void)timelineViewMouseDown:(SLHTimelineView *)timelineView {
+    _TVFlags.shouldStop = 0;
+
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver:self
