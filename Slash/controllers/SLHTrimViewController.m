@@ -33,6 +33,7 @@
     struct _trimViewFlags {
         unsigned int needsUpdateStartValue:1;
         unsigned int shouldStop:1;
+        unsigned int shouldResumePlayback:1;
     } _TVFlags;
 }
 
@@ -259,6 +260,15 @@
     }
 }
 
+- (void)pauseIfNeeded {
+    if ([_player isPaused]) {
+        _TVFlags.shouldResumePlayback = 0;
+    } else {
+        [_player pause];
+        _TVFlags.shouldResumePlayback = 1;
+    }
+}
+
 #pragma mark - MPVPlayer Notifications
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
@@ -275,6 +285,10 @@
             
         } else {
             _encoderItem.intervalEnd = _player.timePosition;
+        }
+        
+        if (_TVFlags.shouldResumePlayback) {
+            [_player play];
         }
         
         return;
@@ -296,6 +310,10 @@
         [nc removeObserver:self
                       name:MPVPlayerDidRestartPlaybackNotification
                     object:_player];
+        
+        if (_TVFlags.shouldResumePlayback) {
+            [_player play];
+        }
 
     } else {
         _player.timePosition = _timelineView.doubleValue;
@@ -314,6 +332,7 @@
                name:MPVPlayerDidRestartPlaybackNotification
              object:_player];
     
+    [self pauseIfNeeded];
 }
 
 - (void)trimViewMouseDownStartPosition:(SLHTrimView *)trimView {
@@ -351,6 +370,8 @@
                name:MPVPlayerDidRestartPlaybackNotification
              object:_player];
     _player.timePosition = timelineView.doubleValue;
+    
+    [self pauseIfNeeded];
 }
 
 - (void)timelineViewMouseUp:(SLHTimelineView *)timelineView {
