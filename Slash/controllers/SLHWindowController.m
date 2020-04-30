@@ -18,7 +18,6 @@
 #import "SLHModalWindowController.h"
 #import "SLHArgumentsViewController.h"
 #import "SLHLogController.h"
-#import "SLHTrimView.h"
 #import "SLHPresetManager.h"
 #import "SLHEncoderQueue.h"
 #import "SLHExternalPlayer.h"
