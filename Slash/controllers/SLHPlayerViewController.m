@@ -62,6 +62,8 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 @property (nonatomic) NSString *noVideoMessage;
 
+@property (nonatomic) BOOL pause;
+
 @end
 
 @implementation SLHPlayerViewController
@@ -167,6 +169,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 - (void)removeObserverForPlayer:(MPVPlayer *)player {
     [_notificationCenter removeObserver:self name:nil object:player];
+    [player removeObserver:self forProperty:MPVPlayerPropertyPause];
 }
 
 - (void)addObserverForPlayer:(MPVPlayer *)player {
@@ -177,6 +180,9 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
     [nc addObserver:self selector:@selector(playerDidStartSeek:) name:MPVPlayerDidStartSeekNotification object:player];
     [nc addObserver:self selector:@selector(playerVideoDidChange:) name:MPVPlayerVideoDidChangeNotification object:player];
     [nc addObserver:self selector:@selector(playerDidEnterIdleMode:) name:MPVPlayerDidEnterIdleModeNotification object:player];
+    [player addObserver:self
+            forProperty:MPVPlayerPropertyPause
+                 format:MPV_FORMAT_FLAG];
 }
 
 - (void)createTimerWithInterval:(NSUInteger)seconds {
@@ -272,8 +278,7 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 }
 
 - (IBAction)play:(id)sender {
-    BOOL state = [_player boolForProperty:MPVPlayerPropertyPause];
-    if (state) {
+    if (!_pause) {
         [_player play];
     } else {
         [_player pause];
@@ -519,8 +524,16 @@ typedef NS_ENUM(NSUInteger, SLHVolumeIcon) {
 
 #pragma mark - MPVPropertyObserving
 
-- (void)player:(MPVPlayer *)player didChangeValue:(id)value forProperty:(NSString *)property format:(mpv_format)format {
-    
+- (void)player:(MPVPlayer *)player
+didChangeValue:(id)value
+   forProperty:(NSString *)property
+        format:(mpv_format)format
+{
+    __unsafe_unretained typeof(self) obj = self;
+    BOOL flag = [value boolValue];
+    CFRunLoopPerformBlock(obj->_main_runloop, kCFRunLoopCommonModes, ^{
+        obj.pause = flag;
+    });
 }
 
 #pragma mark - SLHSliderCellMouseTracking
