@@ -85,7 +85,7 @@
     [super viewDidLoad];
     _trimView.formatter = [SLHTimeFormatter sharedFormatter];
     
-    NSRect frame = NSInsetRect(_trimView.frame, 10, 2);
+    NSRect frame = NSInsetRect(_trimView.frame, SLHTrimViewHandleThickness, 2);
     _videoTrackView = [[SLHVideoTrackView alloc] initWithFrame:frame];
     _videoTrackView.autoresizingMask = _trimView.autoresizingMask;
     _videoTrackView.wantsLayer = YES;
