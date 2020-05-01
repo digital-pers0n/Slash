@@ -59,8 +59,8 @@ static const NSUInteger kSLHTimelineMaxPrimaryMarksDistance = 180;
         
         _secondaryMarksLayer = [CAShapeLayer new];
         _secondaryMarksLayer.anchorPoint = CGPointZero;
-        _secondaryMarksLayer.position = _marksLayer.position;
-        _secondaryMarksLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+        _secondaryMarksLayer.position = CGPointZero;
+
         [_marksLayer addSublayer:_secondaryMarksLayer];
         [self updateColors];
         
