@@ -181,7 +181,7 @@
                                 <button toolTip="Step Forward (.)" verticalHuggingPriority="750" misplaced="YES" id="pjg-hu-H80">
                                     <rect key="frame" x="150" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameGoRightTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAY-Cq-H60">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                     </buttonCell>
@@ -211,16 +211,16 @@ IA
                                     </buttonCell>
                                     <connections>
                                         <action selector="play:" target="-2" id="bQ0-Kh-GGL"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="CZR-4p-kcW">
-                                            <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                                            </dictionary>
-                                        </binding>
                                         <binding destination="-2" name="value" keyPath="pause" id="9cw-Ok-Wdf">
                                             <dictionary key="options">
                                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
                                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                            </dictionary>
+                                        </binding>
+                                        <binding destination="-2" name="enabled" keyPath="self.player.currentItem" id="CZR-4p-kcW">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
                                             </dictionary>
                                         </binding>
                                         <outlet property="nextKeyView" destination="pjg-hu-H80" id="283-dY-FQt"/>
@@ -229,7 +229,7 @@ IA
                                 <button toolTip="Step Back (,)" verticalHuggingPriority="750" misplaced="YES" id="D6e-1S-wd4">
                                     <rect key="frame" x="96" y="3" width="24" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameGoLeftTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72J-o1-d02">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                     </buttonCell>
@@ -418,9 +418,9 @@ IA
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSGoLeftTemplate" width="9" height="12"/>
-        <image name="NSGoRightTemplate" width="9" height="12"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
+        <image name="SLHImageNameGoLeftTemplate" width="15" height="15"/>
+        <image name="SLHImageNameGoRightTemplate" width="15" height="15"/>
         <image name="SLHImageNameJumpToEndTemplate" width="15" height="15"/>
         <image name="SLHImageNameJumpToStartTemplate" width="15" height="15"/>
         <image name="SLHImageNameLeftFacingBracketTemplate" width="15" height="15"/>
