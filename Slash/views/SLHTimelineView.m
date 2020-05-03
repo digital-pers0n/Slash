@@ -293,7 +293,7 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 #if ENABLE_TIMELINE_OVERLAY_VIEW
     __weak NSView *_overlay;
 #endif
-    __weak SLHRulerView * _rulerView;
+    __weak SLHTimelineRulerView * _rulerView;
     CGFloat _indicatorMargin;
     NSRect _indicatorFrame;
     NSRect _currentFrame;
