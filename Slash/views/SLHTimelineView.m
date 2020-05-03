@@ -95,6 +95,7 @@ static const NSUInteger kSLHTimelineMaxPrimaryMarksDistance = 180;
 - (void)viewDidChangeEffectiveAppearance {
     [super viewDidChangeEffectiveAppearance];
     [self updateColors];
+    [self updateTimecodeLayerFontColors];
     [self drawMarks];
 }
 
@@ -102,6 +103,7 @@ static const NSUInteger kSLHTimelineMaxPrimaryMarksDistance = 180;
 
 - (void)_viewDidChangeAppearance:(id)arg1 {
     [self updateColors];
+    [self updateTimecodeLayerFontColors];
     [self drawMarks];
 }
 
@@ -217,6 +219,13 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
     [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
     _secondaryMarksLayer.sublayers = [_timecodeLayers subarrayWithRange:range];
     [CATransaction commit];
+}
+
+- (void)updateTimecodeLayerFontColors {
+    CGColorRef const timecodeFontColor = _timecodeFontColor.CGColor;
+    for (CATextLayer * textLayer in _timecodeLayers) {
+        textLayer.foregroundColor = timecodeFontColor;
+    }
 }
 
 - (void)drawMarks {
