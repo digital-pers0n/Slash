@@ -247,7 +247,7 @@ typedef struct mpv_data_ {
     pthread_mutex_unlock(&_mpv.gl_lock);
     
 #else
-    CGLUpdateContext(_mpv.cgl_context);
+    [_glContext update];
 #endif
     
 }
