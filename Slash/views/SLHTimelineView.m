@@ -362,6 +362,8 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 
 - (void)viewDidMoveToSuperview {
     [super viewDidMoveToSuperview];
+    if (_rulerView) { return; }
+    
     NSScrollView * sv = self.enclosingScrollView;
     if (sv) {
         NSRect frame = NSMakeRect(0, 0, NSWidth(_currentFrame),
