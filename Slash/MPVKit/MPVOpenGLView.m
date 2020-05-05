@@ -94,7 +94,25 @@ typedef struct mpv_data_ {
     
     pthread_mutexattr_t mattr;
     pthread_mutexattr_init(&mattr);
-    pthread_mutexattr_setpolicy_np(&mattr, _PTHREAD_MUTEX_POLICY_FIRSTFIT);
+
+    /*
+     10.14 SDK breaks firstfit mutexes on macOS 10.13 and lower.
+     Older SDKs define 2 as _PTHREAD_MUTEX_POLICY_FIRSTFIT macro,
+     but when using 10.14 SDK the actual value is 3.
+     This breaks firstfit mutexes and makes them fairshare instead.
+     Also on Mojave and higher even fairshare mutexes are not much slower 
+     than firstfit ones.
+     */
+    
+#if MAC_OS_X_VERSION_10_14 && \
+    MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_14
+    // _PTHREAD_MUTEX_POLICY_FIRSTFIT 2
+    const int mutex_policy = 2;
+#else
+    const int mutex_policy = _PTHREAD_MUTEX_POLICY_FIRSTFIT;
+#endif
+    
+    pthread_mutexattr_setpolicy_np(&mattr, mutex_policy);
     pthread_mutex_init(&_mpv.gl_lock, &mattr);
     pthread_mutexattr_destroy(&mattr);
     
