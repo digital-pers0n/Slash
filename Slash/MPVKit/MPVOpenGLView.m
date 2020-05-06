@@ -35,7 +35,6 @@ typedef struct mpv_data_ {
 @interface MPVOpenGLView () {
     NSOpenGLContext *_glContext;
     dispatch_queue_t _render_queue;
-    dispatch_queue_t _main_queue;
     mpv_data _mpv;
 }
 
@@ -127,7 +126,6 @@ typedef struct mpv_data_ {
                                                                          QOS_CLASS_USER_INTERACTIVE, 0);
     _render_queue = dispatch_queue_create("com.home.MPVOpenGLView.render-queue", attr);
 
-    _main_queue = dispatch_get_main_queue();
     _glContext = self.openGLContext;
     _mpv.cgl_context = _glContext.CGLContextObj;
     
