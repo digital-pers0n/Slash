@@ -594,6 +594,7 @@ fatal_error:
 
 - (NSString *)runFileSelectionPanel {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.treatsFilePackagesAsDirectories = YES;
     if ([panel runModal] == NSModalResponseOK) {
         return panel.URLs.firstObject.path;
     }
