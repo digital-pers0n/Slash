@@ -727,6 +727,13 @@ static char SLHPreferencesKVOContext;
     }
 }
 
+- (IBAction)jumpToNearestKeyframe:(id)sender {
+    double inc = 1.0 / (_currentEncoderItem.playerItem.bestVideoTrack.averageFrameRate + 0.01);
+    if (inc > 0) {
+        [_player seekTo:_player.timePosition - inc];
+    }
+}
+
 - (IBAction)frameStep:(id)sender {
     [_player performCommand:MPVPlayerCommandFrameStep];
 }
