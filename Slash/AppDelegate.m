@@ -93,7 +93,13 @@ char *g_temp_dir;
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
     [_mainWindowController.window makeKeyAndOrderFront:nil];
-    return [_mainWindowController loadFileURL:[NSURL fileURLWithPath:filename]];;
+    NSURL * url = [NSURL fileURLWithPath:filename];
+    BOOL result = [_mainWindowController loadFileURL:url];
+    if (result) {
+        // bump a recently open file up in the "Open Recent" submenu
+        [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:url];
+    }
+    return result;
 }
 
 #pragma mark - IBActions
