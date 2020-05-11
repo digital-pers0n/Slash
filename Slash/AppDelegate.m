@@ -76,7 +76,7 @@ char *g_temp_dir;
     
     [openPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         
-        if (result == NSOKButton) {
+        if (result == NSModalResponseOK) {
             NSURL *URL = openPanel.URL;
             if ([obj->_mainWindowController loadFileURL:URL]) {
                 [NSDocumentController.sharedDocumentController noteNewRecentDocumentURL:URL];
