@@ -103,7 +103,7 @@ typedef struct mpv_data_ {
      than firstfit ones.
      */
     
-#if MAC_OS_X_VERSION_10_14 && \
+#if !MAC_OS_X_VERSION_10_14 || \
     MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_14
     // _PTHREAD_MUTEX_POLICY_FIRSTFIT 2
     const int mutex_policy = 2;
