@@ -58,4 +58,6 @@
 @property (nonatomic) double trimViewVerticalZoom;
 @property (nonatomic) double trimViewHorizontalZoom;
 
+@property (nonatomic) BOOL shouldOverwriteFiles;
+
 @end

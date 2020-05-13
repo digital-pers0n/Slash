@@ -533,6 +533,14 @@ fatal_error:
     return [_userDefaults doubleForKey:SLHPreferencesTrimViewHorizontalZoomKey];
 }
 
+- (void)setShouldOverwriteFiles:(BOOL)value {
+    [_userDefaults setBool:value forKey:SLHPreferencesShouldOverwriteFiles];
+}
+
+- (BOOL)shouldOverwriteFiles {
+    return [_userDefaults boolForKey:SLHPreferencesShouldOverwriteFiles];
+}
+
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {
         return;

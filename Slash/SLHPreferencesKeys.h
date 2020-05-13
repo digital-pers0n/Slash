@@ -40,4 +40,6 @@ extern NSString * const SLHPreferencesTrimViewShouldGeneratePreviewImagesKey;
 extern NSString * const SLHPreferencesTrimViewVerticalZoomKey;
 extern NSString * const SLHPreferencesTrimViewHorizontalZoomKey;
 
+extern NSString * const SLHPreferencesShouldOverwriteFiles;
+
 #endif /* SLHPreferencesKeys_h */
