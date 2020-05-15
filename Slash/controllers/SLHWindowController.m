@@ -1016,6 +1016,26 @@ static char SLHPreferencesKVOContext;
 
 - (IBAction)startEncoding:(id)sender {
     [self.window endEditingFor:nil];
+    if (!_preferences.shouldOverwriteFiles &&
+        [[NSFileManager defaultManager] fileExistsAtPath:_currentEncoderItem.outputPath
+                                             isDirectory:nil])
+    {
+        NSString *question = @"Overwrite file?";
+        NSString *info = [NSString stringWithFormat:@"File '%@' already exists.",
+                          _currentEncoderItem.outputPath];
+        NSString *firstButton = @"OK";
+        NSString *secondButton = @"Cancel";
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = question;
+        alert.informativeText = info;
+        [alert addButtonWithTitle:firstButton];
+        [alert addButtonWithTitle:secondButton];
+        
+        if ([alert runModal] == NSAlertSecondButtonReturn) {
+            return;
+        }
+    }
+    
     _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
     
     if (NSApp.currentEvent.modifierFlags & NSAlternateKeyMask) {
