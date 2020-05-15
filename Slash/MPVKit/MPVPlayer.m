@@ -442,11 +442,19 @@ exit:
 }
 
 - (double)timePosition {
-    return [self doubleForProperty:MPVPlayerPropertyTimePosition];
+    double result = 0;
+    int error = mpv_get_value_for_key(_mpv_handle, &result, "time-pos");
+    if (error != MPV_ERROR_SUCCESS) {
+        mpv_print_error_get_property(error, @"time-pos");
+    }
+    return result;
 }
 
-- (void)setTimePosition:(double)currentTimePosition {
-    [self setDouble:currentTimePosition forProperty:MPVPlayerPropertyTimePosition];
+- (void)setTimePosition:(double)value {
+    int error = mpv_set_value_for_key(_mpv_handle, value, "time-pos");
+    if (error != MPV_ERROR_SUCCESS) {
+        mpv_print_error_set_property(error, @"time-pos", "%g", value);
+    }
 }
 
 - (double)percentPosition {
