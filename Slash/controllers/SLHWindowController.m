@@ -1016,6 +1016,10 @@ static char SLHPreferencesKVOContext;
 
 - (IBAction)startEncoding:(id)sender {
     [self.window endEditingFor:nil];
+    
+    const NSEventModifierFlags
+    shouldEditArgs = NSApp.currentEvent.modifierFlags & NSAlternateKeyMask;
+    
     if (!_preferences.shouldOverwriteFiles &&
         [[NSFileManager defaultManager] fileExistsAtPath:_currentEncoderItem.outputPath
                                              isDirectory:nil])
@@ -1038,7 +1042,7 @@ static char SLHPreferencesKVOContext;
     
     _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
     
-    if (NSApp.currentEvent.modifierFlags & NSAlternateKeyMask) {
+    if (shouldEditArgs) {
         SLHModalWindowController *win = [[SLHModalWindowController alloc] init];
         SLHArgumentsViewController *argsView = [[SLHArgumentsViewController alloc] init];
         win.title = @"Encoding Arguments";
