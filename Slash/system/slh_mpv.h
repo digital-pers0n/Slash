@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "slh_socket.h"
 #include "slh_process.h"
-#include <pthread/pthread.h>
+#include "MPVLock.h"
 #include <stdatomic.h>
 
 typedef void (*ipc_read_f)(ssize_t size, void *context);
@@ -32,7 +32,7 @@ typedef struct _Player {
     atomic_int kq;          // kqueue
     PCallback *cb;
     void *gr;               // dispatch_group_t
-    pthread_mutex_t lock;
+    MPVLock lock;
 } Player;
 
 /**

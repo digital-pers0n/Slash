@@ -10,8 +10,7 @@
 #import "MPVPlayer.h"
 #import <mpv/render_gl.h>
 #import <dlfcn.h>
-#import <pthread/pthread.h>
-#import <pthread/pthread_spis.h>
+#import "MPVLock.h"
 
 #import <OpenGL/gl.h>
 #import <OpenGL/gl3.h>
@@ -29,8 +28,24 @@ typedef struct mpv_data_ {
     CGLContextObj           cgl_context;
     mpv_opengl_fbo          opengl_fbo;
     mpv_render_param        render_params[3];
-    pthread_mutex_t         gl_lock;
+    MPVLock                 gl_lock;
 } mpv_data;
+
+static void mpv_gl_lock_init(mpv_data * mpv) {
+    mpv_lock_init(&mpv->gl_lock);
+}
+
+static void mpv_gl_lock(mpv_data * mpv) {
+    mpv_lock_lock(&mpv->gl_lock);
+}
+
+static void mpv_gl_unlock(mpv_data * mpv) {
+    mpv_lock_unlock(&mpv->gl_lock);
+}
+
+static void mpv_gl_lock_destroy(mpv_data * mpv) {
+    mpv_lock_destroy(&mpv->gl_lock);
+}
 
 @interface MPVOpenGLView () {
     NSOpenGLContext *_glContext;
@@ -90,31 +105,8 @@ typedef struct mpv_data_ {
 }
 
 - (void)setUp {
-    
-    pthread_mutexattr_t mattr;
-    pthread_mutexattr_init(&mattr);
 
-    /*
-     10.14 SDK breaks firstfit mutexes on macOS 10.13 and lower.
-     Older SDKs define 2 as _PTHREAD_MUTEX_POLICY_FIRSTFIT macro,
-     but when using 10.14 SDK the actual value is 3.
-     This breaks firstfit mutexes and makes them fairshare instead.
-     Also on Mojave and higher even fairshare mutexes are not much slower 
-     than firstfit ones.
-     */
-    
-#if !MAC_OS_X_VERSION_10_14 || \
-    MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_14
-    // _PTHREAD_MUTEX_POLICY_FIRSTFIT 2
-    const int mutex_policy = 2;
-#else
-    const int mutex_policy = _PTHREAD_MUTEX_POLICY_FIRSTFIT;
-#endif
-    
-    pthread_mutexattr_setpolicy_np(&mattr, mutex_policy);
-    pthread_mutex_init(&_mpv.gl_lock, &mattr);
-    pthread_mutexattr_destroy(&mattr);
-    
+    mpv_gl_lock_init(&_mpv);
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
            selector:@selector(playerWillShutdown:)
@@ -210,7 +202,7 @@ typedef struct mpv_data_ {
     mpv_render_context_set_update_callback(_mpv.render_context, NULL, NULL);
     mpv_render_context_free(_mpv.render_context);
     _mpv.render_context = NULL;
-    pthread_mutex_destroy(&_mpv.gl_lock);
+    mpv_gl_lock_destroy(&_mpv);
 }
 
 - (void)dealloc {
@@ -225,8 +217,8 @@ typedef struct mpv_data_ {
 - (void)reshape {
     
     if (!self.inLiveResize) {
-        
-        pthread_mutex_lock(&_mpv.gl_lock);
+
+        mpv_gl_lock(&_mpv);
         NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
         _mpv.opengl_fbo.w = surfaceSize.width;
         _mpv.opengl_fbo.h = surfaceSize.height;
@@ -236,17 +228,17 @@ typedef struct mpv_data_ {
         [super reshape];
         
 #endif
-        
-        pthread_mutex_unlock(&_mpv.gl_lock);
+
+        mpv_gl_unlock(&_mpv);
     }
     
 #ifdef MAC_OS_X_VERSION_10_14
     else {
-        pthread_mutex_lock(&_mpv.gl_lock);
+        mpv_gl_lock(&_mpv);
         
         [super reshape];
-        
-        pthread_mutex_unlock(&_mpv.gl_lock);
+
+        mpv_gl_unlock(&_mpv);
     }
 #endif
     
@@ -255,13 +247,11 @@ typedef struct mpv_data_ {
 - (void)update {
     
 #ifdef MAC_OS_X_VERSION_10_14
-    
-    pthread_mutex_lock(&_mpv.gl_lock);
+    mpv_gl_lock(&_mpv);
     
     [super update];
-    
-    pthread_mutex_unlock(&_mpv.gl_lock);
-    
+
+    mpv_gl_unlock(&_mpv);
 #else
     [_glContext update];
 #endif
@@ -293,14 +283,15 @@ typedef struct mpv_data_ {
     
     if (_mpv.render_context) {
         if (self.inLiveResize) {
-            pthread_mutex_lock(&_mpv.gl_lock);
+
+            mpv_gl_lock(&_mpv);
             
             NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
             _mpv.opengl_fbo.w = surfaceSize.width;
             _mpv.opengl_fbo.h = surfaceSize.height;
             resize(&_mpv);
-            
-            pthread_mutex_unlock(&_mpv.gl_lock);
+
+            mpv_gl_unlock(&_mpv);
 
         } else {
             if ([_player isPaused]) { // force redraw
@@ -397,13 +388,15 @@ static void resize(void *ctx) {
 
 static void live_resize(void *ctx) {
     mpv_data *mpv = ctx;
-    pthread_mutex_lock(&mpv->gl_lock);
+
+    mpv_gl_lock(mpv);
     
     if (mpv_render_context_update(mpv->render_context) & MPV_RENDER_UPDATE_FRAME) {
         resize(mpv);
     }
     
-    pthread_mutex_unlock(&mpv->gl_lock);
+    mpv_gl_unlock(mpv);
+
 }
 
 static void render_live_resize_callback(void *ctx) {
