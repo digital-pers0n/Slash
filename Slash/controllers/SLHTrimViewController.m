@@ -83,6 +83,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _timelineView.indicatorMargin = SLHTrimViewHandleThickness + 5;
+    
     _trimView.formatter = [SLHTimeFormatter sharedFormatter];
     
     NSRect frame = NSInsetRect(_trimView.frame, SLHTrimViewHandleThickness, 2);
