@@ -82,7 +82,7 @@
             <rect key="frame" x="0.0" y="0.0" width="493" height="270"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" id="XpS-hB-PMx">
+                <textField toolTip="mpv location" verticalHuggingPriority="750" id="XpS-hB-PMx">
                     <rect key="frame" x="181" y="204" width="260" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0dW-L9-D2o">
@@ -116,7 +116,7 @@
                         </binding>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" id="bc1-Jf-tBj">
+                <textField toolTip="ffmpeg location" verticalHuggingPriority="750" id="bc1-Jf-tBj">
                     <rect key="frame" x="181" y="231" width="260" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="hQs-gx-m1D">
@@ -134,7 +134,7 @@
                         </binding>
                     </connections>
                 </textField>
-                <button tag="3" id="cmR-9g-nNH">
+                <button toolTip="Locate mpv binary" tag="3" id="cmR-9g-nNH">
                     <rect key="frame" x="446" y="206" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="qI4-wv-Yrv">
@@ -145,7 +145,7 @@
                         <action selector="selectMPV:" target="-2" id="3V9-iJ-GVC"/>
                     </connections>
                 </button>
-                <button tag="1" id="DgZ-Km-3ef">
+                <button toolTip="Locate ffmpeg binary" tag="1" id="DgZ-Km-3ef">
                     <rect key="frame" x="446" y="233" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="J2K-Ay-4Yd">
@@ -342,7 +342,7 @@
                     </connections>
                 </button>
             </subviews>
-            <point key="canvasLocation" x="378.5" y="454"/>
+            <point key="canvasLocation" x="378.5" y="432"/>
         </customView>
         <customView misplaced="YES" id="sIA-6R-rcS">
             <rect key="frame" x="0.0" y="0.0" width="466" height="449"/>
@@ -372,7 +372,7 @@
                                     <action selector="updateScreenshotFormat:" target="-2" id="je8-2N-5o6"/>
                                 </connections>
                             </popUpButton>
-                            <button misplaced="YES" tag="2" id="g7X-cG-WJa">
+                            <button toolTip="Restore default format" misplaced="YES" tag="2" id="g7X-cG-WJa">
                                 <rect key="frame" x="394" y="128" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="3Os-TG-40X">
@@ -434,7 +434,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button misplaced="YES" tag="2" id="pff-me-QBw">
+                            <button toolTip="Select screenshot output directory" misplaced="YES" tag="2" id="pff-me-QBw">
                                 <rect key="frame" x="394" y="155" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="oaR-1t-D3u">
@@ -920,7 +920,7 @@ CA
                     </connections>
                 </searchField>
             </subviews>
-            <point key="canvasLocation" x="214" y="1144.5"/>
+            <point key="canvasLocation" x="232" y="1344"/>
         </customView>
     </objects>
     <resources>
