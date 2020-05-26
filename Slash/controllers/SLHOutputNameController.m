@@ -8,6 +8,8 @@
 
 #import "SLHOutputNameController.h"
 
+static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
+
 #pragma mark - **** SLHOutputNameContainerView Class ****
 
 @interface SLHOutputNameContainerView : NSView {
@@ -69,8 +71,13 @@
 }
 
 - (void)updateMaxOutputNameTextSize {
-    const NSSize size = _outputNameTextField.cell.cellSize;
-    _maxOutputNameTextSize = NSMakeSize(round(size.width), size.height);
+    NSSize size = _outputNameTextField.cell.cellSize;
+    if (size.width < kMinOutputNameTextFieldWidth) {
+        size.width = kMinOutputNameTextFieldWidth;
+    } else {
+        size.width = round(size.width);
+    }
+    _maxOutputNameTextSize = size;
 }
 
 #pragma mark - Overrides
