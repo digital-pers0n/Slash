@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SLHPreferences : NSWindowController
 
 + (instancetype)preferences;
@@ -61,3 +63,5 @@
 @property (nonatomic) BOOL shouldOverwriteFiles;
 
 @end
+
+NS_ASSUME_NONNULL_END
