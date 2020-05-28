@@ -13,6 +13,10 @@
 
 static NSString * const kSLHDefaultTemplateNameFormat = @"%f-%D";
 
++ (NSString *)defaultTemplateFormat {
+    return kSLHDefaultTemplateNameFormat;
+}
+
 - (instancetype)init
 {
     self = [super init];
