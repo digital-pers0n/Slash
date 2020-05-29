@@ -62,6 +62,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) BOOL shouldOverwriteFiles;
 
+@property (nonatomic, null_resettable) NSString * outputNameTemplate;
+@property (nonatomic) BOOL enableOutputNameTemplate;
+
 @end
 
 NS_ASSUME_NONNULL_END

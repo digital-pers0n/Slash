@@ -56,6 +56,9 @@ NSString * const SLHPreferencesTrimViewHorizontalZoomKey = @"trimViewHorizontalZ
 
 NSString * const SLHPreferencesShouldOverwriteFiles = @"shouldOverwriteFiles";
 
+NSString * const SLHPreferencesOutputNameTemplateKey        = @"outputNameTemplate";
+NSString * const SLHPreferencesEnableOutputNameTemplateKey  = @"enableOutputNameTemplate";
+
 #pragma mark - SLHMetadataItem
 
 NSString *const SLHMetadataIdentifierArtist         = @"artist";

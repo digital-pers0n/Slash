@@ -42,4 +42,7 @@ extern NSString * const SLHPreferencesTrimViewHorizontalZoomKey;
 
 extern NSString * const SLHPreferencesShouldOverwriteFiles;
 
+extern NSString * const SLHPreferencesOutputNameTemplateKey;
+extern NSString * const SLHPreferencesEnableOutputNameTemplateKey;
+
 #endif /* SLHPreferencesKeys_h */

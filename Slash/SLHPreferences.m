@@ -8,6 +8,7 @@
 
 #import "SLHPreferences.h"
 #import "SLHPreferencesKeys.h"
+#import "SLHTemplateNameFormatter.h"
 
 /* User-defaults keys */
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
@@ -540,6 +541,34 @@ fatal_error:
 - (BOOL)shouldOverwriteFiles {
     return [_userDefaults boolForKey:SLHPreferencesShouldOverwriteFiles];
 }
+
+- (void)setOutputNameTemplate:(NSString *)value {
+    if (!value) {
+         __unsafe_unretained typeof(self) obj = self;
+        CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
+            [obj willChangeValueForKey:SLHPreferencesOutputNameTemplateKey];
+            id defaultTemplate = SLHTemplateNameFormatter.defaultTemplateFormat;
+            [obj->_userDefaults setObject:defaultTemplate
+                                   forKey:SLHPreferencesOutputNameTemplateKey];
+            [obj didChangeValueForKey:SLHPreferencesOutputNameTemplateKey];
+        });
+        return;
+    }
+    [_userDefaults setObject:value forKey:SLHPreferencesOutputNameTemplateKey];
+}
+
+- (NSString *)outputNameTemplate {
+    return [_userDefaults objectForKey:SLHPreferencesOutputNameTemplateKey];
+}
+
+- (void)setEnableOutputNameTemplate:(BOOL)value {
+    [_userDefaults setBool:value forKey:SLHPreferencesEnableOutputNameTemplateKey];
+}
+
+- (BOOL)enableOutputNameTemplate {
+    return [_userDefaults boolForKey:SLHPreferencesEnableOutputNameTemplateKey];
+}
+
 
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {

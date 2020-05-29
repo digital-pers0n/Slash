@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHTemplateNameFormatter : NSFormatter
 
+@property (class, readonly, nonatomic) NSString * defaultTemplateFormat;
+
 /**
  Format specifiers:
  @c %f - filename
