@@ -43,6 +43,14 @@ static NSString * const kSLHDefaultTemplateNameFormat = @"%f-%D";
     }
 }
 
+__attribute__((cold))
+static NSString * nameIsTooLongError(size_t len) {
+    return [NSString stringWithFormat:
+            @"Template name is longer than the maximum allowed file "
+            "name size. Must be less than %i bytes. Current size is %zu bytes.",
+            NAME_MAX, len];
+}
+
 static char * stringFromDouble(double value, char * buffer, size_t size) {
     
     int64_t time = (int64_t)value;
@@ -62,11 +70,8 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
     const char * str = template.UTF8String;
     
     if (strlen(str) > NAME_MAX) {
-        NSLog(@"'%@' will be bigger than the maximum allowed file name size.",
-              template);
-        NSLog(@"Name must be less than %i bytes. Current size is %zu bytes."
-              "Falling back to the default template format.",
-              NAME_MAX, strlen(str));
+        NSLog(@"%@ Falling back to the default template format.",
+              nameIsTooLongError(strlen(str)));
         str = kSLHDefaultTemplateNameFormat.UTF8String;
     }
     
