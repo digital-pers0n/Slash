@@ -51,6 +51,12 @@ static NSString * nameIsTooLongError(size_t len) {
             NAME_MAX, len];
 }
 
+__attribute__((cold))
+static NSString * invalidSpecifierError(char specifier) {
+    return [NSString stringWithFormat: @"Invalid specifier %%%c\n"
+            "Must be %%f %%d %%D %%r or %%R ", specifier];
+}
+
 static char * stringFromDouble(double value, char * buffer, size_t size) {
     
     int64_t time = (int64_t)value;
@@ -156,6 +162,10 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
 }
 
 - (NSString *)stringForObjectValue:(id)obj {
+    if (!obj || [obj isKindOfClass:[NSString class]]) {
+        // Template edit mode.
+        return obj;
+    }
     NSAssert([obj isKindOfClass:[SLHEncoderItem class]],
              @"'%@' is an invalid object value class. Must be 'SLHEncoderItem'",
              [obj class]);
@@ -172,7 +182,31 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
              forString:(NSString *)string
       errorDescription:(out NSString * _Nullable * _Nullable)error
 {
-    return NO;
+    const char * str = string.UTF8String;
+    if (strlen(str) > NAME_MAX) {
+        if (error) {
+            *error = nameIsTooLongError(strlen(str));
+        }
+        return NO;
+    }
+    while (1) {
+        char *fmt = strchr(str, '%');
+        if (!fmt) {
+            break;
+        }
+        str = fmt + 1;
+        char c = *str++;
+        if (c != 'd' && c != 'f' && c != 'r' && c != 'D' && c != 'R' ) {
+            if (error) {
+                *error = invalidSpecifierError(c);
+            }
+            return NO;
+        }
+    }
+    if (obj) {
+        *obj = string;
+    }
+    return YES;
 }
 
 @end
