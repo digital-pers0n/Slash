@@ -28,6 +28,7 @@
 #import "SLHTrimViewController.h"
 #import "SLHTrimViewSettings.h"
 #import "SLHOutputNameController.h"
+#import "SLHTemplateNameFormatter.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -76,6 +77,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     SLHTrimViewController *_trimViewController;
     NSPopover *_trimViewSettingsPopover;
     SLHOutputNameController *_outputNameController;
+    SLHTemplateNameFormatter *_templateNameFormatter;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
@@ -261,6 +263,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [_outputNameView.superview replaceSubview:_outputNameView with:onView];
     _outputNameView = onView;
     _outputNameController.encoderItemsArrayController = _itemsArrayController;
+    
+    /* SLHTemplateNameFormatter */
+    _templateNameFormatter = [[SLHTemplateNameFormatter alloc] init];
+    _templateNameFormatter.templateFormat = _preferences.outputNameTemplate;
     
     /* NSApplication */
     [nc addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:NSApp];
