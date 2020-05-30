@@ -586,6 +586,10 @@ static char SLHPreferencesKVOContext;
     [SLHExternalPlayer reinitializeDefaultPlayer];
 }
 
+- (void)updateTemplateName:(NSString *)obj {
+    _templateNameFormatter.templateFormat = obj;
+}
+
 - (void)observePreferences:(SLHPreferences *)appPrefs {
     _observedPrefs = @{
                        SLHPreferencesScreenshotPathKey           : addressOf(self, @selector(screenshotPathDidChange:)),
@@ -603,6 +607,7 @@ static char SLHPreferencesKVOContext;
                        SLHPreferencesAdvancedOptionsEnabledKey      : addressOf(self, @selector(enableAdvancedOptionsDidChange:)),
                        SLHPreferencesWindowTitleStyleKey    : addressOf(self, @selector(updateWindowTitleStyle:)),
                        SLHPreferencesMPVPathKey             : addressOf(self, @selector(reloadExternalPlayer:)),
+                       SLHPreferencesOutputNameTemplateKey  : addressOf(self, @selector(updateTemplateName:))
                        };
     
     for (NSString *key in _observedPrefs) {
