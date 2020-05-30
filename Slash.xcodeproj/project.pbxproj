@@ -62,7 +62,6 @@
 		CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FD20FE8B9E0066ACE2 /* Assets.xcassets */; };
 		CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4D40FF20FE8B9E0066ACE2 /* MainMenu.xib */; };
 		CE5461D3211A314E00C2B774 /* slh_util.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5461D1211A314E00C2B774 /* slh_util.c */; };
-		CE566A77215AAC16004E974F /* slh_extern.c in Sources */ = {isa = PBXBuildFile; fileRef = CE566A75215AAC16004E974F /* slh_extern.c */; };
 		CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = CE566A7A215EB849004E974F /* SLHPreferences.m */; };
 		CE566A7D215EB849004E974F /* SLHPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE566A7B215EB849004E974F /* SLHPreferences.xib */; };
 		CE566A7F215EC93B004E974F /* extern.m in Sources */ = {isa = PBXBuildFile; fileRef = CE566A7E215EC93B004E974F /* extern.m */; };
@@ -87,7 +86,6 @@
 		CE85A0F722C651830027F742 /* SLHEncoderUniversalFormat.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE85A0F522C651830027F742 /* SLHEncoderUniversalFormat.xib */; };
 		CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85A0F922C657E40027F742 /* SLHEncoderUniversalOptions.m */; };
 		CE8628242371B0A700E0909F /* SLHTrimView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8628232371B0A700E0909F /* SLHTrimView.m */; };
-		CE8806C42158267900827977 /* slh_media.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8806C22158267900827977 /* slh_media.c */; };
 		CE88B9B4238C5ED500227111 /* SLHBitrateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88B9B3238C5ED500227111 /* SLHBitrateFormatter.m */; };
 		CE8BD79C23C371F4004A7C1A /* SLHEncoderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8BD79A23C371F4004A7C1A /* SLHEncoderHistory.m */; };
 		CE8BD79D23C371F4004A7C1A /* SLHEncoderHistory.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8BD79B23C371F4004A7C1A /* SLHEncoderHistory.xib */; };
@@ -479,6 +477,10 @@
 		CE299C6323BE435A00F1C9BF /* legacy */ = {
 			isa = PBXGroup;
 			children = (
+				CE8806C32158267900827977 /* slh_media.h */,
+				CE8806C22158267900827977 /* slh_media.c */,
+				CE566A78215AAF3C004E974F /* slh_media_keys.h */,
+				CE566A75215AAC16004E974F /* slh_extern.c */,
 				CE4B6E3E2372C900006561AE /* SLHTrimTableCellView.h */,
 				CE4B6E3F2372C900006561AE /* SLHTrimTableCellView.m */,
 				CE9C0D1B2193583D0089C084 /* SLHDragView.h */,
@@ -597,10 +599,6 @@
 				CE5461D1211A314E00C2B774 /* slh_util.c */,
 				CE4BF2E221503D1E002E43F4 /* slh_dictionary.h */,
 				CE4BF2E121503D1E002E43F4 /* slh_dictionary.c */,
-				CE8806C32158267900827977 /* slh_media.h */,
-				CE8806C22158267900827977 /* slh_media.c */,
-				CE566A78215AAF3C004E974F /* slh_media_keys.h */,
-				CE566A75215AAC16004E974F /* slh_extern.c */,
 				CE477234226771F100FF5E0D /* slh_list.h */,
 				CE477233226771F100FF5E0D /* slh_list.c */,
 			);
@@ -839,7 +837,6 @@
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
 				CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */,
 				CE2A56B424375AF6005CF48A /* SLHTimelineView.m in Sources */,
-				CE8806C42158267900827977 /* slh_media.c in Sources */,
 				CEEDC2182404380200AAFC18 /* SLHSeparatorView.m in Sources */,
 				CE5EBC3622905511009BBAF7 /* SLHEncoderQueueItem.m in Sources */,
 				CEDD22EC23887EB50049E4C4 /* SLHCropView.m in Sources */,
@@ -864,7 +861,6 @@
 				CE5F50CA243CEC6E0080E4A5 /* SLHTrimViewSettings.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
 				CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */,
-				CE566A77215AAC16004E974F /* slh_extern.c in Sources */,
 				CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */,
 				CE120455229C260A00C2A145 /* SLHEncoderVPXFormat.m in Sources */,
 				CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */,
