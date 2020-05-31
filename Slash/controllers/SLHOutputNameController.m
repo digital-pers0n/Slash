@@ -75,7 +75,7 @@ static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
     if (size.width < kMinOutputNameTextFieldWidth) {
         size.width = kMinOutputNameTextFieldWidth;
     } else {
-        size.width = round(size.width);
+        size.width = ceil(size.width);
     }
     _maxOutputNameTextSize = size;
 }
