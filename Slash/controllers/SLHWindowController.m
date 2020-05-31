@@ -1038,15 +1038,15 @@ static char SLHPreferencesKVOContext;
         NSString *question = @"Overwrite file?";
         NSString *info = [NSString stringWithFormat:@"File '%@' already exists.",
                           _currentEncoderItem.outputPath];
-        NSString *firstButton = @"OK";
-        NSString *secondButton = @"Cancel";
+        NSString *firstButton = @"Cancel";
+        NSString *secondButton = @"OK";
         NSAlert *alert = [[NSAlert alloc] init];
         alert.messageText = question;
         alert.informativeText = info;
         [alert addButtonWithTitle:firstButton];
         [alert addButtonWithTitle:secondButton];
         
-        if ([alert runModal] == NSAlertSecondButtonReturn) {
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
             return;
         }
     }
