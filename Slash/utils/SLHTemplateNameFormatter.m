@@ -7,6 +7,7 @@
 //
 
 #import "SLHTemplateNameFormatter.h"
+#import "MPVPlayerItem.h"
 #import "SLHEncoderItem.h"
 
 @implementation SLHTemplateNameFormatter
@@ -97,8 +98,11 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
         char c = *str++;
         switch (c) {
             case 'f':
-                strlcat(result, doc.outputFileName.UTF8String, sizeof(result));
-                
+            {
+                NSString *outputName =
+                doc.playerItem.url.lastPathComponent.stringByDeletingPathExtension;
+                strlcat(result, outputName.UTF8String, sizeof(result));
+            }
                 break;
                 
             case 'd':
