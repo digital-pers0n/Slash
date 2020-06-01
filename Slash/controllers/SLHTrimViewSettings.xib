@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +37,7 @@
                 <button toolTip="Decrease height" focusRingType="none" misplaced="YES" id="jbQ-og-UKJ">
                     <rect key="frame" x="20" y="72" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="gea-nN-Q6q">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomOutTemplate" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" inset="2" id="gea-nN-Q6q">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -49,7 +48,7 @@
                 <button toolTip="Increase height" focusRingType="none" misplaced="YES" id="ame-L8-BIN">
                     <rect key="frame" x="261" y="72" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="lmN-FH-Zt8">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameVerticalZoomInTemplate" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" inset="2" id="lmN-FH-Zt8">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -60,7 +59,7 @@
                 <button toolTip="Decrease width" focusRingType="none" misplaced="YES" id="CvD-SM-qtZ">
                     <rect key="frame" x="20" y="107" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomOutTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="Cae-G1-y57">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomOutTemplate" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" inset="2" id="Cae-G1-y57">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -71,7 +70,7 @@
                 <button toolTip="Increase width" focusRingType="none" misplaced="YES" id="H7F-Xy-2ro">
                     <rect key="frame" x="261" y="107" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomInTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="tqX-Vz-Cc7">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameHorizontalZoomInTemplate" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" inset="2" id="tqX-Vz-Cc7">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
