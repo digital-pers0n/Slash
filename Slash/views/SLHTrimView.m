@@ -217,6 +217,7 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
 
 - (void)setUp {
     _selectionCell = [[SLHTrimSelectionCell alloc] init];
+    self.layerContentsRedrawPolicy = NSViewLayerContentsRedrawDuringViewResize;
     self.wantsLayer = YES;
     [self.layer addSublayer:_selectionCell.backgroundLayer];
     _oldFrame = self.bounds;
@@ -616,14 +617,26 @@ static char minValueKVOContext;
 
 #pragma mark Draw
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (BOOL)wantsUpdateLayer {
+#ifdef DEBUG_TRIMVIEW_DRAWING
+    return NO;
+#else
+    return YES;
+#endif
+}
 
+- (void)updateLayer {
     CGFloat startMark = (_startValue) / _maxValue * NSWidth(_maxSelectionFrame);
     CGFloat endMark = _endValue / _maxValue * NSWidth(_maxSelectionFrame);
     _cellFrame.origin.x = round(startMark);
     _cellFrame.size.width = round(endMark) - NSMinX(_cellFrame) + SLHMinWidth ;
     
     [_selectionCell drawWithFrame:_cellFrame inView:self];
+
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    [self updateLayer];
 
 #ifdef DEBUG_TRIMVIEW_DRAWING
     NSRect interiorFrame = NSInsetRect(_cellFrame, SLHKnobWidth, 0);
