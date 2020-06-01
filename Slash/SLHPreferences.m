@@ -187,6 +187,25 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     return self;
 }
 
+/**
+ Async wrapper for the -[NSUserDefaults setObject:forKey:] method. It also
+ notifies Key-Value observers.
+ 
+ @discussion
+ When a text field is bound to a property and we reset the property to a default
+ value if the text field tries to set that property to nil. In this case without
+ the async call, the text field will not update it's content automatically and
+ will stay empty instead of displaying the default value.
+ */
+- (void)setAsyncValue:(id)value forKey:(NSString *)key {
+    __unsafe_unretained typeof(self) obj = self;
+    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
+        [obj willChangeValueForKey:key];
+        [obj->_userDefaults setObject:value forKey:key];
+        [obj didChangeValueForKey:key];
+    });
+}
+
 - (void)checkFFmpeg:(NSString *)ffmpegPath {
     NSFileManager *fm = NSFileManager.defaultManager;
     if (![fm fileExistsAtPath:ffmpegPath isDirectory:NO] &&
@@ -544,14 +563,8 @@ fatal_error:
 
 - (void)setOutputNameTemplate:(NSString *)value {
     if (!value) {
-         __unsafe_unretained typeof(self) obj = self;
-        CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
-            [obj willChangeValueForKey:SLHPreferencesOutputNameTemplateKey];
-            id defaultTemplate = SLHTemplateNameFormatter.defaultTemplateFormat;
-            [obj->_userDefaults setObject:defaultTemplate
-                                   forKey:SLHPreferencesOutputNameTemplateKey];
-            [obj didChangeValueForKey:SLHPreferencesOutputNameTemplateKey];
-        });
+        [self setAsyncValue:SLHTemplateNameFormatter.defaultTemplateFormat
+                     forKey:SLHPreferencesOutputNameTemplateKey];
         return;
     }
     [_userDefaults setObject:value forKey:SLHPreferencesOutputNameTemplateKey];
