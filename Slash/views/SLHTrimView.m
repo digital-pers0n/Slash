@@ -443,13 +443,12 @@ static char minValueKVOContext;
                                               ofView:self];
     _mouseX = event.locationInWindow.x;
 
-    if (((_hitTestResult == SLHCellHitNone ||
-        _hitTestResult == SLHCellHitContentArea)
+    if ((_hitTestResult == SLHCellHitNone ||
+          _hitTestResult == SLHCellHitContentArea)
 #if ENABLE_TRIMVIEW_DOUBLE_CLICK
-         && event.clickCount < 2)) {
-#else
-        )) {
+         && event.clickCount < 2
 #endif
+    ) {
        [super mouseDown:event];
         return;
     } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
