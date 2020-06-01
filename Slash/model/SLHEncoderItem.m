@@ -223,7 +223,7 @@ static char SLHEncoderItemKVOContext;
 }
 
 - (void)setOutputFileName:(NSString *)outputFileName {
-    _outputPath = [NSString stringWithFormat:@"%@/%@", _outputPath.stringByDeletingLastPathComponent, outputFileName];
+    _outputPath = [_outputPath.stringByDeletingLastPathComponent stringByAppendingPathComponent:outputFileName];
 }
 
 - (void)setNilValueForKey:(NSString *)key {
