@@ -357,6 +357,8 @@ fatal_error:
     [_titleStylePopUp selectItemWithTag:self.windowTitleStyle];
 }
 
+#pragma mark - Properties
+
 - (NSUInteger)numberOfThreads {
     return [[_userDefaults valueForKey:SLHPreferencesNumberOfThreadsKey] unsignedIntegerValue];
 }
@@ -374,6 +376,11 @@ fatal_error:
 }
 
 - (void)setFfmpegPath:(NSString *)ffmpegPath {
+    if (!ffmpegPath) {
+        [self setAsyncValue:SLHPreferencesDefaultFFMpegPath
+                     forKey:SLHPreferencesFFMpegPathKey];
+        return;
+    }
     [_userDefaults setObject:ffmpegPath forKey:SLHPreferencesFFMpegPathKey];
 }
 
@@ -382,6 +389,11 @@ fatal_error:
 }
 
 - (void)setMpvPath:(NSString *)mpvPath {
+    if (!mpvPath) {
+        [self setAsyncValue:SLHPreferencesDefaultMPVPath
+                     forKey:SLHPreferencesMPVPathKey];
+        return;
+    }
     [_userDefaults setObject:mpvPath forKey:SLHPreferencesMPVPathKey];
 }
 
@@ -394,6 +406,11 @@ fatal_error:
 }
 
 - (void)setScreenshotPath:(NSString *)screenshotPath {
+    if (!screenshotPath) {
+        [self setAsyncValue:SLHPreferencesDefaultScreenshotPath
+                     forKey:SLHPreferencesScreenshotPathKey];
+        return;
+    }
     [_userDefaults setObject:screenshotPath forKey:SLHPreferencesScreenshotPathKey];
 }
 
@@ -410,6 +427,11 @@ fatal_error:
 }
 
 - (void)setScreenshotTemplate:(NSString *)screenshotTemplate {
+    if (!screenshotTemplate) {
+        [self setAsyncValue:SLHPreferencesDefaultScreenshotTemplate
+                     forKey:SLHPreferencesScreenshotTemplateKey];
+        return;
+    }
     [_userDefaults setObject:screenshotTemplate forKey:SLHPreferencesScreenshotTemplateKey];
 }
 
@@ -435,7 +457,9 @@ fatal_error:
 
 - (void)setOsdFontName:(NSString *)osdFontName {
     if (!osdFontName) {
-        osdFontName = SLHPreferencesDefaultFontName;
+        [self setAsyncValue:SLHPreferencesDefaultFontName
+                     forKey:SLHPreferencesOSDFontNameKey];
+        return;
     }
     [_userDefaults setObject:osdFontName forKey:SLHPreferencesOSDFontNameKey];
 }
@@ -462,7 +486,9 @@ fatal_error:
 
 - (void)setSubtitlesFontName:(NSString *)subtitlesFontName {
     if (!subtitlesFontName) {
-        subtitlesFontName = SLHPreferencesDefaultFontName;
+        [self setAsyncValue:SLHPreferencesDefaultFontName
+                     forKey:SLHPreferencesSubtitlesFontNameKey];
+        return;
     }
     [_userDefaults setObject:subtitlesFontName forKey:SLHPreferencesSubtitlesFontNameKey];
 }

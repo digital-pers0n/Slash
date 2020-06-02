@@ -25,24 +25,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSUInteger numberOfThreads;
 @property (readonly) BOOL updateFileName;
 
-@property NSString *ffmpegPath;
-@property NSString *mpvPath;
+@property (null_resettable) NSString *ffmpegPath;
+@property (null_resettable) NSString *mpvPath;
 
 @property (nonatomic) BOOL hasFFmpeg;
 @property (nonatomic) BOOL hasMPV;
 
 @property NSString *lastUsedFormatName;
 
-@property NSString *screenshotPath;
-@property NSString *screenshotTemplate;
+@property (null_resettable) NSString *screenshotPath;
+@property (null_resettable) NSString *screenshotTemplate;
 @property NSString *screenshotFormat;
 @property NSInteger screenshotJPGQuality;
 @property NSInteger screenshotPNGCompression;
 
-@property (nonatomic) NSString *osdFontName;
+@property (nonatomic, null_resettable) NSString *osdFontName;
 @property (nonatomic) NSInteger osdFontSize;
 @property (nonatomic) BOOL osdFontScaleByWindow;
-@property (nonatomic) NSString *subtitlesFontName;
+@property (nonatomic, null_resettable) NSString *subtitlesFontName;
 @property (nonatomic) NSInteger subtitlesFontSize;
 @property (nonatomic) BOOL subtitlesFontScaleByWindow;
 
