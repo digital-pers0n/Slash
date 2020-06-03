@@ -357,6 +357,10 @@ fatal_error:
     [_titleStylePopUp selectItemWithTag:self.windowTitleStyle];
 }
 
+- (void)setNilValueForKey:(NSString *)key {
+    [self setAsyncValue:@0 forKey:key];
+}
+
 #pragma mark - Properties
 
 - (NSUInteger)numberOfThreads {
