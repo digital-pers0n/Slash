@@ -91,7 +91,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="updateMPVPath:" target="-2" id="Sar-wx-0pf"/>
                         <binding destination="-2" name="value" keyPath="self.mpvPath" id="XfV-U4-MxN">
                             <dictionary key="options">
                                 <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>
@@ -125,7 +124,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <action selector="updateFFmpegPath:" target="-2" id="UaW-LJ-O5k"/>
                         <binding destination="-2" name="value" keyPath="self.ffmpegPath" id="7q3-U0-BCI">
                             <dictionary key="options">
                                 <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>

@@ -206,44 +206,35 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     });
 }
 
+- (void)showError:(NSError *)error
+        prefsView:(NSView *)view
+        responder:(NSResponder *)responder
+{
+    NSAlert *alert = [NSAlert alertWithError:error];
+    [alert runModal];
+    [self showWindow:nil];
+    [self showPrefsView:view];
+    [self.window makeFirstResponder:responder];
+    [self.window makeKeyAndOrderFront:nil];
+}
+
 - (void)checkFFmpeg:(NSString *)ffmpegPath {
-    NSFileManager *fm = NSFileManager.defaultManager;
-    if (![fm fileExistsAtPath:ffmpegPath isDirectory:NO] &&
-        ![fm isExecutableFileAtPath:ffmpegPath]) {
-        self.hasFFmpeg = NO;
-
-        NSString *msgText = [NSString stringWithFormat:
-                         @"'%@' is invalid ffmpeg path.", ffmpegPath];
-        NSString *infoText = @"Please provide a correct one in the Preferences.";
-        [self showAlertWithMessageText:msgText
-                       informativeText:infoText];
-        
-        [self showWindow:nil];
-        [self showGeneralPrefs:nil];
-        [self.window makeFirstResponder:_ffmpegPathTextField];
-        [self.window makeKeyAndOrderFront:nil];
-
-    } else {
-        self.hasFFmpeg = YES;
+    NSError * error;
+    self.hasFFmpeg = [self validateFfmpegPath:&ffmpegPath error:&error];
+    if (!_hasFFmpeg) {
+        [self showError:error
+              prefsView:_generalPrefsView
+              responder:_ffmpegPathTextField];
     }
 }
 
 - (void)checkMPV:(NSString *)mpvPath {
-    NSFileManager *fm = NSFileManager.defaultManager;
-    if (![fm fileExistsAtPath:mpvPath isDirectory:NO] &&
-        ![fm isExecutableFileAtPath:mpvPath]) {
-        self.hasMPV = NO;
-        NSString *msgText = [NSString stringWithFormat:
-                             @"'%@' is invalid MPV path.", mpvPath];
-        NSString *infoText = @"Please provide a correct one in the Preferences.";
-        [self showAlertWithMessageText:msgText
-                       informativeText:infoText];
-        [self showWindow:nil];
-        [self showGeneralPrefs:nil];
-        [self.window makeFirstResponder:_mpvPathTextField];
-        [self.window makeKeyAndOrderFront:nil];
-    } else {
-        self.hasMPV = YES;
+    NSError * error;
+    self.hasMPV = [self validateMpvPath:&mpvPath error:&error];
+    if (!_hasMPV) {
+        [self showError:error
+              prefsView:_generalPrefsView
+              responder:_mpvPathTextField];
     }
 }
 
@@ -388,6 +379,36 @@ fatal_error:
     [_userDefaults setObject:ffmpegPath forKey:SLHPreferencesFFMpegPathKey];
 }
 
+static NSError * pathValidationError(NSString * path, NSString * name) {
+    NSString *msgText = [NSString stringWithFormat:
+                         @"'%@' is an invalid %@ path.", path, name];
+    NSString *infoText = @"Please provide a correct one.";
+    id dict = @{NSLocalizedDescriptionKey               : msgText,
+                NSLocalizedRecoverySuggestionErrorKey   : infoText};
+   return [NSError errorWithDomain:NSCocoaErrorDomain
+                              code:NSKeyValueValidationError
+                          userInfo:dict];
+}
+
+static BOOL isFilePathValid(NSString * path) {
+    NSFileManager *fm = NSFileManager.defaultManager;
+    return ([fm fileExistsAtPath:path isDirectory:nil] &&
+            [fm isExecutableFileAtPath:path]);
+}
+
+- (BOOL)validateFfmpegPath:(inout id _Nullable * _Nonnull)path
+                     error:(out NSError **)outError
+{
+    if (*path == nil) {
+        *path = SLHPreferencesDefaultFFMpegPath;
+    }
+    if (!isFilePathValid(*path)) {
+        *outError = pathValidationError(*path, @"ffmpeg");
+        return NO;
+    }
+    return YES;
+}
+
 - (NSString *)mpvPath {
     return [_userDefaults objectForKey:SLHPreferencesMPVPathKey];
 }
@@ -399,6 +420,19 @@ fatal_error:
         return;
     }
     [_userDefaults setObject:mpvPath forKey:SLHPreferencesMPVPathKey];
+}
+
+- (BOOL)validateMpvPath:(inout id _Nullable * _Nonnull)path
+                  error:(out NSError **)outError
+{
+    if (*path == nil) {
+        *path = SLHPreferencesDefaultMPVPath;
+    }
+    if (!isFilePathValid(*path)) {
+        *outError = pathValidationError(*path, @"MPV");
+        return NO;
+    }
+    return YES;
 }
 
 - (void)setLastUsedFormatName:(NSString *)lastUsedFormatName {
@@ -644,16 +678,6 @@ fatal_error:
 
 - (IBAction)updateTitleStyle:(id)sender {
     self.windowTitleStyle = _titleStylePopUp.selectedTag;
-}
-
-- (IBAction)updateFFmpegPath:(id)sender {
-    NSString *value = _ffmpegPathTextField.stringValue;
-    [self checkFFmpeg:value];
-}
-
-- (IBAction)updateMPVPath:(id)sender {
-    NSString *value = _mpvPathTextField.stringValue;
-    [self checkMPV:value];
 }
 
 - (IBAction)didEndEditingValue:(id)sender {
