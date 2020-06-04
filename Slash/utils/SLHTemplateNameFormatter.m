@@ -178,7 +178,7 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
     return CFBridgingRelease(stringFromDocument(doc, _templateFormat));
 }
 
-- (NSString *)stringFromEncoderItem:(SLHEncoderItem *)document {
+- (NSString *)stringFromDocument:(SLHEncoderItem *)document {
     return CFBridgingRelease(stringFromDocument(document, _templateFormat));
 }
 

@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (null_resettable, nonatomic, copy) NSString * templateFormat;
 
-- (NSString *)stringFromEncoderItem:(SLHEncoderItem *)document;
+- (NSString *)stringFromDocument:(SLHEncoderItem *)document;
 
 @end
 
