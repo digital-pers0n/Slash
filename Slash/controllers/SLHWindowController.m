@@ -566,17 +566,11 @@ static char SLHPreferencesKVOContext;
     NSWindow *window = self.window;
     window.titleVisibility = value;
     if (_currentEncoderItem) {
-        NSURL *url;
-        NSString *title;
-        if (value == NSWindowTitleVisible) {
-            url = _currentEncoderItem.playerItem.url;
-            title = url.lastPathComponent;
-        } else {
-            title = @"";
-            url = nil;
-        }
+        // reset the url, otherwise the window won't update it's file icon properly
+        window.representedURL = nil;
+        NSURL * url = _currentEncoderItem.playerItem.url;
         window.representedURL = url;
-        window.title = title;
+        window.title = url.lastPathComponent;
     }
 }
 
