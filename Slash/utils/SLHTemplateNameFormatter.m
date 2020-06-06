@@ -18,6 +18,31 @@ static NSString * const kSLHDefaultTemplateNameFormat = @"%f-%D";
     return kSLHDefaultTemplateNameFormat;
 }
 
++ (BOOL)validateTemplateName:(NSString *)templateName error:(NSError **)error {
+    const char * str = templateName.UTF8String;
+    if (strlen(str) > NAME_MAX) {
+        if (error) {
+            *error = nameIsTooLongError(strlen(str));
+        }
+        return NO;
+    }
+    while (1) {
+        char *fmt = strchr(str, '%');
+        if (!fmt) {
+            break;
+        }
+        str = fmt + 1;
+        char c = *str++;
+        if (c != 'd' && c != 'f' && c != 'r' && c != 'D' && c != 'R' ) {
+            if (error) {
+                *error = invalidSpecifierError(c);
+            }
+            return NO;
+        }
+    }
+    return YES;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -45,17 +70,26 @@ static NSString * const kSLHDefaultTemplateNameFormat = @"%f-%D";
 }
 
 __attribute__((cold))
-static NSString * nameIsTooLongError(size_t len) {
-    return [NSString stringWithFormat:
-            @"Template name is longer than the maximum allowed file "
-            "name size. Must be less than %i bytes. Current size is %zu bytes.",
-            NAME_MAX, len];
+static NSError * nameIsTooLongError(size_t len) {
+    id desc = @"Template name is longer than the maximum allowed file name size.";
+    id suggestion = [NSString stringWithFormat:@"Must be less than %i bytes. "
+                                   "Current size is %zu bytes.", NAME_MAX, len];
+    return errorWithDomain(NSPOSIXErrorDomain, ENAMETOOLONG, desc, suggestion);
 }
 
 __attribute__((cold))
-static NSString * invalidSpecifierError(char specifier) {
-    return [NSString stringWithFormat: @"Invalid specifier %%%c\n"
-            "Must be %%f %%d %%D %%r or %%R ", specifier];
+static NSError * invalidSpecifierError(char s) {
+    id desc = [NSString stringWithFormat:@"Invalid specifier %%%c\n", s];
+    id suggestion =  @"Must be %%f %%d %%D %%r or %%R";
+    return errorWithDomain(NSCocoaErrorDomain, NSFormattingError, desc, suggestion);
+}
+
+static NSError * errorWithDomain(NSErrorDomain domain, NSInteger code,
+                                  NSString * description, NSString * suggestion)
+{
+    id info = @{ NSLocalizedDescriptionKey              : description,
+                 NSLocalizedRecoverySuggestionErrorKey  : suggestion };
+    return [NSError errorWithDomain:domain code:code userInfo:info];
 }
 
 static char * stringFromDouble(double value, char * buffer, size_t size) {
@@ -78,7 +112,7 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
     
     if (strlen(str) > NAME_MAX) {
         NSLog(@"%@ Falling back to the default template format.",
-              nameIsTooLongError(strlen(str)));
+              nameIsTooLongError(strlen(str)).description);
         str = kSLHDefaultTemplateNameFormat.UTF8String;
     }
     
@@ -166,10 +200,7 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
 }
 
 - (NSString *)stringForObjectValue:(id)obj {
-    if (!obj || [obj isKindOfClass:[NSString class]]) {
-        // Template edit mode.
-        return obj;
-    }
+
     NSAssert([obj isKindOfClass:[SLHEncoderItem class]],
              @"'%@' is an invalid object value class. Must be 'SLHEncoderItem'",
              [obj class]);
@@ -186,31 +217,7 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
              forString:(NSString *)string
       errorDescription:(out NSString * _Nullable * _Nullable)error
 {
-    const char * str = string.UTF8String;
-    if (strlen(str) > NAME_MAX) {
-        if (error) {
-            *error = nameIsTooLongError(strlen(str));
-        }
-        return NO;
-    }
-    while (1) {
-        char *fmt = strchr(str, '%');
-        if (!fmt) {
-            break;
-        }
-        str = fmt + 1;
-        char c = *str++;
-        if (c != 'd' && c != 'f' && c != 'r' && c != 'D' && c != 'R' ) {
-            if (error) {
-                *error = invalidSpecifierError(c);
-            }
-            return NO;
-        }
-    }
-    if (obj) {
-        *obj = string;
-    }
-    return YES;
+    return NO;
 }
 
 @end

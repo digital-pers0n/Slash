@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLHTemplateNameFormatter : NSFormatter
 
 @property (class, readonly, nonatomic) NSString * defaultTemplateFormat;
++ (BOOL)validateTemplateName:(NSString *)templateName error:(NSError **)error;
 
 /**
  Format specifiers:
