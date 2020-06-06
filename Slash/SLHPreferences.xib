@@ -26,10 +26,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="SLHPreferencesWindow" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="1036" y="666" width="477" height="196"/>
+            <rect key="contentRect" x="1036" y="666" width="477" height="324"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" misplaced="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="477" height="196"/>
+                <rect key="frame" x="0.0" y="0.0" width="477" height="324"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="EF23635C-01AD-4B2E-B4A5-59FB6F735B87" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="1Or-hS-Qec">
@@ -65,7 +65,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="295.5" y="51"/>
+            <point key="canvasLocation" x="319.5" y="-99"/>
         </window>
         <dictionaryController objectClassName="_NSDictionaryControllerKeyValuePair" id="KnJ-98-H26">
             <connections>
@@ -343,16 +343,17 @@
                     <rect key="frame" x="181" y="107" width="260" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="kZV-1W-y7K">
-                        <customFormatter key="formatter" id="peN-pU-OST" customClass="SLHTemplateNameFormatter"/>
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
                         <binding destination="-2" name="enabled" keyPath="enableOutputNameTemplate" id="0cj-W3-TsK"/>
-                        <binding destination="-2" name="value" keyPath="outputNameTemplate" id="J2G-e7-Slo">
+                        <binding destination="-2" name="value" keyPath="outputNameTemplate" id="lvA-7U-h9L">
                             <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>
+                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                                <bool key="NSValidatesImmediately" value="YES"/>
                             </dictionary>
                         </binding>
                     </connections>
@@ -378,7 +379,7 @@
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="378.5" y="455.5"/>
+            <point key="canvasLocation" x="204" y="441"/>
         </customView>
         <customView misplaced="YES" id="sIA-6R-rcS">
             <rect key="frame" x="0.0" y="0.0" width="466" height="449"/>

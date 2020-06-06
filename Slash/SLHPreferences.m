@@ -638,6 +638,16 @@ static BOOL isFilePathValid(NSString * path) {
     return [_userDefaults objectForKey:SLHPreferencesOutputNameTemplateKey];
 }
 
+- (BOOL)validateOutputNameTemplate:(inout id _Nullable * _Nonnull)ioValue
+                             error:(out NSError **)outError
+{
+    if (*ioValue) {
+        return [SLHTemplateNameFormatter validateTemplateName:*ioValue
+                                                        error:outError];
+    }
+    return YES;
+}
+
 - (void)setEnableOutputNameTemplate:(BOOL)value {
     [_userDefaults setBool:value forKey:SLHPreferencesEnableOutputNameTemplateKey];
 }
