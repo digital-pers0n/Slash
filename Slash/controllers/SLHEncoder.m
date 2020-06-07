@@ -223,7 +223,7 @@ static void _encoder_cb(char *data, void *ctx, ssize_t data_len) {
 
 static void _encoder_exit_cb(void *ctx, int exit_code) {
     SLHEncoder *obj = (__bridge id)ctx;
-    CFRunLoopPerformBlock(obj->_main_rl, kCFRunLoopCommonModes, ^{
+    dispatch_sync(obj->_main_thread, ^{
         obj.inProgress = NO;
     });
     obj->_paused = NO;
