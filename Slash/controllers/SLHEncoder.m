@@ -199,7 +199,7 @@ static inline char **_nsarray2carray(NSArray <NSString *> *array) {
 static void _encoder_cb(char *data, void *ctx, ssize_t data_len) {
     __unsafe_unretained SLHEncoder *obj = (__bridge id)ctx;
     
-    if (data_len < 256) {
+    if (data_len < 192) {
         char *string = data;
         uint64_t frames = _get_frames(data, &string);
         CFStringRef st = CFStringCreateWithCString(kCFAllocatorDefault,
