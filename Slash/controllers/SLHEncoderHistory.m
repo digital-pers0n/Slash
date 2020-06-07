@@ -22,10 +22,12 @@
     NSSize _videoSize;
     double _duration;
     NSString *_codecName;
+    NSString *_newPath;
 }
 
 - (instancetype)initWithPath:(NSString *)filePath log:(NSString *)encodingLog;
 @property (nonatomic) NSString *filePath;
+@property (nonatomic) NSString *fileName;
 @property (nonatomic) NSImage *previewImage;
 @property (nonatomic) NSString *log;
 @property (nonatomic, readonly) NSString *fileInfo;
@@ -35,6 +37,69 @@
 @end
 
 @implementation SLHEncodedItem
+
+- (void)setFileName:(NSString *)fileName {
+    NSString *newPath;
+    if (_newPath) {
+        newPath = _newPath;
+    } else {
+        newPath = _filePath.stringByDeletingLastPathComponent;
+        newPath = [newPath stringByAppendingPathComponent:fileName];
+    }
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error;
+    if (![fm moveItemAtPath:_filePath toPath:newPath error:&error]) {
+        [NSApp presentError:error];
+        __weak typeof(self) obj = self;
+        // In order to properly update the string value of a bound text field
+        CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
+            [obj willChangeValueForKey:@"fileName"];
+            [obj didChangeValueForKey:@"fileName"];
+        });
+        return;
+    }
+    self.filePath = newPath;
+}
+
+- (NSString *)fileName {
+    return _filePath.lastPathComponent;
+}
+
+- (BOOL)validateFileName:(inout NSString **)ioValue
+                   error:(out NSError **)outError {
+    if (*ioValue) {
+        const char *bytes = (*ioValue).UTF8String;
+        if (strlen(bytes) > NAME_MAX) {
+            *outError = [NSError errorWithDomain:NSPOSIXErrorDomain
+                                            code:ENAMETOOLONG
+                                        userInfo:nil];
+            return NO;
+        }
+    } else {
+        id info = @{
+        NSLocalizedDescriptionKey            : @"File name cannot be nil.",
+        NSLocalizedRecoverySuggestionErrorKey: @"Provide a valid file name." };
+        
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
+                                        code:NSKeyValueValidationError
+                                    userInfo:info];
+        return NO;
+    }
+    
+    NSString *newPath = _filePath.stringByDeletingLastPathComponent;
+    newPath = [newPath stringByAppendingPathComponent:*ioValue];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:newPath isDirectory:nil]) {
+        id info = @{ NSFilePathErrorKey : newPath };
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
+                                        code:NSFileWriteFileExistsError
+                                    userInfo:info];
+        return NO;
+    } else {
+        _newPath = newPath;
+    }
+    return YES;
+}
 
 - (instancetype)initWithPath:(NSString *)path log:(NSString *)encodingLog {
     self = [super init];
