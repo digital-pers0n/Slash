@@ -267,6 +267,15 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     }
 }
 
+#pragma mark - Methods
+
+- (void)reset {
+    _maxValue = 1;
+    _endValue = _maxValue;
+    _startValue = 0;
+    _minValue = 0;
+}
+
 #pragma mark - Cocoa Bindings
 
 static char startValueKVOContext;
@@ -655,12 +664,7 @@ static char minValueKVOContext;
 #pragma mark NSTableView Support
 
 - (void)prepareForReuse {
-
-    _maxValue = 1;
-    _endValue = _maxValue;
-    _startValue = 0;
-    _minValue = 0;
-
+    [self reset];
     [super prepareForReuse];
 }
 

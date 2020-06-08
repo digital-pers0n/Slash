@@ -65,6 +65,9 @@ typedef NS_ENUM(NSUInteger, SLHTrimViewStyle) {
 /** Access the area of the trimView that is currently selected. */
  @property (nonatomic, readonly) NSRect selectionFrame;
 
+/** Reset @c maxValue, @c minValue, @c startValue and @c endValue to defaults */
+- (void)reset;
+
 @end
 
 @protocol SLHTrimViewDelegate <NSObject>
