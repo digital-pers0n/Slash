@@ -38,6 +38,7 @@
 }
 
 @property (nonatomic) BOOL busy;
+@property (nonatomic, weak, nullable) SLHEncoderItem *encoderItem;
 
 @end
 
@@ -55,6 +56,9 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_itemsArrayController removeObserver:self
+                               forKeyPath:@"selection"
+                                  context:&SLHTrimViewControllerKVOContext];
     [self savePreferences];
 }
 
@@ -179,6 +183,22 @@
     _encoderItem = encoderItem;
 }
 
+- (void)setItemsArrayController:(NSArrayController *)newController {
+    if (_itemsArrayController == newController) { return; }
+    if (_itemsArrayController) {
+        [_itemsArrayController removeObserver:self
+                                   forKeyPath:@"selection"
+                                      context:&SLHTrimViewControllerKVOContext];
+    }
+    if (newController) {
+        [newController addObserver:self
+                        forKeyPath:@"selection"
+                           options:NSKeyValueObservingOptionNew
+                           context:&SLHTrimViewControllerKVOContext];
+    }
+    _itemsArrayController = newController;
+}
+
 - (void)displayPreviewsIfCan:(SLHEncoderItem *)encoderItem {
     if (encoderItem.previewImages) {
         [self updateVideoTrackView:encoderItem.previewImages];
@@ -268,6 +288,24 @@
     } else {
         [_player pause];
         _TVFlags.shouldResumePlayback = 1;
+    }
+}
+
+#pragma mark - KVO
+static char SLHTrimViewControllerKVOContext;
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if (context == &SLHTrimViewControllerKVOContext) {
+        self.encoderItem = _itemsArrayController.selectedObjects.firstObject;
+    } else {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
     }
 }
 

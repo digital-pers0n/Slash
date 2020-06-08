@@ -247,6 +247,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
                                    with:tView];
     _trimView = tView;
     _trimViewController.player = _player;
+    _trimViewController.itemsArrayController = _itemsArrayController;
     
     /* SLHTrimViewSettings */
     SLHTrimViewSettings * trimViewSettings = [[SLHTrimViewSettings alloc] init];
@@ -304,7 +305,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [_videoStreamPopUp removeAllItems];
     [_audioStreamPopUp removeAllItems];
     [_subtitlesStreamPopUp removeAllItems];
-    _trimViewController.encoderItem = nil;
 }
 
 - (void)showSideBarIfNeeded {
@@ -566,7 +566,7 @@ static char SLHPreferencesKVOContext;
     NSWindow *window = self.window;
     window.titleVisibility = value;
     if (_currentEncoderItem) {
-        // reset the url, otherwise the window won't update it's file icon properly
+        // reset the url, otherwise the window won't update its file icon properly
         window.representedURL = nil;
         NSURL * url = _currentEncoderItem.playerItem.url;
         window.representedURL = url;
@@ -1377,7 +1377,6 @@ static char SLHPreferencesKVOContext;
         [self updatePopUpMenus:encoderItem];
         [self matchVideoStreamsToEncoderItem:encoderItem];
     }
-    _trimViewController.encoderItem = _currentEncoderItem;
 }
 
 #pragma mark - NSMenuDelegate

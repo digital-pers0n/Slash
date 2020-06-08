@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLHTrimViewController : NSViewController
 
 @property (nonatomic, weak, nullable) MPVPlayer *player;
-@property (nonatomic, weak, nullable) SLHEncoderItem *encoderItem;
+@property (nonatomic, weak, nullable) NSArrayController *itemsArrayController;
 
 /** Trim View vertical zoom. 1.0 == 100px Default is 0.5 */
 @property (nonatomic) IBInspectable CGFloat verticalZoom;
