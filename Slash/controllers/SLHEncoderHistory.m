@@ -75,6 +75,24 @@
                                         userInfo:nil];
             return NO;
         }
+        
+        const char *illegalChars = "/:";
+        while (*illegalChars) {
+            char c = *illegalChars++;
+            if (strchr(bytes, c)) {
+                NSString *desc = [NSString stringWithFormat:
+                                  @"File name cannot contain '%c'.", c];
+                NSString *suggestion = @"Delete the invalid character.";
+                id info = @{ NSLocalizedDescriptionKey            : desc,
+                             NSLocalizedRecoverySuggestionErrorKey: suggestion};
+                *outError =
+                [NSError errorWithDomain:NSCocoaErrorDomain
+                                    code:NSFileWriteInvalidFileNameError
+                                userInfo:info];
+                return NO;
+            }
+        }
+        
     } else {
         id info = @{
         NSLocalizedDescriptionKey            : @"File name cannot be nil.",
