@@ -80,7 +80,7 @@ static NSError * nameIsTooLongError(size_t len) {
 __attribute__((cold))
 static NSError * invalidSpecifierError(char s) {
     id desc = [NSString stringWithFormat:@"Invalid specifier %%%c\n", s];
-    id suggestion =  @"Must be %%f %%d %%D %%r or %%R";
+    id suggestion =  @"Must be %f %d %D %r or %R";
     return errorWithDomain(NSCocoaErrorDomain, NSFormattingError, desc, suggestion);
 }
 
