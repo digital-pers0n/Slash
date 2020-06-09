@@ -105,6 +105,22 @@ static char * stringFromDouble(double value, char * buffer, size_t size) {
     return buffer;
 }
 
+
+static CFStringRef truncateString(char * string, size_t maxLen) {
+
+    CFStringRef result = nil;
+    char *end = string + maxLen;
+    while (end > string) {
+        *end-- = '\0';
+        result = CFStringCreateWithCString(kCFAllocatorDefault,
+                                           string, kCFStringEncodingUTF8);
+        if (result) {
+            break;
+        }
+    }
+    return result;
+}
+
 static CFStringRef stringFromDocument(SLHEncoderItem * doc,
                                       NSString * template)
 {
@@ -190,7 +206,8 @@ static CFStringRef stringFromDocument(SLHEncoderItem * doc,
     
     strlcat(result, str, sizeof(result));
     if (strlen(result) > NAME_MAX) {
-        NSLog(@"Template name is too long.");
+        NSLog(@"Name is too long. Truncating...");
+        return truncateString(result, NAME_MAX);
     }
     CFStringRef formatted = CFStringCreateWithCString(kCFAllocatorDefault,
                                                       result,
