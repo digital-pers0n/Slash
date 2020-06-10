@@ -157,6 +157,7 @@
     if (encoderItem) {
         double maxValue = encoderItem.playerItem.duration;
         _timelineView.maxValue = maxValue;
+        [_trimView reset];
         _trimView.maxValue = maxValue;
         _trimView.endValue = encoderItem.intervalEnd;
         _trimView.startValue = encoderItem.intervalStart;
