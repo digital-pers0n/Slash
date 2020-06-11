@@ -85,7 +85,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 }
 
-@property (nonatomic) SLHEncoderItem *currentEncoderItem;
+@property (nonatomic, nullable, weak) SLHEncoderItem *currentEncoderItem;
 @property (nonatomic, nullable) NSString *lastEncodedMediaFilePath;
 @property (nonatomic, nullable) SLHPreferences *preferences;
 @property (nonatomic) SLHTrimViewController * trimViewController;
@@ -139,7 +139,11 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     NSArray *_formats = @[x264Fmt, vpxFmt, vp9Fmt, uniFmt];
     [_formatsArrayController addObjects:_formats];
-    NSString *name = SLHPreferences.preferences.lastUsedFormatName;
+    
+    SLHPreferences *appPrefs = SLHPreferences.preferences;
+    self.preferences = appPrefs;
+    
+    NSString *name = appPrefs.lastUsedFormatName;
     if (name) {
         [_formatsPopUp selectItemWithTitle:name];
     }
@@ -180,6 +184,33 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [player pause];
     _playerView.player = player;
     _player = player;
+    //[player setString:@"low-latency" forProperty:@"profile"];
+    //[player setDouble:1 forProperty:@"audio-buffer"];
+//    [player setString:@"fflags=+nobuffer" forProperty:@"demuxer-lavf-o-add"];
+//    [player setString:@"nostreams" forProperty:@"demuxer-lavf-probe-info"];
+//    [player setDouble:0.1 forProperty:@"demuxer-lavf-analyzeduration"];
+//    [player setBool:YES forProperty:@"video-latency-hacks"];
+    //[player setInteger:2 forProperty:@"vd-lavc-threads"];
+    [player setBool:NO forProperty:@"vd-lavc-check-hw-profile"];
+    [player setBool:YES forProperty:@"sws-allow-zimg"];
+    [player setString:@"bilinear" forProperty:@"zimg-scaler"];
+    [player setBool:NO forProperty:@"zimg-dither"];
+    [player setString:@"fast-bilinear" forProperty:@"sws-scaler"];
+   //[player setString:@"nearest" forProperty:@"scale"];
+    [player setBool:YES forProperty:@"sws-fast"];
+    [player setBool:NO forProperty:@"ytdl"];
+    [player setBool:NO forProperty:@"load-stats-overlay"];
+   //[player setString:@"rgba32f" forProperty:@"fbo-format"];
+    [player setBool:NO forProperty:@"input-media-keys"];
+    [player setBool:YES forProperty:@"vd-lavc-fast"];
+    [player setString:@"all" forProperty:@"vd-lavc-skiploopfilter"];
+    [player setString:@"default" forProperty:@"vd-lavc-skipframe"];
+    [player setString:@"vo" forProperty:@"framedrop"];
+    [player setString:@"all" forProperty:@"vd-lavc-framedrop"];
+   // [player setInteger:30 forProperty:@"osd-margin-y"];
+//    NSLog(@"%@", [player stringForProperty:@"property-list"]);
+//    NSLog(@"%@", [player stringForProperty:@"command-list"]);
+//    NSLog(@"%@", [player stringForProperty:@"list-options"]);
 
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
@@ -416,7 +447,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (NSString *)outputPathForSourcePath:(NSString *)sourcePath {
     NSString *outputPath = nil;
-    SLHPreferences *prefs = [SLHPreferences preferences];
+    SLHPreferences *prefs = _preferences;
     if (prefs.outputPathSameAsInput) {
         outputPath = [sourcePath stringByDeletingLastPathComponent];
     } else {
@@ -471,7 +502,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _externalPlayer = [SLHExternalPlayer defaultPlayer];
     if (_externalPlayer.error) {
         NSAlert *alert = [NSAlert new];
-        alert.messageText = [NSString stringWithFormat:@"Cannot launch %@", SLHPreferences.preferences.mpvPath];
+        alert.messageText = [NSString stringWithFormat:@"Cannot launch %@", _preferences.mpvPath];
         alert.informativeText = _externalPlayer.error.localizedDescription;
         _externalPlayer = nil;
         [alert runModal];
@@ -546,7 +577,7 @@ static char SLHPreferencesKVOContext;
 
 - (void)enableAdvancedOptionsDidChange:(NSNumber *)newValue {
     if (newValue.boolValue) {
-        NSDictionary *advancedOptions = SLHPreferences.preferences.advancedOptions;
+        NSDictionary *advancedOptions = _preferences.advancedOptions;
         if (advancedOptions.count) {
             __unsafe_unretained typeof(self) uself = self;
             __unsafe_unretained typeof(_player) player = _player;
@@ -1062,7 +1093,7 @@ static char SLHPreferencesKVOContext;
                 
             case SLHEncoderStateSuccess: {
                 self.lastEncodedMediaFilePath = obj->_currentEncoderItem.outputPath;
-                if (SLHPreferences.preferences.updateFileName) {
+                if (_preferences.updateFileName) {
                     [self updateOutputFileName:sender];
                 }
                 
@@ -1283,11 +1314,11 @@ static char SLHPreferencesKVOContext;
 
 - (void)applicationWillTerminate:(NSNotification *)n {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    SLHPreferences.preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
+    _preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
     if (_presetManager.hasChanges) {
         [_presetManager savePresets];
     }
-    [self unobservePreferences:SLHPreferences.preferences];
+    [self unobservePreferences:_preferences];
     [_player shutdown];
     _player = nil;
     self.currentEncoderItem = nil;
