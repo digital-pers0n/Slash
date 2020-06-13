@@ -25,7 +25,12 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.outputFileName" id="yZ7-3U-wSb"/>
+                        <binding destination="-2" name="editable" keyPath="nameEditable" id="KBO-aU-KF6"/>
+                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.outputFileName" id="LaS-6m-OMn">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </textField>
                 <textField toolTip="Start Position" verticalHuggingPriority="750" id="mva-1q-5Xq">

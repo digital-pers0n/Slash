@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) IBOutlet NSArrayController *encoderItemsArrayController;
 
+/** Indicate if the output file name is editable. */
+@property (nonatomic) BOOL nameEditable;
+
 @end
 
 NS_ASSUME_NONNULL_END
