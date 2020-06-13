@@ -85,7 +85,7 @@ int mpvgl_init(MPVGLRenderer *mpvgl, mpv_handle *mpv_handle,
 }
 
 void mpvgl_destroy(MPVGLRenderer *m) {
-    if (!m->ctx) { return; }
+    if (!mpvgl_is_valid(m)) { return; }
     mpvgl_reset_update_callback(m);
     CGLClearDrawable(m->cgl);
     mpv_render_context_free(m->ctx);
@@ -169,4 +169,8 @@ inline bool mpvgl_has_frame(MPVGLRenderer *m) {
         return true;
     }
     return false;
+}
+
+inline bool mpvgl_is_valid(MPVGLRenderer *m) {
+    return (m->ctx != NULL);
 }

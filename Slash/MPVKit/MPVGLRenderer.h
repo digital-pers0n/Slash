@@ -136,4 +136,9 @@ void mpvgl_frame_end(MPVGLRenderer *mpvgl);
  */
 bool mpvgl_has_frame(MPVGLRenderer *mpvgl);
 
+/**
+ Check if the renderer context is valid
+ */
+bool mpvgl_is_valid(MPVGLRenderer *mpvgl);
+
 #endif /* MPVGLRenderer_h */
