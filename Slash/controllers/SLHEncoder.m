@@ -90,7 +90,7 @@ typedef void (^respond_block)(SLHEncoderState);
     NSWindow *window = self.window;
     [window center];
     [window setTitleWithRepresentedFilename:item.outputPath];
-    [self startEncoding:nil];
+    [self startEncoding];
     [NSApp runModalForWindow:window];
     [NSApp stopModal];
     [window orderOut:nil];
@@ -132,13 +132,11 @@ typedef void (^respond_block)(SLHEncoderState);
     }
 }
 
-#pragma mark - IBActions
-
-- (IBAction)startEncoding:(id)sender {
+- (void)startEncoding {
     if (queue_size(_queue) == 0) {
         return;
     }
-     _statusLineView.string = @"Encoding...";
+    _statusLineView.string = @"Encoding...";
     if (_log) {
         free(_log);
     }
@@ -152,6 +150,8 @@ typedef void (^respond_block)(SLHEncoderState);
     }
     self.inProgress = YES;
 }
+
+#pragma mark - IBActions
 
 - (IBAction)pauseEncoding:(id)sender {
     BOOL value = (_paused) ? NO : YES;
@@ -234,7 +234,7 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
         args_free(ptr);
         if (queue_size(obj->_queue)) {
             dispatch_async(obj->_main_thread, ^{
-                [obj startEncoding:nil];
+                [obj startEncoding];
             });
         } else {
             dispatch_sync(obj->_main_thread, ^{
