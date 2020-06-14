@@ -348,7 +348,7 @@
                                                 </connections>
                                             </button>
                                             <customView misplaced="YES" id="gqU-Pc-aQu">
-                                                <rect key="frame" x="129" y="116" width="235" height="22"/>
+                                                <rect key="frame" x="71" y="116" width="349" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             </customView>
                                         </subviews>
@@ -431,14 +431,14 @@
                     </progressIndicator>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="58B1DAE0-DC47-40C6-93D7-A3A61DD90A49" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="B8D-hm-GI4">
+            <toolbar key="toolbar" implicitIdentifier="58B1DAE0-DC47-40C6-93D7-A3A61DD90A49" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="small" id="B8D-hm-GI4">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="9CAB7D46-BD2D-4DD7-A044-8776F4488744" label="Output Format" paletteLabel="Output Format" toolTip="Select output format" id="dVx-sP-jLD">
-                        <size key="minSize" width="80" height="22"/>
-                        <size key="maxSize" width="80" height="25"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
-                            <rect key="frame" x="2" y="14" width="80" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <size key="minSize" width="100" height="22"/>
+                        <size key="maxSize" width="100" height="25"/>
+                        <popUpButton key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="MkH-gC-ZGa">
+                            <rect key="frame" x="0.0" y="14" width="100" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lyi-GL-UQr">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
@@ -453,11 +453,11 @@
                         </popUpButton>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="BF29C947-D302-46B7-A1DF-4C8BBF82C6BB" label="Video Stream" paletteLabel="Video Stream" toolTip="Select video stream" id="rT0-X5-nkl">
-                        <size key="minSize" width="80" height="22"/>
-                        <size key="maxSize" width="80" height="25"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="Idt-of-EEP">
-                            <rect key="frame" x="0.0" y="14" width="80" height="25"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <size key="minSize" width="100" height="22"/>
+                        <size key="maxSize" width="100" height="25"/>
+                        <popUpButton key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="Idt-of-EEP">
+                            <rect key="frame" x="0.0" y="14" width="100" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Qe-WC-173">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
@@ -469,10 +469,10 @@
                         </popUpButton>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="956DBAFD-06BD-43CE-B4C6-DA901E57650B" label="Audio Stream" paletteLabel="Audio Stream" toolTip="Select audio stream" id="cUg-AL-Lit">
-                        <size key="minSize" width="80" height="22"/>
-                        <size key="maxSize" width="80" height="25"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
-                            <rect key="frame" x="0.0" y="14" width="80" height="25"/>
+                        <size key="minSize" width="100" height="22"/>
+                        <size key="maxSize" width="100" height="25"/>
+                        <popUpButton key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="siY-Ku-lQW">
+                            <rect key="frame" x="0.0" y="14" width="100" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32l-D9-SdJ">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -485,10 +485,10 @@
                         </popUpButton>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="36DEBC92-6FBC-4F2C-9A32-7D3FA4F55112" label="Subtitles Stream" paletteLabel="Subtitles Stream" toolTip="Select subtites stream" id="OP6-6T-fIL">
-                        <size key="minSize" width="80" height="22"/>
-                        <size key="maxSize" width="80" height="25"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
-                            <rect key="frame" x="7" y="14" width="80" height="25"/>
+                        <size key="minSize" width="100" height="22"/>
+                        <size key="maxSize" width="100" height="25"/>
+                        <popUpButton key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="y0h-nI-lLs">
+                            <rect key="frame" x="0.0" y="14" width="100" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="71C-wZ-lMD">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -504,9 +504,9 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ZbH-6g-hEd"/>
                     <toolbarItem implicitItemIdentifier="45A2C735-6945-46C5-BABA-0678C2CADFF4" label="Encoder History" paletteLabel="Encoder History" toolTip="Show the Recently Encoded " image="SLHImageNameEncoderHistoryTemplate" id="agX-ni-Kmk">
                         <size key="minSize" width="21" height="19"/>
-                        <size key="maxSize" width="45" height="25"/>
+                        <size key="maxSize" width="36" height="25"/>
                         <button key="view" verticalHuggingPriority="750" misplaced="YES" id="OUk-Ot-fJS">
-                            <rect key="frame" x="25" y="14" width="42" height="25"/>
+                            <rect key="frame" x="28" y="14" width="36" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SLHImageNameEncoderHistoryTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="anJ-8p-viC">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -519,9 +519,9 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="51C9B11D-5C54-4D0D-9462-DCF3FBB0C626" label="Sidebar" paletteLabel="Sidebar" toolTip="Toggle the Inspector" image="SLHImageNameToggleSideBarTemplate" id="dVH-iG-1hv">
                         <size key="minSize" width="21" height="19"/>
-                        <size key="maxSize" width="45" height="25"/>
+                        <size key="maxSize" width="36" height="25"/>
                         <button key="view" verticalHuggingPriority="750" misplaced="YES" id="yNB-sr-QYg">
-                            <rect key="frame" x="3" y="14" width="42" height="25"/>
+                            <rect key="frame" x="6" y="14" width="36" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SLHImageNameToggleSideBarTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="eas-8L-Qyq">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -543,7 +543,7 @@
                     <toolbarItem reference="dVH-iG-1hv"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="206" y="-100.5"/>
+            <point key="canvasLocation" x="147" y="-210.5"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="3cJ-e5-Y82" userLabel="Items Array Controller" colorLabel="IBBuiltInLabel-Yellow"/>
         <arrayController objectClassName="SLHEncoderBaseFormat" editable="NO" id="FId-6h-ocY">
