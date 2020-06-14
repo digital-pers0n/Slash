@@ -588,6 +588,10 @@ static char SLHPreferencesKVOContext;
     _templateNameFormatter.templateFormat = obj;
 }
 
+- (void)enableTemplateName:(NSNumber *)obj {
+    _outputNameController.nameEditable = obj.boolValue ? NO : YES;
+}
+
 - (void)observePreferences:(SLHPreferences *)appPrefs {
     _observedPrefs = @{
                        SLHPreferencesScreenshotPathKey           : addressOf(self, @selector(screenshotPathDidChange:)),
@@ -605,7 +609,8 @@ static char SLHPreferencesKVOContext;
                        SLHPreferencesAdvancedOptionsEnabledKey      : addressOf(self, @selector(enableAdvancedOptionsDidChange:)),
                        SLHPreferencesWindowTitleStyleKey    : addressOf(self, @selector(updateWindowTitleStyle:)),
                        SLHPreferencesMPVPathKey             : addressOf(self, @selector(reloadExternalPlayer:)),
-                       SLHPreferencesOutputNameTemplateKey  : addressOf(self, @selector(updateTemplateName:))
+                       SLHPreferencesOutputNameTemplateKey  : addressOf(self, @selector(updateTemplateName:)),
+                       SLHPreferencesEnableOutputNameTemplateKey : addressOf(self, @selector(enableTemplateName:))
                        };
     
     for (NSString *key in _observedPrefs) {
