@@ -265,6 +265,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _outputNameView = onView;
     _outputNameController.encoderItemsArrayController = _itemsArrayController;
     
+    if (!appPrefs.enableOutputNameTemplate) {
+        _outputNameController.nameEditable = YES;
+    }
+    
     /* SLHTemplateNameFormatter */
     _templateNameFormatter = [[SLHTemplateNameFormatter alloc] init];
     _templateNameFormatter.templateFormat = _preferences.outputNameTemplate;
