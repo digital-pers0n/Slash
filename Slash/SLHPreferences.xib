@@ -348,7 +348,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="enableOutputNameTemplate" id="0cj-W3-TsK"/>
                         <binding destination="-2" name="value" keyPath="outputNameTemplate" id="lvA-7U-h9L">
                             <dictionary key="options">
                                 <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>
