@@ -179,21 +179,11 @@
 		CE2365612254C9CC00B324E4 /* SLHEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoder.h; path = controllers/SLHEncoder.h; sourceTree = "<group>"; };
 		CE2365622254C9CC00B324E4 /* SLHEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoder.m; path = controllers/SLHEncoder.m; sourceTree = "<group>"; };
 		CE2365632254C9CC00B324E4 /* SLHEncoder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoder.xib; path = controllers/SLHEncoder.xib; sourceTree = "<group>"; };
-		CE239372219CA86F00C21AA7 /* SLHMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMainWindowController.h; path = controllers/SLHMainWindowController.h; sourceTree = "<group>"; };
-		CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMainWindowController.m; path = controllers/SLHMainWindowController.m; sourceTree = "<group>"; };
-		CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHMainWindowController.xib; path = controllers/SLHMainWindowController.xib; sourceTree = "<group>"; };
-		CE256B96222D8AC8007B520E /* SLHMetadataEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMetadataEditor.h; path = controllers/SLHMetadataEditor.h; sourceTree = "<group>"; };
-		CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMetadataEditor.m; path = controllers/SLHMetadataEditor.m; sourceTree = "<group>"; };
-		CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHMetadataEditor.xib; path = controllers/SLHMetadataEditor.xib; sourceTree = "<group>"; };
 		CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpv.1.107.0.dylib; path = ../../../../../../Developer/opt/lib/libmpv.1.107.0.dylib; sourceTree = "<group>"; };
 		CE2A56B224375AF6005CF48A /* SLHTimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTimelineView.h; sourceTree = "<group>"; };
 		CE2A56B324375AF6005CF48A /* SLHTimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTimelineView.m; sourceTree = "<group>"; };
 		CE2B44B423DF30FB006E2094 /* SLHVideoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHVideoSlider.h; sourceTree = "<group>"; };
 		CE2B44B523DF30FB006E2094 /* SLHVideoSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHVideoSlider.m; sourceTree = "<group>"; };
-		CE2CC11E21235334008C8345 /* SLHPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHPlayer.h; sourceTree = "<group>"; };
-		CE2CC11F21235334008C8345 /* SLHPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHPlayer.m; sourceTree = "<group>"; };
-		CE2CC12121235447008C8345 /* SLHMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItem.h; sourceTree = "<group>"; };
-		CE2CC12221235447008C8345 /* SLHMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMediaItem.m; sourceTree = "<group>"; };
 		CE35264723F081FC00B28193 /* libavcodec.58.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.dylib; path = ../../../../../../Developer/opt/lib/libavcodec.58.dylib; sourceTree = "<group>"; };
 		CE35264823F081FC00B28193 /* libavformat.58.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.dylib; path = ../../../../../../Developer/opt/lib/libavformat.58.dylib; sourceTree = "<group>"; };
 		CE35264923F081FC00B28193 /* libavutil.56.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.dylib; path = ../../../../../../Developer/opt/lib/libavutil.56.dylib; sourceTree = "<group>"; };
@@ -216,8 +206,6 @@
 		CE40B09C2107DE2900969371 /* slh_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_socket.h; path = system/slh_socket.h; sourceTree = "<group>"; };
 		CE477233226771F100FF5E0D /* slh_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_list.c; path = system/slh_list.c; sourceTree = "<group>"; };
 		CE477234226771F100FF5E0D /* slh_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_list.h; path = system/slh_list.h; sourceTree = "<group>"; };
-		CE4B6E3E2372C900006561AE /* SLHTrimTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTrimTableCellView.h; path = views/SLHTrimTableCellView.h; sourceTree = "<group>"; };
-		CE4B6E3F2372C900006561AE /* SLHTrimTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SLHTrimTableCellView.m; path = views/SLHTrimTableCellView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CE4BF2E121503D1E002E43F4 /* slh_dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_dictionary.c; path = system/slh_dictionary.c; sourceTree = "<group>"; };
 		CE4BF2E221503D1E002E43F4 /* slh_dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_dictionary.h; path = system/slh_dictionary.h; sourceTree = "<group>"; };
 		CE4D40F420FE8B9E0066ACE2 /* Slash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slash.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,8 +218,6 @@
 		CE4D410820FE8E040066ACE2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		CE5461D1211A314E00C2B774 /* slh_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_util.c; path = system/slh_util.c; sourceTree = "<group>"; };
 		CE5461D2211A314E00C2B774 /* slh_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_util.h; path = system/slh_util.h; sourceTree = "<group>"; };
-		CE566A75215AAC16004E974F /* slh_extern.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_extern.c; path = system/slh_extern.c; sourceTree = "<group>"; };
-		CE566A78215AAF3C004E974F /* slh_media_keys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slh_media_keys.h; path = system/slh_media_keys.h; sourceTree = "<group>"; };
 		CE566A79215EB849004E974F /* SLHPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHPreferences.h; sourceTree = "<group>"; };
 		CE566A7A215EB849004E974F /* SLHPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHPreferences.m; sourceTree = "<group>"; };
 		CE566A7B215EB849004E974F /* SLHPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLHPreferences.xib; sourceTree = "<group>"; };
@@ -267,8 +253,6 @@
 		CE80A8AF2381B24400CC4C7A /* SLHMetadataInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMetadataInspector.h; path = controllers/SLHMetadataInspector.h; sourceTree = "<group>"; };
 		CE80A8B02381B24400CC4C7A /* SLHMetadataInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMetadataInspector.m; path = controllers/SLHMetadataInspector.m; sourceTree = "<group>"; };
 		CE80A8B12381B24400CC4C7A /* SLHMetadataInspector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHMetadataInspector.xib; path = controllers/SLHMetadataInspector.xib; sourceTree = "<group>"; };
-		CE81461021287D9B00DFFDA6 /* SLHMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMetadataItem.h; sourceTree = "<group>"; };
-		CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMetadataItem.m; sourceTree = "<group>"; };
 		CE85A0F322C651830027F742 /* SLHEncoderUniversalFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderUniversalFormat.h; path = controllers/SLHEncoderUniversalFormat.h; sourceTree = "<group>"; };
 		CE85A0F422C651830027F742 /* SLHEncoderUniversalFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderUniversalFormat.m; path = controllers/SLHEncoderUniversalFormat.m; sourceTree = "<group>"; };
 		CE85A0F522C651830027F742 /* SLHEncoderUniversalFormat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderUniversalFormat.xib; path = controllers/SLHEncoderUniversalFormat.xib; sourceTree = "<group>"; };
@@ -276,16 +260,12 @@
 		CE85A0F922C657E40027F742 /* SLHEncoderUniversalOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderUniversalOptions.m; path = model/SLHEncoderUniversalOptions.m; sourceTree = "<group>"; };
 		CE8628222371B0A700E0909F /* SLHTrimView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTrimView.h; sourceTree = "<group>"; };
 		CE8628232371B0A700E0909F /* SLHTrimView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTrimView.m; sourceTree = "<group>"; };
-		CE8806C22158267900827977 /* slh_media.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_media.c; path = system/slh_media.c; sourceTree = "<group>"; };
-		CE8806C32158267900827977 /* slh_media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_media.h; path = system/slh_media.h; sourceTree = "<group>"; };
 		CE88B9B2238C5ED500227111 /* SLHBitrateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHBitrateFormatter.h; path = utils/SLHBitrateFormatter.h; sourceTree = "<group>"; };
 		CE88B9B3238C5ED500227111 /* SLHBitrateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHBitrateFormatter.m; path = utils/SLHBitrateFormatter.m; sourceTree = "<group>"; };
 		CE8BD79923C371F4004A7C1A /* SLHEncoderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderHistory.h; path = controllers/SLHEncoderHistory.h; sourceTree = "<group>"; };
 		CE8BD79A23C371F4004A7C1A /* SLHEncoderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderHistory.m; path = controllers/SLHEncoderHistory.m; sourceTree = "<group>"; };
 		CE8BD79B23C371F4004A7C1A /* SLHEncoderHistory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderHistory.xib; path = controllers/SLHEncoderHistory.xib; sourceTree = "<group>"; };
 		CE8BD7F923CA0AFE004A7C1A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		CE9C0D1B2193583D0089C084 /* SLHDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHDragView.h; path = views/SLHDragView.h; sourceTree = "<group>"; };
-		CE9C0D1C2193583D0089C084 /* SLHDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHDragView.m; path = views/SLHDragView.m; sourceTree = "<group>"; };
 		CE9C0D1E219358A40089C084 /* SLHClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHClipView.h; sourceTree = "<group>"; };
 		CE9C0D1F219358A40089C084 /* SLHClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHClipView.m; sourceTree = "<group>"; };
 		CE9C9BD22354B898002A5169 /* MPVOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVOpenGLView.h; path = MPVKit/MPVOpenGLView.h; sourceTree = "<group>"; };
@@ -317,8 +297,6 @@
 		CEAC3A142492697600F6E998 /* MPVGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVGLRenderer.h; path = MPVKit/MPVGLRenderer.h; sourceTree = "<group>"; };
 		CEAC3A162494D3BF00F6E998 /* MPVIOSurfaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVIOSurfaceView.h; path = MPVKit/MPVIOSurfaceView.h; sourceTree = "<group>"; };
 		CEAC3A172494D3BF00F6E998 /* MPVIOSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVIOSurfaceView.m; path = MPVKit/MPVIOSurfaceView.m; sourceTree = "<group>"; };
-		CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItemTrack.h; sourceTree = "<group>"; };
-		CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMediaItemTrack.m; sourceTree = "<group>"; };
 		CEBB8BF7246ACAD700776827 /* MPVLock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVLock.c; path = MPVKit/MPVLock.c; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
 		CEBFF3E32190BDA000F54C7E /* slh_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_encoder.h; path = Slash/system/slh_encoder.h; sourceTree = SOURCE_ROOT; };
@@ -487,28 +465,6 @@
 		CE299C6323BE435A00F1C9BF /* legacy */ = {
 			isa = PBXGroup;
 			children = (
-				CE8806C32158267900827977 /* slh_media.h */,
-				CE8806C22158267900827977 /* slh_media.c */,
-				CE566A78215AAF3C004E974F /* slh_media_keys.h */,
-				CE566A75215AAC16004E974F /* slh_extern.c */,
-				CE4B6E3E2372C900006561AE /* SLHTrimTableCellView.h */,
-				CE4B6E3F2372C900006561AE /* SLHTrimTableCellView.m */,
-				CE9C0D1B2193583D0089C084 /* SLHDragView.h */,
-				CE9C0D1C2193583D0089C084 /* SLHDragView.m */,
-				CE239372219CA86F00C21AA7 /* SLHMainWindowController.h */,
-				CE239373219CA86F00C21AA7 /* SLHMainWindowController.m */,
-				CE239374219CA86F00C21AA7 /* SLHMainWindowController.xib */,
-				CE256B96222D8AC8007B520E /* SLHMetadataEditor.h */,
-				CE256B97222D8AC8007B520E /* SLHMetadataEditor.m */,
-				CE256B98222D8AC8007B520E /* SLHMetadataEditor.xib */,
-				CE2CC11E21235334008C8345 /* SLHPlayer.h */,
-				CE2CC11F21235334008C8345 /* SLHPlayer.m */,
-				CE81461021287D9B00DFFDA6 /* SLHMetadataItem.h */,
-				CE81461121287D9B00DFFDA6 /* SLHMetadataItem.m */,
-				CE2CC12121235447008C8345 /* SLHMediaItem.h */,
-				CE2CC12221235447008C8345 /* SLHMediaItem.m */,
-				CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */,
-				CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */,
 			);
 			name = legacy;
 			sourceTree = "<group>";
