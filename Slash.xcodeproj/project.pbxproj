@@ -106,6 +106,7 @@
 		CEAA552A22A7FFA90079CD27 /* SLHEncoderVP9Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAA552822A7FFA90079CD27 /* SLHEncoderVP9Format.xib */; };
 		CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA552C22A801690079CD27 /* SLHEncoderVP9Options.m */; };
 		CEAC3A152492697600F6E998 /* MPVGLRenderer.c in Sources */ = {isa = PBXBuildFile; fileRef = CEAC3A132492697600F6E998 /* MPVGLRenderer.c */; };
+		CEAC3A182494D3BF00F6E998 /* MPVIOSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC3A172494D3BF00F6E998 /* MPVIOSurfaceView.m */; };
 		CEBB8BF8246ACAD700776827 /* MPVLock.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB8BF7246ACAD700776827 /* MPVLock.c */; };
 		CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBFF3E22190BDA000F54C7E /* slh_encoder.c */; };
 		CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2245E23A11332000A7489 /* SLHExternalPlayer.m */; };
@@ -314,6 +315,8 @@
 		CEAA552C22A801690079CD27 /* SLHEncoderVP9Options.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderVP9Options.m; path = model/SLHEncoderVP9Options.m; sourceTree = "<group>"; };
 		CEAC3A132492697600F6E998 /* MPVGLRenderer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVGLRenderer.c; path = MPVKit/MPVGLRenderer.c; sourceTree = "<group>"; };
 		CEAC3A142492697600F6E998 /* MPVGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVGLRenderer.h; path = MPVKit/MPVGLRenderer.h; sourceTree = "<group>"; };
+		CEAC3A162494D3BF00F6E998 /* MPVIOSurfaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVIOSurfaceView.h; path = MPVKit/MPVIOSurfaceView.h; sourceTree = "<group>"; };
+		CEAC3A172494D3BF00F6E998 /* MPVIOSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVIOSurfaceView.m; path = MPVKit/MPVIOSurfaceView.m; sourceTree = "<group>"; };
 		CEB673312125EE960052F3E0 /* SLHMediaItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHMediaItemTrack.h; sourceTree = "<group>"; };
 		CEB673322125EE960052F3E0 /* SLHMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHMediaItemTrack.m; sourceTree = "<group>"; };
 		CEBB8BF7246ACAD700776827 /* MPVLock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVLock.c; path = MPVKit/MPVLock.c; sourceTree = "<group>"; };
@@ -464,6 +467,8 @@
 				CE166C602351FDD9001AF0CB /* MPVPlayer.m */,
 				CE9C9BD22354B898002A5169 /* MPVOpenGLView.h */,
 				CE9C9BD32354B898002A5169 /* MPVOpenGLView.m */,
+				CEAC3A162494D3BF00F6E998 /* MPVIOSurfaceView.h */,
+				CEAC3A172494D3BF00F6E998 /* MPVIOSurfaceView.m */,
 				CE0EC703235214930053204B /* MPVExtern.m */,
 				CE60C544235E0C47003DB25F /* MPVPlayerItem.h */,
 				CE60C545235E0C47003DB25F /* MPVPlayerItem.m */,
@@ -854,6 +859,7 @@
 				CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */,
 				CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */,
 				CEBB8BF8246ACAD700776827 /* MPVLock.c in Sources */,
+				CEAC3A182494D3BF00F6E998 /* MPVIOSurfaceView.m in Sources */,
 				CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */,
 				CE3E3A652445CD320004DEB0 /* SLHOutputNameController.m in Sources */,
 				CE477235226771F100FF5E0D /* slh_list.c in Sources */,
