@@ -47,7 +47,7 @@ NSInsetRect(NSRect aRect, CGFloat dX, CGFloat dY)
 #pragma mark -
 #pragma mark **** SLHTrimSelectionCell ****
 
-@interface SLHTrimSelectionCell : NSCell {
+@interface SLHTrimSelectionCell : NSObject {
     @package
     CAShapeLayer *_controlLayer;
     CAShapeLayer *_backgroundLayer;
