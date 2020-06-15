@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SLHMainWindowController.h"
 #import "SLHPreferences.h"
-#import "SLHMediaItem.h"
 #import "SLHWindowController.h"
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"

@@ -9,7 +9,6 @@
 #import "SLHEncoderUniversalFormat.h"
 #import "SLHEncoderUniversalOptions.h"
 #import "SLHEncoderItem.h"
-#import "SLHMediaItem.h"
 #import "SLHFiltersController.h"
 #import "SLHEncoderItemMetadata.h"
 #import "SLHPreferences.h"

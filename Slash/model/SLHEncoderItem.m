@@ -7,8 +7,6 @@
 //
 
 #import "SLHEncoderItem.h"
-#import "SLHMediaItem.h"
-#import "SLHMediaItemTrack.h"
 #import "SLHEncoderItemOptions.h"
 #import "SLHFilterOptions.h"
 #import "SLHEncoderItemMetadata.h"

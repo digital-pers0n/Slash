@@ -12,8 +12,6 @@
 #import "SLHPreferences.h"
 #import "SLHEncoderItem.h"
 #import "SLHEncoderItemMetadata.h"
-#import "SLHMediaItem.h"
-#import "SLHMediaItemTrack.h"
 #import "SLHFiltersController.h"
 
 #import "MPVPlayerItem.h"

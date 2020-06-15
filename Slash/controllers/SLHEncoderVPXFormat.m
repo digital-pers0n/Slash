@@ -11,8 +11,6 @@
 #import "SLHFiltersController.h"
 #import "SLHEncoderVPXOptions.h"
 #import "SLHFilterOptions.h"
-#import "SLHMediaItem.h"
-#import "SLHMediaItemTrack.h"
 #import "SLHPreferences.h"
 #import "SLHEncoderItemMetadata.h"
 
