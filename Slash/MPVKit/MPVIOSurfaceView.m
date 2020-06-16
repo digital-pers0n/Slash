@@ -173,6 +173,59 @@ OBJC_DIRECT_MEMBERS
     [self destroyMPVRenderContext];
 }
 
+#pragma mark - Callbacks
+
+static void render(void *ctx) {
+    __unsafe_unretained MPVIOSurfaceView *obj = (__bridge id)ctx;
+    typeof(obj->_mpv) *mpv = &obj->_mpv;
+    mpvgl_make_current(mpv);
+    mpvgl_render(mpv);
+    mpvgl_flush(mpv);
+    [obj->_layer setContentsChanged];
+    [CATransaction commit];
+}
+
+static void render_callback(void *ctx) {
+    __unsafe_unretained MPVIOSurfaceView *obj = (__bridge id)ctx;
+    dispatch_async_f(obj->_render_queue, ctx, &render);
+}
+
+static void resize(void *ctx) {
+    __unsafe_unretained MPVIOSurfaceView *obj = (__bridge id)ctx;
+    typeof(obj->_mpv) *mpv = &obj->_mpv;
+    if (mpvgl_has_frame(mpv)) {
+        mpvgl_lock(mpv);
+        mpvgl_make_current(mpv);
+        mpvgl_update(mpv);
+        
+        mpv_opengl_fbo fbo = mpv->fbo;
+        int block_for_target = 0;
+        mpv_render_param render_params[] = {
+            {
+                .type = MPV_RENDER_PARAM_OPENGL_FBO,
+                .data = &fbo
+            },
+            {
+                .type = MPV_RENDER_PARAM_BLOCK_FOR_TARGET_TIME,
+                .data = &block_for_target
+            },
+            { 0 }
+        };
+        [CATransaction begin];
+        mpvgl_render(mpv, render_params);
+        [obj->_layer setContentsChanged];
+        [CATransaction commit];
+        
+        mpvgl_flush(mpv);
+        mpvgl_unlock(mpv);
+    }
+}
+
+static void resize_callback(void *ctx) {
+    __unsafe_unretained MPVIOSurfaceView *obj = (__bridge id)ctx;
+    dispatch_async_f(obj->_render_queue, ctx, &resize);
+}
+
 @end
 
 @implementation MPVIOSurfaceView (OpenGL)
