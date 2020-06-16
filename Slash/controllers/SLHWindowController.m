@@ -279,6 +279,18 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 #pragma mark - Methods
 
+- (NSString *)outputNameForDocument:(SLHEncoderItem *)document {
+    NSString *extension = document.outputPath.pathExtension;
+    if (!extension) {
+        extension = document.playerItem.url.pathExtension;
+        if (!extension) {
+            extension = @"";
+        }
+    }
+    NSString *newName = [_templateNameFormatter stringFromDocument:document];
+    return [newName stringByAppendingPathExtension:extension];
+}
+
 - (void)updatePlayerTimePositionWithDelta:(double)seconds {
     double newPosition = _player.timePosition + seconds;
     if (newPosition < 0.0) {
@@ -291,9 +303,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (SLHEncoderItem *)duplicateEncoderItem:(SLHEncoderItem *)sourceItem {
     SLHEncoderItem *encoderItem = _currentEncoderItem.copy;
-    NSString *extension = encoderItem.outputPath.pathExtension;
-    NSString *fileName = encoderItem.playerItem.url.lastPathComponent.stringByDeletingPathExtension;
-    encoderItem.outputFileName = [fileName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
+    encoderItem.outputFileName = [self outputNameForDocument:encoderItem];
     return encoderItem;
 }
 
@@ -1105,17 +1115,7 @@ static char SLHPreferencesKVOContext;
 - (IBAction)updateOutputFileName:(id)sender {
     
     SLHEncoderItem *encoderItem = _currentEncoderItem;
-    
-    NSString *extension = encoderItem.container;
-    NSURL *sourceURL = encoderItem.playerItem.url;
-    
-    if (!extension) {
-        extension = sourceURL.pathExtension;
-    }
-
-    NSString *outputName = sourceURL.lastPathComponent.stringByDeletingPathExtension;
-    outputName = [outputName stringByAppendingFormat:@"_%lu%02u.%@", time(0), arc4random_uniform(100), extension];
-    encoderItem.outputFileName = outputName;
+    encoderItem.outputFileName = [self outputNameForDocument:encoderItem];
 }
 
 - (IBAction)addEncoderItem:(id)sender {
