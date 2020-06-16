@@ -166,6 +166,20 @@ OBJC_DIRECT_MEMBERS
     }
 }
 
+- (void)viewWillStartLiveResize {
+    [super viewWillStartLiveResize];
+    if (mpvgl_is_valid(&_mpv)) {
+        mpvgl_set_update_callback(&_mpv, &resize_callback, (__bridge void *)self);
+    }
+}
+
+- (void)viewDidEndLiveResize {
+    [super viewDidEndLiveResize];
+    if (mpvgl_is_valid(&_mpv)) {
+        mpvgl_set_update_callback(&_mpv, &render_callback, (__bridge void *)self);
+    }
+}
+
 #pragma mark - Notifications
 
 - (void)playerWillShutdown:(NSNotification *)n {
