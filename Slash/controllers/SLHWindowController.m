@@ -350,10 +350,13 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 
 - (void)createEncoderItemWith:(MPVPlayerItem *)playerItem {
-    SLHEncoderItem *encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem];
-    NSString *outputName = encoderItem.outputFileName;
-    encoderItem.outputPath = [[self outputPathForSourcePath:playerItem.filePath] stringByAppendingPathComponent:outputName];
-    
+    NSURL *url = playerItem.url;
+    NSString *outputName = url.lastPathComponent;
+    NSString *outputPath = [self outputPathForSourcePath:url.path];
+    outputPath = [outputPath stringByAppendingPathComponent:outputName];
+    SLHEncoderItem *encoderItem;
+    encoderItem = [[SLHEncoderItem alloc] initWithPlayerItem:playerItem
+                                                  outputPath:outputPath];
     [encoderItem matchSource];
     [self populatePopUpMenus:playerItem];
     [self updatePopUpMenus:encoderItem];
