@@ -134,14 +134,6 @@ static NSUInteger _defaultPreviewImageHeight = 128;
     self.intervalEnd = _playerItem.duration;
 }
 
-- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item {
-    NSString *path = item.url.path;
-    NSString *ext = path.pathExtension;
-    path = [path stringByDeletingPathExtension];
-    path = [NSString stringWithFormat:@"%@_%lu.%@", path, time(0), ext];
-    return [self initWithPlayerItem:item outputPath:path];
-}
-
 - (void)dealloc {
     [_videoOptions removeObserver:self forKeyPath:@"bitRate" context:&SLHEncoderItemKVOContext];
     [_videoOptions removeObserver:self forKeyPath:@"maxBitrate" context:&SLHEncoderItemKVOContext];

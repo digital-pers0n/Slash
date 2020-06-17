@@ -20,7 +20,6 @@ typedef struct time_interval {
 
 @interface SLHEncoderItem : NSObject <NSCopying>
 
-- (instancetype)initWithPlayerItem:(MPVPlayerItem *)item;
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item outputPath:(NSString *)outputMediaPath;
 
 @property (nonatomic) MPVPlayerItem *playerItem;
