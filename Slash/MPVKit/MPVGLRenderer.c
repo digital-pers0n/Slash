@@ -41,8 +41,7 @@ int mpvgl_init(MPVGLRenderer *mpvgl, mpv_handle *mpv_handle,
     mpv_lock_init(&mpvgl->lock);
 #endif
     
-    //m->cgl = CGLRetainContext(cgl);
-    
+    mpvgl->cgl = cgl_context;
     mpvgl->params[0] = (mpv_render_param) {
         .type = MPV_RENDER_PARAM_OPENGL_FBO,
         .data = &mpvgl->fbo
