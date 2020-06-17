@@ -10,6 +10,18 @@
 
 @implementation SLHFilterOptions
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _subtitlesStyle =
+        @"FontName=Helvetica,FontSize=14,PrimaryColour=&H00000000,"
+         "BackColour=&H40FFFFFF,BorderStyle=4,Shadow=2,Outline=0";
+        _additionalVideoFiltersString = @"";
+        _additionalAudioFiltersString = @"";
+    }
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     
     SLHFilterOptions *copy = [[self.class allocWithZone:zone] init];
