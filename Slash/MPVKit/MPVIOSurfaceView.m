@@ -75,7 +75,7 @@ OBJC_DIRECT_MEMBERS
 
 - (instancetype)initWithPlayer:(MPVPlayer *)player {
 
-    self = [super init];
+    self = [super initWithFrame:NSMakeRect(0, 0, 640, 480)];
     if (self) {
         if (![self initializeOpenGLContext]) {
             return nil;
