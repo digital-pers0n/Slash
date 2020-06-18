@@ -56,6 +56,9 @@ OBJC_DIRECT_MEMBERS
 - (BOOL)createMPVPlayer;
 - (int)createMPVRenderContext;
 - (void)destroyMPVRenderContext;
+- (void)useRenderCallback;
+- (void)useResizeCallback;
+- (void)removeCallback;
 
 @end
 
@@ -325,6 +328,18 @@ static void resize_callback(void *ctx) {
 
 - (void)destroyMPVRenderContext {
     mpvgl_destroy(&_mpv);
+}
+
+- (void)useRenderCallback {
+    mpvgl_set_update_callback(&_mpv, &render_callback, (__bridge void *)self);
+}
+
+- (void)useResizeCallback {
+    mpvgl_set_update_callback(&_mpv, &resize_callback, (__bridge void *)self);
+}
+
+- (void)removeCallback {
+    mpvgl_reset_update_callback(&_mpv);
 }
 
 @end
