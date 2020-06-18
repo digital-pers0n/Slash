@@ -180,6 +180,10 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
             [_userDefaults setObject:@{} forKey:SLHPreferencesAdvancedOptionsKey];
         }
         
+        if (!self.outputNameTemplate) {
+            self.outputNameTemplate = SLHTemplateNameFormatter.defaultTemplateFormat;
+        }
+        
         [self checkFFmpeg:self.ffmpegPath];
         [self checkMPV:self.mpvPath];
         
