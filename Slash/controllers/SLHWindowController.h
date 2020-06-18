@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLHWindowController : NSWindowController
 
 
-@property (readonly, nonatomic, nullable) SLHEncoderItem * currentEncoderItem;
+@property (readonly, nonatomic, nullable, weak) SLHEncoderItem * currentEncoderItem;
 @property (readonly, nonatomic, nullable) NSString *lastEncodedMediaFilePath;
 @property (readonly, nonatomic) SLHEncoderQueue *queue;
 
