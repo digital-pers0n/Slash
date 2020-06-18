@@ -110,9 +110,9 @@ static const NSUInteger kNumberOfTabs = 5;
         _tabCell.image = icon;
         
         if (_selectedTabIndex == idx) {
-            _tabCell.state = NSOnState;
+            _tabCell.state = NSControlStateValueOn;
             [_tabCell drawWithFrame:_rects[idx++] inView:self];
-            _tabCell.state = NSOffState;
+            _tabCell.state = NSControlStateValueOff;
             continue;
         }
         

@@ -151,7 +151,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [self formatsPopUpAction:_formatsPopUp];
     
     /* Drag and Drop support */
-    [self.window registerForDraggedTypes:@[NSFilenamesPboardType]];
+    [self.window registerForDraggedTypes:@[(id)kUTTypeFileURL]];
     
     /* MPVPlayer */
     MPVPlayer *player;
@@ -1045,7 +1045,7 @@ static char SLHPreferencesKVOContext;
     [self.window endEditingFor:nil];
     
     const NSEventModifierFlags
-    shouldEditArgs = NSApp.currentEvent.modifierFlags & NSAlternateKeyMask;
+    shouldEditArgs = NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption;
     
     if (!_preferences.shouldOverwriteFiles &&
         [[NSFileManager defaultManager] fileExistsAtPath:_currentEncoderItem.outputPath
@@ -1312,7 +1312,7 @@ static char SLHPreferencesKVOContext;
     NSPasteboard *pboard;
     pboard = [sender draggingPasteboard];
     
-    if ([pboard.types containsObject:NSFilenamesPboardType]) {
+    if ([pboard.types containsObject:(id)kUTTypeFileURL]) {
         return NSDragOperationGeneric;
     }
     return NSDragOperationNone;
@@ -1323,8 +1323,8 @@ static char SLHPreferencesKVOContext;
     BOOL result = NO;
     pboard = [sender draggingPasteboard];
 
-    if ([pboard.types containsObject:NSFilenamesPboardType]) {
-        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+    if ([pboard.types containsObject:(id)kUTTypeFileURL]) {
+        NSArray *files = [pboard propertyListForType:(id)kUTTypeFileURL];
         NSString * path = files.firstObject;
         MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithPath:path];
         if (playerItem.error) {

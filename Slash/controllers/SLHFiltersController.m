@@ -409,7 +409,7 @@ static inline NSString *_preampString(NSInteger val) {
     panel.allowsMultipleSelection = NO;
     panel.allowedFileTypes = @[@"srt", @"vtt", @"ass", @"ssa"];
     [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSFileHandlingPanelOKButton) {
+        if (returnCode == NSModalResponseOK) {
             NSString *value = panel.URLs.firstObject.path;
             _encoderItem.filters.subtitlesPath = value;
             _subtitlesNameTextField.stringValue = value.lastPathComponent;
@@ -418,7 +418,7 @@ static inline NSString *_preampString(NSInteger val) {
 }
 
 - (IBAction)burnSubtitles:(NSButton *)sender {
-    if (sender.state == NSOnState) {
+    if (sender.state == NSControlStateValueOn) {
         [self _updateSubtitlesName];
     }
 }
