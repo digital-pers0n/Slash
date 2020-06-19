@@ -216,7 +216,8 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
     [_timecodeLayers getObjects:_timecodeLayersPtr range:range];
     
     [CATransaction begin];
-    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+    [CATransaction setValue:(id)kCFBooleanTrue
+                     forKey:kCATransactionDisableActions];
     _secondaryMarksLayer.sublayers = [_timecodeLayers subarrayWithRange:range];
     [CATransaction commit];
 }
@@ -262,7 +263,8 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
                                       kSLHTimelineRulerHeight);
     
     [CATransaction begin];
-    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+    [CATransaction setValue:(id)kCFBooleanTrue
+                     forKey:kCATransactionDisableActions];
     for (NSUInteger i = 0; i < numOfMarks; ++i) {
         primaryMark.origin.x = step * i + margin;
         CGPathAddRect(primaryPath, nil, primaryMark);

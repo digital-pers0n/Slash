@@ -432,7 +432,8 @@ static void resize_callback(void *ctx) {
     };
     
     [CATransaction begin];
-    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+    [CATransaction setValue:(id)kCFBooleanTrue
+                     forKey:kCATransactionDisableActions];
     
     mpvgl_render(mpv, render_params);
     mpvgl_flush(mpv);
