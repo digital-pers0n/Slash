@@ -13,6 +13,7 @@
 @import OpenGL.GL;
 @import OpenGL.GL3;
 @import QuartzCore.CATransaction;
+@import CoreVideo.CVDisplayLink;
 
 #if __has_attribute(objc_direct)
 #define OBJC_DIRECT __attribute__((objc_direct))
@@ -34,6 +35,7 @@
     __weak CALayer * _layer;
     NSOpenGLContext *_glContext;
     MPVPlayer *_player;
+    CVDisplayLinkRef _cvdl;
 }
 
 - (void)setUp OBJC_DIRECT;
@@ -69,6 +71,16 @@ OBJC_DIRECT_MEMBERS
 - (void)bindTextureToIOSurface:(IOSurfaceRef)ioSurface;
 - (void)bindFramebuffer;
 - (void)updateIOSurface;
+
+@end
+
+OBJC_DIRECT_MEMBERS
+@interface MPVIOSurfaceView (DisplayLink)
+
+- (void)setUpDisplayLink;
+- (void)startDisplayLink;
+- (void)stopDisplayLink;
+- (void)destroyDisplayLink;
 
 @end
 
@@ -108,6 +120,7 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (void)dealloc {
+    [self destroyDisplayLink];
     [self destroyMPVRenderContext];
 }
 
@@ -125,6 +138,7 @@ OBJC_DIRECT_MEMBERS
     
     _render_queue = dispatch_queue_create("com.home.MPVIOSurfaceView"
                                           ".render-queue", attr);
+    [self setUpDisplayLink];
     
     CGColorRef blackColor = CGColorGetConstantColor(kCGColorBlack);
     CALayer *layer = [CALayer layer];
@@ -172,14 +186,16 @@ OBJC_DIRECT_MEMBERS
 - (void)viewWillStartLiveResize {
     [super viewWillStartLiveResize];
     if (mpvgl_is_valid(&_mpv)) {
-        mpvgl_set_update_callback(&_mpv, &resize_callback, (__bridge void *)self);
+        [self removeCallback];
+        [self startDisplayLink];
     }
 }
 
 - (void)viewDidEndLiveResize {
     [super viewDidEndLiveResize];
     if (mpvgl_is_valid(&_mpv)) {
-        mpvgl_set_update_callback(&_mpv, &render_callback, (__bridge void *)self);
+        [self stopDisplayLink];
+        [self useRenderCallback];
     }
 }
 
@@ -241,6 +257,17 @@ static void resize(void *ctx) {
 static void resize_callback(void *ctx) {
     __unsafe_unretained MPVIOSurfaceView *obj = (__bridge id)ctx;
     dispatch_async_f(obj->_render_queue, ctx, &resize);
+}
+
+static CVReturn cvdl_cb(
+                        CVDisplayLinkRef CV_NONNULL displayLink,
+                        const CVTimeStamp * CV_NONNULL inNow,
+                        const CVTimeStamp * CV_NONNULL inOutputTime,
+                        CVOptionFlags flagsIn,
+                        CVOptionFlags * CV_NONNULL flagsOut,
+                        void * CV_NULLABLE displayLinkContext ) {
+    resize(displayLinkContext);
+    return kCVReturnSuccess;
 }
 
 @end
@@ -442,6 +469,27 @@ static void resize_callback(void *ctx) {
     _layer.contents = (id)CFAutorelease(surface);
     
     [CATransaction commit];
+}
+
+@end
+
+@implementation MPVIOSurfaceView (DisplayLink)
+
+- (void)setUpDisplayLink {
+    CVDisplayLinkCreateWithActiveCGDisplays(&_cvdl);
+    CVDisplayLinkSetOutputCallback(_cvdl, &cvdl_cb, (__bridge void *)self);
+}
+
+- (void)startDisplayLink {
+    CVDisplayLinkStart(_cvdl);
+}
+
+- (void)stopDisplayLink {
+    CVDisplayLinkStop(_cvdl);
+}
+
+- (void)destroyDisplayLink {
+    CVDisplayLinkRelease(_cvdl);
 }
 
 @end
