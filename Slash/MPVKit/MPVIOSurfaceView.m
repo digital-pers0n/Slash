@@ -261,11 +261,6 @@ static void resize(void *ctx) {
     }
 }
 
-static void resize_callback(void *ctx) {
-    __unsafe_unretained MPVIOSurfaceView *obj = (__bridge id)ctx;
-    dispatch_async_f(obj->_render_queue, ctx, &resize);
-}
-
 static CVReturn cvdl_cb(
                         CVDisplayLinkRef CV_NONNULL displayLink,
                         const CVTimeStamp * CV_NONNULL inNow,
@@ -356,7 +351,6 @@ static CVReturn cvdl_cb(
         };
         mpvgl_set_aux_parameter(&_mpv, param);
     }
-    
     return 0;
 }
 
@@ -366,10 +360,6 @@ static CVReturn cvdl_cb(
 
 - (void)useRenderCallback {
     mpvgl_set_update_callback(&_mpv, &render_callback, (__bridge void *)self);
-}
-
-- (void)useResizeCallback {
-    mpvgl_set_update_callback(&_mpv, &resize_callback, (__bridge void *)self);
 }
 
 - (void)removeCallback {
