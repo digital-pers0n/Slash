@@ -33,6 +33,7 @@
     GLuint _texture;
     dispatch_queue_t _render_queue;
     __weak CALayer * _layer;
+    CFMutableDictionaryRef _ioProperties;
     NSOpenGLContext *_glContext;
     MPVPlayer *_player;
     CVDisplayLinkRef _cvdl;
@@ -67,6 +68,7 @@ OBJC_DIRECT_MEMBERS
 OBJC_DIRECT_MEMBERS
 @interface MPVIOSurfaceView (IOSurface)
 
+- (CFMutableDictionaryRef)createIOSurfaceProperties;
 - (IOSurfaceRef)createIOSurface;
 - (void)bindTextureToIOSurface:(IOSurfaceRef)ioSurface;
 - (void)bindFramebuffer;
@@ -122,6 +124,9 @@ OBJC_DIRECT_MEMBERS
 - (void)dealloc {
     [self destroyDisplayLink];
     [self destroyMPVRenderContext];
+    if (_ioProperties) {
+        CFRelease(_ioProperties);
+    }
 }
 
 - (void)setUp {
@@ -155,6 +160,8 @@ OBJC_DIRECT_MEMBERS
     [self.layer addSublayer:layer];
     self.layerContentsRedrawPolicy =  NSViewLayerContentsRedrawDuringViewResize;
     _layer = layer;
+    
+    _ioProperties = [self createIOSurfaceProperties];
 }
 
 #pragma mark - Overrides
@@ -373,15 +380,30 @@ static CVReturn cvdl_cb(
 
 @implementation MPVIOSurfaceView (IOSurface)
 
+- (CFMutableDictionaryRef)createIOSurfaceProperties {
+    CFMutableDictionaryRef dict;
+    dict = CFDictionaryCreateMutable(kCFAllocatorDefault, 4,
+                                     &kCFTypeDictionaryKeyCallBacks,
+                                     &kCFTypeDictionaryValueCallBacks);
+    CFNumberRef num;
+    num = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, (int[]){4});
+    CFDictionarySetValue(dict, kIOSurfaceBytesPerElement, CFAutorelease(num));
+    
+    num = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType,
+                         (int[]){kCVPixelFormatType_32BGRA});
+    CFDictionarySetValue(dict, kIOSurfacePixelFormat, CFAutorelease(num));
+    return dict;
+}
+
 - (IOSurfaceRef)createIOSurface {
-    NSDictionary* dict = @{
-                           (id)kIOSurfaceWidth: @(_mpv.fbo.w),
-                           (id)kIOSurfaceHeight: @(_mpv.fbo.h),
-                           (id)kIOSurfaceBytesPerElement: @4,
-                           (id)kIOSurfacePixelFormat:
-                               @((int)kCVPixelFormatType_32BGRA),
-                           };
-    return IOSurfaceCreate((CFDictionaryRef)dict);
+    CFNumberRef num;
+    num = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &_mpv.fbo.w);
+    CFDictionarySetValue(_ioProperties, kIOSurfaceWidth, num);
+    CFRelease(num);
+    num = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &_mpv.fbo.h);
+    CFDictionarySetValue(_ioProperties, kIOSurfaceHeight, num);
+    CFRelease(num);
+    return IOSurfaceCreate(_ioProperties);
 }
 
 - (void)bindTextureToIOSurface:(IOSurfaceRef)ioSurface {
