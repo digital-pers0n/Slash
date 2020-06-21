@@ -279,7 +279,7 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 - (void)windowDidLoad {
     [super windowDidLoad];
     _popover.contentSize = NSMakeSize(480, 640);
-    [_tableView registerForDraggedTypes:@[NSURLPboardType]];
+    [_tableView registerForDraggedTypes:@[(id)kUTTypeURL]];
     [_tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
 

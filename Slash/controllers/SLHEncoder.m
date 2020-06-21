@@ -256,7 +256,7 @@ static void _encoder_exit_cb(void *ctx, int exit_code) {
     }
     dispatch_sync(obj->_main_thread, ^{
         obj->_statusLineView.string = statusString;
-        obj->_pauseButton.state = NSOffState;
+        obj->_pauseButton.state = NSControlStateValueOff;
     });
     
 #ifdef DEBUG
