@@ -337,22 +337,21 @@ static CVReturn cvdl_cb(
 
 - (int)createMPVRenderContext {
     
-    int error = mpvgl_init(&_mpv, _player.mpv_handle,
-                           _glContext.CGLContextObj, false);
+    int error = mpvgl_init(&_mpv, _player.mpv_handle, _cgl, false);
     
     if (error) {
         return error;
     }
     
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_12) {
-        // Fix the black screen and flickering under 10.11
-        static int flag = 0;
-        mpv_render_param param = {
-            .type = MPV_RENDER_PARAM_BLOCK_FOR_TARGET_TIME,
-            .data = &flag
-        };
-        mpvgl_set_aux_parameter(&_mpv, param);
-    }
+    // This was previously intended to fix black screen under macOS 10.11
+    // But the black screen appears on Mojave too, if videotoolbox is not used.
+    // So make this parameter always on.
+    static int flag = 0;
+    mpv_render_param param = {
+        .type = MPV_RENDER_PARAM_BLOCK_FOR_TARGET_TIME,
+        .data = &flag
+    };
+    mpvgl_set_aux_parameter(&_mpv, param);
     return 0;
 }
 
