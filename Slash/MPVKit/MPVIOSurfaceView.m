@@ -185,11 +185,17 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (void)updateLayer {
-    if (self.inLiveResize) {
-        typeof(_mpv) *mpv = &_mpv;
+    typeof(_mpv) *mpv = &_mpv;
+    if (CVDisplayLinkIsRunning(_cvdl)) {
         mpvgl_lock(mpv);
         [self updateIOSurface];
         mpvgl_unlock(mpv);
+    } else {
+         __unsafe_unretained typeof(self) obj = self;
+        dispatch_async(_render_queue, ^{
+            [obj updateIOSurface];
+            mpvgl_update(mpv);
+        });
     }
 }
 
