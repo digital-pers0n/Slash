@@ -34,9 +34,9 @@
     dispatch_queue_t _render_queue;
     __weak CALayer * _layer;
     CFMutableDictionaryRef _ioProperties;
-    NSOpenGLContext *_glContext;
     MPVPlayer *_player;
     CVDisplayLinkRef _cvdl;
+    CGLContextObj _cgl;
 }
 
 - (void)setUp OBJC_DIRECT;
@@ -47,8 +47,9 @@
 OBJC_DIRECT_MEMBERS
 @interface MPVIOSurfaceView (OpenGL)
 
-- (NSOpenGLPixelFormat *)createOpenGLPixelFormat;
-- (NSOpenGLContext *)createOpenGLContext:(NSOpenGLPixelFormat *)pf;
+- (CGLError)createOpenGLPixelFormat:(CGLPixelFormatObj *)pix;
+- (CGLError)createOpenGLContext:(CGLContextObj *)cgl
+                     withFormat:(CGLPixelFormatObj)pix;
 - (BOOL)initializeOpenGLContext;
 
 @end
@@ -60,7 +61,6 @@ OBJC_DIRECT_MEMBERS
 - (int)createMPVRenderContext;
 - (void)destroyMPVRenderContext;
 - (void)useRenderCallback;
-- (void)useResizeCallback;
 - (void)removeCallback;
 
 @end
@@ -126,6 +126,9 @@ OBJC_DIRECT_MEMBERS
     [self destroyMPVRenderContext];
     if (_ioProperties) {
         CFRelease(_ioProperties);
+    }
+    if (_cgl) {
+        CGLReleaseContext(_cgl);
     }
 }
 
@@ -276,48 +279,47 @@ static CVReturn cvdl_cb(
 
 @implementation MPVIOSurfaceView (OpenGL)
 
-- (NSOpenGLPixelFormat *)createOpenGLPixelFormat {
-    NSOpenGLPixelFormatAttribute attributes[] = {
-        NSOpenGLPFANoRecovery,
-        NSOpenGLPFAAllowOfflineRenderers,
-        NSOpenGLPFAAccelerated,
-        
+- (CGLError)createOpenGLPixelFormat:(CGLPixelFormatObj *)pix {
+    CGLPixelFormatAttribute glAttributes[] = {
+        kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
+        kCGLPFAAccelerated,
 #if USE_DOUBLE_BUFFER_PIXEL_FORMAT
-        
-        NSOpenGLPFADoubleBuffer,
-        
+        kCGLPFADoubleBuffer,
 #endif
-        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core,
+        kCGLPFAAllowOfflineRenderers,
+        kCGLPFASupportsAutomaticGraphicsSwitching,
         0
     };
-    
-    return [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
+    GLint npix = 0;
+    return CGLChoosePixelFormat(glAttributes, pix, &npix);
 }
 
-- (NSOpenGLContext *)createOpenGLContext:(NSOpenGLPixelFormat *)pf {
-    return [[NSOpenGLContext alloc] initWithFormat:pf shareContext:nil];
+- (CGLError)createOpenGLContext:(CGLContextObj *)cgl
+                     withFormat:(CGLPixelFormatObj)pix
+{
+    return CGLCreateContext(pix, nil, cgl);
 }
 
 - (BOOL)initializeOpenGLContext {
-    NSOpenGLPixelFormat *pf = [self createOpenGLPixelFormat];
-    if (!pf) {
-        NSLog(@"Cannot create NSOpenGLPixelFormat.");
+    CGLPixelFormatObj pix = nil;
+    CGLError error = [self createOpenGLPixelFormat:&pix];
+    if (error) {
+        NSLog(@"Cannot create NSOpenGLPixelFormat. %s", CGLErrorString(error));
         return NO;
     }
     
-    NSOpenGLContext *glContext = [self createOpenGLContext:pf];
-    if (!glContext) {
-        NSLog(@"Cannot create NSOpenGLContext.");
+    CGLContextObj cgl = nil;
+    error = [self createOpenGLContext:&cgl withFormat:pix];
+    if (error) {
+        CGLReleasePixelFormat(pix);
+        NSLog(@"Cannot create NSOpenGLContext. %s", CGLErrorString(error));
         return NO;
     }
+    CGLReleasePixelFormat(pix);
     
     GLint swapInt = 1;
-    [glContext setValues:&swapInt
-            forParameter:NSOpenGLContextParameterSwapInterval];
-    GLint opaque = 1;
-    [glContext setValues:&opaque forParameter:NSOpenGLCPSurfaceOpacity];
-    
-    _glContext = glContext;
+    CGLSetParameter(cgl, kCGLCPSwapInterval, &swapInt);
+    _cgl = cgl;
     return YES;
 }
 
