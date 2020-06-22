@@ -368,6 +368,7 @@ static CVReturn cvdl_cb(
     if (error) {
         return [self mpvRenderContextErrorWithCode:error];
     }
+    _mpv.fbo.internal_format = GL_RGBA;
     
     // This was previously intended to fix black screen under macOS 10.11
     // But the black screen appears on Mojave too, if videotoolbox is not used.
