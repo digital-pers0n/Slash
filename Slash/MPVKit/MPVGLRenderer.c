@@ -17,12 +17,10 @@ static void *get_proc_address(void *ctx, const char *symbol) {
     return dlsym(ctx, symbol);
 }
 
-static const char k_opengl_framework_path[] = "/System/Library/Frameworks/"
-                                              "OpenGL.framework/OpenGL";
 static void *g_opengl_framework_handle;
 
 static bool load_opengl_framework() {
-    void *handle = dlopen(k_opengl_framework_path, RTLD_LAZY | RTLD_LOCAL);
+    void *handle = dlopen(MPVGL_OPENGL_FRAMEWORK_PATH, RTLD_LAZY | RTLD_LOCAL);
     if (handle) {
         g_opengl_framework_handle = handle;
         return true;

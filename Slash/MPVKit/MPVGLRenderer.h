@@ -29,6 +29,9 @@
 #define USE_DOUBLE_BUFFER_PIXEL_FORMAT 1
 #endif
 
+#define MPVGL_OPENGL_FRAMEWORK_PATH "/System/Library/Frameworks" \
+                                    "/OpenGL.framework/OpenGL"
+
 typedef struct MPVGLRenderer_ {
     mpv_render_context      *ctx;
     CGLContextObj           cgl;

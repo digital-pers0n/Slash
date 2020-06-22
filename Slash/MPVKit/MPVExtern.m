@@ -57,3 +57,7 @@ NSString * const MPVPlayerDidEnterIdleModeNotification      = @"playerDidEnterId
 NSString * const MPVPlayerVideoDidChangeNotification        = @"playerVideoDidChange";
 NSString * const MPVPlayerDidStartSeekNotification          = @"playerDidStartSeek";
 NSString * const MPVPlayerDidRestartPlaybackNotification    = @"playerDidRestartPlayback";
+
+#pragma mark - Error Domain
+
+NSString * const MPVPlayerErrorDomain = @"com.home.mpvPlayer.ErrorDomain";

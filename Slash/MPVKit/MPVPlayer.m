@@ -12,9 +12,6 @@
 #import "MPVPlayerCommands.h"
 #import "MPVBase.h"
 
-NSString * const MPVPlayerErrorDomain = @"com.home.mpvPlayer.ErrorDomain";
-
-
 #define mpv_print_error_set_property(error_code, property_name, value_format, value) \
 NSLog(@"%s Failed to set value '" value_format "' for property '%@' -> %d %s", \
 __PRETTY_FUNCTION__, value, property_name, error_code, mpv_error_string(error_code))

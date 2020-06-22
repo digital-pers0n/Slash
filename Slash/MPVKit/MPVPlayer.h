@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, MPVPlayerStatus) {
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXTERN NSString * const MPVPlayerErrorDomain;
+
 @protocol MPVPropertyObserving;
 @class MPVPlayerItem;
 
