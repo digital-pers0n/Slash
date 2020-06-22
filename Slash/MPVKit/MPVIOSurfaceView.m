@@ -9,6 +9,7 @@
 #import "MPVIOSurfaceView.h"
 #import "MPVPlayer.h"
 #import "MPVGLRenderer.h"
+#import <dlfcn.h>
 
 @import OpenGL.GL;
 @import OpenGL.GL3;
@@ -39,7 +40,7 @@
     CGLContextObj _cgl;
 }
 
-- (void)setUp OBJC_DIRECT;
+- (NSError *)setUp OBJC_DIRECT;
 - (void)playerWillShutdown:(NSNotification *)notification;
 
 @end
@@ -50,7 +51,7 @@ OBJC_DIRECT_MEMBERS
 - (CGLError)createOpenGLPixelFormat:(CGLPixelFormatObj *)pix;
 - (CGLError)createOpenGLContext:(CGLContextObj *)cgl
                      withFormat:(CGLPixelFormatObj)pix;
-- (BOOL)initializeOpenGLContext;
+- (NSError *)initializeOpenGLContext;
 
 @end
 
@@ -58,7 +59,7 @@ OBJC_DIRECT_MEMBERS
 @interface MPVIOSurfaceView (MPVRenderer)
 
 - (BOOL)createMPVPlayer;
-- (int)createMPVRenderContext;
+- (NSError *)createMPVRenderContext;
 - (void)destroyMPVRenderContext;
 - (void)useRenderCallback;
 - (void)removeCallback;
@@ -86,6 +87,17 @@ OBJC_DIRECT_MEMBERS
 
 @end
 
+OBJC_DIRECT_MEMBERS
+@interface MPVIOSurfaceView (Errors)
+
+- (NSError *)cglPixelFormatErrorWithCode:(CGLError)code;
+- (NSError *)cglContextErrorWithCode:(CGLError)code;
+- (NSError *)mpvRenderContextErrorWithCode:(int)code;
+- (NSDictionary *)userInfoWithDescription:(NSString *)description
+                               suggestion:(NSString *)suggestion;
+
+@end
+
 @implementation MPVIOSurfaceView
 
 #pragma mark - Initialization
@@ -94,21 +106,12 @@ OBJC_DIRECT_MEMBERS
 
     self = [super initWithFrame:NSMakeRect(0, 0, 640, 480)];
     if (self) {
-        if (![self initializeOpenGLContext]) {
+        _player = player;
+        NSError *error = [self setUp];
+        if (error) {
+            [NSApp presentError:error];
             return nil;
         }
-        
-        if (!player) {
-            if (![self createMPVPlayer]) {
-                NSLog(@"Cannot create MPVPlayer. %@",
-                      _player.error.localizedDescription);
-                return nil;
-            }
-        } else {
-            _player = player;
-        }
-        
-        [self setUp];
     }
     return self;
 }
@@ -132,7 +135,25 @@ OBJC_DIRECT_MEMBERS
     }
 }
 
-- (void)setUp {
+- (NSError *)setUp {
+    NSError * result = nil;
+    result = [self initializeOpenGLContext];
+    
+    if (result) {
+        return result;
+    }
+    
+    if (!_player) {
+        if (![self createMPVPlayer]) {
+            return _player.error;
+        }
+    }
+    
+    result = [self createMPVRenderContext];
+    if (result) {
+        return result;
+    }
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver:self
@@ -165,6 +186,7 @@ OBJC_DIRECT_MEMBERS
     _layer = layer;
     
     _ioProperties = [self createIOSurfaceProperties];
+    return result;
 }
 
 #pragma mark - Overrides
@@ -306,27 +328,25 @@ static CVReturn cvdl_cb(
     return CGLCreateContext(pix, nil, cgl);
 }
 
-- (BOOL)initializeOpenGLContext {
+- (NSError *)initializeOpenGLContext {
     CGLPixelFormatObj pix = nil;
     CGLError error = [self createOpenGLPixelFormat:&pix];
     if (error) {
-        NSLog(@"Cannot create NSOpenGLPixelFormat. %s", CGLErrorString(error));
-        return NO;
+        return [self cglPixelFormatErrorWithCode:error];
     }
     
     CGLContextObj cgl = nil;
     error = [self createOpenGLContext:&cgl withFormat:pix];
     if (error) {
         CGLReleasePixelFormat(pix);
-        NSLog(@"Cannot create NSOpenGLContext. %s", CGLErrorString(error));
-        return NO;
+        return [self cglContextErrorWithCode:error];
     }
     CGLReleasePixelFormat(pix);
     
     GLint swapInt = 1;
     CGLSetParameter(cgl, kCGLCPSwapInterval, &swapInt);
     _cgl = cgl;
-    return YES;
+    return nil;
 }
 
 @end
@@ -341,12 +361,12 @@ static CVReturn cvdl_cb(
     return YES;
 }
 
-- (int)createMPVRenderContext {
+- (NSError *)createMPVRenderContext {
     
     int error = mpvgl_init(&_mpv, _player.mpv_handle, _cgl, false);
     
     if (error) {
-        return error;
+        return [self mpvRenderContextErrorWithCode:error];
     }
     
     // This was previously intended to fix black screen under macOS 10.11
@@ -358,7 +378,7 @@ static CVReturn cvdl_cb(
         .data = &flag
     };
     mpvgl_set_aux_parameter(&_mpv, param);
-    return 0;
+    return nil;
 }
 
 - (void)destroyMPVRenderContext {
@@ -509,6 +529,50 @@ static CVReturn cvdl_cb(
 
 - (void)destroyDisplayLink {
     CVDisplayLinkRelease(_cvdl);
+}
+
+@end
+
+@implementation MPVIOSurfaceView (Errors)
+
+- (NSError *)cglPixelFormatErrorWithCode:(CGLError)err {
+    NSDictionary *info;
+    info = [self userInfoWithDescription:@"Cannot initialize OpenGL Pixel Format."
+                              suggestion:@(CGLErrorString(err))];
+    return [NSError errorWithDomain:MPVPlayerErrorDomain code:err userInfo:info];
+}
+- (NSError *)cglContextErrorWithCode:(CGLError)err {
+    NSDictionary *info;
+    info = [self userInfoWithDescription:@"Cannot initialize OpenGL Context."
+                              suggestion:@(CGLErrorString(err))];
+    return [NSError errorWithDomain:MPVPlayerErrorDomain code:err userInfo:info];
+}
+
+- (NSError *)mpvRenderContextErrorWithCode:(int)err {
+    NSDictionary *info;
+    if (MPVGL_ERROR_OPENGL_FRAMEWORK_UNAVAILABLE == err) {
+        NSString *desc = @"Cannot load OpenGL.framework";
+        const char *error = dlerror();
+        if (error) {
+            info = [self userInfoWithDescription:desc suggestion:@(error)];
+        } else {
+            id string = [NSString stringWithFormat:@"Error while loading '%s'",
+                                                   MPVGL_OPENGL_FRAMEWORK_PATH];
+            info = [self userInfoWithDescription:desc suggestion:string];
+        }
+        
+    } else {
+        info = [self userInfoWithDescription:@"Cannot initialize mpv render context."
+                                  suggestion:@(mpv_error_string(err))];
+    }
+    return [NSError errorWithDomain:MPVPlayerErrorDomain code:err userInfo:info];
+}
+
+- (NSDictionary *)userInfoWithDescription:(NSString *)description
+                               suggestion:(NSString *)reason
+{
+    return @{ NSLocalizedDescriptionKey             : description,
+              NSLocalizedRecoverySuggestionErrorKey : reason };
 }
 
 @end
