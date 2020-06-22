@@ -94,7 +94,7 @@ void mpvgl_render(MPVGLRenderer *mpvgl, mpv_render_param *params);
  Render the current frame with default parameters.
  */
 __attribute__((overloadable))
-static void mpvgl_render(MPVGLRenderer *mpvgl) {
+static inline void mpvgl_render(MPVGLRenderer *mpvgl) {
     mpvgl_render(mpvgl, mpvgl->params);
 }
 
