@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPVIOSurfaceView : NSView
 
-- (instancetype)initWithPlayer:(nullable MPVPlayer *)player;
+- (nullable instancetype)initWithFrame:(NSRect)frame
+                                player:(nullable MPVPlayer *)player
+                                 error:(out NSError **)error NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+
 @property (nonatomic, nullable) MPVPlayer *player;
 
 @end

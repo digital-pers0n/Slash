@@ -41,7 +41,7 @@
     CGLContextObj _cgl;
 }
 
-- (NSError *)setUp OBJC_DIRECT;
+- (NSError *)setUpWithFrame:(NSRect)frame OBJC_DIRECT;
 - (void)playerWillShutdown:(NSNotification *)notification;
 
 @end
@@ -103,12 +103,25 @@ OBJC_DIRECT_MEMBERS
 
 #pragma mark - Initialization
 
-- (instancetype)initWithPlayer:(MPVPlayer *)player {
-
-    self = [super initWithFrame:NSMakeRect(0, 0, 640, 480)];
+- (instancetype)initWithFrame:(NSRect)frame player:(nullable MPVPlayer *)player
+                        error:(out NSError **)error
+{
+    self = [super initWithFrame:frame];
     if (self) {
         _player = player;
-        NSError *error = [self setUp];
+        NSError *result = [self setUpWithFrame:frame];
+        if (result) {
+            *error = result;
+            return nil;
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        NSError *error = [self setUpWithFrame:NSMakeRect(0, 0, 640, 480)];
         if (error) {
             [NSApp presentError:error];
             return nil;
@@ -118,9 +131,11 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (instancetype)initWithFrame:(NSRect)frame {
-    self = [self initWithPlayer:nil];
-    if (self) {
-        self.frame = frame;
+    NSError *error = nil;
+    self = [self initWithFrame:frame player:nil error:&error];
+    if (error) {
+        [NSApp presentError:error];
+        return nil;
     }
     return self;
 }
@@ -136,7 +151,7 @@ OBJC_DIRECT_MEMBERS
     }
 }
 
-- (NSError *)setUp {
+- (NSError *)setUpWithFrame:(NSRect)frame {
     NSError * result = nil;
     result = [self initializeOpenGLContext];
     
@@ -177,7 +192,7 @@ OBJC_DIRECT_MEMBERS
     layer.backgroundColor = blackColor;
     layer.anchorPoint = CGPointZero;
     layer.position = CGPointZero;
-    layer.bounds = CGRectMake(0, 0, 640, 480);
+    layer.bounds = frame;
     layer.doubleSided = NO;
     self.wantsLayer = YES;
     self.layer.opaque = YES;
