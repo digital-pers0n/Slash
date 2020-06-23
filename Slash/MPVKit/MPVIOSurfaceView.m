@@ -27,6 +27,7 @@
 // Private CALayer API.
 @interface CALayer (Private)
 - (void)setContentsChanged;
+- (void)reloadValueForKeyPath:(NSString *)keyPath;
 @end
 
 @interface MPVIOSurfaceView () {
@@ -246,13 +247,17 @@ OBJC_DIRECT_MEMBERS
 
 #pragma mark - Callbacks
 
+static void update_layer_contents(__unsafe_unretained CALayer *layer) {
+    [layer reloadValueForKeyPath:@"contents"];
+}
+
 static void render(void *ctx) {
     __unsafe_unretained MPVIOSurfaceView *obj = (__bridge id)ctx;
     typeof(obj->_mpv) *mpv = &obj->_mpv;
     mpvgl_make_current(mpv);
     mpvgl_render(mpv);
     mpvgl_flush(mpv);
-    [obj->_layer setContentsChanged];
+    update_layer_contents(obj->_layer);
     [CATransaction commit];
 }
 
@@ -284,7 +289,7 @@ static void resize(void *ctx) {
         };
         [CATransaction begin];
         mpvgl_render(mpv, render_params);
-        [obj->_layer setContentsChanged];
+        update_layer_contents(obj->_layer);
         [CATransaction commit];
         
         mpvgl_flush(mpv);
