@@ -53,6 +53,7 @@ OBJC_DIRECT_MEMBERS
 - (CGLError)createOpenGLContext:(CGLContextObj *)cgl
                      withFormat:(CGLPixelFormatObj)pix;
 - (NSError *)initializeOpenGLContext;
+- (void)destroyOpenGLContext;
 
 @end
 
@@ -75,6 +76,7 @@ OBJC_DIRECT_MEMBERS
 - (void)bindTextureToIOSurface:(IOSurfaceRef)ioSurface;
 - (void)bindFramebuffer;
 - (void)updateIOSurface;
+- (void)destroyIOSurfaceProperties;
 
 @end
 
@@ -143,12 +145,8 @@ OBJC_DIRECT_MEMBERS
 - (void)dealloc {
     [self destroyDisplayLink];
     [self destroyMPVRenderContext];
-    if (_ioProperties) {
-        CFRelease(_ioProperties);
-    }
-    if (_cgl) {
-        CGLReleaseContext(_cgl);
-    }
+    [self destroyIOSurfaceProperties];
+    [self destroyOpenGLContext];
 }
 
 - (NSError *)setUpWithFrame:(NSRect)frame {
@@ -369,6 +367,14 @@ static CVReturn cvdl_cb(
     return nil;
 }
 
+- (void)destroyOpenGLContext {
+    if (_cgl) {
+        CGLClearDrawable(_cgl);
+        CGLReleaseContext(_cgl);
+        _cgl = nil;
+    }
+}
+
 @end
 
 @implementation MPVIOSurfaceView (MPVRenderer)
@@ -529,6 +535,13 @@ static CVReturn cvdl_cb(
     _layer.contents = (id)CFAutorelease(surface);
     
     [CATransaction commit];
+}
+
+- (void)destroyIOSurfaceProperties {
+    if (_ioProperties) {
+        CFRelease(_ioProperties);
+        _ioProperties = nil;
+    }
 }
 
 @end
