@@ -205,6 +205,17 @@ OBJC_DIRECT_MEMBERS
 
 #pragma mark - Overrides
 
+- (void)viewDidMoveToWindow {
+    [super viewDidMoveToWindow];
+    if (mpvgl_is_valid(&_mpv)) {
+        if (self.window) {
+            [self useRenderCallback];
+        } else {
+            [self removeCallback];
+        }
+    }
+}
+
 - (BOOL)wantsUpdateLayer {
     return mpvgl_is_valid(&_mpv);
 }
