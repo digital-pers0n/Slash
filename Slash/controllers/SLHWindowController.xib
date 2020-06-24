@@ -166,7 +166,7 @@
                                                                                         <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="J15-AF-dCH">
                                                                                             <rect key="frame" x="5" y="19" width="165" height="14"/>
                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Sample Text" id="7XL-sX-z5V">
+                                                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Sample Text" id="7XL-sX-z5V">
                                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
