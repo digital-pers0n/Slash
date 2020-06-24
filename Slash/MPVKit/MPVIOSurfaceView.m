@@ -337,18 +337,8 @@ static CVReturn cvdl_cb(
 @implementation MPVIOSurfaceView (OpenGL)
 
 - (CGLError)createOpenGLPixelFormat:(CGLPixelFormatObj *)pix {
-    CGLPixelFormatAttribute glAttributes[] = {
-        kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
-        kCGLPFAAccelerated,
-#if USE_DOUBLE_BUFFER_PIXEL_FORMAT
-        kCGLPFADoubleBuffer,
-#endif
-        kCGLPFAAllowOfflineRenderers,
-        kCGLPFASupportsAutomaticGraphicsSwitching,
-        0
-    };
     GLint npix = 0;
-    return CGLChoosePixelFormat(glAttributes, pix, &npix);
+    return CGLChoosePixelFormat(mpvgl_default_pixel_format_attrs(), pix, &npix);
 }
 
 - (CGLError)createOpenGLContext:(CGLContextObj *)cgl

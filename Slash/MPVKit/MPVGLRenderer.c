@@ -13,6 +13,21 @@
 #include <dlfcn.h>
 #include <OpenGL/gl.h>
 
+static const CGLPixelFormatAttribute k_default_pixel_format_attrs[] = {
+    kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL3_Core,
+    kCGLPFAAccelerated,
+#if USE_DOUBLE_BUFFER_PIXEL_FORMAT
+    kCGLPFADoubleBuffer,
+#endif
+    kCGLPFAAllowOfflineRenderers,
+    kCGLPFASupportsAutomaticGraphicsSwitching,
+    0
+};
+
+const CGLPixelFormatAttribute *mpvgl_default_pixel_format_attrs() {
+    return k_default_pixel_format_attrs;
+}
+
 static void *get_proc_address(void *ctx, const char *symbol) {
     return dlsym(ctx, symbol);
 }

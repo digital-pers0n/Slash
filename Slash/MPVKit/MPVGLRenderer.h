@@ -148,4 +148,9 @@ bool mpvgl_has_frame(MPVGLRenderer *mpvgl);
  */
 bool mpvgl_is_valid(MPVGLRenderer *mpvgl);
 
+/**
+ @return Default CGLPixelFormat attributes.
+ */
+const CGLPixelFormatAttribute *mpvgl_default_pixel_format_attrs(void);
+
 #endif /* MPVGLRenderer_h */
