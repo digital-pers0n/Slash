@@ -484,11 +484,13 @@ static CVReturn cvdl_cb(
     glBindTexture(GL_TEXTURE_RECTANGLE_ARB, _texture);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                            GL_TEXTURE_RECTANGLE_ARB, _texture, 0);
-    
+#if DEBUG
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (status != GL_FRAMEBUFFER_COMPLETE) {
         NSLog(@"Framebuffer incomplete: %u", status);
     }
+#endif
+    
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_RECTANGLE_ARB, 0);
     
@@ -556,7 +558,10 @@ static CVReturn cvdl_cb(
 }
 
 - (void)destroyDisplayLink {
-    CVDisplayLinkRelease(_cvdl);
+    if (_cvdl) {
+        CVDisplayLinkRelease(_cvdl);
+        _cvdl = nil;
+    }
 }
 
 @end
