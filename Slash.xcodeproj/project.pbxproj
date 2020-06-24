@@ -300,6 +300,7 @@
 		CEBB8BF7246ACAD700776827 /* MPVLock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVLock.c; path = MPVKit/MPVLock.c; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
 		CEBFF3E32190BDA000F54C7E /* slh_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_encoder.h; path = Slash/system/slh_encoder.h; sourceTree = SOURCE_ROOT; };
+		CECFA43A24A27DCD00B6C22A /* MPVKitDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVKitDefines.h; path = MPVKit/MPVKitDefines.h; sourceTree = "<group>"; };
 		CED2245D23A11332000A7489 /* SLHExternalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHExternalPlayer.h; path = utils/SLHExternalPlayer.h; sourceTree = "<group>"; };
 		CED2245E23A11332000A7489 /* SLHExternalPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHExternalPlayer.m; path = utils/SLHExternalPlayer.m; sourceTree = "<group>"; };
 		CED85AB721B85D6D00D01B36 /* SLHEncoderX264Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Format.h; path = controllers/SLHEncoderX264Format.h; sourceTree = "<group>"; };
@@ -438,6 +439,7 @@
 		CE166C5E2351FCCF001AF0CB /* MPVKit */ = {
 			isa = PBXGroup;
 			children = (
+				CECFA43A24A27DCD00B6C22A /* MPVKitDefines.h */,
 				CE166C652352019A001AF0CB /* MPVPlayerProperties.h */,
 				CE166C6423520181001AF0CB /* MPVPlayerCommands.h */,
 				CE166C5D2351FCC3001AF0CB /* MPVBase.h */,

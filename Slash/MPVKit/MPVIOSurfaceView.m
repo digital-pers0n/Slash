@@ -10,19 +10,12 @@
 #import "MPVPlayer.h"
 #import "MPVGLRenderer.h"
 #import <dlfcn.h>
+#import "MPVKitDefines.h"
 
 @import OpenGL.GL;
 @import OpenGL.GL3;
 @import QuartzCore.CATransaction;
 @import CoreVideo.CVDisplayLink;
-
-#if __has_attribute(objc_direct)
-#define OBJC_DIRECT __attribute__((objc_direct))
-#define OBJC_DIRECT_MEMBERS __attribute__((objc_direct_members))
-#else
-#define OBJC_DIRECT
-#define OBJC_DIRECT_MEMBERS
-#endif
 
 // Private CALayer API.
 @interface CALayer (Private)
