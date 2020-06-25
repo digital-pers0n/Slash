@@ -172,7 +172,11 @@
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                             </textFieldCell>
                                                                                             <connections>
-                                                                                                <binding destination="nBK-Vf-O9n" name="value" keyPath="objectValue.outputFileName" id="ddl-s8-6Ed"/>
+                                                                                                <binding destination="nBK-Vf-O9n" name="value" keyPath="objectValue.outputFileName" id="Gnh-aK-ylf">
+                                                                                                    <dictionary key="options">
+                                                                                                        <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                                                                    </dictionary>
+                                                                                                </binding>
                                                                                             </connections>
                                                                                         </textField>
                                                                                         <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="U1r-fU-wB1">
