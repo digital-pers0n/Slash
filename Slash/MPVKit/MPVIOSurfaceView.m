@@ -363,8 +363,7 @@ static CVReturn cvdl_cb(
 
 - (void)destroyOpenGLContext {
     if (_cgl) {
-        CGLClearDrawable(_cgl);
-        CGLReleaseContext(_cgl);
+        CGLDestroyContext(_cgl);
         _cgl = nil;
     }
 }
