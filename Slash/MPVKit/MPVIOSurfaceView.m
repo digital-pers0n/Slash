@@ -68,7 +68,7 @@ OBJC_DIRECT_MEMBERS
 - (IOSurfaceRef)createIOSurface;
 - (void)bindTextureToIOSurface:(IOSurfaceRef)ioSurface;
 - (void)bindFramebuffer;
-- (void)updateIOSurface;
+- (void)updateIOSurfaceWithFrame:(NSRect)frame;
 - (void)destroyIOSurfaceProperties;
 
 @end
@@ -213,27 +213,21 @@ OBJC_DIRECT_MEMBERS
     return mpvgl_is_valid(&_mpv);
 }
 
-- (void)setFrame:(NSRect)frame {
-    [super setFrame:frame];
-    typeof(_mpv) *mpv = &_mpv;
-    if (mpvgl_is_valid(mpv)) {
-        NSSize size = [self convertSizeToBacking:frame.size];
-        mpvgl_lock(mpv);
-        mpvgl_set_size(mpv, size.width, size.height);
-        mpvgl_unlock(mpv);
-    }
-}
-
 - (void)updateLayer {
     typeof(_mpv) *mpv = &_mpv;
+    NSRect frame = self.bounds;
+    NSSize size = [self convertSizeToBacking:frame.size];
+
     if (CVDisplayLinkIsRunning(_cvdl)) {
         mpvgl_lock(mpv);
-        [self updateIOSurface];
+        mpvgl_set_size(mpv, size.width, size.height);
+        [self updateIOSurfaceWithFrame:frame];
         mpvgl_unlock(mpv);
     } else {
          __unsafe_unretained typeof(self) obj = self;
         dispatch_async(_render_queue, ^{
-            [obj updateIOSurface];
+            mpvgl_set_size(mpv, size.width, size.height);
+            [obj updateIOSurfaceWithFrame:frame];
             mpvgl_update(mpv);
         });
     }
@@ -496,7 +490,7 @@ static CVReturn cvdl_cb(
     _mpv.fbo.fbo = framebuffer;
 }
 
-- (void)updateIOSurface {
+- (void)updateIOSurfaceWithFrame:(NSRect)frame {
     typeof(_mpv) *mpv = &_mpv;
     
     mpvgl_make_current(mpv);
@@ -526,7 +520,7 @@ static CVReturn cvdl_cb(
     mpvgl_render(mpv, render_params);
     mpvgl_flush(mpv);
     
-    _layer.bounds = CGRectMake(0, 0, fbo.w, fbo.h);
+    _layer.bounds = frame;
     _layer.contents = (id)CFAutorelease(surface);
     
     [CATransaction commit];
