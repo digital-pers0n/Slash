@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPVOpenGLView : NSOpenGLView
 
+- (nullable instancetype)initWithFrame:(NSRect)frame
+                                player:(nullable MPVPlayer *)player
+                                 error:(out NSError **)error NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)initWithPlayer:(nullable MPVPlayer *)player;
 @property (nonatomic, nullable) MPVPlayer *player;
 

@@ -108,10 +108,16 @@
 }
 
 - (void)createVideoViewWithPlayer:(MPVPlayer *)player {
-    _videoView = [[MPVOpenGLView alloc] initWithPlayer:player];
-    assert(_videoView != nil);
+    NSError *error = nil;
+    NSRect frame = _viewController.videoView.bounds;
+    _videoView = [[MPVOpenGLView alloc] initWithFrame:frame player:player
+                                                error:&error];
+    if (error) {
+        NSLog(@"Error %@", error);
+        [NSApp presentError:error];
+        return;
+    }
     _videoView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-    _videoView.frame = _viewController.videoView.bounds;
     [_viewController.videoView addSubview:_videoView];
     BOOL flag = [[SLHPreferences preferences] useHiResOpenGLSurface];
     _videoView.wantsBestResolutionOpenGLSurface = flag;

@@ -11,6 +11,8 @@
 #import <mpv/render_gl.h>
 #import <dlfcn.h>
 #import "MPVLock.h"
+#import "MPVKitDefines.h"
+#import "MPVGLRenderer.h"
 
 #import <OpenGL/gl.h>
 #import <OpenGL/gl3.h>
@@ -53,58 +55,72 @@ static void mpv_gl_lock_destroy(mpv_data * mpv) {
     mpv_data _mpv;
 }
 
+- (void)setUpWithFrame:(NSRect)frame OBJC_DIRECT;
+
+@end
+
+OBJC_DIRECT_MEMBERS
+@interface MPVOpenGLView (Errors)
+
+- (NSError *)errorWithCode:(int)code description:(NSString *)description
+                suggestion:(NSString *)suggestion;
+
 @end
 
 @implementation MPVOpenGLView
 
 #pragma mark - Initialization
 
-- (instancetype)initWithPlayer:(MPVPlayer *)player {
-    
-    NSOpenGLPixelFormat *pf = [self createOpenGLPixelFormat];
+- (nullable instancetype)initWithFrame:(NSRect)frame
+                                player:(nullable MPVPlayer *)player
+                                 error:(out NSError **)error
+{
+    NSOpenGLPixelFormat *pf = [self openGLPixelFormatWithError:error];
     if (!pf) {
-        NSLog(@"Failed to create NSOpenGLPixelFormat object.");
         return nil;
     }
-    
-    self = [super initWithFrame:NSMakeRect(0, 0, 640, 480) pixelFormat:pf];
+    self = [super initWithFrame:frame pixelFormat:pf];
     if (self) {
         if (!player) {
-            if ([self createMPVPlayer] != 0) {
-                NSLog(@"Failed to create MPVPlayer object. -> %@", _player.error.localizedDescription);
+            _player = [[MPVPlayer alloc] init];
+            if (_player.status == MPVPlayerStatusFailed) {
+                *error = _player.error;
                 return nil;
             }
         } else {
             _player = player;
         }
-        [self setUp];
+        [self setUpWithFrame:frame];
+    } else {
+        *error = [self errorWithCode:-1
+                         description:@"Cannot initialize OpenGL View."
+                          suggestion:@"-initWithFrame:pixelFormat: returned nil"];
     }
-    
     return self;
-
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    NSOpenGLPixelFormat *pf = [self createOpenGLPixelFormat];
-    if (!pf) {
-        NSLog(@"Failed to create NSOpenGLPixelFormat object.");
+- (instancetype)initWithPlayer:(MPVPlayer *)player {
+    NSError *error = nil;
+    self = [self initWithFrame:NSMakeRect(0, 0, 640, 480)
+                        player:player error:&error];
+    if (error) {
+        NSLog(@"Error: %@", error);
         return nil;
     }
-    
-    self = [super initWithFrame:frame pixelFormat:pf];
-    if (self) {
-        if ([self createMPVPlayer] != 0) {
-            NSLog(@"Failed to create MPVPlayer object. -> %@", _player.error.localizedDescription);
-            return nil;
-        }
-        [self setUp];
-    }
-    
     return self;
 }
 
-- (void)setUp {
+- (instancetype)initWithFrame:(CGRect)frame {
+    NSError *error = nil;
+    self = [self initWithFrame:frame player:nil error:&error];
+    if (error) {
+        NSLog(@"Error: %@", error);
+        return nil;
+    }
+    return self;
+}
+
+- (void)setUpWithFrame:(NSRect)frame {
 
     mpv_gl_lock_init(&_mpv);
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -113,46 +129,40 @@ static void mpv_gl_lock_destroy(mpv_data * mpv) {
                name:MPVPlayerWillShutdownNotification
              object:_player];
     
-    dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(
-                                                                         DISPATCH_QUEUE_SERIAL,
-                                                                         QOS_CLASS_USER_INTERACTIVE, 0);
-    _render_queue = dispatch_queue_create("com.home.MPVOpenGLView.render-queue", attr);
+    dispatch_queue_attr_t attr;
+    attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL,
+                                                   QOS_CLASS_USER_INTERACTIVE, 0);
+    _render_queue = dispatch_queue_create("com.home.MPVOpenGLView.render-queue",
+                                          attr);
 
     _glContext = self.openGLContext;
     _mpv.cgl_context = _glContext.CGLContextObj;
     
-    NSRect frame = self.bounds;
-    _mpv.opengl_fbo = (mpv_opengl_fbo) { .fbo = 0, .w = NSWidth(frame), .h = NSHeight(frame) };
+    _mpv.opengl_fbo = (mpv_opengl_fbo)
+    { .fbo = 0, .w = NSWidth(frame), .h = NSHeight(frame) };
     
     GLint swapInt = 1;
     [_glContext setValues:&swapInt
              forParameter:NSOpenGLContextParameterSwapInterval];
 }
 
-- (NSOpenGLPixelFormat *)createOpenGLPixelFormat {
-    NSOpenGLPixelFormatAttribute attributes[] = {
-        NSOpenGLPFANoRecovery,
-        NSOpenGLPFAAllowOfflineRenderers,
-        NSOpenGLPFAAccelerated,
-        
-#ifdef ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT
-        
-        NSOpenGLPFADoubleBuffer,
-        
-#endif
-        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core,
-        0
-    };
-    
-    return [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
+- (CGLError)chooseCGLPixelFormat:(CGLPixelFormatObj *)pix {
+    GLint npix = 0;
+    return CGLChoosePixelFormat(mpvgl_default_pixel_format_attrs(), pix, &npix);
 }
 
-- (int)createMPVPlayer {
-    _player = MPVPlayer.new;
-    if (_player.status == MPVPlayerStatusFailed) {
-        return -1;
+- (NSOpenGLPixelFormat *)openGLPixelFormatWithError:(out NSError **)error {
+    CGLPixelFormatObj pix = nil;
+    CGLError result = [self chooseCGLPixelFormat:&pix];
+    if (result != kCGLNoError) {
+        *error = [self errorWithCode:result
+                         description:@"Cannot create OpenGL pixel format."
+                          suggestion:@(CGLErrorString(resutl))];
+        return nil;
     }
-    return 0;
+    id pf = [[NSOpenGLPixelFormat alloc] initWithCGLPixelFormatObj:pix];
+    CGLReleasePixelFormat(pix);
+    return pf;
 }
 
 - (int)createMPVRenderContext {
@@ -402,6 +412,18 @@ static void live_resize(void *ctx) {
 static void render_live_resize_callback(void *ctx) {
     __unsafe_unretained MPVOpenGLView *obj = (__bridge id)ctx;
     dispatch_async_f(obj->_render_queue, &obj->_mpv, (void *)live_resize);
+}
+
+@end
+
+@implementation MPVOpenGLView (Errors)
+
+- (NSError *)errorWithCode:(int)code description:(NSString *)description
+                suggestion:(NSString *)suggestion
+{
+    id info = @{ NSLocalizedDescriptionKey             : description,
+                 NSLocalizedRecoverySuggestionErrorKey : suggestion };
+    return [NSError errorWithDomain:MPVPlayerErrorDomain code:code userInfo:info];
 }
 
 @end
