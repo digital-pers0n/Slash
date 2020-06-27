@@ -9,10 +9,6 @@
 #ifndef MPVGLRenderer_h
 #define MPVGLRenderer_h
 
-#if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_13
-#define GL_SILENCE_DEPRECATION 1
-#endif
-
 #include <OpenGL/OpenGL.h>
 #include <errno.h>
 #include <mpv/render_gl.h>
