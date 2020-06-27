@@ -157,7 +157,7 @@ OBJC_DIRECT_MEMBERS
     if (result != kCGLNoError) {
         *error = [self errorWithCode:result
                          description:@"Cannot create OpenGL pixel format."
-                          suggestion:@(CGLErrorString(resutl))];
+                          suggestion:@(CGLErrorString(result))];
         return nil;
     }
     id pf = [[NSOpenGLPixelFormat alloc] initWithCGLPixelFormatObj:pix];
