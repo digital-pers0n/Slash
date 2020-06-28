@@ -121,6 +121,7 @@
 		CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */; };
 		CEF1D9242428FEBD0003D92F /* SLHTrimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D9222428FEBD0003D92F /* SLHTrimViewController.m */; };
 		CEF1D9252428FEBD0003D92F /* SLHTrimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF1D9232428FEBD0003D92F /* SLHTrimViewController.xib */; };
+		CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -323,6 +324,8 @@
 		CEF1D9212428FEBD0003D92F /* SLHTrimViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTrimViewController.h; path = controllers/SLHTrimViewController.h; sourceTree = "<group>"; };
 		CEF1D9222428FEBD0003D92F /* SLHTrimViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SLHTrimViewController.m; path = controllers/SLHTrimViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CEF1D9232428FEBD0003D92F /* SLHTrimViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHTrimViewController.xib; path = controllers/SLHTrimViewController.xib; sourceTree = "<group>"; };
+		CEF2063124A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SLHPropertyListAddtions.h"; path = "utils/NSDictionary+SLHPropertyListAddtions.h"; sourceTree = "<group>"; };
+		CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SLHPropertyListAddtions.m"; path = "utils/NSDictionary+SLHPropertyListAddtions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -633,6 +636,8 @@
 				CE9E3345238ABFDC00356342 /* SLHTimeFormatter.m */,
 				CEE0D23F23B8FCF70017418E /* SLHMethodAddress.h */,
 				CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */,
+				CEF2063124A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.h */,
+				CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -814,6 +819,7 @@
 				CE12B1C524224A5B00C674BF /* SLHVideoTrackView.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */,
+				CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */,
 				CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */,
 				CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */,
 				CEBB8BF8246ACAD700776827 /* MPVLock.c in Sources */,
