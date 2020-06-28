@@ -12,7 +12,7 @@
 @import QuartzCore.CATextLayer;
 @import QuartzCore.CATransaction;
 
-#define ENABLE_TIMELINE_OVERLAY_VIEW 0
+#define ENABLE_TIMELINE_OVERLAY_VIEW 1
 
 static const CGFloat kSLHTimelineRulerHeight = 14.0;
 static const CGFloat kSLHTimecodeFontSize = 9.0;
