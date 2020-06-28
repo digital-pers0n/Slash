@@ -10,6 +10,7 @@
 
 @interface SLHStatusLineView () {
     NSString *_string;
+    NSDictionary *_textAttributes;
 }
 
 @end
@@ -38,11 +39,12 @@
 
 - (void)_setUp {
     _string = @"";
-    NSFont *font =  [NSFont monospacedDigitSystemFontOfSize:11 weight:NSFontWeightRegular];
+    NSFont *font =  [NSFont monospacedDigitSystemFontOfSize:12 weight:NSFontWeightRegular];
+    NSColor *color = [NSColor controlTextColor];
     _textAttributes =  @{
                          NSFontAttributeName              : font,
-                         NSForegroundColorAttributeName   : [NSColor controlTextColor]
-                          };
+                         NSForegroundColorAttributeName   : color,
+                         };
 }
 
 #pragma mark - Drawing
@@ -51,11 +53,15 @@
     [_string drawInRect:dirtyRect withAttributes:_textAttributes];
 }
 
+- (BOOL)wantsDefaultClipping {
+    return NO;
+}
+
 #pragma mark - Properties
 
 - (void)setString:(NSString *)string {
     _string = string;
-    [self setNeedsDisplay:YES];
+    self.needsDisplay = YES;
 }
 
 - (NSString *)string {

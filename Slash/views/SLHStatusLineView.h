@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHStatusLineView : NSView
 
-@property NSDictionary *textAttributes;
-@property NSString *string;
+@property (nonatomic, nullable) NSString *string;
 
 @end
 
