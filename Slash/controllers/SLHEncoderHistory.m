@@ -311,9 +311,9 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 - (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView
               pasteboardWriterForRow:(NSInteger)row {
     NSString *path = _paths[row].filePath;
-    path = [@"file://" stringByAppendingString:path];
+    NSURL *url = [NSURL fileURLWithPath:path isDirectory:NO];
     NSPasteboardItem *pbItem = [NSPasteboardItem new];
-    [pbItem setString:path forType:(__bridge id)kUTTypeFileURL];
+    [pbItem setString:url.absoluteString forType:(id)kUTTypeFileURL];
     return pbItem;
 }
 
