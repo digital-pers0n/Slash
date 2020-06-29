@@ -242,14 +242,6 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     }
 }
 
-- (void)showAlertWithMessageText:(NSString *)msgText
-                 informativeText:(NSString *)infoText {
-    NSAlert *alert = [NSAlert new];
-    alert.messageText = msgText;
-    alert.informativeText = infoText;
-    [alert runModal];
-}
-
 - (void)setUpPaths {
     NSError *error = nil;
     NSFileManager *fm = NSFileManager.defaultManager;
