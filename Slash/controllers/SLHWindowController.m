@@ -1047,6 +1047,11 @@ static char SLHPreferencesKVOContext;
     const NSEventModifierFlags
     shouldEditArgs = NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption;
     
+    if (_preferences.enableOutputNameTemplate) {
+        NSString *outputName = [self outputNameForDocument:_currentEncoderItem];
+        _currentEncoderItem.outputFileName = outputName;
+    }
+    
     if (!_preferences.shouldOverwriteFiles &&
         [[NSFileManager defaultManager] fileExistsAtPath:_currentEncoderItem.outputPath
                                              isDirectory:nil])
