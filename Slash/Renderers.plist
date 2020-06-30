@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MPVOpenGLView</key>
+	<dict>
+		<key>name</key>
+		<string>Simple OpenGL</string>
+		<key>info</key>
+		<string>Works well on older systems and old hardware.</string>
+	</dict>
+	<key>MPVIOSurfaceView</key>
+	<dict>
+		<key>name</key>
+		<string>IOSurface OpenGL</string>
+		<key>info</key>
+		<string>Uses undocumented API. In theory should be more stable on macOS 10.14 and higher.</string>
+	</dict>
+</dict>
+</plist>
