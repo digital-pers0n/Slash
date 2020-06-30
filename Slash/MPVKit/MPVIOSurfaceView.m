@@ -196,6 +196,10 @@ OBJC_DIRECT_MEMBERS
     return result;
 }
 
+- (void)destroyRenderContext {
+    [self destroyMPVRenderContext];
+}
+
 #pragma mark - Overrides
 
 - (void)viewDidMoveToWindow {

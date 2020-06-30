@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, nullable) MPVPlayer *player;
 
+- (void)destroyRenderContext;
+
 @end
 
 NS_ASSUME_NONNULL_END

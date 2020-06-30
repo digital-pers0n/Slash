@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithPlayer:(nullable MPVPlayer *)player;
 @property (nonatomic, nullable) MPVPlayer *player;
 
+- (void)destroyRenderContext;
+
 @end
 
 NS_ASSUME_NONNULL_END

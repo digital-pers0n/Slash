@@ -216,6 +216,10 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (void)dealloc {
+    [self destroyRenderContext];
+}
+
+- (void)destroyRenderContext {
     if (_mpv.render_context) {
         [self destroyMPVRenderContext];
     }
