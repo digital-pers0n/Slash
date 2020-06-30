@@ -9,7 +9,8 @@
 #import "SLHPresetManager.h"
 #import "SLHPreferences.h"
 #import "SLHPresetNameDialog.h"
-
+#import "MPVKitDefines.h"
+#import "NSDictionary+SLHPropertyListAddtions.h"
 
 @interface SLHPresetManager () <NSTableViewDelegate, NSWindowDelegate, NSTextFieldDelegate> {
     NSMutableDictionary *_presets;
@@ -27,6 +28,9 @@
 @property (readonly) NSArray *groupsArray;
 @property NSArray *presetsArray;
 
+- (BOOL)writePresetsToURL:(NSURL *)url OBJC_DIRECT;
+- (NSDictionary *)readPresetsFromURL:(NSURL *)url OBJC_DIRECT;
+
 @end
 
 @implementation SLHPresetManager
@@ -41,7 +45,10 @@
 - (instancetype)initWithPresetsPath:(NSString *)path {
     self = [super init];
     if (self) {
-        NSMutableDictionary *presets = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+        NSURL *url = [NSURL fileURLWithPath:path isDirectory:NO];
+        NSMutableDictionary *presets;
+        presets = [[NSDictionary dictionaryWithContentsOfURL:url
+                                                       error:nil] mutableCopy];
         if (!presets) {
             presets = NSMutableDictionary.new;
         }
@@ -111,12 +118,33 @@
     return _hasChanges;
 }
 
-- (void)savePresets {    
-    if(![_presets writeToFile:_presetsPath atomically:YES]) {
-        NSLog(@"Error: %s - cannot write presets to %@", __PRETTY_FUNCTION__, _presetsPath);
+- (void)savePresets {
+    NSURL *url = [NSURL fileURLWithPath:_presetsPath isDirectory:NO];
+    if (![self writePresetsToURL:url]) {
         return;
     }
     _hasChanges = NO;
+}
+
+- (BOOL)writePresetsToURL:(NSURL *)url {
+    NSError *error = nil;
+    if (![_presets writeToURL:url error:&error]) {
+        NSLog(@"%@", error);
+        [self presentError:error];
+        return NO;
+    }
+    return YES;
+}
+
+- (NSDictionary *)readPresetsFromURL:(NSURL *)url {
+    NSError *error = nil;
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:url
+                                                             error:&error];
+    if (!dict) {
+        NSLog(@"%@", error);
+        [self presentError:error];
+    }
+    return dict;
 }
 
 #pragma mark - Properties
@@ -192,12 +220,7 @@
     panel.allowedFileTypes = @[@"dict"];
     if ([panel runModal] == NSModalResponseOK) {
         NSURL *url = panel.URL;
-        if (![_presets writeToURL:url atomically:YES]) {
-            NSString * info;
-            info = [NSString stringWithFormat:@"Error writing file '%@'", url];
-            [self dispalyAlertWithText:@"Cannot save presets."
-                                  info:info];
-        }
+        [self writePresetsToURL:url];
     }
 }
 
@@ -206,12 +229,8 @@
     panel.allowedFileTypes = @[@"dict"];
     if ([panel runModal] == NSModalResponseOK) {
         NSURL *url = panel.URL;
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:url];
+        NSDictionary *dict = [self readPresetsFromURL:url];
         if (!dict) {
-            NSString * info;
-            info = [NSString stringWithFormat:@"Error reading file '%@'", url];
-            [self dispalyAlertWithText:@"Cannot open presets."
-                                  info:info];
             return;
         }
         NSArray *allKeys = dict.allKeys;
