@@ -136,6 +136,7 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self destroyDisplayLink];
     [self destroyMPVRenderContext];
     [self destroyIOSurfaceProperties];
