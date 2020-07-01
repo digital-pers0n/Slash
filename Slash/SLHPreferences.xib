@@ -14,6 +14,7 @@
                 <outlet property="_mpvPrefsView" destination="sIA-6R-rcS" id="hTB-3L-2WI"/>
                 <outlet property="_numberOfThreadsSlider" destination="Paa-Rz-ob6" id="Ehf-bV-JYV"/>
                 <outlet property="_outputPathPopUp" destination="KNu-EU-WGB" id="11P-J0-2DI"/>
+                <outlet property="_renderersPopUp" destination="Q4F-Id-9eH" id="vUi-8x-l2O"/>
                 <outlet property="_screenshotFormatPopUp" destination="st0-gf-vhn" id="Xfy-04-GFo"/>
                 <outlet property="_titleStylePopUp" destination="EPc-dM-hud" id="dU4-dB-cul"/>
                 <outlet property="_toolbar" destination="1Or-hS-Qec" id="c7a-he-9UZ"/>
@@ -381,11 +382,11 @@
             <point key="canvasLocation" x="204" y="441"/>
         </customView>
         <customView misplaced="YES" id="sIA-6R-rcS">
-            <rect key="frame" x="0.0" y="0.0" width="466" height="449"/>
+            <rect key="frame" x="0.0" y="0.0" width="466" height="452"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Screenshots" id="ZN2-Ce-B1c">
-                    <rect key="frame" x="17" y="221" width="432" height="208"/>
+                    <rect key="frame" x="17" y="224" width="432" height="208"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="D7W-sv-c7J">
                         <rect key="frame" x="1" y="1" width="430" height="192"/>
@@ -603,7 +604,7 @@
                     </view>
                 </box>
                 <box misplaced="YES" title="OSD/Subtitles" id="2sL-s3-DBY">
-                    <rect key="frame" x="17" y="110" width="432" height="107"/>
+                    <rect key="frame" x="17" y="113" width="432" height="107"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="Zdi-h8-2Nt">
                         <rect key="frame" x="2" y="2" width="428" height="90"/>
@@ -725,14 +726,14 @@
                     </view>
                 </box>
                 <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Tweaks" id="zCi-Ql-6lW">
-                    <rect key="frame" x="17" y="16" width="432" height="90"/>
+                    <rect key="frame" x="17" y="16" width="432" height="94"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="kIX-th-iBB">
-                        <rect key="frame" x="1" y="1" width="430" height="74"/>
+                        <rect key="frame" x="1" y="1" width="430" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button misplaced="YES" id="qAp-sI-ST8">
-                                <rect key="frame" x="17" y="37" width="172" height="20"/>
+                                <rect key="frame" x="17" y="39" width="172" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <string key="toolTip">Improve quality of video and OSD/Subtitles fonts on HiDPI displays, but this might affect performance and can cause glitches especially on macOS 10.14+</string>
                                 <buttonCell key="cell" type="check" title="Use Hi-res OpenGL surface" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Z5x-n8-KyV">
@@ -744,7 +745,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Might improve performance during the window live." misplaced="YES" id="j4m-EC-ZcH">
-                                <rect key="frame" x="17" y="17" width="223" height="20"/>
+                                <rect key="frame" x="17" y="19" width="223" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Pause playback during window resize" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="e1D-qX-0xv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -754,11 +755,29 @@
                                     <binding destination="-2" name="value" keyPath="self.pausePlaybackDuringWindowResize" id="BKa-58-FFg"/>
                                 </connections>
                             </button>
+                            <popUpButton verticalHuggingPriority="750" misplaced="YES" id="Q4F-Id-9eH">
+                                <rect key="frame" x="290" y="37" width="123" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="CWl-4t-8wA">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <menu key="menu" id="kd8-AO-7Os"/>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="AaJ-6P-S2m">
+                                <rect key="frame" x="222" y="42" width="65" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Renderer:" id="nYy-Vi-dda">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                 </box>
             </subviews>
-            <point key="canvasLocation" x="226" y="878.5"/>
+            <point key="canvasLocation" x="226" y="880"/>
         </customView>
         <customView misplaced="YES" id="ByA-wb-1Hd">
             <rect key="frame" x="0.0" y="0.0" width="376" height="397"/>

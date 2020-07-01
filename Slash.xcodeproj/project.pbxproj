@@ -122,6 +122,7 @@
 		CEF1D9242428FEBD0003D92F /* SLHTrimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D9222428FEBD0003D92F /* SLHTrimViewController.m */; };
 		CEF1D9252428FEBD0003D92F /* SLHTrimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF1D9232428FEBD0003D92F /* SLHTrimViewController.xib */; };
 		CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */; };
+		CEF2063524AA328A002166EB /* Renderers.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF2063424AA328A002166EB /* Renderers.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -326,6 +327,7 @@
 		CEF1D9232428FEBD0003D92F /* SLHTrimViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHTrimViewController.xib; path = controllers/SLHTrimViewController.xib; sourceTree = "<group>"; };
 		CEF2063124A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SLHPropertyListAddtions.h"; path = "utils/NSDictionary+SLHPropertyListAddtions.h"; sourceTree = "<group>"; };
 		CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SLHPropertyListAddtions.m"; path = "utils/NSDictionary+SLHPropertyListAddtions.m"; sourceTree = "<group>"; };
+		CEF2063424AA328A002166EB /* Renderers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Renderers.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -514,6 +516,7 @@
 				CE4D40FD20FE8B9E0066ACE2 /* Assets.xcassets */,
 				CE4D40FF20FE8B9E0066ACE2 /* MainMenu.xib */,
 				CE4D410220FE8B9E0066ACE2 /* Info.plist */,
+				CEF2063424AA328A002166EB /* Renderers.plist */,
 				CE4D40FA20FE8B9E0066ACE2 /* Supporting Files */,
 			);
 			path = Slash;
@@ -742,6 +745,7 @@
 				CE80A8B32381B24400CC4C7A /* SLHMetadataInspector.xib in Resources */,
 				CE1414C6210D32C400C02B2D /* mpv.conf in Resources */,
 				CE1DC4192285B09F0086A895 /* SLHLogController.xib in Resources */,
+				CEF2063524AA328A002166EB /* Renderers.plist in Resources */,
 				CE3E3A662445CD320004DEB0 /* SLHOutputNameController.xib in Resources */,
 				CE0A5B3322B924D400198163 /* SLHPresetNameDialog.xib in Resources */,
 				CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */,

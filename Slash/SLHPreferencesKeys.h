@@ -45,4 +45,6 @@ extern NSString * const SLHPreferencesShouldOverwriteFiles;
 extern NSString * const SLHPreferencesOutputNameTemplateKey;
 extern NSString * const SLHPreferencesEnableOutputNameTemplateKey;
 
+extern NSString * const SLHPreferencesRendererClassNameKey;
+
 #endif /* SLHPreferencesKeys_h */

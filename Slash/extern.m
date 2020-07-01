@@ -59,6 +59,8 @@ NSString * const SLHPreferencesShouldOverwriteFiles = @"shouldOverwriteFiles";
 NSString * const SLHPreferencesOutputNameTemplateKey        = @"outputNameTemplate";
 NSString * const SLHPreferencesEnableOutputNameTemplateKey  = @"enableOutputNameTemplate";
 
+NSString * const SLHPreferencesRendererClassNameKey = @"rendererClassName";
+
 #pragma mark - SLHMetadataItem
 
 NSString *const SLHMetadataIdentifierArtist         = @"artist";

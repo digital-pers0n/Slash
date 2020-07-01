@@ -9,6 +9,8 @@
 #import "SLHPreferences.h"
 #import "SLHPreferencesKeys.h"
 #import "SLHTemplateNameFormatter.h"
+#import "NSDictionary+SLHPropertyListAddtions.h"
+#import "MPVKitDefines.h"
 
 /* User-defaults keys */
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
@@ -53,6 +55,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     IBOutlet NSDictionaryController *_dictionaryController;
     IBOutlet NSSlider *_numberOfThreadsSlider;
     IBOutlet NSPopUpButton *_titleStylePopUp;
+    IBOutlet NSPopUpButton *_renderersPopUp;
     
     __weak NSView *_currentPrefsView;
     
@@ -71,6 +74,8 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
 @property IBOutlet NSTextField *mpvPathTextField;
 @property (nonatomic) id lastEditedAdvancedOption;
 @property (nonatomic) NSUInteger maxThreads;
+
+- (void)setUpRenderersPopUp OBJC_DIRECT;
 
 @end
 
@@ -287,6 +292,42 @@ fatal_error:
     return;
 }
 
+- (void)setUpRenderersPopUp {
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Renderers"
+                                         withExtension:@"plist"];
+    NSAssert(url, @"Cannot find Renderers.plist");
+    NSError *error = nil;
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:url
+                                                             error:&error];
+    if (error) {
+        NSLog(@"Error: %@", error);
+        [NSApp presentError:error];
+        return;
+    }
+    _renderersPopUp.target = self;
+    _renderersPopUp.action = @selector(updateRendererName:);
+    NSMenu *menu = _renderersPopUp.menu;
+    [dict enumerateKeysAndObjectsUsingBlock:
+     ^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop)
+     {
+         NSString *title = [obj objectForKey:@"name"];
+         NSMenuItem *menuItem = [menu addItemWithTitle:title
+                                                action:nil keyEquivalent:@""];
+         menuItem.toolTip = [obj objectForKey:@"info"];
+         menuItem.representedObject = key;
+     }];
+    
+    NSString *name = self.rendererClassName;
+    if (name) {
+        NSInteger idx = [menu indexOfItemWithRepresentedObject:name];
+        [_renderersPopUp selectItemAtIndex:idx > -1 ? idx : 0];
+    } else {
+        [_renderersPopUp selectItemAtIndex:0];
+        self.rendererClassName = _renderersPopUp.selectedItem.representedObject;
+    }
+    
+}
+
 - (void)windowDidLoad {
     [super windowDidLoad];
     NSMenu *menu = _outputPathPopUp.menu;
@@ -342,6 +383,8 @@ fatal_error:
     _numberOfThreadsSlider.numberOfTickMarks = _maxThreads + 1;
     
     [_titleStylePopUp selectItemWithTag:self.windowTitleStyle];
+    
+    [self setUpRenderersPopUp];
 }
 
 - (void)setNilValueForKey:(NSString *)key {
@@ -652,6 +695,13 @@ static BOOL isFilePathValid(NSString * path) {
     return [_userDefaults boolForKey:SLHPreferencesEnableOutputNameTemplateKey];
 }
 
+- (void)setRendererClassName:(NSString *)value {
+    [_userDefaults setObject:value forKey:SLHPreferencesRendererClassNameKey];
+}
+
+- (NSString *)rendererClassName {
+    return [_userDefaults objectForKey:SLHPreferencesRendererClassNameKey];
+}
 
 - (void)showPrefsView:(NSView *)view {
     if (view == _currentPrefsView) {
@@ -681,6 +731,10 @@ static BOOL isFilePathValid(NSString * path) {
 }
 
 #pragma mark - IBActions
+
+- (IBAction)updateRendererName:(id)sender {
+    self.rendererClassName = _renderersPopUp.selectedItem.representedObject;
+}
 
 - (IBAction)updateTitleStyle:(id)sender {
     self.windowTitleStyle = _titleStylePopUp.selectedTag;

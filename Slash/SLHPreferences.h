@@ -65,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, null_resettable) NSString * outputNameTemplate;
 @property (nonatomic) BOOL enableOutputNameTemplate;
 
+@property (nonatomic) NSString *rendererClassName;
+
 @end
 
 NS_ASSUME_NONNULL_END
