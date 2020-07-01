@@ -17,45 +17,23 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/gl3.h>
 
-#define ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT 1
-
-static void *g_opengl_framework_handle;
-
-static void * load_library(const char *path) {
-    return dlopen(path, RTLD_LAZY | RTLD_LOCAL);
-}
-
-typedef struct mpv_data_ {
-    mpv_render_context      *render_context;
-    CGLContextObj           cgl_context;
-    mpv_opengl_fbo          opengl_fbo;
-    mpv_render_param        render_params[3];
-    MPVLock                 gl_lock;
-} mpv_data;
-
-static void mpv_gl_lock_init(mpv_data * mpv) {
-    mpv_lock_init(&mpv->gl_lock);
-}
-
-static void mpv_gl_lock(mpv_data * mpv) {
-    mpv_lock_lock(&mpv->gl_lock);
-}
-
-static void mpv_gl_unlock(mpv_data * mpv) {
-    mpv_lock_unlock(&mpv->gl_lock);
-}
-
-static void mpv_gl_lock_destroy(mpv_data * mpv) {
-    mpv_lock_destroy(&mpv->gl_lock);
-}
-
 @interface MPVOpenGLView () {
     NSOpenGLContext *_glContext;
     dispatch_queue_t _render_queue;
-    mpv_data _mpv;
+    MPVGLRenderer _mpv;
 }
 
-- (void)setUpWithFrame:(NSRect)frame OBJC_DIRECT;
+- (NSError *)setUpWithFrame:(NSRect)frame OBJC_DIRECT;
+
+@end
+
+OBJC_DIRECT_MEMBERS
+@interface MPVOpenGLView (MPVGLRenderer)
+
+- (NSError *)createMPVRenderer;
+- (void)destroyMPVRenderer;
+- (void)useDefaultRenderCallback;
+- (void)useResizeRenderCallback;
 
 @end
 
@@ -90,7 +68,11 @@ OBJC_DIRECT_MEMBERS
         } else {
             _player = player;
         }
-        [self setUpWithFrame:frame];
+        NSError *err = [self setUpWithFrame:frame];
+        if (err) {
+            *error = err;
+            return nil;
+        }
     } else {
         *error = [self errorWithCode:-1
                          description:@"Cannot initialize OpenGL View."
@@ -120,9 +102,8 @@ OBJC_DIRECT_MEMBERS
     return self;
 }
 
-- (void)setUpWithFrame:(NSRect)frame {
+- (NSError *)setUpWithFrame:(NSRect)frame {
 
-    mpv_gl_lock_init(&_mpv);
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
            selector:@selector(playerWillShutdown:)
@@ -136,14 +117,19 @@ OBJC_DIRECT_MEMBERS
                                           attr);
 
     _glContext = self.openGLContext;
-    _mpv.cgl_context = _glContext.CGLContextObj;
     
-    _mpv.opengl_fbo = (mpv_opengl_fbo)
-    { .fbo = 0, .w = NSWidth(frame), .h = NSHeight(frame) };
+    NSError * error = [self createMPVRenderer];
+    if (error) {
+        return error;
+    }
+
+    mpvgl_set_size(&_mpv, NSWidth(frame), NSHeight(frame));
     
     GLint swapInt = 1;
     [_glContext setValues:&swapInt
              forParameter:NSOpenGLContextParameterSwapInterval];
+    
+    return nil;
 }
 
 - (CGLError)chooseCGLPixelFormat:(CGLPixelFormatObj *)pix {
@@ -165,148 +151,60 @@ OBJC_DIRECT_MEMBERS
     return pf;
 }
 
-- (int)createMPVRenderContext {
-
-    static int mpv_flip_y = 1;
-    
-    _mpv.render_params[0] = (mpv_render_param) { .type = MPV_RENDER_PARAM_OPENGL_FBO, .data = &_mpv.opengl_fbo };
-    _mpv.render_params[1] = (mpv_render_param) { .type = MPV_RENDER_PARAM_FLIP_Y,     .data = &mpv_flip_y };
-    _mpv.render_params[2] = (mpv_render_param) { 0 };
-    
-    if (!g_opengl_framework_handle) {
-        
-        const char *opengl_framework_path = "/System/Library/Frameworks/OpenGL.framework/OpenGL";
-        void *handle = load_library(opengl_framework_path);
-        if (!handle) {
-            
-            NSAlert *alert = [NSAlert new];
-            alert.alertStyle = NSAlertStyleCritical;
-            alert.messageText = @"Failed to load OpenGL.framework";
-            const char *err = dlerror();
-            alert.informativeText = [NSString stringWithFormat:@"Error while opening '%s'\n%s", opengl_framework_path, (err) ? err : ""];
-            [alert runModal];
-            return -1;
-        }
-        
-        g_opengl_framework_handle = handle;
-    }
-    
-    mpv_opengl_init_params mpv_opengl_init_params = {
-        .get_proc_address = &dlsym,
-        .get_proc_address_ctx = g_opengl_framework_handle
-    };
-    
-    mpv_render_param params[] = {
-        { .type = MPV_RENDER_PARAM_API_TYPE,           .data = MPV_RENDER_API_TYPE_OPENGL },
-        { .type = MPV_RENDER_PARAM_OPENGL_INIT_PARAMS, .data = &mpv_opengl_init_params },
-        { 0 }
-    };
-    
-    [_glContext makeCurrentContext];
-    
-    return mpv_render_context_create(&_mpv.render_context, _player.mpv_handle, params);
-}
-
-- (void)destroyMPVRenderContext {
-    [_glContext clearDrawable];
-    mpv_render_context_set_update_callback(_mpv.render_context, NULL, NULL);
-    mpv_render_context_free(_mpv.render_context);
-    _mpv.render_context = NULL;
-    mpv_gl_lock_destroy(&_mpv);
-}
-
 - (void)dealloc {
-    [self destroyRenderContext];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self destroyMPVRenderer];
 }
 
 - (void)destroyRenderContext {
-    if (_mpv.render_context) {
-        [self destroyMPVRenderContext];
-    }
+    [self destroyMPVRenderer];
 }
-
 
 #pragma mark - Overrides
 
 - (void)reshape {
-    
     if (!self.inLiveResize) {
-
-        mpv_gl_lock(&_mpv);
-        NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
-        _mpv.opengl_fbo.w = surfaceSize.width;
-        _mpv.opengl_fbo.h = surfaceSize.height;
-        
-#ifdef MAC_OS_X_VERSION_10_14
-        
+        typeof(_mpv) *mpv = &_mpv;
+        NSSize size = [self convertSizeToBacking:self.frame.size];
+        mpvgl_lock(mpv);
+        mpvgl_set_size(mpv, size.width, size.height);
         [super reshape];
-        
-#endif
-
-        mpv_gl_unlock(&_mpv);
+        mpvgl_unlock(mpv);
     }
-    
-#ifdef MAC_OS_X_VERSION_10_14
-    else {
-        mpv_gl_lock(&_mpv);
-        
-        [super reshape];
-
-        mpv_gl_unlock(&_mpv);
-    }
-#endif
-    
 }
 
 - (void)update {
-    
-#ifdef MAC_OS_X_VERSION_10_14
-    mpv_gl_lock(&_mpv);
-    
+    typeof(_mpv) *mpv = &_mpv;
+    mpvgl_lock(mpv);
     [super update];
-
-    mpv_gl_unlock(&_mpv);
-#else
-    [_glContext update];
-#endif
-    
+    mpvgl_unlock(mpv);
 }
 
 - (void)viewWillStartLiveResize {
-    
-    if (_mpv.render_context) {
-
+    if (mpvgl_is_valid(&_mpv)) {
         self.canDrawConcurrently = YES;
-        mpv_render_context_set_update_callback(_mpv.render_context, &render_live_resize_callback, (__bridge void *)self );
+        [self useResizeRenderCallback];
     }
 }
 
 - (void)viewDidEndLiveResize {
-    
-    if (_mpv.render_context) {
+    if (mpvgl_is_valid(&_mpv)) {
         self.canDrawConcurrently = NO;
-        
         [self reshape];
         [self update];
-        
-        mpv_render_context_set_update_callback(_mpv.render_context, &render_context_callback, (__bridge void *)self );
+        [self useDefaultRenderCallback];
     }
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    
-    if (_mpv.render_context) {
+    if (mpvgl_is_valid(&_mpv)) {
         if (self.inLiveResize) {
-
-            mpv_gl_lock(&_mpv);
-            
-            NSSize  surfaceSize = [self convertRectToBacking:self.bounds].size;
-            _mpv.opengl_fbo.w = surfaceSize.width;
-            _mpv.opengl_fbo.h = surfaceSize.height;
+            typeof(_mpv) *mpv = &_mpv;
+            NSSize size = [self convertSizeToBacking:self.frame.size];
+            mpvgl_lock(mpv);
+            mpvgl_set_size(mpv, size.width, size.height);
             resize(&_mpv);
-
-            mpv_gl_unlock(&_mpv);
-
+            mpvgl_unlock(mpv);
         } else {
             if ([_player isPaused]) { // force redraw
                dispatch_async_f(_render_queue, &_mpv, &render_frame);
@@ -325,13 +223,8 @@ static void fillBlack(NSRect rect) {
 - (void)viewDidMoveToWindow {
     [super viewDidMoveToWindow];
     if (self.window) {
-        if (!_mpv.render_context) {
-            int error;
-            if ((error = [self createMPVRenderContext]) != MPV_ERROR_SUCCESS) {
-                NSLog(@"Failed to create mpv_render_context. -> %s", mpv_error_string(error));
-                return;
-            }
-            mpv_render_context_set_update_callback(_mpv.render_context, &render_context_callback, (__bridge void *)self );
+        if (mpvgl_is_valid(&_mpv)) {
+            [self useDefaultRenderCallback];
         }
     }
 }
@@ -348,24 +241,16 @@ static void fillBlack(NSRect rect) {
 
 - (void)playerWillShutdown:(NSNotification *)n {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    if (_mpv.render_context) {
-        [self destroyMPVRenderContext];
-    }
+    [self destroyMPVRenderer];
 }
 
 #pragma mark - mpv_render_context callbacks
 
 static void render_frame(void *ctx) {
-    mpv_data *obj = ctx;
-    CGLSetCurrentContext(obj->cgl_context);
-    mpv_render_context_render(obj->render_context, obj->render_params);
-    
-#ifdef ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT
-    CGLFlushDrawable(obj->cgl_context);
-#else
-    glFlush();
-#endif
-    
+    MPVGLRenderer *mpv = ctx;
+    mpvgl_make_current(mpv);
+    mpvgl_render(mpv);
+    mpvgl_flush(mpv);
 }
 
 static void render_context_callback(void *ctx) {
@@ -376,46 +261,75 @@ static void render_context_callback(void *ctx) {
 #pragma mark live resize
 
 static void resize(void *ctx) {
-    mpv_data *obj = ctx;
-    {
-        CGLSetCurrentContext(obj->cgl_context);
-        CGLUpdateContext(obj->cgl_context);
-        mpv_opengl_fbo fbo = obj->opengl_fbo;
-        int flag = 1;
-        int block_time = 0;
-        mpv_render_param params[] = {
-            { .type = MPV_RENDER_PARAM_OPENGL_FBO, .data = &fbo },
-            { .type = MPV_RENDER_PARAM_FLIP_Y,     .data = &flag },
-            { .type = MPV_RENDER_PARAM_BLOCK_FOR_TARGET_TIME, .data = &block_time },
-            { 0 } };
-        
-        mpv_render_context_render(obj->render_context, params);
-        
-#ifdef ENABLE_DOUBLE_BUFFER_PIXEL_FORMAT
-        CGLFlushDrawable(obj->cgl_context);
-#else
-        glFlush();
-#endif
-        
-    }
+    MPVGLRenderer *mpv = ctx;
+    mpvgl_make_current(mpv);
+    mpvgl_update(mpv);
+    mpv_opengl_fbo fbo = mpv->fbo;
+    int flag = 1;
+    int block_time = 0;
+    mpv_render_param params[] = {
+        { .type = MPV_RENDER_PARAM_OPENGL_FBO, .data = &fbo },
+        { .type = MPV_RENDER_PARAM_FLIP_Y,     .data = &flag },
+        { .type = MPV_RENDER_PARAM_BLOCK_FOR_TARGET_TIME, .data = &block_time },
+        { 0 } };
+    mpvgl_render(mpv, params);
+    mpvgl_flush(mpv);
 }
 
 static void live_resize(void *ctx) {
-    mpv_data *mpv = ctx;
-
-    mpv_gl_lock(mpv);
-    
-    if (mpv_render_context_update(mpv->render_context) & MPV_RENDER_UPDATE_FRAME) {
+    MPVGLRenderer *mpv = ctx;
+    mpvgl_lock(mpv);
+    if (mpvgl_has_frame(mpv)) {
         resize(mpv);
     }
-    
-    mpv_gl_unlock(mpv);
-
+    mpvgl_unlock(mpv);
 }
 
 static void render_live_resize_callback(void *ctx) {
     __unsafe_unretained MPVOpenGLView *obj = (__bridge id)ctx;
     dispatch_async_f(obj->_render_queue, &obj->_mpv, (void *)live_resize);
+}
+
+@end
+
+@implementation MPVOpenGLView (MPVGLRenderer)
+
+- (NSError *)createMPVRenderer {
+    CGLContextObj cgl = _glContext.CGLContextObj;
+    int result = mpvgl_init(&_mpv, _player.mpv_handle, cgl, false);
+    if (result != MPV_ERROR_SUCCESS) {
+        if (result == MPVGL_ERROR_OPENGL_FRAMEWORK_UNAVAILABLE) {
+            NSString *desc = @"Cannot load OpenGL.framework";
+            NSString *info = nil;
+            const char *tmp = dlerror();
+            info = [NSString stringWithFormat:@"Error while loading '%s'. %s",
+                    MPVGL_OPENGL_FRAMEWORK_PATH, tmp ? tmp : ""];
+            return [self errorWithCode:result description:desc suggestion:info];
+        }
+        return [self errorWithCode:result
+                       description:@"Cannot create mpv render context."
+                        suggestion:@(mpv_error_string(result))];
+    }
+    static int flip_y = 1;
+    mpv_render_param param = { .type = MPV_RENDER_PARAM_FLIP_Y, .data = &flip_y };
+    mpvgl_set_aux_parameter(&_mpv, param);
+    
+    return nil;
+}
+
+- (void)destroyMPVRenderer {
+    [_glContext clearDrawable];
+    mpvgl_destroy(&_mpv);
+}
+
+- (void)useDefaultRenderCallback {
+    mpvgl_set_update_callback(&_mpv, &render_context_callback,
+                              (__bridge void *)self);
+}
+
+- (void)useResizeRenderCallback {
+    mpvgl_set_update_callback(&_mpv, &render_live_resize_callback,
+                              (__bridge void *)self);
 }
 
 @end
