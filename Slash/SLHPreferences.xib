@@ -340,7 +340,7 @@
                         <binding destination="-2" name="value" keyPath="shouldOverwriteFiles" id="hd5-re-MC6"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" misplaced="YES" id="Vzt-ng-CLZ">
+                <textField toolTip="%f - file name; %d - date; %D - date as seconds; %r - selected range; %R - selected range as seconds;" verticalHuggingPriority="750" misplaced="YES" id="Vzt-ng-CLZ">
                     <rect key="frame" x="181" y="107" width="260" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="kZV-1W-y7K">
@@ -359,9 +359,10 @@
                     </connections>
                 </textField>
                 <button misplaced="YES" id="Wdf-Rp-FkR">
-                    <rect key="frame" x="178" y="131" width="124" height="20"/>
+                    <rect key="frame" x="178" y="131" width="149" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Use template name" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="pGI-32-d3B">
+                    <string key="toolTip">If enabled, the output name will be constructed from the template name and cannot be edited directly. Otherwise the template name can be applied manually via ⌥⌘U shortcut.</string>
+                    <buttonCell key="cell" type="check" title="Use template name only" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="pGI-32-d3B">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
