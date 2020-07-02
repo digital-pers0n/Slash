@@ -76,6 +76,13 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
 @property (nonatomic) NSUInteger maxThreads;
 
 - (void)setUpRenderersPopUp OBJC_DIRECT;
+- (void)setUpPaths OBJC_DIRECT;
+- (void)setAsyncValue:(id)value forKey:(NSString *)key OBJC_DIRECT;
+- (void)showError:(NSError *)error
+        prefsView:(NSView *)view responder:(NSResponder *)responder OBJC_DIRECT;
+- (void)checkFFmpeg:(NSString *)ffmpegPath OBJC_DIRECT;
+- (void)checkMPV:(NSString *)mpvPath OBJC_DIRECT;
+- (void)showPrefsView:(NSView *)view OBJC_DIRECT;
 
 @end
 
@@ -326,6 +333,33 @@ fatal_error:
         self.rendererClassName = _renderersPopUp.selectedItem.representedObject;
     }
     
+}
+
+- (void)showPrefsView:(NSView *)view {
+    if (view == _currentPrefsView) {
+        return;
+    }
+    
+    NSWindow *window = self.window;
+    if (![window makeFirstResponder:window]) {
+        NSBeep();
+        return;
+    }
+    NSSize currentSize = window.contentView.frame.size;
+    
+    NSSize newSize = view.frame.size;
+    NSRect windowFrame = window.frame;
+    CGFloat deltaH = newSize.height - currentSize.height;
+    CGFloat deltaW = newSize.width - currentSize.width;
+    windowFrame.size.height += deltaH;
+    windowFrame.size.width += deltaW;
+    windowFrame.origin.y -= deltaH;
+    
+    [_currentPrefsView removeFromSuperview];
+    [window setFrame:windowFrame display:YES animate:YES];
+    [window.contentView addSubview:view];
+    _currentPrefsView = view;
+    self.window.title = _toolbar.selectedItemIdentifier;
 }
 
 - (void)windowDidLoad {
@@ -701,33 +735,6 @@ static BOOL isFilePathValid(NSString * path) {
 
 - (NSString *)rendererClassName {
     return [_userDefaults objectForKey:SLHPreferencesRendererClassNameKey];
-}
-
-- (void)showPrefsView:(NSView *)view {
-    if (view == _currentPrefsView) {
-        return;
-    }
-    
-    NSWindow *window = self.window;
-    if (![window makeFirstResponder:window]) {
-        NSBeep();
-        return;
-    }
-    NSSize currentSize = window.contentView.frame.size;
-    
-    NSSize newSize = view.frame.size;
-    NSRect windowFrame = window.frame;
-    CGFloat deltaH = newSize.height - currentSize.height;
-    CGFloat deltaW = newSize.width - currentSize.width;
-    windowFrame.size.height += deltaH;
-    windowFrame.size.width += deltaW;
-    windowFrame.origin.y -= deltaH;
-    
-    [_currentPrefsView removeFromSuperview];
-    [window setFrame:windowFrame display:YES animate:YES];
-    [window.contentView addSubview:view];
-    _currentPrefsView = view;
-    self.window.title = _toolbar.selectedItemIdentifier;
 }
 
 #pragma mark - IBActions
