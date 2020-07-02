@@ -8,7 +8,10 @@
 
 #import "SLHPlayerView.h"
 #import "MPVPlayer.h"
+#import "MPVPlayerProperties.h"
+#import "MPVPlayerItem.h"
 #import "MPVOpenGLView.h"
+#import "MPVIOSurfaceView.h"
 #import "SLHPlayerViewController.h"
 #import "SLHMethodAddress.h"
 #import "SLHPreferences.h"
@@ -17,6 +20,7 @@
 @interface SLHPlayerView () {
     MPVPlayer *_player;
     MPVOpenGLView *_videoView;
+    Class _videoViewClass;
     SLHPlayerViewController *_viewController;
     NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
     
@@ -64,6 +68,11 @@
     BOOL flag = prefs.pausePlaybackDuringWindowResize;
     _PVFlags.shouldPauseDuringLiveResize = flag ? 1 : 0;
     [self observePreferences:prefs];
+    Class cls = NSClassFromString(prefs.rendererClassName);
+    if (!cls) {
+        cls = MPVOpenGLView.class;
+    }
+    _videoViewClass = cls;
 }
 
 - (void)dealloc {
@@ -110,8 +119,9 @@
 - (void)createVideoViewWithPlayer:(MPVPlayer *)player {
     NSError *error = nil;
     NSRect frame = _viewController.videoView.bounds;
-    _videoView = [[MPVOpenGLView alloc] initWithFrame:frame player:player
-                                                error:&error];
+
+    _videoView = [[_videoViewClass alloc] initWithFrame:frame
+                                                 player:player error:&error];
     if (error) {
         NSLog(@"Error %@", error);
         [NSApp presentError:error];
@@ -175,6 +185,26 @@
     }
 }
 
+- (void)didChangeRendererName:(NSString *)name {
+    if (!_player) { return; }
+    
+    MPVPlayerItem *item = _player.currentItem;
+    NSInteger vid = 0;
+    if (item) {
+        vid = [_player integerForProperty:MPVPlayerPropertyVideoID];
+        [_player setString:@"no" forProperty:MPVPlayerPropertyVideoID];
+    }
+    [_videoView removeFromSuperview];
+    [_videoView destroyRenderContext];
+    _videoView = nil;
+    _videoViewClass = NSClassFromString(name);
+    [self createVideoViewWithPlayer:_player];
+    
+    if (item) {
+        [_player setInteger:vid forProperty:MPVPlayerPropertyVideoID];
+    }
+}
+
 static char SLHPlayerViewKVOContext;
 
 - (void)observePreferences:(SLHPreferences *)appPrefs {
@@ -182,7 +212,10 @@ static char SLHPlayerViewKVOContext;
                        SLHPreferencesPausePlaybackDuringWindowResizeKey :
                            addressOf(self, @selector(didChangePauseDuringLiveResize:)),
                        SLHPreferencesUseHiResOpenGLSurfaceKey :
-                           addressOf(self, @selector(didChangeUseHiResOpenGLSurface:))
+                           addressOf(self, @selector(didChangeUseHiResOpenGLSurface:)),
+                       SLHPreferencesRendererClassNameKey :
+                           addressOf(self, @selector(didChangeRendererName:))
+                       
                        };
     
     for (NSString *key in _observedPrefs) {
