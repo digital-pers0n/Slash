@@ -994,6 +994,11 @@ static char SLHPreferencesKVOContext;
     NSEventModifierFlags flags = NSApp.currentEvent.modifierFlags;
     [self.window endEditingFor:nil];
     
+    if (_preferences.enableOutputNameTemplate) {
+        NSString *outputName = [self outputNameForDocument:_currentEncoderItem];
+        _currentEncoderItem.outputFileName = outputName;
+    }
+    
     _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
     [_queue addEncoderItems:@[_currentEncoderItem]];
     
@@ -1006,10 +1011,15 @@ static char SLHPreferencesKVOContext;
     NSEventModifierFlags flags = NSApp.currentEvent.modifierFlags;
     [self.window endEditingFor:nil];
     
+    BOOL shouldUseTemplate = _preferences.enableOutputNameTemplate;
+    
     NSArray *items = _itemsArrayController.arrangedObjects;
     NSArray *formats = _formatsArrayController.arrangedObjects;
     
     for (SLHEncoderItem *i in items) {
+        if (shouldUseTemplate) {
+            i.outputFileName = [self outputNameForDocument:i];
+        }
         SLHEncoderBaseFormat *fmt = formats[i.tag];
         fmt.encoderItem = i;
         i.encoderArguments = fmt.arguments;
