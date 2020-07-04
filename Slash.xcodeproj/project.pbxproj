@@ -971,7 +971,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "void.digital-person.Slash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.13;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -990,7 +989,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "void.digital-person.Slash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.13;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
