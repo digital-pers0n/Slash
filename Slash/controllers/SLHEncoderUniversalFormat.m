@@ -121,11 +121,12 @@ extern NSString *const SLHEncoderMediaThreadsKey;
 
 - (NSArray<NSArray *> *)arguments {
     NSMutableArray *args = NSMutableArray.new;
-    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
-    if (!ffmpegPath) {
+    SLHPreferences *prefs = SLHPreferences.preferences;
+    if (!prefs.hasFFmpeg) {
         NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
         return nil;
     }
+    NSString *ffmpegPath = prefs.ffmpegPath;
     TimeInterval ti = _encoderItem.interval;
     [args addObjectsFromArray:@[ ffmpegPath, @"-nostdin", @"-hide_banner",
                                  SLHEncoderMediaOverwriteFilesKey,

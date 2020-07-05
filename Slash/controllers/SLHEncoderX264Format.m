@@ -270,11 +270,13 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
 }
 
 - (NSArray *)arguments {
-    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
-    if (!ffmpegPath) {
+    SLHPreferences *prefs = SLHPreferences.preferences;
+    if (!prefs.hasFFmpeg) {
         NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
         return nil;
     }
+    NSString *ffmpegPath = prefs.ffmpegPath;
+    
     SLHEncoderX264Options *options = (id)_encoderItem.videoOptions;
     NSMutableArray *args = @[
                              ffmpegPath, @"-nostdin", @"-hide_banner",

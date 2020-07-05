@@ -39,11 +39,11 @@
 @implementation SLHCropEditor
 
 + (NSRect)cropRectForItem:(SLHEncoderItem *)item {
-    NSString *path = SLHPreferences.preferences.ffmpegPath;
-    if (!path) {
-        path = @"/usr/local/bin/ffmpeg";
-    }
+    SLHPreferences *prefs = SLHPreferences.preferences;
     NSRect r = NSZeroRect;
+    if (!prefs.hasFFmpeg) return r;
+    
+    NSString *path = prefs.ffmpegPath;
     MPVPlayerItem *playerItem = item.playerItem;
     char *cmd;
     asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"

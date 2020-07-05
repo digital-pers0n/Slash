@@ -122,11 +122,12 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (NSArray<NSArray *> *)arguments {
-    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
-    if (!ffmpegPath) {
+    SLHPreferences *prefs = SLHPreferences.preferences;
+    if (!prefs.hasFFmpeg) {
         NSLog(@"%s: ffmpeg file path is not set", __PRETTY_FUNCTION__);
         return nil;
     }
+    NSString *ffmpegPath = prefs.ffmpegPath;
     SLHEncoderItem *_encoderItem = _vpxFmt.encoderItem;
     
     SLHEncoderVPXOptions *options = _videoOptions;
