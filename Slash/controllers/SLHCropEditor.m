@@ -23,8 +23,7 @@
     
     IBOutlet SLHImageView *_imageView;
     SLHEncoderItem *_encoderItem;
-    NSString *_ffmpegPath;
-    NSString *_mpvPath;
+    SLHPreferences *_preferences;
     dispatch_queue_t _bg_queue;
     dispatch_queue_t _main_queue;
     
@@ -78,18 +77,7 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    SLHPreferences *preferences = SLHPreferences.preferences;
-    NSString *path = preferences.ffmpegPath;;
-    if (!path) {
-        path = @"/usr/local/bin/ffmpeg";
-    }
-    _ffmpegPath = path;
-    path = preferences.mpvPath;
-    if (!path) {
-        path = @"/usr/local/bin/mpv";
-    }
-    _mpvPath = path;
-    
+    _preferences = SLHPreferences.preferences;
     _bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     _main_queue = dispatch_get_main_queue();
     _imageView.currentToolMode = IKToolModeSelect;
@@ -144,11 +132,12 @@
 
 - (NSRect)cropArea {
     NSRect r = NSZeroRect;
+    NSString *ffmpegPath = _preferences.ffmpegPath;
     MPVPlayerItem *playerItem = _encoderItem.playerItem;
     char *cmd;
     asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
              " | awk '/crop/ { print $NF }' | tail -1",
-             _ffmpegPath.UTF8String, _startTime, playerItem.url.fileSystemRepresentation);
+             ffmpegPath.UTF8String, _startTime, playerItem.url.fileSystemRepresentation);
     FILE *pipe = popen(cmd, "r");
     const int len = 64;
     char str[len];
@@ -320,7 +309,7 @@ static void _get_coordinates(char *start, char *end, int n, long *result) {
     if (_busy) { return; }
     _busy = YES;
     __unsafe_unretained typeof(self) uSelf = self;
-    NSString *ffmpegPath = SLHPreferences.preferences.ffmpegPath;
+    NSString *ffmpegPath = _preferences.ffmpegPath;
     MPVPlayerItem *playerItem = _encoderItem.playerItem;
     NSURL *url = playerItem.url;
     double timePos = _startTime;
