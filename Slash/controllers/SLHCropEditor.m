@@ -37,38 +37,43 @@
 
 @implementation SLHCropEditor
 
-+ (NSRect)cropRectForItem:(SLHEncoderItem *)item {
-    SLHPreferences *prefs = SLHPreferences.preferences;
-    NSRect r = NSZeroRect;
-    if (!prefs.hasFFmpeg) return r;
-    
-    NSString *path = prefs.ffmpegPath;
-    MPVPlayerItem *playerItem = item.playerItem;
+static NSRect getCropRect(const char *ffmpeg, double startTime,
+                          const char *filePath)
+{
+    NSRect r = { 0 };
     char *cmd;
     asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
              " | awk '/crop/ { print $NF }' | tail -1",
-             path.UTF8String, item.interval.start, playerItem.url.fileSystemRepresentation);
+             ffmpeg, startTime, filePath);
     FILE *pipe = popen(cmd, "r");
     const int len = 64;
     char str[len];
     if (fgets(str, len, pipe)) {
         char *start = strchr(str, '=');
         char *end = strchr(str, ':');
-        long result[4] = {0, 0, 0, 0};
+        long result[4] = { 0, 0, 0, 0 };
         _get_coordinates(++start, end, 0, result);
-        
-        NSInteger idx = item.videoStreamIndex;
-        if (idx > -1) {
-            result[3] = playerItem.tracks[idx].videoSize.height - result[1] - result[3];
-        }
-        
         r = NSMakeRect(result[2], result[3], result[0], result[1]);
     }
     free(cmd);
     pclose(pipe);
-    
     return r;
+}
 
++ (NSRect)cropRectForItem:(SLHEncoderItem *)item {
+    SLHPreferences *prefs = SLHPreferences.preferences;
+    NSRect r = { 0 };
+    if (!prefs.hasFFmpeg) return r;
+    
+    NSString *path = prefs.ffmpegPath;
+    MPVPlayerItem *playerItem = item.playerItem;
+    r = getCropRect(path.UTF8String, item.interval.start,
+                    playerItem.url.fileSystemRepresentation);
+    NSInteger idx = item.videoStreamIndex;
+    if (idx > -1) {
+        r.origin.y = playerItem.tracks[idx].videoSize.height - NSHeight(r) - NSMinY(r);
+    }
+    return r;
 }
 
 - (NSString *)windowNibName {
@@ -134,28 +139,12 @@
     NSRect r = NSZeroRect;
     NSString *ffmpegPath = _preferences.ffmpegPath;
     MPVPlayerItem *playerItem = _encoderItem.playerItem;
-    char *cmd;
-    asprintf(&cmd, "%s -ss %.3f -i \"%s\" -vf cropdetect -t 3 -f null - 2>&1"
-             " | awk '/crop/ { print $NF }' | tail -1",
-             ffmpegPath.UTF8String, _startTime, playerItem.url.fileSystemRepresentation);
-    FILE *pipe = popen(cmd, "r");
-    const int len = 64;
-    char str[len];
-    if (fgets(str, len, pipe)) {
-        char *start = strchr(str, '=');
-        char *end = strchr(str, ':');
-        long result[4] = {0, 0, 0, 0};
-        _get_coordinates(++start, end, 0, result);
-        
-        NSInteger idx = _encoderItem.videoStreamIndex;
-        if (idx > -1) {
-            result[3] = playerItem.tracks[idx].videoSize.height - result[1] - result[3];
-        }
-        
-        r = NSMakeRect(result[2], result[3], result[0], result[1]);
+    r = getCropRect(ffmpegPath.UTF8String, _encoderItem.interval.start,
+                    playerItem.url.fileSystemRepresentation);
+    NSInteger idx = _encoderItem.videoStreamIndex;
+    if (idx > -1) {
+        r.origin.y = playerItem.tracks[idx].videoSize.height - NSHeight(r) - NSMinY(r);
     }
-    free(cmd);
-    pclose(pipe);
     
     return r;
 }
