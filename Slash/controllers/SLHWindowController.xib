@@ -29,7 +29,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="AppMainWindow" animationBehavior="default" id="F0z-JX-Cv5">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="196" y="240" width="720" height="407"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
             <value key="minSize" type="size" width="720" height="400"/>
@@ -163,8 +163,8 @@
                                                                                     <rect key="frame" x="1" y="1" width="212" height="37"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                     <subviews>
-                                                                                        <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="J15-AF-dCH">
-                                                                                            <rect key="frame" x="5" y="19" width="165" height="14"/>
+                                                                                        <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="J15-AF-dCH">
+                                                                                            <rect key="frame" x="5" y="19" width="202" height="14"/>
                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Sample Text" id="7XL-sX-z5V">
                                                                                                 <font key="font" metaFont="smallSystem"/>
@@ -177,30 +177,9 @@
                                                                                                         <bool key="NSConditionallySetsEditable" value="NO"/>
                                                                                                     </dictionary>
                                                                                                 </binding>
+                                                                                                <binding destination="nBK-Vf-O9n" name="toolTip" keyPath="objectValue.outputPath" id="Xc4-3L-Ld8"/>
                                                                                             </connections>
                                                                                         </textField>
-                                                                                        <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="U1r-fU-wB1">
-                                                                                            <rect key="frame" x="171" y="18" width="16" height="15"/>
-                                                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameEditTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="QDK-fb-OKI">
-                                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                                <font key="font" metaFont="smallSystem"/>
-                                                                                            </buttonCell>
-                                                                                            <connections>
-                                                                                                <action selector="showTextEditor:" target="-2" id="jA2-bz-aH1"/>
-                                                                                            </connections>
-                                                                                        </button>
-                                                                                        <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" id="JMs-Ka-ajZ">
-                                                                                            <rect key="frame" x="189" y="18" width="16" height="15"/>
-                                                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="SLHImageNameFolderTemplate" imagePosition="overlaps" alignment="center" controlSize="small" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="0KI-82-9EL">
-                                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                                <font key="font" metaFont="smallSystem"/>
-                                                                                            </buttonCell>
-                                                                                            <connections>
-                                                                                                <action selector="selectOutputPath:" target="-2" id="rmc-yI-Mqs"/>
-                                                                                            </connections>
-                                                                                        </button>
                                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" id="lkV-h3-GDV">
                                                                                             <rect key="frame" x="5" y="3" width="84" height="14"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -272,26 +251,10 @@
                                                 <rect key="frame" x="0.0" y="112" width="491" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             </customView>
-                                            <button toolTip="Change the appearance of the timeline" verticalHuggingPriority="750" misplaced="YES" id="BXz-I7-MQG">
-                                                <rect key="frame" x="462" y="118" width="21" height="18"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameTrimViewSettingsTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="rJ9-2H-KMB">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="showTrimViewSettings:" target="-2" id="gka-xy-Q7K"/>
-                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="aNZ-a1-thL">
-                                                        <dictionary key="options">
-                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                        </dictionary>
-                                                    </binding>
-                                                </connections>
-                                            </button>
                                             <button toolTip="Preivew the last encoded item" verticalHuggingPriority="750" misplaced="YES" id="uxE-C5-KgH">
-                                                <rect key="frame" x="433" y="118" width="21" height="18"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNamePreviewTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="d89-wa-GbT">
+                                                <rect key="frame" x="68" y="118" width="21" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNamePreviewTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="d89-wa-GbT">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -352,9 +315,41 @@
                                                 </connections>
                                             </button>
                                             <customView misplaced="YES" id="gqU-Pc-aQu">
-                                                <rect key="frame" x="71" y="116" width="349" height="22"/>
+                                                <rect key="frame" x="104" y="116" width="285" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             </customView>
+                                            <button toolTip="Select output directory" verticalHuggingPriority="750" misplaced="YES" id="5dr-I6-wHA">
+                                                <rect key="frame" x="462" y="118" width="21" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameFolderTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="hNO-br-N7d">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="selectOutputPath:" target="-2" id="A7q-oX-Y4Z"/>
+                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="YKe-4i-Nqx">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </button>
+                                            <button toolTip="Change the appearance of the timeline" verticalHuggingPriority="750" misplaced="YES" id="BXz-I7-MQG">
+                                                <rect key="frame" x="433" y="118" width="21" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameTrimViewSettingsTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="rJ9-2H-KMB">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="showTrimViewSettings:" target="-2" id="gka-xy-Q7K"/>
+                                                    <binding destination="3cJ-e5-Y82" name="hidden" keyPath="canRemove" id="aNZ-a1-thL">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </customView>
                                 </subviews>
@@ -435,7 +430,7 @@
                     </progressIndicator>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="58B1DAE0-DC47-40C6-93D7-A3A61DD90A49" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="small" id="B8D-hm-GI4">
+            <toolbar key="toolbar" implicitIdentifier="58B1DAE0-DC47-40C6-93D7-A3A61DD90A49" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="B8D-hm-GI4">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="9CAB7D46-BD2D-4DD7-A044-8776F4488744" label="Output Format" paletteLabel="Output Format" toolTip="Select output format" id="dVx-sP-jLD">
                         <size key="minSize" width="100" height="22"/>
@@ -547,7 +542,7 @@
                     <toolbarItem reference="dVH-iG-1hv"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="147" y="-210.5"/>
+            <point key="canvasLocation" x="110" y="-214.5"/>
         </window>
         <arrayController objectClassName="SLHEncoderItem" id="3cJ-e5-Y82" userLabel="Items Array Controller" colorLabel="IBBuiltInLabel-Yellow"/>
         <arrayController objectClassName="SLHEncoderBaseFormat" editable="NO" id="FId-6h-ocY">
@@ -560,7 +555,6 @@
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="SLHImageNameAddToQueueTemplate" width="15" height="15"/>
-        <image name="SLHImageNameEditTemplate" width="15" height="15"/>
         <image name="SLHImageNameEncoderHistoryTemplate" width="19" height="19"/>
         <image name="SLHImageNameFolderTemplate" width="15" height="15"/>
         <image name="SLHImageNamePresetsTemplate" width="15" height="15"/>

@@ -1263,7 +1263,6 @@ static char SLHPreferencesKVOContext;
 }
 
 - (IBAction)selectOutputPath:(NSButton *)sender {
-    
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowsMultipleSelection = NO;
     panel.canChooseFiles = NO;
@@ -1272,12 +1271,10 @@ static char SLHPreferencesKVOContext;
     NSModalResponse returnCode = [panel runModal];
     
     if (returnCode == NSModalResponseOK) {
-        
         NSString *path = panel.URL.path;
-        NSTableCellView *tableCell = (id)sender.superview;
-        SLHEncoderItem *encoderItem = tableCell.objectValue;
+        SLHEncoderItem *encoderItem = _currentEncoderItem;
         NSString *outname = encoderItem.outputPath.lastPathComponent;
-        encoderItem.outputPath = [NSString stringWithFormat:@"%@/%@", path, outname];
+        encoderItem.outputPath = [path stringByAppendingPathComponent:outname];
     }
 }
 
