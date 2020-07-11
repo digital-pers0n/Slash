@@ -1291,8 +1291,9 @@ static char SLHPreferencesKVOContext;
     pboard = [sender draggingPasteboard];
 
     if ([pboard.types containsObject:(id)kUTTypeFileURL]) {
-        NSArray *files = [pboard propertyListForType:(id)kUTTypeFileURL];
-        NSString * path = files.firstObject;
+        NSString *path = [pboard propertyListForType:(id)kUTTypeFileURL];
+        NSURL *url = [NSURL URLWithString:path];
+        path = url.path;
         MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithPath:path];
         if (playerItem.error) {
             NSAlert *alert = [NSAlert new];
