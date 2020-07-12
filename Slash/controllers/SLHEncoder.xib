@@ -41,7 +41,7 @@
                         <rect key="frame" x="20" y="20" width="400" height="75"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
-                    <button misplaced="YES" id="2i5-Ff-tPf">
+                    <button toolTip="Stop encoding." misplaced="YES" id="2i5-Ff-tPf">
                         <rect key="frame" x="378" y="119" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNameStopTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="A6w-Wb-fle">
@@ -53,7 +53,7 @@
                             <binding destination="-2" name="enabled" keyPath="self.inProgress" id="Wsb-yK-4kK"/>
                         </connections>
                     </button>
-                    <button misplaced="YES" id="Ken-iO-Rr8">
+                    <button toolTip="Pause/Resume encoding." misplaced="YES" id="Ken-iO-Rr8">
                         <rect key="frame" x="404" y="119" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SLHImageNamePauseTemplate" imagePosition="only" alignment="center" alternateImage="SLHImageNameStartTemplate" imageScaling="proportionallyUpOrDown" inset="2" id="tyn-UC-BR3">
