@@ -26,9 +26,11 @@
                     </textFieldCell>
                     <connections>
                         <binding destination="-2" name="editable" keyPath="nameEditable" id="KBO-aU-KF6"/>
-                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.outputFileName" id="LaS-6m-OMn">
+                        <binding destination="-2" name="value" keyPath="encoderItemsArrayController.selection.outputFileName" id="riL-MO-04z">
                             <dictionary key="options">
+                                <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>
                                 <bool key="NSConditionallySetsEditable" value="NO"/>
+                                <bool key="NSValidatesImmediately" value="YES"/>
                             </dictionary>
                         </binding>
                     </connections>
