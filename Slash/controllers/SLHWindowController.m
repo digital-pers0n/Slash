@@ -966,6 +966,7 @@ static char SLHPreferencesKVOContext;
     } else {
         _externalPlayer.url = _currentEncoderItem.playerItem.url;
     }
+    [_externalPlayer setVideoFilter:@""];
     [_externalPlayer play];
     [_externalPlayer orderFront];
 
@@ -985,6 +986,7 @@ static char SLHPreferencesKVOContext;
     } else {
         _externalPlayer.url = [NSURL fileURLWithPath:_lastEncodedMediaFilePath];
     }
+    [_externalPlayer setVideoFilter:@""];
     [_externalPlayer play];
     [_externalPlayer orderFront];
 }
