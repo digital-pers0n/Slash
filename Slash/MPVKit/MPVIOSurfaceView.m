@@ -329,8 +329,7 @@ static CVReturn cvdl_cb(
 @implementation MPVIOSurfaceView (OpenGL)
 
 - (CGLError)createOpenGLPixelFormat:(CGLPixelFormatObj *)pix {
-    GLint npix = 0;
-    return CGLChoosePixelFormat(mpvgl_default_pixel_format_attrs(), pix, &npix);
+    return mpvgl_choose_pixel_format(pix);
 }
 
 - (CGLError)createOpenGLContext:(CGLContextObj *)cgl

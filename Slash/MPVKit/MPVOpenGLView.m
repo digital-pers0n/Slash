@@ -133,8 +133,7 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (CGLError)chooseCGLPixelFormat:(CGLPixelFormatObj *)pix {
-    GLint npix = 0;
-    return CGLChoosePixelFormat(mpvgl_default_pixel_format_attrs(), pix, &npix);
+    return mpvgl_choose_pixel_format(pix);
 }
 
 - (NSOpenGLPixelFormat *)openGLPixelFormatWithError:(out NSError **)error {

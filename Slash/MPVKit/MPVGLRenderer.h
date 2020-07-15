@@ -149,4 +149,23 @@ bool mpvgl_is_valid(MPVGLRenderer *mpvgl);
  */
 const CGLPixelFormatAttribute *mpvgl_default_pixel_format_attrs(void);
 
+/**
+ @return CGLPixelFormat attributes for software rendering. 
+ */
+const CGLPixelFormatAttribute *mpvgl_sw_pixel_format_attrs(void);
+
+/**
+ @return Legacy OpenGL 1.0 CGLPixelFormat attributes.
+ */
+const CGLPixelFormatAttribute *mpvgl_legacy_pixel_format_attrs(void);
+
+/**
+ Choose CGLPixelFormat from predefined CGLPixelFormat attributes.
+ @note
+ Release @c pix by calling @c CGLPixelFormatRelease() after it's not needed.
+ @param pix Pointer to a CGLPixelFormatObj. Must not be NULL.
+ @return kCGLNoError on success.
+*/
+CGLError mpvgl_choose_pixel_format(CGLPixelFormatObj *pix);
+
 #endif /* MPVGLRenderer_h */

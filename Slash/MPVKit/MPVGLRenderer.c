@@ -24,8 +24,58 @@ static const CGLPixelFormatAttribute k_default_pixel_format_attrs[] = {
     0
 };
 
+static const CGLPixelFormatAttribute k_sw_pixel_format_attrs[] = {
+    kCGLPFARendererID, kCGLRendererGenericFloatID,
+#if USE_DOUBLE_BUFFER_PIXEL_FORMAT
+    kCGLPFADoubleBuffer,
+#endif
+    0
+};
+
+static const CGLPixelFormatAttribute k_legacy_pixel_format_attrs[] = {
+    kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_Legacy,
+    kCGLPFAAccelerated,
+#if USE_DOUBLE_BUFFER_PIXEL_FORMAT
+    kCGLPFADoubleBuffer,
+#endif
+    0
+};
+
 const CGLPixelFormatAttribute *mpvgl_default_pixel_format_attrs() {
     return k_default_pixel_format_attrs;
+}
+
+const CGLPixelFormatAttribute *mpvgl_sw_pixel_format_attrs() {
+    return k_sw_pixel_format_attrs;
+}
+
+const CGLPixelFormatAttribute *mpvgl_legacy_pixel_format_attrs() {
+    return k_legacy_pixel_format_attrs;
+}
+
+CGLError mpvgl_choose_pixel_format(CGLPixelFormatObj *pix) {
+    GLint npix = 0;
+    CGLError err;
+    
+    err = CGLChoosePixelFormat(mpvgl_default_pixel_format_attrs(), pix, &npix);
+    if (*pix == NULL) {
+        fprintf(stderr, "%s: Falling back to OpenGL 1.0\n", __PRETTY_FUNCTION__);
+        err = CGLChoosePixelFormat(mpvgl_legacy_pixel_format_attrs(), pix, &npix);
+    } else {
+        return err;
+    }
+    
+    if (*pix == NULL) {
+        fprintf(stderr, "%s: Falling back to Software OpenGL\n", __PRETTY_FUNCTION__);
+        err = CGLChoosePixelFormat(mpvgl_sw_pixel_format_attrs(), pix, &npix);
+    }
+    
+    // CGLChoosePixelFormat() can return kCGLNoError and left *pix uninitialized
+    if (*pix == NULL && err == kCGLNoError) {
+        err = kCGLBadAttribute;
+    }
+
+    return err;
 }
 
 static void *get_proc_address(void *ctx, const char *symbol) {
