@@ -25,6 +25,9 @@ char *g_temp_dir;
 @implementation AppDelegate
 
 + (void)initialize {
+    if (NSAppKitVersionNumber > NSAppKitVersionNumber10_11) {
+        NSWindow.allowsAutomaticWindowTabbing = NO;
+    }
     [NSValueTransformer setValueTransformer:[SLHNumberToStringTransformer new]
                                     forName:NSStringFromClass([SLHNumberToStringTransformer class])];
 }
