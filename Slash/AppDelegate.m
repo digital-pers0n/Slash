@@ -40,7 +40,7 @@ char *g_temp_dir;
         tmpDir = [NSString stringWithFormat:@"/tmp/%@", NSBundle.mainBundle.bundleIdentifier];
     }
     NSFileManager *fm = [NSFileManager defaultManager];
-    if (![fm fileExistsAtPath:tmpDir isDirectory:0]) {
+    if (![fm fileExistsAtPath:tmpDir isDirectory:nil]) {
         NSError *error = nil;
         [fm createDirectoryAtPath:tmpDir withIntermediateDirectories:YES attributes:nil error:&error];
         if (error) {
