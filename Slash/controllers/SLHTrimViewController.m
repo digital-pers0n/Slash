@@ -386,10 +386,6 @@ static char SLHTrimViewControllerKVOContext;
     _player.timePosition = trimView.endValue;
 }
 
-- (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView {}
-
-- (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView {}
-
 - (void)trimViewMouseUp:(SLHTrimView *)trimView {
     if (_TVFlags.needsUpdateStartValue) {
         _player.timePosition = trimView.startValue;

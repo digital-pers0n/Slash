@@ -557,7 +557,6 @@ static char minValueKVOContext;
         [self updateValue:@(_startValue) forBinding:@"startValue"];
         
         _mouseX = newMouseX;
-        [_delegate trimViewMouseDraggedStartPosition:self];
         return;
     }
     
@@ -574,7 +573,6 @@ static char minValueKVOContext;
         self.endValue = candidate;
         [self updateValue:@(_endValue) forBinding:@"endValue"];
         _mouseX = newMouseX;
-        [_delegate trimViewMouseDraggedEndPosition:self];
         return;
     }
 }

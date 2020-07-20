@@ -75,8 +75,6 @@ typedef NS_ENUM(NSUInteger, SLHTrimViewStyle) {
 - (void)trimViewMouseDown:(SLHTrimView *)trimView;
 - (void)trimViewMouseDownStartPosition:(SLHTrimView *)trimView;
 - (void)trimViewMouseDownEndPosition:(SLHTrimView *)trimView;
-- (void)trimViewMouseDraggedStartPosition:(SLHTrimView *)trimView;
-- (void)trimViewMouseDraggedEndPosition:(SLHTrimView *)trimView;
 - (void)trimViewMouseUp:(SLHTrimView *)trimView;
 
 @end
