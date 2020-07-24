@@ -115,6 +115,15 @@
              object:NSApp];
 }
 
+#pragma mark - IBAction
+
+- (IBAction)magnify:(NSMagnificationGestureRecognizer *)sender {
+    const CGFloat scale = _horizontalZoom + sender.magnification;
+    if (scale > 1.0 && scale < 30.0) {
+        self.horizontalZoom = scale;
+    }
+}
+
 #pragma mark - Properties
 
 - (void)setVerticalZoom:(CGFloat)verticalZoom {

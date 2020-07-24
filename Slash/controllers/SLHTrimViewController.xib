@@ -74,6 +74,13 @@
                     </connections>
                 </scrollView>
             </subviews>
+            <gestureRecognizers>
+                <magnificationGestureRecognizer delaysMagnificationEvents="YES" magnification="0.0" id="Ges-cz-Cwe">
+                    <connections>
+                        <action selector="magnify:" target="-2" id="byq-ee-7yK"/>
+                    </connections>
+                </magnificationGestureRecognizer>
+            </gestureRecognizers>
             <point key="canvasLocation" x="142" y="205"/>
         </customView>
     </objects>
