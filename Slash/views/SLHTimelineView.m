@@ -428,7 +428,7 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 #endif
     
     [super setFrame:frame];
-    [self updateIndicatorPosition];
+    self.needsDisplay = YES;
 }
 
 - (void)updateTrackingAreas {
@@ -504,6 +504,14 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
     [super mouseDown:event];
 }
 
+- (BOOL)wantsUpdateLayer {
+    return YES;
+}
+
+- (void)updateLayer {
+    [self updateIndicatorPosition];
+}
+
 #pragma mark - Methods
 
 static double mousePointToDoubleValue(NSPoint point,
@@ -554,8 +562,7 @@ static double mousePointToDoubleValue(NSPoint point,
                                                _workingArea, _indicatorFrame,
                                                _maxValue, _minValue);
     [self autoscroll:event];
-    [self updateIndicatorPosition];
-
+    self.needsDisplay = YES;
 }
 
 @end
