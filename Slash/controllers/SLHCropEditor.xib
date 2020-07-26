@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <plugIn identifier="com.apple.imagekit.ibplugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -66,7 +65,9 @@
                         <rect key="frame" x="203" y="364" width="60" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="ALd-iL-Ulb">
-                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" allowsFloats="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="42" id="a0L-Pk-Ria"/>
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" allowsFloats="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="42" id="a0L-Pk-Ria">
+                                <real key="minimum" value="0.0"/>
+                            </numberFormatter>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -106,7 +107,7 @@
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="Imd-Mq-2cc">
                         <rect key="frame" x="262" y="362" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-10000" maxValue="10000" id="aCl-tD-VX4"/>
+                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="aCl-tD-VX4"/>
                         <connections>
                             <action selector="widthDidChange:" target="-2" id="QDN-8v-MVe"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropWidth" id="OfQ-cs-GTH"/>
@@ -116,7 +117,9 @@
                         <rect key="frame" x="293" y="364" width="60" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="2gn-0w-zCG">
-                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" allowsFloats="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="42" id="UYe-nd-g8N"/>
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" allowsFloats="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="42" id="UYe-nd-g8N">
+                                <real key="minimum" value="0.0"/>
+                            </numberFormatter>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -160,7 +163,7 @@
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="e05-fX-4C2">
                         <rect key="frame" x="352" y="362" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-10000" maxValue="10000" id="9hv-fM-cK4"/>
+                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="10000" id="9hv-fM-cK4"/>
                         <connections>
                             <action selector="heightDidChange:" target="-2" id="eYd-3q-cH9"/>
                             <binding destination="-2" name="value" keyPath="self.encoderItem.filters.videoCropHeight" id="jBt-5G-Sas"/>
@@ -235,7 +238,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zKp-Sj-7Ka">
-                            <rect key="frame" x="624" y="1" width="15" height="319"/>
+                            <rect key="frame" x="623" y="1" width="16" height="319"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
