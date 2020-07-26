@@ -514,6 +514,13 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 
 #pragma mark - Methods
 
+- (void)setIndicatorMargin:(CGFloat)indicatorMargin {
+    _indicatorMargin = indicatorMargin;
+    _workingArea = NSInsetRect(_currentFrame, indicatorMargin, 0);
+    [self updateLayer];
+    [self updateTrackingAreas];
+}
+
 static double mousePointToDoubleValue(NSPoint point,
                                       NSRect trackRect,
                                       NSRect indicatorRect,
@@ -562,7 +569,7 @@ static double mousePointToDoubleValue(NSPoint point,
                                                _workingArea, _indicatorFrame,
                                                _maxValue, _minValue);
     [self autoscroll:event];
-    self.needsDisplay = YES;
+    [self updateIndicatorPosition];
 }
 
 @end
