@@ -233,7 +233,7 @@
         CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
             [uSelf updateVideoTrackView:result];
             uSelf->_trimView.style = style;
-            self.busy = NO;
+            uSelf.busy = NO;
         });
 
     }];
