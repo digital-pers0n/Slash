@@ -180,10 +180,6 @@ static NSRect getCropRect(const char *ffmpeg, double startTime,
 
 - (IBAction)preview:(id)sender {
     NSRect r = _imageView.selectionRect;
-    if ((r.size.height <= 0) || (r.size.width <= 0)) {
-        NSBeep();
-        return;
-    }
     
     SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
     if (player.error) {

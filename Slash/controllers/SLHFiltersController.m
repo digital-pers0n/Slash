@@ -356,14 +356,14 @@ static inline NSString *_preampString(NSInteger val) {
 }
 
 - (IBAction)previewCropArea:(id)sender {
-    SLHFilterOptions *options = _encoderItem.filters;
-    NSRect r = options.videoCropRect;
-;
     NSInteger idx = _encoderItem.videoStreamIndex;
-    if ((r.size.height <= 0) || (r.size.width <= 0 || idx == -1)) {
+    if (idx == -1) {
         NSBeep();
         return;
     }
+    
+    SLHFilterOptions *options = _encoderItem.filters;
+    NSRect r = options.videoCropRect;
     
     MPVPlayerItem *playerItem = _encoderItem.playerItem;
     r.origin.y = playerItem.tracks[idx].videoSize.height - NSHeight(r) - NSMinY(r);

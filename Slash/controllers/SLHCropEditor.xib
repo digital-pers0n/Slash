@@ -158,6 +158,15 @@
                         </buttonCell>
                         <connections>
                             <action selector="preview:" target="-2" id="93X-wo-LFZ"/>
+                            <binding destination="-2" name="enabled2" keyPath="encoderItem.filters.videoCropHeight" previousBinding="PgI-WD-EAq" id="mAc-NI-rFH">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="enabled" keyPath="encoderItem.filters.videoCropWidth" id="PgI-WD-EAq"/>
                         </connections>
                     </button>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="e05-fX-4C2">
@@ -238,7 +247,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zKp-Sj-7Ka">
-                            <rect key="frame" x="623" y="1" width="16" height="319"/>
+                            <rect key="frame" x="624" y="1" width="15" height="319"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
