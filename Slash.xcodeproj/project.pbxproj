@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE02789224CEF7F30056E7F4 /* libmpv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE02789124CEF7F30056E7F4 /* libmpv.1.dylib */; };
 		CE0813E522CB79B60048D27B /* SLHTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0813E322CB79B60048D27B /* SLHTextEditor.m */; };
 		CE0813E622CB79B60048D27B /* SLHTextEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0813E422CB79B60048D27B /* SLHTextEditor.xib */; };
 		CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0A5B3022B924D400198163 /* SLHPresetNameDialog.m */; };
@@ -40,7 +41,6 @@
 		CE2365602254C80A00B324E4 /* SLHEncoderQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE23655E2254C80A00B324E4 /* SLHEncoderQueue.xib */; };
 		CE2365642254C9CC00B324E4 /* SLHEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2365622254C9CC00B324E4 /* SLHEncoder.m */; };
 		CE2365652254C9CC00B324E4 /* SLHEncoder.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2365632254C9CC00B324E4 /* SLHEncoder.xib */; };
-		CE299C5C23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */; };
 		CE2A56B424375AF6005CF48A /* SLHTimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2A56B324375AF6005CF48A /* SLHTimelineView.m */; };
 		CE2B44B623DF30FB006E2094 /* SLHVideoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2B44B523DF30FB006E2094 /* SLHVideoSlider.m */; };
 		CE35264A23F081FC00B28193 /* libavcodec.58.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35264723F081FC00B28193 /* libavcodec.58.dylib */; };
@@ -126,6 +126,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE02789124CEF7F30056E7F4 /* libmpv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpv.1.dylib; path = ../../../../../../Developer/opt/lib/libmpv.1.dylib; sourceTree = "<group>"; };
 		CE0813E222CB79B60048D27B /* SLHTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTextEditor.h; path = controllers/SLHTextEditor.h; sourceTree = "<group>"; };
 		CE0813E322CB79B60048D27B /* SLHTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTextEditor.m; path = controllers/SLHTextEditor.m; sourceTree = "<group>"; };
 		CE0813E422CB79B60048D27B /* SLHTextEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHTextEditor.xib; path = controllers/SLHTextEditor.xib; sourceTree = "<group>"; };
@@ -181,7 +182,6 @@
 		CE2365612254C9CC00B324E4 /* SLHEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoder.h; path = controllers/SLHEncoder.h; sourceTree = "<group>"; };
 		CE2365622254C9CC00B324E4 /* SLHEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoder.m; path = controllers/SLHEncoder.m; sourceTree = "<group>"; };
 		CE2365632254C9CC00B324E4 /* SLHEncoder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoder.xib; path = controllers/SLHEncoder.xib; sourceTree = "<group>"; };
-		CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpv.1.107.0.dylib; path = ../../../../../../Developer/opt/lib/libmpv.1.107.0.dylib; sourceTree = "<group>"; };
 		CE2A56B224375AF6005CF48A /* SLHTimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHTimelineView.h; sourceTree = "<group>"; };
 		CE2A56B324375AF6005CF48A /* SLHTimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTimelineView.m; sourceTree = "<group>"; };
 		CE2B44B423DF30FB006E2094 /* SLHVideoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHVideoSlider.h; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 				CE35264A23F081FC00B28193 /* libavcodec.58.dylib in Frameworks */,
 				CE35264B23F081FC00B28193 /* libavformat.58.dylib in Frameworks */,
 				CE35264C23F081FC00B28193 /* libavutil.56.dylib in Frameworks */,
-				CE299C5C23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib in Frameworks */,
+				CE02789224CEF7F30056E7F4 /* libmpv.1.dylib in Frameworks */,
 				CE0B4E1B224A5BDA00D61D72 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,11 +360,11 @@
 		CE0B4E1C224A5BE400D61D72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE02789124CEF7F30056E7F4 /* libmpv.1.dylib */,
 				CE160F57242F727F00F652D5 /* libswscale.5.dylib */,
 				CE35264723F081FC00B28193 /* libavcodec.58.dylib */,
 				CE35264823F081FC00B28193 /* libavformat.58.dylib */,
 				CE35264923F081FC00B28193 /* libavutil.56.dylib */,
-				CE299C5B23BE0DAF00F1C9BF /* libmpv.1.107.0.dylib */,
 				CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */,
 			);
 			name = Frameworks;
