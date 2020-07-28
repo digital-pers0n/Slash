@@ -733,6 +733,10 @@ static char SLHPreferencesKVOContext;
 
 #pragma mark - IBActions
 
+- (IBAction)trimViewGoToCurrentPlaybackPosition:(id)sender {
+    [_trimViewController goToCurrentPlaybackPosition];
+}
+
 - (IBAction)trimViewGoToStart:(id)sender {
     _player.timePosition = 0.0;
     [_trimViewController goToStart];

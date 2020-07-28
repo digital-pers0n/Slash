@@ -877,6 +877,12 @@ CA
                                     <action selector="duplicateAndMatchToSelectedRange:" target="lKY-o8-vkq" id="v3V-Cv-7bn"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Go to Playback Position" alternate="YES" keyEquivalent="U" id="Vcd-Ax-tWU">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="trimViewGoToCurrentPlaybackPosition:" target="lKY-o8-vkq" id="BBg-tb-9kX"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="msi-w1-1QS"/>
                             <menuItem title="Clear" keyEquivalent="x" id="Tdz-9D-nQK">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>

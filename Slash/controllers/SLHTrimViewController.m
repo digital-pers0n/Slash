@@ -247,6 +247,25 @@
 
 #pragma mark - Methods
 
+- (void)goToCurrentPlaybackPosition {
+    NSScrollView *scrollView = _timelineView.enclosingScrollView;
+    NSClipView *clipView = scrollView.contentView;
+    const CGFloat position = _player.timePosition;
+    const CGFloat contentWidth = NSWidth(clipView.frame);
+  
+    NSRect trackRect = _timelineView.frame;
+    
+    CGFloat scale = (position - _timelineView.minValue) / (_timelineView.maxValue - _timelineView.minValue);
+    
+    CGFloat origin = floor((NSWidth(trackRect)) * scale);
+    
+    NSPoint pt = NSMakePoint(floor(origin - contentWidth * 0.5), 0);
+    [clipView scrollToPoint:pt];
+    [scrollView reflectScrolledClipView:clipView];
+    _timelineView.doubleValue = position;
+    _timelineView.needsDisplay = YES;
+}
+
 - (void)goToSelectionStart {
     NSScrollView * scrollView = _timelineView.enclosingScrollView;
     NSClipView * clipView = scrollView.contentView;
