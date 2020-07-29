@@ -8,6 +8,7 @@
 
 #import "SLHTimelineView.h"
 #import "SLHTimeFormatter.h"
+#import "MPVKitDefines.h"
 @import QuartzCore.CAShapeLayer;
 @import QuartzCore.CATextLayer;
 @import QuartzCore.CATransaction;
@@ -20,6 +21,8 @@ static const CGFloat kSLHTimecodeLayerWidth = 85.0;
 static const NSUInteger kSLHTimelineNumOfSecondaryMarks = 10;
 static const NSUInteger kSLHTimelineMinPrimaryMarksDistance = 90;
 static const NSUInteger kSLHTimelineMaxPrimaryMarksDistance = 180;
+
+#pragma mark - *** Timeline Ruler View ***
 
 @interface SLHTimelineRulerView : NSView {
     __weak SLHTimelineView *_timelineView;
@@ -37,6 +40,11 @@ static const NSUInteger kSLHTimelineMaxPrimaryMarksDistance = 180;
     NSColor *_backgroundColor;
     NSColor *_secondaryMarkColor;
 }
+
+- (void)updateColors OBJC_DIRECT;
+- (void)updateTimecodeLayers OBJC_DIRECT;
+- (void)updateTimecodeLayerFontColors OBJC_DIRECT;
+- (void)drawMarks OBJC_DIRECT;
 
 @end
 
@@ -89,6 +97,8 @@ static const NSUInteger kSLHTimelineMaxPrimaryMarksDistance = 180;
     _marksLayer.backgroundColor = [[_backgroundColor colorWithAlphaComponent:0.5] CGColor];
     _secondaryMarksLayer.fillColor = [_secondaryMarkColor CGColor];
 }
+
+#pragma mark - Overrides
 
 #if MAC_OS_X_VERSION_10_14
 
@@ -289,6 +299,8 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
     CGPathRelease(secondaryPath);
 }
 
+#pragma mark - Notifications
+
 - (void)timelineDidChangeFrame:(NSNotification *)n {
     CGFloat width = NSWidth(_timelineView.frame);
     if (width == _currentWidth) { return; }
@@ -297,6 +309,8 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 }
 
 @end
+
+#pragma mark - *** Timeline View ***
 
 @interface SLHTimelineView () {
     CAShapeLayer *_indicatorLayer;
@@ -313,8 +327,12 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
     NSTrackingArea *_trackingArea;
 }
 
-@end
+- (void)setUp OBJC_DIRECT;
+- (CAShapeLayer *)indicatorLayerWithSize:(CGSize)size OBJC_DIRECT;
+- (void)updateIndicatorPosition OBJC_DIRECT;
+- (void)updateIndicatorPositionWithEvent:(NSEvent *)event OBJC_DIRECT;
 
+@end
 
 @implementation SLHTimelineView
 
@@ -396,7 +414,6 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
         ruler.superview.wantsLayer = YES;
         [ruler.layer insertSublayer:_indicatorLayer above:nil];
 #endif
-        
     }
 }
 
