@@ -41,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** Go to selection end. */
 - (void)goToSelectionEnd;
 
+/** Go to current playback postion. */
+- (void)goToCurrentPlaybackPosition;
+
 @end
 
 NS_ASSUME_NONNULL_END
