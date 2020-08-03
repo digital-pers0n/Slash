@@ -77,6 +77,7 @@
 		CE6467212368865D0048162D /* SLHSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6467202368865D0048162D /* SLHSliderCell.m */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
 		CE74B09E247D145A00749338 /* SLHTemplateNameFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */; };
+		CE7D018B24D4559D00B51D66 /* SLTFilterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7D018A24D4559D00B51D66 /* SLTFilterParameter.m */; };
 		CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7E11EB22294ADC002C2456 /* SLHEncoderItemOptions.m */; };
 		CE80A8AB2380560300CC4C7A /* SLHFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80A8A92380560300CC4C7A /* SLHFileInfo.m */; };
 		CE80A8AC2380560300CC4C7A /* SLHFileInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80A8AA2380560300CC4C7A /* SLHFileInfo.xib */; };
@@ -129,6 +130,8 @@
 		CEF1D9252428FEBD0003D92F /* SLHTrimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF1D9232428FEBD0003D92F /* SLHTrimViewController.xib */; };
 		CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */; };
 		CEF2063524AA328A002166EB /* Renderers.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF2063424AA328A002166EB /* Renderers.plist */; };
+		CEFF068C24D72FA900E93228 /* SLTEncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */; };
+		CEFF068F24D7300200E93228 /* SLTMediaSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFF068E24D7300200E93228 /* SLTMediaSettings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -253,6 +256,8 @@
 		CE687BAA2461A855006045AA /* MPVLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVLock.h; path = MPVKit/MPVLock.h; sourceTree = "<group>"; };
 		CE74B09C247D145A00749338 /* SLHTemplateNameFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTemplateNameFormatter.h; path = utils/SLHTemplateNameFormatter.h; sourceTree = "<group>"; };
 		CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTemplateNameFormatter.m; path = utils/SLHTemplateNameFormatter.m; sourceTree = "<group>"; };
+		CE7D018924D4559D00B51D66 /* SLTFilterParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTFilterParameter.h; path = Starlight/SLTFilterParameter.h; sourceTree = "<group>"; };
+		CE7D018A24D4559D00B51D66 /* SLTFilterParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTFilterParameter.m; path = Starlight/SLTFilterParameter.m; sourceTree = "<group>"; };
 		CE7E11EA22294ADC002C2456 /* SLHEncoderItemOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderItemOptions.h; path = model/SLHEncoderItemOptions.h; sourceTree = "<group>"; };
 		CE7E11EB22294ADC002C2456 /* SLHEncoderItemOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItemOptions.m; path = model/SLHEncoderItemOptions.m; sourceTree = "<group>"; };
 		CE80A8A82380560300CC4C7A /* SLHFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHFileInfo.h; path = controllers/SLHFileInfo.h; sourceTree = "<group>"; };
@@ -346,6 +351,10 @@
 		CEF2063124A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SLHPropertyListAddtions.h"; path = "utils/NSDictionary+SLHPropertyListAddtions.h"; sourceTree = "<group>"; };
 		CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SLHPropertyListAddtions.m"; path = "utils/NSDictionary+SLHPropertyListAddtions.m"; sourceTree = "<group>"; };
 		CEF2063424AA328A002166EB /* Renderers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Renderers.plist; sourceTree = "<group>"; };
+		CEFF068A24D72FA900E93228 /* SLTEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTEncoderSettings.h; path = Starlight/SLTEncoderSettings.h; sourceTree = "<group>"; };
+		CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTEncoderSettings.m; path = Starlight/SLTEncoderSettings.m; sourceTree = "<group>"; };
+		CEFF068D24D7300200E93228 /* SLTMediaSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTMediaSettings.h; path = Starlight/SLTMediaSettings.h; sourceTree = "<group>"; };
+		CEFF068E24D7300200E93228 /* SLTMediaSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTMediaSettings.m; path = Starlight/SLTMediaSettings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -706,8 +715,14 @@
 				CEE7B5BA24D31CAD00A115D2 /* SLTQueue.m */,
 				CEE7B5BC24D31CC700A115D2 /* SLTFilter.h */,
 				CEE7B5BD24D31CC700A115D2 /* SLTFilter.m */,
+				CE7D018924D4559D00B51D66 /* SLTFilterParameter.h */,
+				CE7D018A24D4559D00B51D66 /* SLTFilterParameter.m */,
 				CEE7B5BF24D31D1100A115D2 /* SLTEncoder.h */,
 				CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */,
+				CEFF068A24D72FA900E93228 /* SLTEncoderSettings.h */,
+				CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */,
+				CEFF068D24D7300200E93228 /* SLTMediaSettings.h */,
+				CEFF068E24D7300200E93228 /* SLTMediaSettings.m */,
 				CEE7B5C224D31DAC00A115D2 /* SLTSetting.h */,
 				CEE7B5C324D31DAC00A115D2 /* SLTSetting.m */,
 			);
@@ -849,6 +864,7 @@
 				CE2365642254C9CC00B324E4 /* SLHEncoder.m in Sources */,
 				CE8BD79C23C371F4004A7C1A /* SLHEncoderHistory.m in Sources */,
 				CE0EC704235214930053204B /* MPVExtern.m in Sources */,
+				CE7D018B24D4559D00B51D66 /* SLTFilterParameter.m in Sources */,
 				CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */,
 				CEE7B5C424D31DAC00A115D2 /* SLTSetting.m in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
@@ -887,6 +903,7 @@
 				CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */,
 				CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */,
 				CEE7B5BB24D31CAD00A115D2 /* SLTQueue.m in Sources */,
+				CEFF068F24D7300200E93228 /* SLTMediaSettings.m in Sources */,
 				CE9E7BD723A91C9100614D56 /* SLHVolumeSlider.m in Sources */,
 				CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */,
 				CEAC3A152492697600F6E998 /* MPVGLRenderer.c in Sources */,
@@ -894,6 +911,7 @@
 				CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */,
 				CE120459229C2AEE00C2A145 /* SLHEncoderVPXOptions.m in Sources */,
 				CEE7B5B424D31C0100A115D2 /* SLTSource.m in Sources */,
+				CEFF068C24D72FA900E93228 /* SLTEncoderSettings.m in Sources */,
 				CE8628242371B0A700E0909F /* SLHTrimView.m in Sources */,
 				CE88B9B4238C5ED500227111 /* SLHBitrateFormatter.m in Sources */,
 				CE35266923F2F63600B28193 /* SLHNumberToStringTransformer.m in Sources */,
@@ -1006,6 +1024,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.1;
@@ -1013,6 +1032,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LLVM_LTO = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-std=c++17",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "void.digital-person.Slash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1023,6 +1046,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.1;
@@ -1031,6 +1055,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-std=c++17",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "void.digital-person.Slash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
