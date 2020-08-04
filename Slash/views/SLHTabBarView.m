@@ -173,6 +173,12 @@ static const NSUInteger kNumberOfTabs = 5;
             if (i == _selectedTabIndex) {       // ignore if already selected
                 break;
             }
+            
+            NSWindow *window = self.window;
+            if (![window makeFirstResponder:window]) {
+                NSBeep();
+                return;
+            }
             _selectedTabIndex = i;
             _highlightedTabIndex = -1;
             [self setNeedsDisplay:YES];
