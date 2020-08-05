@@ -24,6 +24,8 @@
 }
 
 - (NSError *)setUpWithFrame:(NSRect)frame OBJC_DIRECT;
+- (CGLError)chooseCGLPixelFormat:(CGLPixelFormatObj *)pix OBJC_DIRECT;
+- (NSOpenGLPixelFormat *)openGLPixelFormatWithError:(out NSError **)error OBJC_DIRECT;
 
 @end
 
