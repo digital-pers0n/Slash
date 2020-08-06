@@ -32,15 +32,15 @@ NS_ASSUME_NONNULL_BEGIN
 /** Generic Audio settings. */
 @interface SLTAudioSettings : SLTMediaSettings {
     @package
-    NSUInteger _sampleRate;
-    NSUInteger _numberOfChannels;
+    NSInteger _sampleRate;
+    NSInteger _numberOfChannels;
 }
 
 /** Sample rate in Hz. */
-@property (nonatomic) NSUInteger sampleRate;
+@property (nonatomic) NSInteger sampleRate;
 
 /** Number of audio channels. */
-@property (nonatomic) NSUInteger numberOfChannels;
+@property (nonatomic) NSInteger numberOfChannels;
 
 @end
 
@@ -48,13 +48,13 @@ NS_ASSUME_NONNULL_BEGIN
 /** Generic Video settings. */
 @interface SLTVideoSettings : SLTMediaSettings {
     @package
-    uint64_t _bitRate;
+    int64_t _bitRate;
     NSString *_pixelFormat;
     NSInteger _maxGopSize;
 }
 
 /** Bitrate in bps. */
-@property (nonatomic) uint64_t bitRate;
+@property (nonatomic) int64_t bitRate;
 
 /** Default value is yuv420p. */
 @property (nonatomic) NSString *pixelFormat;
