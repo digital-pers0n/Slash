@@ -130,6 +130,7 @@
 		CEF1D9252428FEBD0003D92F /* SLHTrimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF1D9232428FEBD0003D92F /* SLHTrimViewController.xib */; };
 		CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */; };
 		CEF2063524AA328A002166EB /* Renderers.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF2063424AA328A002166EB /* Renderers.plist */; };
+		CEF398E524DC569200D44BDD /* SLTH264EncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF398E424DC569200D44BDD /* SLTH264EncoderSettings.m */; };
 		CEFF068C24D72FA900E93228 /* SLTEncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */; };
 		CEFF068F24D7300200E93228 /* SLTMediaSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFF068E24D7300200E93228 /* SLTMediaSettings.m */; };
 /* End PBXBuildFile section */
@@ -351,6 +352,8 @@
 		CEF2063124A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SLHPropertyListAddtions.h"; path = "utils/NSDictionary+SLHPropertyListAddtions.h"; sourceTree = "<group>"; };
 		CEF2063224A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SLHPropertyListAddtions.m"; path = "utils/NSDictionary+SLHPropertyListAddtions.m"; sourceTree = "<group>"; };
 		CEF2063424AA328A002166EB /* Renderers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Renderers.plist; sourceTree = "<group>"; };
+		CEF398E324DC569200D44BDD /* SLTH264EncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTH264EncoderSettings.h; path = Starlight/SLTH264EncoderSettings.h; sourceTree = "<group>"; };
+		CEF398E424DC569200D44BDD /* SLTH264EncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTH264EncoderSettings.m; path = Starlight/SLTH264EncoderSettings.m; sourceTree = "<group>"; };
 		CEFF068A24D72FA900E93228 /* SLTEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTEncoderSettings.h; path = Starlight/SLTEncoderSettings.h; sourceTree = "<group>"; };
 		CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTEncoderSettings.m; path = Starlight/SLTEncoderSettings.m; sourceTree = "<group>"; };
 		CEFF068D24D7300200E93228 /* SLTMediaSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTMediaSettings.h; path = Starlight/SLTMediaSettings.h; sourceTree = "<group>"; };
@@ -721,6 +724,8 @@
 				CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */,
 				CEFF068A24D72FA900E93228 /* SLTEncoderSettings.h */,
 				CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */,
+				CEF398E324DC569200D44BDD /* SLTH264EncoderSettings.h */,
+				CEF398E424DC569200D44BDD /* SLTH264EncoderSettings.m */,
 				CEFF068D24D7300200E93228 /* SLTMediaSettings.h */,
 				CEFF068E24D7300200E93228 /* SLTMediaSettings.m */,
 				CEE7B5C224D31DAC00A115D2 /* SLTSetting.h */,
@@ -892,6 +897,7 @@
 				CE74B09E247D145A00749338 /* SLHTemplateNameFormatter.m in Sources */,
 				CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */,
 				CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */,
+				CEF398E524DC569200D44BDD /* SLTH264EncoderSettings.m in Sources */,
 				CE9CA40423788350005CF368 /* SLHStackView.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
 				CE3E3A8C244768640004DEB0 /* SLHAttributedTimeFormatter.m in Sources */,
