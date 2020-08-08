@@ -30,6 +30,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int64_t maxRate;
 @property (nonatomic) NSInteger crf;
 
+@property (class, readonly) NSArray<NSString *> *allowedPresets;
+@property (nonatomic, nullable) NSString *preset;
+
+@property (class, readonly) NSArray<NSString *> *allowedProfiles;
+@property (nonatomic, nullable) NSString *profile;
+
+@property (class, readonly) NSArray<NSString *> *allowedLevels;
+@property (nonatomic, nullable) NSString *level;
+
+@property (class, readonly) NSArray<NSString *> *allowedTunes;
+@property (nonatomic, nullable) NSString *tune;
+
+/* flags for -movflags */
+@property (nonatomic) BOOL enableFastdecode;
+@property (nonatomic) BOOL enableZerolatency;
+@property (nonatomic) BOOL enableFaststart;
+
+/** -rc-lookahead */
+@property (nonatomic) NSInteger lookAhead;
 
 @end
 
