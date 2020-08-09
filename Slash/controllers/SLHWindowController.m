@@ -1057,7 +1057,11 @@ static char SLHPreferencesKVOContext;
 }
 
 - (IBAction)startEncoding:(id)sender {
-    [self.window endEditingFor:nil];
+    NSWindow *window = self.window;
+    if (![window makeFirstResponder:window]) {
+        NSBeep();
+        return;
+    }
     
     const NSEventModifierFlags
     shouldEditArgs = NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption;
