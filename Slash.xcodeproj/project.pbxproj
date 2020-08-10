@@ -76,6 +76,10 @@
 		CE60C54C235E4EC0003DB25F /* MPVMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60C54B235E4EC0003DB25F /* MPVMetadataItem.m */; };
 		CE6467212368865D0048162D /* SLHSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6467202368865D0048162D /* SLHSliderCell.m */; };
 		CE65BB0E21066B0500D2CBAA /* slh_process.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65BB0C21066B0500D2CBAA /* slh_process.c */; };
+		CE6B8C1724E17A8B00B93758 /* SLKWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B8C1524E17A8B00B93758 /* SLKWindowController.m */; };
+		CE6B8C1824E17A8B00B93758 /* SLKWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6B8C1624E17A8B00B93758 /* SLKWindowController.xib */; };
+		CE6B8C1D24E18FE500B93758 /* SLKH264EncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */; };
+		CE6B8C1E24E18FE500B93758 /* SLKH264EncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */; };
 		CE74B09E247D145A00749338 /* SLHTemplateNameFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */; };
 		CE7D018B24D4559D00B51D66 /* SLTFilterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7D018A24D4559D00B51D66 /* SLTFilterParameter.m */; };
 		CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7E11EB22294ADC002C2456 /* SLHEncoderItemOptions.m */; };
@@ -255,6 +259,13 @@
 		CE65BB0C21066B0500D2CBAA /* slh_process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_process.c; path = system/slh_process.c; sourceTree = "<group>"; };
 		CE65BB0D21066B0500D2CBAA /* slh_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_process.h; path = system/slh_process.h; sourceTree = "<group>"; };
 		CE687BAA2461A855006045AA /* MPVLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVLock.h; path = MPVKit/MPVLock.h; sourceTree = "<group>"; };
+		CE6B8C1424E17A8B00B93758 /* SLKWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKWindowController.h; path = StarlightKit/SLKWindowController.h; sourceTree = "<group>"; };
+		CE6B8C1524E17A8B00B93758 /* SLKWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKWindowController.m; path = StarlightKit/SLKWindowController.m; sourceTree = "<group>"; };
+		CE6B8C1624E17A8B00B93758 /* SLKWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLKWindowController.xib; path = StarlightKit/SLKWindowController.xib; sourceTree = "<group>"; };
+		CE6B8C1A24E18FE500B93758 /* SLKH264EncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKH264EncoderSettings.h; path = StarlightKit/SLKH264EncoderSettings.h; sourceTree = "<group>"; };
+		CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKH264EncoderSettings.m; path = StarlightKit/SLKH264EncoderSettings.m; sourceTree = "<group>"; };
+		CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLKH264EncoderSettings.xib; path = StarlightKit/SLKH264EncoderSettings.xib; sourceTree = "<group>"; };
+		CE6B8C1F24E1903E00B93758 /* SLKEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKEncoderSettings.h; path = StarlightKit/SLKEncoderSettings.h; sourceTree = "<group>"; };
 		CE74B09C247D145A00749338 /* SLHTemplateNameFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTemplateNameFormatter.h; path = utils/SLHTemplateNameFormatter.h; sourceTree = "<group>"; };
 		CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTemplateNameFormatter.m; path = utils/SLHTemplateNameFormatter.m; sourceTree = "<group>"; };
 		CE7D018924D4559D00B51D66 /* SLTFilterParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTFilterParameter.h; path = Starlight/SLTFilterParameter.h; sourceTree = "<group>"; };
@@ -526,6 +537,7 @@
 		CE4D40F620FE8B9E0066ACE2 /* Slash */ = {
 			isa = PBXGroup;
 			children = (
+				CE6B8C1924E17A9200B93758 /* StarlightKit */,
 				CEE7B5B524D31C0600A115D2 /* Starlight */,
 				CE166C5E2351FCCF001AF0CB /* MPVKit */,
 				CE5998CD219DF8300009FE08 /* model */,
@@ -608,6 +620,20 @@
 				CE477233226771F100FF5E0D /* slh_list.c */,
 			);
 			name = system;
+			sourceTree = "<group>";
+		};
+		CE6B8C1924E17A9200B93758 /* StarlightKit */ = {
+			isa = PBXGroup;
+			children = (
+				CE6B8C1424E17A8B00B93758 /* SLKWindowController.h */,
+				CE6B8C1524E17A8B00B93758 /* SLKWindowController.m */,
+				CE6B8C1624E17A8B00B93758 /* SLKWindowController.xib */,
+				CE6B8C1A24E18FE500B93758 /* SLKH264EncoderSettings.h */,
+				CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */,
+				CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */,
+				CE6B8C1F24E1903E00B93758 /* SLKEncoderSettings.h */,
+			);
+			name = StarlightKit;
 			sourceTree = "<group>";
 		};
 		CE9C0D1A2193583D0089C084 /* views */ = {
@@ -802,11 +828,13 @@
 				CE85A0F722C651830027F742 /* SLHEncoderUniversalFormat.xib in Resources */,
 				CE80A8B32381B24400CC4C7A /* SLHMetadataInspector.xib in Resources */,
 				CE1414C6210D32C400C02B2D /* mpv.conf in Resources */,
+				CE6B8C1E24E18FE500B93758 /* SLKH264EncoderSettings.xib in Resources */,
 				CE1DC4192285B09F0086A895 /* SLHLogController.xib in Resources */,
 				CEF2063524AA328A002166EB /* Renderers.plist in Resources */,
 				CE3E3A662445CD320004DEB0 /* SLHOutputNameController.xib in Resources */,
 				CE0A5B3322B924D400198163 /* SLHPresetNameDialog.xib in Resources */,
 				CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */,
+				CE6B8C1824E17A8B00B93758 /* SLKWindowController.xib in Resources */,
 				CE2365652254C9CC00B324E4 /* SLHEncoder.xib in Resources */,
 				CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */,
 				CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */,
@@ -860,6 +888,7 @@
 				CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */,
 				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
 				CEE7B5BE24D31CC700A115D2 /* SLTFilter.m in Sources */,
+				CE6B8C1724E17A8B00B93758 /* SLKWindowController.m in Sources */,
 				CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */,
 				CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */,
 				CE35266623F1C7C900B28193 /* SLHVolumeButton.m in Sources */,
@@ -873,6 +902,7 @@
 				CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */,
 				CEE7B5C424D31DAC00A115D2 /* SLTSetting.m in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
+				CE6B8C1D24E18FE500B93758 /* SLKH264EncoderSettings.m in Sources */,
 				CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */,
 				CE2A56B424375AF6005CF48A /* SLHTimelineView.m in Sources */,
 				CEEDC2182404380200AAFC18 /* SLHSeparatorView.m in Sources */,
