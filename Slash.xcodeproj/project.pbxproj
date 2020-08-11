@@ -80,6 +80,8 @@
 		CE6B8C1824E17A8B00B93758 /* SLKWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6B8C1624E17A8B00B93758 /* SLKWindowController.xib */; };
 		CE6B8C1D24E18FE500B93758 /* SLKH264EncoderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */; };
 		CE6B8C1E24E18FE500B93758 /* SLKH264EncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */; };
+		CE6B8C2324E2BC7B00B93758 /* SLKEncoderSettingsInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B8C2124E2BC7B00B93758 /* SLKEncoderSettingsInspector.m */; };
+		CE6B8C2424E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6B8C2224E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib */; };
 		CE74B09E247D145A00749338 /* SLHTemplateNameFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */; };
 		CE7D018B24D4559D00B51D66 /* SLTFilterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7D018A24D4559D00B51D66 /* SLTFilterParameter.m */; };
 		CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7E11EB22294ADC002C2456 /* SLHEncoderItemOptions.m */; };
@@ -266,6 +268,9 @@
 		CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKH264EncoderSettings.m; path = StarlightKit/SLKH264EncoderSettings.m; sourceTree = "<group>"; };
 		CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLKH264EncoderSettings.xib; path = StarlightKit/SLKH264EncoderSettings.xib; sourceTree = "<group>"; };
 		CE6B8C1F24E1903E00B93758 /* SLKEncoderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKEncoderSettings.h; path = StarlightKit/SLKEncoderSettings.h; sourceTree = "<group>"; };
+		CE6B8C2024E2BC7B00B93758 /* SLKEncoderSettingsInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKEncoderSettingsInspector.h; path = StarlightKit/SLKEncoderSettingsInspector.h; sourceTree = "<group>"; };
+		CE6B8C2124E2BC7B00B93758 /* SLKEncoderSettingsInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKEncoderSettingsInspector.m; path = StarlightKit/SLKEncoderSettingsInspector.m; sourceTree = "<group>"; };
+		CE6B8C2224E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLKEncoderSettingsInspector.xib; path = StarlightKit/SLKEncoderSettingsInspector.xib; sourceTree = "<group>"; };
 		CE74B09C247D145A00749338 /* SLHTemplateNameFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTemplateNameFormatter.h; path = utils/SLHTemplateNameFormatter.h; sourceTree = "<group>"; };
 		CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTemplateNameFormatter.m; path = utils/SLHTemplateNameFormatter.m; sourceTree = "<group>"; };
 		CE7D018924D4559D00B51D66 /* SLTFilterParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTFilterParameter.h; path = Starlight/SLTFilterParameter.h; sourceTree = "<group>"; };
@@ -632,6 +637,9 @@
 				CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */,
 				CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */,
 				CE6B8C1F24E1903E00B93758 /* SLKEncoderSettings.h */,
+				CE6B8C2024E2BC7B00B93758 /* SLKEncoderSettingsInspector.h */,
+				CE6B8C2124E2BC7B00B93758 /* SLKEncoderSettingsInspector.m */,
+				CE6B8C2224E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib */,
 			);
 			name = StarlightKit;
 			sourceTree = "<group>";
@@ -819,6 +827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE80A8AC2380560300CC4C7A /* SLHFileInfo.xib in Resources */,
+				CE6B8C2424E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib in Resources */,
 				CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */,
 				CE8BD7FA23CA0AFE004A7C1A /* LICENSE in Resources */,
 				CE9CBCB0228B037A001A8E37 /* SLHArgumentsViewController.xib in Resources */,
@@ -901,6 +910,7 @@
 				CE7D018B24D4559D00B51D66 /* SLTFilterParameter.m in Sources */,
 				CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */,
 				CEE7B5C424D31DAC00A115D2 /* SLTSetting.m in Sources */,
+				CE6B8C2324E2BC7B00B93758 /* SLKEncoderSettingsInspector.m in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
 				CE6B8C1D24E18FE500B93758 /* SLKH264EncoderSettings.m in Sources */,
 				CE9CBCD6228C68A4001A8E37 /* SLHModalWindowController.m in Sources */,
