@@ -1107,9 +1107,9 @@ static char SLHPreferencesKVOContext;
         switch (state)  {
                 
             case SLHEncoderStateSuccess: {
-                self.lastEncodedMediaFilePath = obj->_currentEncoderItem.outputPath;
-                if (_preferences.updateFileName) {
-                    [self updateOutputFileName:sender];
+                obj.lastEncodedMediaFilePath = obj->_currentEncoderItem.outputPath;
+                if (obj->_preferences.updateFileName) {
+                    [obj updateOutputFileName:sender];
                 }
                 
                 NSString *log = obj->_encoder.encodingLog;

@@ -308,7 +308,7 @@ static void _get_coordinates(char *start, char *end, int n, long *result) {
                 [uSelf->_imageView setImage:image imageProperties:0];
                 uSelf->_imageView.autoresizes = YES;
                 CFRelease(image);
-                _busy = NO;
+                uSelf->_busy = NO;
             });
         }
     });
