@@ -408,13 +408,11 @@ static inline NSString *_preampString(NSInteger val) {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowsMultipleSelection = NO;
     panel.allowedFileTypes = @[@"srt", @"vtt", @"ass", @"ssa"];
-    [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSModalResponseOK) {
-            NSString *value = panel.URLs.firstObject.path;
-            _encoderItem.filters.subtitlesPath = value;
-            _subtitlesNameTextField.stringValue = value.lastPathComponent;
-        }
-    }];
+    if ([panel runModal] == NSModalResponseOK) {
+        NSString *value = panel.URLs.firstObject.path;
+        _encoderItem.filters.subtitlesPath = value;
+        _subtitlesNameTextField.stringValue = value.lastPathComponent;
+    }
 }
 
 - (IBAction)burnSubtitles:(NSButton *)sender {
