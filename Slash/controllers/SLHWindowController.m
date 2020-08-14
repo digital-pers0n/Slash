@@ -1277,7 +1277,7 @@ static char SLHPreferencesKVOContext;
         [_presetManager savePresets];
     }
     [self unobservePreferences:_preferences];
-    [_player shutdown];
+    [_player quit];
     _player = nil;
     self.currentEncoderItem = nil;
     [_itemsArrayController removeObjects:_itemsArrayController.arrangedObjects];

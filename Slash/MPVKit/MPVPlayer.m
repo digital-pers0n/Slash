@@ -286,7 +286,6 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 }
 
 - (void)readEvents {
-
     CFRunLoopRef main_rl = CFRunLoopGetMain();
     MPVPlayerEvent playerEvent = MPVPlayerEventNone;
     __unsafe_unretained typeof(self) uSelf = self;
@@ -361,7 +360,6 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
             
             playerEvent = MPVPlayerEventNone;
         }
-        
     }
     
 exit:
@@ -374,12 +372,20 @@ exit:
 - (void)shutdown {
     [_eventThread cancel];
     _status = MPVPlayerStatusUnknown;
-    [self performCommand:@"quit"];
     [NSNotificationCenter.defaultCenter postNotificationName:MPVPlayerWillShutdownNotification object:self userInfo:nil];
     [_observed removeAllObjects];
     
     mpv_terminate_destroy(_mpv_handle);
     _mpv_handle = NULL;
+    
+    /*
+     According to the Transitioning to ARC Release Notes. Each entry in a
+     C array of Objective-C objects must be explicitly set to nil, otherwise
+     the objects will be never released under ARC.
+     */
+    for (NSInteger i = 0; i < MPVPlayerEventNone; i++) {
+        _notifications[i] = nil;
+    }
 }
 
 - (void)notifyObservers:(mpv_event_property *) event_property {
@@ -479,6 +485,10 @@ exit:
 }
 
 #pragma mark - Methods
+
+- (void)quit {
+    [self performCommand:MPVPlayerCommandQuit];
+}
 
 - (BOOL)takeScreenshotTo:(NSURL *)url includeSubtitles:(BOOL)flag error:(NSError *__autoreleasing  _Nullable *)error {
     

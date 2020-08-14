@@ -16,6 +16,7 @@ NSString * const MPVPlayerCommandFrameBackStep      = @"frame-back-step";
 NSString * const MPVPlayerCommandFrameStep          = @"frame-step";
 NSString * const MPVPlayerCommandScreenshot         = @"screenshot";
 NSString * const MPVPlayerCommandScreenshotToFile   = @"screenshot-to-file";
+NSString * const MPVPlayerCommandQuit               = @"quit";
 
 #pragma mark - Properties
 

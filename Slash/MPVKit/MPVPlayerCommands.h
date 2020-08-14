@@ -29,4 +29,7 @@ extern NSString * const MPVPlayerCommandScreenshot;
 /** screenshot-to-file */
 extern NSString * const MPVPlayerCommandScreenshotToFile;
 
+/** quit */
+extern NSString * const MPVPlayerCommandQuit;
+
 #endif /* MPVPlayerCommands_h */

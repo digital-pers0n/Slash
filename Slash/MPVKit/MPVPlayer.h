@@ -76,7 +76,8 @@ FOUNDATION_EXTERN NSString * const MPVPlayerErrorDomain;
 /** async exact seek, slower than @c seekTo: method, but much more precise. */
 - (void)seekExactTo:(double)time;
 
-- (void)shutdown;
+/** Quit the player. */
+- (void)quit;
 
 #pragma mark - Properties
 
