@@ -44,14 +44,9 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 
 @interface MPVPlayer () {
     MPVPlayerItem *_currentItem;
-    NSNotification *_notifications[MPVPlayerEventNone];
+    NSThread *_eventThread;
+    NSMutableDictionary *_observed; ///< Observed Properties
 }
-
-@property NSThread *eventThread;
-@property NSNotificationCenter *notificationCenter;
-
-/// Observed Properties
-@property NSMutableDictionary *observed;
 
 @end
 
@@ -233,50 +228,8 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 
 - (void)postInit {
     _observed = [NSMutableDictionary new];
-    _notificationCenter = [NSNotificationCenter defaultCenter];
-    [self setUpNotifcations];
     [self startEventListener];
 }
-
-- (void)setUpNotifcations {
-    
-    NSNotification *n = [NSNotification notificationWithName:MPVPlayerWillStartPlaybackNotification
-                                                      object:self
-                                                    userInfo:nil];
-    _notifications[MPVPlayerEventStartFile] = n;
-    
-    n = [NSNotification notificationWithName:MPVPlayerDidEndPlaybackNotification
-                                      object:self
-                                    userInfo:nil];
-    _notifications[MPVPlayerEventEndFile] = n;
-    
-    n = [NSNotification notificationWithName:MPVPlayerDidLoadFileNotification
-                                      object:self
-                                    userInfo:nil];
-    _notifications[MPVPlayerEventFileLoaded] = n;
-    
-    n = [NSNotification notificationWithName:MPVPlayerDidEnterIdleModeNotification
-                                      object:self
-                                    userInfo:nil];
-    _notifications[MPVPlayerEventIdle] = n;
-
-    n = [NSNotification notificationWithName:MPVPlayerVideoDidChangeNotification
-                                      object:self
-                                    userInfo:nil];
-    _notifications[MPVPlayerEventVideoReconfig] = n;
-    
-    n = [NSNotification notificationWithName:MPVPlayerDidStartSeekNotification
-                                      object:self
-                                    userInfo:nil];
-    _notifications[MPVPlayerEventSeek] = n;
-
-    n = [NSNotification notificationWithName:MPVPlayerDidRestartPlaybackNotification
-                                      object:self
-                                    userInfo:nil];
-    _notifications[MPVPlayerEventPlaybackRestart] = n;
-    
-}
-
 
 - (void)dealloc
 {
@@ -286,12 +239,30 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 }
 
 - (void)readEvents {
+    NSNotification * __autoreleasing notifications[MPVPlayerEventNone] = {
+    [NSNotification notificationWithName:MPVPlayerWillStartPlaybackNotification
+                                  object:self userInfo:nil],
+    [NSNotification notificationWithName:MPVPlayerDidEndPlaybackNotification
+                                  object:self userInfo:nil],
+    [NSNotification notificationWithName:MPVPlayerDidLoadFileNotification
+                                  object:self userInfo:nil],
+    [NSNotification notificationWithName:MPVPlayerDidEnterIdleModeNotification
+                                  object:self userInfo:nil],
+    [NSNotification notificationWithName:MPVPlayerVideoDidChangeNotification
+                                  object:self userInfo:nil],
+    [NSNotification notificationWithName:MPVPlayerDidStartSeekNotification
+                                  object:self userInfo:nil],
+    [NSNotification notificationWithName:MPVPlayerDidRestartPlaybackNotification
+                                  object:self userInfo:nil]
+    };
+
     CFRunLoopRef main_rl = CFRunLoopGetMain();
     MPVPlayerEvent playerEvent = MPVPlayerEventNone;
-    __unsafe_unretained typeof(self) uSelf = self;
+    __unsafe_unretained NSNotificationCenter *nc;
+    nc = NSNotificationCenter.defaultCenter;
     
     while (!_eventThread.cancelled) {
-        mpv_event *event = mpv_wait_event(self->_mpv_handle, -1);
+        mpv_event *event = mpv_wait_event(_mpv_handle, -1);
         switch (event->event_id) {
                 
             case MPV_EVENT_NONE:
@@ -299,9 +270,9 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
                 
             case MPV_EVENT_SHUTDOWN:
             {
-                if (self->_status == MPVPlayerStatusReadyToPlay) {
+                if (_status == MPVPlayerStatusReadyToPlay) {
                     CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
-                        [uSelf shutdown];
+                        [self shutdown];
                     });
                 }
             }
@@ -351,13 +322,12 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
         if (playerEvent != MPVPlayerEventNone) {
             
 #ifdef DEBUG
-            NSLog(@"%@: Post '%@'.", self, _notifications[playerEvent].name);
+            NSLog(@"%@: Post '%@'.", self, notifications[playerEvent].name);
 #endif
+            __unsafe_unretained NSNotification *n = notifications[playerEvent];
             CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
-                NSNotification *n = uSelf->_notifications[playerEvent];
-                [uSelf->_notificationCenter postNotification:n];
+                [nc postNotification:n];
             });
-            
             playerEvent = MPVPlayerEventNone;
         }
     }
@@ -370,22 +340,16 @@ exit:
 }
 
 - (void)shutdown {
-    [_eventThread cancel];
+    if (!_eventThread.cancelled) {
+        [_eventThread cancel];
+        mpv_wakeup(_mpv_handle);
+    }
     _status = MPVPlayerStatusUnknown;
     [NSNotificationCenter.defaultCenter postNotificationName:MPVPlayerWillShutdownNotification object:self userInfo:nil];
     [_observed removeAllObjects];
     
     mpv_terminate_destroy(_mpv_handle);
     _mpv_handle = NULL;
-    
-    /*
-     According to the Transitioning to ARC Release Notes. Each entry in a
-     C array of Objective-C objects must be explicitly set to nil, otherwise
-     the objects will be never released under ARC.
-     */
-    for (NSInteger i = 0; i < MPVPlayerEventNone; i++) {
-        _notifications[i] = nil;
-    }
 }
 
 - (void)notifyObservers:(mpv_event_property *) event_property {
@@ -431,7 +395,6 @@ exit:
             [observer player:self didChangeValue:value forProperty:property format:event_property->format];
         }
     }
-    
 }
 
 #pragma mark - Properties
