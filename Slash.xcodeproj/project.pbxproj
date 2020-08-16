@@ -271,6 +271,8 @@
 		CE6B8C2024E2BC7B00B93758 /* SLKEncoderSettingsInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKEncoderSettingsInspector.h; path = StarlightKit/SLKEncoderSettingsInspector.h; sourceTree = "<group>"; };
 		CE6B8C2124E2BC7B00B93758 /* SLKEncoderSettingsInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKEncoderSettingsInspector.m; path = StarlightKit/SLKEncoderSettingsInspector.m; sourceTree = "<group>"; };
 		CE6B8C2224E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLKEncoderSettingsInspector.xib; path = StarlightKit/SLKEncoderSettingsInspector.xib; sourceTree = "<group>"; };
+		CE6B8C2524E40D1300B93758 /* SLKTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKTabBarView.h; path = StarlightKit/SLKTabBarView.h; sourceTree = "<group>"; };
+		CE6B8C2624E40D1300B93758 /* SLKTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKTabBarView.m; path = StarlightKit/SLKTabBarView.m; sourceTree = "<group>"; };
 		CE74B09C247D145A00749338 /* SLHTemplateNameFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTemplateNameFormatter.h; path = utils/SLHTemplateNameFormatter.h; sourceTree = "<group>"; };
 		CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTemplateNameFormatter.m; path = utils/SLHTemplateNameFormatter.m; sourceTree = "<group>"; };
 		CE7D018924D4559D00B51D66 /* SLTFilterParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTFilterParameter.h; path = Starlight/SLTFilterParameter.h; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 		CE6B8C1924E17A9200B93758 /* StarlightKit */ = {
 			isa = PBXGroup;
 			children = (
+				CE6B8C2824E40D1A00B93758 /* views */,
 				CE6B8C1424E17A8B00B93758 /* SLKWindowController.h */,
 				CE6B8C1524E17A8B00B93758 /* SLKWindowController.m */,
 				CE6B8C1624E17A8B00B93758 /* SLKWindowController.xib */,
@@ -642,6 +645,15 @@
 				CE6B8C2224E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib */,
 			);
 			name = StarlightKit;
+			sourceTree = "<group>";
+		};
+		CE6B8C2824E40D1A00B93758 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CE6B8C2524E40D1300B93758 /* SLKTabBarView.h */,
+				CE6B8C2624E40D1300B93758 /* SLKTabBarView.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		CE9C0D1A2193583D0089C084 /* views */ = {
@@ -894,6 +906,7 @@
 				CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */,
 				CE0B15F023561AD600AE606E /* SLHPlayerView.m in Sources */,
 				CE80A8B22381B24400CC4C7A /* SLHMetadataInspector.m in Sources */,
+				CE6B8C2724E40D1300B93758 /* SLKTabBarView.m in Sources */,
 				CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */,
 				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
 				CEE7B5BE24D31CC700A115D2 /* SLTFilter.m in Sources */,
