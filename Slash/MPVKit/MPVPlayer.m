@@ -255,7 +255,6 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
     [NSNotification notificationWithName:MPVPlayerDidRestartPlaybackNotification
                                   object:self userInfo:nil]
     };
-
     CFRunLoopRef main_rl = CFRunLoopGetMain();
     MPVPlayerEvent playerEvent = MPVPlayerEventNone;
     __unsafe_unretained NSNotificationCenter *nc;
@@ -336,6 +335,9 @@ exit:
 #ifdef DEBUG
     NSLog(@"%@: Exit event thread", self);
 #endif
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        CFRunLoopWakeUp(main_rl);
+    });
     [NSThread exit];
 }
 
