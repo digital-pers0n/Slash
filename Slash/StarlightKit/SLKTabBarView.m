@@ -56,11 +56,13 @@
 - (void)addItems:(NSArray<SLKTabBarItem *> *)array {
     [_items addObjectsFromArray:array];
     CFIndex total = _items.count;
+    if (total == 0) return; // ignore empty array
     free(_cachedItems);
     _cachedItems = malloc(sizeof(SLKTabBarItem *) * total);
     CFArrayGetValues((__bridge CFArrayRef)_items,
                      CFRangeMake(0, total), _cachedItems);
     _numberOfItems = total;
+    SLKTabBarSetItemWidth(self, self.frame);
     self.needsDisplay = YES;
 }
 
@@ -81,6 +83,18 @@ static void SLKTabBarSelectItem(__unsafe_unretained SLKTabBarView *me,
         me->_selectedItem = item;
         [delegate tabBar:me didSelectItem:item];
         me.needsDisplay = YES;
+    }
+}
+
+static void SLKTabBarSetItemWidth(__unsafe_unretained SLKTabBarView *me,
+                                  NSRect frame) {
+    CGFloat itemWidth = NSWidth(frame) / me->_numberOfItems;
+    NSRect itemFrame = NSMakeRect(0, 0, itemWidth, NSHeight(frame));
+    __unsafe_unretained SLKTabBarItem *item;
+    for (NSInteger i = 0; i < me->_numberOfItems; i++) {
+        itemFrame.origin.x = itemWidth * i;
+        item = (__bridge id)me->_cachedItems[i];
+        item->_frame = itemFrame;
     }
 }
 
@@ -107,14 +121,7 @@ static void SLKTabBarSelectItem(__unsafe_unretained SLKTabBarView *me,
 
 - (void)setFrame:(NSRect)frame {
     if (_numberOfItems > 0) {
-        CGFloat itemWidth = NSWidth(frame) / _numberOfItems;
-        NSRect itemFrame = NSMakeRect(0, 0, itemWidth, NSHeight(frame));
-        __unsafe_unretained SLKTabBarItem *item;
-        for (NSInteger i = 0; i < _numberOfItems; i++) {
-            itemFrame.origin.x = itemWidth * i;
-            item = (__bridge id)_cachedItems[i];
-            item->_frame = itemFrame;
-        }
+        SLKTabBarSetItemWidth(self, frame);
     }
     [super setFrame:frame];
 }
