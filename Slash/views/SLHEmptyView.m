@@ -41,7 +41,7 @@
     _textCell = [[NSTextFieldCell alloc] initTextCell:@""];
     _textCell.bordered = NO;
     _textCell.font = [NSFont systemFontOfSize:20];;
-    _textCell.textColor = [[NSColor disabledControlTextColor] colorWithAlphaComponent:0.5];
+    _textCell.textColor = NSColor.tertiaryLabelColor;
     _cellSize = _textCell.cellSize;
 }
 
