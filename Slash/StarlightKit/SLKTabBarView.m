@@ -150,7 +150,7 @@ static void SLKTabBarSetItemWidth(__unsafe_unretained SLKTabBarView *me,
     __unsafe_unretained SLKTabBarItem *item;
     for (NSInteger i = 0; i < _numberOfItems; i++) {
         item = (__bridge id)_cachedItems[i];
-        if ([self mouse:point inRect:item->_frame]) {
+        if (NSMouseInRect(point, item->_frame, /* flipped */ NO)) {
             self.toolTip = nil;
             self.toolTip = item->_tooltip;
 
@@ -193,6 +193,10 @@ static void SLKTabBarSetItemWidth(__unsafe_unretained SLKTabBarView *me,
 
 - (BOOL)acceptsFirstMouse:(NSEvent *)event {
     return YES;
+}
+
+- (BOOL)isFlipped {
+    return NO;
 }
 
 @end
