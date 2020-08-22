@@ -130,7 +130,7 @@ static void SLKTabBarSetItemWidth(__unsafe_unretained SLKTabBarView *me,
     __unsafe_unretained SLKTabBarItem *item;
     for (NSInteger i = 0; i < _numberOfItems; i++) {
         item = (__bridge id)_cachedItems[i];
-        [item->_cell drawWithFrame:item->_frame inView:self];
+        [item->_cell drawInteriorWithFrame:item->_frame inView:self];
     }
 }
 
