@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SLTH264VideoSettings, SLTH264AudioSettings;
 
 #pragma mark - SLTH264EncoderSettings
-@interface SLTH264EncoderSettings : SLTEncoderSettings
+@interface SLTH264EncoderSettings : SLTEncoderSettings <NSCopying>
 
 @property (nonatomic) BOOL enableTwoPassEncoding;
 /** 
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 #pragma mark - SLTH264VideoSettings
-@interface SLTH264VideoSettings : SLTVideoSettings
+@interface SLTH264VideoSettings : SLTVideoSettings <NSCopying>
 
 @property (nonatomic) int64_t maxRate;
 @property (nonatomic) NSInteger crf;
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 #pragma mark - SLTH264AudioSettings
-@interface SLTH264AudioSettings : SLTAudioSettings
+@interface SLTH264AudioSettings : SLTAudioSettings <NSCopying>
 
 @property (nonatomic) int64_t bitRate;
 
