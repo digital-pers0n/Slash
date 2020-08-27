@@ -21,6 +21,44 @@
 
 @implementation SLTH264VideoSettings
 
+static NSArray<NSString *> *_allowedPresets;
+static NSArray<NSString *> *_allowedProfiles;
+static NSArray<NSString *> *_allowedLevels;
+static NSArray<NSString *> *_allowedTunes;
+
++ (void)initialize {
+    if (self == [SLTH264VideoSettings class]) {
+        _allowedPresets = @[ @"ultrafast", @"superfast", @"veryfast", @"faster",
+                             @"fast", @"medium", @"slow", @"slower", @"veryslow",
+                             @"placebo" ];
+        
+        _allowedProfiles = @[ @"baseline", @"main", @"high" ];
+        
+        _allowedLevels = @[ @"1.0", @"1.1", @"1.2", @"1.3", @"2.0", @"2.1",
+                            @"2.2", @"3.0", @"3.1", @"3.2", @"4.0", @"4.1",
+                            @"4.2", @"5.0", @"5.1" ];
+        
+        _allowedTunes = @[ @"film", @"animation", @"grain", @"stillimage",
+                           @"psnr", @"ssim" ];
+    }
+}
+
++ (NSArray<NSString *> *)allowedPresets {
+    return _allowedPresets;
+}
+
++ (NSArray<NSString *> *)allowedProfiles {
+    return _allowedProfiles;
+}
+
++ (NSArray<NSString *> *)allowedLevels {
+    return _allowedLevels;
+}
+
++ (NSArray<NSString *> *)allowedTunes {
+    return _allowedTunes;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     typeof(self) obj = [super copyWithZone:zone];
     obj->_maxRate = _maxRate;
