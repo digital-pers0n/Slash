@@ -17,7 +17,7 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
 
 @interface SLKDisclosureHeaderView () {
     @package
-    NSTextFieldCell *_buttonCell;
+    NSButtonCell *_buttonCell;
     NSRect _buttonFrame;
     NSTrackingArea *_trackingArea;
     BOOL _mouseIn;
@@ -28,6 +28,9 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
 
 - (void)updateButtonFrame OBJC_DIRECT;
 - (BOOL)isMouseIn OBJC_DIRECT;
+
+/** Bound to _buttonCell.value */
+@property (nonatomic) BOOL closed;
 
 @end
 
@@ -42,10 +45,14 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
         _titleCell = [[NSTextFieldCell alloc] initTextCell:@"Empty"];
         _titleCell.bordered = NO;
         _titleCell.font = [NSFont boldSystemFontOfSize:SLKHeaderViewFontSize];
-        _buttonCell = [[NSTextFieldCell alloc] initTextCell:@"Hide"];
+        _buttonCell = [[NSButtonCell alloc] init];
+        [_buttonCell setButtonType:NSButtonTypeToggle];
+        _buttonCell.title = @"Hide";
+        _buttonCell.alternateTitle = @"Show";
         _buttonCell.bordered = NO;
         _buttonCell.font = [NSFont boldSystemFontOfSize:SLKHeaderViewFontSize];
-        _buttonCell.textColor = [NSColor disabledControlTextColor];
+        [_buttonCell bind:NSValueBinding
+                 toObject:self withKeyPath:@"closed" options:nil];
         [self updateButtonFrame];
         _trackingArea = [[NSTrackingArea alloc] init];
     }
