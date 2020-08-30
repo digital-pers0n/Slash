@@ -63,6 +63,62 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
     return NO;
 }
 
+- (void)setFrame:(NSRect)frame {
+    _buttonFrame.origin.x = NSWidth(frame) - NSWidth(_buttonFrame);
+    [super setFrame:frame];
+}
+
+- (void)updateTrackingAreas {
+    [super updateTrackingAreas];
+    [self removeTrackingArea:_trackingArea];
+    NSTrackingAreaOptions opts = NSTrackingMouseEnteredAndExited |
+                          NSTrackingActiveInKeyWindow | NSTrackingInVisibleRect;
+    id area = [[NSTrackingArea alloc] initWithRect:NSZeroRect
+                                           options:opts owner:self userInfo:nil];
+    [self addTrackingArea:area];
+    _trackingArea = area;
+    
+    if (_mouseIn) {
+        /* Fixes problems with mouseExited: events in scroll views */
+        BOOL flag = [self isMouseIn];
+        if (!flag) {
+            _mouseIn = flag;
+            self.needsDisplay = YES;
+        }
+    }
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    NSRect rect = NSInsetRect(self.bounds, SLKHeaderViewMargin, 3);
+    [_titleCell drawInteriorWithFrame:rect inView:self];
+    
+    if (_closed || _mouseIn) {
+        rect = NSInsetRect(_buttonFrame, SLKHeaderViewMargin, 3);
+        [_buttonCell drawInteriorWithFrame:rect inView:self];
+    }
+}
+
+#pragma mark Mouse Events
+
+- (void)mouseEntered:(NSEvent *)event {
+    _mouseIn = YES;
+    self.needsDisplay = YES;
+}
+
+- (void)mouseExited:(NSEvent *)event {
+    _mouseIn = NO;
+    self.needsDisplay = YES;
+}
+
+- (void)mouseDown:(NSEvent *)event {
+    NSPoint point = [self convertPoint:event.locationInWindow toView:nil];
+    if (NSMouseInRect(point, _buttonFrame, /* flipped */ NO)) {
+        self.closed = (_closed) ? NO : YES;
+        [self updateButtonFrame];
+        self.needsDisplay = YES;
+    }
+}
+
 #pragma mark - Methods
 
 - (void)updateButtonFrame {
