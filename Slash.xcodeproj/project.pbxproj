@@ -119,6 +119,7 @@
 		CEAC3A182494D3BF00F6E998 /* MPVIOSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC3A172494D3BF00F6E998 /* MPVIOSurfaceView.m */; };
 		CEBB8BF8246ACAD700776827 /* MPVLock.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB8BF7246ACAD700776827 /* MPVLock.c */; };
 		CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBFF3E22190BDA000F54C7E /* slh_encoder.c */; };
+		CECE14C824FD789500406B9D /* SLKStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14C724FD789500406B9D /* SLKStackView.m */; };
 		CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2245E23A11332000A7489 /* SLHExternalPlayer.m */; };
 		CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */; };
 		CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */; };
@@ -149,6 +150,10 @@
 		CE0813E222CB79B60048D27B /* SLHTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTextEditor.h; path = controllers/SLHTextEditor.h; sourceTree = "<group>"; };
 		CE0813E322CB79B60048D27B /* SLHTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTextEditor.m; path = controllers/SLHTextEditor.m; sourceTree = "<group>"; };
 		CE0813E422CB79B60048D27B /* SLHTextEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHTextEditor.xib; path = controllers/SLHTextEditor.xib; sourceTree = "<group>"; };
+		CE08D7BC24EAB516004347DF /* SLKSeparatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKSeparatorView.h; path = StarlightKit/SLKSeparatorView.h; sourceTree = "<group>"; };
+		CE08D7BD24EAB516004347DF /* SLKSeparatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKSeparatorView.m; path = StarlightKit/SLKSeparatorView.m; sourceTree = "<group>"; };
+		CE08D7BF24ED5652004347DF /* SLKDisclosureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKDisclosureView.h; path = StarlightKit/SLKDisclosureView.h; sourceTree = "<group>"; };
+		CE08D7C024ED5652004347DF /* SLKDisclosureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKDisclosureView.m; path = StarlightKit/SLKDisclosureView.m; sourceTree = "<group>"; };
 		CE0A5B2F22B924D400198163 /* SLHPresetNameDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetNameDialog.h; path = controllers/SLHPresetNameDialog.h; sourceTree = "<group>"; };
 		CE0A5B3022B924D400198163 /* SLHPresetNameDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetNameDialog.m; path = controllers/SLHPresetNameDialog.m; sourceTree = "<group>"; };
 		CE0A5B3122B924D400198163 /* SLHPresetNameDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHPresetNameDialog.xib; path = controllers/SLHPresetNameDialog.xib; sourceTree = "<group>"; };
@@ -335,6 +340,8 @@
 		CEBB8BF7246ACAD700776827 /* MPVLock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVLock.c; path = MPVKit/MPVLock.c; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
 		CEBFF3E32190BDA000F54C7E /* slh_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_encoder.h; path = Slash/system/slh_encoder.h; sourceTree = SOURCE_ROOT; };
+		CECE14C624FD789500406B9D /* SLKStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKStackView.h; path = StarlightKit/SLKStackView.h; sourceTree = "<group>"; };
+		CECE14C724FD789500406B9D /* SLKStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKStackView.m; path = StarlightKit/SLKStackView.m; sourceTree = "<group>"; };
 		CECFA43A24A27DCD00B6C22A /* MPVKitDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVKitDefines.h; path = MPVKit/MPVKitDefines.h; sourceTree = "<group>"; };
 		CED2245D23A11332000A7489 /* SLHExternalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHExternalPlayer.h; path = utils/SLHExternalPlayer.h; sourceTree = "<group>"; };
 		CED2245E23A11332000A7489 /* SLHExternalPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHExternalPlayer.m; path = utils/SLHExternalPlayer.m; sourceTree = "<group>"; };
@@ -655,6 +662,8 @@
 			children = (
 				CE08D7BF24ED5652004347DF /* SLKDisclosureView.h */,
 				CE08D7C024ED5652004347DF /* SLKDisclosureView.m */,
+				CECE14C624FD789500406B9D /* SLKStackView.h */,
+				CECE14C724FD789500406B9D /* SLKStackView.m */,
 				CE6B8C2524E40D1300B93758 /* SLKTabBarView.h */,
 				CE6B8C2624E40D1300B93758 /* SLKTabBarView.m */,
 				CE08D7BC24EAB516004347DF /* SLKSeparatorView.h */,
@@ -967,6 +976,7 @@
 				CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */,
 				CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */,
 				CE120455229C260A00C2A145 /* SLHEncoderVPXFormat.m in Sources */,
+				CECE14C824FD789500406B9D /* SLKStackView.m in Sources */,
 				CE566A7C215EB849004E974F /* SLHPreferences.m in Sources */,
 				CE08D7C124ED5652004347DF /* SLKDisclosureView.m in Sources */,
 				CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */,
