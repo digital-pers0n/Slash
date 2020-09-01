@@ -139,9 +139,108 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
 
 #pragma mark - **** SLHDisclosureView ****
 
+@interface SLKDisclosureView () {
+    NSSize _savedSize;
+}
+@end
+
+OBJC_DIRECT_MEMBERS
 @implementation SLKDisclosureView
 
+static NSColor *_separatorColor;
+
+#pragma mark - Overrides
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)setFrame:(NSRect)frame {
+    _savedSize.width = NSWidth(frame);
+    _currentFrame = frame;
+    [super setFrame:frame];
+}
+
+static char KVO_SLKHeaderViewClosed;
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary *)change context:(void *)context
+{
+    if (context == &KVO_SLKHeaderViewClosed) {
+        NSSize savedSize = _currentFrame.size;
+        [self willChangeValueForKey:@"currentFrame"];
+        [self resizeTo:_savedSize];
+        [self didChangeValueForKey:@"currentFrame"];
+        _savedSize = savedSize;
+    } else {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object change:change context:context];
+    }
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
+}
+
+- (BOOL)isFlipped {
+    return NO;
+}
+
+- (void)dealloc {
+    [_headerView removeObserver:self
+                     forKeyPath:@"closed" context:&KVO_SLKHeaderViewClosed];
+}
+
+#pragma mark - Methods
+
+- (void)commonInit {
+    NSRect frame = self.frame;
+    NSRect headerFrame = NSMakeRect(0, NSHeight(frame) - SLKHeaderViewHeight,
+                                    NSWidth(frame), SLKHeaderViewHeight);
+    SLKDisclosureHeaderView *hv;
+    hv = [[SLKDisclosureHeaderView alloc] initWithFrame:headerFrame];
+    [hv addObserver:self
+         forKeyPath:@"closed" options:0 context:&KVO_SLKHeaderViewClosed];
+    hv.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewWidthSizable;
+    [self addSubview:hv];
+    _savedSize = headerFrame.size;
+    _headerView = hv;
+    if (!_separatorColor) {
+        _separatorColor = NSColor.gridColor;
+    }
+}
+
+- (void)setContentView:(NSView *)contentView {
+    [_contentView removeFromSuperview];
+    _contentView = contentView;
+    if (contentView != nil) {
+        NSRect newContentFrame = contentView.frame;
+        NSSize newSize = _currentFrame.size;
+        newContentFrame.size.width = newSize.width;
+        newSize.height = NSHeight(newContentFrame) + SLKHeaderViewHeight;
+        [self resizeTo:newSize];
+        contentView.frame = newContentFrame;
+        [self addSubview:contentView];
+    }
+}
+
+- (void)resizeTo:(NSSize)newSize {
+    NSRect newFrame = _currentFrame;
+    CGFloat yOffset = newSize.height - NSHeight(newFrame);
+    newFrame.origin.y -= yOffset;
+    newFrame.size = newSize;
+    self.frame = newFrame;
 }
 
 @end
