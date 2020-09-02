@@ -191,6 +191,11 @@ static char KVO_SLKHeaderViewClosed;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
+    NSRect frame = _currentFrame;
+    frame.size.height = 1;
+    frame.origin = (NSPoint){ 0, 0 };
+    [_separatorColor set];
+    [NSBezierPath fillRect:frame];
 }
 
 - (BOOL)isFlipped {
