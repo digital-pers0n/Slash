@@ -167,6 +167,10 @@ static NSColor *_separatorColor;
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithFrame:NSMakeRect(0, 0, 50, SLKHeaderViewHeight)];
+}
+
 - (void)setFrame:(NSRect)frame {
     _savedSize.width = NSWidth(frame);
     _currentFrame = frame;
@@ -211,6 +215,7 @@ static char KVO_SLKHeaderViewClosed;
 
 - (void)commonInit {
     NSRect frame = self.frame;
+    _currentFrame = frame;
     NSRect headerFrame = NSMakeRect(0, NSHeight(frame) - SLKHeaderViewHeight,
                                     NSWidth(frame), SLKHeaderViewHeight);
     SLKDisclosureHeaderView *hv;
