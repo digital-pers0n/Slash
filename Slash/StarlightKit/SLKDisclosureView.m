@@ -15,7 +15,7 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
 
 #pragma mark - **** SLHDisclosureHeaderView ****
 
-@interface SLKDisclosureHeaderView () {
+@interface SLKDisclosureHeaderView : NSView {
     @package
     NSButtonCell *_buttonCell;
     NSRect _buttonFrame;
@@ -23,7 +23,6 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
     BOOL _mouseIn;
     NSTextFieldCell *_titleCell;
     BOOL _closed;
-    __unsafe_unretained SLKDisclosureView *_disclosureView;
 }
 
 - (void)updateButtonFrame OBJC_DIRECT;
@@ -141,6 +140,7 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
 
 @interface SLKDisclosureView () {
     NSSize _savedSize;
+    __unsafe_unretained SLKDisclosureHeaderView *_headerView;
 }
 @end
 
