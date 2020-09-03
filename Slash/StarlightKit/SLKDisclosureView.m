@@ -109,7 +109,7 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
     self.needsDisplay = YES;
 }
 
-- (void)mouseDown:(NSEvent *)event {
+- (void)mouseUp:(NSEvent *)event {
     NSPoint point = [self convertPoint:event.locationInWindow fromView:nil];
     if (NSMouseInRect(point, _buttonFrame, /* flipped */ NO)) {
         self.closed = (_closed) ? NO : YES;
