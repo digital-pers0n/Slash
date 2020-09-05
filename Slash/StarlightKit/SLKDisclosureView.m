@@ -245,6 +245,14 @@ static char KVO_SLKHeaderViewClosed;
     }
 }
 
+- (void)setTitle:(NSString *)title {
+    _headerView->_titleCell.title = title;
+}
+
+- (NSString *)title {
+    return _headerView->_titleCell.title;
+}
+
 - (void)resizeTo:(NSSize)newSize {
     NSRect newFrame = _currentFrame;
     CGFloat yOffset = newSize.height - NSHeight(newFrame);
