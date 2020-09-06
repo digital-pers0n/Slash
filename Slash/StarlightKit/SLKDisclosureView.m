@@ -21,7 +21,7 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
     NSRect _buttonFrame;
     NSTrackingArea *_trackingArea;
     BOOL _mouseIn;
-    NSTextFieldCell *_titleCell;
+    NSCell *_titleCell;
     BOOL _closed;
 }
 
@@ -139,9 +139,11 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
 #pragma mark - **** SLHDisclosureView ****
 
 @interface SLKDisclosureView () {
+    @package
     NSSize _savedSize;
     __unsafe_unretained SLKDisclosureHeaderView *_headerView;
 }
+@property (readonly) Class headerViewClass;
 @end
 
 OBJC_DIRECT_MEMBERS
@@ -213,13 +215,17 @@ static char KVO_SLKHeaderViewClosed;
 
 #pragma mark - Methods
 
+- (Class)headerViewClass {
+    return [SLKDisclosureHeaderView class];
+}
+
 - (void)commonInit {
     NSRect frame = self.frame;
     _currentFrame = frame;
     NSRect headerFrame = NSMakeRect(0, NSHeight(frame) - SLKHeaderViewHeight,
                                     NSWidth(frame), SLKHeaderViewHeight);
     SLKDisclosureHeaderView *hv;
-    hv = [[SLKDisclosureHeaderView alloc] initWithFrame:headerFrame];
+    hv = [[self.headerViewClass alloc] initWithFrame:headerFrame];
     [hv addObserver:self
          forKeyPath:@"closed" options:0 context:&KVO_SLKHeaderViewClosed];
     hv.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewWidthSizable;
@@ -261,4 +267,78 @@ static char KVO_SLKHeaderViewClosed;
     self.frame = newFrame;
 }
 
-@end
+@end // SLHDisclosureView
+
+#pragma mark - **** SLHCheckboxDisclosureHeaderView ****
+
+@interface SLKCheckboxDisclosureHeaderView : SLKDisclosureHeaderView @end
+
+@implementation SLKCheckboxDisclosureHeaderView
+
+#pragma mark - Overrides
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        NSButtonCell *cell = [[NSButtonCell alloc] init];
+        [cell setButtonType:NSSwitchButton];
+        [cell setBezelStyle:NSBezelStyleRegularSquare];
+        [cell setBordered:NO];
+        cell.font = _titleCell.font;
+        cell.controlSize = NSControlSizeSmall;
+        _titleCell = cell;
+    }
+    return self;
+}
+
+- (void)mouseUp:(NSEvent *)event {
+    NSRect frame =
+    { .origin = { 0, SLKHeaderViewMargin }, .size = _titleCell.cellSize };
+    NSPoint point = [self convertPoint:event.locationInWindow fromView:nil];
+    if (NSMouseInRect(point, frame, /* flipped */ NO)) {
+        NSControlStateValue state = _titleCell.state;
+        _titleCell.state = (state == NSControlStateValueOn) ?
+                            NSControlStateValueOff : NSControlStateValueOn;
+        NSDictionary *info = [_titleCell infoForBinding:NSValueBinding];
+        if (info) {
+            id obj = [info objectForKey:NSObservedObjectKey];
+            id keyPath = [info objectForKey:NSObservedKeyPathKey];
+            [obj setValue:_titleCell.objectValue forKeyPath:keyPath];
+        }
+        self.needsDisplay = YES;
+        return;
+    }
+    [super mouseUp:event];
+}
+
+@end // SLHCheckboxDisclosureHeaderView
+
+#pragma mark - **** SLHCheckboxDisclosureView ****
+
+@implementation SLKCheckboxDisclosureView
+
+#pragma mark - Overrides
+
++ (void)initialize {
+    if (self == [SLKCheckboxDisclosureView class]) {
+        [self exposeBinding:NSValueBinding];
+    }
+}
+
+- (void)bind:(NSBindingName)binding
+    toObject:(id)observable withKeyPath:(NSString *)keyPath
+     options:(NSDictionary<NSBindingOption,id> *)options
+{
+    if ([binding isEqualToString:NSValueBinding]) {
+        [_headerView->_titleCell bind:binding toObject:observable
+                          withKeyPath:keyPath options:options];
+        return;
+    }
+    [super bind:binding toObject:observable withKeyPath:keyPath options:options];
+}
+
+- (Class)headerViewClass {
+    return [SLKCheckboxDisclosureHeaderView class];
+}
+
+@end // SLHCheckboxDisclosureView

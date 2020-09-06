@@ -21,4 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/** 
+ Same as SLKDisclosureView, but uses the title cell with a checkbox.
+ The class exposes NSValueBinding, so it can be bound to an object.
+ */
+@interface SLKCheckboxDisclosureView : SLKDisclosureView
+@end
+
 NS_ASSUME_NONNULL_END
