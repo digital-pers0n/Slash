@@ -7,8 +7,17 @@
 //
 
 #import "SLKH264EncoderSettings.h"
+#import "SLKStackView.h"
+#import "SLKDisclosureView.h"
+#import "SLTH264EncoderSettings.h"
 
-@interface SLKH264EncoderSettings ()
+@interface SLKH264EncoderSettings () {
+    __unsafe_unretained IBOutlet SLKStackView *_stackView;
+    __unsafe_unretained IBOutlet NSView *_videoSettings;
+    __unsafe_unretained IBOutlet NSView *_audioSettings;
+}
+
+@property (nonatomic) SLTH264EncoderSettings *settings;
 
 @end
 
