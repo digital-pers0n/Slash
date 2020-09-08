@@ -58,13 +58,6 @@ static char KVO_SLKDisclosureViewCurrentFrame;
     return YES;
 }
 
-- (void)dealloc {
-    for (id v in self.subviews) {
-        [v removeObserver:self forKeyPath:@"currentFrame"
-                  context:&KVO_SLKDisclosureViewCurrentFrame];
-    }
-}
-
 - (void)willRemoveSubview:(NSView *)subview {
     [subview removeObserver:self forKeyPath:@"currentFrame"
                     context:&KVO_SLKDisclosureViewCurrentFrame];
