@@ -248,6 +248,8 @@ static char KVO_SLKHeaderViewClosed;
         [self resizeTo:newSize];
         contentView.frame = newContentFrame;
         [self addSubview:contentView];
+        [contentView bind:NSHiddenBinding
+                 toObject:_headerView withKeyPath:@"closed" options:nil];
     }
 }
 
