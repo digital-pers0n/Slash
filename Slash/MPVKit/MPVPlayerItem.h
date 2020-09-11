@@ -76,7 +76,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerItemStatus) {
  * @param url an url to a media resource
  * @return An instance of MPVPlayerItem
  */
-- (instancetype)initWithURL:(NSURL *)url;
+- (instancetype)initWithURL:(NSURL *)url NS_DESIGNATED_INITIALIZER;
 
 /**
  * Media item status.

@@ -119,7 +119,7 @@ typedef NS_ENUM(NSUInteger, MPVMediaType) {
 
 #pragma mark - Private
 
-- (instancetype)initWithFormat:(void *)format stream:(void *)stream;
+- (instancetype)initWithFormat:(void *)format stream:(void *)stream NS_DESIGNATED_INITIALIZER;
 
 @end
 
