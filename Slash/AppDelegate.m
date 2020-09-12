@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SLTUtils.h"
 #import "SLHPreferences.h"
 #import "SLHWindowController.h"
 #import "MPVPlayerItem.h"
@@ -33,25 +34,16 @@ char *g_temp_dir;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    NSString *tmpDir = NSTemporaryDirectory();
-    if (tmpDir) {
-        tmpDir = [tmpDir stringByAppendingPathComponent:NSBundle.mainBundle.bundleIdentifier];
-    } else {
-        tmpDir = [NSString stringWithFormat:@"/tmp/%@", NSBundle.mainBundle.bundleIdentifier];
+    NSError *error;
+    if (!SLTTemporaryDirectoryInit(&error)) {
+        NSLog(@"%s: %@",__PRETTY_FUNCTION__, error);
+        NSAlert *alert = [NSAlert alertWithError:error];
+        [alert runModal];
+        [NSApp terminate:nil];
     }
-    NSFileManager *fm = [NSFileManager defaultManager];
-    if (![fm fileExistsAtPath:tmpDir isDirectory:nil]) {
-        NSError *error = nil;
-        [fm createDirectoryAtPath:tmpDir withIntermediateDirectories:YES attributes:nil error:&error];
-        if (error) {
-            NSLog(@"Initialization Error : %@", error.localizedDescription);
-            NSAlert *alert = [NSAlert alertWithError:error];
-            [alert runModal];
-            [NSApp terminate:self];
-        }
-    }
-     g_temp_dir = strdup(tmpDir.UTF8String);
-    
+    NSString *tmpDir = SLTTemporaryDirectory();
+    g_temp_dir = strdup(tmpDir.UTF8String);
+
     [_mainWindowController showWindow:self];
     
 //    [_mainWindow showWindow:self];

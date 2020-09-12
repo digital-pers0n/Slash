@@ -32,6 +32,7 @@
 		CE12EF16219B3BAC00F97637 /* SLHEncoderSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12EF14219B3BAC00F97637 /* SLHEncoderSettings.xib */; };
 		CE1414C6210D32C400C02B2D /* mpv.conf in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C2210D31D900C02B2D /* mpv.conf */; };
 		CE1414C7210D32CC00C02B2D /* script.lua in Resources */ = {isa = PBXBuildFile; fileRef = CE1414C3210D31D900C02B2D /* script.lua */; };
+		CE146A4C250D0C3B0064B9A9 /* SLTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */; };
 		CE160F58242F727F00F652D5 /* libswscale.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE160F57242F727F00F652D5 /* libswscale.5.dylib */; };
 		CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE166C602351FDD9001AF0CB /* MPVPlayer.m */; };
 		CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */; };
@@ -186,6 +187,8 @@
 		CE1414C2210D31D900C02B2D /* mpv.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mpv.conf; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		CE1414C3210D31D900C02B2D /* script.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		CE14612F21654E27006FB241 /* SLHMetadataIdentifiers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHMetadataIdentifiers.h; sourceTree = "<group>"; };
+		CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTUtils.m; path = Starlight/SLTUtils.m; sourceTree = "<group>"; };
+		CE146A4B250D0C3B0064B9A9 /* SLTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTUtils.h; path = Starlight/SLTUtils.h; sourceTree = "<group>"; };
 		CE160F57242F727F00F652D5 /* libswscale.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswscale.5.dylib; path = ../../../../../../Developer/opt/lib/libswscale.5.dylib; sourceTree = "<group>"; };
 		CE166C5D2351FCC3001AF0CB /* MPVBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVBase.h; path = MPVKit/MPVBase.h; sourceTree = "<group>"; };
 		CE166C5F2351FDD9001AF0CB /* MPVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPVPlayer.h; path = MPVKit/MPVPlayer.h; sourceTree = "<group>"; };
@@ -797,6 +800,8 @@
 				CEE7B5C324D31DAC00A115D2 /* SLTSetting.m */,
 				CECE14E62507B79900406B9D /* SLTBitrateFormatter.h */,
 				CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */,
+				CE146A4B250D0C3B0064B9A9 /* SLTUtils.h */,
+				CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */,
 			);
 			name = Starlight;
 			sourceTree = "<group>";
@@ -923,6 +928,7 @@
 				CEED67DB24277B8B003B4CC3 /* slh_video_frame_extractor.c in Sources */,
 				CE85A0F622C651830027F742 /* SLHEncoderUniversalFormat.m in Sources */,
 				CE2085282396796D00CB5049 /* SLHEmptyView.m in Sources */,
+				CE146A4C250D0C3B0064B9A9 /* SLTUtils.m in Sources */,
 				CE58008E231C13DD000F5384 /* SLHWindowController.m in Sources */,
 				CE9C9BD42354B898002A5169 /* MPVOpenGLView.m in Sources */,
 				CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */,
