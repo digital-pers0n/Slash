@@ -77,11 +77,4 @@ static NSArray<NSString *> *_allowedTunes;
 @end
 
 @implementation SLTH264AudioSettings
-
-- (id)copyWithZone:(NSZone *)zone {
-    typeof(self) obj = [super copyWithZone:zone];
-    obj->_bitRate = _bitRate;
-    return obj;
-}
-
 @end

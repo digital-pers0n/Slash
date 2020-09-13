@@ -32,9 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 /** Generic Audio settings. */
 @interface SLTAudioSettings : SLTMediaSettings {
     @package
+    int64_t _bitRate;
     NSInteger _sampleRate;
     NSInteger _numberOfChannels;
 }
+
+/** Bitrate in bps. */
+@property (nonatomic) int64_t bitRate;
 
 /** Sample rate in Hz. */
 @property (nonatomic) NSInteger sampleRate;

@@ -55,8 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - SLTH264AudioSettings
 @interface SLTH264AudioSettings : SLTAudioSettings <NSCopying>
 
-@property (nonatomic) int64_t bitRate;
-
 @end
 
 NS_ASSUME_NONNULL_END
