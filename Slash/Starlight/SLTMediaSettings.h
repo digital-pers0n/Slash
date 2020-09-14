@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - SLTMediaSettings
 
 /** Base class for codec settings. */
-@interface SLTMediaSettings : NSObject {
+@interface SLTMediaSettings : NSObject <NSCopying> {
     @package
     NSUInteger _streamIndex;
     NSString *_codecName;
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SLTAudioSettings
 /** Generic Audio settings. */
-@interface SLTAudioSettings : SLTMediaSettings {
+@interface SLTAudioSettings : SLTMediaSettings <NSCopying> {
     @package
     int64_t _bitRate;
     NSInteger _sampleRate;
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SLTVideoSettings
 /** Generic Video settings. */
-@interface SLTVideoSettings : SLTMediaSettings {
+@interface SLTVideoSettings : SLTMediaSettings <NSCopying> {
     @package
     int64_t _bitRate;
     NSString *_pixelFormat;
