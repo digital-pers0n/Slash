@@ -33,6 +33,8 @@ OBJC_DIRECT_MEMBERS
         newFrame.origin.y = NSHeight(frame) - NSHeight(newFrame);
     }
     newFrame.size.width = NSWidth(frame);
+    view.autoresizingMask =
+                      NSViewMinXMargin | NSViewMinYMargin | NSViewWidthSizable;
     view.frame = newFrame;
     [view addObserver:self
            forKeyPath:@"currentFrame" options:NSKeyValueObservingOptionOld
@@ -70,7 +72,6 @@ static char KVO_SLKDisclosureViewCurrentFrame;
     SLKDisclosureView *v = [[SLKDisclosureView alloc] init];
     v.title = title;
     v.contentView = view;
-    v.autoresizingMask = view.autoresizingMask;
     [self addSubview:v];
 }
 
