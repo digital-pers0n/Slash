@@ -57,6 +57,7 @@
     obj->_bitRate = _bitRate;
     obj->_pixelFormat = _pixelFormat.copy;
     obj->_maxGopSize = _maxGopSize;
+    return obj;
 }
 
 - (instancetype)init {
