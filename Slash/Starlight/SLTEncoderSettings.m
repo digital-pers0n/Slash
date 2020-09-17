@@ -11,6 +11,10 @@
 
 @implementation SLTEncoderSettings
 
++ (NSArray<NSString *> *)allowedContainers {
+    return @[];
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     SLTEncoderSettings *obj = [[self.class allocWithZone:zone] init];
     obj->_enableAudioPassThrough = _enableAudioPassThrough;

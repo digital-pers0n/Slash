@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL enableAudioPassThrough;
 @property (nonatomic) SLTVideoSettings *videoSettings;
 @property (nonatomic) SLTAudioSettings *audioSettings;
-@property (nonatomic) NSArray <NSString *> *allowedContainers;
+@property (class, readonly) NSArray <NSString *> *allowedContainers;
 @property (nonatomic) NSString *containerName;
 
 @end
