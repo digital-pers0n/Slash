@@ -11,19 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SLTH264VideoSettings, SLTH264AudioSettings;
-
-#pragma mark - SLTH264EncoderSettings
-@interface SLTH264EncoderSettings : SLTEncoderSettings <NSCopying>
-
-@property (nonatomic) BOOL enableTwoPassEncoding;
-/** 
- Value of this property is ignored if the enableTwoPassEncoding is set to YES.
- */
-@property (nonatomic) BOOL enableCRFEncoding;
-
-@end
-
 #pragma mark - SLTH264VideoSettings
 @interface SLTH264VideoSettings : SLTVideoSettings <NSCopying>
 
@@ -54,6 +41,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SLTH264AudioSettings
 @interface SLTH264AudioSettings : SLTAudioSettings <NSCopying>
+
+@end
+
+#pragma mark - SLTH264EncoderSettings
+@interface SLTH264EncoderSettings : SLTEncoderSettings <NSCopying>
+
+@property (nonatomic) BOOL enableTwoPassEncoding;
+/**
+ Value of this property is ignored if the enableTwoPassEncoding is set to YES.
+ */
+@property (nonatomic) BOOL enableCRFEncoding;
+
+@property (nonatomic) SLTH264VideoSettings *videoSettings;
+@property (nonatomic) SLTH264AudioSettings *audioSettings;
 
 @end
 
