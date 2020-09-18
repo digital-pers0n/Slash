@@ -40,9 +40,21 @@ NS_ASSUME_NONNULL_BEGIN
 /** Bitrate in bps. */
 @property (nonatomic) int64_t bitRate;
 
+/** Predefined sample rates. */
+typedef NS_ENUM(NSInteger, SLTAudioSampleRate) {
+    SLTAudioSampleRate32000 = 32000,
+    SLTAudioSampleRate44100 = 44100,
+    SLTAudioSampleRate48000 = 48000,
+};
 /** Sample rate in Hz. */
 @property (nonatomic) NSInteger sampleRate;
 
+/** Predefined channel values. */
+typedef NS_ENUM(NSInteger, SLTAudioChannels) {
+    SLTAudioChannelsMono    = 1,
+    SLTAudioChannelsStereo  = 2,
+    SLTAudioChannels51      = 6,
+};
 /** Number of audio channels. */
 @property (nonatomic) NSInteger numberOfChannels;
 
