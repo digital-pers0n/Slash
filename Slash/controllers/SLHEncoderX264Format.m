@@ -689,7 +689,7 @@ typedef NS_ENUM(NSUInteger, SLHX264AudioChannelsType) {
         menuItem.tag = SLHX264AudioSampleRate32000;
         [menu addItem:menuItem];
         
-        menuItem = [[NSMenuItem alloc] initWithTitle:@"441000 Hz" action:nil keyEquivalent:@""];
+        menuItem = [[NSMenuItem alloc] initWithTitle:@"44100 Hz" action:nil keyEquivalent:@""];
         menuItem.tag = SLHX264AudioSampleRate44100;
         [menu addItem:menuItem];
         
