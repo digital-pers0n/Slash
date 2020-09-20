@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** -rc-lookahead */
 @property (nonatomic) NSInteger lookAhead;
 
+@property (nonatomic, readonly) NSArray<NSString *> *crfArguments;
+
 @end
 
 #pragma mark - SLTH264AudioSettings
