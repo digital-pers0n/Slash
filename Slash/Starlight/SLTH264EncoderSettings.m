@@ -11,11 +11,31 @@
 
 @implementation SLTH264EncoderSettings
 
+@dynamic videoSettings, audioSettings;
+
++ (NSArray<NSString *> *)allowedContainers {
+    return @[ @"mp4", @"mkv", @"m4v", @"mov" ];
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     typeof(self) obj = [super copyWithZone:zone];
     obj->_enableCRFEncoding = _enableCRFEncoding;
     obj->_enableTwoPassEncoding = _enableCRFEncoding;
     return obj;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.videoSettings = [[SLTH264VideoSettings alloc] init];
+        self.audioSettings = [[SLTH264AudioSettings alloc] init];
+        self.containerName = @"mp4";
+    }
+    return self;
+}
+
+- (BOOL)allowsTwoPassEncoding {
+    return YES;
 }
 
 @end
