@@ -100,3 +100,27 @@
 }
 
 @end
+
+@implementation SLTSubtitlesSettings
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        _codecName = @"mov_text";
+    }
+    return self;
+}
+
+- (NSArray<NSString *> *)arguments {
+    return @[ @"-c:s", _codecName ];
+}
+
+- (NSArray<NSString *> *)passThroughArguments {
+    return @[ @"-c:s", @"copy" ];
+}
+
+- (NSArray<NSString *> *)ignoredStreamArguments {
+    return @[ @"-sn" ];
+}
+
+@end

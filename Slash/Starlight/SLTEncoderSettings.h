@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SLTVideoSettings, SLTAudioSettings;
+@class SLTVideoSettings, SLTAudioSettings, SLTSubtitlesSettings;
 
 @interface SLTEncoderSettings : NSObject <NSCopying>
 @property (nonatomic, readonly) BOOL allowsTwoPassEncoding;
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL enableAudioPassThrough;
 @property (nonatomic) SLTVideoSettings *videoSettings;
 @property (nonatomic) SLTAudioSettings *audioSettings;
+@property (nonatomic) SLTSubtitlesSettings *subtitlesSettings;
 @property (class, readonly) NSArray <NSString *> *allowedContainers;
 @property (nonatomic) NSString *containerName;
 

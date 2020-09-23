@@ -22,6 +22,7 @@
     obj->_videoSettings = _videoSettings.copy;
     obj->_audioSettings = _audioSettings.copy;
     obj->_containerName = _containerName.copy;
+    obj->_subtitlesSettings = _subtitlesSettings.copy;
     obj->_allowsTwoPassEncoding = _allowsTwoPassEncoding;
     return obj;
 }

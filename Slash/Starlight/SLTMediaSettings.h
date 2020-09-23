@@ -86,4 +86,9 @@ typedef NS_ENUM(NSInteger, SLTAudioChannels) {
 
 @end
 
+#pragma mark - SLTSubtitlesSettings
+/** Generic Subtitles settings. Default codec name is `mov_text` */
+@interface SLTSubtitlesSettings : SLTMediaSettings <NSCopying>
+@end
+
 NS_ASSUME_NONNULL_END
