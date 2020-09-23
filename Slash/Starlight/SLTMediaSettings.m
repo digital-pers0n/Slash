@@ -25,7 +25,15 @@
     return self;
 }
 
-- (NSArray <NSString *> *)arguments {
+- (NSArray<NSString *> *)arguments {
+    return nil;
+}
+
+- (NSArray<NSString *> *)passThroughArguments {
+    return nil;
+}
+
+- (NSArray<NSString *> *)ignoredStreamArguments {
     return nil;
 }
 
@@ -46,6 +54,14 @@
               @"-b:a", @(_bitRate).stringValue,
               @"-ar",  @(_sampleRate).stringValue,
               @"-ac",  @(_numberOfChannels).stringValue ];
+}
+
+- (NSArray<NSString *> *)passThroughArguments {
+    return @[ @"-c:a", @"copy" ];
+}
+
+- (NSArray<NSString *> *)ignoredStreamArguments {
+    return @[ @"-an" ];
 }
 
 @end
@@ -73,6 +89,14 @@
               @"-b:v",     @(_bitRate).stringValue,
               @"-pix_fmt", _pixelFormat,
               @"-g",       @(_maxGopSize).stringValue ];
+}
+
+- (NSArray<NSString *> *)passThroughArguments {
+    return @[ @"-c:v", @"copy" ];
+}
+
+- (NSArray<NSString *> *)ignoredStreamArguments {
+    return @[ @"-vn" ];
 }
 
 @end
