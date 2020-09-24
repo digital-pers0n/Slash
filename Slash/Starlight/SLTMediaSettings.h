@@ -15,12 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 /** Base class for codec settings. */
 @interface SLTMediaSettings : NSObject <NSCopying> {
     @package
-    NSUInteger _streamIndex;
+    NSInteger _streamIndex;
     NSString *_codecName;
 }
 
-/** Index of the media stream. */
-@property (nonatomic) NSUInteger streamIndex;
+/** Index of the media stream. 
+    Set to -1 to indicate that the stream should be ignored. */
+@property (nonatomic) NSInteger streamIndex;
 @property (nonatomic) NSString *codecName;
 
 /** Array of ffmpeg arguments. Default implementation returns nil. */
