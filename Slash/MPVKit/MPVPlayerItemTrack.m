@@ -8,11 +8,13 @@
 
 #import "MPVPlayerItemTrack.h"
 #import "MPVMetadataItem.h"
+#import "MPVKitDefines.h"
 #import <libavformat/avformat.h>
 #import <libavcodec/avcodec.h>
 #import <libavutil/pixdesc.h>
 #import <libavutil/bprint.h>
 
+OBJC_DIRECT_MEMBERS
 @implementation MPVPlayerItemTrack
 
 /* Based on the show_stream() function from the ffprobe.c */

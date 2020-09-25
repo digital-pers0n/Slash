@@ -9,6 +9,7 @@
 #import "MPVPlayerItem.h"
 #import "MPVMetadataItem.h"
 #import "MPVPlayerItemTrack.h"
+#import "MPVKitDefines.h"
 #import <libavformat/avformat.h>
 #import <libavutil/avutil.h>
 
@@ -23,6 +24,7 @@ NSString * const MPVPlayerItemErrorDomain = @"com.home.mpvPlayerItem.ErrorDomain
 
 @end
 
+OBJC_DIRECT_MEMBERS
 @implementation MPVPlayerItem
 
 #pragma mark - Initialization
