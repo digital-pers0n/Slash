@@ -15,6 +15,8 @@
 #import "SLHBitrateFormatter.h"
 #import "slh_video_frame_extractor.h"
 
+#import "SLTUtils.h"
+
 
 @interface SLHEncodedItem : NSObject <NSPasteboardWriting> {
     uint64_t _bitRate;
@@ -67,41 +69,28 @@
 
 - (BOOL)validateFileName:(inout NSString **)ioValue
                    error:(out NSError **)outError {
-    if (*ioValue) {
-        const char *bytes = (*ioValue).UTF8String;
-        if (strlen(bytes) > NAME_MAX) {
-            *outError = [NSError errorWithDomain:NSPOSIXErrorDomain
-                                            code:ENAMETOOLONG
-                                        userInfo:nil];
+    
+    if (!SLTValidateFileName(*ioValue, outError)) {
+        return NO;
+    }
+    
+    const char *bytes = (*ioValue).UTF8String;
+    const char *illegalChars = "/:";
+    while (*illegalChars) {
+        char c = *illegalChars++;
+        if (strchr(bytes, c)) {
+            if (!outError) return NO;
+            NSString *desc = [NSString stringWithFormat:
+                              @"File name cannot contain ` %c `.", c];
+            NSString *suggestion = @"Delete the invalid character.";
+            id info = @{ NSLocalizedDescriptionKey            : desc,
+                         NSLocalizedRecoverySuggestionErrorKey: suggestion};
+            *outError =
+            [NSError errorWithDomain:NSCocoaErrorDomain
+                                code:NSFileWriteInvalidFileNameError
+                            userInfo:info];
             return NO;
         }
-        
-        const char *illegalChars = "/:";
-        while (*illegalChars) {
-            char c = *illegalChars++;
-            if (strchr(bytes, c)) {
-                NSString *desc = [NSString stringWithFormat:
-                                  @"File name cannot contain '%c'.", c];
-                NSString *suggestion = @"Delete the invalid character.";
-                id info = @{ NSLocalizedDescriptionKey            : desc,
-                             NSLocalizedRecoverySuggestionErrorKey: suggestion};
-                *outError =
-                [NSError errorWithDomain:NSCocoaErrorDomain
-                                    code:NSFileWriteInvalidFileNameError
-                                userInfo:info];
-                return NO;
-            }
-        }
-        
-    } else {
-        id info = @{
-        NSLocalizedDescriptionKey            : @"File name cannot be nil.",
-        NSLocalizedRecoverySuggestionErrorKey: @"Provide a valid file name." };
-        
-        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
-                                        code:NSKeyValueValidationError
-                                    userInfo:info];
-        return NO;
     }
     
     NSString *newPath = _filePath.stringByDeletingLastPathComponent;

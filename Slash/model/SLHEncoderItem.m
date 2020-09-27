@@ -15,6 +15,8 @@
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 
+#import "SLTUtils.h"
+
 @interface SLHEncoderItem ()
 
 @property (nonatomic) double duration;
@@ -216,36 +218,7 @@ static char SLHEncoderItemKVOContext;
 - (BOOL)validateOutputFileName:(inout NSString * _Nullable * _Nonnull)fileName
                          error:(out NSError **)outError
 {
-    if (!*fileName) {
-        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
-                                        code:NSKeyValueValidationError
-                                    userInfo:nil];
-        return NO;
-    }
-
-    const char *str = (*fileName).UTF8String;
-    if (!str) {
-        id info = @{ NSFilePathErrorKey : *fileName };
-        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
-                                        code:NSFileWriteInapplicableStringEncodingError
-                                    userInfo:info];
-        return NO;
-    }
-    
-    if (strlen(str) > NAME_MAX) {
-        id sug = [NSString stringWithFormat:
-                  @"Must be less than %i bytes, current size is %zu bytes.",
-                  NAME_MAX, strlen(str)];
-        id info = @{ NSFilePathErrorKey : *fileName,
-                     NSLocalizedDescriptionKey : @"File name is too big.",
-                     NSLocalizedRecoverySuggestionErrorKey : sug };
-        
-        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
-                                        code:NSFileWriteInvalidFileNameError
-                                    userInfo:info];
-        return NO;
-    }
-    return YES;
+    return SLTValidateFileName(*fileName, outError);
 }
 
 - (void)setNilValueForKey:(NSString *)key {
