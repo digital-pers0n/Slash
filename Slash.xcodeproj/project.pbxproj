@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE021DF42521F80B002912A1 /* SLTTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CE021DF32521F80B002912A1 /* SLTTask.m */; };
 		CE02789224CEF7F30056E7F4 /* libmpv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE02789124CEF7F30056E7F4 /* libmpv.1.dylib */; };
 		CE0813E522CB79B60048D27B /* SLHTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0813E322CB79B60048D27B /* SLHTextEditor.m */; };
 		CE0813E622CB79B60048D27B /* SLHTextEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0813E422CB79B60048D27B /* SLHTextEditor.xib */; };
@@ -148,6 +149,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE021DF22521F80B002912A1 /* SLTTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTTask.h; path = Starlight/SLTTask.h; sourceTree = "<group>"; };
+		CE021DF32521F80B002912A1 /* SLTTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTTask.m; path = Starlight/SLTTask.m; sourceTree = "<group>"; };
 		CE02789124CEF7F30056E7F4 /* libmpv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpv.1.dylib; path = ../../../../../../Developer/opt/lib/libmpv.1.dylib; sourceTree = "<group>"; };
 		CE0813E222CB79B60048D27B /* SLHTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTextEditor.h; path = controllers/SLHTextEditor.h; sourceTree = "<group>"; };
 		CE0813E322CB79B60048D27B /* SLHTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTextEditor.m; path = controllers/SLHTextEditor.m; sourceTree = "<group>"; };
@@ -780,6 +783,8 @@
 			children = (
 				CEE7B5B224D31C0100A115D2 /* SLTSource.h */,
 				CEE7B5B324D31C0100A115D2 /* SLTSource.m */,
+				CE021DF22521F80B002912A1 /* SLTTask.h */,
+				CE021DF32521F80B002912A1 /* SLTTask.m */,
 				CEE7B5B624D31C8200A115D2 /* SLTDestination.h */,
 				CEE7B5B724D31C8200A115D2 /* SLTDestination.m */,
 				CEE7B5B924D31CAD00A115D2 /* SLTQueue.h */,
@@ -965,6 +970,7 @@
 				CEF1D9242428FEBD0003D92F /* SLHTrimViewController.m in Sources */,
 				CE35266C23F987C900B28193 /* SLHFadingTableCellView.m in Sources */,
 				CE12B1C524224A5B00C674BF /* SLHVideoTrackView.m in Sources */,
+				CE021DF42521F80B002912A1 /* SLTTask.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */,
 				CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */,
