@@ -11,6 +11,24 @@
 
 @implementation SLTDestination
 
++ (instancetype)destinationWithPath:(NSString *)path
+                           settings:(SLTEncoderSettings *)settings {
+    return [[self alloc] initWithPath:path settings:settings];
+}
+
+- (instancetype)initWithPath:(NSString *)path
+                    settings:(SLTEncoderSettings *)settings {
+    self = [super init];
+    if (self) {
+        _filePath = path;
+        _settings = settings;
+        _videoFilters = @[];
+        _audioFilters = @[];
+        _metadata = @{};
+    }
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     typeof(self) obj = [[self.class allocWithZone:zone] init];
     obj->_filePath = _filePath.copy;

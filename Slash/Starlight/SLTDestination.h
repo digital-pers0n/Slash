@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLTDestination : NSObject <NSCopying>
 
++ (instancetype)destinationWithPath:(NSString *)path
+                           settings:(SLTEncoderSettings *)settings;
+
+- (instancetype)initWithPath:(NSString *)path
+                    settings:(SLTEncoderSettings *)settings;
+
 /** Access the output file path. */
 @property (nonatomic) NSString *filePath;
 

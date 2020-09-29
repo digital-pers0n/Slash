@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLTTask : NSObject
 
++ (instancetype)taskWithSource:(SLTSource *)src
+                   destination:(SLTDestination *)dst;
+
+- (instancetype)initWithSource:(SLTSource *)src
+                   destination:(SLTDestination *)dst;
+
 @property (nonatomic) SLTSource *source;
 @property (nonatomic) SLTDestination *destination;
 
