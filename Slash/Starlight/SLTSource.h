@@ -6,11 +6,11 @@
 //  Copyright © 2020年 digital-pers0n. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MPVPlayerItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLTSource : NSObject
+@interface SLTSource : MPVPlayerItem
 
 @end
 
