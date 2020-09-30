@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class SLTSource, SLTDestination;
 
-@interface SLTTask : NSObject
+@interface SLTTask : NSObject <NSCopying>
 
 + (instancetype)taskWithSource:(SLTSource *)src
                    destination:(SLTDestination *)dst;

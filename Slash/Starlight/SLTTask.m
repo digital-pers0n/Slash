@@ -27,4 +27,11 @@
     return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    typeof(self) obj = [[self.class allocWithZone:zone] init];
+    obj->_source = _source;
+    obj->_destination = _destination.copy;
+    return obj;
+}
+
 @end
