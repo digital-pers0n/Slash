@@ -8,6 +8,7 @@
 
 #import "SLTDestination.h"
 #import "SLTEncoderSettings.h"
+#import "SLTUtils.h"
 
 @implementation SLTDestination
 
@@ -48,6 +49,10 @@
 
 - (NSString *)fileName {
     return _filePath.lastPathComponent;
+}
+
+- (BOOL)validateFileName:(id *)valueRef error:(NSError **)outError {
+    return SLTValidateFileName(*valueRef, outError);
 }
 
 @end
