@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-@class SLHMediaItem;
 @class MPVPlayerItem;
 
 @interface SLHEncoderItemMetadata : NSObject <NSCopying>
