@@ -9,6 +9,7 @@
 #import "SLTH264EncoderSettings.h"
 #import "MPVKitDefines.h"
 
+OBJC_DIRECT_MEMBERS
 @implementation SLTH264EncoderSettings
 
 @dynamic videoSettings, audioSettings;
@@ -37,6 +38,63 @@
 
 - (BOOL)allowsTwoPassEncoding {
     return YES;
+}
+
+- (NSArray<NSString *> *)firstPassArguments {
+    if (_enableTwoPassEncoding &&
+        !self.enableVideoPassThrough &&
+        self.videoSettings.streamIndex < 0) {
+        return self.arguments;
+    }
+    return nil;
+}
+
+- (NSArray *)videoArguments {
+    SLTH264VideoSettings *settings = self.videoSettings;
+    if (settings.streamIndex < 0) {
+        return settings.ignoredStreamArguments;
+    }
+    
+    if (self.enableVideoPassThrough) {
+        return settings.passThroughArguments;
+    }
+    
+    if (_enableCRFEncoding && !_enableTwoPassEncoding) {
+        return settings.crfArguments;
+    }
+    return settings.argument;
+}
+
+- (NSArray *)audioArguments {
+    SLTH264AudioSettings *settings = self.audioSettings;
+    if (settings.streamIndex < 0) {
+        return settings.ignoredStreamArguments;
+    }
+    
+    if (self.enableAudioPassThrough) {
+        return settings.passThroughArguments;
+    }
+    return settings.arguments;
+}
+
+- (NSArray *)subtitlesArguments {
+    SLTSubtitlesSettings *settings = self.subtitlesSettings;
+    if (settings.streamIndex < 0) {
+        return settings.ignoredStreamArguments;
+    }
+    
+    if ([self.containerName isEqualToString:@"mkv"]) {
+        return settings.passThroughArguments;
+    }
+    return settings.arguments;
+}
+
+- (NSArray<NSString *> *)arguments {
+    NSMutableArray *args = [NSMutableArray array];
+    [args addObjectsFromArray:[self videoArguments]];
+    [args addObjectsFromArray:[self audioArguments]];
+    [args addObjectsFromArray:[self subtitlesArguments]];
+    return args;
 }
 
 @end

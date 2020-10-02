@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLTEncoderSettings : NSObject <NSCopying>
 @property (nonatomic, readonly) BOOL allowsTwoPassEncoding;
 @property (nonatomic, readonly, nullable) NSArray<NSString *> *firstPassArguments;
+@property (nonatomic, readonly, nullable) NSArray<NSString *> *arguments;
 @property (nonatomic) BOOL enableVideoPassThrough;
 @property (nonatomic) BOOL enableAudioPassThrough;
 @property (nonatomic) SLTVideoSettings *videoSettings;
