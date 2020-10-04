@@ -228,16 +228,15 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
 {
     NSAlert *alert = [NSAlert alertWithError:error];
     [alert runModal];
-    [self showWindow:nil];
     [self showPrefsView:view];
     [self.window makeFirstResponder:responder];
-    [self.window makeKeyAndOrderFront:nil];
 }
 
 - (void)checkFFmpeg:(NSString *)ffmpegPath {
     NSError * error;
     self.hasFFmpeg = [self validateFfmpegPath:&ffmpegPath error:&error];
     if (!_hasFFmpeg) {
+        [self showWindow:nil];
         [self showError:error
               prefsView:_generalPrefsView
               responder:_ffmpegPathTextField];
@@ -248,6 +247,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     NSError * error;
     self.hasMPV = [self validateMpvPath:&mpvPath error:&error];
     if (!_hasMPV) {
+        [self showWindow:nil];
         [self showError:error
               prefsView:_generalPrefsView
               responder:_mpvPathTextField];
