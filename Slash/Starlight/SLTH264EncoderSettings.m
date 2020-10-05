@@ -62,7 +62,7 @@ OBJC_DIRECT_MEMBERS
     if (_enableCRFEncoding && !_enableTwoPassEncoding) {
         return settings.crfArguments;
     }
-    return settings.argument;
+    return settings.arguments;
 }
 
 - (NSArray *)audioArguments {
