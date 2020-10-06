@@ -37,6 +37,15 @@
     return nil;
 }
 
+static NSString *SLTMapStreamIndex(NSInteger streamIndex) {
+    char buffer[8];
+    CFIndex length = snprintf(buffer, sizeof(buffer), "0:%li", streamIndex);
+    return CFBridgingRelease(
+           CFStringCreateWithBytes(kCFAllocatorDefault, (const UInt8 *)buffer,
+                                   length, kCFStringEncodingUTF8,
+                                   /* isExternalRepresentation */ NO));
+}
+
 @end
 
 @implementation SLTAudioSettings
@@ -50,14 +59,16 @@
 }
 
 - (NSArray<NSString *> *)arguments {
-    return @[ @"-c:a", _codecName,
+    return @[ @"-map", SLTMapStreamIndex(_streamIndex),
+              @"-c:a", _codecName,
               @"-b:a", @(_bitRate).stringValue,
               @"-ar",  @(_sampleRate).stringValue,
               @"-ac",  @(_numberOfChannels).stringValue ];
 }
 
 - (NSArray<NSString *> *)passThroughArguments {
-    return @[ @"-c:a", @"copy" ];
+    return @[ @"-map", SLTMapStreamIndex(_streamIndex),
+              @"-c:a", @"copy" ];
 }
 
 - (NSArray<NSString *> *)ignoredStreamArguments {
@@ -85,14 +96,16 @@
 }
 
 - (NSArray<NSString *> *)arguments {
-    return @[ @"-c:v",     _codecName,
+    return @[ @"-map",     SLTMapStreamIndex(_streamIndex),
+              @"-c:v",     _codecName,
               @"-b:v",     @(_bitRate).stringValue,
               @"-pix_fmt", _pixelFormat,
               @"-g",       @(_maxGopSize).stringValue ];
 }
 
 - (NSArray<NSString *> *)passThroughArguments {
-    return @[ @"-c:v", @"copy" ];
+    return @[ @"-map", SLTMapStreamIndex(_streamIndex),
+              @"-c:v", @"copy" ];
 }
 
 - (NSArray<NSString *> *)ignoredStreamArguments {
@@ -112,11 +125,13 @@
 }
 
 - (NSArray<NSString *> *)arguments {
-    return @[ @"-c:s", _codecName ];
+    return @[ @"-map", SLTMapStreamIndex(_streamIndex),
+              @"-c:s", _codecName ];
 }
 
 - (NSArray<NSString *> *)passThroughArguments {
-    return @[ @"-c:s", @"copy" ];
+    return @[ @"-map", SLTMapStreamIndex(_streamIndex),
+              @"-c:s", @"copy" ];
 }
 
 - (NSArray<NSString *> *)ignoredStreamArguments {
