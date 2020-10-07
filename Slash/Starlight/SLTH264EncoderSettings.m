@@ -44,7 +44,10 @@ OBJC_DIRECT_MEMBERS
     if (_enableTwoPassEncoding &&
         !self.enableVideoPassThrough &&
         self.videoSettings.streamIndex < 0) {
-        return self.arguments;
+        NSMutableArray *args = [self commonArguments];
+        [args addObject:@"-pass"];
+        [args addObject:@"1"];
+        return args;
     }
     return nil;
 }
@@ -89,11 +92,20 @@ OBJC_DIRECT_MEMBERS
     return settings.arguments;
 }
 
-- (NSArray<NSString *> *)arguments {
+- (NSMutableArray<NSString *>*)commonArguments {
     NSMutableArray *args = [NSMutableArray array];
     [args addObjectsFromArray:[self videoArguments]];
     [args addObjectsFromArray:[self audioArguments]];
     [args addObjectsFromArray:[self subtitlesArguments]];
+    return args;
+}
+
+- (NSArray<NSString *> *)arguments {
+    NSMutableArray *args = [self commonArguments];
+    if (_enableTwoPassEncoding) {
+        [args addObject:@"-pass"];
+        [args addObject:@"2"];
+    }
     return args;
 }
 
