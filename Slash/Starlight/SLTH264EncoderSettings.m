@@ -43,7 +43,7 @@ OBJC_DIRECT_MEMBERS
 - (NSArray<NSString *> *)firstPassArguments {
     if (_enableTwoPassEncoding &&
         !self.enableVideoPassThrough &&
-        self.videoSettings.streamIndex < 0) {
+        self.videoSettings.streamIndex >= 0) {
         NSMutableArray *args = [self commonArguments];
         [args addObject:@"-pass"];
         [args addObject:@"1"];
