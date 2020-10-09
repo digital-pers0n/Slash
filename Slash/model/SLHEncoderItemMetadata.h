@@ -13,10 +13,10 @@
 
 - (instancetype)initWithPlayerItem:(MPVPlayerItem *)item;
 
-@property NSString *artist;
-@property NSString *title;
-@property NSString *date;
-@property NSString *comment;
+@property (nonatomic, copy) NSString *artist;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *date;
+@property (nonatomic, copy) NSString *comment;
 
 - (NSArray <NSString *>*)arguments;
 
