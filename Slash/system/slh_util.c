@@ -40,6 +40,9 @@ char **args_add(char *** args, const char *str) {
     if (!(tmp = realloc(*args, (len + 1) * sizeof(char *)))) {
         
         fprintf(stderr, "%s : realloc() : %i %s\n", __func__, errno, strerror(errno));
+        len--;
+        free((*args)[len]);
+        (*args)[len] = NULL;
         return NULL;
     }
     *args = tmp;
