@@ -191,6 +191,10 @@ OBJC_DIRECT_MEMBERS
         [args addObject:@"-tune"];
         [args addObject:value];
     }
+    if (_enableFaststart) {
+        [args addObject:@"-movflags"];
+        [args addObject:@"+faststart"];
+    }
     [args addObject:@"-rc-lookahead"];
     [args addObject:@(_lookAhead).stringValue];
     return args;
