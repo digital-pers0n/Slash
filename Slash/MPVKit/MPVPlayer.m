@@ -239,6 +239,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 }
 
 - (void)readEvents {
+@autoreleasepool {
     NSNotification * __autoreleasing notifications[MPVPlayerEventNone] = {
     [NSNotification notificationWithName:MPVPlayerWillStartPlaybackNotification
                                   object:self userInfo:nil],
@@ -338,6 +339,7 @@ exit:
     dispatch_sync(dispatch_get_main_queue(), ^{
         CFRunLoopWakeUp(main_rl);
     });
+}
     [NSThread exit];
 }
 
