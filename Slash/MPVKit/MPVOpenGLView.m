@@ -14,9 +14,6 @@
 #import "MPVKitDefines.h"
 #import "MPVGLRenderer.h"
 
-#import <OpenGL/gl.h>
-#import <OpenGL/gl3.h>
-
 @interface MPVOpenGLView () {
     NSOpenGLContext *_glContext;
     dispatch_queue_t _render_queue;
