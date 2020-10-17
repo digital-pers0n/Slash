@@ -123,6 +123,7 @@
 		CEAC3A152492697600F6E998 /* MPVGLRenderer.c in Sources */ = {isa = PBXBuildFile; fileRef = CEAC3A132492697600F6E998 /* MPVGLRenderer.c */; };
 		CEAC3A182494D3BF00F6E998 /* MPVIOSurfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC3A172494D3BF00F6E998 /* MPVIOSurfaceView.m */; };
 		CEBA3662253746B800823125 /* SLKSelectionRangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA3661253746B800823125 /* SLKSelectionRangeView.m */; };
+		CEBA3685253B589B00823125 /* SLTBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA3684253B589B00823125 /* SLTBinder.m */; };
 		CEBB8BF8246ACAD700776827 /* MPVLock.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB8BF7246ACAD700776827 /* MPVLock.c */; };
 		CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBFF3E22190BDA000F54C7E /* slh_encoder.c */; };
 		CECE14C824FD789500406B9D /* SLKStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14C724FD789500406B9D /* SLKStackView.m */; };
@@ -355,6 +356,8 @@
 		CEAC3A172494D3BF00F6E998 /* MPVIOSurfaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVIOSurfaceView.m; path = MPVKit/MPVIOSurfaceView.m; sourceTree = "<group>"; };
 		CEBA3660253746B800823125 /* SLKSelectionRangeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKSelectionRangeView.h; path = StarlightKit/SLKSelectionRangeView.h; sourceTree = "<group>"; };
 		CEBA3661253746B800823125 /* SLKSelectionRangeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKSelectionRangeView.m; path = StarlightKit/SLKSelectionRangeView.m; sourceTree = "<group>"; };
+		CEBA3683253B589B00823125 /* SLTBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTBinder.h; path = Starlight/SLTBinder.h; sourceTree = "<group>"; };
+		CEBA3684253B589B00823125 /* SLTBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTBinder.m; path = Starlight/SLTBinder.m; sourceTree = "<group>"; };
 		CEBB8BF7246ACAD700776827 /* MPVLock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVLock.c; path = MPVKit/MPVLock.c; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
 		CEBFF3E32190BDA000F54C7E /* slh_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_encoder.h; path = Slash/system/slh_encoder.h; sourceTree = SOURCE_ROOT; };
@@ -825,6 +828,8 @@
 				CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */,
 				CE146A4B250D0C3B0064B9A9 /* SLTUtils.h */,
 				CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */,
+				CEBA3683253B589B00823125 /* SLTBinder.h */,
+				CEBA3684253B589B00823125 /* SLTBinder.m */,
 			);
 			name = Starlight;
 			sourceTree = "<group>";
@@ -936,6 +941,7 @@
 				CE5461D3211A314E00C2B774 /* slh_util.c in Sources */,
 				CE0B4E14224A40AD00D61D72 /* SLHFilterOptions.m in Sources */,
 				CE08D7BE24EAB516004347DF /* SLKSeparatorView.m in Sources */,
+				CEBA3685253B589B00823125 /* SLTBinder.m in Sources */,
 				CE12EF15219B3BAC00F97637 /* SLHEncoderSettings.m in Sources */,
 				CE9C0D20219358A40089C084 /* SLHClipView.m in Sources */,
 				CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */,
