@@ -11,6 +11,7 @@
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
 #import "MPVBase.h"
+#import "MPVKitDefines.h"
 
 #define mpv_print_error_set_property(error_code, property_name, value_format, value) \
 NSLog(@"%s Failed to set value '" value_format "' for property '%@' -> %d %s", \
@@ -47,15 +48,16 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
     NSThread *_eventThread;
     NSMutableDictionary *_observed; ///< Observed Properties
 }
-
+- (void)readEvents;
 @end
 
+OBJC_DIRECT_MEMBERS
 @implementation MPVPlayer
 
 - (instancetype)initWithBlock:(void (^)(__weak MPVPlayer *))block {
     self = [super init];
     if (self) {
-        __weak id wSelf = self;
+        __weak typeof(self) wSelf = self;
         int error = [self setUpUsingBlock:^{
             [wSelf loadDefaultOptions];
             block(wSelf);
@@ -74,7 +76,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 - (instancetype)initWithOptions:(NSDictionary<NSString *,NSString *> *)options {
     self = [super init];
     if (self) {
-        __weak id ref = self;
+        __weak typeof(self) ref = self;
         int error = [self setUpUsingBlock:^{
             [ref loadDefaultOptions];
             [ref loadOptions:options];
@@ -94,7 +96,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 - (instancetype)initWithConfig:(NSString *)path {
     self = [super init];
     if (self) {
-        __weak id ref = self;
+        __weak typeof(self) ref = self;
         int error = [self setUpUsingBlock:^{
             [ref loadDefaultOptions];
             int error = [ref loadConfig:path];
@@ -117,7 +119,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
 {
     self = [super init];
     if (self) {
-        __weak id ref = self;
+        __weak typeof(self) ref = self;
         int error = [self setUpUsingBlock:^{
             [ref loadDefaultOptions];
         }];
