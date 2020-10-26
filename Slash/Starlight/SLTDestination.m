@@ -55,4 +55,13 @@
     return SLTValidateFileName(*valueRef, outError);
 }
 
+- (SLTTimeInterval)selectionRange {
+    return (SLTTimeInterval){ .start = _inPoint, .end = _outPoint };
+}
+
+- (void)setSelectionRange:(SLTTimeInterval)selectionRange {
+    self.inPoint = selectionRange.start;
+    self.outPoint = selectionRange.end;
+}
+
 @end

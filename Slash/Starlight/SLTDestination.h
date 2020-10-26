@@ -37,6 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
 /** Set the out point in seconds. */
 @property (nonatomic) CGFloat outPoint;
 
+typedef struct SLTTimeInterval_ {
+    CGFloat start;
+    CGFloat end;
+} SLTTimeInterval;
+
+@property (nonatomic) SLTTimeInterval selectionRange;
+
 @end
 
 NS_ASSUME_NONNULL_END
