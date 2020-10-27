@@ -23,6 +23,31 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) SLTSource *source;
 @property (nonatomic) SLTDestination *destination;
 
+#pragma mark - Template names
+
+@property (class, null_resettable, nonatomic, copy) NSString *currentTemplateFormat;
++ (BOOL)validateTemplate:(NSString *)format error:(NSError **)error;
+
+/**
+ Format specifiers:
+ @c %f - filename
+ @c %d - date yyyymmdd_HHMMSS
+ @c %D - date as seconds
+ @c %r - selection range formatted as HH_MM_SS.MS e.g. 00_01_04.344-00_03_55.183
+ @c %R - same as @c %r but uses unformatted time in seconds
+ 
+ Default is "%f-%D"
+ */
+@property (null_resettable, nonatomic, copy) NSString *templateFormat;
+
+/**
+ Create a new destination file name, the value of @c templateNameFormat property
+ is used.
+ */
+- (void)generateDestinationFileName;
+
 @end
+
+extern NSString *const SLTDefaultTemplateFormat;
 
 NS_ASSUME_NONNULL_END
