@@ -31,11 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSArray<SLTFilter *> *audioFilters;
 @property (nonatomic) NSDictionary<NSString *, NSString *> *metadata;
 
-/** Set the in point in seconds. */
-@property (nonatomic) CGFloat inPoint;
+/** Set the in value in seconds. */
+@property (nonatomic) CGFloat inValue;
 
-/** Set the out point in seconds. */
-@property (nonatomic) CGFloat outPoint;
+/** Set the out value in seconds. */
+@property (nonatomic) CGFloat outValue;
 
 typedef struct SLTTimeInterval_ {
     CGFloat start;

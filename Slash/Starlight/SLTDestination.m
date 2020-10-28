@@ -37,8 +37,8 @@
     obj->_videoFilters = _videoFilters.copy;
     obj->_audioFilters = _audioFilters.copy;
     obj->_metadata = _metadata.copy;
-    obj->_inPoint = _inPoint;
-    obj->_outPoint = _outPoint;
+    obj->_inValue = _inValue;
+    obj->_outValue = _outValue;
     return obj;
 }
 
@@ -56,12 +56,12 @@
 }
 
 - (SLTTimeInterval)selectionRange {
-    return (SLTTimeInterval){ .start = _inPoint, .end = _outPoint };
+    return (SLTTimeInterval){ .start = _inValue, .end = _outValue };
 }
 
 - (void)setSelectionRange:(SLTTimeInterval)selectionRange {
-    self.inPoint = selectionRange.start;
-    self.outPoint = selectionRange.end;
+    self.inValue = selectionRange.start;
+    self.outValue = selectionRange.end;
 }
 
 @end
