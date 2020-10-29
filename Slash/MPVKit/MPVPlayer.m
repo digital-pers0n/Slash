@@ -28,9 +28,69 @@ __PRETTY_FUNCTION__, ##__VA_ARGS__, error_code, mpv_error_string(error_code))
 static inline void check_error(int status) {
     if (status < 0) {
         printf("mpv API error: %s\n", mpv_error_string(status));
-        
     }
 }
+
+OBJC_DIRECT_MEMBERS
+@interface NSPointerArray(MPVPlayerAdditions)
++ (instancetype)arrayWithObject:(id)value;
+- (BOOL)containsObject:(id)object;
+- (void)addObject:(id)object;
+- (void)removeObject:(id)object;
+- (NSUInteger)indexOfObject:(id)object;
+@end
+
+@implementation NSPointerArray(MPVPlayerAdditions)
+
++ (instancetype)arrayWithObject:(id)value {
+    NSPointerArray *result = [NSPointerArray pointerArrayWithOptions:
+                              (NSPointerFunctionsOpaqueMemory |
+                               NSPointerFunctionsOpaquePersonality)];
+    [result addObject:value];
+    return result;
+}
+
+- (BOOL)containsObject:(id)value {
+    if (!value) return NO;
+    for (id element in self) {
+        if (element == value) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)addObject:(id)value {
+    [self addPointer:(__bridge void *)value];
+}
+
+- (void)removeObject:(id)value {
+    NSUInteger idx = [self indexOfObject:value];
+    if (idx != NSNotFound) {
+        [self removePointerAtIndex:idx];
+        [self compact];
+    }
+}
+
+- (NSUInteger)indexOfObject:(id)value {
+    if (!value) return NSNotFound;
+    NSUInteger result = 0;
+    BOOL found = NO;
+
+    for (id element in self) {
+        if (element == value) {
+            found = YES;
+            break;
+        }
+        result++;
+    }
+    if (!found) {
+        return NSNotFound;
+    }
+    return result;
+}
+
+@end
 
 typedef NS_ENUM(NSInteger, MPVPlayerEvent) {
     MPVPlayerEventStartFile,
@@ -395,7 +455,7 @@ exit:
     }
     
     NSString *property = @(event_property->name);
-    NSArray *observers = _observed[property];
+    NSPointerArray *observers = _observed[property];
     if (observers) {
         for (id <MPVPropertyObserving> observer in observers) {
             [observer player:self didChangeValue:value forProperty:property format:event_property->format];
@@ -762,14 +822,13 @@ exit:
 - (void)addObserver:(id<MPVPropertyObserving>)observer
         forProperty:(NSString *)property
              format:(mpv_format)format {
-    
-    NSMutableArray *observers = _observed[property];
+    NSPointerArray *observers = _observed[property];
     if (observers) {
         if (![observers containsObject:observer]) {
             [observers addObject:observer];
         }
     } else {
-        observers = [NSMutableArray arrayWithObject:observer];
+        observers = [NSPointerArray arrayWithObject:observer];
         _observed[property] = observers;
         mpv_observe_property(_mpv_handle, (uint64_t)observers, property.UTF8String, format);
     }
@@ -781,7 +840,7 @@ exit:
 - (void)removeObserver:(id<MPVPropertyObserving>)observer forProperty:(NSString *)property {
     
     if (property) { // remove observer for the specific property
-        NSMutableArray *observers = _observed[property];
+        NSPointerArray *observers = _observed[property];
         [observers removeObject:observer];
 #ifdef DEBUG
         NSLog(@"%llx: remove observer: %@ property: %@ total: %lu", (uint64_t)observers, observer, property, observers.count);
@@ -797,7 +856,7 @@ exit:
         }
     } else { // remove observer for all properties
         [_observed.copy enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            NSMutableArray *observers = obj;
+            NSPointerArray *observers = obj;
             [observers removeObject:observer];
 #ifdef DEBUG
             NSLog(@"%llx: remove observer: %@ property: %@ total: %lu", (uint64_t)observers, observer, key, observers.count);
