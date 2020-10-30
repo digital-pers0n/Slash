@@ -140,7 +140,6 @@
 		CEE7B5BB24D31CAD00A115D2 /* SLTQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5BA24D31CAD00A115D2 /* SLTQueue.m */; };
 		CEE7B5BE24D31CC700A115D2 /* SLTFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5BD24D31CC700A115D2 /* SLTFilter.m */; };
 		CEE7B5C124D31D1100A115D2 /* SLTEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */; };
-		CEE7B5C424D31DAC00A115D2 /* SLTSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5C324D31DAC00A115D2 /* SLTSetting.m */; };
 		CEED67DB24277B8B003B4CC3 /* slh_video_frame_extractor.c in Sources */ = {isa = PBXBuildFile; fileRef = CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */; };
 		CEEDC2182404380200AAFC18 /* SLHSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEDC2172404380200AAFC18 /* SLHSeparatorView.m */; };
 		CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */; };
@@ -389,8 +388,6 @@
 		CEE7B5BD24D31CC700A115D2 /* SLTFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTFilter.m; path = Starlight/SLTFilter.m; sourceTree = "<group>"; };
 		CEE7B5BF24D31D1100A115D2 /* SLTEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTEncoder.h; path = Starlight/SLTEncoder.h; sourceTree = "<group>"; };
 		CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTEncoder.m; path = Starlight/SLTEncoder.m; sourceTree = "<group>"; };
-		CEE7B5C224D31DAC00A115D2 /* SLTSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTSetting.h; path = Starlight/SLTSetting.h; sourceTree = "<group>"; };
-		CEE7B5C324D31DAC00A115D2 /* SLTSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTSetting.m; path = Starlight/SLTSetting.m; sourceTree = "<group>"; };
 		CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_video_frame_extractor.c; path = system/slh_video_frame_extractor.c; sourceTree = "<group>"; };
 		CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_video_frame_extractor.h; path = system/slh_video_frame_extractor.h; sourceTree = "<group>"; };
 		CEEDC2162404380200AAFC18 /* SLHSeparatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHSeparatorView.h; sourceTree = "<group>"; };
@@ -822,8 +819,6 @@
 				CEF398E424DC569200D44BDD /* SLTH264EncoderSettings.m */,
 				CEFF068D24D7300200E93228 /* SLTMediaSettings.h */,
 				CEFF068E24D7300200E93228 /* SLTMediaSettings.m */,
-				CEE7B5C224D31DAC00A115D2 /* SLTSetting.h */,
-				CEE7B5C324D31DAC00A115D2 /* SLTSetting.m */,
 				CECE14E62507B79900406B9D /* SLTBitrateFormatter.h */,
 				CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */,
 				CE146A4B250D0C3B0064B9A9 /* SLTUtils.h */,
@@ -982,7 +977,6 @@
 				CE0EC704235214930053204B /* MPVExtern.m in Sources */,
 				CE7D018B24D4559D00B51D66 /* SLTFilterParameter.m in Sources */,
 				CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */,
-				CEE7B5C424D31DAC00A115D2 /* SLTSetting.m in Sources */,
 				CE6B8C2324E2BC7B00B93758 /* SLKEncoderSettingsInspector.m in Sources */,
 				CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */,
 				CE6B8C1D24E18FE500B93758 /* SLKH264EncoderSettings.m in Sources */,
