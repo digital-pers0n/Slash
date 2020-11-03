@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Template names
 
+/** nil resets the template format to SLTDefaultTemplateFormat */
 @property (class, null_resettable, nonatomic, copy) NSString *currentTemplateFormat;
 + (BOOL)validateTemplate:(NSString *)format error:(NSError **)error;
 
@@ -36,12 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
  @c %r - selection range formatted as HH_MM_SS.MS e.g. 00_01_04.344-00_03_55.183
  @c %R - same as @c %r but uses unformatted time in seconds
  
- Default is "%f-%D"
+ @note
+ nil resets the template format to SLTTask.currentTemplateFormat
  */
 @property (null_resettable, nonatomic, copy) NSString *templateFormat;
 
 /**
- Create a new destination file name, the value of @c templateNameFormat property
+ Create a new destination file name, the value of @c templateFormat property
  is used.
  */
 - (void)generateDestinationFileName;
