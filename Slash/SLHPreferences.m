@@ -8,9 +8,9 @@
 
 #import "SLHPreferences.h"
 #import "SLHPreferencesKeys.h"
-#import "SLHTemplateNameFormatter.h"
 #import "NSDictionary+SLHPropertyListAddtions.h"
 #import "MPVKitDefines.h"
+#import "SLTTask.h"
 
 /* User-defaults keys */
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
@@ -204,7 +204,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
         }
         
         if (!self.outputNameTemplate) {
-            self.outputNameTemplate = SLHTemplateNameFormatter.defaultTemplateFormat;
+            self.outputNameTemplate = SLTDefaultTemplateFormat;
         }
         
         _ffmpegRecentPaths = [self recentPathsForKey:
@@ -767,7 +767,7 @@ static BOOL isFilePathValid(NSString * path) {
 
 - (void)setOutputNameTemplate:(NSString *)value {
     if (!value) {
-        [self setAsyncValue:SLHTemplateNameFormatter.defaultTemplateFormat
+        [self setAsyncValue:SLTDefaultTemplateFormat
                      forKey:SLHPreferencesOutputNameTemplateKey];
         return;
     }
@@ -782,8 +782,7 @@ static BOOL isFilePathValid(NSString * path) {
                              error:(out NSError **)outError
 {
     if (*ioValue) {
-        return [SLHTemplateNameFormatter validateTemplateName:*ioValue
-                                                        error:outError];
+        return [SLTTask validateTemplate:*ioValue error:outError];
     }
     return YES;
 }
