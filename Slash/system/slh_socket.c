@@ -23,7 +23,7 @@ static inline void soc_error(const char *str, const char *str2) {
 int soc_connect(Socket *s, const char *path) {
     
     /* Create an endpoint for communication */
-    if ((*s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+    if ((*s = socket(PF_LOCAL, SOCK_STREAM, 0)) == -1) {
         soc_error(__func__, "socket()");
         return -1;
     }
@@ -31,7 +31,7 @@ int soc_connect(Socket *s, const char *path) {
     /* Initialize UNIX domain socket structure */
     struct sockaddr_un un;
     strcpy(un.sun_path, path);
-    un.sun_family = AF_UNIX;
+    un.sun_family = PF_LOCAL;
     un.sun_len = SUN_LEN(&un);
     
     /* Initiate connection */
