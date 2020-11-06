@@ -37,6 +37,7 @@ static NSString *const SLHPreferencesLastSelectedPrefTagKey = @"lastSelectedPref
 
 static NSString *const SLHPreferencesRecentFFmpegPathsKey = @"ffmpegRecentPaths";
 static NSString *const SLHPreferencesRecentMPVPathsKey    = @"mpvRecentPaths";
+static NSString *const SLHPreferencesRecentTemplateNamesKey = @"templateRecentNames";
 
 typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     SLHPreferencesGeneralToolbarItem = 0,
@@ -61,6 +62,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     IBOutlet NSPopUpButton *_renderersPopUp;
     IBOutlet NSComboBox *_ffmpegPathComboBox;
     IBOutlet NSComboBox *_mpvPathComboBox;
+    IBOutlet NSComboBox *_templateNameComboBox;
     __weak NSView *_currentPrefsView;
     
     NSMutableArray <NSString *> *_recentOutputPaths;
@@ -72,6 +74,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     NSString *_appSupportPath;
     NSMutableArray *_ffmpegRecentPaths;
     NSMutableArray *_mpvRecentPaths;
+    NSMutableArray *_templateRecentNames;
 }
 
 @property  NSUserDefaults *userDefaults;
@@ -89,11 +92,12 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
 - (void)checkFFmpeg:(NSString *)ffmpegPath OBJC_DIRECT;
 - (void)checkMPV:(NSString *)mpvPath OBJC_DIRECT;
 - (void)showPrefsView:(NSView *)view OBJC_DIRECT;
-- (NSMutableArray *)recentPathsForKey:(NSString *)name OBJC_DIRECT;
+- (NSMutableArray *)recentItemsForKey:(NSString *)name OBJC_DIRECT;
 - (void)addFFmpegRecentPath:(NSString *)newPath OBJC_DIRECT;
 - (void)addMPVRecentPath:(NSString *)newPath OBJC_DIRECT;
-- (void)updateComboBox:(NSComboBox *)cb withItems:(NSMutableArray *)recentPaths
-              byAddingItem:(NSString *)newPath OBJC_DIRECT;
+- (void)addTemplateRecentName:(NSString *)newTemplate OBJC_DIRECT;
+- (void)updateComboBox:(NSComboBox *)cb withItems:(NSMutableArray *)recentItems
+          byAddingItem:(NSString *)newItem OBJC_DIRECT;
 
 @end
 
@@ -207,16 +211,22 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
             self.outputNameTemplate = SLTDefaultTemplateFormat;
         }
         
-        _ffmpegRecentPaths = [self recentPathsForKey:
+        _ffmpegRecentPaths = [self recentItemsForKey:
                               SLHPreferencesRecentFFmpegPathsKey];
         if (_ffmpegRecentPaths.count == 0) {
             [_ffmpegRecentPaths addObject:self.ffmpegPath];
         }
         
-        _mpvRecentPaths = [self recentPathsForKey:
+        _mpvRecentPaths = [self recentItemsForKey:
                            SLHPreferencesRecentMPVPathsKey];
         if (_mpvRecentPaths.count == 0) {
             [_mpvRecentPaths addObject:self.mpvPath];
+        }
+        
+        _templateRecentNames = [self recentItemsForKey:
+                                SLHPreferencesRecentTemplateNamesKey];
+        if (_templateRecentNames.count == 0) {
+            [_templateRecentNames addObject:self.outputNameTemplate];
         }
         
         [self checkFFmpeg:self.ffmpegPath];
@@ -226,12 +236,12 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     return self;
 }
 
-static const NSUInteger SLHPreferencesMaxRecentPaths = 5;
-- (NSMutableArray *)recentPathsForKey:(NSString *)name {
+static const NSUInteger SLHPreferencesMaxRecentItems = 5;
+- (NSMutableArray *)recentItemsForKey:(NSString *)name {
     id result = [_userDefaults arrayForKey:name];
     if (!result) {
         return [[NSMutableArray alloc]
-                initWithCapacity:SLHPreferencesMaxRecentPaths];
+                initWithCapacity:SLHPreferencesMaxRecentItems];
     }
     return [result mutableCopy];
 }
@@ -250,20 +260,27 @@ static const NSUInteger SLHPreferencesMaxRecentPaths = 5;
                       forKey:SLHPreferencesRecentMPVPathsKey];
 }
 
-- (void)updateComboBox:(NSComboBox *)cb withItems:(NSMutableArray *)recentPaths
-          byAddingItem:(NSString *)newPath
+- (void)addTemplateRecentName:(NSString *)newTemplate {
+    [self updateComboBox:_templateNameComboBox
+               withItems:_templateRecentNames byAddingItem:newTemplate];
+    [_userDefaults setObject:_templateRecentNames
+                      forKey:SLHPreferencesRecentTemplateNamesKey];
+}
+
+- (void)updateComboBox:(NSComboBox *)cb withItems:(NSMutableArray *)recents
+          byAddingItem:(NSString *)newItem
 {
-    NSUInteger idx = [recentPaths indexOfObject:newPath];
+    NSUInteger idx = [recents indexOfObject:newItem];
     if (idx != NSNotFound) {
-        [recentPaths removeObjectAtIndex:idx];
+        [recents removeObjectAtIndex:idx];
     } else {
-        if (recentPaths.count == SLHPreferencesMaxRecentPaths) {
-            [recentPaths removeLastObject];
+        if (recents.count == SLHPreferencesMaxRecentItems) {
+            [recents removeLastObject];
         }
     }
-    [recentPaths insertObject:newPath atIndex:0];
+    [recents insertObject:newItem atIndex:0];
     [cb removeAllItems];
-    [cb addItemsWithObjectValues:recentPaths];
+    [cb addItemsWithObjectValues:recents];
 }
 
 /**
@@ -484,6 +501,7 @@ fatal_error:
     [self setUpRenderersPopUp];
     [_ffmpegPathComboBox addItemsWithObjectValues:_ffmpegRecentPaths];
     [_mpvPathComboBox addItemsWithObjectValues:_mpvRecentPaths];
+    [_templateNameComboBox addItemsWithObjectValues:_templateRecentNames];
 }
 
 - (void)setNilValueForKey:(NSString *)key {
@@ -782,7 +800,10 @@ static BOOL isFilePathValid(NSString * path) {
                              error:(out NSError **)outError
 {
     if (*ioValue) {
-        return [SLTTask validateTemplate:*ioValue error:outError];
+        if (![SLTTask validateTemplate:*ioValue error:outError]) {
+            return NO;
+        }
+        [self addTemplateRecentName:*ioValue];
     }
     return YES;
 }

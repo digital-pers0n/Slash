@@ -10,16 +10,17 @@
             <connections>
                 <outlet property="_advancedPrefsView" destination="ByA-wb-1Hd" id="3ea-CN-OV4"/>
                 <outlet property="_dictionaryController" destination="KnJ-98-H26" id="vep-6t-93v"/>
+                <outlet property="_ffmpegPathComboBox" destination="TcL-as-GjH" id="tho-4a-rSR"/>
                 <outlet property="_generalPrefsView" destination="SO0-I6-RYI" id="yXH-xf-H6d"/>
+                <outlet property="_mpvPathComboBox" destination="aey-yI-snY" id="1zW-ee-OK7"/>
                 <outlet property="_mpvPrefsView" destination="sIA-6R-rcS" id="hTB-3L-2WI"/>
                 <outlet property="_numberOfThreadsSlider" destination="Paa-Rz-ob6" id="Ehf-bV-JYV"/>
                 <outlet property="_outputPathPopUp" destination="KNu-EU-WGB" id="11P-J0-2DI"/>
                 <outlet property="_renderersPopUp" destination="Q4F-Id-9eH" id="vUi-8x-l2O"/>
                 <outlet property="_screenshotFormatPopUp" destination="st0-gf-vhn" id="Xfy-04-GFo"/>
+                <outlet property="_templateNameComboBox" destination="uwM-QW-otQ" id="awF-uo-scN"/>
                 <outlet property="_titleStylePopUp" destination="EPc-dM-hud" id="dU4-dB-cul"/>
                 <outlet property="_toolbar" destination="1Or-hS-Qec" id="c7a-he-9UZ"/>
-                <outlet property="ffmpegPathTextField" destination="bc1-Jf-tBj" id="JKd-wI-idg"/>
-                <outlet property="mpvPathTextField" destination="XpS-hB-PMx" id="5rs-wv-HxE"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -83,23 +84,6 @@
             <rect key="frame" x="0.0" y="0.0" width="493" height="317"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField toolTip="mpv location" verticalHuggingPriority="750" id="XpS-hB-PMx">
-                    <rect key="frame" x="181" y="251" width="260" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0dW-L9-D2o">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.mpvPath" id="XfV-U4-MxN">
-                            <dictionary key="options">
-                                <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
                 <popUpButton verticalHuggingPriority="750" id="KNu-EU-WGB">
                     <rect key="frame" x="178" y="213" width="136" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -116,23 +100,6 @@
                         </binding>
                     </connections>
                 </popUpButton>
-                <textField toolTip="ffmpeg location" verticalHuggingPriority="750" id="bc1-Jf-tBj">
-                    <rect key="frame" x="181" y="278" width="260" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="hQs-gx-m1D">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.ffmpegPath" id="7q3-U0-BCI">
-                            <dictionary key="options">
-                                <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
                 <button toolTip="Locate mpv binary" tag="3" id="cmR-9g-nNH">
                     <rect key="frame" x="446" y="253" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -340,24 +307,6 @@
                         <binding destination="-2" name="value" keyPath="shouldOverwriteFiles" id="hd5-re-MC6"/>
                     </connections>
                 </button>
-                <textField toolTip="%f - file name; %d - date; %D - date as seconds; %r - selected range; %R - selected range as seconds;" verticalHuggingPriority="750" misplaced="YES" id="Vzt-ng-CLZ">
-                    <rect key="frame" x="181" y="107" width="260" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="kZV-1W-y7K">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="outputNameTemplate" id="lvA-7U-h9L">
-                            <dictionary key="options">
-                                <bool key="NSAlwaysPresentsApplicationModalAlerts" value="YES"/>
-                                <bool key="NSConditionallySetsEditable" value="NO"/>
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
                 <button misplaced="YES" id="Wdf-Rp-FkR">
                     <rect key="frame" x="178" y="131" width="149" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -379,8 +328,56 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <comboBox verticalHuggingPriority="750" misplaced="YES" id="TcL-as-GjH">
+                    <rect key="frame" x="181" y="276" width="263" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <comboBoxCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="JtJ-NO-6FJ">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </comboBoxCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="ffmpegPath" id="dXK-QZ-YEB">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </comboBox>
+                <comboBox verticalHuggingPriority="750" misplaced="YES" id="aey-yI-snY">
+                    <rect key="frame" x="181" y="249" width="263" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <comboBoxCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="ZGV-q6-zwX">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </comboBoxCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="mpvPath" id="frc-94-YZ4">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </comboBox>
+                <comboBox verticalHuggingPriority="750" misplaced="YES" id="uwM-QW-otQ">
+                    <rect key="frame" x="181" y="103" width="263" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <comboBoxCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="e6Q-Hq-uah">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </comboBoxCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="outputNameTemplate" id="a6T-G2-dOg">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </comboBox>
             </subviews>
-            <point key="canvasLocation" x="204" y="441"/>
+            <point key="canvasLocation" x="203.5" y="440.5"/>
         </customView>
         <customView misplaced="YES" id="sIA-6R-rcS">
             <rect key="frame" x="0.0" y="0.0" width="466" height="452"/>
