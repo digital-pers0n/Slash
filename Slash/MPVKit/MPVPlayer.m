@@ -320,8 +320,13 @@ OBJC_DIRECT_MEMBERS
     };
     CFRunLoopRef main_rl = CFRunLoopGetMain();
     MPVPlayerEvent playerEvent = MPVPlayerEventNone;
-    __unsafe_unretained NSNotificationCenter *nc;
-    nc = NSNotificationCenter.defaultCenter;
+    NSNotificationCenter *tmp = NSNotificationCenter.defaultCenter;
+    
+    // Cache -[NSNotificationCenter postNotification:] method
+    typedef void (*IMP_f)(void * _Nonnull, SEL _Nonnull, void * _Nonnull);
+    const SEL postNotification = @selector(postNotification:);
+    const IMP_f cachedMethod = (IMP_f)[tmp methodForSelector:postNotification];
+    void *notificationCenter = (__bridge void *)tmp;
     
     while (!_eventThread.cancelled) {
         mpv_event *event = mpv_wait_event(_mpv_handle, -1);
@@ -382,13 +387,13 @@ OBJC_DIRECT_MEMBERS
         }
         
         if (playerEvent != MPVPlayerEventNone) {
-            
+
 #ifdef DEBUG
             NSLog(@"%@: Post '%@'.", self, notifications[playerEvent].name);
 #endif
-            __unsafe_unretained NSNotification *n = notifications[playerEvent];
+            void *n = (__bridge void *)notifications[playerEvent];
             CFRunLoopPerformBlock(main_rl, kCFRunLoopCommonModes, ^{
-                [nc postNotification:n];
+                cachedMethod(notificationCenter, postNotification, n);
             });
             playerEvent = MPVPlayerEventNone;
         }
