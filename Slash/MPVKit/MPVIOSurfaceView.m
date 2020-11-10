@@ -525,7 +525,8 @@ static CVReturn cvdl_cb(
     mpvgl_flush(mpv);
     
     _layer.bounds = frame;
-    _layer.contents = (id)CFAutorelease(surface);
+    _layer.contents = (__bridge id)surface;
+    CFRelease(surface);
     
     [CATransaction commit];
 }
