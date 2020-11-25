@@ -562,6 +562,7 @@ static BOOL isFilePathValid(NSString * path) {
         *outError = pathValidationError(*newPath, @"ffmpeg");
         return NO;
     }
+    self.hasFFmpeg = YES;
     [self addFFmpegRecentPath:*newPath];
     return YES;
 }
@@ -589,6 +590,7 @@ static BOOL isFilePathValid(NSString * path) {
         *outError = pathValidationError(*newPath, @"MPV");
         return NO;
     }
+    self.hasMPV = YES;
     [self addMPVRecentPath:*newPath];
     return YES;
 }
