@@ -126,6 +126,14 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="cropEditorButtonAction:" target="-2" id="f84-Ud-A6C"/>
+                                        <binding destination="-2" name="enabled3" keyPath="prefs.hasFFmpeg" previousBinding="zAK-lk-ooN" id="1za-wF-xPX">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="xb3-1E-9vT"/>
                                         <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="xb3-1E-9vT" id="zAK-lk-ooN">
                                             <dictionary key="options">
@@ -146,7 +154,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="previewCropArea:" target="-2" id="c72-tr-4DU"/>
-                                        <binding destination="-2" name="enabled3" keyPath="encoderItem.filters.videoCropWidth" previousBinding="3vJ-Ja-hNK" id="Qyn-Wg-aj4">
+                                        <binding destination="-2" name="enabled5" keyPath="prefs.hasMPV" previousBinding="lav-3W-gAO" id="P7Q-vf-cQ3">
                                             <dictionary key="options">
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                 <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -155,6 +163,14 @@
                                             </dictionary>
                                         </binding>
                                         <binding destination="-2" name="enabled4" keyPath="encoderItem.filters.videoCropHeight" previousBinding="Qyn-Wg-aj4" id="lav-3W-gAO">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
+                                        <binding destination="-2" name="enabled3" keyPath="encoderItem.filters.videoCropWidth" previousBinding="3vJ-Ja-hNK" id="Qyn-Wg-aj4">
                                             <dictionary key="options">
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                 <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -313,6 +329,14 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="detectCropArea:" target="-2" id="UA0-5V-Bgj"/>
+                                        <binding destination="-2" name="enabled3" keyPath="prefs.hasFFmpeg" previousBinding="a8e-Be-7Wu" id="AEb-lc-OFN">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="self.encoderItem.filters.enableVideoFilters" id="C8m-YK-nwG"/>
                                         <binding destination="-2" name="enabled2" keyPath="self.encoderItem.playerItem.hasVideoStreams" previousBinding="C8m-YK-nwG" id="a8e-Be-7Wu">
                                             <dictionary key="options">

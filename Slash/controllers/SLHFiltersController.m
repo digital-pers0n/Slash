@@ -55,6 +55,8 @@ static NSString *const _filterPresetsNameKey = @"Filters";
     IBOutlet NSPopUpButton *_presetsPopUp;
 }
 
+@property (readonly, nonatomic) SLHPreferences *prefs;
+
 @end
 
 @implementation SLHFiltersController
@@ -88,7 +90,12 @@ static NSString *const _filterPresetsNameKey = @"Filters";
         _popover = [[NSPopover alloc] init];
         _popover.behavior =  NSPopoverBehaviorTransient;
         _popover.contentViewController = _textEditor;
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(applicationWillClose:) name:NSApplicationWillTerminateNotification object:nil];
+        [NSNotificationCenter.defaultCenter
+            addObserver:self
+               selector:@selector(applicationWillClose:)
+                   name:NSApplicationWillTerminateNotification
+                 object:nil];
+        _prefs = [SLHPreferences preferences];
     }
     return self;
 }
