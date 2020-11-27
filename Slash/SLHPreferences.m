@@ -439,7 +439,7 @@ fatal_error:
     [window setFrame:windowFrame display:YES animate:YES];
     [window.contentView addSubview:view];
     _currentPrefsView = view;
-    self.window.title = _toolbar.selectedItemIdentifier;
+    window.title = _toolbar.selectedItemIdentifier;
 }
 
 - (void)windowDidLoad {
