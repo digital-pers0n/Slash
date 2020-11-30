@@ -130,6 +130,7 @@
 		CECE14C824FD789500406B9D /* SLKStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14C724FD789500406B9D /* SLKStackView.m */; };
 		CECE14E82507B79900406B9D /* SLTBitrateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */; };
 		CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2245E23A11332000A7489 /* SLHExternalPlayer.m */; };
+		CED60C6625755BED00EA6B97 /* SLTObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = CED60C6525755BED00EA6B97 /* SLTObserver.m */; };
 		CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */; };
 		CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */; };
 		CEDD22EC23887EB50049E4C4 /* SLHCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDD22EB23887EB50049E4C4 /* SLHCropView.m */; };
@@ -370,6 +371,8 @@
 		CECFA43A24A27DCD00B6C22A /* MPVKitDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVKitDefines.h; path = MPVKit/MPVKitDefines.h; sourceTree = "<group>"; };
 		CED2245D23A11332000A7489 /* SLHExternalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHExternalPlayer.h; path = utils/SLHExternalPlayer.h; sourceTree = "<group>"; };
 		CED2245E23A11332000A7489 /* SLHExternalPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHExternalPlayer.m; path = utils/SLHExternalPlayer.m; sourceTree = "<group>"; };
+		CED60C6425755BED00EA6B97 /* SLTObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTObserver.h; path = Starlight/SLTObserver.h; sourceTree = "<group>"; };
+		CED60C6525755BED00EA6B97 /* SLTObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTObserver.m; path = Starlight/SLTObserver.m; sourceTree = "<group>"; };
 		CED85AB721B85D6D00D01B36 /* SLHEncoderX264Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Format.h; path = controllers/SLHEncoderX264Format.h; sourceTree = "<group>"; };
 		CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SLHEncoderX264Format.m; path = controllers/SLHEncoderX264Format.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderX264Format.xib; path = controllers/SLHEncoderX264Format.xib; sourceTree = "<group>"; };
@@ -830,6 +833,8 @@
 				CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */,
 				CEBA3683253B589B00823125 /* SLTBinder.h */,
 				CEBA3684253B589B00823125 /* SLTBinder.m */,
+				CED60C6425755BED00EA6B97 /* SLTObserver.h */,
+				CED60C6525755BED00EA6B97 /* SLTObserver.m */,
 			);
 			name = Starlight;
 			sourceTree = "<group>";
@@ -970,6 +975,7 @@
 				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
 				CEE7B5BE24D31CC700A115D2 /* SLTFilter.m in Sources */,
 				CE6B8C1724E17A8B00B93758 /* SLKWindowController.m in Sources */,
+				CED60C6625755BED00EA6B97 /* SLTObserver.m in Sources */,
 				CE5998CB219DF81C0009FE08 /* SLHEncoderItem.m in Sources */,
 				CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */,
 				CE35266623F1C7C900B28193 /* SLHVolumeButton.m in Sources */,

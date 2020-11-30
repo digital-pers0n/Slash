@@ -1,0 +1,31 @@
+//
+//  SLTObserver.h
+//  Slash
+//
+//  Created by Terminator on 2020/11/30.
+//  Copyright © 2020年 digital-pers0n. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+/** Simple wrapper on top of KVO that can be used to observe changes in objects
+ without overriding @c -observeValueForKeyPath:ofObject:change:context: method */
+@interface SLTObserver : NSObject
+
+
+- (instancetype)initWithObject:(id)observable
+                       keyPath:(NSString *)kp
+                       options:(NSKeyValueObservingOptions)mask
+                       handler:(void (^)(NSDictionary *change))block;
+
+@property (readonly, nonatomic) id observable;
+@property (readonly, nonatomic) NSString *keyPath;
+
+- (BOOL)isValid;
+- (void)invalidate;
+
+@end
+
+NS_ASSUME_NONNULL_END
