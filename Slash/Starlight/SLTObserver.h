@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
                        options:(NSKeyValueObservingOptions)mask
                        handler:(void (^)(NSDictionary *change))block;
 
-@property (readonly, nonatomic) id observable;
+@property (readonly, nonatomic, nullable, assign) id observable;
 @property (readonly, nonatomic) NSString *keyPath;
 
 - (BOOL)isValid;

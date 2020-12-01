@@ -46,6 +46,7 @@
     [_observable removeObserver:self
                      forKeyPath:_keyPath context:(__bridge void *)self];
     _observerHandler = nil;
+    _observable = nil;
 }
 
 - (void)dealloc {
