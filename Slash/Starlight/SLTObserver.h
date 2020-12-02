@@ -14,11 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
  without overriding @c -observeValueForKeyPath:ofObject:change:context: method */
 @interface SLTObserver : NSObject
 
-
 - (instancetype)initWithObject:(id)observable
                        keyPath:(NSString *)kp
                        options:(NSKeyValueObservingOptions)mask
                        handler:(void (^)(NSDictionary *change))block;
+
+/** Use @c NSKeyValueObservingOptionNew option to register the observer
+ and pass the value associated with @c NSKeyValueChangeNewKey as the argument
+ of the handler block. */
+- (instancetype)initWithObject:(id)observable
+                       keyPath:(NSString *)kp
+                       handler:(void (^)(id newValue))block;
 
 @property (readonly, nonatomic, nullable, assign) id observable;
 @property (readonly, nonatomic) NSString *keyPath;

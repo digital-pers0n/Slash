@@ -8,8 +8,12 @@
 
 #import "SLTObserver.h"
 
+@interface SLTNewValueObserver : SLTObserver
+@end
+
 @interface SLTObserver () {
-    void (^_observerHandler)(NSDictionary *);
+    @package
+    void (^_observerHandler)(id);
 }
 @end
 
@@ -30,6 +34,13 @@
                         context:(__bridge void *)self];
     }
     return self;
+}
+
+- (instancetype)initWithObject:(id)observable keyPath:(NSString *)kp
+                       handler:(void (^)(id _Nonnull))block {
+    return [[SLTNewValueObserver alloc]
+            initWithObject:observable keyPath:kp
+                   options:NSKeyValueObservingOptionNew handler:block];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
@@ -56,3 +67,19 @@
 }
 
 @end
+
+@implementation SLTNewValueObserver
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary *)change context:(void *)context
+{
+    /* This trickery allows to tail-call _observerHandler() block,
+       otherwise clang under ARC aggressively retain / release temporary
+       objects and the last call will be always objc_release().
+     */
+    void *value = (__bridge void *)[change objectForKey:NSKeyValueChangeNewKey];
+    _observerHandler((__bridge id)value);
+}
+
+@end
+
