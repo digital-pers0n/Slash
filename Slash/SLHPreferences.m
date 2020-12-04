@@ -11,6 +11,7 @@
 #import "NSDictionary+SLHPropertyListAddtions.h"
 #import "MPVKitDefines.h"
 #import "SLTTask.h"
+#import "SLTObserver.h"
 
 /* User-defaults keys */
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
@@ -968,6 +969,17 @@ static BOOL isFilePathValid(NSString * path) {
         tag = SLHPreferencesMPVToolbarItem;
     }
     [_userDefaults setInteger:tag forKey:SLHPreferencesLastSelectedPrefTagKey];
+}
+
+@end
+
+@implementation SLHPreferences (SLHPreferencesPropertyObservation)
+
+- (SLTObserver *)observeKey:(NSString *)propertyName
+                    handler:(void (^)(id))block
+{
+    return [[SLTObserver alloc] initWithObject:self keyPath:propertyName
+                                       handler:block];
 }
 
 @end
