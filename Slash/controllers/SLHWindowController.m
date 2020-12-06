@@ -77,6 +77,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     NSPopover *_trimViewSettingsPopover;
     SLHOutputNameController *_outputNameController;
     SLHTemplateNameFormatter *_templateNameFormatter;
+    NSArray<SLTObserver *> *_prefsObservers;
     
     CGFloat _sideBarWidth;
     CGFloat _bottomBarHeight;
@@ -99,7 +100,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
+
     /* SLHPresetManager */
     _presetManager = [[SLHPresetManager alloc] init];
     _presetManager.delegate = self;
@@ -500,159 +501,160 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 #pragma mark - KVO
 
-static char SLHPreferencesKVOContext;
-
-- (void)screenshotFormatDidChange:(NSString *)newValue {
-    [_player setString:newValue
-           forProperty:MPVPlayerPropertyScreenshotFormat];
-}
-
-- (void)screenshotTemplateDidChange:(NSString *)newValue {
-    [_player setString:newValue
-           forProperty:MPVPlayerPropertyScreenshotTemplate];
-}
-
-- (void)screenshotPathDidChange:(NSString *)newValue {
-    [_player setString:newValue
-           forProperty:MPVPlayerPropertyScreenshotDirectory];
-}
-
-- (void)screenshotJPGQualityDidChange:(NSNumber *)newValue {
-    [_player setInteger:newValue.integerValue
-            forProperty:MPVPlayerPropertyScreenshotJPGQuality];
-}
-
-- (void)screenshotPNGCompressionDidChange:(NSNumber *)newValue {
-    [_player setInteger:newValue.integerValue
-            forProperty:MPVPlayerPropertyScreenshotPNGCompression];
-}
-
-- (void)osdFontNameDidChange:(NSString *)newValue {
-    [_player setString:newValue forProperty:MPVPlayerPropertyOSDFontName];
-}
-
-- (void)osdFontSizeDidChange:(NSNumber *)newValue {
-    [_player setInteger:newValue.integerValue forProperty:MPVPlayerPropertyOSDFontSize];
-}
-
-- (void)osdFontScaleByWindowDidChange:(NSNumber *)newValue {
-    [_player setBool:newValue.boolValue forProperty:MPVPlayerPropertyOSDFontScaleByWindow];
-}
-
-- (void)subsFontNameDidChange:(NSString *)newValue {
-    [_player setString:newValue forProperty:MPVPlayerPropertySubsFontName];
-}
-
-- (void)subsFontSizeDidChange:(NSNumber *)newValue {
-    [_player setInteger:newValue.integerValue forProperty:MPVPlayerPropertySubsFontSize];
-}
-
-- (void)subsFontScaleByWindowDidChange:(NSNumber *)newValue {
-    [_player setBool:newValue.boolValue forProperty:MPVPlayerPropertySubsFontScaleByWindow];
-}
-
-- (void)advancedOptionDidChange:(id)option {
-    NSError *error = nil;
-    if (![_player setString:[option valueForKey:SLHPreferencesAdvancedOptionValueKey]
-                forProperty:[option valueForKey:SLHPreferencesAdvancedOptionNameKey]
-                      error:&error]) {
-        [self presentError:error];
-    }
-}
-
-- (void)enableAdvancedOptionsDidChange:(NSNumber *)newValue {
-    if (newValue.boolValue) {
-        NSDictionary *advancedOptions = _preferences.advancedOptions;
-        if (advancedOptions.count) {
-            __unsafe_unretained typeof(self) uself = self;
-            __unsafe_unretained typeof(_player) player = _player;
-            
-            [advancedOptions enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+- (void)observePreferences:(SLHPreferences *)appPrefs {
+    __unsafe_unretained typeof(self) uSelf = self;
+    __unsafe_unretained typeof(_player) player = _player;
+    __unsafe_unretained typeof(appPrefs) prefs = appPrefs;
+    _prefsObservers =
+    @[
+      // MARK: Screenshot directory save path
+      [appPrefs observeKey: SLHPreferencesScreenshotPathKey handler:
+       ^(NSString *_Nonnull change) {
+           [player setString: change
+                 forProperty: MPVPlayerPropertyScreenshotDirectory];
+       }],
+      
+      // MARK: Screenshot file format
+      [appPrefs observeKey: SLHPreferencesScreenshotFormatKey handler:
+       ^(NSString * _Nonnull change) {
+           [player setString: change
+                 forProperty: MPVPlayerPropertyScreenshotFormat];
+       }],
+      
+      // MARK: Screenshot template name
+      [appPrefs observeKey: SLHPreferencesScreenshotTemplateKey handler:
+       ^(NSString * _Nonnull change) {
+           [player setString: change
+                 forProperty: MPVPlayerPropertyScreenshotTemplate];
+       }],
+      
+      // MARK: Screenshot JPEG quality
+      [appPrefs observeKey: SLHPreferencesScreenshotJPGQualityKey handler:
+       ^(NSNumber * _Nonnull change) {
+           [player setInteger: change.integerValue
+                  forProperty: MPVPlayerPropertyScreenshotJPGQuality];
+       }],
+      
+      // MARK: Screenshot PNG compression
+      [appPrefs observeKey: SLHPreferencesScreenshotPNGCompressionKey handler:
+       ^(NSNumber * _Nonnull change) {
+           [player setInteger: change.integerValue
+                  forProperty: MPVPlayerPropertyScreenshotPNGCompression];
+       }],
+      
+      // MARK: OSD font name
+      [appPrefs observeKey: SLHPreferencesOSDFontNameKey handler:
+       ^(NSString * _Nonnull change) {
+           [player setString: change
+                 forProperty: MPVPlayerPropertyOSDFontName];
+       }],
+      
+      // MARK: OSD font size
+      [appPrefs observeKey: SLHPreferencesOSDFontSizeKey handler:
+       ^(NSNumber * _Nonnull change) {
+           [player setInteger: change.integerValue
+                  forProperty: MPVPlayerPropertyOSDFontSize];
+       }],
+      
+      // MARK: OSD font scale
+      [appPrefs observeKey: SLHPreferencesOSDFontScaleByWindowKey handler:
+       ^(NSNumber * _Nonnull change) {
+           [player setBool: change.boolValue
+               forProperty: MPVPlayerPropertyOSDFontScaleByWindow];
+       }],
+      
+      // MARK: Subtitles font name
+      [appPrefs observeKey: SLHPreferencesSubtitlesFontNameKey handler:
+       ^(NSString * _Nonnull change) {
+           [player setString: change
+                 forProperty: MPVPlayerPropertySubsFontName];
+       }],
+      
+      // MARK: Subtitles font size
+      [appPrefs observeKey: SLHPreferencesSubtitlesFontSizeKey handler:
+       ^(NSNumber * _Nonnull change) {
+           [player setInteger: change.integerValue
+                  forProperty: MPVPlayerPropertySubsFontSize];
+       }],
+      
+      // MARK: Subtitles font scale
+      [appPrefs observeKey: SLHPreferencesSubtitlesFontScaleByWindowKey handler:
+       ^(NSNumber * _Nonnull change) {
+           [player setBool: change.boolValue
+               forProperty: MPVPlayerPropertySubsFontScaleByWindow];
+       }],
+      
+      // MARK: Last edited advanced option
+      [appPrefs observeKey: SLHPreferencesAdvancedOptionsLastEditedKey handler:
+       ^(id _Nonnull option) {
+           NSError *error = nil;
+           id value = [option valueForKey:SLHPreferencesAdvancedOptionValueKey];
+           id key = [option valueForKey:SLHPreferencesAdvancedOptionNameKey];
+           if (![player setString:value forProperty:key error:&error]) {
+               [NSApp presentError:error];
+           }
+       }],
+      
+      // MARK: Enable advanced options
+      [appPrefs observeKey: SLHPreferencesAdvancedOptionsEnabledKey handler:
+       ^(NSNumber * _Nonnull change) {
+           if (!change.boolValue) return;
+           
+           NSDictionary *advancedOptions = prefs.advancedOptions;
+           if (!advancedOptions.count) return;
+           
+           [advancedOptions enumerateKeysAndObjectsUsingBlock:
+            ^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 NSError *error = nil;
                 if (![player setString:obj forProperty:key error:&error]) {
-                    [uself presentError:error];
+                    [NSApp presentError:error];
                 }
             }];
-        }
-    }
-}
-
-- (void)updateWindowTitleStyle:(NSNumber *)obj {
-    NSWindowTitleVisibility value = obj.integerValue;
-    NSWindow *window = self.window;
-    window.titleVisibility = value;
-    if (_currentEncoderItem) {
-        // reset the url, otherwise the window won't update its file icon properly
-        window.representedURL = nil;
-        NSURL * url = _currentEncoderItem.playerItem.url;
-        window.representedURL = url;
-        window.title = url.lastPathComponent;
-    }
-}
-
-- (void)reloadExternalPlayer:(NSString *)obj {
-    [SLHExternalPlayer setDefaultPlayerURL:[NSURL fileURLWithPath:obj
-                                                      isDirectory:NO]];
-    [SLHExternalPlayer reinitializeDefaultPlayer];
-}
-
-- (void)updateTemplateName:(NSString *)obj {
-    _templateNameFormatter.templateFormat = obj;
-}
-
-- (void)enableTemplateName:(NSNumber *)obj {
-    _outputNameController.nameEditable = obj.boolValue ? NO : YES;
-}
-
-- (void)observePreferences:(SLHPreferences *)appPrefs {
-    _observedPrefs = @{
-                       SLHPreferencesScreenshotPathKey           : addressOf(self, @selector(screenshotPathDidChange:)),
-                       SLHPreferencesScreenshotFormatKey         : addressOf(self, @selector(screenshotFormatDidChange:)),
-                       SLHPreferencesScreenshotTemplateKey       : addressOf(self, @selector(screenshotTemplateDidChange:)),
-                       SLHPreferencesScreenshotJPGQualityKey     : addressOf(self, @selector(screenshotJPGQualityDidChange:)),
-                       SLHPreferencesScreenshotPNGCompressionKey : addressOf(self, @selector(screenshotPNGCompressionDidChange:)),
-                       SLHPreferencesOSDFontNameKey              : addressOf(self, @selector(osdFontNameDidChange:)),
-                       SLHPreferencesOSDFontSizeKey              : addressOf(self, @selector(osdFontSizeDidChange:)),
-                       SLHPreferencesOSDFontScaleByWindowKey     : addressOf(self, @selector(osdFontScaleByWindowDidChange:)),
-                       SLHPreferencesSubtitlesFontNameKey              : addressOf(self, @selector(subsFontNameDidChange:)),
-                       SLHPreferencesSubtitlesFontSizeKey              : addressOf(self, @selector(subsFontSizeDidChange:)),
-                       SLHPreferencesSubtitlesFontScaleByWindowKey     : addressOf(self, @selector(subsFontScaleByWindowDidChange:)),
-                       SLHPreferencesAdvancedOptionsLastEditedKey   : addressOf(self, @selector(advancedOptionDidChange:)),
-                       SLHPreferencesAdvancedOptionsEnabledKey      : addressOf(self, @selector(enableAdvancedOptionsDidChange:)),
-                       SLHPreferencesWindowTitleStyleKey    : addressOf(self, @selector(updateWindowTitleStyle:)),
-                       SLHPreferencesMPVPathKey             : addressOf(self, @selector(reloadExternalPlayer:)),
-                       SLHPreferencesOutputNameTemplateKey  : addressOf(self, @selector(updateTemplateName:)),
-                       SLHPreferencesEnableOutputNameTemplateKey : addressOf(self, @selector(enableTemplateName:))
-                       };
-    
-    for (NSString *key in _observedPrefs) {
-        [appPrefs addObserver:self
-                   forKeyPath:key
-                      options:NSKeyValueObservingOptionNew
-                      context:&SLHPreferencesKVOContext];
-    }
+       }],
+      
+      // MARK: Window title style
+      [appPrefs observeKey: SLHPreferencesWindowTitleStyleKey handler:
+       ^(NSNumber * _Nonnull change) {
+           // FIXME: Big Sur's toolbars
+           NSWindowTitleVisibility value = change.integerValue;
+           NSWindow *window = uSelf.window;
+           window.titleVisibility = value;
+           SLHEncoderItem *current = uSelf->_currentEncoderItem;
+           if (current) {
+               // reset the url, otherwise the window won't
+               // update its file icon properly
+               window.representedURL = nil;
+               NSURL * url = current.playerItem.url;
+               window.representedURL = url;
+               window.title = url.lastPathComponent;
+           }
+       }],
+      
+      // MARK: MPV path
+      [appPrefs observeKey: SLHPreferencesMPVPathKey handler:
+       ^(NSString * _Nonnull change) {
+           id fileURL = [NSURL fileURLWithPath:change isDirectory:NO];
+           [SLHExternalPlayer setDefaultPlayerURL:fileURL];
+           [SLHExternalPlayer reinitializeDefaultPlayer];
+       }],
+      
+      // MARK: Output name template format
+      [appPrefs observeKey: SLHPreferencesOutputNameTemplateKey handler:
+       ^(NSString * _Nonnull change) {
+           uSelf->_templateNameFormatter.templateFormat = change;
+       }],
+      
+      // MARK: Enable output name template formatting
+      [appPrefs observeKey: SLHPreferencesEnableOutputNameTemplateKey handler:
+       ^(NSNumber * _Nonnull change) {
+           BOOL result = change.boolValue;
+           uSelf->_outputNameController.nameEditable = result ? NO : YES;
+       }],
+    ];
 }
 
 - (void)unobservePreferences:(SLHPreferences *)appPrefs {
-    for (NSString *key in _observedPrefs) {
-        [appPrefs removeObserver:self
-                      forKeyPath:key
-                         context:&SLHPreferencesKVOContext];
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context {
-    if (context == &SLHPreferencesKVOContext) {
-        SLHMethodAddress *method = _observedPrefs[keyPath];
-        if (method) {
-            ((SLHSetterIMP)method->_impl)(self, method->_selector, change[NSKeyValueChangeNewKey]);
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
+    _prefsObservers = nil;
 }
 
 #pragma mark - PopUp Menus
