@@ -424,7 +424,7 @@ exit:
 }
 
 - (void)notifyObservers:(mpv_event_property *) event_property {
-    
+@autoreleasepool {
 #ifdef DEBUG
     NSLog(@"Property did change: %s format: %i", event_property->name, event_property->format);
 #endif
@@ -466,6 +466,7 @@ exit:
             [observer player:self didChangeValue:value forProperty:property format:event_property->format];
         }
     }
+}
 }
 
 #pragma mark - Properties
