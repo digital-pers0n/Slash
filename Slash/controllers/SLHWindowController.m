@@ -1457,7 +1457,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     if (splitView == _inspectorSplitView) {
         return NSWidth(splitView.frame) - 280;
     } else if (splitView == _trimSplitView) {
-        return 180; // minimum width of encoder items table
+        return 210; // minimum width of encoder items table
     }
     return 280; // minimum videoView height
 }
