@@ -13,16 +13,16 @@
 #import "MPVOpenGLView.h"
 #import "MPVIOSurfaceView.h"
 #import "SLHPlayerViewController.h"
-#import "SLHMethodAddress.h"
 #import "SLHPreferences.h"
 #import "SLHPreferencesKeys.h"
+#import "SLTObserver.h"
 
 @interface SLHPlayerView () {
     MPVPlayer *_player;
     MPVOpenGLView *_videoView;
     Class _videoViewClass;
     SLHPlayerViewController *_viewController;
-    NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
+    NSArray<SLTObserver *> *_observedPrefs;
     
     struct _playerViewFlags {
         unsigned int shouldPauseDuringLiveResize:1;
@@ -135,7 +135,7 @@
 
 - (void)shutdown {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self unobservePreferences:[SLHPreferences preferences]];
+    [self unobservePreferences];
     
     [_videoView removeFromSuperview];
     [_viewController.view removeFromSuperview];
@@ -175,83 +175,50 @@
 
 #pragma mark - KVO
 
-- (void)didChangePauseDuringLiveResize:(NSNumber *)value {
-    _PVFlags.shouldPauseDuringLiveResize = (value.boolValue) ? 1 : 0;
-}
-
-- (void)didChangeUseHiResOpenGLSurface:(NSNumber *)value {
-    if (_videoView) {
-        _videoView.wantsBestResolutionOpenGLSurface = value.boolValue;
-    }
-}
-
-- (void)didChangeRendererName:(NSString *)name {
-    if (!_player) { return; }
-    
-    MPVPlayerItem *item = _player.currentItem;
-    NSInteger vid = 0;
-    if (item) {
-        vid = [_player integerForProperty:MPVPlayerPropertyVideoID];
-        [_player setString:@"no" forProperty:MPVPlayerPropertyVideoID];
-    }
-    [_videoView removeFromSuperview];
-    [_videoView destroyRenderContext];
-    _videoView = nil;
-    _videoViewClass = NSClassFromString(name);
-    [self createVideoViewWithPlayer:_player];
-    
-    if (item) {
-        [_player setInteger:vid forProperty:MPVPlayerPropertyVideoID];
-    }
-}
-
-static char SLHPlayerViewKVOContext;
-
 - (void)observePreferences:(SLHPreferences *)appPrefs {
-    _observedPrefs = @{
-                       SLHPreferencesPausePlaybackDuringWindowResizeKey :
-                           addressOf(self, @selector(didChangePauseDuringLiveResize:)),
-                       SLHPreferencesUseHiResOpenGLSurfaceKey :
-                           addressOf(self, @selector(didChangeUseHiResOpenGLSurface:)),
-                       SLHPreferencesRendererClassNameKey :
-                           addressOf(self, @selector(didChangeRendererName:))
-                       
-                       };
-    
-    for (NSString *key in _observedPrefs) {
-        [appPrefs addObserver:self
-                   forKeyPath:key
-                      options:NSKeyValueObservingOptionNew
-                      context:&SLHPlayerViewKVOContext];
-    }
+    __unsafe_unretained typeof(self) u = self;
+    _observedPrefs =
+    @[
+      // MARK: Pause playback during live resize
+      [appPrefs
+       observeKey:SLHPreferencesPausePlaybackDuringWindowResizeKey handler:
+       ^(NSNumber * _Nonnull value) {
+           u->_PVFlags.shouldPauseDuringLiveResize = (value.boolValue) ? 1 : 0;
+       }],
+      // MARK: Use HiRes OpenGL surface
+      [appPrefs observeKey:SLHPreferencesUseHiResOpenGLSurfaceKey handler:
+       ^(NSNumber * _Nonnull value) {
+           if (u->_videoView) {
+               u->_videoView.wantsBestResolutionOpenGLSurface = value.boolValue;
+           }
+       }],
+      // MARK: Reload video renderer
+      [appPrefs observeKey:SLHPreferencesRendererClassNameKey handler:
+       ^(NSString * _Nonnull newValue) {
+           MPVPlayer *player = u->_player;
+           if (!player) { return; }
+           
+           MPVPlayerItem *item = player.currentItem;
+           NSInteger vid = 0;
+           if (item) {
+               vid = [player integerForProperty:MPVPlayerPropertyVideoID];
+               [player setString:@"no" forProperty:MPVPlayerPropertyVideoID];
+           }
+           [u->_videoView removeFromSuperview];
+           [u->_videoView destroyRenderContext];
+           u->_videoView = nil;
+           u->_videoViewClass = NSClassFromString(newValue);
+           [self createVideoViewWithPlayer:player];
+           
+           if (item) {
+               [player setInteger:vid forProperty:MPVPlayerPropertyVideoID];
+           }
+       }]
+    ];
 }
 
-- (void)unobservePreferences:(SLHPreferences *)appPrefs {
-    for (NSString *key in _observedPrefs) {
-        [appPrefs removeObserver:self
-                      forKeyPath:key
-                         context:&SLHPlayerViewKVOContext];
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context
-{
-    if (context == &SLHPlayerViewKVOContext) {
-        SLHMethodAddress *method = _observedPrefs[keyPath];
-        if (method) {
-            ((SLHSetterIMP)method->_impl)(self,
-                                          method->_selector,
-                                          change[NSKeyValueChangeNewKey]);
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath
-                             ofObject:object
-                               change:change
-                              context:context];
-    }
+- (void)unobservePreferences {
+    _observedPrefs = nil;
 }
 
 @end
