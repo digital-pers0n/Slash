@@ -310,6 +310,10 @@ static void _get_coordinates(char *start, char *end, int n, long *result) {
                 CFRelease(image);
                 uSelf->_busy = NO;
             });
+        } else {
+           CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
+               uSelf->_busy = NO;
+           });
         }
     });
 }
