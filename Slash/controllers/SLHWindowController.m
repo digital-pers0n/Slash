@@ -22,7 +22,6 @@
 #import "SLHEncoderQueue.h"
 #import "SLHExternalPlayer.h"
 #import "SLHPlayerViewController.h"
-#import "SLHMethodAddress.h"
 #import "SLHEncoderHistory.h"
 #import "SLHBitrateFormatter.h"
 #import "SLHTrimViewController.h"
@@ -71,7 +70,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     NSView *_encoderSettingsView;
     SLHEncoder *_encoder;
     SLHTextEditor *_textEditor;
-    NSDictionary <NSString *, SLHMethodAddress *> *_observedPrefs;
     SLHEncoderHistory *_encoderHistory;
     SLHTrimViewController *_trimViewController;
     NSPopover *_trimViewSettingsPopover;
@@ -100,7 +98,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-
+    
     /* SLHPresetManager */
     _presetManager = [[SLHPresetManager alloc] init];
     _presetManager.delegate = self;
@@ -653,7 +651,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     ];
 }
 
-- (void)unobservePreferences:(SLHPreferences *)appPrefs {
+- (void)unobservePreferences {
     _prefsObservers = nil;
 }
 
@@ -1278,7 +1276,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     if (_presetManager.hasChanges) {
         [_presetManager savePresets];
     }
-    [self unobservePreferences:_preferences];
+    [self unobservePreferences];
     [_player quit];
     _player = nil;
     self.currentEncoderItem = nil;
