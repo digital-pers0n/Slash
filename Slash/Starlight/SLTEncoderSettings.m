@@ -15,6 +15,19 @@
     return @[];
 }
 
+- (instancetype)initWithVideo:(SLTVideoSettings *)video
+                        audio:(STLAudioSettings *)audio
+                    subtitles:(SLTSubtitlesSEttings *)subs {
+    self = [super init];
+    if (self) {
+        _videoSettings = video;
+        _audioSettings = audio;
+        _subtitlesSettings = subs;
+        _containerName = @"mkv";
+    }
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     SLTEncoderSettings *obj = [[self.class allocWithZone:zone] init];
     obj->_enableAudioPassThrough = _enableAudioPassThrough;
