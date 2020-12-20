@@ -28,6 +28,7 @@
 #import "SLHTrimViewSettings.h"
 #import "SLHOutputNameController.h"
 #import "SLHTemplateNameFormatter.h"
+#import "SLTObserver.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
