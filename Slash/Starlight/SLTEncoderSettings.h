@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLTEncoderSettings : NSObject <NSCopying>
 
 - (instancetype)initWithVideo:(SLTVideoSettings *)video
-                        audio:(STLAudioSettings *)audio
-                    subtitles:(SLTSubtitlesSEttings *)subs;
+                        audio:(SLTAudioSettings *)audio
+                    subtitles:(SLTSubtitlesSettings *)subs;
 
 @property (nonatomic, readonly) BOOL allowsTwoPassEncoding;
 @property (nonatomic, readonly, nullable) NSArray<NSString *> *firstPassArguments;

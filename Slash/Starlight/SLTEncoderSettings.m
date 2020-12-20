@@ -16,8 +16,8 @@
 }
 
 - (instancetype)initWithVideo:(SLTVideoSettings *)video
-                        audio:(STLAudioSettings *)audio
-                    subtitles:(SLTSubtitlesSEttings *)subs {
+                        audio:(SLTAudioSettings *)audio
+                    subtitles:(SLTSubtitlesSettings *)subs {
     self = [super init];
     if (self) {
         _videoSettings = video;
