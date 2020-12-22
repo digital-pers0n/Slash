@@ -10,6 +10,15 @@
 
 @implementation SLTMediaSettings
 
+- (instancetype)initWithSettings:(SLTMediaSettings *)media {
+    self = [super init];
+    if (self) {
+        _streamIndex = media->_streamIndex;
+        _codecName = media->_codecName.copy;
+    }
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     typeof(self) obj = [[[self class] allocWithZone:zone] init];
     obj->_streamIndex = _streamIndex;
@@ -50,6 +59,14 @@ static NSString *SLTMapStreamIndex(NSInteger streamIndex) {
 
 @implementation SLTAudioSettings
 
+- (instancetype)initWithAudioSettings:(SLTAudioSettings *)audio {
+    self = [super initWithSettings:audio];
+    _bitRate = audio->_bitRate;
+    _sampleRate = audio->_sampleRate;
+    _numberOfChannels = audio->_numberOfChannels;
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     typeof(self) obj = [super copyWithZone:zone];
     obj->_bitRate = _bitRate;
@@ -78,6 +95,14 @@ static NSString *SLTMapStreamIndex(NSInteger streamIndex) {
 @end
 
 @implementation SLTVideoSettings
+
+- (instancetype)initWithVideoSettings:(SLTVideoSettings *)video {
+    self = [super initWithSettings:video];
+    _bitRate = video->_bitRate;
+    _pixelFormat = video->_pixelFormat.copy;
+    _maxGopSize = video->_maxGopSize;
+    return self;
+}
 
 - (id)copyWithZone:(NSZone *)zone {
     typeof(self) obj = [super copyWithZone:zone];

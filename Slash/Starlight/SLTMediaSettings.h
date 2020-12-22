@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *_codecName;
 }
 
+- (instancetype)initWithSettings:(SLTMediaSettings *)media;
+
 /** Index of the media stream. 
     Set to -1 to indicate that the stream should be ignored. */
 @property (nonatomic) NSInteger streamIndex;
@@ -43,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSInteger _sampleRate;
     NSInteger _numberOfChannels;
 }
+
+- (instancetype)initWithAudioSettings:(SLTAudioSettings *)audio;
 
 /** Bitrate in bps. */
 @property (nonatomic) int64_t bitRate;
@@ -75,6 +79,8 @@ typedef NS_ENUM(NSInteger, SLTAudioChannels) {
     NSString *_pixelFormat;
     NSInteger _maxGopSize;
 }
+
+- (instancetype)initWithVideoSettings:(SLTVideoSettings *)video;
 
 /** Bitrate in bps. */
 @property (nonatomic) int64_t bitRate;

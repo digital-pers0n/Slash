@@ -140,6 +140,12 @@ OBJC_DIRECT_MEMBERS
     return self;
 }
 
+- (instancetype)initWithVideoSettings:(SLTVideoSettings *)video {
+    self = [super initWithVideoSettings:video];
+    _codecName = @"libx264";
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     typeof(self) obj = [super copyWithZone:zone];
     obj->_maxRate = _maxRate;
@@ -220,6 +226,12 @@ OBJC_DIRECT_MEMBERS
     if (self) {
         _codecName = @"aac";
     }
+    return self;
+}
+
+- (instancetype)initWithAudioSettings:(SLTAudioSettings *)audio {
+    self = [super initWithAudioSettings:audio];
+    _codecName = @"aac";
     return self;
 }
 
