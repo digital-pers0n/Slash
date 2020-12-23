@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
                        keyPath:(NSString *)kp
                        handler:(void (^)(id newValue))block;
 
+/** Observe changes in multiple key paths. */
+- (instancetype)initWithObject:(id)observable
+                      keyPaths:(NSArray<NSString *> *)kps
+                       options:(NSKeyValueObservingOptions)mask
+                       handler:(void (^)(NSString *keyPath, NSDictionary *change))block;
+
 @property (readonly, nonatomic, nullable, assign) id observable;
 @property (readonly, nonatomic) NSString *keyPath;
 
