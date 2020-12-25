@@ -364,6 +364,7 @@
 		CEBB8BF7246ACAD700776827 /* MPVLock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVLock.c; path = MPVKit/MPVLock.c; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
 		CEBFF3E32190BDA000F54C7E /* slh_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_encoder.h; path = Slash/system/slh_encoder.h; sourceTree = SOURCE_ROOT; };
+		CECDA0E92594EBC800200AF4 /* SLTDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLTDefines.h; path = Starlight/SLTDefines.h; sourceTree = "<group>"; };
 		CECE14C624FD789500406B9D /* SLKStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKStackView.h; path = StarlightKit/SLKStackView.h; sourceTree = "<group>"; };
 		CECE14C724FD789500406B9D /* SLKStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKStackView.m; path = StarlightKit/SLKStackView.m; sourceTree = "<group>"; };
 		CECE14E62507B79900406B9D /* SLTBitrateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTBitrateFormatter.h; path = Starlight/SLTBitrateFormatter.h; sourceTree = "<group>"; };
@@ -805,36 +806,37 @@
 		CEE7B5B524D31C0600A115D2 /* Starlight */ = {
 			isa = PBXGroup;
 			children = (
-				CEE7B5B224D31C0100A115D2 /* SLTSource.h */,
-				CEE7B5B324D31C0100A115D2 /* SLTSource.m */,
-				CE021DF22521F80B002912A1 /* SLTTask.h */,
-				CE021DF32521F80B002912A1 /* SLTTask.m */,
+				CEBA3683253B589B00823125 /* SLTBinder.h */,
+				CEBA3684253B589B00823125 /* SLTBinder.m */,
+				CECE14E62507B79900406B9D /* SLTBitrateFormatter.h */,
+				CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */,
+				CECDA0E92594EBC800200AF4 /* SLTDefines.h */,
 				CEE7B5B624D31C8200A115D2 /* SLTDestination.h */,
 				CEE7B5B724D31C8200A115D2 /* SLTDestination.m */,
-				CEE7B5B924D31CAD00A115D2 /* SLTQueue.h */,
-				CEE7B5BA24D31CAD00A115D2 /* SLTQueue.m */,
+				CEE7B5BF24D31D1100A115D2 /* SLTEncoder.h */,
+				CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */,
+				CEFF068A24D72FA900E93228 /* SLTEncoderSettings.h */,
+				CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */,
+				CE46483625506B380005498B /* SLTFFmpegInfo.h */,
+				CE46483725506B380005498B /* SLTFFmpegInfo.m */,
 				CEE7B5BC24D31CC700A115D2 /* SLTFilter.h */,
 				CEE7B5BD24D31CC700A115D2 /* SLTFilter.m */,
 				CE7D018924D4559D00B51D66 /* SLTFilterParameter.h */,
 				CE7D018A24D4559D00B51D66 /* SLTFilterParameter.m */,
-				CEE7B5BF24D31D1100A115D2 /* SLTEncoder.h */,
-				CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */,
-				CE46483625506B380005498B /* SLTFFmpegInfo.h */,
-				CE46483725506B380005498B /* SLTFFmpegInfo.m */,
-				CEFF068A24D72FA900E93228 /* SLTEncoderSettings.h */,
-				CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */,
 				CEF398E324DC569200D44BDD /* SLTH264EncoderSettings.h */,
 				CEF398E424DC569200D44BDD /* SLTH264EncoderSettings.m */,
 				CEFF068D24D7300200E93228 /* SLTMediaSettings.h */,
 				CEFF068E24D7300200E93228 /* SLTMediaSettings.m */,
-				CECE14E62507B79900406B9D /* SLTBitrateFormatter.h */,
-				CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */,
-				CE146A4B250D0C3B0064B9A9 /* SLTUtils.h */,
-				CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */,
-				CEBA3683253B589B00823125 /* SLTBinder.h */,
-				CEBA3684253B589B00823125 /* SLTBinder.m */,
 				CED60C6425755BED00EA6B97 /* SLTObserver.h */,
 				CED60C6525755BED00EA6B97 /* SLTObserver.m */,
+				CEE7B5B924D31CAD00A115D2 /* SLTQueue.h */,
+				CEE7B5BA24D31CAD00A115D2 /* SLTQueue.m */,
+				CEE7B5B224D31C0100A115D2 /* SLTSource.h */,
+				CEE7B5B324D31C0100A115D2 /* SLTSource.m */,
+				CE021DF22521F80B002912A1 /* SLTTask.h */,
+				CE021DF32521F80B002912A1 /* SLTTask.m */,
+				CE146A4B250D0C3B0064B9A9 /* SLTUtils.h */,
+				CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */,
 			);
 			name = Starlight;
 			sourceTree = "<group>";
