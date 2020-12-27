@@ -36,3 +36,15 @@ NSString *SLTTemporaryDirectory(void);
          NSError object.
  */
 BOOL SLTValidateFileName(NSString *fileName, NSError **error);
+
+/* Below are functions for compatibility with MacOS 11, 
+   since old marker constants are deprecated there. */
+/** 
+ Check if a given value is the no selection marker.
+ */
+BOOL SLTIsNoSelectionMarker(id value);
+
+/**
+ Check if a given value is the not applicable marker.
+ */
+BOOL SLTIsNotApplicableMarker(id value);

@@ -7,6 +7,9 @@
 //
 
 #import "SLHTrimView.h"
+
+#import "SLTUtils.h"
+
 @import QuartzCore.CAShapeLayer;
 
 //#define DEBUG_TRIMVIEW_DRAWING 1
@@ -182,9 +185,9 @@ static inline NSRect rightKnobFrame(NSRect cellFrame) {
     _controlLayer.path = path;
     CGPathRelease(path);
     
-    path = CGPathCreateWithRoundedRect(controlView.bounds, 4, 4, nil);
+        path = CGPathCreateWithRoundedRect(controlView.bounds, 4, 4, nil);
     _backgroundLayer.path = path;
-    CGPathRelease(path);
+        CGPathRelease(path);
 }
 
 @end
@@ -325,7 +328,7 @@ static char minValueKVOContext;
     
     if (binding) {
         id value = [object valueForKeyPath:keyPath];
-        if (value != NSNotApplicableMarker && value != NSNoSelectionMarker) {
+        if (SLTIsNotApplicableMarker(value) && SLTIsNoSelectionMarker(value)) {
             [self setValue:value forKey:binding];
         }
     } else {

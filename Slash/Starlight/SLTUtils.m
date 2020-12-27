@@ -6,7 +6,7 @@
 //  Copyright © 2020年 digital-pers0n. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import "SLTUtils.h"
 
 static NSString *_temporaryDirectoryPath = nil;
@@ -77,4 +77,20 @@ bail:
         return NO;
     }
     return YES;
+}
+
+BOOL SLTIsNoSelectionMarker(id value) {
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 110000
+    return value == NSBindingSelectionMarker.noSelectionMarker;
+#else
+    return value == NSNoSelectionMarker;
+#endif
+}
+
+BOOL SLTIsNotApplicableMarker(id value) {
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 110000
+    return value == NSBindingSelectionMarker.notApplicableSelectionMarker;
+#else
+    return value == NSNotApplicableMarker;
+#endif
 }
