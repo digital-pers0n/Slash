@@ -9,9 +9,13 @@
 #import "SLHPreferences.h"
 #import "SLHPreferencesKeys.h"
 #import "NSDictionary+SLHPropertyListAddtions.h"
+
 #import "MPVKitDefines.h"
-#import "SLTTask.h"
+
+#import "SLTFFmpegInfo.h"
 #import "SLTObserver.h"
+#import "SLTTask.h"
+
 
 /* User-defaults keys */
 extern NSString *const SLHPreferencesFFMpegFilePathKey;
@@ -549,8 +553,7 @@ static NSError * pathValidationError(NSString * path, NSString * name) {
 
 static BOOL isFilePathValid(NSString * path) {
     NSFileManager *fm = NSFileManager.defaultManager;
-    return ([fm fileExistsAtPath:path isDirectory:nil] &&
-            [fm isExecutableFileAtPath:path]);
+    return ([fm isExecutableFileAtPath:path]);
 }
 
 - (BOOL)validateFfmpegPath:(inout id _Nullable * _Nonnull)newPath
