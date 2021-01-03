@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLTFFmpegInfo : NSObject
 
-- (nullable instancetype)initWithPath:(NSString *)path error:(NSError **)error;
+- (nullable instancetype)initWithPath:(NSString *)path error:(out NSError **)error;
 @property (nonatomic, readonly) NSString *path;
 @property (nonatomic, readonly) NSArray *supportedCodecs;
 @property (nonatomic, readonly) NSArray *supportedFilters;
