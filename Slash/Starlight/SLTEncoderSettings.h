@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
                     subtitles:(SLTSubtitlesSettings *)subs;
 
 @property (nonatomic, readonly) BOOL allowsTwoPassEncoding;
+@property (nonatomic, readonly) BOOL allowsAudioFilters;
+@property (nonatomic, readonly) BOOL allowsVideoFilters;
 @property (nonatomic, readonly, nullable) NSArray<NSString *> *firstPassArguments;
 @property (nonatomic, readonly, nullable) NSArray<NSString *> *arguments;
 @property (nonatomic) BOOL enableVideoPassThrough;

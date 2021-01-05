@@ -40,4 +40,12 @@
     return obj;
 }
 
+- (BOOL)allowsAudioFilters {
+    return (!_enableAudioPassThrough && _audioSettings->_streamIndex >= 0);
+}
+
+- (BOOL)allowsVideoFilters {
+    return (!_enableVideoPassThrough && _videoSettings->_streamIndex >= 0);
+}
+
 @end
