@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
                         audio:(SLTAudioSettings *)audio
                     subtitles:(SLTSubtitlesSettings *)subs;
 
+@property (class, nonatomic, copy) NSString *ffmpegPath;
+@property (class, nonatomic) NSInteger numberOfThreads;
+
 @property (nonatomic, readonly) BOOL allowsTwoPassEncoding;
 @property (nonatomic, readonly) BOOL allowsAudioFilters;
 @property (nonatomic, readonly) BOOL allowsVideoFilters;

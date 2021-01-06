@@ -11,6 +11,27 @@
 
 @implementation SLTEncoderSettings
 
+static NSString *SLTDefaultFFmpegPath = @"/usr/local/bin/ffmpeg";
+
++ (NSString *)ffmpegPath {
+    return SLTDefaultFFmpegPath;
+}
+
++ (void)setFfmpegPath:(NSString *)path {
+    NSAssert(path, @"FFmpeg path cannot be nil.");
+    SLTDefaultFFmpegPath = path.copy;
+}
+
+static NSInteger SLTDefaultNumberOfThreads = 0;
+
++ (NSInteger)numberOfThreads {
+    return SLTDefaultNumberOfThreads;
+}
+
++ (void)setNumberOfThreads:(NSInteger)threads {
+    SLTDefaultNumberOfThreads = threads;
+}
+
 + (NSArray<NSString *> *)allowedContainers {
     return @[];
 }
