@@ -46,11 +46,8 @@ static NSString *SLTCurrentTemplateFormat = SLTDefaultTemplateFormat;
     return SLTCurrentTemplateFormat;
 }
 
-+ (void)setCurrentTemplateFormat:(NSString *)newFormat {
-    if (!newFormat) {
-        SLTCurrentTemplateFormat = SLTDefaultTemplateFormat;
-    }
-    SLTCurrentTemplateFormat = [newFormat copy];
++ (void)setCurrentTemplateFormat:(NSString *)fmt {
+    SLTCurrentTemplateFormat = fmt ? fmt.copy : SLTDefaultTemplateFormat;
 }
 
 + (BOOL)validateTemplate:(NSString *)format error:(NSError **)error {
