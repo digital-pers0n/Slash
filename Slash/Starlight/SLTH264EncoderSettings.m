@@ -25,17 +25,6 @@ OBJC_DIRECT_MEMBERS
     return obj;
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.videoSettings = [[SLTH264VideoSettings alloc] init];
-        self.audioSettings = [[SLTH264AudioSettings alloc] init];
-        self.subtitlesSettings = [[SLTSubtitlesSettings alloc] init];
-        self.containerName = @"mp4";
-    }
-    return self;
-}
-
 - (BOOL)allowsTwoPassEncoding {
     return YES;
 }
