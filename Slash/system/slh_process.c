@@ -145,6 +145,9 @@ int prc_kill(Process *p) {
             prc_error(__func__, "fclose()");
         }
         
+        int exit_code;
+        waitpid(prc_pid(p), &exit_code, 0);
+        
         if (posix_spawn_file_actions_destroy(&(p->fa)) != 0) {
             prc_error(__func__, "posix_spawn_file_actions_destroy()");
         }
