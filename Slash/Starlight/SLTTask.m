@@ -5,12 +5,26 @@
 //  Created by Terminator on 2020/9/28.
 //  Copyright © 2020年 digital-pers0n. All rights reserved.
 //
-
 #import "SLTTask.h"
-#import "SLTSource.h"
+
 #import "SLTDestination.h"
+#import "SLTEncoderSettings.h"
+#import "SLTFilter.h"
+#import "SLTMediaSettings.h"
+#import "SLTObserver.h"
+#import "SLTSource.h"
 #import "SLTUtils.h"
 
+#import "MPVKitDefines.h"
+#import "MPVPlayerItem.h"
+#import "MPVPlayerItemTrack.h"
+
+@interface SLTTask () {
+}
+
+@end
+
+OBJC_DIRECT_MEMBERS
 @implementation SLTTask
 
 + (instancetype)taskWithSource:(SLTSource *)src
@@ -35,6 +49,91 @@
     obj->_destination = _destination.copy;
     obj->_templateFormat = _templateFormat.copy;
     return obj;
+}
+
+#pragma mark - Arguments Array
+
+- (NSArray<NSArray<NSString *> *> *)arguments {
+    SLTEncoderSettings *settings = _destination.settings;
+    NSMutableArray *result = [[NSMutableArray alloc] initWithArray:
+        @[ SLTEncoderSettings.ffmpegPath,
+           @"-nostdin", @"-hide_banner",
+           @"-ss", @(_destination.startTime).stringValue,
+           @"-i", _source.filePath,
+           @"-t", @(_destination.duration).stringValue,
+           @"-threads", @(SLTEncoderSettings.numberOfThreads).stringValue,
+           @"-y" ]];
+    [result addObjectsFromArray:self.filtersArguments];
+    
+    id args = settings.firstPassArguments;
+    if (args) {
+        [result addObjectsFromArray:
+            @[@"-passlogfile", SLTTemporaryDirectory()]];
+        
+        NSMutableArray *firstPass = [result mutableCopy];
+        [firstPass addObjectsFromArray:args];
+        [firstPass addObjectsFromArray:@[ @"-f", @"null", @"/dev/null" ]];
+        
+        [result addObjectsFromArray:settings.arguments];
+        [result addObjectsFromArray:self.metadataArguments];
+        [result addObject:_destination.filePath];
+        return @[firstPass, result];
+    }
+    
+    [result addObjectsFromArray:settings.arguments];
+    [result addObjectsFromArray:self.metadataArguments];
+    [result addObject:_destination.filePath];
+    
+    return @[result];
+}
+
+- (NSString *)stringFromFilters:(NSArray<SLTFilter *>*)filters {
+    const NSInteger count = filters.count;
+    if (!count) return nil;
+    NSInteger idx = 0;
+    NSMutableString *result = [NSMutableString new];
+    for (SLTFilter *f in filters) {
+        [result appendString:f.stringValue];
+        if (++idx < count) {
+            [result appendString:@","];
+        }
+    }
+    
+    return result;
+}
+
+- (NSArray *)filtersArguments {
+    NSMutableArray *result = [NSMutableArray new];
+    SLTEncoderSettings *settings = _destination.settings;
+     __unsafe_unretained typeof(self) uSelf = self;
+    
+    void (^toString)() = ^(NSArray<SLTFilter *> *array, NSString *type) {
+        id tmp = [uSelf stringFromFilters:array];
+        if (tmp) {
+            [result addObjectsFromArray:@[ type, tmp ]];
+        }
+    };
+    
+    if (settings.allowsVideoFilters) {
+        toString(_destination.videoFilters, @"-vf");
+    }
+    
+    if (settings.allowsAudioFilters) {
+        toString(_destination.audioFilters, @"-af");
+    }
+    
+    return result;
+}
+
+- (NSArray *)metadataArguments {
+    NSMutableArray *result = [NSMutableArray new];
+    [_destination.metadata enumerateKeysAndObjectsUsingBlock:
+    ^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+         [result addObject:@"-metadata"];
+         [result addObject:[NSString stringWithFormat:@"%@=%@", key, obj]];
+    }];
+    
+    return result;
 }
 
 #pragma mark - Template Names

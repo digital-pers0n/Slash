@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) SLTSource *source;
 @property (nonatomic) SLTDestination *destination;
 
+- (NSArray<NSArray<NSString *> *> *)arguments;
+
 #pragma mark - Template names
 
 /** nil resets the template format to SLTDefaultTemplateFormat */
