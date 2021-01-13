@@ -7,6 +7,16 @@
 //
 
 #import "SLTObserver.h"
+#import "SLTDefines.h"
+
+#import <objc/runtime.h>
+
+/*
+ All of these UNSAFE aka __unsafe_unretained qualifiers are used because
+ currently (checked with clang-12 -Ofast) under ARC lots of bogus retain /
+ release calls are generated. As a result this causes longer compile times,
+ breaks tail-call optimizations and generates larger binaries.
+ */
 
 @interface SLTNewValueObserver : SLTObserver
 @end
@@ -50,17 +60,20 @@
     return self;
 }
 
-- (instancetype)initWithObject:(id)observable keyPath:(NSString *)kp
-                       handler:(void (^)(id _Nonnull))block {
+- (instancetype)initWithObject:(UNSAFE id)observable
+                       keyPath:(UNSAFE NSString *)kp
+                       handler:(UNSAFE void (^)(id _Nonnull))block
+{
     return [[SLTNewValueObserver alloc]
             initWithObject:observable keyPath:kp
                    options:NSKeyValueObservingOptionNew handler:block];
 }
 
-- (instancetype)initWithObject:(id)observable
-                      keyPaths:(NSArray<NSString *> *)kps
+- (instancetype)initWithObject:(UNSAFE id)observable
+                      keyPaths:(UNSAFE NSArray<NSString *> *)kps
                        options:(NSKeyValueObservingOptions)mask
-                       handler:(void (^)(NSString *, NSDictionary *))block
+                       handler:(UNSAFE void
+                                (^)(NSString *, NSDictionary *))block
 {
     return [[SLTToManyObserver alloc] initWithObject:observable keyPaths:kps
                                              options:mask handler:block];
@@ -127,7 +140,7 @@
     return self;
 }
 
-- (void)observeValueForKeyPath:(__unsafe_unretained NSString *)keyPath
+- (void)observeValueForKeyPath:(UNSAFE NSString *)keyPath
                       ofObject:(id)object change:(NSDictionary *)change
                        context:(void *)context
 {
@@ -143,6 +156,174 @@
     _handler.toMany = nil;
     _observable = nil;
 }
+
+@end
+
+@implementation NSObject (SLTKeyValueObservation)
+
+- (SLTObserver *)observe:(UNSAFE NSObject *)object
+                 keyPath:(UNSAFE NSString *)kp
+                 options:(NSKeyValueObservingOptions)mask
+                 handler:(UNSAFE void (^)(NSDictionary *change))block
+{
+    return [[SLTObserver alloc] initWithObject:object
+                                       keyPath:kp options:mask handler:block];
+}
+
+- (SLTObserver *)observe:(UNSAFE NSObject *)object
+                 keyPath:(UNSAFE NSString *)kp
+                 handler:(UNSAFE void (^)(id newValue))block
+{
+    return [[SLTNewValueObserver alloc]
+            initWithObject:object keyPath:kp
+            options:NSKeyValueObservingOptionNew handler:block];
+}
+
+- (SLTObserver *)observe:(UNSAFE NSObject *)object
+                keyPaths:(UNSAFE NSArray<NSString *> *)kps
+                 options:(NSKeyValueObservingOptions)mask
+                 handler:(UNSAFE void (^)(NSString *, NSDictionary *))block
+{
+    return [[SLTToManyObserver alloc] initWithObject:object keyPaths:kps
+                                             options:mask handler:block];
+}
+
+static const void *
+SLTObserverAssociationKey() {
+    static const void *ctx = &ctx;
+    return ctx;
+}
+
+static NSMutableDictionary<NSString *, NSMutableArray *> *
+SLTObserverGetInfo(UNSAFE id obj, const void *key) {
+    NSMutableDictionary *result = objc_getAssociatedObject(obj, key);
+    if (!result) {
+        result = [NSMutableDictionary dictionary];
+        SLTObserverSetInfo(obj, result, key);
+    }
+    return result;
+}
+
+static void
+SLTObserverSetInfo(UNSAFE id obj, UNSAFE NSDictionary *dict, const void *key) {
+    objc_setAssociatedObject(obj, key, dict, OBJC_ASSOCIATION_RETAIN);
+}
+
+static NSMutableArray<SLTObserver *> *
+SLTObserverGetArray(UNSAFE NSMutableDictionary *dict, UNSAFE NSString *key) {
+    NSMutableArray *result = [dict objectForKey:key];
+    if (!result) {
+        result = [NSMutableArray array];
+        [dict setObject:result forKey:key];
+    }
+    return result;
+}
+
+static __attribute((overloadable)) NSMutableArray<SLTObserver *> *
+SLTObserverGetArray(UNSAFE id obj, UNSAFE NSString *key, const void *ctx) {
+    NSMutableDictionary *info = SLTObserverGetInfo(obj, ctx);
+    return SLTObserverGetArray(info, key);
+}
+
+static void
+SLTObserverAdd(UNSAFE id object, UNSAFE SLTObserver *observer,
+               UNSAFE NSString *key, const void *ctx) {
+    NSCAssert(ctx, @"Context cannot be nil.");
+    [SLTObserverGetArray(object, key, ctx) addObject:observer];
+}
+
+
+- (void)addObserver:(UNSAFE NSObject *)object
+            keyPath:(UNSAFE NSString *)kp
+            options:(NSKeyValueObservingOptions)mask
+            context:(const void *)ctx
+            handler:(UNSAFE void (^)(NSDictionary *change))block
+{
+    id observer = [object observe:self keyPath:kp options:mask handler:block];
+    SLTObserverAdd(object, observer, kp, ctx);
+}
+
+- (void)addObserver:(UNSAFE NSObject *)object
+            keyPath:(UNSAFE NSString *)kp
+            options:(NSKeyValueObservingOptions)mask
+            handler:(UNSAFE void (^)(NSDictionary *change))block
+{
+    [self addObserver:object keyPath:kp options:mask
+              context:SLTObserverAssociationKey() handler:block];
+}
+
+- (void)addObserver:(UNSAFE NSObject *)object
+            keyPath:(UNSAFE NSString *)kp
+            context:(const void *)ctx
+            handler:(UNSAFE void (^)(id newValue))block
+{
+    id observer = [object observe:self keyPath:kp handler:block];
+    SLTObserverAdd(object, observer, kp, ctx);
+}
+
+- (void)addObserver:(UNSAFE NSObject *)object
+            keyPath:(UNSAFE NSString *)kp
+            handler:(UNSAFE void (^)(id newValue))block
+{
+    [self addObserver:object keyPath:kp
+              context:SLTObserverAssociationKey() handler:block];
+}
+
+- (void)addObserver:(UNSAFE NSObject *)object
+           keyPaths:(UNSAFE NSArray<NSString *>*)kps
+            options:(NSKeyValueObservingOptions)mask
+            context:(const void *)ctx
+            handler:(UNSAFE void (^)(NSString *, NSDictionary *))block
+{
+    id observer = [object observe:self keyPaths:kps options:mask handler:block];
+    SLTObserverAdd(object, observer, SLTObserverMultipleValuesKeyPath, ctx);
+}
+
+- (void)addObserver:(UNSAFE NSObject *)object
+           keyPaths:(UNSAFE NSArray<NSString *>*)kps
+            options:(NSKeyValueObservingOptions)mask
+            handler:(UNSAFE void (^)(NSString *, NSDictionary *))block
+{
+    [self addObserver:object keyPaths:kps options:mask
+              context:SLTObserverAssociationKey() handler:block];
+}
+
+- (void)invalidateObserver:(UNSAFE NSObject *)object
+                   keyPath:(UNSAFE NSString *)kp
+                   context:(const void *)ctx
+{
+    NSAssert(ctx, @"Context cannot be nil.");
+    NSMutableDictionary *info = SLTObserverGetInfo(object, ctx);
+    if (!kp) {
+        [info removeAllObjects];
+        return;
+    }
+    
+    NSMutableArray *array = SLTObserverGetArray(info, kp);
+    NSAssert(array.count, @"%@ doesn't have any observed objects.",
+             [object debugDescription]);
+    
+    NSArray *copy = array.copy;
+    for (SLTObserver *obj in copy) {
+        if (self == obj->_observable) {
+            [array removeObject:obj];
+        }
+    }
+    NSAssert(copy.count != array.count, @"%@ isn't observed by %@",
+             [self debugDescription], [object debugDescription]);
+}
+
+
+- (void)invalidateObserver:(UNSAFE NSObject *)object
+                   keyPath:(UNSAFE NSString *)kp {
+    [self invalidateObserver:object
+                     keyPath:kp context:SLTObserverAssociationKey()];
+}
+- (void)invalidateObserver:(UNSAFE NSObject *)object {
+    [self invalidateObserver:object keyPath:nil];
+}
+
+NSString *const SLTObserverMultipleValuesKeyPath = @"multipleValuesKeyPath";
 
 @end
 

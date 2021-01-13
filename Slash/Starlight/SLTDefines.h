@@ -15,4 +15,6 @@
 */
 #define KVP(object, keyPath) sizeof(object.keyPath) ? @#keyPath : @""
 
+#define UNSAFE __unsafe_unretained
+
 #endif /* SLTDefines_h */
