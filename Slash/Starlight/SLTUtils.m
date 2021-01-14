@@ -79,8 +79,14 @@ bail:
     return YES;
 }
 
-BOOL SLTIsNoSelectionMarker(id value) {
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 110000
+#define MAC_OS_1100_BUILD 1
+#else
+#define MAC_OS_1100_BUILD 0
+#endif
+
+BOOL SLTIsNoSelectionMarker(id value) {
+#if MAC_OS_1100_BUILD
     return value == NSBindingSelectionMarker.noSelectionMarker;
 #else
     return value == NSNoSelectionMarker;
@@ -88,9 +94,25 @@ BOOL SLTIsNoSelectionMarker(id value) {
 }
 
 BOOL SLTIsNotApplicableMarker(id value) {
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 110000
+#if MAC_OS_1100_BUILD
     return value == NSBindingSelectionMarker.notApplicableSelectionMarker;
 #else
     return value == NSNotApplicableMarker;
+#endif
+}
+
+NSString *const SLTPasteboardTypeFileURL() {
+#if MAC_OS_1100_BUILD
+    return NSPasteboardTypeFileURL;
+#else 
+    return (NSString *const)kUTTypeFileURL;
+#endif
+}
+
+NSString *const SLTPasteboardTypeURL() {
+#if MAC_OS_1100_BUILD
+    return NSPasteboardTypeURL;
+#else
+    return (NSString *const)kUTTypeURL;
 #endif
 }

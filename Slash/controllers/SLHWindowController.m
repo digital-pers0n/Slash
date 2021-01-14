@@ -28,7 +28,9 @@
 #import "SLHTrimViewSettings.h"
 #import "SLHOutputNameController.h"
 #import "SLHTemplateNameFormatter.h"
+
 #import "SLTObserver.h"
+#import "SLTUtils.h"
 
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
@@ -150,7 +152,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [self formatsPopUpAction:_formatsPopUp];
     
     /* Drag and Drop support */
-    [self.window registerForDraggedTypes:@[(id)kUTTypeFileURL]];
+    [self.window registerForDraggedTypes:@[kSLTTypeFileURL]];
     
     /* MPVPlayer */
     MPVPlayer *player;
@@ -1290,7 +1292,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     NSPasteboard *pboard;
     pboard = [sender draggingPasteboard];
     
-    if ([pboard.types containsObject:(id)kUTTypeFileURL]) {
+    if ([pboard.types containsObject:kSLTTypeFileURL]) {
         return NSDragOperationGeneric;
     }
     return NSDragOperationNone;
@@ -1301,8 +1303,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     BOOL result = NO;
     pboard = [sender draggingPasteboard];
 
-    if ([pboard.types containsObject:(id)kUTTypeFileURL]) {
-        NSString *path = [pboard propertyListForType:(id)kUTTypeFileURL];
+    if ([pboard.types containsObject:kSLTTypeFileURL]) {
+        NSString *path = [pboard propertyListForType:kSLTTypeFileURL];
         NSURL *url = [NSURL URLWithString:path];
         path = url.path;
         MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithPath:path];

@@ -48,3 +48,12 @@ BOOL SLTIsNoSelectionMarker(id value);
  Check if a given value is the not applicable marker.
  */
 BOOL SLTIsNotApplicableMarker(id value);
+
+/*
+ Return correct pasteboard names when building for macOS 11, since kUTType
+ constants are soft deprecated there.
+ */
+NSString *const SLTPasteboardTypeFileURL();
+NSString *const SLTPasteboardTypeURL();
+#define kSLTTypeFileURL SLTPasteboardTypeFileURL()
+#define kSLTTypeURL SLTPasteboardTypeURL()

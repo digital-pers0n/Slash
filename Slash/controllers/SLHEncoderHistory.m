@@ -268,7 +268,7 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 - (void)windowDidLoad {
     [super windowDidLoad];
     _popover.contentSize = NSMakeSize(480, 640);
-    [_tableView registerForDraggedTypes:@[(id)kUTTypeURL]];
+    [_tableView registerForDraggedTypes:@[kSLTTypeURL]];
     [_tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
 
@@ -302,7 +302,7 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
     NSString *path = _paths[row].filePath;
     NSURL *url = [NSURL fileURLWithPath:path isDirectory:NO];
     NSPasteboardItem *pbItem = [NSPasteboardItem new];
-    [pbItem setString:url.absoluteString forType:(id)kUTTypeFileURL];
+    [pbItem setString:url.absoluteString forType:kSLTTypeFileURL];
     return pbItem;
 }
 
