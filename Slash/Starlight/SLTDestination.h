@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class SLTEncoderSettings, SLTFilter;
+@protocol SLTDestinationDataSource;
 
 @interface SLTDestination : NSObject <NSCopying>
 
@@ -19,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithPath:(NSString *)path
                     settings:(SLTEncoderSettings *)settings;
+
+@property (nonatomic, assign) id<SLTDestinationDataSource> dataSource;
 
 /** Access the output file path. */
 @property (nonatomic) NSString *filePath;
@@ -31,11 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSArray<SLTFilter *> *audioFilters;
 @property (nonatomic) NSDictionary<NSString *, NSString *> *metadata;
 
-/** Set the in value in seconds. */
-@property (nonatomic) CGFloat inValue;
+/** Set the stat time in seconds. */
+@property (nonatomic) CGFloat startTime;
 
-/** Set the out value in seconds. */
-@property (nonatomic) CGFloat outValue;
+/** Set the end time in seconds. */
+@property (nonatomic) CGFloat endTime;
+
+/** Time duration to use with KVO and bindings. */
+@property (nonatomic, readonly) CGFloat duration;
+@property (nonatomic, readonly) int64_t estimatedFileSize;
 
 typedef struct SLTTimeInterval_ {
     CGFloat start;
@@ -44,6 +51,15 @@ typedef struct SLTTimeInterval_ {
 
 @property (nonatomic) SLTTimeInterval selectionRange;
 
+@end
+
+@protocol SLTDestinationDataSource
+
+/** Called when audio passthrough is enabled. */
+- (int64_t)desiredAudioBitrate;
+
+/** Called when video passthrough is enabled. */
+- (int64_t)desiredVideoBitrate;
 @end
 
 NS_ASSUME_NONNULL_END
