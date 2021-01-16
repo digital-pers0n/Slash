@@ -73,6 +73,9 @@ private methods in other classes.
  methods must be used before the observed object is released, otherwise 
  the program will crash.
  */
+
+/** You must use the @c -invalidateObserver:keyPath:context: method to 
+ invalidate the observer. */
 - (void)addObserver:(NSObject *)object
             keyPath:(NSString *)kp
             options:(NSKeyValueObservingOptions)mask
@@ -84,6 +87,8 @@ private methods in other classes.
             options:(NSKeyValueObservingOptions)mask
             handler:(void (^)(NSDictionary *change))block;
 
+/** You must use the @c -invalidateObserver:keyPath:context: method to 
+ invalidate the observer. */
 - (void)addObserver:(NSObject *)object
             keyPath:(NSString *)kp
             context:(const void *)ctx
@@ -93,19 +98,25 @@ private methods in other classes.
             keyPath:(NSString *)kp
             handler:(void (^)(id newValue))block;
 
-/** To invalidate this observer use SLTObserverMultipleValuesKeyPath */
+/** To invalidate this observer use @c SLTObserverMultipleValuesKeyPath
+ the @c -invalidateObserver:keyPath:context: method must be used. */
 - (void)addObserver:(NSObject *)object
            keyPaths:(NSArray<NSString *>*)kps
             options:(NSKeyValueObservingOptions)mask
             context:(const void *)ctx
             handler:(void (^)(NSString *keyPath, NSDictionary *change))block;
 
-/** To invalidate this observer use SLTObserverMultipleValuesKeyPath */
+/** To invalidate this observer use @c SLTObserverMultipleValuesKeyPath */
 - (void)addObserver:(NSObject *)object
            keyPaths:(NSArray<NSString *>*)kps
             options:(NSKeyValueObservingOptions)mask
             handler:(void (^)(NSString *keyPath, NSDictionary *change))block;
 
+/** This method must be used to invalidate observers in case if a custom context
+ was previously passed as an argument in one of -addObserver:keyPath:... methods.
+ The other two -invalidateObserver:... methods only affect observers that 
+ were associated with the default internal context.
+ */
 - (void)invalidateObserver:(NSObject *)object
                    keyPath:(nullable NSString *)kp
                    context:(const void *)ctx;
