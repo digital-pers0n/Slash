@@ -328,7 +328,8 @@ static char minValueKVOContext;
     
     if (binding) {
         id value = [object valueForKeyPath:keyPath];
-        if (SLTIsNotApplicableMarker(value) && SLTIsNoSelectionMarker(value)) {
+        if (!SLTIsNotApplicableMarker(value)
+            && !SLTIsNoSelectionMarker(value)) {
             [self setValue:value forKey:binding];
         }
     } else {
