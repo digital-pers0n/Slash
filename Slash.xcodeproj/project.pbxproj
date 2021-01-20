@@ -127,6 +127,7 @@
 		CEBA3685253B589B00823125 /* SLTBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA3684253B589B00823125 /* SLTBinder.m */; };
 		CEBB8BF8246ACAD700776827 /* MPVLock.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB8BF7246ACAD700776827 /* MPVLock.c */; };
 		CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBFF3E22190BDA000F54C7E /* slh_encoder.c */; };
+		CEC4A6B925B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC4A6B825B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m */; };
 		CECE14C824FD789500406B9D /* SLKStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14C724FD789500406B9D /* SLKStackView.m */; };
 		CECE14E82507B79900406B9D /* SLTBitrateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */; };
 		CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2245E23A11332000A7489 /* SLHExternalPlayer.m */; };
@@ -364,6 +365,8 @@
 		CEBB8BF7246ACAD700776827 /* MPVLock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MPVLock.c; path = MPVKit/MPVLock.c; sourceTree = "<group>"; };
 		CEBFF3E22190BDA000F54C7E /* slh_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_encoder.c; path = Slash/system/slh_encoder.c; sourceTree = SOURCE_ROOT; };
 		CEBFF3E32190BDA000F54C7E /* slh_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_encoder.h; path = Slash/system/slh_encoder.h; sourceTree = SOURCE_ROOT; };
+		CEC4A6B725B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+SLTAdditions.h"; path = "Starlight/NSNotificationCenter+SLTAdditions.h"; sourceTree = "<group>"; };
+		CEC4A6B825B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+SLTAdditions.m"; path = "Starlight/NSNotificationCenter+SLTAdditions.m"; sourceTree = "<group>"; };
 		CECDA0E92594EBC800200AF4 /* SLTDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLTDefines.h; path = Starlight/SLTDefines.h; sourceTree = "<group>"; };
 		CECE14C624FD789500406B9D /* SLKStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKStackView.h; path = StarlightKit/SLKStackView.h; sourceTree = "<group>"; };
 		CECE14C724FD789500406B9D /* SLKStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKStackView.m; path = StarlightKit/SLKStackView.m; sourceTree = "<group>"; };
@@ -827,6 +830,8 @@
 				CEF398E424DC569200D44BDD /* SLTH264EncoderSettings.m */,
 				CEFF068D24D7300200E93228 /* SLTMediaSettings.h */,
 				CEFF068E24D7300200E93228 /* SLTMediaSettings.m */,
+				CEC4A6B725B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.h */,
+				CEC4A6B825B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m */,
 				CED60C6425755BED00EA6B97 /* SLTObserver.h */,
 				CED60C6525755BED00EA6B97 /* SLTObserver.m */,
 				CEE7B5B924D31CAD00A115D2 /* SLTQueue.h */,
@@ -1024,6 +1029,7 @@
 				CE9CA40423788350005CF368 /* SLHStackView.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
 				CEBA3662253746B800823125 /* SLKSelectionRangeView.m in Sources */,
+				CEC4A6B925B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m in Sources */,
 				CE3E3A8C244768640004DEB0 /* SLHAttributedTimeFormatter.m in Sources */,
 				CE5F50CA243CEC6E0080E4A5 /* SLHTrimViewSettings.m in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
