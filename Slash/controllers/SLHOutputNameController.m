@@ -17,11 +17,11 @@ static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
     CGFloat _constantWidth;
     NSSize _maxOutputNameTextSize;
 
-    __weak IBOutlet NSTextField *_outputNameTextField;
-    __weak IBOutlet NSTextField *_leftTextField;
-    __weak IBOutlet NSButton * _leftButton;
-    __weak IBOutlet NSTextField *_rightTextField;
-    __weak IBOutlet NSButton * _rightButton;
+    __unsafe_unretained IBOutlet NSTextField *_outputNameTextField;
+    __unsafe_unretained IBOutlet NSTextField *_leftTextField;
+    __unsafe_unretained IBOutlet NSButton * _leftButton;
+    __unsafe_unretained IBOutlet NSTextField *_rightTextField;
+    __unsafe_unretained IBOutlet NSButton * _rightButton;
 
 }
 @end

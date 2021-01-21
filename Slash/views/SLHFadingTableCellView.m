@@ -17,8 +17,9 @@
 
 - (void)awakeFromNib {
     _trackingArea = [NSTrackingArea new];
-    _fadingButton.alphaValue = 0.0;
-    _fadingButton.wantsLayer = YES;
+    NSButton *fadingButton = _fadingButton;
+    fadingButton.alphaValue = 0.0;
+    fadingButton.wantsLayer = YES;
 }
 
 - (void)updateTrackingAreas {

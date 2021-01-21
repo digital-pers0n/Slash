@@ -52,7 +52,7 @@
     NSError *error;
     if (![fm moveItemAtPath:_filePath toPath:newPath error:&error]) {
         [NSApp presentError:error];
-        __weak typeof(self) obj = self;
+        __unsafe_unretained typeof(self) obj = self;
         // In order to properly update the string value of a bound text field
         CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^{
             [obj willChangeValueForKey:@"fileName"];

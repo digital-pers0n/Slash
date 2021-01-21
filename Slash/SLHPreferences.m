@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, SLHPreferencesToolbarItemTag) {
     IBOutlet NSComboBox *_ffmpegPathComboBox;
     IBOutlet NSComboBox *_mpvPathComboBox;
     IBOutlet NSComboBox *_templateNameComboBox;
-    __weak NSView *_currentPrefsView;
+    __unsafe_unretained NSView *_currentPrefsView;
     
     NSMutableArray <NSString *> *_recentOutputPaths;
     NSString *_currentOutputPath;

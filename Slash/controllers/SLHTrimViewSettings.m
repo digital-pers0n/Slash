@@ -24,10 +24,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _minHorizontalZoom = _horizontalSlider.minValue;
-    _maxHorizontalZoom = _horizontalSlider.maxValue;
-    _minVerticalZoom = _verticalSlider.minValue;
-    _maxVerticalZoom = _verticalSlider.maxValue;
+    NSSlider *horizontalSlider = _verticalSlider;
+    NSSlider *verticalSlider = _horizontalSlider;
+    _minHorizontalZoom = horizontalSlider.minValue;
+    _maxHorizontalZoom = horizontalSlider.maxValue;
+    _minVerticalZoom = verticalSlider.minValue;
+    _maxVerticalZoom = verticalSlider.maxValue;
 }
 
 - (IBAction)increaseVerticalSize:(id)sender {

@@ -117,7 +117,7 @@ OBJC_DIRECT_MEMBERS
 - (instancetype)initWithBlock:(void (^)(__weak MPVPlayer *))block {
     self = [super init];
     if (self) {
-        __weak typeof(self) wSelf = self;
+        __unsafe_unretained typeof(self) wSelf = self;
         int error = [self setUpUsingBlock:^{
             [wSelf loadDefaultOptions];
             block(wSelf);
@@ -136,7 +136,7 @@ OBJC_DIRECT_MEMBERS
 - (instancetype)initWithOptions:(NSDictionary<NSString *,NSString *> *)options {
     self = [super init];
     if (self) {
-        __weak typeof(self) ref = self;
+        __unsafe_unretained typeof(self) ref = self;
         int error = [self setUpUsingBlock:^{
             [ref loadDefaultOptions];
             [ref loadOptions:options];
@@ -156,7 +156,7 @@ OBJC_DIRECT_MEMBERS
 - (instancetype)initWithConfig:(NSString *)path {
     self = [super init];
     if (self) {
-        __weak typeof(self) ref = self;
+        __unsafe_unretained typeof(self) ref = self;
         int error = [self setUpUsingBlock:^{
             [ref loadDefaultOptions];
             int error = [ref loadConfig:path];
@@ -179,7 +179,7 @@ OBJC_DIRECT_MEMBERS
 {
     self = [super init];
     if (self) {
-        __weak typeof(self) ref = self;
+        __unsafe_unretained typeof(self) ref = self;
         int error = [self setUpUsingBlock:^{
             [ref loadDefaultOptions];
         }];

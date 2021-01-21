@@ -253,7 +253,7 @@ static IMP get_method_address(id target, SEL selector) {
 }
 
 - (void)toggleView:(id)sender {
-    
+    id <SLHDisclosureViewDelegate> delegate = _delegate;
     if (_headerView->_closed) {
         
         NSRect newFrame = self.frame;
@@ -262,14 +262,14 @@ static IMP get_method_address(id target, SEL selector) {
         _savedSize = oldFrame.size;
         self.frame = newFrame;
         self.contentView.hidden = YES;
-        [_delegate disclosureView:self didChangeRect:oldFrame toRect:newFrame];
+        [delegate disclosureView:self didChangeRect:oldFrame toRect:newFrame];
     } else {
         NSRect oldFrame = self.frame;
         NSRect newFrame = update_frame_origin(_savedSize, oldFrame);
         _savedSize = oldFrame.size;
         self.frame = newFrame;
         self.contentView.hidden = NO;
-        [_delegate disclosureView:self didChangeRect:oldFrame toRect:newFrame];
+        [delegate disclosureView:self didChangeRect:oldFrame toRect:newFrame];
     }
 }
 

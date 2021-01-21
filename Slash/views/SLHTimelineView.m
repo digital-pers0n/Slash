@@ -242,9 +242,9 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 - (void)drawMarks {
     if (!_currentWidth) { return; }
     [self setFrameSize:NSMakeSize(_currentWidth, kSLHTimelineRulerHeight)];
-    
-    const double maxValue = _timelineView.maxValue;
-    const CGFloat margin = _timelineView.indicatorMargin;
+    SLHTimelineView *timelineView = _timelineView;
+    const double maxValue = timelineView.maxValue;
+    const CGFloat margin = timelineView.indicatorMargin;
     const CGFloat width = _currentWidth - (margin * 2);
     NSUInteger numOfMarks = _numberOfMarks;
     
@@ -485,10 +485,11 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 }
 
 - (void)mouseDown:(NSEvent *)event {
+    id<SLHTimelineViewDelegate> delegate = _delegate;
     if (_mouseIn) {
         NSApplication *app = [NSApplication sharedApplication];
         NSEventMask eventMask = NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged;
-        [_delegate timelineViewMouseDown:self];
+        [delegate timelineViewMouseDown:self];
         
         while (1) {
             event = [app nextEventMatchingMask:eventMask
@@ -504,7 +505,7 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
                 case NSEventTypeLeftMouseUp:
                     [self mouseUp:event];
                     [self updateTrackingAreas];
-                    [_delegate timelineViewMouseUp:self];
+                    [delegate timelineViewMouseUp:self];
                     _mouseIn = NO;
                     return;
                 default:
@@ -512,10 +513,10 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
             }
         }
     } else if (event.clickCount > 1) {
-        [_delegate timelineViewMouseDown:self];
+        [delegate timelineViewMouseDown:self];
         [self updateIndicatorPositionWithEvent:event];
         [self updateTrackingAreas];
-        [_delegate timelineViewMouseUp:self];
+        [delegate timelineViewMouseUp:self];
     }
     [self.window makeFirstResponder:self];
     [super mouseDown:event];

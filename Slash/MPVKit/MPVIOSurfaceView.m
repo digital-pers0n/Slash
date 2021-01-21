@@ -27,7 +27,7 @@
     MPVGLRenderer _mpv;
     GLuint _texture;
     dispatch_queue_t _render_queue;
-    __weak CALayer * _layer;
+    __unsafe_unretained CALayer * _layer;
     CFMutableDictionaryRef _ioProperties;
     MPVPlayer *_player;
     CVDisplayLinkRef _cvdl;

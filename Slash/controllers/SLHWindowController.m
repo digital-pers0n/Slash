@@ -181,7 +181,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     [player pause];
     _playerView.player = player;
     _player = player;
-
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(playerDidLoadFile:) name:MPVPlayerDidLoadFileNotification object:player];
     
@@ -482,20 +482,22 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     managePresets.target = _presetManager;
     NSMenuItem *savePreset = [[NSMenuItem alloc] initWithTitle:@"Save Preset" action:@selector(savePreset:) keyEquivalent:@""];
     savePreset.target = self;
-    _defaultPresetMenuItems =  @[separator, savePreset, managePresets];
+    _defaultPresetMenuItems = @[separator, savePreset, managePresets];
 }
 
 - (BOOL)createExternalPlayerWithMedia:(NSURL *)url {
-    _externalPlayer = [SLHExternalPlayer defaultPlayer];
-    if (_externalPlayer.error) {
+    SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+    _externalPlayer = player;
+    if (player.error) {
         NSAlert *alert = [NSAlert new];
-        alert.messageText = [NSString stringWithFormat:@"Cannot launch %@", _preferences.mpvPath];
-        alert.informativeText = _externalPlayer.error.localizedDescription;
+        alert.messageText = [NSString stringWithFormat:
+                             @"Cannot launch %@", _preferences.mpvPath];
+        alert.informativeText = player.error.localizedDescription;
         _externalPlayer = nil;
         [alert runModal];
         return NO;
     } else {
-        _externalPlayer.url = url;
+        player.url = url;
     }
     return YES;
 }
@@ -876,13 +878,14 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     }
     
     double inMark = playerController.inMark;
-    TimeInterval interval = _currentEncoderItem.interval;
+    SLHEncoderItem *currentItem = _currentEncoderItem;
+    TimeInterval interval = currentItem.interval;
     if (inMark > interval.end) {
-        _currentEncoderItem.intervalEnd = outMark;
-        _currentEncoderItem.intervalStart = inMark;
+        currentItem.intervalEnd = outMark;
+        currentItem.intervalStart = inMark;
     } else {
-        _currentEncoderItem.intervalStart = inMark;
-        _currentEncoderItem.intervalEnd = outMark;
+        currentItem.intervalStart = inMark;
+        currentItem.intervalEnd = outMark;
     }
     
     [_player seekExactTo:inMark];
@@ -901,20 +904,23 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     double start = playerController.inMark;
     
-    SLHEncoderItem *duplicate = [self duplicateEncoderItem:_currentEncoderItem];
+    SLHEncoderItem *currentItem = _currentEncoderItem;
+    SLHEncoderItem *duplicate = [self duplicateEncoderItem:currentItem];
     
     duplicate.intervalEnd = end;
     duplicate.intervalStart = start;
     
     [_itemsArrayController insertObject:duplicate
-                  atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:_currentEncoderItem] + 1];
+                  atArrangedObjectIndex:[_itemsArrayController.arrangedObjects
+                                         indexOfObject:currentItem] + 1];
     
     [_player seekExactTo:start];
 }
 
 - (IBAction)resetSelection:(id)sender {
-    _currentEncoderItem.intervalStart = 0;
-    _currentEncoderItem.intervalEnd = _currentEncoderItem.playerItem.duration;
+    SLHEncoderItem *currentItem = _currentEncoderItem;
+    currentItem.intervalStart = 0;
+    currentItem.intervalEnd = currentItem.playerItem.duration;
 }
 
 - (IBAction)jumpToStartPosition:(id)sender {
@@ -966,16 +972,18 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)previewSourceFile:(id)sender {
-    if (!_externalPlayer) {
-        if (![self createExternalPlayerWithMedia:_currentEncoderItem.playerItem.url]) {
+    SLHExternalPlayer *externalPlayer = _externalPlayer;
+    SLHEncoderItem *encoderItem = _currentEncoderItem;
+    if (!externalPlayer) {
+        if (![self createExternalPlayerWithMedia:encoderItem.playerItem.url]) {
             return;
         }
     } else {
-        _externalPlayer.url = _currentEncoderItem.playerItem.url;
+        externalPlayer.url = encoderItem.playerItem.url;
     }
-    [_externalPlayer setVideoFilter:@""];
-    [_externalPlayer play];
-    [_externalPlayer orderFront];
+    [externalPlayer setVideoFilter:@""];
+    [externalPlayer play];
+    [externalPlayer orderFront];
 
 }
 
@@ -986,29 +994,30 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)previewOutputFile:(id)sender {
-    if (!_externalPlayer) {
+    SLHExternalPlayer *externalPlayer = _externalPlayer;
+    if (!externalPlayer) {
         if (![self createExternalPlayerWithMedia:[NSURL fileURLWithPath:_lastEncodedMediaFilePath]]) {
             return;
         }
     } else {
-        _externalPlayer.url = [NSURL fileURLWithPath:_lastEncodedMediaFilePath];
+        externalPlayer.url = [NSURL fileURLWithPath:_lastEncodedMediaFilePath];
     }
-    [_externalPlayer setVideoFilter:@""];
-    [_externalPlayer play];
-    [_externalPlayer orderFront];
+    [externalPlayer setVideoFilter:@""];
+    [externalPlayer play];
+    [externalPlayer orderFront];
 }
 
 - (IBAction)addSelectionToQueue:(id)sender {
     NSEventModifierFlags flags = NSApp.currentEvent.modifierFlags;
     [self.window endEditingFor:nil];
-    
+    SLHEncoderItem *currentEncoderItem = _currentEncoderItem;
     if (_preferences.enableOutputNameTemplate) {
-        NSString *outputName = [self outputNameForDocument:_currentEncoderItem];
-        _currentEncoderItem.outputFileName = outputName;
+        NSString *outputName = [self outputNameForDocument:currentEncoderItem];
+        currentEncoderItem.outputFileName = outputName;
     }
     
-    _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
-    [_queue addEncoderItems:@[_currentEncoderItem]];
+    currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
+    [_queue addEncoderItems:@[currentEncoderItem]];
     
     if (flags & NSEventModifierFlagOption) {
         [self removeEncoderItem:sender];
@@ -1068,19 +1077,19 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     const NSEventModifierFlags
     shouldEditArgs = NSApp.currentEvent.modifierFlags & NSEventModifierFlagOption;
-    
+    SLHEncoderItem *currentEncoderItem = _currentEncoderItem;
     if (_preferences.enableOutputNameTemplate) {
-        NSString *outputName = [self outputNameForDocument:_currentEncoderItem];
-        _currentEncoderItem.outputFileName = outputName;
+        NSString *outputName = [self outputNameForDocument:currentEncoderItem];
+        currentEncoderItem.outputFileName = outputName;
     }
     
     if (!_preferences.shouldOverwriteFiles &&
-        [[NSFileManager defaultManager] fileExistsAtPath:_currentEncoderItem.outputPath
-                                             isDirectory:nil])
+        [[NSFileManager defaultManager]
+         fileExistsAtPath:currentEncoderItem.outputPath isDirectory:nil])
     {
         NSString *question = @"Overwrite file?";
         NSString *info = [NSString stringWithFormat:@"File '%@' already exists.",
-                          _currentEncoderItem.outputPath];
+                          currentEncoderItem.outputPath];
         NSString *firstButton = @"Cancel";
         NSString *secondButton = @"OK";
         NSAlert *alert = [[NSAlert alloc] init];
@@ -1094,29 +1103,34 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
         }
     }
     
-    _currentEncoderItem.encoderArguments = [_formatsArrayController.selection valueForKey:@"arguments"];
+    currentEncoderItem.encoderArguments = [_formatsArrayController.selection
+                                           valueForKey:@"arguments"];
     
     if (shouldEditArgs) {
         SLHModalWindowController *win = [[SLHModalWindowController alloc] init];
-        SLHArgumentsViewController *argsView = [[SLHArgumentsViewController alloc] init];
+        SLHArgumentsViewController *argsView =
+        [[SLHArgumentsViewController alloc] init];
         win.title = @"Encoding Arguments";
         win.contentView = argsView.view;
-        argsView.encoderItem = _currentEncoderItem;
+        argsView.encoderItem = currentEncoderItem;
         [win.window setFrame:NSMakeRect(0, 0, 360, 640) display:NO];
         [win runModal];
     }
      __unsafe_unretained typeof(self) obj = self;
-    [_encoder encodeItem:_currentEncoderItem usingBlock:^(SLHEncoderState state) {
+    
+    [_encoder encodeItem:currentEncoderItem
+              usingBlock:^(SLHEncoderState state) {
         switch (state)  {
                 
             case SLHEncoderStateSuccess: {
-                obj.lastEncodedMediaFilePath = obj->_currentEncoderItem.outputPath;
+                obj.lastEncodedMediaFilePath = currentEncoderItem.outputPath;
                 if (obj->_preferences.updateFileName) {
                     [obj updateOutputFileName:sender];
                 }
                 
                 NSString *log = obj->_encoder.encodingLog;
-                [obj->_encoderHistory addItemWithPath:obj->_lastEncodedMediaFilePath log: log ? log : @""];
+                [obj->_encoderHistory addItemWithPath:obj->_lastEncodedMediaFilePath
+                                                  log: log ? log : @""];
                 
                 break;
             }
@@ -1149,13 +1163,14 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)addEncoderItem:(id)sender {
-    if (_currentEncoderItem) {
-        SLHEncoderItem *encoderItem = [self duplicateEncoderItem:_currentEncoderItem];
+    SLHEncoderItem *currentEncoderItem = _currentEncoderItem;
+    if (currentEncoderItem) {
+        SLHEncoderItem *encoderItem = [self duplicateEncoderItem:currentEncoderItem];
         [_itemsArrayController insertObject:encoderItem
-                      atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:_currentEncoderItem] + 1];
+                      atArrangedObjectIndex:[_itemsArrayController.arrangedObjects indexOfObject:currentEncoderItem] + 1];
         
         // Force Key-Value observer to update
-        encoderItem.intervalStart = _currentEncoderItem.interval.start;
+        encoderItem.intervalStart = currentEncoderItem.interval.start;
         
     } else {
         NSOpenPanel *panel = [NSOpenPanel openPanel];
@@ -1265,9 +1280,9 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 #pragma mark - MPVPlayer Notifications
 
 - (void)playerDidLoadFile:(NSNotification *)n {
-    
-    [_player seekExactTo:_currentEncoderItem.interval.start];
-    [self matchVideoStreamsToEncoderItem:_currentEncoderItem];
+    SLHEncoderItem *currentEncoderItem = _currentEncoderItem;
+    [_player seekExactTo:currentEncoderItem.interval.start];
+    [self matchVideoStreamsToEncoderItem:currentEncoderItem];
     [_player pause];
 }
 

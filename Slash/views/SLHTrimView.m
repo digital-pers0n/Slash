@@ -465,12 +465,14 @@ static char minValueKVOContext;
     ) {
        [super mouseDown:event];
         return;
-    } else if (_hitTestResult & SLHCellHitRightKnob || _hitTestResult & SLHCellHitLeftKnob) {
-        [_delegate trimViewMouseDown:self];
+    } else if (_hitTestResult & SLHCellHitRightKnob
+               || _hitTestResult & SLHCellHitLeftKnob) {
+        id<SLHTrimViewDelegate> delegate = _delegate;
+        [delegate trimViewMouseDown:self];
         if (_hitTestResult & SLHCellHitLeftKnob) {
-            [_delegate trimViewMouseDownStartPosition:self];
+            [delegate trimViewMouseDownStartPosition:self];
         } else {
-            [_delegate trimViewMouseDownEndPosition:self];
+            [delegate trimViewMouseDownEndPosition:self];
         }
     }
     

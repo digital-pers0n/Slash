@@ -89,19 +89,20 @@
     [super viewDidLoad];
     _timelineView.indicatorMargin = SLHTrimViewHandleThickness + 5;
     
-    _trimView.formatter = [SLHTimeFormatter sharedFormatter];
+    SLHTrimView *trimView = _trimView;
+    trimView.formatter = [SLHTimeFormatter sharedFormatter];
     
-    NSRect frame = NSInsetRect(_trimView.frame, SLHTrimViewHandleThickness, 2);
+    NSRect frame = NSInsetRect(trimView.frame, SLHTrimViewHandleThickness, 2);
     _videoTrackView = [[SLHVideoTrackView alloc] initWithFrame:frame];
-    _videoTrackView.autoresizingMask = _trimView.autoresizingMask;
+    _videoTrackView.autoresizingMask = trimView.autoresizingMask;
     _videoTrackView.wantsLayer = YES;
     
-    [_trimView.superview addSubview:_videoTrackView
+    [trimView.superview addSubview:_videoTrackView
                positioned:NSWindowBelow
-               relativeTo:_trimView];
+               relativeTo:trimView];
     
     if (!_shouldDisplayPreviewImages) {
-        _trimView.style = SLHTrimViewStyleSimple;
+        trimView.style = SLHTrimViewStyleSimple;
         _videoTrackView.hidden = YES;
     }
     
@@ -146,37 +147,40 @@
 
 - (void)setShouldDisplayPreviewImages:(BOOL)value {
     if (_shouldDisplayPreviewImages == value) { return; }
+    SLHEncoderItem *encoderItem = _encoderItem;
+    SLHTrimView *trimView = _trimView;
     if (value) {
         _videoTrackView.hidden = NO;
-        if (_encoderItem) {
-            [self displayPreviewsIfCan:_encoderItem];
+        if (encoderItem) {
+            [self displayPreviewsIfCan:encoderItem];
         }
-        _trimView.style = SLHTrimViewStyleFrame;
+        trimView.style = SLHTrimViewStyleFrame;
     } else {
         _videoTrackView.videoFrameImages = nil;
         _videoTrackView.hidden = YES;
-        _trimView.style = SLHTrimViewStyleSimple;
+        trimView.style = SLHTrimViewStyleSimple;
     }
     _shouldDisplayPreviewImages = value;
-    _trimView.needsDisplay = YES;
+    trimView.needsDisplay = YES;
 }
 
 - (void)setEncoderItem:(SLHEncoderItem *)encoderItem {
     if (encoderItem == _encoderItem) { return; }
+    SLHTrimView *trimView = _trimView;
     if (encoderItem) {
         double maxValue = encoderItem.playerItem.duration;
         _timelineView.maxValue = maxValue;
-        [_trimView reset];
-        _trimView.maxValue = maxValue;
-        _trimView.endValue = encoderItem.intervalEnd;
-        _trimView.startValue = encoderItem.intervalStart;
+        [trimView reset];
+        trimView.maxValue = maxValue;
+        trimView.endValue = encoderItem.intervalEnd;
+        trimView.startValue = encoderItem.intervalStart;
         
-        [_trimView bind:@"endValue"
+        [trimView bind:@"endValue"
                toObject:encoderItem
             withKeyPath:@"intervalEnd"
                 options:nil];
         
-        [_trimView bind:@"startValue"
+        [trimView bind:@"startValue"
                toObject:encoderItem
             withKeyPath:@"intervalStart"
                 options:nil];
@@ -187,18 +191,19 @@
             [self updateVideoTrackView:nil];
         }
     } else {
-        [_trimView unbind:@"endValue"];
-        [_trimView unbind:@"startValue"];
+        [trimView unbind:@"endValue"];
+        [trimView unbind:@"startValue"];
     }
     _encoderItem = encoderItem;
 }
 
 - (void)setItemsArrayController:(NSArrayController *)newController {
-    if (_itemsArrayController == newController) { return; }
-    if (_itemsArrayController) {
-        [_itemsArrayController removeObserver:self
-                                   forKeyPath:@"selection"
-                                      context:&SLHTrimViewControllerKVOContext];
+    NSArrayController *itemsArrayController = _itemsArrayController;
+    if (itemsArrayController == newController) { return; }
+    if (itemsArrayController) {
+        [itemsArrayController removeObserver:self
+                                  forKeyPath:@"selection"
+                                     context:&SLHTrimViewControllerKVOContext];
     }
     if (newController) {
         [newController addObserver:self
@@ -248,22 +253,24 @@
 #pragma mark - Methods
 
 - (void)goToCurrentPlaybackPosition {
-    NSScrollView *scrollView = _timelineView.enclosingScrollView;
+    SLHTimelineView *timelineView = _timelineView;
+    NSScrollView *scrollView = timelineView.enclosingScrollView;
     NSClipView *clipView = scrollView.contentView;
     const CGFloat position = _player.timePosition;
     const CGFloat contentWidth = NSWidth(clipView.frame);
   
-    NSRect trackRect = _timelineView.frame;
+    NSRect trackRect = timelineView.frame;
     
-    CGFloat scale = (position - _timelineView.minValue) / (_timelineView.maxValue - _timelineView.minValue);
+    CGFloat scale = (position - timelineView.minValue) /
+                    (timelineView.maxValue - timelineView.minValue);
     
     CGFloat origin = floor((NSWidth(trackRect)) * scale);
     
     NSPoint pt = NSMakePoint(floor(origin - contentWidth * 0.5), 0);
     [clipView scrollToPoint:pt];
     [scrollView reflectScrolledClipView:clipView];
-    _timelineView.doubleValue = position;
-    _timelineView.needsDisplay = YES;
+    timelineView.doubleValue = position;
+    timelineView.needsDisplay = YES;
 }
 
 - (void)goToSelectionStart {
@@ -289,10 +296,11 @@
 }
 
 - (void)goToStart {
-    NSScrollView * scrollView = _timelineView.enclosingScrollView;
+    SLHTimelineView *timelineView = _timelineView;
+    NSScrollView * scrollView = timelineView.enclosingScrollView;
     NSClipView * clipView = scrollView.contentView;
     const CGFloat cvWidth = NSWidth(clipView.frame);
-    const CGFloat tvWidth = NSWidth(_timelineView.frame);
+    const CGFloat tvWidth = NSWidth(timelineView.frame);
     if (tvWidth > cvWidth) {
         [clipView scrollToPoint:NSZeroPoint];
         [scrollView reflectScrolledClipView:clipView];
@@ -300,10 +308,11 @@
 }
 
 - (void)goToEnd {
-    NSScrollView * scrollView = _timelineView.enclosingScrollView;
+    SLHTimelineView *timelineView = _timelineView;
+    NSScrollView * scrollView = timelineView.enclosingScrollView;
     NSClipView * clipView = scrollView.contentView;
     const CGFloat cvWidth = NSWidth(clipView.frame);
-    const CGFloat tvWidth = NSWidth(_timelineView.frame);
+    const CGFloat tvWidth = NSWidth(timelineView.frame);
     if (tvWidth > cvWidth) {
         NSPoint pt = NSMakePoint(tvWidth - cvWidth, 0);
         [clipView scrollToPoint:pt];
@@ -312,10 +321,11 @@
 }
 
 - (void)pauseIfNeeded {
-    if ([_player isPaused]) {
+    MPVPlayer *player = _player;
+    if ([player isPaused]) {
         _TVFlags.shouldResumePlayback = 0;
     } else {
-        [_player pause];
+        [player pause];
         _TVFlags.shouldResumePlayback = 1;
     }
 }
@@ -341,23 +351,24 @@ static char SLHTrimViewControllerKVOContext;
 #pragma mark - MPVPlayer Notifications
 
 - (void)playerDidRestartPlayback:(NSNotification *)n {
-    
+    MPVPlayer *player = _player;
+    SLHEncoderItem *encoderItem = _encoderItem;
     if (_TVFlags.shouldStop) {
         NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
         
         [nc removeObserver:self
                       name:MPVPlayerDidRestartPlaybackNotification
-                    object:_player];
+                    object:player];
         
         if (_TVFlags.needsUpdateStartValue) {
-            _encoderItem.intervalStart = _player.timePosition;
+            encoderItem.intervalStart = player.timePosition;
             
         } else {
-            _encoderItem.intervalEnd = _player.timePosition;
+            encoderItem.intervalEnd = player.timePosition;
         }
         
         if (_TVFlags.shouldResumePlayback) {
-            [_player play];
+            [player play];
         }
         
         return;
@@ -365,27 +376,28 @@ static char SLHTrimViewControllerKVOContext;
     
     double time = 0;
     if (_TVFlags.needsUpdateStartValue) {
-        time = _encoderItem.interval.start;
+        time = encoderItem.interval.start;
     } else {
-        time = _encoderItem.interval.end;
+        time = encoderItem.interval.end;
     }
-    _player.timePosition = time;
+    player.timePosition = time;
 }
 
 - (void)updatePlayerTimePostion:(NSNotification *)n {
+    MPVPlayer *player = _player;
     if (_TVFlags.shouldStop) {
         NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
         
         [nc removeObserver:self
                       name:MPVPlayerDidRestartPlaybackNotification
-                    object:_player];
+                    object:player];
         
         if (_TVFlags.shouldResumePlayback) {
-            [_player play];
+            [player play];
         }
 
     } else {
-        _player.timePosition = _timelineView.doubleValue;
+        player.timePosition = _timelineView.doubleValue;
     }
 }
 
@@ -415,10 +427,11 @@ static char SLHTrimViewControllerKVOContext;
 }
 
 - (void)trimViewMouseUp:(SLHTrimView *)trimView {
+    MPVPlayer *player = _player;
     if (_TVFlags.needsUpdateStartValue) {
-        _player.timePosition = trimView.startValue;
+        player.timePosition = trimView.startValue;
     } else {
-        _player.timePosition = trimView.endValue;
+        player.timePosition = trimView.endValue;
     }
     _TVFlags.shouldStop = 1;
 }
@@ -427,14 +440,14 @@ static char SLHTrimViewControllerKVOContext;
 
 - (void)timelineViewMouseDown:(SLHTimelineView *)timelineView {
     _TVFlags.shouldStop = 0;
-
+    MPVPlayer *player = _player;
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver:self
            selector:@selector(updatePlayerTimePostion:)
                name:MPVPlayerDidRestartPlaybackNotification
-             object:_player];
-    _player.timePosition = timelineView.doubleValue;
+             object:player];
+    player.timePosition = timelineView.doubleValue;
     
     [self pauseIfNeeded];
 }
