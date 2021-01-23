@@ -19,7 +19,6 @@ typedef struct _Process {
     FILE *std_err;
     FILE *std_out;
     pid_t pid;
-    posix_spawn_file_actions_t fa;
 } Process;
 
 /**

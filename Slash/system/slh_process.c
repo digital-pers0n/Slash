@@ -33,7 +33,6 @@ void prc_init(Process *p, char *const *args) {
     p->pid = -1;
     p->std_err = NULL;
     p->std_out = NULL;
-    p->fa = NULL;
 }
 
 void prc_init_no_copy(Process *p, char *const *args) {
@@ -41,7 +40,6 @@ void prc_init_no_copy(Process *p, char *const *args) {
     p->pid = -1;
     p->std_err = NULL;
     p->std_out = NULL;
-    p->fa = NULL;
 }
 
 #pragma mark - Destruction
@@ -94,6 +92,12 @@ int prc_launch(Process *p) {
         return -1;
     }
     
+    /* Previously, file_actions were kept alive after spawning a process, but 
+     there are many examples of posix_spawn() usage over the internet that
+     destroy file_actions right after posix_spawn() was called e.g. in Big Sur's
+     libobjc source code "objc4-818.2/test/preopt-caches.mm" */
+    posix_spawn_file_actions_destroy(&fa);
+    
     /* close child-side of pipes */
     close(stdout_pipe[1]);
     close(stderr_pipe[1]);
@@ -102,13 +106,10 @@ int prc_launch(Process *p) {
     if ((p->std_out = fdopen(stdout_pipe[0], "r")) == NULL ||
         (p->std_err = fdopen(stderr_pipe[0], "r")) == NULL) {
         prc_error(__func__, "fdopen()");
-        posix_spawn_file_actions_destroy(&fa);
         return -1;
     }
     
     p->pid = pid;
-    p->fa = fa;
-    
     return 0;
 }
 
@@ -123,11 +124,6 @@ int prc_close(Process *p) {
     }
     
     waitpid(prc_pid(p), &exit_code, 0);
-    
-    if (posix_spawn_file_actions_destroy(&(p->fa)) != 0) {
-        prc_error(__func__, "posix_spawn_file_actions_destroy()");
-    }
-    
     p->pid = -1;
     
     return exit_code;
@@ -147,10 +143,6 @@ int prc_kill(Process *p) {
         
         int exit_code;
         waitpid(prc_pid(p), &exit_code, 0);
-        
-        if (posix_spawn_file_actions_destroy(&(p->fa)) != 0) {
-            prc_error(__func__, "posix_spawn_file_actions_destroy()");
-        }
         p->pid = -1;
         
     } else {
