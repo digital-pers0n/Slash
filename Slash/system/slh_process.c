@@ -135,15 +135,7 @@ int prc_kill(Process *p) {
     
     if (prc_pid(p) > 0) {
         kill(prc_pid(p), SIGKILL);
-        
-        /* disassociate file streams */
-        if (fclose(prc_stdout(p)) == EOF || fclose(prc_stderr(p)) == EOF) {
-            prc_error(__func__, "fclose()");
-        }
-        
-        int exit_code;
-        waitpid(prc_pid(p), &exit_code, 0);
-        p->pid = -1;
+        prc_close(p);
         
     } else {
         fprintf(stderr, "%s: invalid PID\n", __func__);
