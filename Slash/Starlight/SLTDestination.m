@@ -116,7 +116,7 @@
          }
          const double duration =  u->_endTime - u->_startTime;
          u.estimatedFileSize = (videoBitrate + audioBitrate) * duration / 8192;
-         self.duration = duration;
+         u.duration = duration;
      }];
 }
 
