@@ -167,8 +167,12 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (NSArray<NSString *> *)argumentsWithArray:(NSMutableArray *)args {
-    [args addObject:@"-maxrate"];
-    [args addObject:@(_maxRate).stringValue];
+    if (_maxrate) {
+        [args addObject:@"-maxrate"];
+        [args addObject:@(_maxRate).stringValue];
+        [args addObject:@"-bufsize"];
+        [args addObject:@(_maxRate * 2).stringValue];
+    }
     if (_preset) {
         [args addObject:@"-preset"];
         [args addObject:_preset];
