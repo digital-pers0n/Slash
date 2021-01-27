@@ -86,13 +86,9 @@ int prc_launch(Process *p) {
     
     /* spawn a process */
     pid_t pid;
-    if (posix_spawnp(&pid, p->args[0], &fa, NULL, p->args, environ) != 0) {
-        prc_error(__func__, "posix_spawn()");
-        posix_spawn_file_actions_destroy(&fa);
-        return -1;
-    }
+    int err = posix_spawnp(&pid, p->args[0], &fa, NULL, p->args, environ);
     
-    /* Previously, file_actions were kept alive after spawning a process, but 
+    /* Previously, file_actions were kept alive after spawning a process, but
      there are many examples of posix_spawn() usage over the internet that
      destroy file_actions right after posix_spawn() was called e.g. in Big Sur's
      libobjc source code "objc4-818.2/test/preopt-caches.mm" */
@@ -101,6 +97,11 @@ int prc_launch(Process *p) {
     /* close child-side of pipes */
     close(stdout_pipe[1]);
     close(stderr_pipe[1]);
+    
+    if (err != 0) {
+        prc_error(__func__, "posix_spawn()");
+        return -1;
+    }
     
     /* associate streams with the file descriptors */
     if ((p->std_out = fdopen(stdout_pipe[0], "r")) == NULL ||
