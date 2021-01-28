@@ -121,12 +121,8 @@ OBJC_DIRECT_MEMBERS
     return @[ @"film", @"animation", @"grain", @"stillimage", @"psnr", @"ssim"];
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _codecName = @"libx264";
-    }
-    return self;
+- (instancetype)initWithStreamIndex:(NSInteger)idx {
+    return [super initWithCodecName:@"libx264" streamIndex:idx];
 }
 
 - (instancetype)initWithVideoSettings:(SLTVideoSettings *)video {
@@ -214,12 +210,8 @@ OBJC_DIRECT_MEMBERS
 
 @implementation SLTH264AudioSettings
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _codecName = @"aac";
-    }
-    return self;
+- (instancetype)initWithStreamIndex:(NSInteger)idx {
+    return [super initWithCodecName:@"aac" streamIndex:idx];
 }
 
 - (instancetype)initWithAudioSettings:(SLTAudioSettings *)audio {

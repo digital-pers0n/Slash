@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithSettings:(SLTMediaSettings *)media;
+- (instancetype)initWithCodecName:(NSString *)name streamIndex:(NSInteger)idx;
+- (instancetype)initWithStreamIndex:(NSInteger)idx;
 
 /** Index of the media stream. 
     Set to -1 to indicate that the stream should be ignored. */

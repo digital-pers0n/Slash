@@ -11,12 +11,21 @@
 @implementation SLTMediaSettings
 
 - (instancetype)initWithSettings:(SLTMediaSettings *)media {
+    return [self initWithCodecName:media->_codecName
+                       streamIndex:media->_streamIndex];
+}
+
+- (instancetype)initWithCodecName:(NSString *)name streamIndex:(NSInteger)idx {
     self = [super init];
     if (self) {
-        _streamIndex = media->_streamIndex;
-        _codecName = media->_codecName.copy;
+        _streamIndex = idx;
+        _codecName = name;
     }
     return self;
+}
+
+- (instancetype)initWithStreamIndex:(NSInteger)idx {
+    return [self initWithCodecName:@"" streamIndex:idx];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -24,14 +33,6 @@
     obj->_streamIndex = _streamIndex;
     obj->_codecName = _codecName.copy;
     return obj;
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _codecName = @"";
-    }
-    return self;
 }
 
 - (NSArray<NSString *> *)arguments {
@@ -112,8 +113,8 @@ static NSString *SLTMapStreamIndex(NSInteger streamIndex) {
     return obj;
 }
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithCodecName:(NSString *)name streamIndex:(NSInteger)idx {
+    self = [super initWithCodecName:name streamIndex:idx];
     if (self) {
         _pixelFormat = @"yuv420p";
     }
@@ -141,12 +142,8 @@ static NSString *SLTMapStreamIndex(NSInteger streamIndex) {
 
 @implementation SLTSubtitlesSettings
 
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        _codecName = @"mov_text";
-    }
-    return self;
+- (instancetype)initWithStreamIndex:(NSInteger)idx {
+    return [super initWithCodecName:@"mov_text" streamIndex:idx];
 }
 
 - (NSArray<NSString *> *)arguments {
