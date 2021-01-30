@@ -17,8 +17,8 @@
  Extract a single frame from a video file and convert it to a CGImageRef image.
  
  @param ffmpegPath a path to a ffmpeg executable. Must not be NULL.
- @param seconds indicate a postion where a video frame should be extracted.
- @param vSize size a desired size for upscaling or downscaling.
+ @param seconds indicate a position where a video frame should be extracted.
+ @param vSize a desired size for upscaling or downscaling.
  @param filePath a path to a video file. Must not be NULL.
  @param outImage a pointer to CGImageRef to store exctracted image.
         Release the @c outImage with @c CFRelease() after you don't
@@ -47,7 +47,7 @@ typedef void (*vfe_callback_f)(void *ctx, double ts, CGImageRef image);
  @discussion The funciton divides the duration of the video file into intervals. 
  The number of intervals is equal to the @c nFrames parameter. Then from each 
  interval one keyframe is extracted. If there are no keyframes inside the 
- interval than it is discarded.
+ interval then it is discarded.
  
  @param filePath Full path to a video file. Must not be NULL.
  @param nFrames Number of keyframes to decode. If the video file doesn't contain
@@ -55,8 +55,8 @@ typedef void (*vfe_callback_f)(void *ctx, double ts, CGImageRef image);
                 This parameter must be greater than zero.
  @param vSize Size for downscaling or upscaling an output image.
  @param ctx Pointer to a user-defined context.
- @param callback Pointer to a user-defined funciton. Called for each frame 
-                 index. The total number of calls is determinded by
+ @param callback Pointer to a user-defined function. Called for each frame
+                 index. The total number of calls is determined by
                  the @c nFrames parameter and might be lower if there aren't 
                  enough keyframes in the video file. 
                  This parameter must not be NULL.
@@ -75,8 +75,8 @@ int vfe_get_keyframes(const char * const filePath,
  
  @param filePath Path to a video file. This parameter must not be NULL.
  @param seconds Starting point for a keyframe look up.
- @param vSize Size for upscaling or downscaling
- @param Pointer to CGImageRef that will point to the output image upon return.
+ @param vSize Size for upscaling or downscaling.
+ @param outImage Pointer to CGImageRef that will point to the output image upon return.
         You should release @c outImage after you don't need it anymore.
         If the video file doesn't contain any keyframes then @c outImage is
         left untouched. This parameter must not be NULL.
