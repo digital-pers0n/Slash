@@ -55,6 +55,7 @@
 		CE35266C23F987C900B28193 /* SLHFadingTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35266B23F987C900B28193 /* SLHFadingTableCellView.m */; };
 		CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */; };
 		CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */; };
+		CE3CAF6C25C7039100EF6712 /* NSMenuItem+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CAF6B25C7039100EF6712 /* NSMenuItem+SLKAdditions.m */; };
 		CE3E3A652445CD320004DEB0 /* SLHOutputNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3E3A632445CD320004DEB0 /* SLHOutputNameController.m */; };
 		CE3E3A662445CD320004DEB0 /* SLHOutputNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3E3A642445CD320004DEB0 /* SLHOutputNameController.xib */; };
 		CE3E3A8C244768640004DEB0 /* SLHAttributedTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3E3A8B244768640004DEB0 /* SLHAttributedTimeFormatter.m */; };
@@ -237,6 +238,8 @@
 		CE3893C4227886BF004BC3A2 /* SLHEncoderItemMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderItemMetadata.m; path = model/SLHEncoderItemMetadata.m; sourceTree = "<group>"; };
 		CE3893EB227B3D4A004BC3A2 /* SLHStatusLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHStatusLineView.h; sourceTree = "<group>"; };
 		CE3893EC227B3D4A004BC3A2 /* SLHStatusLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHStatusLineView.m; sourceTree = "<group>"; };
+		CE3CAF6A25C7039100EF6712 /* NSMenuItem+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMenuItem+SLKAdditions.h"; path = "StarlightKit/NSMenuItem+SLKAdditions.h"; sourceTree = "<group>"; };
+		CE3CAF6B25C7039100EF6712 /* NSMenuItem+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMenuItem+SLKAdditions.m"; path = "StarlightKit/NSMenuItem+SLKAdditions.m"; sourceTree = "<group>"; };
 		CE3E3A622445CD320004DEB0 /* SLHOutputNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHOutputNameController.h; path = controllers/SLHOutputNameController.h; sourceTree = "<group>"; };
 		CE3E3A632445CD320004DEB0 /* SLHOutputNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHOutputNameController.m; path = controllers/SLHOutputNameController.m; sourceTree = "<group>"; };
 		CE3E3A642445CD320004DEB0 /* SLHOutputNameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHOutputNameController.xib; path = controllers/SLHOutputNameController.xib; sourceTree = "<group>"; };
@@ -673,6 +676,8 @@
 			isa = PBXGroup;
 			children = (
 				CE6B8C2824E40D1A00B93758 /* views */,
+				CE3CAF6A25C7039100EF6712 /* NSMenuItem+SLKAdditions.h */,
+				CE3CAF6B25C7039100EF6712 /* NSMenuItem+SLKAdditions.m */,
 				CE6DDBE2253351DE00982C4E /* SLKPlayerViewController.h */,
 				CE6DDBE3253351DE00982C4E /* SLKPlayerViewController.m */,
 				CE6DDBE4253351DE00982C4E /* SLKPlayerViewController.xib */,
@@ -1023,6 +1028,7 @@
 				CE3E3A652445CD320004DEB0 /* SLHOutputNameController.m in Sources */,
 				CE477235226771F100FF5E0D /* slh_list.c in Sources */,
 				CE74B09E247D145A00749338 /* SLHTemplateNameFormatter.m in Sources */,
+				CE3CAF6C25C7039100EF6712 /* NSMenuItem+SLKAdditions.m in Sources */,
 				CE7E11EC22294ADC002C2456 /* SLHEncoderItemOptions.m in Sources */,
 				CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */,
 				CEF398E524DC569200D44BDD /* SLTH264EncoderSettings.m in Sources */,
