@@ -15,7 +15,22 @@ __attribute__((objc_direct_members))
 
 - (instancetype)initWithTitle:(NSString *)name
                 keyEquivalent:(NSString *)charCode
-                      handler:(void(^)(id sender))block;
+                      handler:(void(^)(NSMenuItem *sender))block;
+
+- (instancetype)initWithTitle:(NSString *)name
+                      handler:(void(^)(NSMenuItem *sender))block;
+
+@end
+
+__attribute__((objc_direct_members))
+@interface NSMenu (SLKAdditions)
+
+- (NSMenuItem *)addItemWithTitle:(NSString *)string
+                   keyEquivalent:(NSString *)charCode
+                         handler:(void(^)(NSMenuItem *sender))block;
+
+- (NSMenuItem *)addItemWithTitle:(NSString *)string
+                         handler:(void(^)(NSMenuItem *sender))block;
 
 @end
 

@@ -30,11 +30,34 @@ SLKMenuItemAssociationKey() {
     return self;
 }
 
+- (instancetype)initWithTitle:(UNSAFE NSString *)name
+                      handler:(UNSAFE void(^)(NSMenuItem *sender))block {
+    return [self initWithTitle:name keyEquivalent:@"" handler:block];
+}
+
 - (void)callHandlerBlock:(UNSAFE id)sender {
     // to make it possible to tail-call the block
     void *block =
     (__bridge void*)objc_getAssociatedObject(self, SLKMenuItemAssociationKey());
     ((__bridge void(^)(id))block)(sender);
+}
+
+@end
+
+@implementation NSMenu (SLKAdditions)
+
+- (NSMenuItem *)addItemWithTitle:(UNSAFE NSString *)string
+                   keyEquivalent:(UNSAFE NSString *)charCode
+                         handler:(UNSAFE void(^)(NSMenuItem *sender))block {
+    NSMenuItem *i = [[NSMenuItem alloc] initWithTitle:string
+                                        keyEquivalent:charCode handler:block];
+    [self addItem:i];
+    return i;
+}
+
+- (NSMenuItem *)addItemWithTitle:(UNSAFE NSString *)string
+                         handler:(UNSAFE void(^)(NSMenuItem *sender))block {
+    return [self addItemWithTitle:string keyEquivalent:@"" handler:block];
 }
 
 @end
