@@ -20,7 +20,7 @@ SLKMenuItemAssociationKey() {
 
 - (instancetype)initWithTitle:(UNSAFE NSString *)name
                 keyEquivalent:(UNSAFE NSString *)code
-                      handler:(UNSAFE void(^)(id sender))block {
+                      handler:(UNSAFE void(^)(NSMenuItem *))block {
     
     self = [self initWithTitle:name action:@selector(callHandlerBlock:)
                  keyEquivalent:code];
