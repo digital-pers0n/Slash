@@ -420,8 +420,8 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
 - (void)setFrame:(NSRect)frame {
     _currentFrame = frame;
     _workingArea = NSInsetRect(_currentFrame, _indicatorMargin, 0);
-    
-    NSRect dvFrame = _documentView.frame;
+    NSView *documentView = _documentView;
+    NSRect dvFrame = documentView.frame;
     if (NSHeight(frame) < NSHeight(dvFrame)) {
         frame.size.height = NSHeight(dvFrame);
     } else {
@@ -433,7 +433,7 @@ static CATextLayer * createTimecodeLayer(NSFont * timecodeFont,
             CGFloat newY = round((NSHeight(svFrame) - NSHeight(dvFrame)) * (CGFloat)0.5);
             if (newY != NSMinY(dvFrame)) {
                 dvFrame.origin.y = newY;
-                _documentView.frame = dvFrame;
+                documentView.frame = dvFrame;
             }
             
             frame.size.height = NSHeight(svFrame);
