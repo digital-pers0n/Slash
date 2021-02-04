@@ -18,14 +18,32 @@ SLKMenuItemAssociationKey() {
     return ctx;
 }
 
+static void
+SLKMenuItemSetHandler(UNSAFE NSMenuItem *obj, UNSAFE SLKMenuItemHandler block) {
+    objc_setAssociatedObject(obj, SLKMenuItemAssociationKey(), block,
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+SLKMenuItemHandler
+SLKMenuItemGetHandler(UNSAFE NSMenuItem *obj) {
+    return objc_getAssociatedObject(obj, SLKMenuItemAssociationKey());
+}
+
+static void
+SLKMenuItemCallHandler(UNSAFE NSMenuItem *obj) {
+    // to make it possible to tail-call the block
+    void *block =
+    (__bridge void*)objc_getAssociatedObject(obj, SLKMenuItemAssociationKey());
+    ((__bridge SLKMenuItemHandler)block)(obj);
+}
+
 - (instancetype)initWithTitle:(UNSAFE NSString *)name
                 keyEquivalent:(UNSAFE NSString *)code
                       handler:(UNSAFE void(^)(NSMenuItem *))block {
     
     self = [self initWithTitle:name action:@selector(callHandlerBlock:)
                  keyEquivalent:code];
-    objc_setAssociatedObject(self, SLKMenuItemAssociationKey(), block,
-                             OBJC_ASSOCIATION_COPY_NONATOMIC);
+    SLKMenuItemSetHandler(self, block);
     self.target = self;
     return self;
 }
@@ -35,11 +53,16 @@ SLKMenuItemAssociationKey() {
     return [self initWithTitle:name keyEquivalent:@"" handler:block];
 }
 
+- (void)setHandlerBlock:(UNSAFE SLKMenuItemHandler)block {
+    SLKMenuItemSetHandler(self, block ?: ^(NSMenuItem *i){});
+}
+
+- (SLKMenuItemHandler)handlerBlock {
+    return SLKMenuItemGetHandler(self);
+}
+
 - (void)callHandlerBlock:(UNSAFE id)sender {
-    // to make it possible to tail-call the block
-    void *block =
-    (__bridge void*)objc_getAssociatedObject(self, SLKMenuItemAssociationKey());
-    ((__bridge void(^)(id))block)(sender);
+    SLKMenuItemCallHandler(self);
 }
 
 @end

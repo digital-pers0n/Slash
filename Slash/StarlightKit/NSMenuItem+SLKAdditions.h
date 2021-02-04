@@ -10,15 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^SLKMenuItemHandler)(NSMenuItem *sender);
+
 __attribute__((objc_direct_members))
 @interface NSMenuItem (SLKAdditions)
 
 - (instancetype)initWithTitle:(NSString *)name
                 keyEquivalent:(NSString *)charCode
-                      handler:(void(^)(NSMenuItem *sender))block;
+                      handler:(SLKMenuItemHandler)block;
 
 - (instancetype)initWithTitle:(NSString *)name
-                      handler:(void(^)(NSMenuItem *sender))block;
+                      handler:(SLKMenuItemHandler)block;
+
+@property (nonatomic, null_resettable, copy) SLKMenuItemHandler handlerBlock;
 
 @end
 
@@ -27,10 +31,10 @@ __attribute__((objc_direct_members))
 
 - (NSMenuItem *)addItemWithTitle:(NSString *)string
                    keyEquivalent:(NSString *)charCode
-                         handler:(void(^)(NSMenuItem *sender))block;
+                         handler:(SLKMenuItemHandler)block;
 
 - (NSMenuItem *)addItemWithTitle:(NSString *)string
-                         handler:(void(^)(NSMenuItem *sender))block;
+                         handler:(SLKMenuItemHandler)block;
 
 @end
 
