@@ -13,7 +13,7 @@
  A very simple compile-time checker for key value paths.
  It doesn't cover all possible cases e.g self.@avg, CoreData attributes etc.
 */
-#define KVP(object, keyPath) sizeof(object.keyPath) ? @#keyPath : @""
+#define KVP(object, keyPath) sizeof((object).keyPath) ? @#keyPath : @""
 
 #define UNSAFE __unsafe_unretained
 
