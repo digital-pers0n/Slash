@@ -54,7 +54,13 @@ SLKMenuItemCallHandler(UNSAFE NSMenuItem *obj) {
 }
 
 - (void)setHandlerBlock:(UNSAFE SLKMenuItemHandler)block {
-    SLKMenuItemSetHandler(self, block ?: ^(NSMenuItem *i){});
+    if (!block) {
+        SLKMenuItemSetHandler(self, ^(NSMenuItem *i){});
+        return;
+    }
+    self.action = @selector(callHandlerBlock:);
+    self.target = self;
+    SLKMenuItemSetHandler(self, block);
 }
 
 - (SLKMenuItemHandler)handlerBlock {
