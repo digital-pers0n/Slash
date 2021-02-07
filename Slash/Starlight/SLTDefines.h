@@ -15,6 +15,11 @@
 */
 #define KVP(object, keyPath) sizeof((object).keyPath) ? @#keyPath : @""
 
+/**
+ Similar to KVP() macro, but operates on class names instead of objects.
+ */
+#define KEYPATH(className, keyPath) KVP((className *)@"", keyPath)
+
 #define UNSAFE __unsafe_unretained
 
 #endif /* SLTDefines_h */
