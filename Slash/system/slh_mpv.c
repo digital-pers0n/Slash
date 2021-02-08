@@ -155,18 +155,8 @@ int plr_launch(Player *p) {
     /* Read output */
     dispatch_queue_t gq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_async(p->gr, gq, ^{
-        
-        dispatch_retain(p->gr);
-        dispatch_group_enter(p->gr);
-        
         dispatch_group_async(p->gr, gq, ^{
-            
-            dispatch_group_enter(p->gr);
-            
             plr_read_output(prc_stderr(p->proc), p->cb);
-            
-            dispatch_group_leave(p->gr);
-            
         });
         
         plr_read_output(prc_stdout(p->proc), p->cb);
@@ -176,11 +166,8 @@ int plr_launch(Player *p) {
             prc_close(p->proc);
         }
         mpv_lock_unlock(&p->lock);
-        
-        dispatch_group_leave(p->gr);
-        dispatch_release(gq);
+
         p->cb->exit(p, p->cb->context);
-        
     });
 
     return 0;

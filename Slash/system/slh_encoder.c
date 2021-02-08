@@ -65,15 +65,8 @@ int encoder_start(Encoder *enc, encoder_callback_f out_f, encoder_exit_f exit_f,
     dispatch_queue_t gq = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     dispatch_group_async(enc->gr, gq, ^{
-        
-        dispatch_group_enter(enc->gr);
-        
         dispatch_group_async(enc->gr, gq, ^ {
-            
-            dispatch_group_enter(enc->gr);
             encoder_read_output(prc_stdout(enc->proc), out_f, ctx);
-            dispatch_group_leave(enc->gr);
-            
         });
             
         encoder_read_output(prc_stderr(enc->proc), out_f, ctx);
@@ -86,12 +79,7 @@ int encoder_start(Encoder *enc, encoder_callback_f out_f, encoder_exit_f exit_f,
         if (exit_f) {
             exit_f(ctx, exit_code);
         }
-        
-        dispatch_group_leave(enc->gr);
-        
     });
-    
-    dispatch_release(gq);
     return 0;
 }
 
