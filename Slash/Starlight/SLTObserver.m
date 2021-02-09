@@ -27,16 +27,13 @@
 - (instancetype)initWithObject:(id)observable
                       keyPaths:(NSArray<NSString *> *)array
                        options:(NSKeyValueObservingOptions)mask
-                       handler:(void (^)(NSString *, NSDictionary *))block;
+                       handler:(SLTObserverHandler)block;
 
 @end
 
 @interface SLTObserver () {
     @package
-    union {
-        void (^base)(id);
-        void (^toMany)(id, id);
-    } _handler;
+    void (^_handler)(id, id, id);
     __unsafe_unretained id _observable;
 }
 @end
@@ -45,7 +42,7 @@
 
 - (instancetype)initWithObject:(id)observable keyPath:(NSString *)kp
                        options:(NSKeyValueObservingOptions)mask
-                       handler:(void (^)(NSDictionary *changeDict))block {
+                       handler:(SLTObserverHandler)block {
     NSAssert(observable, @"Observable object cannot be nil");
     NSAssert(kp, @"Key path cannot be nil");
     NSAssert(block, @"Handler block cannot be nil");
@@ -53,7 +50,7 @@
     if (self) {
         _observable = observable;
         _keyPath = [kp copy];
-        _handler.base = [block copy];
+        _handler = [block copy];
         [observable addObserver:self forKeyPath:kp options:mask
                         context:(__bridge void *)self];
     }
@@ -62,7 +59,7 @@
 
 - (instancetype)initWithObject:(UNSAFE id)observable
                        keyPath:(UNSAFE NSString *)kp
-                       handler:(UNSAFE void (^)(id _Nonnull))block
+                       handler:(UNSAFE SLTObserverNewValueHandler)block
 {
     return [[SLTNewValueObserver alloc]
             initWithObject:observable keyPath:kp
@@ -72,31 +69,32 @@
 - (instancetype)initWithObject:(UNSAFE id)observable
                       keyPaths:(UNSAFE NSArray<NSString *> *)kps
                        options:(NSKeyValueObservingOptions)mask
-                       handler:(UNSAFE void
-                                (^)(NSString *, NSDictionary *))block
+                       handler:(UNSAFE SLTObserverHandler)block
 {
     return [[SLTToManyObserver alloc] initWithObject:observable keyPaths:kps
                                              options:mask handler:block];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
-                        change:(NSDictionary *)change context:(void *)context {
-    _handler.base(change);
+- (void)observeValueForKeyPath:(UNSAFE NSString *)keyPath ofObject:(id)object
+                        change:(UNSAFE NSDictionary *)change
+                       context:(void *)context
+{
+    _handler(_observable, keyPath, change);
 }
 
 - (BOOL)isValid {
-    return (_handler.base != nil);
+    return (_handler != nil);
 }
 
 - (void)invalidate {
     [_observable removeObserver:self
                      forKeyPath:_keyPath context:(__bridge void *)self];
-    _handler.base = nil;
+    _handler = nil;
     _observable = nil;
 }
 
 - (void)dealloc {
-    if (_handler.base) {
+    if (_handler) {
         [self invalidate];
     }
 }
@@ -105,7 +103,7 @@
 
 @implementation SLTNewValueObserver
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+- (void)observeValueForKeyPath:(UNSAFE NSString *)keyPath ofObject:(id)object
                         change:(NSDictionary *)change context:(void *)context
 {
     /* This trickery allows to tail-call handler() block,
@@ -113,7 +111,7 @@
        objects and the last call will be always objc_release().
      */
     void *value = (__bridge void *)[change objectForKey:NSKeyValueChangeNewKey];
-    _handler.base((__bridge id)value);
+    _handler(_observable, keyPath, (__bridge id)value);
 }
 
 @end
@@ -122,7 +120,7 @@
 - (instancetype)initWithObject:(id)observable
                       keyPaths:(NSArray<NSString *> *)keyPaths
                        options:(NSKeyValueObservingOptions)mask
-                       handler:(void (^)(NSString *, NSDictionary *))block
+                       handler:(SLTObserverHandler)block
 {
     NSAssert(observable, @"Observable cannot be nil");
     NSAssert(keyPaths, @"Key paths array cannot be nil");
@@ -130,7 +128,7 @@
     self = [super init];
     if (self) {
         _observable = observable;
-        _handler.toMany = [block copy];
+        _handler = [block copy];
         _keyPaths = [[NSArray alloc] initWithArray:keyPaths copyItems:YES];
         for (NSString *keyPath in keyPaths) {
             [observable addObserver:self forKeyPath:keyPath
@@ -140,20 +138,13 @@
     return self;
 }
 
-- (void)observeValueForKeyPath:(UNSAFE NSString *)keyPath
-                      ofObject:(id)object change:(NSDictionary *)change
-                       context:(void *)context
-{
-    _handler.toMany(keyPath, change);
-}
-
 - (void)invalidate {
     id obj = _observable;
     for (NSString *keyPath in _keyPaths) {
         [obj removeObserver:self
                  forKeyPath:keyPath context:(__bridge void *)self];
     }
-    _handler.toMany = nil;
+    _handler = nil;
     _observable = nil;
 }
 
@@ -161,30 +152,27 @@
 
 @implementation NSObject (SLTKeyValueObservation)
 
-- (SLTObserver *)observe:(UNSAFE NSObject *)object
-                 keyPath:(UNSAFE NSString *)kp
-                 options:(NSKeyValueObservingOptions)mask
-                 handler:(UNSAFE void (^)(NSDictionary *change))block
+- (SLTObserver *)observeKeyPath:(UNSAFE NSString *)kp
+                        options:(NSKeyValueObservingOptions)mask
+                        handler:(UNSAFE SLTObserverHandler)block
 {
-    return [[SLTObserver alloc] initWithObject:object
+    return [[SLTObserver alloc] initWithObject:self
                                        keyPath:kp options:mask handler:block];
 }
 
-- (SLTObserver *)observe:(UNSAFE NSObject *)object
-                 keyPath:(UNSAFE NSString *)kp
-                 handler:(UNSAFE void (^)(id newValue))block
+- (SLTObserver *)observeKeyPath:(UNSAFE NSString *)kp
+                        handler:(UNSAFE SLTObserverNewValueHandler)block
 {
     return [[SLTNewValueObserver alloc]
-            initWithObject:object keyPath:kp
+            initWithObject:self keyPath:kp
             options:NSKeyValueObservingOptionNew handler:block];
 }
 
-- (SLTObserver *)observe:(UNSAFE NSObject *)object
-                keyPaths:(UNSAFE NSArray<NSString *> *)kps
-                 options:(NSKeyValueObservingOptions)mask
-                 handler:(UNSAFE void (^)(NSString *, NSDictionary *))block
+- (SLTObserver *)observeKeyPaths:(UNSAFE NSArray<NSString *> *)kps
+                         options:(NSKeyValueObservingOptions)mask
+                         handler:(UNSAFE SLTObserverHandler)block
 {
-    return [[SLTToManyObserver alloc] initWithObject:object keyPaths:kps
+    return [[SLTToManyObserver alloc] initWithObject:self keyPaths:kps
                                              options:mask handler:block];
 }
 
@@ -237,16 +225,16 @@ SLTObserverAdd(UNSAFE id object, UNSAFE SLTObserver *observer,
             keyPath:(UNSAFE NSString *)kp
             options:(NSKeyValueObservingOptions)mask
             context:(const void *)ctx
-            handler:(UNSAFE void (^)(NSDictionary *change))block
+            handler:(UNSAFE SLTObserverHandler)block
 {
-    id observer = [object observe:self keyPath:kp options:mask handler:block];
+    id observer = [self observeKeyPath:kp options:mask handler:block];
     SLTObserverAdd(object, observer, kp, ctx);
 }
 
 - (void)addObserver:(UNSAFE NSObject *)object
             keyPath:(UNSAFE NSString *)kp
             options:(NSKeyValueObservingOptions)mask
-            handler:(UNSAFE void (^)(NSDictionary *change))block
+            handler:(UNSAFE SLTObserverHandler)block
 {
     [self addObserver:object keyPath:kp options:mask
               context:SLTObserverAssociationKey() handler:block];
@@ -255,15 +243,15 @@ SLTObserverAdd(UNSAFE id object, UNSAFE SLTObserver *observer,
 - (void)addObserver:(UNSAFE NSObject *)object
             keyPath:(UNSAFE NSString *)kp
             context:(const void *)ctx
-            handler:(UNSAFE void (^)(id newValue))block
+            handler:(UNSAFE SLTObserverNewValueHandler)block
 {
-    id observer = [object observe:self keyPath:kp handler:block];
+    id observer = [self observeKeyPath:kp handler:block];
     SLTObserverAdd(object, observer, kp, ctx);
 }
 
 - (void)addObserver:(UNSAFE NSObject *)object
             keyPath:(UNSAFE NSString *)kp
-            handler:(UNSAFE void (^)(id newValue))block
+            handler:(UNSAFE SLTObserverNewValueHandler)block
 {
     [self addObserver:object keyPath:kp
               context:SLTObserverAssociationKey() handler:block];
@@ -273,16 +261,16 @@ SLTObserverAdd(UNSAFE id object, UNSAFE SLTObserver *observer,
            keyPaths:(UNSAFE NSArray<NSString *>*)kps
             options:(NSKeyValueObservingOptions)mask
             context:(const void *)ctx
-            handler:(UNSAFE void (^)(NSString *, NSDictionary *))block
+            handler:(UNSAFE SLTObserverHandler)block
 {
-    id observer = [object observe:self keyPaths:kps options:mask handler:block];
+    id observer = [self observeKeyPaths:kps options:mask handler:block];
     SLTObserverAdd(object, observer, SLTObserverMultipleValuesKeyPath, ctx);
 }
 
 - (void)addObserver:(UNSAFE NSObject *)object
            keyPaths:(UNSAFE NSArray<NSString *>*)kps
             options:(NSKeyValueObservingOptions)mask
-            handler:(UNSAFE void (^)(NSString *, NSDictionary *))block
+            handler:(UNSAFE SLTObserverHandler)block
 {
     [self addObserver:object keyPaths:kps options:mask
               context:SLTObserverAssociationKey() handler:block];

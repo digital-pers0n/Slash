@@ -93,8 +93,8 @@
                   KVP(self, settings.enableVideoPassThrough),
                   KVP(self, startTime), KVP(self, endTime) ];
     
-    _observer = [self observe:self keyPaths:array options:0 handler:
-    ^(NSString * _Nonnull keyPath, NSDictionary * _Nonnull change)
+    _observer = [self observeKeyPaths:array options:0 handler:
+    ^(id obj, NSString * _Nonnull kpath, NSDictionary * _Nonnull change)
      {
          int64_t videoBitrate = 0, audioBitrate = 0;
          SLTEncoderSettings *settings = u->_settings;

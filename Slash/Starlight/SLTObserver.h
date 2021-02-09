@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^SLTObserverHandler)
+    (id obj, NSString *keyPath, NSDictionary *change);
+
+typedef void (^SLTObserverNewValueHandler)
+    (id obj, NSString *keyPath, id newVal);
+
 /** Simple wrapper on top of KVO that can be used to observe changes in objects
  without overriding @c -observeValueForKeyPath:ofObject:change:context: method */
 @interface SLTObserver : NSObject
@@ -17,20 +23,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithObject:(id)observable
                        keyPath:(NSString *)kp
                        options:(NSKeyValueObservingOptions)mask
-                       handler:(void (^)(NSDictionary *change))block;
+                       handler:(SLTObserverHandler)block;
 
 /** Use @c NSKeyValueObservingOptionNew option to register the observer
  and pass the value associated with @c NSKeyValueChangeNewKey as the argument
  of the handler block. */
 - (instancetype)initWithObject:(id)observable
                        keyPath:(NSString *)kp
-                       handler:(void (^)(id newValue))block;
+                       handler:(SLTObserverNewValueHandler)block;
 
 /** Observe changes in multiple key paths. */
 - (instancetype)initWithObject:(id)observable
                       keyPaths:(NSArray<NSString *> *)kps
                        options:(NSKeyValueObservingOptions)mask
-                       handler:(void (^)(NSString *keyPath, NSDictionary *change))block;
+                       handler:(SLTObserverHandler)block;
 
 @property (readonly, nonatomic, nullable, assign) id observable;
 @property (readonly, nonatomic) NSString *keyPath;
@@ -49,22 +55,20 @@ private methods in other classes.
 #endif
 @interface NSObject (SLTKeyValueObservation)
 
-/* -observe:keyPath:... methods are somewhat similar to Swift's
+/* -observeKeyPath... methods are somewhat similar to Swift's
  observe(_ keyPath:options:changeHandler:) -> NSKeyValueObservation
  */
-- (SLTObserver *)observe:(NSObject *)object
-                 keyPath:(NSString *)kp
-                 options:(NSKeyValueObservingOptions)mask
-                 handler:(void (^)(NSDictionary *change))block;
 
-- (SLTObserver *)observe:(NSObject *)object
-                 keyPath:(NSString *)kp
-                 handler:(void (^)(id newValue))block;
+- (SLTObserver *)observeKeyPath:(NSString *)kp
+                        options:(NSKeyValueObservingOptions)mask
+                        handler:(SLTObserverHandler)block;
 
-- (SLTObserver *)observe:(NSObject *)object
-                keyPaths:(NSArray<NSString *> *)kps
-                 options:(NSKeyValueObservingOptions)mask
-                 handler:(void (^)(NSString *keyPath, NSDictionary *change))block;
+- (SLTObserver *)observeKeyPath:(NSString *)kp
+                        handler:(SLTObserverNewValueHandler)block;
+
+- (SLTObserver *)observeKeyPaths:(NSArray<NSString *> *)kps
+                         options:(NSKeyValueObservingOptions)mask
+                         handler:(SLTObserverHandler)block;
 
 /* -addObserver:keyPath:... methods are all highly experimental. Use with care.
  
@@ -80,23 +84,23 @@ private methods in other classes.
             keyPath:(NSString *)kp
             options:(NSKeyValueObservingOptions)mask
             context:(const void *)ctx
-            handler:(void (^)(NSDictionary *change))block;
+            handler:(SLTObserverHandler)block;
 
 - (void)addObserver:(NSObject *)object
             keyPath:(NSString *)kp
             options:(NSKeyValueObservingOptions)mask
-            handler:(void (^)(NSDictionary *change))block;
+            handler:(SLTObserverHandler)block;
 
 /** You must use the @c -invalidateObserver:keyPath:context: method to 
  invalidate the observer. */
 - (void)addObserver:(NSObject *)object
             keyPath:(NSString *)kp
             context:(const void *)ctx
-            handler:(void (^)(id newValue))block;
+            handler:(SLTObserverNewValueHandler)block;
 
 - (void)addObserver:(NSObject *)object
             keyPath:(NSString *)kp
-            handler:(void (^)(id newValue))block;
+            handler:(SLTObserverNewValueHandler)block;
 
 /** To invalidate this observer use @c SLTObserverMultipleValuesKeyPath
  the @c -invalidateObserver:keyPath:context: method must be used. */
@@ -104,13 +108,13 @@ private methods in other classes.
            keyPaths:(NSArray<NSString *>*)kps
             options:(NSKeyValueObservingOptions)mask
             context:(const void *)ctx
-            handler:(void (^)(NSString *keyPath, NSDictionary *change))block;
+            handler:(SLTObserverHandler)block;
 
 /** To invalidate this observer use @c SLTObserverMultipleValuesKeyPath */
 - (void)addObserver:(NSObject *)object
            keyPaths:(NSArray<NSString *>*)kps
             options:(NSKeyValueObservingOptions)mask
-            handler:(void (^)(NSString *keyPath, NSDictionary *change))block;
+            handler:(SLTObserverHandler)block;
 
 /** This method must be used to invalidate observers in case if a custom context
  was previously passed as an argument in one of -addObserver:keyPath:... methods.
