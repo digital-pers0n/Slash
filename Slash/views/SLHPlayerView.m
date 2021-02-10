@@ -181,20 +181,20 @@
     @[
       // MARK: Pause playback during live resize
       [appPrefs
-       observeKey:SLHPreferencesPausePlaybackDuringWindowResizeKey handler:
-       ^(NSNumber * _Nonnull value) {
+       observeKeyPath:SLHPreferencesPausePlaybackDuringWindowResizeKey handler:
+       ^(id obj, NSString *keyPath, NSNumber * _Nonnull value) {
            u->_PVFlags.shouldPauseDuringLiveResize = (value.boolValue) ? 1 : 0;
        }],
       // MARK: Use HiRes OpenGL surface
-      [appPrefs observeKey:SLHPreferencesUseHiResOpenGLSurfaceKey handler:
-       ^(NSNumber * _Nonnull value) {
+      [appPrefs observeKeyPath:SLHPreferencesUseHiResOpenGLSurfaceKey handler:
+       ^(id obj, NSString *keyPath, NSNumber * _Nonnull value) {
            if (u->_videoView) {
                u->_videoView.wantsBestResolutionOpenGLSurface = value.boolValue;
            }
        }],
       // MARK: Reload video renderer
-      [appPrefs observeKey:SLHPreferencesRendererClassNameKey handler:
-       ^(NSString * _Nonnull newValue) {
+      [appPrefs observeKeyPath:SLHPreferencesRendererClassNameKey handler:
+       ^(id obj, NSString *keyPath, NSString * _Nonnull newValue) {
            MPVPlayer *player = u->_player;
            if (!player) { return; }
            

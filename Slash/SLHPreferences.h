@@ -69,12 +69,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@class SLTObserver;
-@interface SLHPreferences (SLHPreferencesPropertyObservation)
-
-- (SLTObserver *)observeKey:(NSString *)propertyName
-                    handler:(void (^)(id newValue))block;
-
-@end
-
 NS_ASSUME_NONNULL_END

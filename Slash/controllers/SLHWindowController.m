@@ -511,85 +511,85 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _prefsObservers =
     @[
       // MARK: Screenshot directory save path
-      [appPrefs observeKey: SLHPreferencesScreenshotPathKey handler:
-       ^(NSString *_Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesScreenshotPathKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSString *_Nonnull change) {
            [player setString: change
                  forProperty: MPVPlayerPropertyScreenshotDirectory];
        }],
       
       // MARK: Screenshot file format
-      [appPrefs observeKey: SLHPreferencesScreenshotFormatKey handler:
-       ^(NSString * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesScreenshotFormatKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSString *_Nonnull change) {
            [player setString: change
                  forProperty: MPVPlayerPropertyScreenshotFormat];
        }],
       
       // MARK: Screenshot template name
-      [appPrefs observeKey: SLHPreferencesScreenshotTemplateKey handler:
-       ^(NSString * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesScreenshotTemplateKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSString *_Nonnull change){
            [player setString: change
                  forProperty: MPVPlayerPropertyScreenshotTemplate];
        }],
       
       // MARK: Screenshot JPEG quality
-      [appPrefs observeKey: SLHPreferencesScreenshotJPGQualityKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesScreenshotJPGQualityKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSNumber * _Nonnull change) {
            [player setInteger: change.integerValue
                   forProperty: MPVPlayerPropertyScreenshotJPGQuality];
        }],
       
       // MARK: Screenshot PNG compression
-      [appPrefs observeKey: SLHPreferencesScreenshotPNGCompressionKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesScreenshotPNGCompressionKey
+        handler:^(id obj, NSString * _Nonnull kp, NSNumber * _Nonnull change) {
            [player setInteger: change.integerValue
                   forProperty: MPVPlayerPropertyScreenshotPNGCompression];
        }],
       
       // MARK: OSD font name
-      [appPrefs observeKey: SLHPreferencesOSDFontNameKey handler:
-       ^(NSString * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesOSDFontNameKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSString * _Nonnull change) {
            [player setString: change
                  forProperty: MPVPlayerPropertyOSDFontName];
        }],
       
       // MARK: OSD font size
-      [appPrefs observeKey: SLHPreferencesOSDFontSizeKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesOSDFontSizeKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSNumber * _Nonnull change) {
            [player setInteger: change.integerValue
                   forProperty: MPVPlayerPropertyOSDFontSize];
        }],
       
       // MARK: OSD font scale
-      [appPrefs observeKey: SLHPreferencesOSDFontScaleByWindowKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesOSDFontScaleByWindowKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSNumber * _Nonnull change) {
            [player setBool: change.boolValue
                forProperty: MPVPlayerPropertyOSDFontScaleByWindow];
        }],
       
       // MARK: Subtitles font name
-      [appPrefs observeKey: SLHPreferencesSubtitlesFontNameKey handler:
-       ^(NSString * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesSubtitlesFontNameKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSString * _Nonnull change) {
            [player setString: change
                  forProperty: MPVPlayerPropertySubsFontName];
        }],
       
       // MARK: Subtitles font size
-      [appPrefs observeKey: SLHPreferencesSubtitlesFontSizeKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesSubtitlesFontSizeKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSNumber * _Nonnull change) {
            [player setInteger: change.integerValue
                   forProperty: MPVPlayerPropertySubsFontSize];
        }],
       
       // MARK: Subtitles font scale
-      [appPrefs observeKey: SLHPreferencesSubtitlesFontScaleByWindowKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesSubtitlesFontScaleByWindowKey
+        handler:^(id obj, NSString *_Nonnull kp, NSNumber *_Nonnull change) {
            [player setBool: change.boolValue
                forProperty: MPVPlayerPropertySubsFontScaleByWindow];
        }],
       
       // MARK: Last edited advanced option
-      [appPrefs observeKey: SLHPreferencesAdvancedOptionsLastEditedKey handler:
-       ^(id _Nonnull option) {
+      [appPrefs observeKeyPath: SLHPreferencesAdvancedOptionsLastEditedKey
+        handler:^(id obj, NSString * _Nonnull kp, id _Nonnull option) {
            NSError *error = nil;
            id value = [option valueForKey:SLHPreferencesAdvancedOptionValueKey];
            id key = [option valueForKey:SLHPreferencesAdvancedOptionNameKey];
@@ -599,8 +599,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
        }],
       
       // MARK: Enable advanced options
-      [appPrefs observeKey: SLHPreferencesAdvancedOptionsEnabledKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesAdvancedOptionsEnabledKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSNumber * _Nonnull change) {
            if (!change.boolValue) return;
            
            NSDictionary *advancedOptions = prefs.advancedOptions;
@@ -616,8 +616,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
        }],
       
       // MARK: Window title style
-      [appPrefs observeKey: SLHPreferencesWindowTitleStyleKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesWindowTitleStyleKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSNumber * _Nonnull change) {
            // FIXME: Big Sur's toolbars
            NSWindowTitleVisibility value = change.integerValue;
            NSWindow *window = uSelf.window;
@@ -634,22 +634,22 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
        }],
       
       // MARK: MPV path
-      [appPrefs observeKey: SLHPreferencesMPVPathKey handler:
-       ^(NSString * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesMPVPathKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSString * _Nonnull change) {
            id fileURL = [NSURL fileURLWithPath:change isDirectory:NO];
            [SLHExternalPlayer setDefaultPlayerURL:fileURL];
            [SLHExternalPlayer reinitializeDefaultPlayer];
        }],
       
       // MARK: Output name template format
-      [appPrefs observeKey: SLHPreferencesOutputNameTemplateKey handler:
-       ^(NSString * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesOutputNameTemplateKey handler:
+       ^(id obj, NSString * _Nonnull keyPath, NSString * _Nonnull change) {
            uSelf->_templateNameFormatter.templateFormat = change;
        }],
       
       // MARK: Enable output name template formatting
-      [appPrefs observeKey: SLHPreferencesEnableOutputNameTemplateKey handler:
-       ^(NSNumber * _Nonnull change) {
+      [appPrefs observeKeyPath: SLHPreferencesEnableOutputNameTemplateKey
+       handler:^(id obj, NSString * _Nonnull kp, NSNumber * _Nonnull change) {
            BOOL result = change.boolValue;
            uSelf->_outputNameController.nameEditable = result ? NO : YES;
        }],
@@ -1357,7 +1357,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
      SLHEncoderItem *encoderItem = _itemsArrayController.selectedObjects.firstObject;
     
     /* Check if already selected */
-    if (encoderItem == _currentEncoderItem) {
+    SLHEncoderItem *currentEncoderItem = _currentEncoderItem;
+    if (encoderItem == currentEncoderItem) {
         return;
     }
     
@@ -1368,7 +1369,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     MPVPlayer *player = _player;
     MPVPlayerItem *playerItem = encoderItem.playerItem;
-    if (playerItem != _currentEncoderItem.playerItem) {
+    if (playerItem != currentEncoderItem.playerItem) {
         [player pause];
         self.currentEncoderItem = encoderItem;
         

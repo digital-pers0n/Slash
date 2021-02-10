@@ -975,14 +975,3 @@ static BOOL isFilePathValid(NSString * path) {
 }
 
 @end
-
-@implementation SLHPreferences (SLHPreferencesPropertyObservation)
-
-- (SLTObserver *)observeKey:(NSString *)propertyName
-                    handler:(void (^)(id))block
-{
-    return [[SLTObserver alloc] initWithObject:self keyPath:propertyName
-                                       handler:block];
-}
-
-@end
