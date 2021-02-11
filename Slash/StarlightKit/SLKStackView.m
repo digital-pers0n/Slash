@@ -8,6 +8,10 @@
 
 #import "SLKStackView.h"
 #import "SLKDisclosureView.h"
+
+#import "SLTDefines.h"
+#import "SLTObserver.h"
+
 #import "MPVKitDefines.h"
 
 OBJC_DIRECT_MEMBERS
@@ -36,24 +40,15 @@ OBJC_DIRECT_MEMBERS
     view.autoresizingMask =
                       NSViewMinXMargin | NSViewMinYMargin | NSViewWidthSizable;
     view.frame = newFrame;
-    [view addObserver:self
-           forKeyPath:@"currentFrame" options:NSKeyValueObservingOptionOld
-              context:&KVO_SLKDisclosureViewCurrentFrame];
+    
+    UNSAFE typeof(self) u = self;
+    [view addObserver:self keyPath:KVP(view, currentFrame)
+              options:NSKeyValueObservingOptionOld handler:
+     ^(SLKDisclosureView *obj, NSString *keyPath, NSDictionary *change) {
+         NSRect rect = [[change objectForKey:NSKeyValueChangeOldKey] rectValue];
+         [u disclosureView:obj didResize:rect];
+     }];
     [super addSubview:view];
-}
-
-static char KVO_SLKDisclosureViewCurrentFrame;
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
-                        change:(NSDictionary *)change context:(void *)context
-{
-    if (context == &KVO_SLKDisclosureViewCurrentFrame) {
-        NSRect rect = [[change objectForKey:NSKeyValueChangeOldKey] rectValue];
-        [self disclosureView:object didResize:rect];
-    } else {
-        [super observeValueForKeyPath:keyPath
-                             ofObject:object change:change context:context];
-    }
 }
 
 - (BOOL)isFlipped {
@@ -61,8 +56,8 @@ static char KVO_SLKDisclosureViewCurrentFrame;
 }
 
 - (void)willRemoveSubview:(NSView *)subview {
-    [subview removeObserver:self forKeyPath:@"currentFrame"
-                    context:&KVO_SLKDisclosureViewCurrentFrame];
+    [subview invalidateObserver:self
+                        keyPath:KEYPATH(SLKDisclosureView, currentFrame)];
     [super willRemoveSubview:subview];
 }
 
