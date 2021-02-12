@@ -36,6 +36,7 @@ int soc_connect(Socket *s, const char *path) {
     
     /* Initiate connection */
     if (connect(*s, (struct sockaddr *)&un, un.sun_len) != 0) {
+        close(*s);
         soc_error(__func__, "connect()");
         return -1;
     }
