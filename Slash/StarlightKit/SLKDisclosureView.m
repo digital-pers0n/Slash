@@ -7,6 +7,9 @@
 //
 
 #import "SLKDisclosureView.h"
+#import "SLTDefines.h"
+#import "SLTObserver.h"
+
 #import "MPVKitDefines.h"
 
 static const CGFloat SLKHeaderViewHeight = 20.0;
@@ -51,7 +54,7 @@ static const CGFloat SLKHeaderViewMargin = 7.0;
         _buttonCell.bordered = NO;
         _buttonCell.font = [NSFont boldSystemFontOfSize:SLKHeaderViewFontSize];
         [_buttonCell bind:NSValueBinding
-                 toObject:self withKeyPath:@"closed" options:nil];
+                 toObject:self withKeyPath:KVP(self, closed) options:nil];
         [self updateButtonFrame];
         _trackingArea = [[NSTrackingArea alloc] init];
     }
@@ -179,23 +182,6 @@ static NSColor *_separatorColor;
     [super setFrame:frame];
 }
 
-static char KVO_SLKHeaderViewClosed;
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
-                        change:(NSDictionary *)change context:(void *)context
-{
-    if (context == &KVO_SLKHeaderViewClosed) {
-        NSSize savedSize = _currentFrame.size;
-        [self willChangeValueForKey:@"currentFrame"];
-        [self resizeTo:_savedSize];
-        [self didChangeValueForKey:@"currentFrame"];
-        _savedSize = savedSize;
-    } else {
-        [super observeValueForKeyPath:keyPath
-                             ofObject:object change:change context:context];
-    }
-}
-
 - (void)drawRect:(NSRect)dirtyRect {
     NSRect frame = _currentFrame;
     frame.size.height = 1;
@@ -209,8 +195,7 @@ static char KVO_SLKHeaderViewClosed;
 }
 
 - (void)dealloc {
-    [_headerView removeObserver:self
-                     forKeyPath:@"closed" context:&KVO_SLKHeaderViewClosed];
+    [_headerView invalidateObserver:self keyPath:KVP(_headerView, closed)];
 }
 
 #pragma mark - Methods
@@ -226,10 +211,20 @@ static char KVO_SLKHeaderViewClosed;
                                     NSWidth(frame), SLKHeaderViewHeight);
     SLKDisclosureHeaderView *hv;
     hv = [[self.headerViewClass alloc] initWithFrame:headerFrame];
-    [hv addObserver:self
-         forKeyPath:@"closed" options:0 context:&KVO_SLKHeaderViewClosed];
-    hv.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewWidthSizable;
+    hv.autoresizingMask = (NSViewMinXMargin
+                           | NSViewMinYMargin | NSViewWidthSizable);
     [self addSubview:hv];
+    
+    UNSAFE typeof(self) u = self;
+    [hv addObserver:self keyPath:KVP(hv, closed) options:0 handler:
+     ^(SLKDisclosureHeaderView *obj, NSString *keyPath, NSDictionary *change) {
+         NSSize savedSize = u->_currentFrame.size;
+         [u willChangeValueForKey:KVP(u, currentFrame)];
+         [u resizeTo:u->_savedSize];
+         [u didChangeValueForKey:KVP(u, currentFrame)];
+         u->_savedSize = savedSize;
+     }];
+    
     _savedSize = headerFrame.size;
     _headerView = hv;
     if (!_separatorColor) {
@@ -248,8 +243,8 @@ static char KVO_SLKHeaderViewClosed;
         [self resizeTo:newSize];
         contentView.frame = newContentFrame;
         [self addSubview:contentView];
-        [contentView bind:NSHiddenBinding
-                 toObject:_headerView withKeyPath:@"closed" options:nil];
+        [contentView bind:NSHiddenBinding toObject:_headerView
+              withKeyPath:KVP(_headerView, closed) options:nil];
     }
 }
 
