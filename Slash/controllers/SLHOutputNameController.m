@@ -7,6 +7,9 @@
 //
 
 #import "SLHOutputNameController.h"
+#import "SLTDefines.h"
+#import "SLTObserver.h"
+#import "NSNotificationCenter+SLTAdditions.h"
 
 static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
 
@@ -65,11 +68,6 @@ static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
     [_rightButton setFrameOrigin:rect.origin];
 }
 
-- (void)didEndEditing:(NSNotification * )n {
-    [self updateMaxOutputNameTextSize];
-    [self adjustSubviews];
-}
-
 - (void)updateMaxOutputNameTextSize {
     NSSize size = _outputNameTextField.cell.cellSize;
     if (size.width < kMinOutputNameTextFieldWidth) {
@@ -91,20 +89,30 @@ static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
     width += NSWidth(_rightTextField.frame);
     width += NSWidth(_rightButton.frame);
     _constantWidth = width;
-
+    
+    UNSAFE typeof(self) uSelf = self;
+    
+    static const void(^updater)(SLHOutputNameContainerView *) =
+    ^(SLHOutputNameContainerView *v){
+        [v updateMaxOutputNameTextSize];
+        [v adjustSubviews];
+    };
+    
     // Receive notifications to handle user input
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self
-           selector:@selector(didEndEditing:)
-               name:NSControlTextDidEndEditingNotification
-             object:_outputNameTextField];
+    [nc addObserver:self name:NSControlTextDidEndEditingNotification
+             object:_outputNameTextField handler:
+     ^(id  _Nullable object, NSNotification * _Nonnull notification) {
+         updater(uSelf);
+     }];
     
     // Observe changes to handle cases when text was updated programmatically
     [_outputNameTextField addObserver:self
-                           forKeyPath:@"objectValue"
-                              options:NSKeyValueObservingOptionNew
-                              context:&SLHOutputNameKVOContext];
-
+                              keyPath:KEYPATH(NSTextField, objectValue)
+                              options:0 handler:
+    ^(id obj, NSString * _Nonnull keyPath, NSDictionary * _Nonnull change) {
+        updater(uSelf);
+    }];
 }
 
 - (void)setFrameSize:(NSSize)newSize {
@@ -124,33 +132,11 @@ static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
 - (void)dealloc
 {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc removeObserver:self
-                  name:NSControlTextDidEndEditingNotification
-                object:_outputNameTextField];
+    [nc unregisterObserver:self name:NSControlTextDidEndEditingNotification
+                    object:_outputNameTextField];
     
-    [_outputNameTextField removeObserver:self
-                              forKeyPath:@"objectValue"
-                                 context:&SLHOutputNameKVOContext];
-}
-
-#pragma mark - KVO
-
-static char SLHOutputNameKVOContext;
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-    if (context == &SLHOutputNameKVOContext) {
-        [self updateMaxOutputNameTextSize];
-        [self adjustSubviews];
-    } else {
-        [super observeValueForKeyPath:keyPath
-                             ofObject:object
-                               change:change
-                              context:context];
-    }
+    [_outputNameTextField invalidateObserver:self
+                                     keyPath:KEYPATH(NSTextField, objectValue)];
 }
 
 @end
