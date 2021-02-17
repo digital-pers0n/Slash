@@ -381,6 +381,7 @@
 		CED60C6425755BED00EA6B97 /* SLTObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTObserver.h; path = Starlight/SLTObserver.h; sourceTree = "<group>"; };
 		CED60C6525755BED00EA6B97 /* SLTObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTObserver.m; path = Starlight/SLTObserver.m; sourceTree = "<group>"; };
 		CED71EC625DC2CC7002191A8 /* Dispatch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = Dispatch.h; path = system/Dispatch.h; sourceTree = "<group>"; };
+		CED71EC825DD7D64002191A8 /* Spawn.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = Spawn.h; path = system/Spawn.h; sourceTree = "<group>"; };
 		CED85AB721B85D6D00D01B36 /* SLHEncoderX264Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Format.h; path = controllers/SLHEncoderX264Format.h; sourceTree = "<group>"; };
 		CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SLHEncoderX264Format.m; path = controllers/SLHEncoderX264Format.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderX264Format.xib; path = controllers/SLHEncoderX264Format.xib; sourceTree = "<group>"; };
@@ -654,6 +655,7 @@
 			children = (
 				CE1414C1210D31D900C02B2D /* mpv */,
 				CED71EC625DC2CC7002191A8 /* Dispatch.h */,
+				CED71EC825DD7D64002191A8 /* Spawn.h */,
 				CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */,
 				CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */,
 				CEBFF3E32190BDA000F54C7E /* slh_encoder.h */,
