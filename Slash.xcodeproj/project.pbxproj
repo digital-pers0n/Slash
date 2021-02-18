@@ -133,6 +133,7 @@
 		CECE14E82507B79900406B9D /* SLTBitrateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */; };
 		CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2245E23A11332000A7489 /* SLHExternalPlayer.m */; };
 		CED60C6625755BED00EA6B97 /* SLTObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = CED60C6525755BED00EA6B97 /* SLTObserver.m */; };
+		CED71ECC25DEC1FD002191A8 /* Argv.mm in Sources */ = {isa = PBXBuildFile; fileRef = CED71ECA25DEC1FC002191A8 /* Argv.mm */; };
 		CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */; };
 		CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */; };
 		CEDD22EC23887EB50049E4C4 /* SLHCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDD22EB23887EB50049E4C4 /* SLHCropView.m */; };
@@ -382,6 +383,8 @@
 		CED60C6525755BED00EA6B97 /* SLTObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTObserver.m; path = Starlight/SLTObserver.m; sourceTree = "<group>"; };
 		CED71EC625DC2CC7002191A8 /* Dispatch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = Dispatch.h; path = system/Dispatch.h; sourceTree = "<group>"; };
 		CED71EC825DD7D64002191A8 /* Spawn.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = Spawn.h; path = system/Spawn.h; sourceTree = "<group>"; };
+		CED71ECA25DEC1FC002191A8 /* Argv.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Argv.mm; sourceTree = "<group>"; };
+		CED71ECB25DEC1FD002191A8 /* Argv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Argv.h; sourceTree = "<group>"; };
 		CED85AB721B85D6D00D01B36 /* SLHEncoderX264Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Format.h; path = controllers/SLHEncoderX264Format.h; sourceTree = "<group>"; };
 		CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SLHEncoderX264Format.m; path = controllers/SLHEncoderX264Format.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderX264Format.xib; path = controllers/SLHEncoderX264Format.xib; sourceTree = "<group>"; };
@@ -654,6 +657,8 @@
 			isa = PBXGroup;
 			children = (
 				CE1414C1210D31D900C02B2D /* mpv */,
+				CED71ECB25DEC1FD002191A8 /* Argv.h */,
+				CED71ECA25DEC1FC002191A8 /* Argv.mm */,
 				CED71EC625DC2CC7002191A8 /* Dispatch.h */,
 				CED71EC825DD7D64002191A8 /* Spawn.h */,
 				CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */,
@@ -1038,6 +1043,7 @@
 				CEF398E524DC569200D44BDD /* SLTH264EncoderSettings.m in Sources */,
 				CE9CA40423788350005CF368 /* SLHStackView.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
+				CED71ECC25DEC1FD002191A8 /* Argv.mm in Sources */,
 				CEBA3662253746B800823125 /* SLKSelectionRangeView.m in Sources */,
 				CEC4A6B925B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m in Sources */,
 				CE3E3A8C244768640004DEB0 /* SLHAttributedTimeFormatter.m in Sources */,
@@ -1178,6 +1184,9 @@
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.1;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
 				INFOPLIST_FILE = Slash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LLVM_LTO = NO;
@@ -1202,6 +1211,9 @@
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.1;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Slash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
