@@ -63,6 +63,7 @@ struct Object {
         dispatch_activate(DispatchObject);
     }
     
+#if !(__has_feature(objc_arc)) || (OS_OBJECT_HAVE_OBJC_SUPPORT == 0)
     // non-ARC or OS_OBJECT_HAVE_OBJC_SUPPORT == 0
     void retain() const {
         dispatch_retain(DispatchObject);
@@ -72,6 +73,10 @@ struct Object {
     void release() const {
         dispatch_release(DispatchObject);
     }
+#else
+    void retain() const {}
+    void release() const {}
+#endif // !(__has_feature(objc_arc)) || (OS_OBJECT_HAVE_OBJC_SUPPORT == 0)
     
     operator Type() const {
         return DispatchObject;
