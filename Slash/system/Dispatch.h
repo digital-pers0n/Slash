@@ -26,6 +26,7 @@ template<typename Type>
 struct Object {
     Type DispatchObject = {0};
     
+    Object() {}
     Object(const Type &val) : DispatchObject(val) {};
     Object(const Object &val) : DispatchObject(val.DispatchObject) {}
     
