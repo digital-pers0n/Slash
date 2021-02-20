@@ -24,7 +24,7 @@ using FunctionType = dispatch_function_t;
 
 template<typename Type>
 struct Object {
-    Type DispatchObject = {0};
+    Type DispatchObject;
     
     Object() {}
     Object(const Type &val) : DispatchObject(val) {};
