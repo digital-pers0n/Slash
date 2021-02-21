@@ -81,6 +81,27 @@ constexpr size_t ArgvCount(ArgvType argv);
  */
 void ArgvPrint(ArgvType argv);
 
+/** A simple wrapper to allow RAII. */
+struct Argv {
+    char **Data = nullptr;
+    Argv(ArgvType src) : Data(ArgvCopy(src)) {}
+    Argv(NSArray<NSString *> *src) : Data(ArgvCopy(src)) {}
+    Argv(const Argv &src) : Argv(src.Data) {}
+    ~Argv() {
+        ArgvDealloc(Data);
+    }
+    
+    Argv & operator=(const Argv &other) = delete;
+    
+    bool append(const char *arg) {
+        return (ArgvAppend(&Data, arg) != nullptr);
+    }
+    
+    operator ArgvType() const {
+        return Data;
+    }
+};
+
 } // namespace SL
 
 #endif /* Argv_h */
