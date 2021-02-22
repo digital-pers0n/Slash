@@ -158,9 +158,15 @@ struct Queue : public Object<QueueType> {
         Low = DISPATCH_QUEUE_PRIORITY_LOW,
         Background = DISPATCH_QUEUE_PRIORITY_BACKGROUND
     }; // enum Priority
-    
-    static Type GetMain() {
-        return dispatch_get_main_queue();
+
+    /* Previously, 'return dispatch_get_main_queue();' was used here, but for
+     some reason ARC emits objc_retainAutorelease() function calls in this case, 
+     and at the same time if dispatch_get_main_queue() called directly ARC 
+     doesn't generate any additional code. This default argument hack seems to 
+     force ARC not to generate any unnecessary code. */
+    DISPATCH_ALWAYS_INLINE DISPATCH_CONST
+    static const Type GetMain(const Type q = dispatch_get_main_queue()) {
+        return q;
     }
     
     static Type GetGlobal(Priority priority) {
@@ -179,8 +185,9 @@ struct Queue : public Object<QueueType> {
         return dispatch_queue_create(label, DISPATCH_QUEUE_CONCURRENT);
     }
     
+    DISPATCH_ALWAYS_INLINE DISPATCH_CONST
     static Queue Main() {
-        return Queue(GetMain());
+        return Queue(dispatch_get_main_queue());
     }
     
     auto & async(BlockType block) const {
@@ -233,6 +240,7 @@ inline Queue GlobalQueue() {
     return GlobalQueue(Queue::Priority::Default);
 }
 
+DISPATCH_ALWAYS_INLINE DISPATCH_CONST
 inline Queue MainQueue() {
     return Queue::Main();
 }
