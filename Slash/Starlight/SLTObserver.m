@@ -295,6 +295,7 @@ SLTObserverAdd(UNSAFE id object, UNSAFE SLTObserver *observer,
     for (SLTObserver *obj in copy) {
         if (self == obj->_observable) {
             [array removeObject:obj];
+            [obj invalidate];
         }
     }
     NSAssert(copy.count != array.count, @"%@ isn't observed by %@",
