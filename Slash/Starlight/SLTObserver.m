@@ -312,7 +312,7 @@ SLTObserverAdd(UNSAFE id object, UNSAFE SLTObserver *observer,
     [self invalidateObserver:object keyPath:nil];
 }
 
-NSString *const SLTObserverMultipleValuesKeyPath = @"multipleValuesKeyPath";
+NSString *const SLTObserverMultipleValuesKeyPath = @"[multipleValuesKeyPath]";
 
 @end
 
