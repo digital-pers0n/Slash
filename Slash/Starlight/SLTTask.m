@@ -87,31 +87,22 @@ OBJC_DIRECT_MEMBERS
     return @[result];
 }
 
-- (NSString *)stringFromFilters:(NSArray<SLTFilter *>*)filters {
-    const NSInteger count = filters.count;
-    if (!count) return nil;
-    NSInteger idx = 0;
-    NSMutableString *result = [NSMutableString new];
-    for (SLTFilter *f in filters) {
-        [result appendString:f.stringValue];
-        if (++idx < count) {
-            [result appendString:@","];
-        }
-    }
-    
-    return result;
-}
-
 - (NSArray *)filtersArguments {
     NSMutableArray *result = [NSMutableArray new];
     SLTEncoderSettings *settings = _destination.settings;
-     __unsafe_unretained typeof(self) uSelf = self;
     
-    void (^toString)() = ^(NSArray<SLTFilter *> *array, NSString *type) {
-        id tmp = [uSelf stringFromFilters:array];
-        if (tmp) {
-            [result addObjectsFromArray:@[ type, tmp ]];
+    void (^toString)() = ^(NSArray<SLTFilter *> *filters, NSString *type) {
+        const NSInteger count = filters.count;
+        if (!count) return;
+        NSInteger idx = 0;
+        NSMutableString *tmp = [NSMutableString new];
+        for (SLTFilter *f in filters) {
+            [tmp appendString:f.stringValue];
+            if (++idx < count) {
+                [tmp appendString:@","];
+            }
         }
+        [result addObjectsFromArray:@[ type, tmp ]];
     };
     
     if (settings.allowsVideoFilters) {
