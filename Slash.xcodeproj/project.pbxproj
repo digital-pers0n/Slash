@@ -182,6 +182,7 @@
 		CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHCropEditor.m; path = controllers/SLHCropEditor.m; sourceTree = "<group>"; };
 		CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHCropEditor.xib; path = controllers/SLHCropEditor.xib; sourceTree = "<group>"; };
 		CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		CE0C5CD325EE6833002D1F64 /* Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		CE0EC703235214930053204B /* MPVExtern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVExtern.m; path = MPVKit/MPVExtern.m; sourceTree = "<group>"; };
 		CE12044D229995E300C2A145 /* SLHPresetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetManager.h; path = controllers/SLHPresetManager.h; sourceTree = "<group>"; };
 		CE12044E229995E300C2A145 /* SLHPresetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetManager.m; path = controllers/SLHPresetManager.m; sourceTree = "<group>"; };
@@ -659,6 +660,7 @@
 				CE1414C1210D31D900C02B2D /* mpv */,
 				CED71ECB25DEC1FD002191A8 /* Argv.h */,
 				CED71ECA25DEC1FC002191A8 /* Argv.mm */,
+				CE0C5CD325EE6833002D1F64 /* Data.h */,
 				CED71EC625DC2CC7002191A8 /* Dispatch.h */,
 				CED71EC825DD7D64002191A8 /* Spawn.h */,
 				CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */,
