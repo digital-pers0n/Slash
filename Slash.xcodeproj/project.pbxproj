@@ -144,7 +144,7 @@
 		CEE7B5B824D31C8200A115D2 /* SLTDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5B724D31C8200A115D2 /* SLTDestination.m */; };
 		CEE7B5BB24D31CAD00A115D2 /* SLTQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5BA24D31CAD00A115D2 /* SLTQueue.m */; };
 		CEE7B5BE24D31CC700A115D2 /* SLTFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5BD24D31CC700A115D2 /* SLTFilter.m */; };
-		CEE7B5C124D31D1100A115D2 /* SLTEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */; };
+		CEE7B5C124D31D1100A115D2 /* SLTEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5C024D31D1100A115D2 /* SLTEncoder.mm */; };
 		CEED67DB24277B8B003B4CC3 /* slh_video_frame_extractor.c in Sources */ = {isa = PBXBuildFile; fileRef = CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */; };
 		CEEDC2182404380200AAFC18 /* SLHSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEDC2172404380200AAFC18 /* SLHSeparatorView.m */; };
 		CEEE0A03219F34B200B9BB11 /* SLHEncoderBaseFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEE0A02219F34B200B9BB11 /* SLHEncoderBaseFormat.m */; };
@@ -407,7 +407,7 @@
 		CEE7B5BC24D31CC700A115D2 /* SLTFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTFilter.h; path = Starlight/SLTFilter.h; sourceTree = "<group>"; };
 		CEE7B5BD24D31CC700A115D2 /* SLTFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTFilter.m; path = Starlight/SLTFilter.m; sourceTree = "<group>"; };
 		CEE7B5BF24D31D1100A115D2 /* SLTEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTEncoder.h; path = Starlight/SLTEncoder.h; sourceTree = "<group>"; };
-		CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTEncoder.m; path = Starlight/SLTEncoder.m; sourceTree = "<group>"; };
+		CEE7B5C024D31D1100A115D2 /* SLTEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SLTEncoder.mm; path = Starlight/SLTEncoder.mm; sourceTree = "<group>"; };
 		CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_video_frame_extractor.c; path = system/slh_video_frame_extractor.c; sourceTree = "<group>"; };
 		CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_video_frame_extractor.h; path = system/slh_video_frame_extractor.h; sourceTree = "<group>"; };
 		CEEDC2162404380200AAFC18 /* SLHSeparatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHSeparatorView.h; sourceTree = "<group>"; };
@@ -835,7 +835,7 @@
 				CEE7B5B624D31C8200A115D2 /* SLTDestination.h */,
 				CEE7B5B724D31C8200A115D2 /* SLTDestination.m */,
 				CEE7B5BF24D31D1100A115D2 /* SLTEncoder.h */,
-				CEE7B5C024D31D1100A115D2 /* SLTEncoder.m */,
+				CEE7B5C024D31D1100A115D2 /* SLTEncoder.mm */,
 				CEFF068A24D72FA900E93228 /* SLTEncoderSettings.h */,
 				CEFF068B24D72FA900E93228 /* SLTEncoderSettings.m */,
 				CE46483625506B380005498B /* SLTFFmpegInfo.h */,
@@ -1031,7 +1031,7 @@
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */,
 				CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */,
-				CEE7B5C124D31D1100A115D2 /* SLTEncoder.m in Sources */,
+				CEE7B5C124D31D1100A115D2 /* SLTEncoder.mm in Sources */,
 				CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */,
 				CE60C549235E4E2D003DB25F /* MPVPlayerItemTrack.m in Sources */,
 				CEBB8BF8246ACAD700776827 /* MPVLock.c in Sources */,
