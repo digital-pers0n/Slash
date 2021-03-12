@@ -259,22 +259,12 @@ typedef Player * PlayerRef;
 }
 
 - (void)setStayOnTop:(BOOL)value {
-    
-     __unsafe_unretained typeof(self) obj = self;
-    
+    Player *p = _playerRef;
     dispatch_async(_queue, ^{
-        size_t len = 0;
-        const char *cmd = nil;
-        if (value) {
-            const char buf[] = "{ \"command\": [ \"set_property\", \"ontop\", \"yes\" ] }\n";
-            len = sizeof(buf) - 1;
-            cmd = buf;
-        } else {
-            const char buf[] = "{ \"command\": [ \"set_property\", \"ontop\", \"no\" ] }\n";
-            len = sizeof(buf) - 1;
-            cmd = buf;
-        }
-        plr_msg_send(obj->_playerRef, cmd, len);
+        const char *cmd = value ?
+        "{ \"command\": [ \"set_property\", \"ontop\", \"yes\" ] }\n" :
+        "{ \"command\": [ \"set_property\", \"ontop\", \"no\" ] }\n";
+        plr_msg_send(p, cmd, strlen(cmd));
     });
 }
 
