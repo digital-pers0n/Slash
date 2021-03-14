@@ -208,6 +208,7 @@
 		CE166C602351FDD9001AF0CB /* MPVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVPlayer.m; path = MPVKit/MPVPlayer.m; sourceTree = "<group>"; };
 		CE166C6423520181001AF0CB /* MPVPlayerCommands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVPlayerCommands.h; path = MPVKit/MPVPlayerCommands.h; sourceTree = "<group>"; };
 		CE166C652352019A001AF0CB /* MPVPlayerProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVPlayerProperties.h; path = MPVKit/MPVPlayerProperties.h; sourceTree = "<group>"; };
+		CE179C4825FE61BC003D7EE6 /* ASPrint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASPrint.h; path = system/ASPrint.h; sourceTree = "<group>"; };
 		CE1D484A223FFB5B0026E8C2 /* SLHEncoderX264Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Options.h; path = model/SLHEncoderX264Options.h; sourceTree = "<group>"; };
 		CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderX264Options.m; path = model/SLHEncoderX264Options.m; sourceTree = "<group>"; };
 		CE1DC4152285B09F0086A895 /* SLHLogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHLogController.h; path = controllers/SLHLogController.h; sourceTree = "<group>"; };
@@ -661,6 +662,7 @@
 				CE1414C1210D31D900C02B2D /* mpv */,
 				CED71ECB25DEC1FD002191A8 /* Argv.h */,
 				CED71ECA25DEC1FC002191A8 /* Argv.mm */,
+				CE179C4825FE61BC003D7EE6 /* ASPrint.h */,
 				CE0C5CD325EE6833002D1F64 /* Data.h */,
 				CE6E874325F28475007CC39A /* Encoder.h */,
 				CED71EC625DC2CC7002191A8 /* Dispatch.h */,
