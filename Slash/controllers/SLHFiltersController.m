@@ -56,7 +56,7 @@ static NSString *const _filterPresetsNameKey = @"Filters";
 }
 
 @property (readonly, nonatomic) SLHPreferences *prefs;
-
+@property (nonatomic) BOOL busy;
 @end
 
 @implementation SLHFiltersController
@@ -393,13 +393,19 @@ static inline NSString *_preampString(NSInteger val) {
 }
 
 - (IBAction)detectCropArea:(id)sender {
-    if (!_encoderItem) {
+    if (!_encoderItem || _busy) {
         NSBeep();
         return;
     }
-    NSRect rect = [SLHCropEditor cropRectForItem:_encoderItem];
-    SLHFilterOptions *options = _encoderItem.filters;
-    options.videoCropRect = rect;
+    _busy = YES;
+    SLHEncoderItem *encoderItem = _encoderItem;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSRect rect = [SLHCropEditor cropRectForItem:encoderItem];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            encoderItem.filters.videoCropRect = rect;
+            self->_busy = NO;
+        });
+    });
 }
 
 - (IBAction)cropEditorButtonAction:(id)sender {
