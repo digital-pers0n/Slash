@@ -1,3 +1,4 @@
+#pragma once
 //
 //  SLTUtils.h
 //  Slash
@@ -5,6 +6,7 @@
 //  Created by Terminator on 2020/9/12.
 //  Copyright © 2020年 digital-pers0n. All rights reserved.
 //
+__BEGIN_DECLS
 
 @class NSString, NSError;
 
@@ -57,3 +59,5 @@ NSString *const SLTPasteboardTypeFileURL();
 NSString *const SLTPasteboardTypeURL();
 #define kSLTTypeFileURL SLTPasteboardTypeFileURL()
 #define kSLTTypeURL SLTPasteboardTypeURL()
+
+__END_DECLS
