@@ -9,16 +9,17 @@
 #import <Cocoa/Cocoa.h>
 #import "SLTUtils.h"
 
-static NSString *_temporaryDirectoryPath = nil;
+static NSString *SLTTemporaryDirectoryPath = @"/tmp";
 
 BOOL SLTTemporaryDirectoryInit(NSError **error) {
-    if (!_temporaryDirectoryPath) {
+    static dispatch_once_t onceToken = 0;
+    if (!onceToken) {
         NSString *bundleId = NSBundle.mainBundle.bundleIdentifier;
         if (!bundleId) {
             bundleId = NSProcessInfo.processInfo.processName;
         }
-        NSString *dir = NSTemporaryDirectory();
-        dir = [dir stringByAppendingPathComponent:bundleId];
+        NSString *dir = [NSTemporaryDirectory()
+                         stringByAppendingPathComponent:bundleId];
         NSFileManager *fm = NSFileManager.defaultManager;
         if (![fm fileExistsAtPath:dir isDirectory:nil]) {
             if (![fm createDirectoryAtPath:dir withIntermediateDirectories:YES
@@ -26,13 +27,15 @@ BOOL SLTTemporaryDirectoryInit(NSError **error) {
                 return NO;
             }
         }
-        _temporaryDirectoryPath = dir;
+        dispatch_once(&onceToken, ^{
+            SLTTemporaryDirectoryPath = dir;
+        });
     }
     return YES;
 }
 
 NSString *SLTTemporaryDirectory(void) {
-    return _temporaryDirectoryPath;
+    return SLTTemporaryDirectoryPath;
 }
 
 BOOL SLTValidateFileName(NSString *fileName, NSError **outError) {

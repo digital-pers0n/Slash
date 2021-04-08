@@ -23,7 +23,7 @@ BOOL SLTTemporaryDirectoryInit(NSError **error);
 
 /**
  The path to the temporary directory. 
- @return nil if @c SLTTemporaryDirectoryInit() function wasn't called previously.
+ @return /tmp if @c SLTTemporaryDirectoryInit() function wasn't called previously.
  */
 NSString *SLTTemporaryDirectory(void);
 
