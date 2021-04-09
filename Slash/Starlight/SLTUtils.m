@@ -104,7 +104,7 @@ BOOL SLTIsNotApplicableMarker(id value) {
 #endif
 }
 
-NSString *const SLTPasteboardTypeFileURL() {
+NSString *SLTPasteboardTypeFileURL() {
 #if MAC_OS_1100_BUILD
     return NSPasteboardTypeFileURL;
 #else 
@@ -112,7 +112,7 @@ NSString *const SLTPasteboardTypeFileURL() {
 #endif
 }
 
-NSString *const SLTPasteboardTypeURL() {
+NSString *SLTPasteboardTypeURL() {
 #if MAC_OS_1100_BUILD
     return NSPasteboardTypeURL;
 #else

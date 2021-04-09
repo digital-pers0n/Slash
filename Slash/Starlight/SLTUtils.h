@@ -55,8 +55,8 @@ BOOL SLTIsNotApplicableMarker(id value);
  Return correct pasteboard names when building for macOS 11, since kUTType
  constants are soft deprecated there.
  */
-NSString *const SLTPasteboardTypeFileURL();
-NSString *const SLTPasteboardTypeURL();
+NSString *SLTPasteboardTypeFileURL();
+NSString *SLTPasteboardTypeURL();
 #define kSLTTypeFileURL SLTPasteboardTypeFileURL()
 #define kSLTTypeURL SLTPasteboardTypeURL()
 

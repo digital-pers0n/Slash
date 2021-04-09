@@ -165,7 +165,7 @@ struct Queue : public Object<QueueType> {
      doesn't generate any additional code. This default argument hack seems to 
      force ARC not to generate any unnecessary code. */
     DISPATCH_ALWAYS_INLINE DISPATCH_CONST
-    static const Type GetMain(const Type q = dispatch_get_main_queue()) {
+    static Type GetMain(const Type q = dispatch_get_main_queue()) {
         return q;
     }
     

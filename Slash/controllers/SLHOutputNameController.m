@@ -92,7 +92,7 @@ static const CGFloat kMinOutputNameTextFieldWidth = 100.0;
     
     UNSAFE typeof(self) uSelf = self;
     
-    static const void(^updater)(SLHOutputNameContainerView *) =
+    void(^const updater)(SLHOutputNameContainerView *) =
     ^(SLHOutputNameContainerView *v){
         [v updateMaxOutputNameTextSize];
         [v adjustSubviews];
