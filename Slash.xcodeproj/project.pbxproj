@@ -309,6 +309,7 @@
 		CE6DDBE72535F93900982C4E /* SLKContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKContainerView.h; path = StarlightKit/SLKContainerView.h; sourceTree = "<group>"; };
 		CE6DDBE82535F93900982C4E /* SLKContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKContainerView.m; path = StarlightKit/SLKContainerView.m; sourceTree = "<group>"; };
 		CE6E874325F28475007CC39A /* Encoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Encoder.h; path = system/Encoder.h; sourceTree = "<group>"; };
+		CE71619D2623662400AC18F9 /* SPrint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SPrint.h; path = system/SPrint.h; sourceTree = "<group>"; };
 		CE74B09C247D145A00749338 /* SLHTemplateNameFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHTemplateNameFormatter.h; path = utils/SLHTemplateNameFormatter.h; sourceTree = "<group>"; };
 		CE74B09D247D145A00749338 /* SLHTemplateNameFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHTemplateNameFormatter.m; path = utils/SLHTemplateNameFormatter.m; sourceTree = "<group>"; };
 		CE7D018924D4559D00B51D66 /* SLTFilterParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTFilterParameter.h; path = Starlight/SLTFilterParameter.h; sourceTree = "<group>"; };
@@ -667,6 +668,7 @@
 				CE6E874325F28475007CC39A /* Encoder.h */,
 				CED71EC625DC2CC7002191A8 /* Dispatch.h */,
 				CED71EC825DD7D64002191A8 /* Spawn.h */,
+				CE71619D2623662400AC18F9 /* SPrint.h */,
 				CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */,
 				CEED67D924277B8B003B4CC3 /* slh_video_frame_extractor.c */,
 				CEBFF3E32190BDA000F54C7E /* slh_encoder.h */,
