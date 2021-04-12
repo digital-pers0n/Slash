@@ -21,7 +21,7 @@ struct Data {
     Data &operator=(const Data&) = delete;
     
     /* This allows safe __block storage type */
-    Data(Data &&other) : Bytes(other.Bytes), Len(other.Len) {
+    Data(Data &&other) noexcept : Bytes(other.Bytes), Len(other.Len) {
         other.Bytes = nullptr;
     }
     
