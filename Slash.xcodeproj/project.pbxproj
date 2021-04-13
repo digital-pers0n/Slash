@@ -15,6 +15,7 @@
 		CE08D7C124ED5652004347DF /* SLKDisclosureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08D7C024ED5652004347DF /* SLKDisclosureView.m */; };
 		CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0A5B3022B924D400198163 /* SLHPresetNameDialog.m */; };
 		CE0A5B3322B924D400198163 /* SLHPresetNameDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0A5B3122B924D400198163 /* SLHPresetNameDialog.xib */; };
+		CE0AE9802604EFB40084F78D /* SLTRemotePlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE97F2604EFB40084F78D /* SLTRemotePlayer.mm */; };
 		CE0B15F023561AD600AE606E /* SLHPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B15EF23561AD600AE606E /* SLHPlayerView.m */; };
 		CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B15F223571EA100AE606E /* SLHPlayerViewController.m */; };
 		CE0B15F523571EA100AE606E /* SLHPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0B15F323571EA100AE606E /* SLHPlayerViewController.xib */; };
@@ -171,6 +172,9 @@
 		CE0A5B2F22B924D400198163 /* SLHPresetNameDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetNameDialog.h; path = controllers/SLHPresetNameDialog.h; sourceTree = "<group>"; };
 		CE0A5B3022B924D400198163 /* SLHPresetNameDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetNameDialog.m; path = controllers/SLHPresetNameDialog.m; sourceTree = "<group>"; };
 		CE0A5B3122B924D400198163 /* SLHPresetNameDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHPresetNameDialog.xib; path = controllers/SLHPresetNameDialog.xib; sourceTree = "<group>"; };
+		CE0AE97D2604EF3A0084F78D /* RemotePlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RemotePlayer.h; path = system/RemotePlayer.h; sourceTree = "<group>"; };
+		CE0AE97E2604EFB40084F78D /* SLTRemotePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTRemotePlayer.h; path = Starlight/SLTRemotePlayer.h; sourceTree = "<group>"; };
+		CE0AE97F2604EFB40084F78D /* SLTRemotePlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SLTRemotePlayer.mm; path = Starlight/SLTRemotePlayer.mm; sourceTree = "<group>"; };
 		CE0B15EE23561AD600AE606E /* SLHPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHPlayerView.h; sourceTree = "<group>"; };
 		CE0B15EF23561AD600AE606E /* SLHPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHPlayerView.m; sourceTree = "<group>"; };
 		CE0B15F123571EA100AE606E /* SLHPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPlayerViewController.h; path = controllers/SLHPlayerViewController.h; sourceTree = "<group>"; };
@@ -667,6 +671,7 @@
 				CE0C5CD325EE6833002D1F64 /* Data.h */,
 				CE6E874325F28475007CC39A /* Encoder.h */,
 				CED71EC625DC2CC7002191A8 /* Dispatch.h */,
+				CE0AE97D2604EF3A0084F78D /* RemotePlayer.h */,
 				CED71EC825DD7D64002191A8 /* Spawn.h */,
 				CE71619D2623662400AC18F9 /* SPrint.h */,
 				CEED67DA24277B8B003B4CC3 /* slh_video_frame_extractor.h */,
@@ -858,6 +863,8 @@
 				CED60C6525755BED00EA6B97 /* SLTObserver.m */,
 				CEE7B5B924D31CAD00A115D2 /* SLTQueue.h */,
 				CEE7B5BA24D31CAD00A115D2 /* SLTQueue.m */,
+				CE0AE97E2604EFB40084F78D /* SLTRemotePlayer.h */,
+				CE0AE97F2604EFB40084F78D /* SLTRemotePlayer.mm */,
 				CEE7B5B224D31C0100A115D2 /* SLTSource.h */,
 				CEE7B5B324D31C0100A115D2 /* SLTSource.m */,
 				CE021DF22521F80B002912A1 /* SLTTask.h */,
@@ -1056,6 +1063,7 @@
 				CEC4A6B925B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m in Sources */,
 				CE3E3A8C244768640004DEB0 /* SLHAttributedTimeFormatter.m in Sources */,
 				CE5F50CA243CEC6E0080E4A5 /* SLHTrimViewSettings.m in Sources */,
+				CE0AE9802604EFB40084F78D /* SLTRemotePlayer.mm in Sources */,
 				CE23655F2254C80A00B324E4 /* SLHEncoderQueue.m in Sources */,
 				CE3893ED227B3D4A004BC3A2 /* SLHStatusLineView.m in Sources */,
 				CE3893C5227886BF004BC3A2 /* SLHEncoderItemMetadata.m in Sources */,

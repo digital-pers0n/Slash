@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
+namespace SL {
 template<size_t MaxLen = 32>
 struct SPrint {
     static_assert(MaxLen > 0, "The length of c-strings cannot be 0");
