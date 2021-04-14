@@ -563,6 +563,13 @@ static BOOL isFilePathValid(NSString * path) {
         *newPath = SLHPreferencesDefaultFFMpegPath;
     }
     if (!isFilePathValid(*newPath)) {
+        if (_ffmpegPathComboBox) {
+            if ([_ffmpegRecentPaths containsObject:*newPath]) {
+                self.hasFFmpeg = NO;
+                // Otherwise, it's impossible to fix the invalid path
+                return YES;
+            }
+        }
         *outError = pathValidationError(*newPath, @"ffmpeg");
         return NO;
     }
@@ -591,6 +598,13 @@ static BOOL isFilePathValid(NSString * path) {
         *newPath = SLHPreferencesDefaultMPVPath;
     }
     if (!isFilePathValid(*newPath)) {
+        if (_mpvPathComboBox) {
+            if ([_mpvRecentPaths containsObject:*newPath]) {
+                self.hasMPV = NO;
+                // Otherwise, it's impossible to fix the invalid path
+                return YES;
+            }
+        }
         *outError = pathValidationError(*newPath, @"MPV");
         return NO;
     }
