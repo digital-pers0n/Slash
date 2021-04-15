@@ -21,6 +21,7 @@
     NSString *_mpvConfigPath;
     BOOL _fileLoaded;
     BOOL _isLegacyMPV;
+    BOOL _shouldCheckMPV;
 }
 
 namespace {
@@ -47,7 +48,6 @@ namespace {
     self.mpvPath = playerPath;
     _mpvConfigPath = configPath ? configPath.copy : nil;
     _url = mediaURL;
-    _isLegacyMPV = SL::RemotePlayer::IsLegacyMPV(_mpvPath.UTF8String);
     _playerQueue = Dispatch::CreateSerialQueue("org.slash.remote-player.queue");
     _enqueuedCommands = [NSMutableArray new];
     return self;
@@ -91,6 +91,7 @@ namespace {
 
 - (void)setMpvPath:(NSString *)mpvPath {
     _mpvPath = mpvPath ? mpvPath.copy : SLTRemotePlayerDefaultPath;
+    _shouldCheckMPV = YES;
 }
 
 //MARK:- Commands
@@ -191,8 +192,16 @@ namespace {
         _mpvConfigPath ? "--include" : NULL, _mpvConfigPath.UTF8String, NULL
     };
     
+    const auto isLegacyMPV = [&] {
+        if (_shouldCheckMPV) {
+            _isLegacyMPV = SL::RemotePlayer::IsLegacyMPV(_mpvPath.UTF8String);
+            _shouldCheckMPV = NO;
+        }
+        return bool(_isLegacyMPV);
+    }();
+    
     _player = SL::RemotePlayer { args, _playerQueue, socketPath.UTF8String,
-        bool(_isLegacyMPV), /*attempts*/ 3,
+        isLegacyMPV, /*attempts*/ 3,
         [&](const SL::RemotePlayer player) { // didConnect; current thread
             _error = nil;
             // Disable all events except 'file-loaded'
