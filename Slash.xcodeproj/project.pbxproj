@@ -134,13 +134,13 @@
 		CECE14E82507B79900406B9D /* SLTBitrateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE14E72507B79900406B9D /* SLTBitrateFormatter.m */; };
 		CED2245F23A11332000A7489 /* SLHExternalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2245E23A11332000A7489 /* SLHExternalPlayer.m */; };
 		CED60C6625755BED00EA6B97 /* SLTObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = CED60C6525755BED00EA6B97 /* SLTObserver.m */; };
-		CED71ECC25DEC1FD002191A8 /* Argv.mm in Sources */ = {isa = PBXBuildFile; fileRef = CED71ECA25DEC1FC002191A8 /* Argv.mm */; };
 		CED85ABA21B85D6D00D01B36 /* SLHEncoderX264Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */; };
 		CED85ABB21B85D6D00D01B36 /* SLHEncoderX264Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */; };
 		CEDD22EC23887EB50049E4C4 /* SLHCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDD22EB23887EB50049E4C4 /* SLHCropView.m */; };
 		CEDDDB8721A7363B006EDDD9 /* SLHFiltersController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDDDB8521A7363B006EDDD9 /* SLHFiltersController.m */; };
 		CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDDDB8621A7363B006EDDD9 /* SLHFiltersController.xib */; };
 		CEE0D24123B8FCF70017418E /* SLHMethodAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */; };
+		CEE5B833262981C400B051A7 /* Argv.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEE5B831262981C400B051A7 /* Argv.mm */; };
 		CEE7B5B424D31C0100A115D2 /* SLTSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5B324D31C0100A115D2 /* SLTSource.m */; };
 		CEE7B5B824D31C8200A115D2 /* SLTDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5B724D31C8200A115D2 /* SLTDestination.m */; };
 		CEE7B5BB24D31CAD00A115D2 /* SLTQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE7B5BA24D31CAD00A115D2 /* SLTQueue.m */; };
@@ -186,7 +186,6 @@
 		CE0B4E16224A563E00D61D72 /* SLHCropEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHCropEditor.m; path = controllers/SLHCropEditor.m; sourceTree = "<group>"; };
 		CE0B4E17224A563E00D61D72 /* SLHCropEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHCropEditor.xib; path = controllers/SLHCropEditor.xib; sourceTree = "<group>"; };
 		CE0B4E1A224A5BDA00D61D72 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		CE0C5CD325EE6833002D1F64 /* Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		CE0EC703235214930053204B /* MPVExtern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPVExtern.m; path = MPVKit/MPVExtern.m; sourceTree = "<group>"; };
 		CE12044D229995E300C2A145 /* SLHPresetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHPresetManager.h; path = controllers/SLHPresetManager.h; sourceTree = "<group>"; };
 		CE12044E229995E300C2A145 /* SLHPresetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHPresetManager.m; path = controllers/SLHPresetManager.m; sourceTree = "<group>"; };
@@ -391,8 +390,6 @@
 		CED60C6525755BED00EA6B97 /* SLTObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTObserver.m; path = Starlight/SLTObserver.m; sourceTree = "<group>"; };
 		CED71EC625DC2CC7002191A8 /* Dispatch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = Dispatch.h; path = system/Dispatch.h; sourceTree = "<group>"; };
 		CED71EC825DD7D64002191A8 /* Spawn.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = Spawn.h; path = system/Spawn.h; sourceTree = "<group>"; };
-		CED71ECA25DEC1FC002191A8 /* Argv.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Argv.mm; sourceTree = "<group>"; };
-		CED71ECB25DEC1FD002191A8 /* Argv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Argv.h; sourceTree = "<group>"; };
 		CED85AB721B85D6D00D01B36 /* SLHEncoderX264Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Format.h; path = controllers/SLHEncoderX264Format.h; sourceTree = "<group>"; };
 		CED85AB821B85D6D00D01B36 /* SLHEncoderX264Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SLHEncoderX264Format.m; path = controllers/SLHEncoderX264Format.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CED85AB921B85D6D00D01B36 /* SLHEncoderX264Format.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderX264Format.xib; path = controllers/SLHEncoderX264Format.xib; sourceTree = "<group>"; };
@@ -404,6 +401,9 @@
 		CEE0D23E23B3B9510017418E /* SLHPreferencesKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHPreferencesKeys.h; sourceTree = "<group>"; };
 		CEE0D23F23B8FCF70017418E /* SLHMethodAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMethodAddress.h; path = utils/SLHMethodAddress.h; sourceTree = "<group>"; };
 		CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMethodAddress.m; path = utils/SLHMethodAddress.m; sourceTree = "<group>"; };
+		CEE5B830262981C400B051A7 /* Argv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Argv.h; path = system/Argv.h; sourceTree = "<group>"; };
+		CEE5B831262981C400B051A7 /* Argv.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Argv.mm; path = system/Argv.mm; sourceTree = "<group>"; };
+		CEE5B832262981C400B051A7 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Data.h; path = system/Data.h; sourceTree = "<group>"; };
 		CEE7B5B224D31C0100A115D2 /* SLTSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTSource.h; path = Starlight/SLTSource.h; sourceTree = "<group>"; };
 		CEE7B5B324D31C0100A115D2 /* SLTSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTSource.m; path = Starlight/SLTSource.m; sourceTree = "<group>"; };
 		CEE7B5B624D31C8200A115D2 /* SLTDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTDestination.h; path = Starlight/SLTDestination.h; sourceTree = "<group>"; };
@@ -665,10 +665,10 @@
 			isa = PBXGroup;
 			children = (
 				CE1414C1210D31D900C02B2D /* mpv */,
-				CED71ECB25DEC1FD002191A8 /* Argv.h */,
-				CED71ECA25DEC1FC002191A8 /* Argv.mm */,
+				CEE5B830262981C400B051A7 /* Argv.h */,
+				CEE5B831262981C400B051A7 /* Argv.mm */,
 				CE179C4825FE61BC003D7EE6 /* ASPrint.h */,
-				CE0C5CD325EE6833002D1F64 /* Data.h */,
+				CEE5B832262981C400B051A7 /* Data.h */,
 				CE6E874325F28475007CC39A /* Encoder.h */,
 				CED71EC625DC2CC7002191A8 /* Dispatch.h */,
 				CE0AE97D2604EF3A0084F78D /* RemotePlayer.h */,
@@ -1058,7 +1058,6 @@
 				CEF398E524DC569200D44BDD /* SLTH264EncoderSettings.m in Sources */,
 				CE9CA40423788350005CF368 /* SLHStackView.m in Sources */,
 				CE120450229995E300C2A145 /* SLHPresetManager.m in Sources */,
-				CED71ECC25DEC1FD002191A8 /* Argv.mm in Sources */,
 				CEBA3662253746B800823125 /* SLKSelectionRangeView.m in Sources */,
 				CEC4A6B925B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m in Sources */,
 				CE3E3A8C244768640004DEB0 /* SLHAttributedTimeFormatter.m in Sources */,
@@ -1078,6 +1077,7 @@
 				CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */,
 				CEAC3A152492697600F6E998 /* MPVGLRenderer.c in Sources */,
 				CE9CA40123787FE4005CF368 /* SLHDisclosureView.m in Sources */,
+				CEE5B833262981C400B051A7 /* Argv.mm in Sources */,
 				CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */,
 				CE120459229C2AEE00C2A145 /* SLHEncoderVPXOptions.m in Sources */,
 				CEE7B5B424D31C0100A115D2 /* SLTSource.m in Sources */,
