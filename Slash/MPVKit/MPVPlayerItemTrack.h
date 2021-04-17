@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, MPVMediaType) {
 /**
  * Index of this track.
  */
-@property (nonatomic, readonly) NSUInteger trackIndex;
+@property (nonatomic, readonly) NSInteger trackIndex;
 
 /**
  * Media type of this track.
@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, MPVMediaType) {
 
 @property (nonatomic, readonly) NSString *profileName;
 
-@property (nonatomic, readonly) NSUInteger level;
+@property (nonatomic, readonly) NSInteger level;
 
 @property (nonatomic, readonly) NSSize videoSize;
 
@@ -76,12 +76,12 @@ typedef NS_ENUM(NSUInteger, MPVMediaType) {
 /**
  * Bitrate in bps. May be 0.
  */
-@property (nonatomic, readonly) uint64_t bitRate;
+@property (nonatomic, readonly) int64_t bitRate;
 
 /**
  * Number of frames in this track. May be 0. 
  */
-@property (nonatomic, readonly) uint64_t numberOfFrames;
+@property (nonatomic, readonly) int64_t numberOfFrames;
 
 /**
  * Sample aspect ratio of this track or NSZeroSize
@@ -111,10 +111,10 @@ typedef NS_ENUM(NSUInteger, MPVMediaType) {
 
 #pragma mark - Audio
 
-@property (nonatomic, readonly) NSUInteger numberOfChannels;
+@property (nonatomic, readonly) NSInteger numberOfChannels;
 @property (nonatomic, readonly) NSString *channelLayout;
 @property (nonatomic, readonly) NSString *sampleFormatName;
-@property (nonatomic, readonly) NSUInteger sampleRate;
+@property (nonatomic, readonly) NSInteger sampleRate;
 
 
 #pragma mark - Private

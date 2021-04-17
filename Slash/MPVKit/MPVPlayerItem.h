@@ -131,7 +131,7 @@ typedef NS_ENUM(NSInteger, MPVPlayerItemStatus) {
 /**
  * Media bitrate (in bps)
  */
-@property (readonly, nonatomic) NSUInteger bitRate;
+@property (readonly, nonatomic) int64_t bitRate;
 
 /**
  * Media duration (in seconds)
