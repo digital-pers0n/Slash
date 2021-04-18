@@ -12,9 +12,10 @@
 #import "SLHFilterOptions.h"
 #import "SLHPreferences.h"
 #import "SLHSliderCell.h"
-#import "SLHExternalPlayer.h"
 #import "SLHVideoSlider.h"
 #import "slh_video_frame_extractor.h"
+
+#import "SLTRemotePlayer.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
@@ -180,20 +181,18 @@ static NSRect getCropRect(const char *ffmpeg, double startTime,
 
 - (IBAction)preview:(id)sender {
     NSRect r = _imageView.selectionRect;
-    
-    SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+
+    SLTRemotePlayer *player = SLTRemotePlayer.sharedInstance;
+    player.url = _encoderItem.playerItem.url;
     if (player.error) {
         NSBeep();
         [self presentError:player.error];
         return;
     }
-    
-    player.url = _encoderItem.playerItem.url;
 
     [player setVideoFilter:[NSString stringWithFormat:@"lavfi=[crop=w=%.0f:h=%.0f:x=%.0f:y=%.0f]",
                             NSWidth(r), NSHeight(r), NSMinX(r), _imageView.imageSize.height - NSHeight(r) - NSMinY(r)]];
     [player seekTo:_startTime];
-    [player play];
     [player orderFront];
  
 }
@@ -236,7 +235,7 @@ static NSRect getCropRect(const char *ffmpeg, double startTime,
     [self _extractFrame];
      __unsafe_unretained typeof(self) obj = self;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), _main_queue, ^{
-        obj->_imageView.selectionRect = options.videoCropRect;
+            obj->_imageView.selectionRect = options.videoCropRect;
     });
 
 }

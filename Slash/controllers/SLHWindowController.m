@@ -20,7 +20,6 @@
 #import "SLHLogController.h"
 #import "SLHPresetManager.h"
 #import "SLHEncoderQueue.h"
-#import "SLHExternalPlayer.h"
 #import "SLHPlayerViewController.h"
 #import "SLHEncoderHistory.h"
 #import "SLHBitrateFormatter.h"
@@ -30,6 +29,7 @@
 #import "SLHTemplateNameFormatter.h"
 
 #import "SLTObserver.h"
+#import "SLTRemotePlayer.h"
 #import "SLTUtils.h"
 
 #import "MPVPlayer.h"
@@ -66,7 +66,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     IBOutlet NSTextField *_inputFileInfoTextField;
     
     MPVPlayer *_player;
-    __weak SLHExternalPlayer *_externalPlayer;
     SLHPresetManager *_presetManager;
     NSArray <NSMenuItem *> *_defaultPresetMenuItems;
     SLHEncoderSettings *_encoderSettings;
@@ -230,11 +229,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     
     [self observePreferences:appPrefs];
     
-    /* SLHExternalPlayer */
-    NSURL *mpvURL = [NSURL fileURLWithPath:appPrefs.mpvPath];
-    NSURL *mpvConfURL = [NSURL fileURLWithPath:appPrefs.mpvConfigPath];
-    [SLHExternalPlayer setDefaultPlayerURL:mpvURL];
-    [SLHExternalPlayer setDefaultPlayerConfigURL:mpvConfURL];
+    /* SLTRemotePlayer */
+    SLTRemotePlayer *p = SLTRemotePlayer.sharedInstance;
+    p.mpvPath = appPrefs.mpvPath;
+    p.mpvConfigPath = appPrefs.mpvConfigPath;
     
     /* SLHEncoderHistory */
     _encoderHistory = [[SLHEncoderHistory alloc] init];
@@ -475,6 +473,21 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     }
 }
 
+- (void)previewFile:(NSURL *)mediaURL {
+    SLTRemotePlayer *rp = SLTRemotePlayer.sharedInstance;
+    rp.url = mediaURL;
+    if (rp.error) {
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = [NSString stringWithFormat:@"'%@' cannot open '%@'",
+                                                       rp.mpvPath, mediaURL];
+        alert.informativeText = rp.error.localizedDescription;
+        [alert runModal];
+        return;
+    }
+    [rp setVideoFilter:@""];
+    [rp orderFront];
+    [rp play];
+}
 
 - (void)createDefaultPresetMenuItems {
     NSMenuItem *separator = [NSMenuItem separatorItem];
@@ -636,9 +649,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
       // MARK: MPV path
       [appPrefs observeKeyPath: SLHPreferencesMPVPathKey handler:
        ^(id obj, NSString * _Nonnull keyPath, NSString * _Nonnull change) {
-           id fileURL = [NSURL fileURLWithPath:change isDirectory:NO];
-           [SLHExternalPlayer setDefaultPlayerURL:fileURL];
-           [SLHExternalPlayer reinitializeDefaultPlayer];
+           [SLTRemotePlayer.sharedInstance setMpvPathAndReload:change];
        }],
       
       // MARK: Output name template format
@@ -972,19 +983,8 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)previewSourceFile:(id)sender {
-    SLHExternalPlayer *externalPlayer = _externalPlayer;
     SLHEncoderItem *encoderItem = _currentEncoderItem;
-    if (!externalPlayer) {
-        if (![self createExternalPlayerWithMedia:encoderItem.playerItem.url]) {
-            return;
-        }
-    } else {
-        externalPlayer.url = encoderItem.playerItem.url;
-    }
-    [externalPlayer setVideoFilter:@""];
-    [externalPlayer play];
-    [externalPlayer orderFront];
-
+    [self previewFile:encoderItem.playerItem.url];
 }
 
 - (IBAction)previewSegment:(id)sender {
@@ -994,17 +994,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 }
 
 - (IBAction)previewOutputFile:(id)sender {
-    SLHExternalPlayer *externalPlayer = _externalPlayer;
-    if (!externalPlayer) {
-        if (![self createExternalPlayerWithMedia:[NSURL fileURLWithPath:_lastEncodedMediaFilePath]]) {
-            return;
-        }
-    } else {
-        externalPlayer.url = [NSURL fileURLWithPath:_lastEncodedMediaFilePath];
-    }
-    [externalPlayer setVideoFilter:@""];
-    [externalPlayer play];
-    [externalPlayer orderFront];
+    [self previewFile:[NSURL fileURLWithPath:_lastEncodedMediaFilePath]];
 }
 
 - (IBAction)addSelectionToQueue:(id)sender {
@@ -1290,6 +1280,7 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (void)applicationWillTerminate:(NSNotification *)n {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [SLTRemotePlayer.sharedInstance quit];
     _preferences.lastUsedFormatName = _formatsPopUp.selectedItem.title;
     if (_presetManager.hasChanges) {
         [_presetManager savePresets];

@@ -13,7 +13,8 @@
 #import "SLHPresetManager.h"
 #import "SLHPreferences.h"
 #import "SLHTextEditor.h"
-#import "SLHExternalPlayer.h"
+
+#import "SLTRemotePlayer.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
@@ -375,14 +376,13 @@ static inline NSString *_preampString(NSInteger val) {
     MPVPlayerItem *playerItem = _encoderItem.playerItem;
     r.origin.y = playerItem.tracks[idx].videoSize.height - NSHeight(r) - NSMinY(r);
 
-    SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+    SLTRemotePlayer *player = SLTRemotePlayer.sharedInstance;
+    player.url = playerItem.url;
     if (player.error) {
         NSBeep();
         [self presentError:player.error];
         return;
     }
-    
-    player.url = playerItem.url;
     
     [player setVideoFilter:[NSString stringWithFormat:@"lavfi=[crop=w=%.0f:h=%.0f:x=%.0f:y=%.0f]",
                             NSWidth(r), NSHeight(r), NSMinX(r), NSMinY(r)]];

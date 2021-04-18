@@ -7,7 +7,6 @@
 //
 
 #import "SLHEncoderHistory.h"
-#import "SLHExternalPlayer.h"
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 #import "SLHPreferences.h"
@@ -15,6 +14,7 @@
 #import "SLHBitrateFormatter.h"
 #import "slh_video_frame_extractor.h"
 
+#import "SLTRemotePlayer.h"
 #import "SLTUtils.h"
 
 
@@ -355,12 +355,12 @@ static NSString * const SLHEncoderHistoryPathsBinding = @"paths";
 - (IBAction)previewSelected:(id)sender {
     NSString *path = [_arrayController.selectedObjects.firstObject filePath];
     if (path) {
-        SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+        SLTRemotePlayer *player = SLTRemotePlayer.sharedInstance;
+        player.url = [NSURL fileURLWithPath:path isDirectory:NO];
         if (player.error) {
             [self presentError:player.error];
             return;
         }
-        player.url = [NSURL fileURLWithPath:path isDirectory:NO];
         [player play];
         [player orderFront];
     }

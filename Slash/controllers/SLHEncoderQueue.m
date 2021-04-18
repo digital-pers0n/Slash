@@ -11,10 +11,11 @@
 #import "SLHEncoderItem.h"
 #import "SLHEncoderQueueItem.h"
 #import "SLHPreferences.h"
-#import "SLHExternalPlayer.h"
 #import "slh_encoder.h"
 #import "slh_util.h"
 #import "slh_list.h"
+
+#import "SLTRemotePlayer.h"
 
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
@@ -201,13 +202,13 @@
     if (idx > -1) {
         SLHEncoderQueueItem *queueItem = _arrayController.arrangedObjects[idx];
         if (queueItem.encoded) {
-            SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
+            SLTRemotePlayer *player = SLTRemotePlayer.sharedInstance;
+            player.url = [NSURL fileURLWithPath:queueItem.name isDirectory:NO];
             if (player.error) {
                 [self presentError:player.error];
                 NSLog(@"%s: Playback error: %@", __PRETTY_FUNCTION__, player.error.localizedDescription);
                 return;
             }
-            player.url = [NSURL fileURLWithPath:queueItem.name isDirectory:NO];
             [player play];
             [player orderFront];
         }
