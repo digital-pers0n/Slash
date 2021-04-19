@@ -84,7 +84,6 @@
 #pragma mark - KVO
 
 - (void)startObserving {
-    __unsafe_unretained typeof(self) u = self;
     id array = @[ KVP(self, settings.videoSettings.bitRate),
                   KVP(self, settings.audioSettings.bitRate),
                   KVP(self, settings.audioSettings.streamIndex),
@@ -94,7 +93,7 @@
                   KVP(self, startTime), KVP(self, endTime) ];
     
     _observer = [self observeKeyPaths:array options:0 handler:
-    ^(id obj, NSString * _Nonnull kpath, NSDictionary * _Nonnull change)
+    ^(UNSAFE SLTDestination *_Nonnull u, id _Nonnull kpath, id _Nonnull change)
      {
          int64_t videoBitrate = 0, audioBitrate = 0;
          SLTEncoderSettings *settings = u->_settings;
