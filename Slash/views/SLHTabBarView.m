@@ -14,7 +14,7 @@ static const NSUInteger kNumberOfTabs = 5;
     
     // Indices
     NSUInteger _selectedTabIndex;
-    NSInteger _highlightedTabIndex;
+    NSUInteger _highlightedTabIndex;
     
     // Tabs
     NSArray <NSImage *> *_icons;
@@ -53,7 +53,7 @@ static const NSUInteger kNumberOfTabs = 5;
 - (void)_setUp {
     _trackingArea = [NSTrackingArea new];   // dummy tracking area to avoid if() check in the updateTrackingAreas method
     _selectedTabIndex = 0;
-    _highlightedTabIndex = -1;
+    _highlightedTabIndex = NSUIntegerMax;
     
     _icons = @[
                [NSImage imageNamed:@"SLHImageNameVideoTemplate"],
@@ -93,7 +93,7 @@ static const NSUInteger kNumberOfTabs = 5;
     CGFloat tabWidth = NSWidth(frame) / kNumberOfTabs;
     
     NSRect tabFrame = NSMakeRect(0, 0, tabWidth, NSHeight(frame));
-    for (int i = 0; i < kNumberOfTabs; i++) {
+    for (NSUInteger i = 0; i < kNumberOfTabs; i++) {
         tabFrame.origin.x = tabWidth * i;
         _rects[i] = tabFrame;
     }
@@ -104,7 +104,7 @@ static const NSUInteger kNumberOfTabs = 5;
 
 - (void)drawRect:(NSRect)dirtyRect {
 
-    int idx = 0;
+    NSUInteger idx = 0;
     for (NSImage *icon in _icons) {
         
         _tabCell.image = icon;
@@ -145,7 +145,7 @@ static const NSUInteger kNumberOfTabs = 5;
     NSPoint event_location = event.locationInWindow;
     NSPoint local_point = [self convertPoint:event_location fromView:nil];
     
-    for (int i = 0; i < kNumberOfTabs; i++) {
+    for (NSUInteger i = 0; i < kNumberOfTabs; i++) {
         if ([self mouse:local_point inRect:_rects[i]]) {
             self.toolTip = nil;
             self.toolTip = _toolTips[i];
@@ -160,7 +160,7 @@ static const NSUInteger kNumberOfTabs = 5;
 }
 
 - (void)mouseExited:(NSEvent *)event {
-    _highlightedTabIndex = -1;
+    _highlightedTabIndex = NSUIntegerMax;
     [self setNeedsDisplay:YES];
 }
 
@@ -168,7 +168,7 @@ static const NSUInteger kNumberOfTabs = 5;
     NSPoint event_location = event.locationInWindow;
     NSPoint local_point = [self convertPoint:event_location fromView:nil];
 
-    for (int i = 0; i < kNumberOfTabs; i++) {
+    for (NSUInteger i = 0; i < kNumberOfTabs; i++) {
         if ([self mouse:local_point inRect:_rects[i]]) {
             if (i == _selectedTabIndex) {       // ignore if already selected
                 break;
@@ -180,7 +180,7 @@ static const NSUInteger kNumberOfTabs = 5;
                 return;
             }
             _selectedTabIndex = i;
-            _highlightedTabIndex = -1;
+            _highlightedTabIndex = NSUIntegerMax;
             [self setNeedsDisplay:YES];
             [_delegate tabBarView:self didSelectTabAtIndex:i];
             break;

@@ -309,7 +309,7 @@ done:
     
     [super updateTrackingAreas];
     
-    for (int i = 0; i < SLHTrackingAreasCount; i++) {
+    for (NSUInteger i = 0; i < SLHTrackingAreasCount; i++) {
         [self removeTrackingArea:_trackingAreas[i]];
     }
     CGFloat x = NSMinX(_cropRect);
@@ -375,7 +375,7 @@ done:
                                                                             userInfo:userInfo];
     
     
-    for (int i = 0; i < SLHTrackingAreasCount; i++) {
+    for (NSUInteger i = 0; i < SLHTrackingAreasCount; i++) {
         [self addTrackingArea:_trackingAreas[i]];
     }
 }

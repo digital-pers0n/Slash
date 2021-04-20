@@ -185,14 +185,14 @@ extern NSString *const SLHEncoderMediaThreadsKey;
 #pragma mark - NSTableView DataSource
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    if (row < _dataSource.count) {
+    if ((NSUInteger)row < _dataSource.count) {
         return _dataSource[row];
     }
     return nil;
 }
 
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    if (row < _dataSource.count && object) {
+    if ((NSUInteger)row < _dataSource.count && object) {
         _dataSource[row] = object;
     }
 }

@@ -98,7 +98,7 @@
     [_tableView reloadData];
 }
 - (IBAction)insertItem:(id)sender {
-    NSInteger idx = _tableView.selectedRow;
+    NSUInteger idx = _tableView.selectedRow;
     if (idx < _dataSource.count) {
         idx++;
         [_dataSource insertObject:@"(Empty)" atIndex:idx];
@@ -110,7 +110,7 @@
     }
 }
 - (IBAction)removeItem:(id)sender {
-    NSInteger idx = _tableView.selectedRow;
+    NSUInteger idx = _tableView.selectedRow;
     if (idx < _dataSource.count) {
         [_dataSource removeObjectAtIndex:idx--];
         [_tableView reloadData];
@@ -124,14 +124,14 @@
 #pragma mark - NSTableView DataSource
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    if (row < _dataSource.count) {
+    if ((NSUInteger)row < _dataSource.count) {
         return _dataSource[row];
     }
     return nil;
 }
 
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    if (row < _dataSource.count && object) {
+    if ((NSUInteger)row < _dataSource.count && object) {
         _dataSource[row] = object;
     }
 }
