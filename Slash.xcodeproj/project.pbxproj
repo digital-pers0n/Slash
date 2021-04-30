@@ -37,6 +37,8 @@
 		CE146A4C250D0C3B0064B9A9 /* SLTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE146A4A250D0C3B0064B9A9 /* SLTUtils.m */; };
 		CE160F58242F727F00F652D5 /* libswscale.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE160F57242F727F00F652D5 /* libswscale.5.dylib */; };
 		CE166C612351FDD9001AF0CB /* MPVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE166C602351FDD9001AF0CB /* MPVPlayer.m */; };
+		CE1CC7E3263C95FB000D3763 /* SLKFFmpegInfoController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1CC7E1263C95FB000D3763 /* SLKFFmpegInfoController.mm */; };
+		CE1CC7E4263C95FB000D3763 /* SLKFFmpegInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1CC7E2263C95FB000D3763 /* SLKFFmpegInfoController.xib */; };
 		CE1D484C223FFB5B0026E8C2 /* SLHEncoderX264Options.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */; };
 		CE1DC4182285B09F0086A895 /* SLHLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1DC4162285B09F0086A895 /* SLHLogController.m */; };
 		CE1DC4192285B09F0086A895 /* SLHLogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1DC4172285B09F0086A895 /* SLHLogController.xib */; };
@@ -212,6 +214,9 @@
 		CE166C652352019A001AF0CB /* MPVPlayerProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPVPlayerProperties.h; path = MPVKit/MPVPlayerProperties.h; sourceTree = "<group>"; };
 		CE179C4825FE61BC003D7EE6 /* ASPrint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = ASPrint.h; path = system/ASPrint.h; sourceTree = "<group>"; };
 		CE1CC7DE2637360A000D3763 /* Popen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = Popen.h; path = system/Popen.h; sourceTree = "<group>"; };
+		CE1CC7E0263C95FA000D3763 /* SLKFFmpegInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKFFmpegInfoController.h; path = StarlightKit/SLKFFmpegInfoController.h; sourceTree = "<group>"; };
+		CE1CC7E1263C95FB000D3763 /* SLKFFmpegInfoController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SLKFFmpegInfoController.mm; path = StarlightKit/SLKFFmpegInfoController.mm; sourceTree = "<group>"; };
+		CE1CC7E2263C95FB000D3763 /* SLKFFmpegInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLKFFmpegInfoController.xib; path = StarlightKit/SLKFFmpegInfoController.xib; sourceTree = "<group>"; };
 		CE1D484A223FFB5B0026E8C2 /* SLHEncoderX264Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderX264Options.h; path = model/SLHEncoderX264Options.h; sourceTree = "<group>"; };
 		CE1D484B223FFB5B0026E8C2 /* SLHEncoderX264Options.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderX264Options.m; path = model/SLHEncoderX264Options.m; sourceTree = "<group>"; };
 		CE1DC4152285B09F0086A895 /* SLHLogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHLogController.h; path = controllers/SLHLogController.h; sourceTree = "<group>"; };
@@ -401,9 +406,9 @@
 		CEE0D23E23B3B9510017418E /* SLHPreferencesKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHPreferencesKeys.h; sourceTree = "<group>"; };
 		CEE0D23F23B8FCF70017418E /* SLHMethodAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHMethodAddress.h; path = utils/SLHMethodAddress.h; sourceTree = "<group>"; };
 		CEE0D24023B8FCF70017418E /* SLHMethodAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHMethodAddress.m; path = utils/SLHMethodAddress.m; sourceTree = "<group>"; };
-		CEE5B830262981C400B051A7 /* Argv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Argv.h; path = system/Argv.h; sourceTree = "<group>"; };
+		CEE5B830262981C400B051A7 /* Argv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Argv.h; path = system/Argv.h; sourceTree = "<group>"; };
 		CEE5B831262981C400B051A7 /* Argv.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Argv.mm; path = system/Argv.mm; sourceTree = "<group>"; };
-		CEE5B832262981C400B051A7 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Data.h; path = system/Data.h; sourceTree = "<group>"; };
+		CEE5B832262981C400B051A7 /* Data.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Data.h; path = system/Data.h; sourceTree = "<group>"; };
 		CEE7B5B224D31C0100A115D2 /* SLTSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTSource.h; path = Starlight/SLTSource.h; sourceTree = "<group>"; };
 		CEE7B5B324D31C0100A115D2 /* SLTSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTSource.m; path = Starlight/SLTSource.m; sourceTree = "<group>"; };
 		CEE7B5B624D31C8200A115D2 /* SLTDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTDestination.h; path = Starlight/SLTDestination.h; sourceTree = "<group>"; };
@@ -701,6 +706,16 @@
 				CE6B8C2824E40D1A00B93758 /* views */,
 				CE3CAF6A25C7039100EF6712 /* NSMenuItem+SLKAdditions.h */,
 				CE3CAF6B25C7039100EF6712 /* NSMenuItem+SLKAdditions.m */,
+				CE6B8C1F24E1903E00B93758 /* SLKEncoderSettings.h */,
+				CE6B8C2024E2BC7B00B93758 /* SLKEncoderSettingsInspector.h */,
+				CE6B8C2124E2BC7B00B93758 /* SLKEncoderSettingsInspector.m */,
+				CE6B8C2224E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib */,
+				CE1CC7E0263C95FA000D3763 /* SLKFFmpegInfoController.h */,
+				CE1CC7E1263C95FB000D3763 /* SLKFFmpegInfoController.mm */,
+				CE1CC7E2263C95FB000D3763 /* SLKFFmpegInfoController.xib */,
+				CE6B8C1A24E18FE500B93758 /* SLKH264EncoderSettings.h */,
+				CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */,
+				CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */,
 				CE6DDBE2253351DE00982C4E /* SLKPlayerViewController.h */,
 				CE6DDBE3253351DE00982C4E /* SLKPlayerViewController.m */,
 				CE6DDBE4253351DE00982C4E /* SLKPlayerViewController.xib */,
@@ -721,18 +736,18 @@
 		CE6B8C2824E40D1A00B93758 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CE6DDBE72535F93900982C4E /* SLKContainerView.h */,
+				CE6DDBE82535F93900982C4E /* SLKContainerView.m */,
 				CE08D7BF24ED5652004347DF /* SLKDisclosureView.h */,
 				CE08D7C024ED5652004347DF /* SLKDisclosureView.m */,
+				CEBA3660253746B800823125 /* SLKSelectionRangeView.h */,
+				CEBA3661253746B800823125 /* SLKSelectionRangeView.m */,
+				CE08D7BC24EAB516004347DF /* SLKSeparatorView.h */,
+				CE08D7BD24EAB516004347DF /* SLKSeparatorView.m */,
 				CECE14C624FD789500406B9D /* SLKStackView.h */,
 				CECE14C724FD789500406B9D /* SLKStackView.m */,
 				CE6B8C2524E40D1300B93758 /* SLKTabBarView.h */,
 				CE6B8C2624E40D1300B93758 /* SLKTabBarView.m */,
-				CE08D7BC24EAB516004347DF /* SLKSeparatorView.h */,
-				CE08D7BD24EAB516004347DF /* SLKSeparatorView.m */,
-				CE6DDBE72535F93900982C4E /* SLKContainerView.h */,
-				CE6DDBE82535F93900982C4E /* SLKContainerView.m */,
-				CEBA3660253746B800823125 /* SLKSelectionRangeView.h */,
-				CEBA3661253746B800823125 /* SLKSelectionRangeView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -954,6 +969,7 @@
 				CE4D40FE20FE8B9E0066ACE2 /* Assets.xcassets in Resources */,
 				CE6B8C1824E17A8B00B93758 /* SLKWindowController.xib in Resources */,
 				CE2365652254C9CC00B324E4 /* SLHEncoder.xib in Resources */,
+				CE1CC7E4263C95FB000D3763 /* SLKFFmpegInfoController.xib in Resources */,
 				CE4D410120FE8B9E0066ACE2 /* MainMenu.xib in Resources */,
 				CEDDDB8821A7363B006EDDD9 /* SLHFiltersController.xib in Resources */,
 				CE2365602254C80A00B324E4 /* SLHEncoderQueue.xib in Resources */,
@@ -1006,6 +1022,7 @@
 				CE60C546235E0C47003DB25F /* MPVPlayerItem.m in Sources */,
 				CE0B15F023561AD600AE606E /* SLHPlayerView.m in Sources */,
 				CE80A8B22381B24400CC4C7A /* SLHMetadataInspector.m in Sources */,
+				CE1CC7E3263C95FB000D3763 /* SLKFFmpegInfoController.mm in Sources */,
 				CE6B8C2724E40D1300B93758 /* SLKTabBarView.m in Sources */,
 				CE85A0FA22C657E40027F742 /* SLHEncoderUniversalOptions.m in Sources */,
 				CE0A5B3222B924D400198163 /* SLHPresetNameDialog.m in Sources */,
