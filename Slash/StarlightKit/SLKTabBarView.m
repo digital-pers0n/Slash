@@ -49,7 +49,7 @@
 - (void)commonInit {
     _items = [NSMutableArray array];
     _trackingArea = [[NSTrackingArea alloc] init];
-    _cachedItems = malloc(sizeof(SLKTabBarItem *));
+    _cachedItems = malloc(sizeof(void*));
     _indexOfSelectedItem = NSNotFound;
 }
 
@@ -58,7 +58,7 @@
     CFIndex total = _items.count;
     if (total == 0) return; // ignore empty array
     free(_cachedItems);
-    _cachedItems = malloc(sizeof(SLKTabBarItem *) * total);
+    _cachedItems = malloc(sizeof(void*) * total);
     CFArrayGetValues((__bridge CFArrayRef)_items,
                      CFRangeMake(0, total), _cachedItems);
     _numberOfItems = total;
