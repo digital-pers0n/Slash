@@ -260,30 +260,30 @@ struct RemotePlayer {
     }
     
     void sendCommand(const char *str) const {
-        const auto [cmd, len] = SL::ASPrint("{ \"command\": [%s] }\n", str);
+        const auto &[cmd, len] = SL::ASPrint("{ \"command\": [%s] }\n", str);
         sendMessage(cmd, len, "[RemotePlayer] sendCommand()");
     }
     
     void loadFile(const char *path) const {
-        const auto [cmd, len] = SL::ASPrint("{ \"command\": [\"loadfile\", "
+        const auto &[cmd, len] = SL::ASPrint("{ \"command\": [\"loadfile\", "
                                             "\"%s\"] }\n", path);
         sendMessage(cmd, len, "[RemotePlayer] loadFile()");
     }
     
     void setProperty(const char *str) const {
-        const auto [cmd, len] = SL::ASPrint("{ \"command\": [ \"set_property\","
+        const auto &[cmd, len] = SL::ASPrint("{ \"command\": [ \"set_property\","
                                             " %s ] }\n", str);
         sendMessage(cmd, len, "[RemotePlayer] setProperty()");
     }
     
     void setVideoFilter(const char *str) const {
-        const auto [cmd, len] = SL::ASPrint("{ \"command\": [ \"set_property\","
+        const auto &[cmd, len] = SL::ASPrint("{ \"command\": [ \"set_property\","
                                             " \"vf\", \"%s\" ] }\n", str);
         sendMessage(cmd, len, "[RemotePlayer] setVideoFilter()");
     }
     
     void seekTo(double seconds) const {
-        const auto [cmd, len] = SL::ASPrint("{ \"command\": [ \"seek\", %f, "
+        const auto &[cmd, len] = SL::ASPrint("{ \"command\": [ \"seek\", %f, "
                                             "\"absolute+exact\"] }\n", seconds);
         sendMessage(cmd, len, "[RemotePlayer] seekTo()");
     }
