@@ -185,7 +185,7 @@ namespace {
     __unsafe_unretained auto u = self;
     
     auto socketPath = [SLTTemporaryDirectory() stringByAppendingPathComponent:
-                       SL::SPrint("mpv_%.4x", arc4random_uniform(10000))];
+                             SL::SPrint("mpv_%.4x", arc4random_uniform(10000))];
     
     const char *args[] = {
         _mpvPath.UTF8String, "--keep-open", "--idle",
@@ -242,7 +242,7 @@ namespace {
             write(STDOUT_FILENO, msg, len);
 #endif
         },
-        [=] { // didDisconnect
+        ^{ // didDisconnect
             auto fm = [NSFileManager defaultManager];
             if (NSError *e; ![fm removeItemAtPath:socketPath error:&e]) {
                 NSLog(@"-[SLTRemotePlayer launch] %@", e);
