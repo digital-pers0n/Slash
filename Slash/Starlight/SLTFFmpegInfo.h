@@ -11,12 +11,22 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLTFFmpegInfo : NSObject
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)new NS_UNAVAILABLE;
 
-- (nullable instancetype)initWithPath:(NSString *)path error:(out NSError **)error;
+- (nullable instancetype)initWithPath:(NSString *)ffmpegPath
+                              handler:(void(^)(NSError *e))errorBlock;
+
 @property (nonatomic, readonly) NSString *path;
-@property (nonatomic, readonly) NSArray *supportedCodecs;
-@property (nonatomic, readonly) NSArray *supportedFilters;
-- (BOOL)hasCodec:(NSString *)name;
+@property (nonatomic, readonly) NSArray<NSString*> *filters;
+@property (nonatomic, readonly) NSArray<NSString*> *audioFilters;
+@property (nonatomic, readonly) NSArray<NSString*> *videoFilters;
+@property (nonatomic, readonly) NSArray<NSString*> *encoders;
+@property (nonatomic, readonly) NSArray<NSString*> *audioEncoders;
+@property (nonatomic, readonly) NSArray<NSString*> *videoEncoders;
+@property (nonatomic, readonly) NSArray<NSString*> *subtitlesEncoders;
+
+- (BOOL)hasEncoder:(NSString *)name;
 - (BOOL)hasFilter:(NSString *)name;
 @property (nonatomic, readonly) NSString *versionString;
 @property (nonatomic, readonly) NSString *buildConfigurationString;
