@@ -14,7 +14,10 @@
 #import "MPVKitDefines.h"
 
 OBJC_DIRECT_MEMBERS
-@implementation SLTFFmpegInfo
+@implementation SLTFFmpegInfo {
+    NSMutableDictionary<NSString*, NSString*> *_cachedFiltersHelp;
+    NSMutableDictionary<NSString*, NSString*> *_cachedEncodersHelp;
+}
 
 - (nullable instancetype)initWithPath:(NSString *)ffmpegPath
                               handler:(void(^)(NSError*))errorBlock
@@ -149,6 +152,8 @@ OBJC_DIRECT_MEMBERS
     }
     
     _path = ffmpegPath.copy;
+    _cachedFiltersHelp = [NSMutableDictionary new];
+    _cachedEncodersHelp = [NSMutableDictionary new];
     
     return self;
 }
@@ -170,6 +175,40 @@ OBJC_DIRECT_MEMBERS
 - (BOOL)hasEncoder:(NSString *)name {
     NSAssert(name, @"Encoder name cannot be nil");
     return [self sortedArray:_encoders contains:name];
+}
+
+- (NSString *)helpForName:(NSString *)name
+                    cache:(NSMutableDictionary<NSString*, NSString*> *)cache
+                     type:(NSString *)type
+{
+    NSString *result = cache[name];
+    if (result) return result;
+    
+    SL::Popen { SL::ASPrint("'%s' -hide_banner -help %s=%s", _path.UTF8String,
+                type.UTF8String, name.UTF8String), SL::Popen::Mode::Read,
+    [&](FILE *fp) {
+        constexpr size_t bufSize = 512;
+        char buf[bufSize + 1]{};
+        auto tmp = [NSMutableString new];
+        while (fgets(buf, bufSize, fp)) {
+            [tmp appendString:@(buf)];
+        }
+        result = tmp.length ? tmp : @"Failed to find any help.";
+        cache[name] = result;
+        pclose(fp);
+    }, [&]{ result = @"Failed to execute ffmpeg command."; }}; // Popen
+    
+    return result;
+}
+
+- (NSString *)helpForFilter:(NSString *)name {
+    NSAssert(name, @"Filter name cannot be nil.");
+    return [self helpForName:name cache:_cachedFiltersHelp type:@"filter"];
+}
+
+- (NSString *)helpForEncoder:(NSString *)name {
+    NSAssert(name, @"Encoder name cannto be nil.");
+    return [self helpForName:name cache:_cachedEncodersHelp type:@"encoder"];
 }
 
 - (NSError *)errorWithMessage:(NSString *)msg suggestion:(NSString *)sug {
