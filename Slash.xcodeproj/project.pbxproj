@@ -122,6 +122,7 @@
 		CE9E7BD723A91C9100614D56 /* SLHVolumeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9E7BD623A91C9100614D56 /* SLHVolumeSlider.m */; };
 		CEA1563F2194AF5A00B54F56 /* SLHTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */; };
 		CEA35A2A224B866D008583AF /* SLHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA35A29224B866D008583AF /* SLHImageView.m */; };
+		CEA85BFA264822C700BF2167 /* NSObject+SLTAssociatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA85BF9264822C700BF2167 /* NSObject+SLTAssociatedObjects.m */; };
 		CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA552722A7FFA90079CD27 /* SLHEncoderVP9Format.m */; };
 		CEAA552A22A7FFA90079CD27 /* SLHEncoderVP9Format.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAA552822A7FFA90079CD27 /* SLHEncoderVP9Format.xib */; };
 		CEAA552D22A801690079CD27 /* SLHEncoderVP9Options.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA552C22A801690079CD27 /* SLHEncoderVP9Options.m */; };
@@ -365,6 +366,8 @@
 		CEA1563E2194AF5A00B54F56 /* SLHTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHTabBarView.m; sourceTree = "<group>"; };
 		CEA35A28224B866D008583AF /* SLHImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHImageView.h; sourceTree = "<group>"; };
 		CEA35A29224B866D008583AF /* SLHImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHImageView.m; sourceTree = "<group>"; };
+		CEA85BF8264822C700BF2167 /* NSObject+SLTAssociatedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SLTAssociatedObjects.h"; path = "Starlight/NSObject+SLTAssociatedObjects.h"; sourceTree = "<group>"; };
+		CEA85BF9264822C700BF2167 /* NSObject+SLTAssociatedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SLTAssociatedObjects.m"; path = "Starlight/NSObject+SLTAssociatedObjects.m"; sourceTree = "<group>"; };
 		CEAA552622A7FFA90079CD27 /* SLHEncoderVP9Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLHEncoderVP9Format.h; path = controllers/SLHEncoderVP9Format.h; sourceTree = "<group>"; };
 		CEAA552722A7FFA90079CD27 /* SLHEncoderVP9Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLHEncoderVP9Format.m; path = controllers/SLHEncoderVP9Format.m; sourceTree = "<group>"; };
 		CEAA552822A7FFA90079CD27 /* SLHEncoderVP9Format.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SLHEncoderVP9Format.xib; path = controllers/SLHEncoderVP9Format.xib; sourceTree = "<group>"; };
@@ -722,13 +725,6 @@
 				CE6B8C1424E17A8B00B93758 /* SLKWindowController.h */,
 				CE6B8C1524E17A8B00B93758 /* SLKWindowController.m */,
 				CE6B8C1624E17A8B00B93758 /* SLKWindowController.xib */,
-				CE6B8C1A24E18FE500B93758 /* SLKH264EncoderSettings.h */,
-				CE6B8C1B24E18FE500B93758 /* SLKH264EncoderSettings.m */,
-				CE6B8C1C24E18FE500B93758 /* SLKH264EncoderSettings.xib */,
-				CE6B8C1F24E1903E00B93758 /* SLKEncoderSettings.h */,
-				CE6B8C2024E2BC7B00B93758 /* SLKEncoderSettingsInspector.h */,
-				CE6B8C2124E2BC7B00B93758 /* SLKEncoderSettingsInspector.m */,
-				CE6B8C2224E2BC7B00B93758 /* SLKEncoderSettingsInspector.xib */,
 			);
 			name = StarlightKit;
 			sourceTree = "<group>";
@@ -852,6 +848,10 @@
 		CEE7B5B524D31C0600A115D2 /* Starlight */ = {
 			isa = PBXGroup;
 			children = (
+				CEC4A6B725B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.h */,
+				CEC4A6B825B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m */,
+				CEA85BF8264822C700BF2167 /* NSObject+SLTAssociatedObjects.h */,
+				CEA85BF9264822C700BF2167 /* NSObject+SLTAssociatedObjects.m */,
 				CEBA3683253B589B00823125 /* SLTBinder.h */,
 				CEBA3684253B589B00823125 /* SLTBinder.m */,
 				CECE14E62507B79900406B9D /* SLTBitrateFormatter.h */,
@@ -873,8 +873,6 @@
 				CEF398E424DC569200D44BDD /* SLTH264EncoderSettings.m */,
 				CEFF068D24D7300200E93228 /* SLTMediaSettings.h */,
 				CEFF068E24D7300200E93228 /* SLTMediaSettings.m */,
-				CEC4A6B725B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.h */,
-				CEC4A6B825B5D300003B3A7F /* NSNotificationCenter+SLTAdditions.m */,
 				CED60C6425755BED00EA6B97 /* SLTObserver.h */,
 				CED60C6525755BED00EA6B97 /* SLTObserver.m */,
 				CEE7B5B924D31CAD00A115D2 /* SLTQueue.h */,
@@ -1056,6 +1054,7 @@
 				CE35266C23F987C900B28193 /* SLHFadingTableCellView.m in Sources */,
 				CE12B1C524224A5B00C674BF /* SLHVideoTrackView.m in Sources */,
 				CE021DF42521F80B002912A1 /* SLTTask.m in Sources */,
+				CEA85BFA264822C700BF2167 /* NSObject+SLTAssociatedObjects.m in Sources */,
 				CEBFF3E42190BDA000F54C7E /* slh_encoder.c in Sources */,
 				CE0B15F423571EA100AE606E /* SLHPlayerViewController.m in Sources */,
 				CEF2063324A8E846002166EB /* NSDictionary+SLHPropertyListAddtions.m in Sources */,
