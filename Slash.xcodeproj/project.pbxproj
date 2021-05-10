@@ -65,6 +65,7 @@
 		CE40B09D2107DE2900969371 /* slh_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE40B09B2107DE2900969371 /* slh_socket.c */; };
 		CE46483825506B380005498B /* SLTFFmpegInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE46483725506B380005498B /* SLTFFmpegInfo.mm */; };
 		CE477235226771F100FF5E0D /* slh_list.c in Sources */ = {isa = PBXBuildFile; fileRef = CE477233226771F100FF5E0D /* slh_list.c */; };
+		CE4A83B826493B5A004DB6B8 /* NSControl+SLKAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE4A83B726493B5A004DB6B8 /* NSControl+SLKAdditions.mm */; };
 		CE4BF2E321503D1E002E43F4 /* slh_dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4BF2E121503D1E002E43F4 /* slh_dictionary.c */; };
 		CE4D40F920FE8B9E0066ACE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D40F820FE8B9E0066ACE2 /* AppDelegate.m */; };
 		CE4D40FC20FE8B9E0066ACE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D40FB20FE8B9E0066ACE2 /* main.m */; };
@@ -263,6 +264,8 @@
 		CE46483725506B380005498B /* SLTFFmpegInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SLTFFmpegInfo.mm; path = Starlight/SLTFFmpegInfo.mm; sourceTree = "<group>"; };
 		CE477233226771F100FF5E0D /* slh_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_list.c; path = system/slh_list.c; sourceTree = "<group>"; };
 		CE477234226771F100FF5E0D /* slh_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_list.h; path = system/slh_list.h; sourceTree = "<group>"; };
+		CE4A83B626493B5A004DB6B8 /* NSControl+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSControl+SLKAdditions.h"; path = "StarlightKit/NSControl+SLKAdditions.h"; sourceTree = "<group>"; };
+		CE4A83B726493B5A004DB6B8 /* NSControl+SLKAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSControl+SLKAdditions.mm"; path = "StarlightKit/NSControl+SLKAdditions.mm"; sourceTree = "<group>"; };
 		CE4BF2E121503D1E002E43F4 /* slh_dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = slh_dictionary.c; path = system/slh_dictionary.c; sourceTree = "<group>"; };
 		CE4BF2E221503D1E002E43F4 /* slh_dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slh_dictionary.h; path = system/slh_dictionary.h; sourceTree = "<group>"; };
 		CE4D40F420FE8B9E0066ACE2 /* Slash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slash.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -707,6 +710,8 @@
 			isa = PBXGroup;
 			children = (
 				CE6B8C2824E40D1A00B93758 /* views */,
+				CE4A83B626493B5A004DB6B8 /* NSControl+SLKAdditions.h */,
+				CE4A83B726493B5A004DB6B8 /* NSControl+SLKAdditions.mm */,
 				CE3CAF6A25C7039100EF6712 /* NSMenuItem+SLKAdditions.h */,
 				CE3CAF6B25C7039100EF6712 /* NSMenuItem+SLKAdditions.m */,
 				CE6B8C1F24E1903E00B93758 /* SLKEncoderSettings.h */,
@@ -1096,6 +1101,7 @@
 				CEE5B833262981C400B051A7 /* Argv.mm in Sources */,
 				CEAA552922A7FFA90079CD27 /* SLHEncoderVP9Format.m in Sources */,
 				CE120459229C2AEE00C2A145 /* SLHEncoderVPXOptions.m in Sources */,
+				CE4A83B826493B5A004DB6B8 /* NSControl+SLKAdditions.mm in Sources */,
 				CEE7B5B424D31C0100A115D2 /* SLTSource.m in Sources */,
 				CEFF068C24D72FA900E93228 /* SLTEncoderSettings.m in Sources */,
 				CE8628242371B0A700E0909F /* SLHTrimView.m in Sources */,
