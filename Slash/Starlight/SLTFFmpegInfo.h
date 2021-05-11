@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)hasEncoder:(NSString *)name;
 - (BOOL)hasFilter:(NSString *)name;
+- (NSString *)helpForFilter:(NSString *)name;
+- (NSString *)helpForEncoder:(NSString *)name;
+
 @property (nonatomic, readonly) NSString *versionString;
 @property (nonatomic, readonly) NSString *buildConfigurationString;
 

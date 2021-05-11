@@ -9,8 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class SLTFFmpegInfo;
 
 @interface SLKFFmpegInfoController : NSWindowController
+
++ (instancetype)sharedInstance;
+
+@property (nonatomic, readonly, nullable) SLTFFmpegInfo *info;
+- (void)updateInfoWithPath:(NSString *)ffmpegPath;
 
 @end
 
