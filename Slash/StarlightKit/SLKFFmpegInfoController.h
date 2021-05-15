@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 @property (nonatomic, readonly, nullable) SLTFFmpegInfo *info;
-- (void)updateInfoWithPath:(NSString *)ffmpegPath;
+- (void)updateInfoWithPath:(nullable NSString *)ffmpegPath;
 
 @end
 

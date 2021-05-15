@@ -40,6 +40,14 @@
 }
 
 - (void)updateInfoWithPath:(NSString *)path {
+    if (!path) {
+        if (_info) {
+            self.info = nil;
+            self.window.title = @"Not Available";
+            _helpTextView.string = @" ";
+        }
+        return;
+    }
     __unsafe_unretained auto u = self;
     
     Dispatch::GlobalQueue().async(^{
