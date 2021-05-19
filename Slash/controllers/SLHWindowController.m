@@ -32,11 +32,16 @@
 #import "SLTRemotePlayer.h"
 #import "SLTUtils.h"
 
+#import "SLKFFmpegInfoController.h"
+
 #import "MPVPlayer.h"
 #import "MPVPlayerItem.h"
 #import "MPVPlayerItemTrack.h"
 #import "MPVPlayerProperties.h"
 #import "MPVPlayerCommands.h"
+
+#import "NSMenuItem+SLKAdditions.h"
+#import "NSNotificationCenter+SLTAdditions.h"
 
 #import "SLHEncoderVP9Format.h"
 #import "SLHEncoderVPXFormat.h"
@@ -233,6 +238,12 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     SLTRemotePlayer *p = SLTRemotePlayer.sharedInstance;
     p.mpvPath = appPrefs.mpvPath;
     p.mpvConfigPath = appPrefs.mpvConfigPath;
+    
+    /* SLKFFmpegInfoController */
+    if (appPrefs.hasFFmpeg) {
+        [SLKFFmpegInfoController.sharedInstance
+         updateInfoWithPath:appPrefs.ffmpegPath];
+    }
     
     /* SLHEncoderHistory */
     _encoderHistory = [[SLHEncoderHistory alloc] init];
@@ -498,23 +509,6 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
     _defaultPresetMenuItems = @[separator, savePreset, managePresets];
 }
 
-- (BOOL)createExternalPlayerWithMedia:(NSURL *)url {
-    SLHExternalPlayer *player = [SLHExternalPlayer defaultPlayer];
-    _externalPlayer = player;
-    if (player.error) {
-        NSAlert *alert = [NSAlert new];
-        alert.messageText = [NSString stringWithFormat:
-                             @"Cannot launch %@", _preferences.mpvPath];
-        alert.informativeText = player.error.localizedDescription;
-        _externalPlayer = nil;
-        [alert runModal];
-        return NO;
-    } else {
-        player.url = url;
-    }
-    return YES;
-}
-
 #pragma mark - KVO
 
 - (void)observePreferences:(SLHPreferences *)appPrefs {
@@ -651,6 +645,13 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
        ^(id obj, NSString * _Nonnull keyPath, NSString * _Nonnull change) {
            [SLTRemotePlayer.sharedInstance setMpvPathAndReload:change];
        }],
+      
+      // MARK: ffmpeg path
+      [appPrefs observeKeyPath: SLHPreferencesFFMpegPathKey handler:
+       ^(SLHPreferences *_Nonnull prefs, id kp, NSString *_Nonnull change) {
+           [SLKFFmpegInfoController.sharedInstance
+            updateInfoWithPath:(prefs.hasFFmpeg) ? change : nil];
+      }],
       
       // MARK: Output name template format
       [appPrefs observeKeyPath: SLHPreferencesOutputNameTemplateKey handler:
@@ -1041,6 +1042,10 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 
 - (IBAction)showQueue:(id)sender {
     [_queue.window makeKeyAndOrderFront:nil];
+}
+
+- (IBAction)showFFmpegInfo:(id)sender {
+    [SLKFFmpegInfoController.sharedInstance.window makeKeyAndOrderFront:nil];
 }
 
 - (IBAction)showPresetsWindow:(id)sender {

@@ -966,6 +966,12 @@ CA
                                     <action selector="showEncoderHistroy:" target="lKY-o8-vkq" id="phb-bl-xWh"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="FFmpeg Information" keyEquivalent="0" id="vew-s6-bBU">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showFFmpegInfo:" target="lKY-o8-vkq" id="XLR-sc-tEE"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="r0Z-sh-OD4"/>
                             <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
