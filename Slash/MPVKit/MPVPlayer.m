@@ -407,7 +407,6 @@ exit:
         CFRunLoopWakeUp(main_rl);
     });
 }
-    [NSThread exit];
 }
 
 - (void)shutdown {
