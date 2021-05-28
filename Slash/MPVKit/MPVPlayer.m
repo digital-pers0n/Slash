@@ -834,8 +834,14 @@ exit:
         }
     } else {
         observers = [NSPointerArray arrayWithObject:observer];
+        int e = mpv_observe_property(_mpv_handle, (uint64_t)observers,
+                                     property.UTF8String, format);
+        if (e != MPV_ERROR_SUCCESS) {
+            mpv_print_error_generic(e, @"Failed to add observer %@ for "
+                                    "property: %@", observer, property);
+            return;
+        }
         _observed[property] = observers;
-        mpv_observe_property(_mpv_handle, (uint64_t)observers, property.UTF8String, format);
     }
 #ifdef DEBUG
     NSLog(@"%llx: add observer: %@ property: %@ total: %lu", (uint64_t)observers, observer, property, observers.count);
