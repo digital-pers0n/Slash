@@ -133,65 +133,8 @@ OBJC_DIRECT_MEMBERS
     return self;
 }
 
-- (instancetype)initWithOptions:(NSDictionary<NSString *,NSString *> *)options {
-    self = [super init];
-    if (self) {
-        __unsafe_unretained typeof(self) ref = self;
-        int error = [self setUpUsingBlock:^{
-            [ref loadDefaultOptions];
-            [ref loadOptions:options];
-        }];
-        
-        if (error != MPV_ERROR_SUCCESS) {
-            _status = MPVPlayerStatusFailed;
-        } else {
-            _status = MPVPlayerStatusReadyToPlay;
-            [self postInit];
-        }
-
-    }
-    return self;
-}
-
-- (instancetype)initWithConfig:(NSString *)path {
-    self = [super init];
-    if (self) {
-        __unsafe_unretained typeof(self) ref = self;
-        int error = [self setUpUsingBlock:^{
-            [ref loadDefaultOptions];
-            int error = [ref loadConfig:path];
-            if (error != MPV_ERROR_SUCCESS) {
-                NSLog(@"Failed to read '%@' config file.", path);
-            }
-        }];
-        
-        if (error != MPV_ERROR_SUCCESS) {
-            _status = MPVPlayerStatusFailed;
-        } else {
-            _status = MPVPlayerStatusReadyToPlay;
-            [self postInit];
-        }
-    }
-    return self;
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        __unsafe_unretained typeof(self) ref = self;
-        int error = [self setUpUsingBlock:^{
-            [ref loadDefaultOptions];
-        }];
-        
-        if (error != MPV_ERROR_SUCCESS) {
-            _status = MPVPlayerStatusFailed;
-        } else {
-            _status = MPVPlayerStatusReadyToPlay;
-            [self postInit];
-        }
-    }
-    return self;
+- (instancetype)init {
+    return [self initWithBlock:^(id _){}];
 }
 
 - (int)createMPVHandle {
@@ -246,29 +189,6 @@ OBJC_DIRECT_MEMBERS
     [self setBool:YES forProperty:@"input-default-bindings"];
     [self setBool:YES forProperty:@"keep-open"];
     [self setString:@"libmpv" forProperty:@"vo"];
-}
-
-- (int)loadConfig:(NSString *)path {
-    int error = mpv_load_config_file(_mpv_handle, path.UTF8String);
-    if (error < 0) {
-        
-        NSLog(@"Cannot load config file %@", path);
-        
-        _error = [[NSError alloc]
-                  initWithDomain:MPVPlayerErrorDomain
-                  code:error
-                  userInfo:@{ NSLocalizedDescriptionKey :
-                                  [NSString stringWithFormat:@"%s\n", mpv_error_string(error)]
-                              }];
-        return error;
-    }
-    return MPV_ERROR_SUCCESS;
-}
-
-- (void)loadOptions:(NSDictionary *)options {
-    [options enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [self setString:obj forProperty:key];
-    }];
 }
 
 - (int)setUpUsingBlock:(void (^)(void))block {
