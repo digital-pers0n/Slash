@@ -137,16 +137,19 @@ OBJC_DIRECT_MEMBERS
     return [self initWithBlock:^(id _){}];
 }
 
+__attribute__((cold))
+static NSError* MPVCreateError(int code, NSString *desc, NSString *sug) {
+    return [[NSError alloc] initWithDomain:MPVPlayerErrorDomain code:code
+                        userInfo:@{ NSLocalizedDescriptionKey : desc,
+                        NSLocalizedRecoverySuggestionErrorKey : sug }];
+}
+
 - (int)createMPVHandle {
     mpv_handle *mpv = mpv_create();
     if (!mpv) {
-        
         NSLog(@"Cannot create mpv_handle.");
-        
-        _error = [[NSError alloc]
-                  initWithDomain:MPVPlayerErrorDomain
-                  code:MPV_ERROR_GENERIC
-                  userInfo:@{NSLocalizedDescriptionKey : @"Cannot create mpv_handle." }];
+        _error = MPVCreateError(MPV_ERROR_GENERIC, @"Cannot create mpv_handle.",
+                                @"Out of memory or LC_NUMERIC is not 'C'");
         return MPV_ERROR_GENERIC;
     }
     _mpv_handle = mpv;
@@ -156,15 +159,10 @@ OBJC_DIRECT_MEMBERS
 - (int)initializeMPVHandle {
     int error = mpv_initialize(_mpv_handle);
     if (error < 0) {
-        
         NSLog(@"Cannot initialize mpv_handle.");
-        
-        _error = [[NSError alloc]
-                  initWithDomain:MPVPlayerErrorDomain
-                  code:error
-                  userInfo:@{ NSLocalizedDescriptionKey :
-                                  [NSString stringWithFormat:@"%s\n", mpv_error_string(error)]
-                              }];
+        _error = MPVCreateError(error, @"Cannot initialize mpv_handle.",
+                       [NSString stringWithFormat:@"Incorrect parameters (%s).",
+                                                    mpv_error_string(error)]);
         mpv_destroy(_mpv_handle);
         _mpv_handle = nil;
         return error;
