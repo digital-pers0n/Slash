@@ -438,6 +438,13 @@ exit:
 
 #pragma mark - Methods
 
+- (void)setLogLevel:(NSString *)value {
+    int error = mpv_request_log_messages(_mpv_handle, value.UTF8String);
+    if (error != MPV_ERROR_SUCCESS) {
+        mpv_print_error_generic(error, "Failed to set log level '%@'", value);
+    }
+}
+
 - (void)quit {
     [self performCommand:MPVPlayerCommandQuit];
 }

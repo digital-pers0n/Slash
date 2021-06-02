@@ -125,6 +125,14 @@ FOUNDATION_EXTERN NSString * const MPVPlayerErrorDomain;
  */
 - (BOOL)takeScreenshotError:(NSError * _Nullable *)error;
 
+#pragma mark - Log Level
+
+/**
+ Set the minimum logging level
+ @param value possible levels: no fatal error warn info v debug trace
+ */
+- (void)setLogLevel:(NSString *)value;
+
 #pragma mark - Add/Remove Property Observers
 
 /**
