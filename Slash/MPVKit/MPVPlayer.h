@@ -173,7 +173,8 @@ extern NSString * const MPVPlayerDidEndPlaybackNotification;
 extern NSString * const MPVPlayerDidLoadFileNotification;
 
 /** MPV_EVENT_IDLE */
-extern NSString * const MPVPlayerDidEnterIdleModeNotification;
+extern NSString * const
+MPVPlayerDidEnterIdleModeNotification __attribute__((deprecated));
 
 /** MPV_EVENT_VIDEO_RECONFIG */
 extern NSString * const MPVPlayerVideoDidChangeNotification;
