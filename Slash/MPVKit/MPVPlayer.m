@@ -301,6 +301,7 @@ static NSError* MPVCreateError(int code, NSString *desc, NSString *sug) {
                 
             default:
                 printf("event: %s\n", mpv_event_name(event->event_id));
+                mpv_request_event(_mpv_handle, event->event_id, 0);
                 break;
         }
         
