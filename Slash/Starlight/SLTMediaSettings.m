@@ -36,15 +36,15 @@
 }
 
 - (NSArray<NSString *> *)arguments {
-    return nil;
+    return @[];
 }
 
 - (NSArray<NSString *> *)passThroughArguments {
-    return nil;
+    return @[];
 }
 
 - (NSArray<NSString *> *)ignoredStreamArguments {
-    return nil;
+    return @[];
 }
 
 static NSString *SLTMapStreamIndex(NSInteger streamIndex) {

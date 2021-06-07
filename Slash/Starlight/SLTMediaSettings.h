@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger streamIndex;
 @property (nonatomic) NSString *codecName;
 
-/** Array of ffmpeg arguments. Default implementation returns nil. */
+/** Array of ffmpeg arguments. Default implementation returns an empty array. */
 @property (nonatomic, readonly) NSArray<NSString *> *arguments;
 
 /** Array of ffmpeg arguments if the media stream should be copied. */
