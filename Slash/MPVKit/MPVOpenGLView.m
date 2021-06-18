@@ -179,6 +179,7 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (void)viewWillStartLiveResize {
+    [super viewWillStartLiveResize];
     if (mpvgl_is_valid(&_mpv)) {
         self.canDrawConcurrently = YES;
         [self useResizeRenderCallback];
@@ -186,6 +187,7 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (void)viewDidEndLiveResize {
+    [super viewDidEndLiveResize];
     if (mpvgl_is_valid(&_mpv)) {
         self.canDrawConcurrently = NO;
         [self reshape];
