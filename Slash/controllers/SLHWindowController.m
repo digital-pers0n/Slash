@@ -347,11 +347,22 @@ extern NSString *const SLHEncoderFormatDidChangeNotification;
 - (BOOL)loadFileURL:(NSURL *)url {
     MPVPlayerItem *playerItem = [MPVPlayerItem playerItemWithURL:url];
     if (playerItem.error) {
-        NSLog(@"Cannot load %@\n %@", url, playerItem.error.localizedDescription);
+        NSError *e = playerItem.error;
+        NSLog(@"Cannot load %@\n %@", url, e);
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = [NSString stringWithFormat:@"Cannot open '%@'.",
+                             url.lastPathComponent];
+        alert.informativeText = e.localizedDescription;
+        [alert runModal];
         return NO;
     }
     if (![self hasMediaStreams:playerItem]) {
         NSLog(@"Cannot load %@\n File doesn't contain playable streams.", url);
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = [NSString stringWithFormat:@"Cannot open '%@'.",
+                             url.lastPathComponent];
+        alert.informativeText = @"File doesn't contain any playable streams.";
+        [alert runModal];
         return NO;
     }
     [self createEncoderItemWith:playerItem];
