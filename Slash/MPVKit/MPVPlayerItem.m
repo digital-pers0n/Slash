@@ -16,7 +16,6 @@
 NSString * const MPVPlayerItemErrorDomain = @"com.home.mpvPlayerItem.ErrorDomain";
 
 @interface MPVPlayerItem () {
-    AVFormatContext *_av_format;
     MPVPlayerItemTrack *_bestVideoTrack;
     MPVPlayerItemTrack *_bestAudioTrack;
 }
@@ -42,174 +41,146 @@ OBJC_DIRECT_MEMBERS
 }
 
 - (instancetype)initWithURL:(NSURL *)url {
-    
     self = [super init];
+    if (!self) return nil;
     
-    if (self) {
-        
-        _url = url;
-        
-        if ([self createAVFormat] != 0) {
-            return self;
-        }
-        
-        _bitRate = _av_format->bit_rate;
-        if (_av_format->duration == AV_NOPTS_VALUE) {
-            _duration = 1;
-        } else {
-            _duration = _av_format->duration / (double)AV_TIME_BASE;
-        }
-        _formatName = @(_av_format->iformat->name);
-        
-        if (url.fileURL) {
-            
-            NSError *error = nil;
-            NSNumber *value = nil;
-            [url getResourceValue:&value forKey:NSURLFileSizeKey error:&error];
-            
-            if (error) {
-                
-               NSLog(@"Failed to read file size of '%@', using estimate instead\n%@", url, error.localizedDescription);
-                _fileSize = _bitRate * _duration / 8192 * 1024;
-                
-            } else {
-                
-                _fileSize = value.unsignedLongLongValue;
-            }
-            
-        } else {
-            
-            _fileSize = _bitRate * _duration / 8192 * 1024;
-        }
-     
-        [self readStreams];
-        [self readMetadata];
-        
-        _status = MPVPlayerItemStatusReadyToPlay;
-        
-#ifdef DEBUG
-        puts("-------------");
-        printf("         Url: %s\n", _av_format->url);
-        printf("    Duration: %g\n", _av_format->duration / (double)AV_TIME_BASE);
-        printf("    Bit Rate: %lli\n", _av_format->bit_rate);
-        printf("# of Streams: %u\n", _av_format->nb_streams);
-        printf("   file size: %llu\n", _fileSize);
-        printf(" format name: %s\n", _av_format->iformat->name);
-        printf("   long name: %s\n", _av_format->iformat->long_name);
-        printf("  extensions: %s\n", _av_format->iformat->extensions);
-        printf("   mime type: %s\n", _av_format->iformat->mime_type);
-        puts("-------------");
-#endif
-
+    _url = url;
+    AVFormatContext *avfc = [self createAVFormatWithURL:url];
+    if (!avfc) return self;
+    
+    _bitRate = avfc->bit_rate;
+    if (avfc->duration == AV_NOPTS_VALUE) {
+        _duration = 1;
+    } else {
+        _duration = avfc->duration / (double)AV_TIME_BASE;
     }
+    _formatName = @(avfc->iformat->name);
     
+    if (url.fileURL) {
+        NSError *error = nil;
+        NSNumber *value = nil;
+        [url getResourceValue:&value forKey:NSURLFileSizeKey error:&error];
+        if (error) {
+            NSLog(@"Failed to read file size of '%@', using estimate instead\n%@",
+                  url, error.localizedDescription);
+            _fileSize = _bitRate * _duration / 8192 * 1024;
+            
+        } else {
+            _fileSize = value.unsignedLongLongValue;
+        }
+    } else {
+        _fileSize = _bitRate * _duration / 8192 * 1024;
+    }
+    [self readStreams:avfc];
+    [self readMetadata:avfc];
+    _status = MPVPlayerItemStatusReadyToPlay;
+    
+#ifdef DEBUG
+    puts("-------------");
+    printf("         Url: %s\n", avfc->url);
+    printf("    Duration: %g\n", avfc->duration / (double)AV_TIME_BASE);
+    printf("    Bit Rate: %lli\n", avfc->bit_rate);
+    printf("# of Streams: %u\n", avfc->nb_streams);
+    printf("   file size: %llu\n", _fileSize);
+    printf(" format name: %s\n", avfc->iformat->name);
+    printf("   long name: %s\n", avfc->iformat->long_name);
+    printf("  extensions: %s\n", avfc->iformat->extensions);
+    printf("   mime type: %s\n", avfc->iformat->mime_type);
+    puts("-------------");
+#endif
+    
+    avformat_close_input(&avfc);
     return self;
 }
 
-- (void)dealloc {
-    if (_av_format) {
-        avformat_close_input(&_av_format);
-        _av_format = nil;
-    }
-}
-
-- (int)createAVFormat {
+- (AVFormatContext *)createAVFormatWithURL:(NSURL *)url {
     
-    _av_format = nil;
-    int error;
-    const char *url;
+    AVFormatContext *avfc = NULL;
+    const char *cUrl = NULL;
     
-    if (_url.fileURL) {
-        url = _url.fileSystemRepresentation;
+    if (url.fileURL) {
+        cUrl = url.fileSystemRepresentation;
     } else {
-        url = _url.absoluteString.UTF8String;
+        cUrl = url.absoluteString.UTF8String;
     }
     
-    error = avformat_open_input(&_av_format, url, nil, nil);
+    int e = avformat_open_input(&avfc, cUrl, /*format*/ nil, /*options*/ nil);
     
-    if (error) {
-        goto bail;
-    }
-    
-    error = avformat_find_stream_info(_av_format, nil);
-    
-bail:
-    
-    if (error) {
-        _status = MPVPlayerItemStatusFailed;
-        _error = [NSError errorWithDomain:MPVPlayerItemErrorDomain
-                                     code:error
-                                 userInfo:@{
-                                            NSLocalizedDescriptionKey: @(av_error_string(error)),
-                                            NSURLErrorKey: _url }];
-        if (_av_format) {
-            avformat_close_input(&_av_format);
+    AVFormatContext*(^didFail)() = ^{
+        self->_status = MPVPlayerItemStatusFailed;
+        self->_error = [NSError errorWithDomain:MPVPlayerItemErrorDomain code:e
+                            userInfo:@{ NSURLErrorKey: url,
+                            NSLocalizedDescriptionKey: @(av_err2str(e)) }];
+        if (avfc) {
+            avformat_close_input((AVFormatContext**)(&avfc));
         }
-        _av_format = nil;
-        return -1;
+        return (AVFormatContext*)(NULL);
+    };
+    
+    if (e) {
+        return didFail();
     }
     
-    return 0;
+    e = avformat_find_stream_info(avfc, /*options*/ nil);
+    if (e) {
+        return didFail();
+    }
+    
+    return avfc;
 }
 
-- (void)readStreams {
-    
+- (void)readStreams:(AVFormatContext *)avfc {
     NSMutableArray *result = [NSMutableArray new];
     
-    for (typeof(_av_format->nb_streams) i = 0; i < _av_format->nb_streams; i++) {
-        MPVPlayerItemTrack *track = [[MPVPlayerItemTrack alloc] initWithFormat:_av_format stream:_av_format->streams[i]];
+    for (typeof(avfc->nb_streams) i = 0; i < avfc->nb_streams; i++) {
+        MPVPlayerItemTrack *track = [[MPVPlayerItemTrack alloc]
+                                   initWithFormat:avfc stream:avfc->streams[i]];
         [result addObject:track];
         
-        switch (_av_format->streams[i]->codecpar->codec_type) {
-                
-            case AVMEDIA_TYPE_VIDEO:
-                _hasVideoStreams = YES;
-                break;
-                
-            case AVMEDIA_TYPE_AUDIO:
-                _hasAudioStreams = YES;
-                break;
-                
-            default:
-                break;
-        }
-    }
-    if (_hasVideoStreams) {
-        int idx = av_find_best_stream(_av_format, AVMEDIA_TYPE_VIDEO,
-                                      -1, -1, NULL, 0);
-        if (idx >= 0) {
-            _bestVideoTrack = result[idx];
+        switch (avfc->streams[i]->codecpar->codec_type) {
+        case AVMEDIA_TYPE_VIDEO:
+            _hasVideoStreams = YES;
+            break;
+        case AVMEDIA_TYPE_AUDIO:
+            _hasAudioStreams = YES;
+            break;
+        default:
+            break;
         }
     }
     
+    id (^findBestStream)(AVFormatContext*, enum AVMediaType, NSArray*) =
+    ^(AVFormatContext *ctx, enum AVMediaType type, NSArray *streams) {
+        int idx = av_find_best_stream(ctx, type, /*wanted_stream*/ -1,
+                     /*related_stream*/ -1, /*decoder_ret*/ NULL, /*flags*/ 0);
+        if (idx >= 0) {
+            return streams[idx];
+        }
+        return (id)nil;
+    };
+    
+    if (_hasVideoStreams) {
+        _bestVideoTrack = findBestStream(avfc, AVMEDIA_TYPE_VIDEO, result);
+    }
     
     if (_hasAudioStreams) {
-        int idx = av_find_best_stream(_av_format, AVMEDIA_TYPE_AUDIO,
-                                      -1, -1, NULL, 0);
-        if (idx >= 0) {
-            _bestAudioTrack = result[idx];
-        }
+        _bestAudioTrack = findBestStream(avfc, AVMEDIA_TYPE_AUDIO, result);
     }
-    
     _tracks = result;
 }
 
-- (void)readMetadata {
-    
-    AVDictionaryEntry *pair = nil;
+- (void)readMetadata:(AVFormatContext *)avfc {
+    AVDictionaryEntry *pair = NULL;
     NSMutableArray *result = [NSMutableArray new];
     
-    while ((pair = av_dict_get(_av_format->metadata, "", pair, AV_DICT_IGNORE_SUFFIX))) {
-        [result addObject:[[MPVMetadataItem alloc] initWithIdentifier:@(pair->key) value:@(pair->value)]];
+    while ((pair = av_dict_get(avfc->metadata, /*key*/"", pair,
+                               AV_DICT_IGNORE_SUFFIX)))
+    {
+        [result addObject:[[MPVMetadataItem alloc]
+                         initWithIdentifier:@(pair->key) value:@(pair->value)]];
     }
     
     _metadata = result;
-}
-
-static const char *av_error_string(int error_code) {
-    static char buffer[AV_ERROR_MAX_STRING_SIZE];
-    av_strerror(error_code, buffer, AV_ERROR_MAX_STRING_SIZE);
-    return buffer;
 }
 
 #pragma mark - Properties
